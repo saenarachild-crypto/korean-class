@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고전소설 내용 정리 | 김현석 국어</title>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  :root {
+    --burgundy: #6b1e2e;
+    --burgundy-light: #8b2e3e;
+    --burgundy-pale: #f5e8eb;
+    --gold: #c9973a;
+    --gold-light: #e8c878;
+    --cream: #fdf8f2;
+    --dark: #1a1208;
+    --gray: #6b6560;
+    --light-gray: #f0ebe4;
+    --border: #d4c4b8;
+    --text: #2c1f0e;
+    --shadow: rgba(107,30,46,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--burgundy);
+    color: white;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+  .brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+  }
+  .site-header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header-badge {
+    margin-left: auto;
+    background: var(--gold);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* WORK TABS */
+  .tab-nav {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 68px;
+    z-index: 90;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--burgundy); background: var(--burgundy-pale); }
+  .tab-btn.active {
+    color: var(--burgundy);
+    border-bottom-color: var(--burgundy);
+    font-weight: 700;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  .work-panel { display: none; }
+  .work-panel.active { display: block; }
+
+  /* WORK TITLE */
+  .work-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--burgundy-pale);
+  }
+  .work-num {
+    width: 44px;
+    height: 44px;
+    background: var(--burgundy);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .work-title-group h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--burgundy);
+    letter-spacing: -0.5px;
+  }
+  .work-title-group .author {
+    font-size: 14px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+  .work-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .tag {
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .tag-genre { background: #e8f0fe; color: #1a56db; }
+  .tag-theme { background: var(--burgundy-pale); color: var(--burgundy); }
+  .tag-motif { background: #fff3e0; color: #e65100; }
+
+  /* SECTION CARDS */
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .section-grid.full { grid-template-columns: 1fr; }
+  .section-grid.thirds { grid-template-columns: 1fr 1fr 1fr; }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .card-header {
+    background: var(--burgundy);
+    color: white;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-header .icon { font-size: 15px; }
+  .card-body { padding: 18px; }
+
+  /* PLOT SUMMARY */
+  .plot-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text);
+  }
+  .plot-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .plot-stage {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .stage-label {
+    min-width: 52px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .stage-label.발단 { background: #e3f2fd; color: #1565c0; }
+  .stage-label.전개 { background: #e8f5e9; color: #2e7d32; }
+  .stage-label.위기 { background: #fff3e0; color: #e65100; }
+  .stage-label.절정 { background: #fce4ec; color: #c62828; }
+  .stage-label.결말 { background: #f3e5f5; color: #6a1b9a; }
+  .stage-label.서두 { background: #e8eaf6; color: #283593; }
+  .stage-label.전반 { background: #e8f5e9; color: #2e7d32; }
+  .stage-label.후반 { background: #fff3e0; color: #e65100; }
+  .stage-text { font-size: 13.5px; line-height: 1.8; }
+
+  /* CHARACTER DIAGRAM */
+  .char-diagram {
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* SVG-based diagrams */
+  .diagram-svg {
+    width: 100%;
+    max-width: 640px;
+    overflow: visible;
+  }
+
+  /* Character boxes */
+  .char-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .char-box {
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 70px;
+    line-height: 1.4;
+  }
+  .char-box .role { font-size: 10px; font-weight: 400; margin-top: 2px; opacity: 0.8; }
+  .char-main { background: var(--burgundy); color: white; }
+  .char-sub { background: var(--gold); color: white; }
+  .char-antag { background: #b71c1c; color: white; }
+  .char-neutral { background: var(--light-gray); color: var(--text); border: 1px solid var(--border); }
+  .char-super { background: #1a237e; color: white; }
+
+  .rel-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    padding: 8px 0;
+  }
+  .rel-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .rel-line {
+    height: 2px;
+    flex: 1;
+    min-width: 40px;
+    position: relative;
+  }
+  .rel-label {
+    font-size: 11px;
+    color: white;
+    padding: 1px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .rel-label.positive { background: #388e3c; }
+  .rel-label.negative { background: #c62828; }
+  .rel-label.neutral { background: #616161; }
+  .rel-label.gold { background: var(--gold); }
+
+  /* Relationship table */
+  .rel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .rel-table th {
+    background: var(--burgundy-pale);
+    color: var(--burgundy);
+    padding: 8px 12px;
+    font-weight: 700;
+    text-align: left;
+    border-bottom: 2px solid var(--burgundy);
+  }
+  .rel-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .rel-table tr:last-child td { border-bottom: none; }
+  .rel-table tr:nth-child(even) td { background: var(--cream); }
+
+  /* VOCABULARY */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .vocab-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    font-size: 13px;
+  }
+  .vocab-word {
+    font-weight: 700;
+    color: var(--burgundy);
+    margin-bottom: 2px;
+  }
+  .vocab-def { color: var(--gray); font-size: 12px; }
+
+  /* KEY POINTS */
+  .key-list { list-style: none; }
+  .key-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 13.5px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .key-list li:last-child { border-bottom: none; }
+  .key-list li::before {
+    content: '▸';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 1px;
+  }
+
+  /* CHART BOX - for Q&A tables like 포천이문 */
+  .qa-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .qa-table th {
+    background: var(--burgundy);
+    color: white;
+    padding: 8px 12px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .qa-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  .qa-table tr:nth-child(even) td { background: var(--cream); }
+  .qa-theme {
+    background: var(--burgundy-pale) !important;
+    font-weight: 700;
+    color: var(--burgundy);
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .section-grid.thirds { grid-template-columns: 1fr; }
+    .vocab-grid { grid-template-columns: 1fr; }
+    .work-header { flex-direction: column; }
+  }
+
+  /* THEME HIGHLIGHT BOX */
+  .theme-box {
+    background: linear-gradient(135deg, var(--burgundy-pale), #fff);
+    border: 1.5px solid var(--burgundy);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 8px;
+  }
+  .theme-box .theme-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--burgundy);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .theme-box .theme-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  /* DIAGRAM VISUAL */
+  .diagram-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
+  }
+  .d-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .d-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 18px;
+    color: var(--burgundy);
+  }
+  .d-arrow-label {
+    font-size: 10px;
+    color: var(--gray);
+    white-space: nowrap;
+    max-width: 80px;
+    text-align: center;
+  }
+  .d-vert { width: 2px; height: 24px; background: var(--border); margin: 0 auto; }
+  .d-vert-label {
+    font-size: 10px;
+    color: var(--gray);
+    text-align: center;
+  }
+
+  /* BOTTOM LEGEND */
+  .legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  .conflict-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: var(--cream);
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  .vs-badge {
+    background: #b71c1c;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* PDF DOWNLOAD BUTTON */
+  .pdf-btn {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: white;
+    color: var(--burgundy);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .pdf-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .pdf-btn svg { flex-shrink: 0; }
+
+  /* PRINT MODAL OVERLAY */
+  .print-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+  }
+  .print-modal.open { display: flex; }
+  .print-modal-box {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 36px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .print-modal-box h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    color: var(--burgundy);
+    margin-bottom: 8px;
+  }
+  .print-modal-box p {
+    font-size: 13.5px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .print-modal-box .tip {
+    background: var(--burgundy-pale);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: var(--burgundy);
+    text-align: left;
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  .print-modal-box .tip strong { display: block; margin-bottom: 4px; }
+  .modal-btn-row { display: flex; gap: 10px; justify-content: center; }
+  .modal-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+  }
+  .modal-btn-primary {
+    background: var(--burgundy);
+    color: white;
+  }
+  .modal-btn-primary:hover { background: var(--burgundy-light); }
+  .modal-btn-cancel {
+    background: var(--light-gray);
+    color: var(--gray);
+  }
+  .modal-btn-cancel:hover { background: var(--border); }
+
+  /* ===== PRINT / PDF STYLES ===== */
+  @media print {
+    @page {
+      size: A4;
+      margin: 16mm 14mm 16mm 14mm;
+    }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    body { background: white !important; font-size: 11px; }
+
+    /* Hide navigation UI */
+    .site-header,
+    .tab-nav,
+    .pdf-btn,
+    .print-modal { display: none !important; }
+
+    /* Show ALL panels for print */
+    .work-panel { display: block !important; }
+
+    /* Page break between works */
+    .work-panel { page-break-before: always; }
+    .work-panel:first-child { page-break-before: avoid; }
+
+    /* Avoid breaks inside cards */
+    .card { page-break-inside: avoid; break-inside: avoid; }
+    .plot-stage { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Compact layout for print */
+    .main { max-width: 100%; padding: 0; margin: 0; }
+
+    .section-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .section-grid.full { grid-template-columns: 1fr; }
+
+    .work-header {
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+    .work-title-group h2 { font-size: 18px; }
+
+    .card-body { padding: 10px 12px; }
+    .card-header { padding: 7px 12px; font-size: 11px; }
+
+    .vocab-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
+    .vocab-item { padding: 5px 8px; font-size: 11px; }
+
+    .stage-text { font-size: 11px; }
+    .rel-table td, .rel-table th { padding: 5px 8px; font-size: 11px; }
+    .qa-table td, .qa-table th { padding: 5px 8px; font-size: 10.5px; }
+
+    .theme-box { padding: 8px 12px; }
+    .theme-box .theme-text { font-size: 12px; }
+
+    /* Print header per page */
+    .print-page-header {
+      display: block !important;
+      text-align: center;
+      font-size: 11px;
+      color: var(--burgundy);
+      font-weight: 700;
+      border-bottom: 1.5px solid var(--burgundy);
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+    }
+  }
+
+  /* Hide print header in screen mode */
+  .print-page-header { display: none; }
+
+  /* ===== QUIZ STYLES ===== */
+  .quiz-tab-btn {
+    background: var(--burgundy-pale) !important;
+    color: var(--burgundy) !important;
+    font-weight: 700 !important;
+    border-radius: 8px 8px 0 0;
+  }
+  .quiz-tab-btn.active {
+    background: var(--burgundy) !important;
+    color: white !important;
+    border-bottom-color: var(--burgundy) !important;
+  }
+  .quiz-type-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .quiz-start-btn {
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    padding: 14px 36px;
+    border-radius: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .quiz-start-btn:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+  }
+  #quiz-progress-bar-wrap {
+    height: 6px;
+    background: var(--light-gray);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  #quiz-progress-bar {
+    height: 100%;
+    background: var(--burgundy);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  #quiz-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  #quiz-q-counter {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--burgundy);
+    background: var(--burgundy-pale);
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+  #quiz-type-label {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--light-gray);
+    color: var(--gray);
+  }
+  #quiz-score-live {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 600;
+  }
+  #quiz-question-box {
+    background: white;
+    border-radius: 16px;
+    border: 1.5px solid var(--border);
+    padding: 28px 28px 24px;
+    box-shadow: 0 4px 16px var(--shadow);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  #quiz-question-text {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 22px;
+    min-height: 60px;
+  }
+  #quiz-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .quiz-choice {
+    padding: 13px 18px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: left;
+    line-height: 1.6;
+    color: var(--text);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .quiz-choice:hover:not(:disabled) {
+    border-color: var(--burgundy);
+    background: var(--burgundy-pale);
+  }
+  .quiz-choice .choice-num {
+    min-width: 24px;
+    height: 24px;
+    background: var(--light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .quiz-choice.correct {
+    border-color: #388e3c;
+    background: #e8f5e9;
+    color: #1b5e20;
+  }
+  .quiz-choice.correct .choice-num { background: #388e3c; color: white; }
+  .quiz-choice.wrong {
+    border-color: #c62828;
+    background: #fce4ec;
+    color: #b71c1c;
+  }
+  .quiz-choice.wrong .choice-num { background: #c62828; color: white; }
+  .quiz-choice.reveal {
+    border-color: #388e3c;
+    background: #e8f5e9;
+    color: #1b5e20;
+  }
+  .quiz-choice.reveal .choice-num { background: #388e3c; color: white; }
+  .quiz-choice:disabled { cursor: default; }
+  #quiz-feedback {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  #quiz-feedback.ok { background: #e8f5e9; color: #2e7d32; border-left: 4px solid #388e3c; }
+  #quiz-feedback.fail { background: #fce4ec; color: #c62828; border-left: 4px solid #c62828; }
+  #quiz-next-btn {
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    float: right;
+  }
+  #quiz-next-btn:hover { background: var(--gold); }
+  .review-item {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  #quiz-work-label {
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:2px 10px;
+    border-radius:10px;
+    background:var(--burgundy-pale);
+    color:var(--burgundy);
+    margin-bottom:10px;
+    letter-spacing:0.5px;
+  }
+  .review-q { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+  .review-a { font-size: 13px; color: #2e7d32; }
+  .review-wrong { font-size: 13px; color: #c62828; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">김현석 국어</div>
+  <h1>고전소설 내용 정리 — 인물 관계·어휘·줄거리</h1>
+  <span class="header-badge">2027 수능특강</span>
+  <button class="pdf-btn" onclick="openPrintModal()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 15V3m0 12l-4-4m4 4l4-4"/><rect x="2" y="17" width="20" height="4" rx="1"/>
+    </svg>
+    PDF 저장
+  </button>
+</header>
+
+<!-- PRINT MODAL -->
+<div class="print-modal" id="printModal">
+  <div class="print-modal-box">
+    <h3>📄 PDF로 저장하기</h3>
+    <p>10편의 작품이 모두 포함된 PDF 파일로 저장합니다.</p>
+    <div class="tip">
+      <strong>💡 저장 방법 (인쇄 대화상자에서)</strong>
+      대상(프린터): <b>PDF로 저장</b> 선택<br>
+      용지 크기: <b>A4</b><br>
+      여백: <b>기본값</b> 또는 <b>좁게</b><br>
+      배경 그래픽: <b>✅ 체크</b> (색상 유지)
+    </div>
+    <div class="modal-btn-row">
+      <button class="modal-btn modal-btn-cancel" onclick="closePrintModal()">취소</button>
+      <button class="modal-btn modal-btn-primary" onclick="doPrint()">인쇄 / PDF 저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showWork(0)">① 포천이문</button>
+  <button class="tab-btn" onclick="showWork(1)">② 왕수재취득용녀설</button>
+  <button class="tab-btn" onclick="showWork(2)">③ 서해무릉기</button>
+  <button class="tab-btn" onclick="showWork(3)">④ 현몽쌍룡기</button>
+  <button class="tab-btn" onclick="showWork(4)">⑤ 대관재몽유록</button>
+  <button class="tab-btn" onclick="showWork(5)">⑥ 금방울전</button>
+  <button class="tab-btn" onclick="showWork(6)">⑦ 적벽가</button>
+  <button class="tab-btn" onclick="showWork(7)">⑧ 옹고집전</button>
+  <button class="tab-btn" onclick="showWork(8)">⑨ 김순부전</button>
+  <button class="tab-btn" onclick="showWork(9)">⑩ 옥단춘전</button>
+  <button class="tab-btn quiz-tab-btn" onclick="showWork(10)">📝 암기테스트</button>
+</nav>
+
+<main class="main">
+
+<!-- ============================
+  ① 포천이문
+============================= -->
+<div class="work-panel active" id="work-0">
+  <div class="work-header">
+    <div class="work-num">①</div>
+    <div class="work-title-group">
+      <h2>포천이문 (抱川異聞)</h2>
+      <div class="author">작가: 이현기 | 갈래: 한문 소설·야담 | 시점: 전지적 작가 시점</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">한문 소설</span>
+        <span class="tag tag-theme">북벌론 비판</span>
+        <span class="tag tag-motif">귀신 대화</span>
+        <span class="tag tag-motif">전기적 요소</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 줄거리 -->
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">포천 현감으로 부임한 <strong>정 공(정태화)</strong>에게 조선 개국 공신 <strong>하륜의 귀신(하 공)</strong>이 나타나 폐허가 된 자신의 무덤을 돌봐 달라고 부탁한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text">정 공이 즉각 무덤을 정비해 주자, 하 공이 다시 찾아와 수명 연장으로 결초보은한다. 두 인물은 <strong>사후 세계</strong>에 대해 문답을 나눈다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">정 공이 <strong>북벌론</strong>의 정당성과 승산을 묻자, 하 공은 천시·지리·인사의 세 관점에서 북벌이 탁상공론임을 논리적으로 반박한다. 정 공이 설득되어 화의론으로 입장을 바꾼다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">정 공이 국정 폐단의 해결책을 묻자, 하 공은 집안일에 빗대어 <strong>무능한 관리 도태·유능한 인재 등용</strong>이 핵심임을 가르치고 이승을 떠난다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <!-- 인물 관계도 -->
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">정 공<div class="role">포천 현감<br>실존인물 정태화</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span style="font-size:11px;color:#388e3c;font-weight:600;">결초보은 ↔ 무덤 정비</span>
+              <span style="font-size:20px;">⟷</span>
+              <span style="font-size:11px;color:#1565c0;font-weight:600;">문답·조언</span>
+            </div>
+            <div class="char-box char-super">하 공<div class="role">하륜의 귀신<br>초자연적 존재</div></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <table class="rel-table">
+            <tr><th>인물</th><th>역할 및 특징</th></tr>
+            <tr><td><strong>정 공</strong></td><td>선의와 성실함을 지닌 인물. 북벌론을 믿었으나 하 공의 논리에 설득되어 입장을 바꾸는 유연함을 지님</td></tr>
+            <tr><td><strong>하 공 (하륜)</strong></td><td>예리한 현실 감각으로 북벌론의 허구성을 비판하는 작가의 대변인. 신의 있는 초월적 존재</td></tr>
+          </table>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="conflict-row"><strong>정 공</strong> <span class="vs-badge">문답</span> <strong>하 공</strong> — 북벌론의 당위 vs. 현실론적 비판</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 문답 구조 -->
+    <div class="card">
+      <div class="card-header"><span class="icon">💬</span> 핵심 문답 구조</div>
+      <div class="card-body">
+        <table class="qa-table">
+          <tr><th>주제</th><th>정 공의 질문</th><th>하 공의 답변</th></tr>
+          <tr>
+            <td class="qa-theme">사후 넋</td>
+            <td>사후에 넋이 흩어지지 않는 이유는?</td>
+            <td>타고난 기질과 지혜에 달림. 신분 무관</td>
+          </tr>
+          <tr>
+            <td class="qa-theme">조물주</td>
+            <td>저승에 조물주가 있는가?</td>
+            <td>누설할 수 없음 (금기)</td>
+          </tr>
+          <tr>
+            <td class="qa-theme">북벌론</td>
+            <td>명나라와의 의리로 청나라와 싸우는 것이 옳은가?</td>
+            <td>천시·지리·인사 모두 불리 → 탁상공론</td>
+          </tr>
+          <tr>
+            <td class="qa-theme">국정 운영</td>
+            <td>국정 폐단을 어찌 해결하는가?</td>
+            <td>무능한 관리 도태, 유능한 인재 등용</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 어휘 -->
+  <div class="section-grid full" style="margin-top:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">결초보은(結草報恩)</div><div class="vocab-def">죽은 뒤에라도 은혜를 잊지 않고 갚음</div></div>
+          <div class="vocab-item"><div class="vocab-word">상전벽해(桑田碧海)</div><div class="vocab-def">세상일의 변천이 매우 심함을 비유</div></div>
+          <div class="vocab-item"><div class="vocab-word">탁상공론(卓上空論)</div><div class="vocab-def">실현 가능성이 없는 헛된 논의</div></div>
+          <div class="vocab-item"><div class="vocab-word">천시(天時)</div><div class="vocab-def">시대나 그때의 운수(하늘이 돕는 시기)</div></div>
+          <div class="vocab-item"><div class="vocab-word">지리(地利)</div><div class="vocab-def">지형·지리적 유불리</div></div>
+          <div class="vocab-item"><div class="vocab-word">인사(人事)</div><div class="vocab-def">인적 자원과 관련된 조건</div></div>
+          <div class="vocab-item"><div class="vocab-word">오합지졸(烏合之卒)</div><div class="vocab-def">규율 없이 모인 병졸, 무질서한 군중</div></div>
+          <div class="vocab-item"><div class="vocab-word">만전지책(萬全之策)</div><div class="vocab-def">아주 안전하거나 완벽한 계책</div></div>
+          <div class="vocab-item"><div class="vocab-word">찬탈(簒奪)</div><div class="vocab-def">왕위·국가 주권 등을 억지로 빼앗음</div></div>
+          <div class="vocab-item"><div class="vocab-word">화의(和議)</div><div class="vocab-def">화해하는 의론, 평화 유지론</div></div>
+          <div class="vocab-item"><div class="vocab-word">북벌론(北伐論)</div><div class="vocab-def">청나라를 정벌하여 명나라를 부흥시키자는 주장</div></div>
+          <div class="vocab-item"><div class="vocab-word">용렬(庸劣)하다</div><div class="vocab-def">못나고 어리석다</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">명분론에 사로잡힌 북벌론의 허구성 비판 + 무능한 관리 도태·유능한 인재 등용의 중요성</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ② 왕수재취득용녀설
+============================= -->
+<div class="work-panel" id="work-1">
+  <div class="work-header">
+    <div class="work-num">②</div>
+    <div class="work-title-group">
+      <h2>왕수재취득용녀설</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 고전 소설·설화 | 시점: 전지적 작가 시점</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">전기 소설</span>
+        <span class="tag tag-theme">영웅의 시련</span>
+        <span class="tag tag-motif">구미호·용왕</span>
+        <span class="tag tag-motif">미색에 현혹</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">사신 일행을 태운 배가 바다 한가운데서 사흘째 나아가지 못한다. <strong>왕수재</strong>가 "부정한 자가 있어 해신이 막는 것"이라 진단하고 옷 던지기 시험을 제안한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text">시험 결과 왕수재 자신의 옷이 떠올라 '부정한 자'로 판명된다(자승자박). 일행은 그를 죽이지 않고 외딴 <strong>섬</strong>에 내려 준다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">섬에서 노인(서해 용왕의 아들)을 만난다. 노인이 바다의 소동은 왕수재를 섬으로 데려오기 위한 계략이었음을 밝히고, <strong>삼천 년 묵은 구미호</strong>와의 싸움에 도움을 요청한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">구미호가 <strong>절세미인</strong>으로 둔갑하여 등장한다. 왕수재가 활시위를 당기지만 미모에 현혹되어 끝내 활을 쏘지 못하고 기회를 놓친다(1차 대결 무승부).</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">(본문 이후) 왕수재가 훗날 임무를 완수하여 용왕의 딸을 아내로 얻는다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-neutral">상사<div class="role">사신단 총책임자</div></div>
+            <div style="font-size:11px;color:#616161;padding:0 4px;">지휘↓</div>
+            <div class="char-box char-main">왕수재<div class="role">주인공·신궁</div></div>
+          </div>
+          <div style="font-size:18px;color:var(--gold);">↕</div>
+          <div class="d-row">
+            <div class="char-box char-super">노인<div class="role">서해 용왕의 아들<br>조력자·사건 설계자</div></div>
+            <div style="font-size:18px;color:#b71c1c;padding:0 8px;">↔</div>
+            <div class="char-box char-antag">구미호<div class="role">적대자<br>삼천 년 묵은 요물</div></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="conflict-row"><strong>왕수재+노인</strong> <span class="vs-badge">VS</span> <strong>구미호</strong> — 선과 요물의 대결</div>
+          <div class="conflict-row"><strong>왕수재</strong> <span style="background:#616161;color:white;padding:1px 6px;border-radius:4px;font-size:11px;font-weight:700;">내적갈등</span> <strong>당위(요물퇴치) ↔ 미색(인간적 본능)</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">목욕재계(沐浴齋戒)</div><div class="vocab-def">부정 타지 않도록 목욕하고 몸가짐을 다듬음</div></div>
+          <div class="vocab-item"><div class="vocab-word">자청(自請)</div><div class="vocab-def">스스로 청하다</div></div>
+          <div class="vocab-item"><div class="vocab-word">울울(鬱鬱)하다</div><div class="vocab-def">매우 답답하다</div></div>
+          <div class="vocab-item"><div class="vocab-word">사행(使行)</div><div class="vocab-def">사신 행차</div></div>
+          <div class="vocab-item"><div class="vocab-word">신궁(神弓)</div><div class="vocab-def">귀신같은 활 솜씨를 지닌 사람</div></div>
+          <div class="vocab-item"><div class="vocab-word">변화무쌍(變化無雙)</div><div class="vocab-def">구미호의 탁월한 능력, 변신 능력</div></div>
+          <div class="vocab-item"><div class="vocab-word">살신성인(殺身成仁)</div><div class="vocab-def">자신을 희생하여 인을 이룸</div></div>
+          <div class="vocab-item"><div class="vocab-word">요사스럽다</div><div class="vocab-def">요망하고 간사한 데가 있다</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">왕수재의 기이한 모험과 시련 | 대의명분과 인간적 본능(미색) 사이의 내적 갈등</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ③ 서해무릉기
+============================= -->
+<div class="work-panel" id="work-2">
+  <div class="work-header">
+    <div class="work-num">③</div>
+    <div class="work-title-group">
+      <h2>서해무릉기 (西海武陵記)</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 고전 애정 소설 | 시점: 전지적 작가 시점</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">애정 소설</span>
+        <span class="tag tag-theme">지극한 사랑·정절</span>
+        <span class="tag tag-motif">변장·현몽 모티프</span>
+        <span class="tag tag-motif">이상향(무릉도원)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">장군이 <strong>최 씨(유생의 아내)</strong>를 납치하여 '서해무릉'이라는 외딴 섬에 가둔다. 최 씨는 강압적 혼인 요구에 굴하지 않고 정절을 지킨다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text"><strong>유생</strong>이 3년 동안 여승으로 변장하여 바다를 헤맨 끝에 서해무릉에 도착, 탁발을 구실로 마을 사람들과 접촉한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">노승(금산사 부처)의 현몽으로 최 씨가 여승(유생)을 만나 남편임을 알아보지만, 장군이 유생을 수상히 여겨 멀리 내쫓는다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">다시 현몽을 받은 최 씨가 밖으로 나오고, 마침 장원 밖을 살피던 유생이 담장 너머로 목소리를 확인하며 탈출을 기약한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">(본문 이후) 두 사람이 탈출하여 재결합한다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">유생<div class="role">주인공·남편<br>여승으로 변장</div></div>
+            <div style="font-size:11px;color:#388e3c;font-weight:600;padding:0 6px;">부부↔극적 상봉</div>
+            <div class="char-box char-sub">최 씨<div class="role">유생의 아내<br>정절을 지키는 여인</div></div>
+          </div>
+          <div style="font-size:18px;color:#b71c1c;">↕ 납치·감금</div>
+          <div class="d-row">
+            <div class="char-box char-antag">장군<div class="role">적대자<br>납치·강제 혼인 시도</div></div>
+            <div style="font-size:11px;color:#616161;padding:0 6px;">←회유→</div>
+            <div class="char-box char-neutral">정 부인<div class="role">장군의 어머니<br>혼인 강요하는 중재자</div></div>
+          </div>
+          <div style="font-size:18px;color:var(--gold);">↕ 조력(현몽)</div>
+          <div class="d-row">
+            <div class="char-box char-super">노승(금산사 부처)<div class="role">초월적 조력자<br>현몽으로 계시 전달</div></div>
+            <div style="font-size:11px;color:#388e3c;padding:0 6px;">→ 매개</div>
+            <div class="char-box char-neutral">계선<div class="role">시비·현실적 조력자</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">비몽사몽(非夢似夢)</div><div class="vocab-def">완전히 잠들지도, 깨지도 않은 어렴풋한 상태</div></div>
+          <div class="vocab-item"><div class="vocab-word">현몽(現夢) 모티프</div><div class="vocab-def">꿈을 통해 초월자가 계시를 내리는 장치</div></div>
+          <div class="vocab-item"><div class="vocab-word">변장(變裝) 모티프</div><div class="vocab-def">여승의 옷으로 정체를 숨기고 목적 달성</div></div>
+          <div class="vocab-item"><div class="vocab-word">천봉만학(千峰萬壑)</div><div class="vocab-def">수많은 산봉우리와 골짜기</div></div>
+          <div class="vocab-item"><div class="vocab-word">경개 절승(景槪絶勝)</div><div class="vocab-def">경치가 비할 데 없이 빼어나게 아름다운</div></div>
+          <div class="vocab-item"><div class="vocab-word">지성이면 감천</div><div class="vocab-def">정성이 지극하면 하늘도 감동한다</div></div>
+          <div class="vocab-item"><div class="vocab-word">식음전폐(食飮全廢)</div><div class="vocab-def">음식을 전혀 먹지 않음</div></div>
+          <div class="vocab-item"><div class="vocab-word">연보(蓮步)</div><div class="vocab-def">미인의 정숙하고 아름다운 걸음걸이</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">부부간의 지극한 사랑과 시련 극복 | 굳은 정절 | 지성이면 감천</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ④ 현몽쌍룡기
+============================= -->
+<div class="work-panel" id="work-3">
+  <div class="work-header">
+    <div class="work-num">④</div>
+    <div class="work-title-group">
+      <h2>현몽쌍룡기 (現夢雙龍記)</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 애정 소설·영웅 소설·계모형 가정 소설</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">영웅 소설</span>
+        <span class="tag tag-theme">운명적 사랑·천생연분</span>
+        <span class="tag tag-motif">남장·태몽 모티프</span>
+        <span class="tag tag-motif">극적 아이러니</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">조숙 부부가 신이한 태몽으로 두 아들 <strong>용홍</strong>(대원수 기질)과 용창을 얻는다. 예언에 따라 용홍과 <strong>정채임</strong>(금가락지 인연)의 정혼이 이루어진다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text"><strong>계모 박씨</strong>의 모함으로 채임이 강제 혼인 위기에 처한다. 채임이 <strong>남장</strong>을 하고 도망치다 도적에게 쫓겨 강물에 투신한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">우연히 지나가던 용홍 형제가 채임 일행을 구출한다. 시녀들이 주인의 명령을 어기고 진실을 밝히지만, 용홍은 채임의 정체를 아는 척 않고 은밀히 은신처(강정)를 마련해 준다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">(본문 이후) 두 사람이 혼인하여 천생연분을 이룬다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">조용홍<div class="role">남주인공·정혼자<br>대원수 기질</div></div>
+            <div style="font-size:11px;color:var(--gold);padding:0 6px;">금가락지 인연<br>↔ 운명적 정혼</div>
+            <div class="char-box char-sub">정채임<div class="role">여주인공<br>굳은 절개·남장 도피</div></div>
+          </div>
+          <div style="font-size:18px;color:#b71c1c;">↕ 모함</div>
+          <div class="d-row">
+            <div class="char-box char-antag">계모 박씨<div class="role">악인·갈등 유발자<br>채임 모함</div></div>
+          </div>
+          <div style="font-size:18px;color:#388e3c;">↕ 조력</div>
+          <div class="d-row">
+            <div class="char-box char-neutral">춘앵·벽란<div class="role">시녀·충직한 조력자<br>진실을 몰래 고백</div></div>
+            <div style="font-size:11px;color:#616161;padding:0 6px;">형제 동행</div>
+            <div class="char-box char-neutral">조용창<div class="role">용홍의 동생<br>승상 기품</div></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px;background:#fff3e0;border-radius:6px;font-size:12px;color:#e65100;">
+          ⚡ <strong>극적 아이러니</strong>: 용홍 형제·시녀들은 채임의 정체를 알지만, 채임만 모르는 상황 → 서사적 긴장감
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">태몽(胎夢)</div><div class="vocab-def">아이를 잉태할 것을 예고하는 꿈</div></div>
+          <div class="vocab-item"><div class="vocab-word">남장(男裝) 모티프</div><div class="vocab-def">위기 상황에서 여성이 남복으로 자신을 보호</div></div>
+          <div class="vocab-item"><div class="vocab-word">빙폐(聘幣)</div><div class="vocab-def">혼례 때 신랑 측이 신부 측에 보내는 예물</div></div>
+          <div class="vocab-item"><div class="vocab-word">액경(厄境)</div><div class="vocab-def">모질고 사나운 운수의 고비</div></div>
+          <div class="vocab-item"><div class="vocab-word">유리(流離)하다</div><div class="vocab-def">일정한 집 없이 이곳저곳 떠돌아다니다</div></div>
+          <div class="vocab-item"><div class="vocab-word">분골쇄신(粉骨碎身)</div><div class="vocab-def">뼈가 가루·몸이 부서지도록 목숨 바쳐 은혜 갚음</div></div>
+          <div class="vocab-item"><div class="vocab-word">절행(節行)</div><div class="vocab-def">절개 있는 행동</div></div>
+          <div class="vocab-item"><div class="vocab-word">천정배필(天定配匹)</div><div class="vocab-def">하늘이 정해 준 배필</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">시련과 고난을 극복한 천생연분의 성취 | 유교적 윤리(절개·효심·충의) | 권선징악</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ⑤ 대관재몽유록
+============================= -->
+<div class="work-panel" id="work-4">
+  <div class="work-header">
+    <div class="work-num">⑤</div>
+    <div class="work-title-group">
+      <h2>대관재몽유록 (大觀齋夢遊錄)</h2>
+      <div class="author">작가: 심의 | 갈래: 몽유록계 한문 소설 | 시점: 1인칭 주인공 시점</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">몽유록</span>
+        <span class="tag tag-theme">문학적 자부심·인생무상</span>
+        <span class="tag tag-motif">환몽·액자 구조</span>
+        <span class="tag tag-motif">문단 비판</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 서두">현실</span><span class="stage-text">작가 <strong>심의(나)</strong>가 대관재에서 잠이 든다 — <strong>입몽</strong></span></div>
+          <div class="plot-stage"><span class="stage-label 전개">꿈속①</span><span class="stage-text">꿈속 문인 왕국에서 붓(첨두노)을 무기로 삼아 반란군을 진압하고 적장 <strong>김시습</strong>을 항복시킨다. <strong>천자</strong>로부터 최고의 벼슬과 상을 받는다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">꿈속②</span><span class="stage-text">천자와 함께 <strong>사단(문단)</strong>을 오른다. 삼정승과 고관들은 문학적 실력 부족으로 중간에서 떨어진다. <strong>이규보</strong>의 문장을 탄핵하는 상소로 승진한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">꿈속③</span><span class="stage-text"><strong>한림 선생</strong>의 탄핵 상소로 천자가 심의에게 '대관 선생' 호를 주며 고향으로 돌아가게 한다. <strong>이색</strong>이 오장육부에 먹물을 붓는 의식으로 위로한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">각몽</span><span class="stage-text">배가 아파 꿈에서 깨어 보니 <strong>병든 아내와 가난</strong>이 현실이다. "궁달은 팔자소관"이라며 체념하며 작품을 집필한다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">나(심의)<div class="role">작가=주인공<br>문학적 자부심 강함</div></div>
+          </div>
+          <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#388e3c;">↓ 인정·총애</div>
+              <div class="char-box char-super" style="margin-top:4px;">천자<div class="role">꿈속 문인왕국 권위자</div></div>
+            </div>
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#b71c1c;">↕ 항복</div>
+              <div class="char-box char-antag" style="margin-top:4px;">김시습<div class="role">적장·문단 라이벌</div></div>
+            </div>
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#b71c1c;">↕ 탄핵</div>
+              <div class="char-box char-antag" style="margin-top:4px;">한림 선생<div class="role">심의를 탄핵한 반대파</div></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#388e3c;">↓ 위로·조력</div>
+              <div class="char-box char-neutral" style="margin-top:4px;">이색<div class="role">먹물을 붓는 조력자</div></div>
+            </div>
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#b71c1c;">↕ 비판·폄하</div>
+              <div class="char-box char-antag" style="margin-top:4px;">이규보·이숙함<div class="role">문학적 폄하 대상</div></div>
+            </div>
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:var(--gold);">☆ 문학의 지배자</div>
+              <div class="char-box char-super" style="margin-top:4px;">두보·이백<div class="role">문학 이상향의 권위자</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:8px;padding:6px 10px;background:#e8eaf6;border-radius:6px;font-size:11px;color:#283593;">
+          📌 환몽 구조: <strong>현실(입몽) → 꿈속 경험(몽유) → 현실(각몽)</strong> | 액자 구조
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">첨두노(尖頭奴)</div><div class="vocab-def">머리가 뾰족한 하인 → 붓의 의인화, 문장력 상징</div></div>
+          <div class="vocab-item"><div class="vocab-word">사단(詞壇)</div><div class="vocab-def">문장가들의 세계(문단)를 상징하는 높은 탑</div></div>
+          <div class="vocab-item"><div class="vocab-word">먹물</div><div class="vocab-def">문인의 피할 수 없는 운명적 숙명 상징</div></div>
+          <div class="vocab-item"><div class="vocab-word">음풍농월(吟風弄月)</div><div class="vocab-def">맑은 바람과 달로 시를 짓고 흥취를 자아냄</div></div>
+          <div class="vocab-item"><div class="vocab-word">경솔부박(輕率浮薄)</div><div class="vocab-def">말·행동이 조심 없이 가볍고 천박함</div></div>
+          <div class="vocab-item"><div class="vocab-word">궁달(窮達)</div><div class="vocab-def">가난과 부귀를 아울러 이르는 말</div></div>
+          <div class="vocab-item"><div class="vocab-word">팔자소관(八字所關)</div><div class="vocab-def">타고난 운수로 인하여 어쩔 수 없이 당하는 일</div></div>
+          <div class="vocab-item"><div class="vocab-word">오거서(五車書)</div><div class="vocab-def">다섯 수레에 실을 만한 책 → 많은 장서</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">문학적 재능에 대한 강렬한 자부심 | 당대 문단 및 부패 관료 비판 | 현실의 불우한 지식인의 체념적 한탄(인생무상)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ⑥ 금방울전
+============================= -->
+<div class="work-panel" id="work-5">
+  <div class="work-header">
+    <div class="work-num">⑥</div>
+    <div class="work-title-group">
+      <h2>금방울전 (金鈴傳)</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 영웅 소설·도술 소설 (= 금령전) | 시점: 전지적 작가 시점</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">영웅 소설</span>
+        <span class="tag tag-theme">권선징악·효(孝)</span>
+        <span class="tag tag-motif">적강·변신·보은 모티프</span>
+        <span class="tag tag-motif">가족 상봉</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">동해 용왕의 아들 <strong>장해룡</strong>이 인간 세상에 태어나고, 남해 용왕의 딸이 <strong>금방울</strong>로 태어나 해룡의 전생 은인에게 보은하기 위해 지상으로 내려온다. 전란 중 해룡이 부모를 잃는다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text">금방울의 신이한 도술로 해룡이 요괴를 물리치고 <strong>공주를 구출</strong>한다. 천자가 해룡을 부마로 삼는다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">해룡이 어사가 되어 순찰 중 뇌양현 사또와 담화하며 마음이 이끌린다. 꿈에서 백발노인이 "부모가 곁에 있다"고 질책한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">해룡이 관가로 돌아가 자신의 족자와 사또의 족자가 일치함을 확인, 등의 <strong>북두칠성 사마귀</strong>로 부자지간임이 밝혀지고 18년 만에 감격스러운 상봉을 한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">금방울이 허물을 벗고 아름다운 여인(옥란)으로 환골탈태한다. 해룡이 두 부인과 더불어 부귀영화를 누리다 백일승천한다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">장해룡<div class="role">남주인공<br>동해 용왕의 아들</div></div>
+            <div style="font-size:11px;color:var(--gold);padding:0 6px;">천정연분·보은</div>
+            <div class="char-box char-sub">금방울(옥란)<div class="role">여주인공·능동적 조력자<br>남해 용왕의 딸</div></div>
+          </div>
+          <div style="font-size:18px;color:#388e3c;">↕ 부마 책봉</div>
+          <div class="d-row">
+            <div class="char-box char-neutral">천자·황후<div class="role">최고 권위자<br>해룡의 후원자</div></div>
+            <div style="font-size:11px;color:#b71c1c;padding:0 6px;">→ 구출</div>
+            <div class="char-box char-neutral">공주(금선)<div class="role">요괴에 납치된 인물</div></div>
+          </div>
+          <div style="font-size:18px;color:#388e3c;">↕ 18년 만의 상봉</div>
+          <div class="d-row">
+            <div class="char-box char-neutral">장공 부부<div class="role">해룡의 친부모<br>뇌양현 사또</div></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <div class="conflict-row"><strong>해룡+금방울</strong> <span class="vs-badge">VS</span> <strong>요괴 / 북흉노(외적)</strong></div>
+        </div>
+        <div style="margin-top:8px;padding:6px 10px;background:#e8f5e9;border-radius:6px;font-size:11px;color:#2e7d32;">
+          📌 <strong>상호보완적 영웅상</strong>: 해룡(명목상 주체) + 금방울(실질적 능동자) — 독립적 개체가 아닌 협력 구조
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">적강(謫降) 모티프</div><div class="vocab-def">천상계 인물이 지상으로 내려오는 서사 장치</div></div>
+          <div class="vocab-item"><div class="vocab-word">환골탈태(換骨奪胎)</div><div class="vocab-def">금방울이 허물을 벗고 미녀로 재탄생</div></div>
+          <div class="vocab-item"><div class="vocab-word">보은(報恩) 모티프</div><div class="vocab-def">전생의 은혜를 갚는 이야기 요소</div></div>
+          <div class="vocab-item"><div class="vocab-word">천정배필(天定配匹)</div><div class="vocab-def">하늘이 정해 준 부부</div></div>
+          <div class="vocab-item"><div class="vocab-word">만조(滿朝)</div><div class="vocab-def">조정의 모든 벼슬아치</div></div>
+          <div class="vocab-item"><div class="vocab-word">백일승천(白日昇天)</div><div class="vocab-def">대낮에 하늘로 올라감 — 영웅의 신이한 결말</div></div>
+          <div class="vocab-item"><div class="vocab-word">입신양명(立身揚名)</div><div class="vocab-def">출세하여 이름을 세상에 떨침</div></div>
+          <div class="vocab-item"><div class="vocab-word">남가일몽(南柯一夢)</div><div class="vocab-def">덧없는 한때의 부귀영화를 이르는 말</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">남녀 주인공의 기이한 인연과 천정연분 성취 | 시련 극복과 권선징악 | 가족 재회와 효 사상</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ⑦ 적벽가
+============================= -->
+<div class="work-panel" id="work-6">
+  <div class="work-header">
+    <div class="work-num">⑦</div>
+    <div class="work-title-group">
+      <h2>적벽가 (赤壁歌)</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 판소리계 소설 | 원작: 삼국지연의 '적벽대전'</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">판소리계 소설</span>
+        <span class="tag tag-theme">민중 의식·반전 사상</span>
+        <span class="tag tag-motif">해학과 풍자</span>
+        <span class="tag tag-motif">지배층 비판</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">건안 12년, <strong>조조</strong>가 적벽강에서 성대한 연회를 열며 강남 정벌과 이교녀 차지를 호언장담한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text">불길한 징조(까마귀)를 직언한 충신 <strong>유복</strong>을 조조가 창으로 찔러 죽인다. 조조의 잔혹함과 오판이 드러난다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">강제 징집된 군사들이 신세를 한탄한다. 작은 체구의 <strong>화병</strong>이 벙거지에서 등장하여 까치 타령의 엉뚱한 사연을 풀어 웃음을 자아낸다(해학미).</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">또 다른 군사가 조조의 교만함을 비판하며 전쟁 패배를 예견하고 시체가 되어 버려질 비참한 미래를 한탄한다(비장미). 공명심에 불타는 군사와 이를 조롱하는 군사가 대립한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">(본문 이후) 적벽대전에서 조조군이 참패하고 조조가 도망간다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-antag">조조<div class="role">적대적 지배층<br>교만·탐욕·잔혹</div></div>
+          </div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#b71c1c;">↓ 창으로 찔러 죽임</div>
+              <div class="char-box char-neutral" style="margin-top:4px;">유복<div class="role">충신·직언하다 희생</div></div>
+            </div>
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#b71c1c;">↓ 강제 징집</div>
+              <div class="char-box char-main" style="margin-top:4px;">군사들<div class="role">민중 대변자<br>화병·이름 없는 병사들</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <div class="conflict-row"><strong>지배층(조조)</strong> <span class="vs-badge">↔</span> <strong>피지배층(군사·백성)</strong> — 핵심 갈등 구조</div>
+        </div>
+        <div style="margin-top:8px;padding:8px;background:#fff3e0;border-radius:6px;font-size:12px;">
+          <strong>⚡ 판소리계 특징</strong>: 영웅 중심 서사 탈피 → 이름 없는 민중(군사)을 전면에 배치<br>
+          <strong>📌 '단가행'(조조의 노래)</strong>: 오만함 드러냄 + 훗날 패배를 암시하는 복선
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">진작(振作)하다</div><div class="vocab-def">떨쳐 일어나다, 떨쳐 일으키다</div></div>
+          <div class="vocab-item"><div class="vocab-word">공활(空豁)하다</div><div class="vocab-def">텅 비고 매우 넓다</div></div>
+          <div class="vocab-item"><div class="vocab-word">경국지색(傾國之色)</div><div class="vocab-def">나라를 기울게 할 만큼 뛰어난 미녀</div></div>
+          <div class="vocab-item"><div class="vocab-word">화병(火兵)</div><div class="vocab-def">군대에서 밥·불 피우는 가장 말단 하급 병사</div></div>
+          <div class="vocab-item"><div class="vocab-word">군신유의(君臣有義)</div><div class="vocab-def">임금과 신하 사이의 도리는 의리에 있음</div></div>
+          <div class="vocab-item"><div class="vocab-word">비장미(悲壯美)</div><div class="vocab-def">슬프고 장엄한 아름다움</div></div>
+          <div class="vocab-item"><div class="vocab-word">골계미(滑稽美)</div><div class="vocab-def">우스꽝스럽고 해학적인 아름다움</div></div>
+          <div class="vocab-item"><div class="vocab-word">종횡무진(縱橫無盡)</div><div class="vocab-def">자유자재로 거침없이 행동하는 상태</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">권력자의 탐욕과 허위의식 비판·풍자 | 명분 없는 전쟁 고발 | 강제 징집된 민중의 고통과 애환</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ⑧ 옹고집전
+============================= -->
+<div class="work-panel" id="work-7">
+  <div class="work-header">
+    <div class="work-num">⑧</div>
+    <div class="work-title-group">
+      <h2>옹고집전 (雍固執傳)</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 판소리계 소설·송사 소설</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">판소리계 소설</span>
+        <span class="tag tag-theme">권선징악·개과천선</span>
+        <span class="tag tag-motif">진가쟁주 모티프</span>
+        <span class="tag tag-motif">풍자·해학</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">극도로 인색하고 어머니를 구박하며 불도를 능멸하는 <strong>옹고집(실옹가)</strong>. 이를 보다 못한 <strong>도사</strong>가 허수아비로 가짜 옹고집(<strong>허옹가</strong>)을 만들어 집에 보낸다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text">진짜와 가짜 사이에 시비가 벌어지고 <strong>사또</strong> 앞에서 재판이 열린다. 사또가 어리석게도 허옹가를 진짜로 판결한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">실옹가가 곤장을 맞고 쫓겨나 만첩청산을 헤맨다. 허옹가가 아내와 동침하고 아내가 허수아비 자식들을 낳는다(비현실적·해학적).</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">산속에서 도사를 만난 실옹가가 진심으로 참회한다. 도사가 부적을 주며 용서한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">실옹가가 집에 돌아오자 도술이 풀려 허옹가와 자식들이 허수아비 떼로 변한다. 실옹가가 <strong>개과천선</strong>하여 효도하고 불도를 공경한다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-super">도사<div class="role">징벌자·초월적 존재<br>부적 제공 → 구원</div></div>
+          </div>
+          <div style="display:flex;gap:20px;align-items:center;justify-content:center;margin:8px 0;flex-wrap:wrap;">
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#b71c1c;">↓ 도술로 만듦</div>
+              <div class="char-box char-antag" style="margin-top:4px;">허옹가<div class="role">가짜 옹고집<br>허수아비 실체</div></div>
+            </div>
+            <div style="font-size:20px;color:#b71c1c;">↔ 진가쟁주</div>
+            <div style="text-align:center;font-size:12px;">
+              <div style="color:#388e3c;">↓ 시련→개과천선</div>
+              <div class="char-box char-main" style="margin-top:4px;">실옹가(옹고집)<div class="role">주인공·수전노→선인</div></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+            <div class="char-box char-neutral">사또<div class="role">무능한 지방 관리<br>풍자 대상</div></div>
+            <div class="char-box char-neutral">아내<div class="role">허옹가에게 속아<br>허수아비 자식 낳음</div></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px;background:#fff3e0;border-radius:6px;font-size:12px;">
+          📌 <strong>진가쟁주(眞假爭主) 모티프</strong>: 진짜와 가짜가 집주인 자리를 두고 다투는 전형적 고전 모티프
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">수전노(守錢奴)</div><div class="vocab-def">돈을 모을 줄만 알아 절대 쓰지 않는 사람</div></div>
+          <div class="vocab-item"><div class="vocab-word">백골난망(白骨難忘)</div><div class="vocab-def">죽어 백골이 되어도 잊지 못할 큰 은혜</div></div>
+          <div class="vocab-item"><div class="vocab-word">대곤삼십도(大棍三十度)</div><div class="vocab-def">큰 곤장으로 삼십 대를 때림</div></div>
+          <div class="vocab-item"><div class="vocab-word">개과천선(改過遷善)</div><div class="vocab-def">잘못을 뉘우쳐 착하게 됨 — 핵심 주제어</div></div>
+          <div class="vocab-item"><div class="vocab-word">죽장망혜 단표자</div><div class="vocab-def">지팡이·짚신·표주박 → 매우 초라한 행색</div></div>
+          <div class="vocab-item"><div class="vocab-word">남가일몽(南柯一夢)</div><div class="vocab-def">덧없는 한때의 부귀영화 (꿈같은 일)</div></div>
+          <div class="vocab-item"><div class="vocab-word">월경(越境)하다</div><div class="vocab-def">국경이나 경계선을 넘다</div></div>
+          <div class="vocab-item"><div class="vocab-word">각금시이작비(覺今是而昨非)</div><div class="vocab-def">지금은 옳고 지난날은 그릇됐음을 깨달음</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">악행에 대한 징벌과 참회를 통한 권선징악·개과천선 | 효(孝) 강조 | 무능한 지배층 풍자</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ⑨ 김순부전
+============================= -->
+<div class="work-panel" id="work-8">
+  <div class="work-header">
+    <div class="work-num">⑨</div>
+    <div class="work-title-group">
+      <h2>김순부전 (金順夫傳)</h2>
+      <div class="author">작가: 이광정 | 갈래: 한문전(傳) | 시점: 전지적 작가 시점 + 1인칭 관찰자 시점 혼합</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">한문전(傳)</span>
+        <span class="tag tag-theme">선비의 지조·절개</span>
+        <span class="tag tag-motif">당쟁·정치적 폭압</span>
+        <span class="tag tag-motif">비극적 운명</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">서인(西人) 세력이 득세하던 시절, 기회주의자 <strong>진수 정양빈</strong>이 공을 세우려 하고 <strong>종인(種人)</strong>이 김씨 가문의 평화로운 친목 모임을 역모로 모함한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text"><strong>김순부</strong>가 관아에 출두하여 논리적인 반박(합법적 친족 모임의 증거, 공개된 장소에서의 풍악 등)으로 진수를 설득하고 석방된다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">종인이 다시 과거 사원 철거 사건을 끌어들여 순부를 재차 구금시킨다. 지부가 사면을 조건으로 가문 어른 고발을 종용하지만 순부가 단호히 거절한다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">방백이 순부를 옭아매라 명하고, 지부가 정치적 전향(귀정)을 회유하지만 순부가 "죽임을 당하더라도 할 수 없소"라며 굳건히 거절한다. 감옥에 천연두까지 돈다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">경신년 2월 28일, 김순부(48세)와 부인 홍씨가 천연두로 비극적으로 사망한다. 서술자 '나'(이광정)가 그의 탁월함과 기구한 운명을 깊이 애도한다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">김순부<div class="role">주인공·남인 선비<br>뛰어난 지혜·절개</div></div>
+          </div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+            <div style="text-align:center;font-size:11px;">
+              <div style="color:#b71c1c;">↕ 모함·억압</div>
+              <div class="char-box char-antag" style="margin-top:4px;">종인(種人)<div class="role">향권 노리는 간악한 자<br>서인 편에 붙어 모함</div></div>
+            </div>
+            <div style="text-align:center;font-size:11px;">
+              <div style="color:#b71c1c;">↕ 구금·회유</div>
+              <div class="char-box char-antag" style="margin-top:4px;">진수·지부·방백<div class="role">기회주의적 관리들<br>부패한 지배층</div></div>
+            </div>
+            <div style="text-align:center;font-size:11px;">
+              <div style="color:#388e3c;">↕ 애도·기림</div>
+              <div class="char-box char-sub" style="margin-top:4px;">나(이광정)<div class="role">서술자·작가<br>순부의 지인</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px;background:#e8eaf6;border-radius:6px;font-size:12px;color:#283593;">
+          📌 <strong>시대 배경</strong>: 서인(西人) ↔ 남인(南人) 당쟁 | 김상헌 사원 철거 사건 | 기사환국
+        </div>
+        <div style="margin-top:6px;padding:6px 10px;background:#fce4ec;border-radius:6px;font-size:12px;color:#c62828;">
+          ⚡ <strong>역설적 인식</strong>: 가혹한 옥살이·귀양 → 오히려 훌륭한 기행 문학 탄생의 원동력
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">향권(鄕權)</div><div class="vocab-def">향촌 사회에서 지배층이 가진 권력과 영향력</div></div>
+          <div class="vocab-item"><div class="vocab-word">귀정(歸正)</div><div class="vocab-def">'바른길로 돌아온다' — 서인으로의 정치적 전향</div></div>
+          <div class="vocab-item"><div class="vocab-word">항렬(行列)</div><div class="vocab-def">같은 혈족의 직계에서 갈라진 계통 사이의 대수 관계</div></div>
+          <div class="vocab-item"><div class="vocab-word">곤액(困厄)</div><div class="vocab-def">몹시 딱하고 어려운 사정과 재앙이 겹친 불운</div></div>
+          <div class="vocab-item"><div class="vocab-word">진수(鎭帥)</div><div class="vocab-def">특정 지역에 파견되어 부대를 지휘하는 무관</div></div>
+          <div class="vocab-item"><div class="vocab-word">방백(方伯)</div><div class="vocab-def">조선 시대 종이품 벼슬, 지방 행정 최고 책임자</div></div>
+          <div class="vocab-item"><div class="vocab-word">사림(士林)</div><div class="vocab-def">향촌에 기반을 둔 유학자·지식인 계층</div></div>
+          <div class="vocab-item"><div class="vocab-word">득세(得勢)</div><div class="vocab-def">세력을 얻음</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">부당한 권력의 폭압 속에서도 꺾이지 않는 선비의 지조와 절개 | 당쟁의 참혹함 고발 | 비극적 운명에 대한 애도</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  ⑩ 옥단춘전
+============================= -->
+<div class="work-panel" id="work-9">
+  <div class="work-header">
+    <div class="work-num">⑩</div>
+    <div class="work-title-group">
+      <h2>옥단춘전 (玉丹春傳)</h2>
+      <div class="author">작가: 작자 미상 | 갈래: 판소리계 소설 | 배경: 조선 후기 평양</div>
+      <div class="work-tags">
+        <span class="tag tag-genre">판소리계 소설</span>
+        <span class="tag tag-theme">권선징악·배신</span>
+        <span class="tag tag-motif">암행어사 출도</span>
+        <span class="tag tag-motif">신분 초월 사랑</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid full" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-header"><span class="icon">📖</span> 전체 줄거리</div>
+      <div class="card-body">
+        <div class="plot-stages">
+          <div class="plot-stage"><span class="stage-label 발단">발단</span><span class="stage-text">어릴 때부터 함께 공부하며 생사를 같이하자 맹세한 <strong>이혈룡</strong>과 <strong>김진희</strong>. 진희가 평양 감사가 되고 혈룡은 몰락하여 유리걸식하다 진희를 찾아간다.</span></div>
+          <div class="plot-stage"><span class="stage-label 전개">전개</span><span class="stage-text">김진희가 이혈룡을 대동강에 던지라고 명한다. 기생 <strong>옥단춘</strong>이 이혈룡의 비범함을 알아보고 구출한다. 두 사람이 연분을 맺고, 옥단춘이 이혈룡의 가족까지 재정적으로 돕는다.</span></div>
+          <div class="plot-stage"><span class="stage-label 위기">위기</span><span class="stage-text">이혈룡이 <strong>암행어사</strong>가 되어 남루한 행색으로 돌아온다. 옥단춘이 변함없이 반긴다. 연광정 잔치에서 거지 행색의 이혈룡이 김진희를 향해 호통을 치자 나졸들에게 체포된다.</span></div>
+          <div class="plot-stage"><span class="stage-label 절정">절정</span><span class="stage-text">북소리 세 번이 울리며 이혈룡과 옥단춘이 강물에 던져질 위기에 처한다. 옥단춘이 이혈룡 대신 자결하려는 순간, 이혈룡이 "<strong>암행어사 출두요!</strong>"를 외쳐 극적 반전이 이루어진다.</span></div>
+          <div class="plot-stage"><span class="stage-label 결말">결말</span><span class="stage-text">김진희가 파직되고 하늘의 천벌(벼락)을 맞아 죽는다. 이혈룡은 우의정에 오르고 옥단춘을 둘째 부인으로 삼아 부귀를 누린다.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card">
+      <div class="card-header"><span class="icon">🧩</span> 인물 관계도</div>
+      <div class="card-body">
+        <div class="diagram-container">
+          <div class="d-row">
+            <div class="char-box char-main">이혈룡<div class="role">남주인공·몰락 양반<br>→ 암행어사</div></div>
+            <div style="font-size:11px;color:var(--gold);padding:0 6px;">신분 초월 사랑<br>↔ 헌신적 조력</div>
+            <div class="char-box char-sub">옥단춘<div class="role">여주인공·평양 기생<br>진취적·희생적 여성</div></div>
+          </div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+            <div style="text-align:center;font-size:11px;">
+              <div style="color:#b71c1c;">↕ 배신·살해 기도</div>
+              <div class="char-box char-antag" style="margin-top:4px;">김진희<div class="role">악인·평양 감사<br>배신과 부패의 상징</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <table class="rel-table">
+            <tr><th>갈등</th><th>내용</th></tr>
+            <tr><td><strong>이혈룡 ↔ 김진희</strong></td><td>배신당한 우정 — 암행어사 출도로 응징</td></tr>
+            <tr><td><strong>옥단춘 ↔ 신분제</strong></td><td>기생 신분으로도 진취적·주체적 삶 추구 → 정덕부인으로 신분 상승</td></tr>
+          </table>
+        </div>
+        <div style="margin-top:8px;padding:8px;background:#e8f5e9;border-radius:6px;font-size:12px;color:#2e7d32;">
+          📌 춘향전과 유사: 암행어사 출도 → 봉고파직 | 율문체 | 신분 상승 여주인공<br>
+          🔑 차이: 이혈룡↔김진희의 <strong>개인적 원한</strong>이 있어 갈등이 더 첨예함
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="icon">📚</span> 핵심 어휘 정리</div>
+      <div class="card-body">
+        <div class="vocab-grid">
+          <div class="vocab-item"><div class="vocab-word">유리걸식(流離乞食)</div><div class="vocab-def">정처 없이 떠돌며 빌어먹음</div></div>
+          <div class="vocab-item"><div class="vocab-word">백골난망(白骨難忘)</div><div class="vocab-def">죽어 백골이 되어도 잊지 못할 은혜</div></div>
+          <div class="vocab-item"><div class="vocab-word">붕우유신(朋友有信)</div><div class="vocab-def">친구 사이에는 믿음이 있어야 함 (오륜 중 하나)</div></div>
+          <div class="vocab-item"><div class="vocab-word">오륜박대(五倫薄待)</div><div class="vocab-def">인간의 다섯 가지 도리를 지키지 않고 모질게 함</div></div>
+          <div class="vocab-item"><div class="vocab-word">진수성찬(珍羞盛饌)</div><div class="vocab-def">푸짐하고 잘 차린 음식상</div></div>
+          <div class="vocab-item"><div class="vocab-word">배은망덕(背恩忘德)</div><div class="vocab-def">남에게 입은 은혜를 잊고 배반함</div></div>
+          <div class="vocab-item"><div class="vocab-word">마패(馬牌)</div><div class="vocab-def">암행어사의 신분과 권력을 상징하는 징표</div></div>
+          <div class="vocab-item"><div class="vocab-word">봉고파직(封庫罷職)</div><div class="vocab-def">창고를 봉하고 관직을 박탈함 — 어사 출도의 결과</div></div>
+        </div>
+        <div class="theme-box" style="margin-top:14px;">
+          <div class="theme-label">◆ 주제</div>
+          <div class="theme-text">권선징악(배신한 자는 벌, 선을 베푼 자는 보상) | 신분 초월 사랑 | 탐관오리 비판</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+  QUIZ PANEL
+============================= -->
+<div class="work-panel" id="work-10">
+  <div id="quiz-start-screen">
+    <div style="text-align:center;padding:40px 20px 20px;max-width:600px;margin:0 auto;">
+      <div style="font-size:52px;margin-bottom:16px;">📝</div>
+      <h2 style="font-family:'Noto Serif KR',serif;font-size:26px;color:var(--burgundy);margin-bottom:10px;">고전소설 암기테스트</h2>
+      <p style="color:var(--gray);font-size:14px;margin-bottom:24px;line-height:1.8;">줄거리·인물 관계·출제 포인트 중심의 고난도 문제입니다.<br>총 <strong>20문항</strong>, 10개 작품 골고루 출제됩니다.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;">
+        <div class="quiz-type-badge" style="background:#e3f2fd;color:#1565c0;">📖 줄거리·서사 흐름</div>
+        <div class="quiz-type-badge" style="background:var(--burgundy-pale);color:var(--burgundy);">🧩 인물 관계·심리</div>
+        <div class="quiz-type-badge" style="background:#fff3e0;color:#e65100;">🎯 서술 기법·출제 포인트</div>
+        <div class="quiz-type-badge" style="background:#e8f5e9;color:#2e7d32;">⚡ 작품 비교·심화</div>
+      </div>
+      <!-- 이름 입력 -->
+      <div style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px;text-align:left;">
+        <label style="font-size:13px;font-weight:700;color:var(--burgundy);display:block;margin-bottom:8px;">👤 이름을 입력하세요 (결과 보고 시 사용)</label>
+        <input id="student-name" type="text" placeholder="예) 홍길동" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;outline:none;box-sizing:border-box;" />
+      </div>
+      <button class="quiz-start-btn" onclick="startQuiz()">테스트 시작하기 →</button>
+    </div>
+  </div>
+
+  <div id="quiz-active-screen" style="display:none;">
+    <div id="quiz-progress-bar-wrap">
+      <div id="quiz-progress-bar"></div>
+    </div>
+    <div id="quiz-meta">
+      <span id="quiz-q-counter"></span>
+      <span id="quiz-type-label"></span>
+      <span id="quiz-score-live"></span>
+    </div>
+    <div id="quiz-question-box">
+      <div id="quiz-work-label"></div>
+      <div id="quiz-question-text"></div>
+      <div id="quiz-choices"></div>
+      <div id="quiz-feedback" style="display:none;"></div>
+      <button id="quiz-next-btn" style="display:none;" onclick="nextQuestion()">다음 문제 →</button>
+    </div>
+  </div>
+
+  <div id="quiz-result-screen" style="display:none;">
+    <div style="text-align:center;padding:36px 20px 20px;max-width:640px;margin:0 auto;">
+      <div id="quiz-result-emoji" style="font-size:56px;margin-bottom:12px;"></div>
+      <h2 id="quiz-result-title" style="font-family:'Noto Serif KR',serif;font-size:24px;color:var(--burgundy);margin-bottom:8px;"></h2>
+      <div id="quiz-result-score" style="font-size:52px;font-weight:900;color:var(--burgundy);margin:10px 0 4px;"></div>
+      <div id="quiz-result-pct" style="font-size:16px;color:var(--gray);margin-bottom:12px;"></div>
+      <p id="quiz-result-msg" style="color:var(--gray);font-size:14px;margin-bottom:24px;line-height:1.7;"></p>
+      <!-- 작품별 성적표 -->
+      <div id="quiz-work-scores" style="background:white;border:1.5px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:20px;text-align:left;"></div>
+      <!-- 버튼 -->
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;">
+        <button class="quiz-start-btn" onclick="startQuiz()" style="font-size:14px;padding:11px 24px;">🔄 다시 풀기</button>
+        <button class="quiz-start-btn" onclick="toggleReview()" style="background:var(--gold);font-size:14px;padding:11px 24px;" id="review-toggle-btn">📋 오답 확인</button>
+        <button class="quiz-start-btn" onclick="sendKakao()" id="kakao-btn" style="background:#FAE100;color:#3A1D1D;font-size:14px;padding:11px 24px;">
+          <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="height:18px;vertical-align:middle;margin-right:4px;" alt="">카톡으로 보내기
+        </button>
+      </div>
+      <div id="quiz-review-area" style="display:none;text-align:left;"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+
+<script>
+/* ── KAKAO INIT ── */
+if(window.Kakao && !Kakao.isInitialized()) Kakao.init('844ef57e5edd5580a2290d70387bea79');
+
+/* ── TAB NAVIGATION ── */
+function showWork(idx) {
+  document.querySelectorAll('.work-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(idx===10) resetQuizUI();
+}
+
+/* ── PRINT ── */
+function openPrintModal(){document.getElementById('printModal').classList.add('open');}
+function closePrintModal(){document.getElementById('printModal').classList.remove('open');}
+function doPrint(){
+  closePrintModal();
+  document.querySelectorAll('.work-panel').forEach(p=>p.style.display='block');
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{
+      document.querySelectorAll('.work-panel').forEach((p,i)=>{p.style.display='';p.classList.toggle('active',i===0);});
+    },500);
+  },150);
+}
+document.getElementById('printModal').addEventListener('click',function(e){if(e.target===this)closePrintModal();});
+
+/* ═══════════════════════════════════════════════════════
+   QUIZ — 문제 은행 (작품당 8문항씩, 10작품 = 80문항)
+   유형: 줄거리/서사(A), 인물관계/심리(B), 서술기법/출제포인트(C), 작품비교/심화(D)
+═══════════════════════════════════════════════════════ */
+const QB = [
+/* ══════════ ① 포천이문 ══════════ */
+{w:'포천이문',t:'A',q:'포천이문에서 정 공이 하 공의 무덤을 돌봐준 것에 대한 하 공의 보답으로 가장 알맞은 것은?',
+ c:'정 공의 수명을 한 등급 연장시켜 줌',
+ x:['정 공에게 귀한 관직을 마련해 줌','정 공의 가문에 복을 내려 줌','정 공이 원하는 소원을 이루어 줌']},
+{w:'포천이문',t:'A',q:'포천이문에서 하 공이 정 공에게 국정 폐단의 해결책으로 제시한 것은? 하 공이 활용한 비유와 함께 고르시오.',
+ c:'가장(임금)이 용렬하고 게으른 종(관리)을 도태하고 부지런한 자로 교체해야 한다 — 집안일에 비유',
+ x:['임금이 직접 전국을 순찰하여 탐관오리를 적발해야 한다 — 사냥에 비유','명나라 제도를 모방하여 법률을 새로 정비해야 한다 — 거울에 비유','과거 제도를 혁파하고 천거제로 인재를 뽑아야 한다 — 농사에 비유']},
+{w:'포천이문',t:'B',q:'포천이문에서 정 공이 북벌론의 승산을 묻자, 하 공이 "길흉은 너무도 알기 쉬우니 물을 것도 없소"라고 말한 진짜 의도는?',
+ c:'보나마나 명백한 실패(흉)이므로, 북벌은 절대 해서는 안 된다는 단호한 반대',
+ x:['하늘의 뜻이므로 인간이 미리 알 수 없다는 뜻','이미 결과가 정해졌으니 운명에 맡겨야 한다는 체념','승패는 전략에 달렸으니 치밀하게 준비하면 된다는 조언']},
+{w:'포천이문',t:'C',q:'포천이문에서 하 공이 "넋이 오랫동안 흩어지지 않는 것은 그 사람의 타고난 기질이 어두운지 지혜로운지에 달렸소"라고 말한 것의 의미로 가장 적절한 것은?',
+ c:'사후 영혼의 지속은 신분이나 권력이 아닌 개인의 정신적 역량에 달려 있다',
+ x:['영혼은 반드시 사후 500년 동안 유지되도록 하늘이 정해 두었다','제왕이나 재상처럼 높은 신분이어야 사후에도 넋이 남는다','죽기 전에 덕을 많이 쌓아야만 사후에도 넋이 흩어지지 않는다']},
+{w:'포천이문',t:'C',q:'포천이문에서 하 공이 당대 조정 신하들을 비판하는 핵심 논리는 무엇인가?',
+ c:'속으로는 청나라를 두려워하면서 겉으로만 대의명분(북벌론)을 출세의 수단으로 이용하는 위선',
+ x:['청나라의 군사력을 너무 과소평가하고 조선의 전력을 지나치게 낙관하는 무지','명나라가 이미 멸망했으므로 의리를 내세우는 것 자체가 논리적 모순','병자호란의 패배를 기억하지 못하는 역사 의식의 결핍']},
+{w:'포천이문',t:'D',q:'포천이문이 한문 소설·야담으로 분류되는 근거가 아닌 것은?',
+ c:'판소리 사설 특유의 3·4조 운율과 서민 언어가 작품 전반에 걸쳐 사용됨',
+ x:['귀신과 인간이 만나는 전기적(傳奇的) 요소가 나타남','실존 인물(하륜, 정태화)과 실제 지명(포천)을 활용하여 사실성을 부여함','천시·지리·인사라는 논리적 분석틀을 통해 논설적 성격을 띰']},
+{w:'포천이문',t:'D',q:'포천이문에서 하 공이 북벌론을 비판할 때 "젖먹이를 호랑이 굴로 들여보내는 것"이라는 표현을 사용한 것은 어떤 수사법인가?',
+ c:'비유법(유추)을 통해 북벌의 무모함을 청중이 쉽게 이해하도록 돕는 기법',
+ x:['설의법을 통해 독자로 하여금 스스로 결론을 내리게 유도하는 기법','과장법을 통해 청나라 군대의 막강함을 강조하는 기법','열거법을 통해 북벌의 실패 원인을 나열하는 기법']},
+{w:'포천이문',t:'B',q:'포천이문에서 "제왕이나 재상이라 할지라도 용렬한 그릇이라면 죽는 순간 아무것도 알 수 없고, 하찮은 초목이라 할지라도 빼어난 기운이 모인 것이라면 죽어도 넋이 남게 된다"는 하 공의 발언이 드러내는 세계관은?',
+ c:'신분보다 정신적 역량을 중시하는 가치관 — 만물에도 기운이 깃들 수 있다는 인식',
+ x:['엄격한 신분 질서 속에서 제왕만이 진정한 영혼을 가진다는 유교적 세계관','인간의 영혼은 하늘이 임의로 결정하므로 노력이 무의미하다는 운명론적 세계관','죽음 이후의 세계는 알 수 없으므로 현세의 삶에만 집중해야 한다는 현실주의적 세계관']},
+
+/* ══════════ ② 왕수재취득용녀설 ══════════ */
+{w:'왕수재취득용녀설',t:'A',q:'왕수재취득용녀설에서 왕수재가 사신 일행과 함께 중국으로 가는 배에 오른 목적은?',
+ c:'중국 수도의 장려한 문물을 직접 보고 대장부의 울울한 심사를 풀기 위해',
+ x:['서해 용왕의 부탁을 미리 알고 구미호를 퇴치하기 위해','사신 일행의 안전을 책임지는 호위 무사로 임명되었기 때문에','과거 시험을 보기 위해 중국으로 가는 길이었기 때문에']},
+{w:'왕수재취득용녀설',t:'A',q:'왕수재취득용녀설에서 바다 한가운데서 배가 사흘째 나아가지 못한 진짜 이유는 무엇인가?',
+ c:'서해 용왕의 아들이 구미호 퇴치를 위해 왕수재를 섬으로 데려오기 위해 꾸민 계략이었음',
+ x:['해신(海神)이 실제로 진노하여 일행 중에 죄인이 있다고 경고한 것','왕수재가 과거에 저지른 죄에 대한 하늘의 징벌','사신 일행이 예의를 갖추지 않고 출항했기 때문에 해신이 막은 것']},
+{w:'왕수재취득용녀설',t:'B',q:'왕수재취득용녀설에서 왕수재가 자신이 고안한 옷 던지기 시험에서 가장 불리한 결과(자신의 옷이 떠오름)를 얻었을 때 보인 반응으로 적절한 것은?',
+ c:'운명을 초월적 존재의 뜻으로 받아들이며 일행의 안전을 위해 자신이 희생하겠다고 결심함',
+ x:['시험 결과에 승복하지 않고 결백을 주장하며 강하게 항의함','도망치거나 상황을 모면하기 위해 다른 방법을 찾으려 함','자신이 주도한 시험이기 때문에 결과를 조작하려 함']},
+{w:'왕수재취득용녀설',t:'B',q:'왕수재취득용녀설에서 왕수재가 구미호를 향해 활시위를 당겼다가 결국 쏘지 못한 이유를 자신의 내면에서 합리화한 방식은?',
+ c:'"저건 사람이다. 여우가 둔갑을 해도 저렇게 될 수 있겠나? 사람이 사람을 쏴 죽여서야 되겠는가?"라며 도덕적 명분을 내세워 자신의 행동을 정당화함',
+ x:['노인의 작전이 애초에 불가능하다는 판단 하에 전략을 수정하기 위해','구미호가 실제로 인간이 된 것 같아 진심으로 혼란스러웠기 때문에','노인을 배신하고 구미호와 협력하기로 마음을 바꿨기 때문에']},
+{w:'왕수재취득용녀설',t:'C',q:'왕수재취득용녀설에서 구미호가 등장하는 장면의 감각적 묘사로 옳은 것은?',
+ c:'청각(청아한 종·북·피리 소리)과 시각(꽃처럼 아름다운 얼굴, 임금의 행차를 모방한 위용)이 결합되어 환상적·매혹적 분위기를 조성함',
+ x:['후각(향기로운 꽃 향)과 촉각(부드러운 비단 감촉)으로 구미호의 아름다움을 표현함','청각(서글픈 피리 소리)과 시각(흰 옷의 노파 형상)으로 공포스러운 분위기를 조성함','시각(폭풍우와 번개)과 청각(우레 소리)으로 구미호의 강력한 힘을 표현함']},
+{w:'왕수재취득용녀설',t:'C',q:'왕수재취득용녀설에서 "이 섬에 산 지도 벌써 천 년이 넘었소"라고 말하는 노인의 설정이 이 작품의 어떤 특성을 드러내는가?',
+ c:'전기소설(傳奇小說)의 특성 — 초자연적·비현실적 존재와 시간 설정을 적극 활용함',
+ x:['몽유록(夢遊錄)의 특성 — 꿈을 통해 현실의 불만을 해소하는 구조','판소리계 소설의 특성 — 민중의 삶과 고통을 반영한 사실주의적 서사','가전체 소설의 특성 — 사물을 의인화하여 교훈을 전달하는 우화 구조']},
+{w:'왕수재취득용녀설',t:'D',q:'왕수재취득용녀설에서 왕수재가 임무 수행(구미호 퇴치)에 실패한 이유가 같은 유형의 다른 고전 영웅 서사에서 주인공이 실패하는 이유와 결정적으로 다른 점은?',
+ c:'외적 적대자의 힘에 의한 것이 아니라 미색(美色)이라는 인간 내부의 본능에 현혹되어 스스로 포기했다는 점',
+ x:['주인공이 애초에 영웅적 자질을 갖추지 못한 평범한 인물이었다는 점','초월적 조력자의 도움을 거부하고 혼자 해결하려 한 것이 실패 원인이라는 점','구미호가 일반 요물과 달리 신성한 하늘의 보호를 받는 특별한 존재이기 때문']},
+{w:'왕수재취득용녀설',t:'A',q:'왕수재취득용녀설에서 노인이 구미호를 물리칠 수 있는 방법으로 왕수재에게 제시한 전략은?',
+ c:'노인이 구미호와 싸울 때 구미호의 주의가 노인에게 집중된 틈을 타 왕수재가 구미호의 명치를 기습적으로 화살로 쏘는 것',
+ x:['왕수재가 먼저 구미호에게 정면으로 화살을 쏜 뒤, 노인이 혼란 틈을 타 공격하는 것','노인이 도술로 구미호를 잠시 묶어 두는 사이 왕수재가 특수한 독화살로 제거하는 것','왕수재가 구미호를 섬 밖으로 유인하고, 노인이 바다 위에서 공격하는 것']},
+
+/* ══════════ ③ 서해무릉기 ══════════ */
+{w:'서해무릉기',t:'A',q:'서해무릉기에서 유생이 여승으로 변장하여 서해무릉에 도착한 뒤 마을 사람들에게 이곳을 찾아온 이유로 내세운 거짓말은?',
+ c:'금산사 뒤 암자에 있는 여승으로, 이 섬의 아름다운 산과 바다 같은 강을 구경하러 왔다고 둘러댐',
+ x:['속세를 떠나 수행처를 찾아 헤매다 우연히 이 섬에 발을 들였다고 함','납치된 부인을 찾아 온 세상을 돌아다니다 이곳에 당도했다고 솔직히 말함','강남으로 가는 사신단에서 낙오되어 표류하다 이 섬에 도착했다고 함']},
+{w:'서해무릉기',t:'A',q:'서해무릉기에서 최 씨가 정 부인의 혼인 회유를 들은 뒤 "맑은 물에 귀를 씻으려 하였다"는 행동이 가리키는 고사는?',
+ c:'요임금이 왕위를 물려주겠다는 말을 듣고 귀가 더러워졌다며 강물에 귀를 씻었다는 허유(許由)의 고사',
+ x:['덕을 닦으려는 선비가 매일 새벽 냉수로 귀를 씻었다는 유교 수양법','불교에서 더러운 말을 들으면 귀를 씻어야 한다는 계율','강에서 목욕하면 죄가 씻긴다는 민간 신앙적 행위']},
+{w:'서해무릉기',t:'B',q:'서해무릉기에서 유생이 여승으로 변장한 사실을 가장 먼저 알아본 인물은 누구이며 그 방법은?',
+ c:'최 씨가 삿갓 밑의 얼굴을 보고 지아비 유연임을 스스로 알아보았음 (시비 계선의 안내로 직접 나가 확인)',
+ x:['마을 사람들이 여승의 거동이 수상하다며 신고하여 알게 됨','장군이 여승의 용모가 너무 아름답다는 소식을 듣고 직접 확인하여 알아냄','노승(부처)이 최 씨에게 꿈속에서 여승의 정체를 미리 알려주었음']},
+{w:'서해무릉기',t:'B',q:'서해무릉기에서 "서해무릉"이라는 공간이 갖는 역설적 이중성을 가장 잘 설명한 것은?',
+ c:'무릉도원처럼 평화롭고 아름다운 이상향이지만, 동시에 최 씨가 납치되어 감금되고 강제 혼인을 강요받는 시련의 공간이라는 이중성',
+ x:['서해에 있어 육지와 차단된 고립 공간이지만, 유생이 아내와 재회하는 긍정적 공간이기도 함','현실 세계와 달리 신분 차별이 없는 평등한 공간이지만, 새로운 권력 구조가 형성되는 공간','자연이 아름답지만 사람들이 계절도 모른 채 살 만큼 세상과 단절된 공간']},
+{w:'서해무릉기',t:'C',q:'서해무릉기에서 노승(금산사 부처)의 현몽이 두 차례 반복되는 서사적 기능은?',
+ c:'초월적 존재의 개입으로 사건 해결의 실마리를 제공하고, 앞으로 일어날 사건을 예고하는 복선 역할을 함',
+ x:['현실에서 해결 불가능한 문제를 꿈속에서 완전히 해소하는 환몽 구조를 형성함','불교적 인과응보 사상을 강조하여 독자에게 종교적 교훈을 전달함','두 사람의 재회 장면을 직접 묘사하지 않고 요약적으로 처리하는 시간 단축 기능']},
+{w:'서해무릉기',t:'C',q:'서해무릉기에서 "최 씨의 심정이 오죽하였겠는가?"와 같은 서술자의 개입을 일컫는 문학적 용어는?',
+ c:'편집자적 논평 — 서술자가 인물의 심리나 상황에 주관적으로 개입하여 독자의 공감을 유도하는 기법',
+ x:['공감적 오류 — 자연물에 인간의 감정을 부여하는 기법','극적 아이러니 — 독자는 알지만 인물은 모르는 정보 불균형을 활용하는 기법','내적 독백 — 인물의 생각을 직접적으로 서술하는 기법']},
+{w:'서해무릉기',t:'D',q:'서해무릉기와 현몽쌍룡기는 모두 "현몽(現夢) 모티프"를 활용하지만, 두 작품에서 현몽의 서사적 역할이 다른 점은?',
+ c:'서해무릉기에서는 현몽이 주요 등장인물(최 씨)에게 탈출 계기를 부여하는 결정적 해결 장치이고, 현몽쌍룡기에서는 채임의 운명적 정혼을 예고하는 도입부 역할에 가까움',
+ x:['서해무릉기에서는 현몽이 악인을 징벌하는 도구이고, 현몽쌍룡기에서는 현몽이 주인공을 시험하는 시련의 계기임','서해무릉기에서는 현몽이 단 한 번만 등장하고, 현몽쌍룡기에서는 여러 차례 반복되어 등장함','서해무릉기에서는 남성 주인공에게, 현몽쌍룡기에서는 여성 주인공에게 현몽이 주어짐']},
+{w:'서해무릉기',t:'A',q:'서해무릉기에서 최 씨가 죽음을 결심하면서도 "차마 죽을 수가 없었던" 이유는?',
+ c:'자신을 찾기 위해 여승으로 변장하면서까지 고생한 유생의 정성을 생각하면 남편에 대한 부채감과 사랑으로 혼자 먼저 죽을 수 없었기 때문',
+ x:['장군이 24시간 감시하여 실질적으로 자결할 기회가 없었기 때문','정 부인이 최 씨의 죽음을 방지하기 위해 각별히 살폈기 때문','노승(부처)이 꿈에서 자결하지 말라고 엄명을 내렸기 때문']},
+
+/* ══════════ ④ 현몽쌍룡기 ══════════ */
+{w:'현몽쌍룡기',t:'A',q:'현몽쌍룡기에서 정채임이 외가로 피신하지 않고 고모(이 평장 부인)를 찾아가려 한 이유는?',
+ c:'외할아버지(석공)의 엄격한 성품 때문에 아버지와 큰 사달을 일으킬 것이 염려되어 가문 간 불화를 피하려 했기 때문',
+ x:['외할아버지 집이 계모의 모함 세력과 가까이 있어 더 위험하다고 판단했기 때문','외가에서 채임의 존재를 알아볼 수 없도록 이미 연락이 두절된 상태였기 때문','채임이 어릴 때부터 외가와 사이가 좋지 않아 의탁할 수 없었기 때문']},
+{w:'현몽쌍룡기',t:'A',q:'현몽쌍룡기에서 구조된 직후, 채임이 구원자(조용홍 형제)에게 자신의 정체를 직접 밝히지 않으려 한 이유는?',
+ c:'계모의 모함으로 쫓겨난 아버지의 허물이 정혼자 집안(시댁)에 알려지는 것을 막고, 남녀유별의 예법상 외간 남자에게 자신을 직접 드러내는 것이 수치라고 여겼기 때문',
+ x:['구원자가 자신의 정혼자임을 아직 몰랐기 때문에 조심스럽게 확인하고자 했기 때문','배신감에 구원자를 신뢰할 수 없어 진짜 신분을 숨기는 것이 더 안전하다고 판단했기 때문','시녀들이 이미 거짓 사연을 말하기로 합의해 두었기 때문']},
+{w:'현몽쌍룡기',t:'B',q:'현몽쌍룡기에서 벽란과 춘앵이 소저의 명을 어기고 조 공자에게 사연을 고백한 장면에서, 소저는 시녀들이 사실을 밝혔다는 것을 모른 채 강정에 머물게 된다. 이 상황이 만들어내는 서사 기법은?',
+ c:'극적 아이러니(정보의 비대칭) — 독자·용홍 형제·시녀들은 진실을 알지만 당사자인 채임만 모르는 상황',
+ x:['복선(伏線) — 나중에 채임이 진실을 알게 될 것을 미리 암시하는 기법','액자 구조 — 내부 이야기와 외부 이야기가 중첩되는 이중 서사 구조','서술자의 개입 — 서술자가 직접 나서서 채임의 심리를 독자에게 해설하는 기법']},
+{w:'현몽쌍룡기',t:'B',q:'현몽쌍룡기에서 춘앵과 벽란이 조 공자 형제를 처음 보고 마음을 열어 사연을 털어놓기로 결심한 근거는?',
+ c:'두 공자의 눈빛에 어진 덕이 나타나 "의연히 성인군자"라 판단했고, 생명을 구해 준 은인이므로 결코 해를 주지 않을 것이라 생각했기 때문',
+ x:['두 공자가 이미 채임의 정혼자임을 벽란이 먼저 알아보았기 때문','두 공자의 화려한 복장과 권세 있는 가문 출신임을 확인했기 때문','상사가 두 공자에 대해 먼저 신원을 보증해 주었기 때문']},
+{w:'현몽쌍룡기',t:'C',q:'현몽쌍룡기에서 "반악(潘岳)의 고움과 위개(衛玲)의 미려함을 비웃는 듯하였다"는 표현이 사용된 목적은?',
+ c:'중국 고사 속 최고의 미남들에 비유하여 조용홍 형제의 비범하고 수려한 풍모를 과장·강조하기 위한 것',
+ x:['조 공자 형제가 중국 진나라 출신임을 알리기 위한 역사적 배경 설명','벽란과 춘앵이 두 공자를 처음 만났을 때의 두려움을 완화하기 위한 유머','두 공자의 외모가 반악과 위개보다 못하다는 것을 역설적으로 표현한 것']},
+{w:'현몽쌍룡기',t:'C',q:'현몽쌍룡기에서 금가락지와 은가락지는 어떤 서사적 기능을 수행하는가?',
+ c:'남녀 주인공의 운명적 짝을 점지하고 맺어주는 결연(結緣)의 신물(信物) — 사건 전개의 방향을 미리 제시하는 예언적 기능',
+ x:['두 공자가 전쟁터에서 영웅적 공을 세울 때 힘을 발휘하는 신이한 도구','계모의 모함으로 잃어버린 가족을 재회하게 해주는 증거물','주인공이 시련을 극복하는 과정에서 조력자로부터 받는 보상품']},
+{w:'현몽쌍룡기',t:'D',q:'현몽쌍룡기가 "계모형 가정 소설"의 성격을 띤다고 할 때, 이 작품의 계모 갈등이 <장화홍련전>의 계모 갈등과 결정적으로 다른 점은?',
+ c:'현몽쌍룡기에서는 계모의 핍박이 주인공(채임)으로 하여금 정혼자를 찾아가는 여정을 촉발하는 간접적 계기가 되어 결국 천생연분을 성취하게 하는 반면, <장화홍련전>에서는 계모가 직접적으로 두 자매를 죽음으로 몰아가는 주된 원인이 됨',
+ x:['현몽쌍룡기에서는 계모가 나중에 개과천선하고, <장화홍련전>에서는 계모가 끝까지 악행을 지속함','현몽쌍룡기에서는 아버지가 계모 편을 들고, <장화홍련전>에서는 아버지가 계모에 맞서 자식을 보호함','현몽쌍룡기의 계모는 역사적 실존 인물이고, <장화홍련전>의 계모는 완전히 허구의 인물임']},
+{w:'현몽쌍룡기',t:'A',q:'현몽쌍룡기에서 조용홍이 채임 일행을 구조한 뒤 강정으로 피신시키면서 "소저의 근본을 모르는 체하고" 행동한 이유는?',
+ c:'채임이 자신의 정체가 드러나는 것을 수치로 여긴다는 사실을 간파하고, 그 마음을 헤아려 배려했기 때문',
+ x:['채임의 신분이 밝혀지면 귀한 집안이라 모시기 부담스러울까 봐 모른 척한 것','시녀들이 아직 주인의 진짜 신분을 말해주지 않아서 정말 몰랐기 때문에','아직 정혼자임을 확인하지 못했으므로 조심스럽게 확인이 필요했기 때문에']},
+
+/* ══════════ ⑤ 대관재몽유록 ══════════ */
+{w:'대관재몽유록',t:'A',q:'대관재몽유록에서 심의가 꿈에서 깨어나게 된 직접적인 계기는?',
+ c:'이색이 심의의 오장육부를 갈라 먹물을 들어부은 것으로 인한 극심한 복통',
+ x:['한림 선생의 탄핵 상소로 충격을 받아 잠에서 깨어남','꿈속에서 천자가 먹물을 선물로 주어 감동받아 눈이 떠짐','병든 아내의 앓는 소리를 들어 현실로 돌아옴']},
+{w:'대관재몽유록',t:'A',q:'대관재몽유록에서 심의가 꿈속 문인왕국에서 처음 세운 공적은?',
+ c:'붓(첨두노)만을 무기로 삼아 반란을 진압하고, 적장 김시습을 항복시킴',
+ x:['이규보의 문장력이 부족하다는 상소를 올려 승진함','사단(문단) 최고층까지 오른 유일한 신하가 됨','두보와 이백을 꺾고 천하 최고 문장가로 인정받음']},
+{w:'대관재몽유록',t:'B',q:'대관재몽유록에서 천자가 이색에게 심의를 맡기며 "40여 년을 기다리면 꼭 여기에 다시 돌아와 함께 부귀를 누릴 것이니 걱정하지 마시오"라고 한 것의 의미는?',
+ c:'심의의 남은 수명(40여 년)이 지나 사후에야 꿈속의 문학적 이상향에 도달할 수 있다는 암시 — 현실의 불우함과 죽음 이후의 문학적 귀환을 의미함',
+ x:['40여 년 뒤 과거를 다시 보면 꼭 합격할 수 있다는 격려','40여 년이 지나면 정치 환경이 바뀌어 다시 높은 벼슬에 오를 수 있다는 예언','40여 년간 지방에서 수행한 뒤 도를 깨달아 돌아오면 천자가 기다린다는 약속']},
+{w:'대관재몽유록',t:'B',q:'대관재몽유록에서 "삼정승과 신하 몇 명이 겨우 중간층에 이르렀으나 다리가 떨려 두려워서 엎드려 한 사람도 시종을 하지 못했다"는 장면이 비판하는 것은?',
+ c:'높은 벼슬과 사회적 지위를 가진 지배층이 실제 문학적 역량은 부족하다는 당대 관료 사회에 대한 비판',
+ x:['사단(문단)이 너무 높아 어느 누구도 오를 수 없는 불공평한 구조','천자의 권위가 너무 강해 신하들이 두려움에 떨며 복종해야 하는 전제 정치 비판','신하들이 천자를 따라 외출하지 않으려는 태만함과 불충함 비판']},
+{w:'대관재몽유록',t:'C',q:'대관재몽유록에서 "먹물"이 상징하는 바로 가장 적절한 것은?',
+ c:'문인으로서 평생 글을 쓸 수밖에 없는 피할 수 없는 운명적 숙명',
+ x:['현실에서 이루지 못한 부귀와 공명에 대한 심의의 욕망','당대 부패한 관료들을 비판하기 위한 칼보다 강한 무기','이색이 심의에게 전수하는 최고의 문학적 비법과 기예']},
+{w:'대관재몽유록',t:'C',q:'대관재몽유록에서 꿈에서 깨어난 심의가 "궁달은 팔자소관이니 어찌 꿈을 깨는 자가 있을 것인가!"라고 탄식한 것의 의미는?',
+ c:'가난하게 사는 것과 영화롭게 사는 것은 운명에 달린 것이어서, 현실의 삶은 꿈속에서 사는 것과 같다 — 현실의 비참함과 인생무상(人生無常)에 대한 체념적 한탄',
+ x:['이왕 꿈에서 깨었으니 현실에서 다시 도전하겠다는 의지의 표명','인생은 꿈처럼 덧없으니 욕심을 버리고 자연으로 돌아가야 한다는 은둔 의지','꿈속에서의 영광은 진짜가 아니었으니 이제 진정한 공명을 추구하겠다는 결심']},
+{w:'대관재몽유록',t:'D',q:'대관재몽유록과 다른 몽유록계 소설(예: 강도몽유록, 원생몽유록)의 공통점과 차이점으로 가장 적절한 것은?',
+ c:'공통점: 꿈이라는 장치를 통해 현실에서 말하기 힘든 비판적 내용을 담음 / 차이점: 대관재몽유록은 작가 자신이 주인공으로 등장해 개인의 문학적 자부심과 공명심을 드러내는 반면, 강도몽유록·원생몽유록은 역사적 사건의 피해자들을 등장시켜 시대 비판을 전면에 내세움',
+ x:['공통점: 모두 1인칭 주인공 시점으로 서술됨 / 차이점: 대관재몽유록만이 꿈속에서 실존 인물들을 등장시키며, 나머지는 가상의 인물만 등장함','공통점: 모두 현실의 지배층에 의해 억울하게 희생된 인물들을 부각함 / 차이점: 대관재몽유록만이 행복한 결말로 끝남','공통점: 모두 조선 후기에 지어진 소설임 / 차이점: 대관재몽유록만 한문으로 작성되고, 나머지는 국문으로 작성됨']},
+{w:'대관재몽유록',t:'A',q:'대관재몽유록에서 한림 선생이 심의를 탄핵한 내용은?',
+ c:'"심 모는 속세의 허물을 벗지 못하여 사사로운 욕심이 너무 지나칩니다"라고 함',
+ x:['"심 모는 이규보보다 문장력이 열등하니 영경연사에 부적합합니다"라고 함','심 모가 외국 사신과 몰래 만나 기밀을 누설했다는 반역 혐의를 제기함','심 모가 꿈속 문인왕국의 법도를 무시하고 청렴하지 못한 비리를 저질렀다고 고발함']},
+
+/* ══════════ ⑥ 금방울전 ══════════ */
+{w:'금방울전',t:'A',q:'금방울전에서 해룡이 뇌양현 사또와 자신이 부자지간임을 확인하게 된 결정적 단서 두 가지는?',
+ c:'두 사람이 각각 소지한 \'족자\'가 완전히 일치했고, 사또가 말한 "등에 일곱 개의 사마귀가 북두칠성 모양"이 해룡의 몸과 정확히 일치했기 때문',
+ x:['금방울이 두 사람에게 각각 같은 꿈을 꾸게 하여 서로 부자지간임을 알게 했기 때문','두 사람의 이름에 모두 "장(張)"이 들어 있고, 백발노인이 꿈에서 사실을 알려주었기 때문','해룡이 어릴 적 지니고 있던 패물(신물)을 사또가 알아보았기 때문']},
+{w:'금방울전',t:'A',q:'금방울전에서 금방울이 "허물을 벗고" 아름다운 여인으로 환골탈태하기까지 걸린 시간의 조건은?',
+ c:'금방울이 하늘에서 정한 시한(액운의 기간)을 채운 뒤에야 방울의 모습에서 벗어남 — 시련 기간이 끝나는 것이 조건',
+ x:['해룡이 북흉노를 물리치고 위왕에 오르는 최고의 공적을 세운 시점에 변신함','금방울이 해룡의 부모를 찾아주는 마지막 임무를 완수한 순간에 변신함','해룡이 금방울을 진심으로 사랑한다고 선언한 순간 변신함']},
+{w:'금방울전',t:'B',q:'금방울전에서 "해룡은 명목상의 주체이고, 금방울은 내면적인 주체"라는 평가가 타당한 근거는?',
+ c:'해룡의 영웅적 활약(요괴 퇴치, 외적 격퇴, 부모 상봉)이 모두 금방울의 사전 계획·도술·신물 제공에 의해 가능했기 때문',
+ x:['해룡이 금방울을 진정으로 사랑하기 때문에 금방울이 모든 힘을 발휘할 수 있었기 때문','해룡은 허구의 인물이고 금방울은 실제 민간 설화에서 유래한 인물이기 때문','금방울이 남해 용왕의 딸이라는 고귀한 혈통을 가지고 있기 때문']},
+{w:'금방울전',t:'B',q:'금방울전에서 족자가 "금방울이 의도적으로 안배해 둔 혈육 상봉의 매개체"임을 알 수 있는 근거는?',
+ c:'해룡과 사또(장공) 양쪽에 금방울이 직접 족자를 가져다주었고, 두 사람이 각자 독립적으로 소지한 족자가 완전히 일치했기 때문',
+ x:['족자에 해룡과 장공의 이름이 함께 새겨져 있어 혈육임을 증명했기 때문','해룡이 어릴 때 부모님이 직접 그려준 것이기 때문에 일치한 것','두 족자가 같은 화가에 의해 그려졌다는 낙관(落款)이 찍혀 있었기 때문']},
+{w:'금방울전',t:'C',q:'금방울전에서 "방울"이라는 소재가 난생 신화(卵生神話)의 "알"과 유사하다고 볼 수 있는 근거는?',
+ c:'방울은 형태가 둥글고 그 안에 생명체가 잉태되어 있어, 단단한 껍질을 깨고 재탄생하는 모티프가 난생 신화의 알과 동일한 상징 구조를 가지기 때문',
+ x:['방울 안에서 사람이 나오는 비현실적 출생이 신화 속 영웅들의 비범한 탄생과 유사하기 때문','방울이 황금빛을 띠어 왕권과 신성함을 상징하는 난생 신화의 알과 같은 색깔이기 때문','방울 소리가 신탁(神託)을 전달하는 매개체로 기능하여 신화적 의미를 지니기 때문']},
+{w:'금방울전',t:'C',q:'금방울전에서 "어찌 슬프고 기이하지 아니하리오?"라는 서술자의 발언이 사용된 기법과 기능은?',
+ c:'설의법을 통한 편집자적 논평 — 부자 상봉의 감동적 장면에 서술자가 개입하여 독자의 정서적 공감을 극대화함',
+ x:['간접 화법 — 해룡의 감정을 제3자의 시선으로 객관화하여 서술하는 기법','의문형 서술을 통한 복선 — 이 상봉이 실제로는 가짜일 수 있음을 암시하는 기법','역설법 — 슬픔과 기이함이 공존하는 모순된 감정을 강조하는 기법']},
+{w:'금방울전',t:'D',q:'금방울전에서 여주인공 금방울의 활약이 <홍계월전>의 홍계월과 비교했을 때 갖는 한계는?',
+ c:'금방울의 활약이 독자적이지 못하고 해룡을 돕는 내조에 그치며, 해룡과 금선 공주의 결혼이 금방울에게 비극이 되지 않는 점 등이 여성의 피동적 내조를 중시하는 전근대적 가치관의 한계를 보여줌',
+ x:['금방울은 도술 능력만 있고 지적·문학적 능력이 없다는 점에서 홍계월보다 단면적인 인물임','금방울은 끝내 인간 여성으로 변신하지 못하고 방울로 남는다는 점에서 성취가 제한적임','금방울은 남성 주인공 없이 독자적으로 활동하지 않는다는 점에서 주체적 여성상이라 할 수 없음']},
+{w:'금방울전',t:'A',q:'금방울전에서 천자가 공주의 꿈 이야기를 근거로 해룡에게 "공주를 더럽다 말고 임사의 덕은 갖추지 못했으나 족히 경의 건즐을 받들 것이니"라고 한 것의 뜻은?',
+ c:'요괴에게 잡혀가 고초를 겪었다고 해서 공주를 흠잡지 말고, 두 사람은 하늘이 맺어준 천정배필이니 혼인하라는 것',
+ x:['공주는 아직 나이가 어리니 혼인을 서두르지 말고 천천히 준비하라는 것','공주가 덕이 부족하니 해룡이 엄격하게 가르치며 올바른 내조자로 이끌어 달라는 것','공주를 첫째 부인으로 삼되 금방울을 둘째 부인으로 삼는 것에도 동의하라는 것']},
+
+/* ══════════ ⑦ 적벽가 ══════════ */
+{w:'적벽가',t:'A',q:'적벽가에서 조조가 강남을 정복하려는 표면적 명분과 이면적 욕망을 바르게 짝지은 것은?',
+ c:'명분: 사해를 평정하여 세상을 편안하게 만들겠다는 대장부의 큰 뜻 / 욕망: 강남의 절세미녀 이교녀(대교·소교)를 차지하려는 사사로운 욕심',
+ x:['명분: 원소·원술·유종 등 천하의 군웅을 모두 제거해 한나라를 복건하겠다는 것 / 욕망: 주유와 노숙 등 오나라 장수들에 대한 개인적 원한을 갚으려는 것','명분: 한나라 황실을 지키기 위해 역적을 토벌해야 한다는 대의 / 욕망: 황제가 되어 무소불위의 권력을 누리려는 것','명분: 백성들이 전란으로 고통받지 않도록 통일을 이루어야 한다는 인도주의적 뜻 / 욕망: 역사에 길이 남을 불멸의 명성을 얻으려는 것']},
+{w:'적벽가',t:'A',q:'적벽가에서 충신 유복이 조조의 노래(단가행)에서 지적한 불길한 구절과 그 이유는?',
+ c:'"달이 밝아 별 드문데, 까마귀 남쪽으로 날아가도다. 숲을 세 바퀴 돌아도, 의지할 만한 가지 하나 없구나" — 전쟁을 앞둔 시점에서 방황과 패배를 연상시키기 때문',
+ x:['"술잔 잡고 노래하니 인생이 얼마인고" — 군주가 술과 향락에 빠지면 전쟁에서 패한다는 의미이기 때문','"아침 이슬 같은 삶, 몇 날 남지 않았구나" — 조조의 수명이 얼마 남지 않았다는 불길한 예언처럼 들리기 때문','"사해를 평정했으나 아직 강남이 남았구나" — 오만한 자만심이 하늘의 노여움을 살 수 있기 때문']},
+{w:'적벽가',t:'B',q:'적벽가에서 화병(火兵)의 사연이 "가장 설운 사연"으로 제시된 것의 서사적 효과는?',
+ c:'고향을 그리워하는 병사들의 비장한 설움 한가운데에 까치 타령이라는 엉뚱하고 사소한 사연을 배치하여 해학적 웃음을 유발하고, 이를 통해 전쟁의 비극을 간접적으로 더 강렬하게 부각시킴',
+ x:['화병이라는 가장 낮은 계층의 인물을 통해 전쟁의 참혹함을 가장 객관적으로 전달하려 한 것','까치가 실제로 화병을 찾아왔다는 신비로운 요소를 삽입하여 전기적 분위기를 조성함','화병의 사연을 통해 조조 군사들이 사실은 전쟁을 즐기고 있다는 것을 역설적으로 보여줌']},
+{w:'적벽가',t:'B',q:'적벽가에서 "개가환향할는지, 소가환향할는지"라는 표현이 조롱의 의미를 지니는 이유는?',
+ c:'"개가(凱歌)환향" — 승리 노래를 부르며 돌아온다는 뜻의 "개가"의 "개(凱)"를 짐승인 "개(犬)"로 바꾸고 "소(牛)"를 끌어들인 언어유희 — 전쟁에서 공명을 세우겠다는 장담이 이루어지기 어려움을 냉소함',
+ x:['전쟁터에서 개나 소처럼 고생하다 돌아온다는 뜻으로 병사들의 비참한 처지를 직접적으로 표현한 것','동물을 끌어들여 조조 군사들이 동물만도 못한 대우를 받는다고 비판한 것','병사들이 공명을 세우는 대신 가축처럼 고향에서 농사나 지어야 할 처지임을 지적한 것']},
+{w:'적벽가',t:'C',q:'적벽가에서 조조가 지은 노래(단가행)가 이중적 의미를 갖는 방식을 설명한 것으로 옳은 것은?',
+ c:'노래 당시 장수들은 조조의 영웅적 기개를 찬미하는 것으로 들었지만, 독자는 훗날 적벽대전에서 참패하여 도망치게 될 조조의 비참한 미래를 암시하는 복선으로 읽음 — 이중적 독해가 가능한 아이러니',
+ x:['노래 가사가 오나라를 향한 협박이면서 동시에 유비·제갈량에게 보내는 화해 신호이기도 하다는 이중 메시지','노래 가사가 겉으로는 슬픔을 표현하지만 실제로는 기쁨을 나타내는 반어법으로 되어 있음','노래가 전쟁 전에 쓰인 것처럼 보이지만 사실은 전쟁이 끝난 뒤에 지어진 것이라는 시간적 아이러니']},
+{w:'적벽가',t:'C',q:'적벽가가 원작 <삼국지연의>와 가장 크게 차별화되는 서사적 특징은?',
+ c:'원작이 영웅들의 지략과 충의 사상을 중심에 두는 반면, 적벽가는 영웅 중심 서사를 탈피하여 강제 징집된 이름 없는 \'군사(민중)\'를 전면에 내세워 그들의 고통과 불만을 생생하게 담아냄',
+ x:['원작이 조조를 영웅으로 다루는 반면, 적벽가는 유비를 최고의 영웅으로 설정하여 서사를 재구성함','원작이 중국을 배경으로 하는 반면, 적벽가는 조선의 실정을 반영한 국내 배경으로 바꿈','원작이 산문 형식인 반면, 적벽가는 전통 시가 형식으로 변환하여 운율을 살림']},
+{w:'적벽가',t:'D',q:'적벽가에서 "헌걸찬 풍채의 군사"가 고향 생각을 하는 병사들에게 "전쟁에 나온 놈이 고향 생각 어디가 쓰리"라며 호통치는 장면의 기능은?',
+ c:'고향을 그리워하며 체념하는 수동적 병사들 VS 전공(戰功)에만 집착하는 호전적 병사의 대립을 통해, 두 입장 모두 전쟁의 비극 속 피해자임을 역설적으로 부각하고 뒤이어 조조에 대한 냉소적 조롱으로 이어지게 함',
+ x:['조조 군사들 사이에서도 애국적 충성파와 반전파가 공존한다는 사실을 보여주어 조조에 대한 동정심을 유발함','호전적 군사의 용감함을 긍정적으로 제시하여, 결국 조조 군사들도 용감히 싸울 것임을 복선으로 제시함','이 장면은 판소리 창자가 관객의 긴장을 이완시키기 위해 임의로 삽입한 막간극에 불과함']},
+{w:'적벽가',t:'A',q:'적벽가에서 군사들의 신세 한탄 장면이 원작 <삼국지연의>에는 없고 조선 판소리에서 새롭게 창작된 이유로 가장 적절한 것은?',
+ c:'조선 후기 민중들이 성장한 자의식을 바탕으로, 지배층의 전쟁에 희생되는 민중의 고통과 애환을 직접적으로 표현하려는 창작 의도',
+ x:['판소리의 형식적 특성상 서사를 늘리고 공연 시간을 연장하기 위한 것','당대 관객들이 중국 역사보다 서민들의 일상생활 이야기를 더 좋아했기 때문','조선 후기의 검열을 통과하기 위해 지배층 비판을 간접적으로 우회한 결과']},
+
+/* ══════════ ⑧ 옹고집전 ══════════ */
+{w:'옹고집전',t:'A',q:'옹고집전에서 도사가 옹고집에게 징벌을 내린 근본 이유 두 가지를 바르게 짝지은 것은?',
+ c:'팔십 당년 늙은 어머니를 냉돌방에 구박한 불효 + 찾아온 승려(불도)를 모욕하고 내쫓은 행위',
+ x:['가난한 이웃에게 인색하게 굴어 원망을 쌓은 행위 + 사또에게 뇌물을 바쳐 재판을 조작하려 한 행위','세금을 포탈하여 나라 재물을 탈취한 행위 + 천민을 지나치게 착취하여 민심을 잃은 행위','재산을 가족에게 나눠주지 않아 친척들의 원망을 산 행위 + 고을 수령을 무시하고 횡포를 부린 행위']},
+{w:'옹고집전',t:'A',q:'옹고집전에서 송사(재판)에서 사또가 허옹가를 진짜로 판결하게 된 이유로 가장 적절한 것은?',
+ c:'작품에 명시적 이유는 없으나, 사또가 허옹가의 교묘한 말솜씨와 겉모습에 속아 잘못된 판결을 내렸음 — 무능한 지방 관리에 대한 풍자',
+ x:['허옹가가 실제 옹가의 재산 목록과 가족 관계를 정확하게 알고 있어 더 신빙성이 있었기 때문','실옹가가 너무 초라한 행색으로 나타나 스스로 신뢰를 잃었기 때문','허옹가가 사또에게 미리 뇌물을 바쳐 판결을 매수했기 때문']},
+{w:'옹고집전',t:'B',q:'옹고집전에서 실옹가가 쫓겨나 산속을 헤매며 슬피 울 때 "두견새"가 등장하는 서사적 기능은?',
+ c:'두견새는 한(恨)과 슬픔을 상징하는 객관적 상관물로, 실옹가의 비통한 심정을 자연물에 투영(감정이입)하여 정서를 극대화함',
+ x:['두견새가 실옹가에게 집으로 돌아가는 길을 안내하는 조력자 역할을 함','두견새의 울음소리가 도사의 존재를 예고하는 복선 역할을 함','두견새는 단순히 봄날의 자연 풍경을 묘사하는 배경 소재에 불과함']},
+{w:'옹고집전',t:'B',q:'옹고집전에서 실옹가의 아내가 허옹가와 동침한 뒤 꾼 꿈("하늘에서 허수아비 무수히 떨어져 내리거늘")의 기능은?',
+ c:'태어날 아이들이 사실은 허수아비(허옹가)의 자식임을 암시하는 복선(伏線) — 나중에 아이들이 허수아비로 변하는 사건을 예고함',
+ x:['아내가 남편의 정체가 가짜임을 무의식적으로 감지했다는 심리적 암시','아내에게 닥칠 앞으로의 불행과 시련을 예고하는 불길한 징조','도사의 도술이 극한에 이르러 조만간 풀릴 것임을 암시하는 복선']},
+{w:'옹고집전',t:'C',q:'옹고집전에서 "각금시이작비(覺今是而昨非)"라는 실옹가의 탄식이 의미하는 것은?',
+ c:'지금의 고통스러운 상황을 통해 과거 자신의 잘못된 행동(불효·인색·불도 능멸)을 뒤늦게 깨닫고 반성하는 심리',
+ x:['지금 자신이 처한 상황이 꿈인지 현실인지 혼란스럽다는 탄식','과거에 저지른 죄는 이미 돌이킬 수 없으므로 운명으로 받아들이겠다는 체념','자신의 지난날은 모두 옳았는데 지금 억울한 일을 당하고 있다는 원망']},
+{w:'옹고집전',t:'C',q:'옹고집전이 판소리계 소설로 분류되는 근거가 아닌 것은?',
+ c:'작품 속 인물들 사이의 갈등이 철저히 신분 제도의 모순에서 비롯되어, 하층민의 신분 상승을 주제로 삼음',
+ x:['3·4조, 4·4조의 율문체와 산문체가 혼합되어 리듬감을 줌','"허옹가 거동 보소"와 같이 서술자가 직접 개입하는 판소리 사설투의 문체가 나타남','장면의 극대화(허옹가가 사또 앞에서 세간 목록을 장황하게 나열하는 장면 등)가 나타남']},
+{w:'옹고집전',t:'D',q:'옹고집전에서 "가짜가 진짜를 내쫓고 주인처럼 행세한다"는 서사가 반영하는 당대의 사회적 의미는?',
+ c:'참과 거짓을 판단하는 기준이 붕괴되어 가는 조선 후기의 사회적 혼란상을 반영 — 재판에서조차 가짜가 승리하는 것은 판단 기준의 상실을 상징함',
+ x:['전통적인 신분 질서가 엄격히 유지되어 뒤바뀔 수 없다는 사회적 안정을 역설적으로 보여줌','화폐 경제의 발달로 부자가 가난한 자의 신분을 산다는 당대의 통념을 직접적으로 비판함','도사(불교)의 힘이 관아의 공권력보다 강하다는 반유교적 메시지를 담고 있음']},
+{w:'옹고집전',t:'A',q:'옹고집전에서 도사가 실옹가에게 부적을 주며 "이 부적을 몸에 붙이고 네 집에 돌아가면 괴이한 일이 있으리라"고 했을 때, 실제로 일어난 "괴이한 일"은?',
+ c:'실옹가가 집에 들어서자 방에 있던 허옹가는 흔적도 없이 사라지고 짚 한 묶음만 남았으며, 허옹가의 자식들도 모두 허수아비로 변함',
+ x:['허옹가가 도망치면서 옹고집 집의 재산을 모두 가지고 달아남','마을 사람들이 모두 나타나 허옹가를 둘러싸고 진짜가 누구인지 시험함','사또가 자신의 오판을 깨닫고 직접 옹고집 집에 찾아와 실옹가에게 사죄함']},
+
+/* ══════════ ⑨ 김순부전 ══════════ */
+{w:'김순부전',t:'A',q:'김순부전에서 종인(種人)이 김씨 가문의 친목 모임을 역모로 모함하게 된 배경은?',
+ c:'종인이 안동에 향권을 장악하려고 청음사를 건립했다가 안동 사림에 의해 철거되자, 그 보복으로 안동 사람들을 서인 세력의 먹잇감으로 넘기려 했기 때문',
+ x:['종인이 진수에게 뇌물을 받고 김씨 가문을 제거해 달라는 청탁을 받았기 때문','종인이 개인적으로 김씨 집안사람들에게 오랜 원한을 갖고 있었기 때문','서인(西人) 세력이 영남 남인을 탄압하기 위해 종인에게 지령을 내렸기 때문']},
+{w:'김순부전',t:'A',q:'김순부전에서 김순부가 관아의 강압적 심문에 맞서 친족 모임이 역모가 아님을 반박한 논거 세 가지로 옳은 것은?',
+ c:'①황강 김계휘·사계 김장생의 시첩(사료)이 증거로 있음 ②역모를 꾸미는 자는 인적 드문 곳에 숨어 활동하는데 공개된 군청 앞마당에서 수령 앞에서 풍악을 울렸다는 논리적 모순 ③먹은 소고기는 관주에서 합법적으로 구매한 것으로 아전에게 확인 가능',
+ x:['①친족 모임은 매년 정기적으로 열리던 공개 행사임 ②진수에게는 선비를 재판할 법적 권한이 없음 ③자신은 당일 모임에 참석하지 않았으므로 주모자가 될 수 없음','①청음사 철거는 자신과 무관한 일임 ②방백의 명령 없이 진수가 독단적으로 수사하는 것은 월권임 ③모임 당시 수령이 직접 참관하고 있었음','①모임 참석자들이 모두 노인과 젊은이가 섞인 평범한 친족임 ②무기를 소지한 자가 없었음 ③모임 전에 관청에 신고를 마쳤음']},
+{w:'김순부전',t:'B',q:'김순부전에서 지부가 사면을 조건으로 "문장(門長)과 유사(有司)를 고발하라"고 회유했을 때, 김순부가 거절한 이유는?',
+ c:'"문장은 집안 어른과 같은 항렬이고 유사는 같은 문중의 연소자인데, 그들을 곤경에 빠뜨리고 스스로 풀려나는 것은 인륜(人倫)에 어긋난다"는 유교적 도리',
+ x:['지부의 사면 약속이 거짓이라는 것을 이미 알고 있었기 때문','문장과 유사가 실제로 역모에 참여했다는 증거가 없어 양심상 거짓 고발을 할 수 없었기 때문','지부에게 고발하면 오히려 더 큰 위기에 처할 것이라 계산했기 때문']},
+{w:'김순부전',t:'B',q:'김순부전에서 "진수 정양빈"이 기회주의자로 평가받는 근거는?',
+ c:'반란군에 가담했다가 사태가 불리해지자 다시 관군(방백)으로 돌아와 공을 세우려 했고, 종인의 부추김에 쉽게 넘어가 무고한 선비를 두 차례 구금하는 행동',
+ x:['높은 직책에 있으면서 뇌물을 받고 권세를 남용한 전형적인 탐관오리이기 때문','아무런 군사적 공적도 없이 벼슬자리를 얻은 허수아비 관리이기 때문','임금의 뜻을 거스르면서까지 자신의 이익을 챙기는 반역자적 성격을 지녔기 때문']},
+{w:'김순부전',t:'C',q:'김순부전에서 서술자 "나"(이광정)가 결말부에서 직접 등장하여 "기이하도다"라며 역설적 논평을 남긴 내용은?',
+ c:'김순부가 재앙(귀양살이)을 만나지 않았다면, 훗날 후세에 길이 남을 천하의 명승지 기행문을 쓰는 것도 불가능했을 것이라는 역설',
+ x:['선비가 옳은 말을 했다는 이유만으로 죽임을 당하는 것은 기이하고 잘못된 세상임을 탄식함','뛰어난 예지력을 가진 인물도 자신의 죽음만큼은 피하지 못하는 운명의 기이함','김순부의 죽음이 하늘의 뜻이라면, 그 하늘의 뜻 자체가 잘못되었다는 역설적 비판']},
+{w:'김순부전',t:'C',q:'김순부전에서 "정첨윤이 \'10촌인 척이라도 오히려 짧아 보이는 수가 있고\'라고 했는데, 그 말이 정녕 믿을 만하도다"라는 인용의 의미는?',
+ c:'아무리 뛰어난 예지력을 가진 사람도 인생의 길흉화복(吉凶禍福)을 완전히 헤아릴 수는 없다 — 인간 능력의 한계와 운명의 불가예측성',
+ x:['어리석은 자의 말도 가끔 지혜로운 진리를 담고 있으니 겸손히 경청해야 한다는 교훈','친척이든 남이든 위기 앞에서는 모두 자기 자신만을 생각한다는 인간 본성에 대한 냉소','지금은 불리해 보이는 상황도 나중에 유리하게 바뀔 수 있으니 희망을 버리지 말라는 위로']},
+{w:'김순부전',t:'D',q:'김순부전이 다른 고전 소설들과 구별되는 가장 큰 문학적 특징은?',
+ c:'서인·남인 당쟁이라는 구체적 역사 사건을 배경으로, 실존 인물의 실제 시련과 죽음을 사실적으로 기록한 한문전(傳) 형식 — 결말부에 서술자 "나"가 직접 등장해 애도와 역설적 논평을 남기는 구조',
+ x:['판소리 사설의 율문체와 해학적 풍자가 결합된 판소리계 소설의 특성을 가장 충실하게 보여줌','전기적(傳奇的) 요소와 현실 비판이 결합된 몽유록의 형식을 통해 당대 정치 현실을 고발함','영웅의 일대기를 군담(軍談) 중심으로 서술하는 영웅 소설의 전형적 구조를 취함']},
+{w:'김순부전',t:'A',q:'김순부전에서 경신년 정월 초하룻날 김순부가 보인 특이한 행동과 그 의미는?',
+ c:'점괘를 보니 불길하여 머리쓰개를 벗고 누워 있었음 — 불행을 예감하고서도 저항하거나 피하지 않고 담담히 수용하는 운명론적·체념적 태도',
+ x:['나쁜 징조를 없애려고 굿을 벌이고 부적을 구하여 몸에 붙였음','아전이 오기 전에 가족들을 미리 피신시키기 위해 비밀리에 준비함','포졸이 찾아오기 전에 자신이 먼저 관아로 출두하여 사태를 주도하려 함']},
+
+/* ══════════ ⑩ 옥단춘전 ══════════ */
+{w:'옥단춘전',t:'A',q:'옥단춘전에서 이혈룡이 암행어사가 되어 돌아왔을 때 옥단춘에게 거짓 사연(재산을 잃고 빚쟁이에게 쫓겨 과거도 못 봤다는 이야기)을 꾸며댄 이유는?',
+ c:'암행어사로서 신분을 비밀로 유지하면서 어사 출도의 극적 효과를 극대화하기 위해',
+ x:['과거에 낙방했다는 수치스러운 사실을 차마 밝히지 못해서','옥단춘이 자신의 성공을 알면 돈을 요구할 것이 두려워서','이미 김진희가 자신의 정체를 알고 있어 신변 보호를 위해']},
+{w:'옥단춘전',t:'A',q:'옥단춘전에서 이혈룡이 연광정 잔치에 나타나 "네 이놈 김진희야, 나 이혈룡을 모른단 말이냐?"라고 외쳤을 때 옥단춘의 반응은?',
+ c:'음성은 혈룡 서방의 목소리임을 알아들었지만 의복이 달라 혼란스러웠음 — 아직 이혈룡이 암행어사임을 모름',
+ x:['이혈룡이 암행어사임을 이미 눈치채고 있었기 때문에 놀라지 않았음','이혈룡이 거짓 신분을 사용하고 있다는 것을 바로 알아차렸음','이혈룡이 나타날 것이라는 예언을 들었기 때문에 차분하게 상황을 지켜봄']},
+{w:'옥단춘전',t:'B',q:'옥단춘전에서 죽음의 위기 앞에서 옥단춘이 사공들에게 "나만은 자결할 테니 우리 낭군 살려 주소"라고 애원한 장면에서 이혈룡이 옥단춘을 제지하며 한 말은?',
+ c:'"죽어도 같이 죽고 살아도 같이 살자" — 생사를 함께하겠다는 의지 표명',
+ x:['"울지 마라 울지 마라, 죄 없으면 사느니라" — 결백하면 반드시 구원받는다는 확신','지금 당장 어사 출도를 외쳐 상황을 역전시키겠다는 계획을 귓속말로 알려줌','옥단춘이 투신하려는 것을 보고 자신도 함께 강물에 뛰어들려 했음']},
+{w:'옥단춘전',t:'B',q:'옥단춘전에서 옥단춘이 "진취적 여성상"의 대표 인물로 평가받는 이유를 가장 포괄적으로 설명한 것은?',
+ c:'스스로 이혈룡의 비범함을 알아보고 능동적으로 구출하였으며, 자신의 재물로 그 가족을 부양하고, 죽음 앞에서도 낭군을 먼저 살리려 자결을 감수한 주체적 헌신 — 기생 신분으로 정덕부인에 오르는 신분 상승까지 이룸',
+ x:['조선 시대 기생 중 유일하게 양반과 대등하게 대화하고 당당히 자신의 권리를 주장한 인물이기 때문','이혈룡에게 과거 급제를 촉구하고 공부를 시키는 등 적극적으로 남편의 출세를 설계한 인물이기 때문','신분제의 부당함을 직접 비판하는 연설을 하여 당대 사회에 변화를 촉구한 인물이기 때문']},
+{w:'옥단춘전',t:'C',q:'옥단춘전에서 "처량한 두견새 소리"가 등장하는 장면의 서사적 기능은?',
+ c:'화려한 봄날 잔치의 흥겨운 분위기 속에서 초라한 거지 행색으로 복수를 준비하는 이혈룡의 복잡한 내면 심리를 두견새에 감정이입하여 드러내는 객관적 상관물 역할',
+ x:['김진희의 잔치가 곧 비극으로 끝날 것을 예고하는 청각적 복선','봄의 생동하는 자연 속에서 죽음을 목전에 둔 이혈룡의 절망감을 직접적으로 묘사','연광정 잔치가 열리는 계절(봄)이 언제인지 독자에게 알려주는 배경 묘사']},
+{w:'옥단춘전',t:'C',q:'옥단춘전과 춘향전이 유사한 서사 구조를 가지면서도 갈등의 성격이 다른 이유는?',
+ c:'옥단춘전은 어사(이혈룡)와 감사(김진희) 사이에 오랜 친구 관계와 배신이라는 개인적 원한이 있어 갈등이 더 첨예하고 비극적인 반면, 춘향전은 어사와 수령 사이에 개인적 원한이 없어 갈등이 상대적으로 가볍고 해학적임',
+ x:['옥단춘전은 여주인공이 기생이고 춘향전은 양반 자제 출신이라는 신분 차이에서 갈등의 성격이 달라짐','옥단춘전은 조선 전기 배경이고 춘향전은 조선 후기 배경이어서 시대적 가치관 차이가 반영됨','옥단춘전은 남주인공이 가난한 양반이고 춘향전은 남주인공이 부유한 양반이라는 경제적 차이가 핵심임']},
+{w:'옥단춘전',t:'D',q:'옥단춘전에서 김진희가 천자의 벼락을 맞아 죽는 결말이 이혈룡이 그를 죽이지 않고 유배 보내려 했던 것과 병존하는 이유는?',
+ c:'이혈룡이 옛 우정으로 김진희를 직접 처형하지 않으려 했지만, 하늘이 오륜(붕우유신)을 저버린 죄를 천벌로 직접 응징함 — 인간의 용서를 넘어선 천도(天道)의 권선징악 실현',
+ x:['이혈룡이 옥단춘을 위해 김진희를 살려두었지만, 옥단춘이 직접 복수를 감행한 것','작가가 결말을 서둘러 마무리하면서 두 가지 결말을 모순되게 병기하는 오류','조선 시대 법률상 감사를 처형하려면 임금의 허락이 필요해 결국 벼락이라는 우연적 죽음으로 대체된 것']},
+{w:'옥단춘전',t:'A',q:'옥단춘전에서 이혈룡이 서울 본집을 방문했을 때 가족들이 풍족하게 지내고 있었던 이유는?',
+ c:'옥단춘이 자신의 재물을 많이 보내어 이혈룡의 모친과 처자식을 호의호식하게 부양했기 때문',
+ x:['이혈룡이 암행어사로 임명될 때 조정에서 녹봉을 선지급해 주었기 때문','이혈룡의 부친이 생전에 남겨둔 비밀 재산이 발견되었기 때문','동네 사람들이 이혈룡 가족을 불쌍히 여겨 자발적으로 도와주었기 때문']},
+];
+
+const QUIZ_N = 20;
+let qList=[], qIdx=0, score=0, userAnswers=[];
+const WORKS = ['포천이문','왕수재취득용녀설','서해무릉기','현몽쌍룡기','대관재몽유록','금방울전','적벽가','옹고집전','김순부전','옥단춘전'];
+const TYPE_LABELS = {A:'📖 줄거리·서사',B:'🧩 인물관계·심리',C:'🎯 서술기법·출제포인트',D:'⚡ 작품비교·심화'};
+
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function resetQuizUI(){
+  document.getElementById('quiz-start-screen').style.display='block';
+  document.getElementById('quiz-active-screen').style.display='none';
+  document.getElementById('quiz-result-screen').style.display='none';
+}
+
+function startQuiz(){
+  const name = document.getElementById('student-name').value.trim();
+  if(!name){alert('이름을 입력해 주세요!');document.getElementById('student-name').focus();return;}
+  // 작품당 2문항씩 균등 출제
+  const pools = WORKS.map(w => shuffle(QB.filter(q=>q.w===w)));
+  qList = [];
+  pools.forEach(p => { if(p.length>=2) qList.push(p[0], p[1]); else if(p.length===1) qList.push(p[0]); });
+  qList = shuffle(qList).slice(0, QUIZ_N);
+  qIdx=0; score=0; userAnswers=[];
+  document.getElementById('quiz-start-screen').style.display='none';
+  document.getElementById('quiz-result-screen').style.display='none';
+  document.getElementById('quiz-active-screen').style.display='block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q=qList[qIdx];
+  document.getElementById('quiz-progress-bar').style.width=(qIdx/QUIZ_N*100)+'%';
+  document.getElementById('quiz-q-counter').textContent=`${qIdx+1} / ${QUIZ_N}`;
+  document.getElementById('quiz-type-label').textContent=TYPE_LABELS[q.t]||q.t;
+  document.getElementById('quiz-score-live').textContent=`맞힌 수: ${score}`;
+  document.getElementById('quiz-work-label').textContent=`📚 ${q.w}`;
+  document.getElementById('quiz-question-text').innerHTML=q.q.replace(/\n/g,'<br>');
+  document.getElementById('quiz-feedback').style.display='none';
+  document.getElementById('quiz-next-btn').style.display='none';
+  const choices=shuffle([q.c,...q.x]);
+  const labels=['①','②','③','④'];
+  const container=document.getElementById('quiz-choices');
+  container.innerHTML='';
+  choices.forEach((c,i)=>{
+    const btn=document.createElement('button');
+    btn.className='quiz-choice';
+    btn.innerHTML=`<span class="choice-num">${labels[i]}</span><span>${c}</span>`;
+    btn.onclick=()=>selectAnswer(c,q);
+    container.appendChild(btn);
+  });
+}
+
+function selectAnswer(chosen,q){
+  const isCorrect=chosen===q.c;
+  if(isCorrect) score++;
+  userAnswers.push({q:q.q,correct:q.c,chosen,isCorrect,type:q.t,work:q.w});
+  document.querySelectorAll('.quiz-choice').forEach(btn=>{
+    btn.disabled=true;
+    const text=btn.querySelector('span:last-child').textContent;
+    if(text===q.c) btn.classList.add(isCorrect?'correct':'reveal');
+    else if(text===chosen&&!isCorrect) btn.classList.add('wrong');
+  });
+  const fb=document.getElementById('quiz-feedback');
+  fb.style.display='block';
+  if(isCorrect){
+    fb.style.cssText='display:block;padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600;margin-bottom:14px;line-height:1.6;background:#e8f5e9;color:#2e7d32;border-left:4px solid #388e3c;';
+    fb.innerHTML=`✅ 정답입니다!`;
+  } else {
+    fb.style.cssText='display:block;padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600;margin-bottom:14px;line-height:1.6;background:#fce4ec;color:#c62828;border-left:4px solid #c62828;';
+    fb.innerHTML=`❌ 틀렸습니다.<br><strong>정답:</strong> ${q.c}`;
+  }
+  const nb=document.getElementById('quiz-next-btn');
+  nb.style.display='inline-block';
+  nb.textContent=qIdx+1>=QUIZ_N?'결과 보기 →':'다음 문제 →';
+}
+
+function nextQuestion(){qIdx++;if(qIdx>=QUIZ_N)showResult();else renderQuestion();}
+
+function showResult(){
+  document.getElementById('quiz-active-screen').style.display='none';
+  document.getElementById('quiz-result-screen').style.display='block';
+  document.getElementById('quiz-progress-bar').style.width='100%';
+  const pct=Math.round(score/QUIZ_N*100);
+  let emoji,title,msg;
+  if(pct>=90){emoji='🏆';title='완벽합니다!';msg='모든 작품을 완전히 마스터했어요. 수능에서 고전소설 지문은 자신있게 풀 수 있을 거예요!';}
+  else if(pct>=75){emoji='🎉';title='훌륭합니다!';msg='높은 수준으로 학습했어요. 틀린 작품을 집중 복습하면 만점도 가능합니다.';}
+  else if(pct>=55){emoji='📚';title='더 공부해요!';msg='기본기는 잡혔어요. 인물 관계와 줄거리 세부 내용을 다시 꼼꼼히 확인해 보세요.';}
+  else{emoji='💪';title='다시 도전!';msg='각 작품 탭을 꼼꼼히 읽고 다시 도전해 보세요. 할 수 있어요!';}
+  document.getElementById('quiz-result-emoji').textContent=emoji;
+  document.getElementById('quiz-result-title').textContent=title;
+  document.getElementById('quiz-result-score').textContent=`${score} / ${QUIZ_N}`;
+  document.getElementById('quiz-result-pct').textContent=`정답률 ${pct}%`;
+  document.getElementById('quiz-result-msg').textContent=msg;
+  // 작품별 성적표
+  const workScore = {};
+  WORKS.forEach(w=>workScore[w]={total:0,correct:0});
+  userAnswers.forEach(a=>{if(workScore[a.work]){workScore[a.work].total++;if(a.isCorrect)workScore[a.work].correct++;}});
+  let ws='<div style="font-size:13px;font-weight:700;color:var(--burgundy);margin-bottom:10px;">📊 작품별 결과</div>';
+  ws+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">';
+  WORKS.forEach(w=>{
+    const s=workScore[w];
+    if(s.total===0) return;
+    const col=s.correct===s.total?'#2e7d32':s.correct===0?'#c62828':'#e65100';
+    ws+=`<div style="padding:6px 10px;border-radius:6px;background:var(--cream);border-left:3px solid ${col};font-size:12px;"><strong>${w}</strong><span style="float:right;color:${col};font-weight:700;">${s.correct}/${s.total}</span></div>`;
+  });
+  ws+='</div>';
+  document.getElementById('quiz-work-scores').innerHTML=ws;
+  document.getElementById('quiz-review-area').style.display='none';
+  document.getElementById('review-toggle-btn').textContent='📋 오답 확인';
+}
+
+function toggleReview(){
+  const area=document.getElementById('quiz-review-area');
+  const btn=document.getElementById('review-toggle-btn');
+  if(area.style.display==='block'){area.style.display='none';btn.textContent='📋 오답 확인';return;}
+  area.style.display='block';
+  btn.textContent='📋 오답 닫기';
+  const wrong=userAnswers.filter(a=>!a.isCorrect);
+  if(wrong.length===0){area.innerHTML='<p style="text-align:center;color:#2e7d32;font-weight:700;padding:20px;">🎉 모두 정답입니다!</p>';return;}
+  let html=`<h3 style="font-family:'Noto Serif KR',serif;font-size:15px;color:#c62828;margin-bottom:12px;">❌ 틀린 문제 (${wrong.length}개)</h3>`;
+  wrong.forEach((a,i)=>{
+    html+=`<div class="review-item fail-item">
+      <div class="review-q" style="margin-bottom:4px;"><span style="background:var(--burgundy);color:white;font-size:10px;padding:1px 7px;border-radius:10px;margin-right:6px;">${a.work}</span>${a.q.replace(/\n/g,'<br>')}</div>
+      <div class="review-wrong" style="font-size:12px;margin-bottom:3px;">❌ 내 답: ${a.chosen}</div>
+      <div class="review-a" style="font-size:12px;">✅ 정답: ${a.correct}</div>
+    </div>`;
+  });
+  area.innerHTML=html;
+}
+
+/* ── 카카오톡 보내기 ── */
+function sendKakao(){
+  const name = document.getElementById('student-name').value.trim() || '(이름 없음)';
+  const now = new Date();
+  const dateStr = `${now.getFullYear()}.${now.getMonth()+1}.${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+  const pct = Math.round(score/QUIZ_N*100);
+  const wrong = userAnswers.filter(a=>!a.isCorrect);
+  const wrongList = wrong.length===0 ? '없음(만점!)' : wrong.map(a=>`• [${a.work}] ${a.q.replace(/\n.*/s,'')}...`).join('\n');
+
+  const msgText = `[김현석 국어] 고전소설 암기테스트 결과\n\n👤 이름: ${name}\n📅 날짜: ${dateStr}\n\n🏆 점수: ${score}/${QUIZ_N} (${pct}%)\n\n❌ 틀린 문제:\n${wrongList}`;
+
+  if(!window.Kakao || !Kakao.isInitialized()){
+    // Kakao SDK 없을 경우 클립보드 복사로 대체
+    navigator.clipboard.writeText(msgText).then(()=>{
+      alert('결과가 클립보드에 복사되었습니다. 카카오톡에 붙여넣기 해서 선생님께 보내주세요.');
+    }).catch(()=>{
+      prompt('결과를 복사하여 카카오톡으로 보내주세요:', msgText);
+    });
+    return;
+  }
+
+  Kakao.Share.sendDefault({
+    objectType: 'text',
+    text: msgText,
+    link: {
+      mobileWebUrl: 'https://saenarachild-crypto.github.io/kim-korean-homework/',
+      webUrl: 'https://saenarachild-crypto.github.io/kim-korean-homework/'
+    }
+  });
+}
+</script>
+</body>
+</html>
