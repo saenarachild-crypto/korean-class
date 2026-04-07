@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>셀프해설지 - 4월 마침내 모의고사 김현석 국어</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .passage-card { transition: all 0.3s ease; }
+        .passage-card:hover { transform: translateY(-2px); }
+        .btn-kakao { background-color: #FEE500; color: #3C1E1E; }
+        .btn-kakao:hover { background-color: #FDD800; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        const Icon = ({ name, size = 24, className = "", strokeWidth = 2 }) => {
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, [name]);
+            return <i data-lucide={name} className={className} style={{ width: size, height: size, strokeWidth, display: 'inline-block' }}></i>;
+        };
+
+        const examConfig = {"examName":"4월 마침내 모의고사 김현석 국어","announcement":"📋 문제지 링크:\nhttps://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQA7x1MYq6OCS4edOCsu3icgAbwHrMO0F-OYK6JVK9fhGE4?e=uIpKfU\n\n📋 해설지 링크:\nhttps://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDx0JhjBi86TozrMuoMRAQEAVvf1mf6f_c6JTEMreVygWU?e=Z7ltUr\n\n⏰ 제출기한: 4월 7일(월) ~ 4월 11일(금)\n🔄 도전횟수: 3회\n\n※ 이 셀프해설지는 공통과목(1~34번)을 포함합니다.\n\n[선택과목 정답]\n▸ 화법과 작문: 35② 36⑤ 37④ 38① 39② 40⑤ 41④ 42④ 43⑤ 44③ 45①\n▸ 언어와 매체: 35④ 36② 37③ 38⑤ 39② 40③ 41① 42③ 43② 44④ 45⑤","passages":[{"id":"passage_1","title":"[1~3] 독서 이론 (독서 회로와 심층 독해)","questions":[{"qNum":1,"correctAnswer":"5"},{"qNum":2,"correctAnswer":"2"},{"qNum":3,"correctAnswer":"4"}]},{"id":"passage_2","title":"[4~9] 사회 (효율적 계약 파기)","questions":[{"qNum":4,"correctAnswer":"1"},{"qNum":5,"correctAnswer":"5"},{"qNum":6,"correctAnswer":"3"},{"qNum":7,"correctAnswer":"2"},{"qNum":8,"correctAnswer":"4"},{"qNum":9,"correctAnswer":"2"}]},{"id":"passage_3","title":"[10~13] 과학 (소성 변형과 네킹 현상)","questions":[{"qNum":10,"correctAnswer":"2"},{"qNum":11,"correctAnswer":"3"},{"qNum":12,"correctAnswer":"2"},{"qNum":13,"correctAnswer":"1"}]},{"id":"passage_4","title":"[14~17] 인문 (부분전체론, 시몬스)","questions":[{"qNum":14,"correctAnswer":"4"},{"qNum":15,"correctAnswer":"5"},{"qNum":16,"correctAnswer":"3"},{"qNum":17,"correctAnswer":"1"}]},{"id":"passage_5","title":"[18~21] 고전소설 (작자 미상, '적성의전')","questions":[{"qNum":18,"correctAnswer":"3"},{"qNum":19,"correctAnswer":"1"},{"qNum":20,"correctAnswer":"4"},{"qNum":21,"correctAnswer":"1"}]},{"id":"passage_6","title":"[22~26] 갈래복합 (최승호 '북어' / 문태준 '빈집의 약속' / 정종한 '서대')","questions":[{"qNum":22,"correctAnswer":"3"},{"qNum":23,"correctAnswer":"4"},{"qNum":24,"correctAnswer":"2"},{"qNum":25,"correctAnswer":"4"},{"qNum":26,"correctAnswer":"5"}]},{"id":"passage_7","title":"[27~30] 현대소설 (최윤, '아버지 감시')","questions":[{"qNum":27,"correctAnswer":"4"},{"qNum":28,"correctAnswer":"3"},{"qNum":29,"correctAnswer":"1"},{"qNum":30,"correctAnswer":"2"}]},{"id":"passage_8","title":"[31~34] 고전시가 (이이 '낙지가' / 작자 미상 '어화 세상 벗님네야~' / 작자 미상 '공명과 부귀와는~')","questions":[{"qNum":31,"correctAnswer":"2"},{"qNum":32,"correctAnswer":"5"},{"qNum":33,"correctAnswer":"3"},{"qNum":34,"correctAnswer":"5"}]}]};
+
+        function StudentApp() {
+            const [step, setStep] = useState(1);
+            const [studentName, setStudentName] = useState('');
+            const [academyName, setAcademyName] = useState('');
+            const [preNotes, setPreNotes] = useState('');
+            const [midNotes, setMidNotes] = useState('');
+            const [postNotes, setPostNotes] = useState('');
+            const [initialReflection, setInitialReflection] = useState('');
+            
+            const [passageData, setPassageData] = useState(
+                Object.fromEntries(examConfig.passages.map(p => [p.id, {
+                    passageId: p.id, timeTaken: '', readingIssues: '', reasoning: ''
+                }]))
+            );
+
+            const [questionData, setQuestionData] = useState(
+                Object.fromEntries(examConfig.passages.flatMap(p => p.questions).map(q => [q.qNum, {
+                    qNum: q.qNum, myAnswer: '', difficulty: '', reasoning: ''
+                }]))
+            );
+
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, [step]);
+
+            const updatePassage = (id, field, value) => {
+                setPassageData(prev => ({ ...prev, [id]: { ...prev[id], [field]: value } }));
+            };
+
+            const updateQuestion = (qNum, field, value) => {
+                setQuestionData(prev => ({ ...prev, [qNum]: { ...prev[qNum], [field]: value } }));
+            };
+
+            const score = useMemo(() => {
+                let correct = 0;
+                const allQs = examConfig.passages.flatMap(p => p.questions);
+                allQs.forEach(q => {
+                    const studentAns = (questionData[q.qNum]?.myAnswer || "").toString().trim().toLowerCase();
+                    const correctAns = (q.correctAnswer || "").toString().trim().toLowerCase();
+                    if (studentAns === correctAns && studentAns !== "") {
+                        correct++;
+                    }
+                });
+                return { correct, total: allQs.length, percent: allQs.length > 0 ? Math.round((correct / allQs.length) * 100) : 0 };
+            }, [questionData]);
+
+            const generateKakaoReport = () => {
+                let report = "[셀프해설지 제출]\n";
+                report += "시험명: " + examConfig.examName + "\n";
+                report += "이름: " + studentName + "\n";
+                report += "학원명: " + academyName + "\n\n";
+                report += "■ 시험 전 전략\n" + (preNotes || '없음') + "\n\n";
+                examConfig.passages.forEach(p => {
+                    const pData = passageData[p.id] || {};
+                    report += "▶ " + p.title + "\n";
+                    report += "- 소요 시간: " + (pData.timeTaken || '-') + "\n";
+                    report += "- 지문 분석: " + (pData.reasoning || '-') + "\n";
+                    p.questions.forEach(q => {
+                        const qData = questionData[q.qNum] || {};
+                        const isCorrect = (qData.myAnswer || "").toString().trim().toLowerCase() === (q.correctAnswer || "").toString().trim().toLowerCase();
+                        const diff = qData.difficulty === 'O' ? '◯' : qData.difficulty === 'T' ? '△' : qData.difficulty === 'X' ? '✕' : '-';
+                        report += "  " + q.qNum + "번 [" + diff + "] 내답:" + (qData.myAnswer || '-') + " 정답:" + q.correctAnswer + " (" + (isCorrect ? 'O' : 'X') + ") / 이유:" + (qData.reasoning || '-') + "\n";
+                    });
+                    report += "\n";
+                });
+                report += "■ 결과: " + score.percent + "점 (" + score.correct + "/" + score.total + ")\n\n";
+                report += "■ 최종 반성\n" + (postNotes || '없음') + "\n";
+                return report;
+            };
+
+            return (
+                <div className="min-h-screen p-4 md:p-8 max-w-3xl mx-auto">
+                    <header className="mb-8 text-center">
+                        <h1 className="text-3xl font-black text-slate-900 mb-2">셀프해설지</h1>
+                        <p className="text-indigo-600 font-black text-lg uppercase tracking-tight">{examConfig.examName}</p>
+                    </header>
+
+                    {/* Progress */}
+                    <div className="mb-10 h-2 bg-slate-200 rounded-full overflow-hidden shadow-inner">
+                        <div className="h-full bg-indigo-600 transition-all duration-700 ease-out" style={{ width: (step/4)*100 + '%' }}></div>
+                    </div>
+
+                    {step === 1 && (
+                        <div className="space-y-6">
+                            {examConfig.announcement && (
+                                <div className="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 flex gap-4 items-start">
+                                    <Icon name="megaphone" className="text-indigo-600 shrink-0" size={24}/>
+                                    <div>
+                                        <h3 className="font-black text-indigo-900 mb-1">공지사항</h3>
+                                        <p className="text-indigo-700 text-sm leading-relaxed whitespace-pre-wrap">{examConfig.announcement}</p>
+                                    </div>
+                                </div>
+                            )}
+                            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2"><Icon name="user" size={24} className="text-indigo-600"/>학생 정보</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-xs font-black text-slate-400 uppercase mb-2">이름</label>
+                                        <input type="text" placeholder="홍길동" className="w-full p-4 bg-slate-50 rounded-2xl outline-none border border-transparent focus:border-indigo-500 transition-all" value={studentName} onChange={e => setStudentName(e.target.value)}/>
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-black text-slate-400 uppercase mb-2">학원명</label>
+                                        <input type="text" placeholder="에듀학원" className="w-full p-4 bg-slate-50 rounded-2xl outline-none border border-transparent focus:border-indigo-500 transition-all" value={academyName} onChange={e => setAcademyName(e.target.value)}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                                <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Icon name="target" size={24} className="text-indigo-600"/>시험 전 전략</h2>
+                                <p className="text-sm text-slate-500 mb-4 font-medium">목표 점수나 시간 배분 전략을 적어보세요.</p>
+                                <textarea placeholder="예: 비문학부터 풀고 문학은 20분 남았을 때 시작하기" className="w-full p-5 bg-slate-50 rounded-2xl outline-none h-32 resize-none border border-transparent focus:border-indigo-500 transition-all" value={preNotes} onChange={e => setPreNotes(e.target.value)}></textarea>
+                            </div>
+                            <button onClick={() => setStep(2)} disabled={!studentName} className="w-full py-5 bg-indigo-600 text-white rounded-3xl font-black text-xl shadow-xl shadow-indigo-100 disabled:bg-slate-300 transition-all active:scale-95">시험 시작 및 분석하기</button>
+                        </div>
+                    )}
+
+                    {step === 2 && (
+                        <div className="space-y-10 pb-24">
+                            {examConfig.passages.map((p, idx) => (
+                                <div key={p.id || idx} className="space-y-4">
+                                    <h3 className="text-2xl font-black text-slate-800 flex items-center gap-4 px-2">
+                                        <span className="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-md">{idx+1}</span>
+                                        {p.title}
+                                    </h3>
+                                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6 passage-card">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label className="block text-xs font-black text-slate-400 uppercase mb-2 flex items-center gap-1"><Icon name="clock" size={12}/>소요 시간</label>
+                                                <input type="text" placeholder="예: 8분 30초" className="w-full p-4 bg-slate-50 rounded-2xl outline-none border border-transparent focus:border-indigo-500 transition-all font-bold" value={passageData[p.id]?.timeTaken || ""} onChange={e => updatePassage(p.id, 'timeTaken', e.target.value)}/>
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-black text-slate-400 uppercase mb-2 flex items-center gap-1"><Icon name="alert-circle" size={12}/>독해 특이사항</label>
+                                                <input type="text" placeholder="예: 첫 문단 이해가 어려웠음" className="w-full p-4 bg-slate-50 rounded-2xl outline-none border border-transparent focus:border-indigo-500 transition-all" value={passageData[p.id]?.readingIssues || ""} onChange={e => updatePassage(p.id, 'readingIssues', e.target.value)}/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-black text-slate-400 uppercase mb-2 flex items-center gap-1"><Icon name="message-square" size={12}/>지문 분석 및 핵심 내용</label>
+                                            <textarea placeholder="지문의 주제나 구조를 간단히 정리하세요." className="w-full p-4 bg-slate-50 rounded-2xl outline-none h-24 text-sm resize-none border border-transparent focus:border-indigo-500 transition-all" value={passageData[p.id]?.reasoning || ""} onChange={e => updatePassage(p.id, 'reasoning', e.target.value)}></textarea>
+                                        </div>
+                                        <div className="space-y-4 pt-6 border-t border-slate-100">
+                                            {p.questions.map(q => (
+                                                <div key={q.qNum} className="p-5 bg-slate-50 rounded-2xl flex flex-col gap-4 border border-slate-100/50">
+                                                    <div className="flex items-center justify-between flex-wrap gap-4">
+                                                        <span className="text-lg font-black text-slate-700 w-12">{q.qNum}번</span>
+                                                        <div className="flex gap-1.5 bg-white p-1.5 rounded-xl border border-slate-200 shadow-sm">
+                                                            {['O', 'T', 'X'].map(d => (
+                                                                <button key={d} onClick={() => updateQuestion(q.qNum, 'difficulty', d)} className={"p-2.5 rounded-lg transition-all " + (questionData[q.qNum]?.difficulty === d ? 'bg-indigo-600 text-white scale-110 shadow-md' : 'text-slate-300 hover:bg-slate-50')}>
+                                                                    {d === 'O' ? <Icon name="circle" size={18} strokeWidth={3}/> : d === 'T' ? <Icon name="triangle" size={18} strokeWidth={3}/> : <Icon name="x" size={18} strokeWidth={3}/>}
+                                                                </button>
+                                                            ))}
+                                                        </div>
+                                                        <div className="flex items-center gap-3 flex-1 justify-end">
+                                                            <span className="text-sm font-bold text-slate-400">내 답</span>
+                                                            <input type="text" className="w-16 p-3 text-center bg-white border border-slate-200 rounded-xl font-black text-lg shadow-sm focus:border-indigo-500 outline-none" value={questionData[q.qNum]?.myAnswer || ""} onChange={e => updateQuestion(q.qNum, 'myAnswer', e.target.value)}/>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" placeholder="이 답을 고른 이유나 근거를 적으세요." className="w-full p-3.5 bg-white border border-slate-200 rounded-xl text-sm shadow-sm focus:border-indigo-500 outline-none" value={questionData[q.qNum]?.reasoning || ""} onChange={e => updateQuestion(q.qNum, 'reasoning', e.target.value)}/>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                                <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Icon name="message-circle" size={24} className="text-indigo-600"/>시험 직후 총평 (채점 전)</h2>
+                                <p className="text-sm text-slate-500 mb-4 font-medium">채점을 하기 전, 이번 시험에 대한 스스로의 총평을 적어보세요.</p>
+                                <textarea placeholder="예: 전반적으로 시간이 부족했고, 3번 지문이 특히 어려웠음." className="w-full p-5 bg-slate-50 rounded-2xl outline-none h-32 resize-none border border-transparent focus:border-indigo-500 transition-all" value={initialReflection} onChange={e => setInitialReflection(e.target.value)}></textarea>
+                            </div>
+                            <div className="flex gap-4">
+                                <button onClick={() => setStep(1)} className="px-10 py-5 bg-white border-2 border-slate-200 rounded-3xl font-black text-slate-500 hover:bg-slate-50 transition-all">이전</button>
+                                <button onClick={() => { if(confirm('결과를 확인하면 답안을 수정할 수 없습니다. 계속하시겠습니까?')) setStep(3); window.scrollTo(0,0); }} className="flex-1 py-5 bg-indigo-600 text-white rounded-3xl font-black text-xl shadow-xl shadow-indigo-100 active:scale-95 transition-all">채점 및 결과 확인</button>
+                            </div>
+                        </div>
+                    )}
+
+                    {step === 3 && (
+                        <div className="space-y-8 pb-24">
+                            <div className="bg-white p-12 rounded-3xl shadow-sm border border-slate-200 text-center">
+                                <h2 className="text-slate-400 font-black uppercase tracking-widest text-sm mb-4">Exam Result</h2>
+                                <div className="text-8xl font-black text-indigo-600 mb-4 tabular-nums">{score.percent}<span className="text-3xl text-slate-300 ml-1">/100</span></div>
+                                <p className="text-xl font-bold text-slate-600">총 {score.total}문항 중 <span className="text-indigo-600">{score.correct}문항</span> 정답</p>
+                            </div>
+                            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                                <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Icon name="check-circle" size={24} className="text-indigo-600"/>최종 반성 및 해결 방안</h2>
+                                <p className="text-sm text-slate-500 mb-4 font-medium">채점 결과를 바탕으로 틀린 원인을 분석하고, 다음 시험을 위한 구체적인 계획을 세워보세요.</p>
+                                <textarea placeholder="예: 비문학 지문 독해 시간을 1분씩 줄이는 연습을 해야겠다." className="w-full p-5 bg-slate-50 rounded-2xl outline-none h-48 resize-none border border-transparent focus:border-indigo-500 transition-all" value={postNotes} onChange={e => setPostNotes(e.target.value)}></textarea>
+                            </div>
+                            <button onClick={() => { setStep(4); window.scrollTo(0,0); }} className="w-full py-5 bg-indigo-600 text-white rounded-3xl font-black text-xl shadow-xl shadow-indigo-100 active:scale-95 transition-all">최종 완료 및 리포트 생성</button>
+                        </div>
+                    )}
+
+                    {step === 4 && (
+                        <div className="space-y-6">
+                            <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-200 text-center">
+                                <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6"><Icon name="check" size={40} strokeWidth={3}/></div>
+                                <h2 className="text-3xl font-black mb-2 text-slate-800">분석 완료!</h2>
+                                <p className="text-slate-500 mb-10 font-medium">아래 리포트를 복사하여 선생님께 카카오톡으로 제출하세요.</p>
+                                <div className="text-left bg-slate-50 p-6 rounded-2xl border border-slate-200 h-96 overflow-y-auto mb-8 font-mono text-sm text-slate-700 whitespace-pre-wrap shadow-inner">{generateKakaoReport()}</div>
+                                <button onClick={() => { navigator.clipboard.writeText(generateKakaoReport()); alert('복사되었습니다! 카카오톡에 붙여넣어주세요.'); }} className="w-full py-5 btn-kakao rounded-3xl font-black text-xl shadow-xl shadow-yellow-100 active:scale-95 transition-all flex items-center justify-center gap-3">
+                                    <Icon name="copy" size={24}/>
+                                    카카오톡 제출용 복사하기
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<StudentApp />);
+    </script>
+</body>
+</html>
