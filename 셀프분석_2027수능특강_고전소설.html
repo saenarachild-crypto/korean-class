@@ -43,10 +43,6 @@ textarea{resize:none}
 .app-hd img{height:28px;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
 .app-hd .brand h1{font-family:'Noto Serif KR',serif;font-size:13.5px;font-weight:700;color:#fff;line-height:1.2}
 .app-hd .brand p{font-size:9px;font-weight:500;color:var(--gold3);letter-spacing:.15em;text-transform:uppercase;margin-top:1px}
-.mode-chip{font-size:10px;font-weight:700;padding:4px 12px;border-radius:99px;background:rgba(184,134,42,.25);color:var(--gold3);border:1px solid rgba(184,134,42,.35);letter-spacing:.05em}
-.mini-tools{display:flex;gap:6px}
-.mini-tool-btn{font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border-radius:8px;padding:6px 10px;cursor:pointer;transition:all .18s}
-.mini-tool-btn:hover{background:rgba(255,255,255,.15)}
 
 /* ─── TOAST ─── */
 #toast{position:fixed;bottom:130px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;font-size:12.5px;font-weight:700;opacity:0;transition:all .28s;pointer-events:none;white-space:nowrap;z-index:300;border:1px solid rgba(184,134,42,.3);box-shadow:0 8px 32px rgba(28,43,74,.3)}
@@ -335,16 +331,7 @@ label.lbl{display:block;font-size:10px;font-weight:700;color:var(--t2);text-tran
     <img src="https://storage.googleapis.com/static.run.app/v1/projects/ais-dev-fuzhsbwwctarhrqxe7mief/images/67c5496464f899002c9a9616/1741007204481-%EA%B9%80%ED%98%84%EC%84%9D%EA%B5%AD%EC%96%B4_%EB%A1%9C%EA%B3%A0.png" alt="" referrerpolicy="no-referrer">
     <div class="brand"><h1>수능특강 셀프분석+해설지</h1><p>Integrated Self-Study Note</p></div>
   </div>
-  <div style="display:flex;align-items:center;gap:8px">
-    <div class="mini-tools no-print" id="mini-tools" style="display:none">
-      <button class="mini-tool-btn" onclick="openDraftImport()">📂 이어쓰기</button>
-      <button class="mini-tool-btn" onclick="saveDraftFile()">💾 임시저장</button>
-      <button class="mini-tool-btn" onclick="exportPdf()">🖨️ PDF</button>
-    </div>
-    <span class="mode-chip" id="mode-chip">생성기</span>
-  </div>
 </header>
-<input id="draft-file" type="file" accept=".json" class="hide"/>
 
 <!-- ══ GENERATOR ══ -->
 <div id="view-gen" class="page hide">
@@ -459,8 +446,6 @@ label.lbl{display:block;font-size:10px;font-weight:700;color:var(--t2);text-tran
   </div>
   <div class="act-bar">
     <div class="act-bar-in">
-      <button class="btn btn-s btn-sm no-print" onclick="exportPdf()">🖨️ PDF</button>
-      <button class="btn btn-s btn-sm no-print" onclick="saveDraftFile()">💾 임시저장</button>
       <button class="btn btn-p btn-full no-print" onclick="showKakaoReport()" style="background:#FEE500;color:#3C1E1E;border:none;cursor:pointer;font-weight:800">💬 카톡 보고서 제출</button>
     </div>
   </div>
@@ -514,8 +499,6 @@ function escFmt(s){
 }
 function setView(v){
   ['gen','student','review'].forEach(n=>$('view-'+n).classList.toggle('hide',n!==v));
-  $('mode-chip').textContent={gen:'생성기',student:'학생용',review:'선생님 검토'}[v]||'';
-  $('mini-tools').style.display=(v==='student'||v==='review')?'flex':'none';
 }
 function backToGen(){window.location.href=window.location.origin+window.location.pathname;}
 function copyToClipboard(text,msg){
@@ -1337,22 +1320,35 @@ function saveCurrentPassage(){
   };
   updateTabs();autoSave();
 }
+function _ansHash(){
+  if(!ASGN?.questions)return'';
+  return ASGN.questions.map(q=>q.ans).join(',');
+}
 function autoSave(){
   try{
     if(!ASGN)return;
-    localStorage.setItem('sna_'+ASGN.title,JSON.stringify({name:$('s-name')?.value||'',academy:$('s-academy')?.value||'',srcurl:$('s-srcurl')?.value||'',data:DATA,modes:MODES,qsts:QSTS,cc:CC,wc:WC,expl:EXPL,famil:FAMIL,attempts:ATTEMPTS}));
+    localStorage.setItem('sna_'+ASGN.title,JSON.stringify({_vh:_ansHash(),name:$('s-name')?.value||'',academy:$('s-academy')?.value||'',srcurl:$('s-srcurl')?.value||'',data:DATA,modes:MODES,qsts:QSTS,cc:CC,wc:WC,expl:EXPL,famil:FAMIL,attempts:ATTEMPTS}));
   }catch(e){}
 }
 function restoreAll(){
   try{
     const saved=ASGN?localStorage.getItem('sna_'+ASGN.title):null;if(!saved)return;
     const snap=JSON.parse(saved);
+    /* 버전 해시 불일치 → 채점 데이터만 초기화 (분석 데이터는 유지) */
+    const hashMismatch=snap._vh&&snap._vh!==_ansHash();
     if(snap.name)$('s-name').value=snap.name;
     if(snap.academy)$('s-academy').value=snap.academy;
     if(snap.srcurl)$('s-srcurl').value=snap.srcurl;
     if(snap.data)DATA=snap.data;if(snap.modes)MODES=snap.modes;if(snap.qsts)QSTS=snap.qsts;
     if(snap.cc)CC=snap.cc;if(snap.wc)WC=snap.wc;if(snap.expl)EXPL=snap.expl;
-    if(snap.famil)FAMIL=snap.famil;if(snap.attempts)ATTEMPTS=snap.attempts;
+    if(snap.famil)FAMIL=snap.famil;
+    if(hashMismatch){
+      /* 문항 구성이 변경됨 — 채점 데이터 초기화 */
+      ATTEMPTS=ASGN.questions?ASGN.questions.map(()=>({history:[],done:false,correct:false,locked:false,selected:null})):[];
+      toast('⚠️ 문항 구성이 변경되어 채점 데이터를 초기화했습니다.',4000);
+    }else{
+      if(snap.attempts)ATTEMPTS=snap.attempts;
+    }
     renderPassage(CUR);updateTabs();
   }catch(e){}
 }
@@ -1407,46 +1403,6 @@ function submitStudent(){
   // GAS 전송
   sendToSheet(buildSheetPayload(name,academy,{submittedAt:sub.submittedAt}));
   toast(`✅ 저장됨! 카톡에서 '파일'로 선생님께 전송하세요.`,4200);
-}
-
-/* ═══ DRAFT ═══ */
-function makeSnapshot(){
-  saveCurrentPassage();saveAllExplanations();
-  return{assignment:ASGN,studentName:$('s-name')?.value?.trim()||'',studentAcademy:$('s-academy')?.value?.trim()||'',srcUrl:$('s-srcurl')?.value?.trim()||'',passages:DATA,explanations:EXPL,modes:MODES,qsts:QSTS,cc:CC,wc:WC,famil:FAMIL,attempts:ATTEMPTS,savedAt:new Date().toISOString()};
-}
-function saveDraftFile(){
-  if(!ASGN){toast('⚠️ 학생용 화면에서만 사용하세요');return;}
-  const name=$('s-name')?.value?.trim()||'';if(!name){toast('⚠️ 이름을 먼저 입력해주세요');return;}
-  const snap=makeSnapshot();const safeTitle=(ASGN.title||'과제').replace(/[\/\\:*?"<>|]/g,'_');
-  const blob=new Blob([JSON.stringify(snap,null,2)],{type:'application/json;charset=utf-8'});
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`임시저장_${name}_${safeTitle}.json`;
-  document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),8000);
-  toast('✅ 임시저장 완료! (📂 이어쓰기로 불러오기)',3200);
-}
-function openDraftImport(){
-  const inp=$('draft-file');if(!inp)return;inp.value='';
-  inp.onchange=async(e)=>{
-    const f=e.target.files&&e.target.files[0];if(!f)return;
-    try{
-      const obj=JSON.parse(await f.text());
-      if(!obj?.assignment?.passages?.length){toast('⚠️ 임시저장 파일 형식이 아닙니다');return;}
-      ASGN=obj.assignment;CUR=0;
-      DATA=obj.passages||obj.assignment.passages.map(()=>({}));
-      EXPL=obj.explanations||[];MODES=obj.modes||obj.assignment.passages.map(()=>'single');
-      QSTS=obj.qsts||obj.assignment.passages.map(p=>Array.from({length:p.qs||3},(_,i)=>({[i]:null})).reduce((o,x)=>({...o,...x}),{}));
-      CC=obj.cc||obj.assignment.passages.map(()=>1);WC=obj.wc||obj.assignment.passages.map(()=>1);
-      FAMIL=obj.famil||obj.assignment.passages.map(()=>'unfamiliar');
-      ATTEMPTS=obj.attempts||obj.assignment.questions?.map(()=>({history:[],done:false,correct:false,locked:false,selected:null}))||[];
-      setView('student');document.title=ASGN.title;
-      $('s-period').textContent=ASGN.period||'주간 과제';$('s-title').textContent=ASGN.title;$('s-count').textContent=ASGN.passages.length;$('s-msg').textContent=ASGN.message||'열심히 분석해봅시다!';
-      if(ASGN.questions?.length){$('s-q-meta').classList.remove('hide');$('s-qcount').textContent=ASGN.questions.length;$('sec-tab-row').classList.remove('hide');}
-      if(obj.studentName)$('s-name').value=obj.studentName;
-      if(obj.studentAcademy)$('s-academy').value=obj.studentAcademy;
-      if(obj.srcUrl)$('s-srcurl').value=obj.srcUrl;
-      buildStudentTabs();renderPassage(0);updateTabs();updateProgress();autoSave();
-      toast('✅ 이어쓰기 완료!',2600);
-    }catch(err){console.error(err);toast('⚠️ 불러오기 실패',3200);}
-  };inp.click();
 }
 
 /* ═══ PDF ═══ */
@@ -1643,13 +1599,17 @@ function generateKakaoReport(){
     if(d.actualTime)r+='   시간: '+d.actualTime+(d.targetTime?' / 목표: '+d.targetTime:'')+'\n';
     if(p.type==='lit')r+='   친숙도: '+fam+'\n';
     if(t==='poem'&&d.poem){
-      if(d.poem.emotion)r+='   정서: '+d.poem.emotion.replace(/\n/g,' ').slice(0,60)+'\n';
-      if(d.poem.theme)r+='   주제: '+d.poem.theme+'\n';
+      if(d.poem.emotion)r+='   정서: '+d.poem.emotion.replace(/\n/g,' ').slice(0,120)+'\n';
+      if(d.poem.theme)r+='   주제: '+d.poem.theme.replace(/\n/g,' ').slice(0,120)+'\n';
     }else if(t==='novel'&&d.novel){
       if(d.novel.pov)r+='   시점: '+d.novel.pov+'\n';
-      if(d.novel.summary)r+='   줄거리: '+d.novel.summary.replace(/\n/g,' ').slice(0,70)+'\n';
+      if(d.novel.protagonist)r+='   주동인물: '+d.novel.protagonist.replace(/\n/g,' ').slice(0,80)+'\n';
+      if(d.novel.antagonist)r+='   반동인물: '+d.novel.antagonist.replace(/\n/g,' ').slice(0,80)+'\n';
+      if(d.novel.conflict)r+='   갈등: '+d.novel.conflict.replace(/\n/g,' ').slice(0,120)+'\n';
+      if(d.novel.summary)r+='   줄거리: '+d.novel.summary.replace(/\n/g,' ').slice(0,200)+'\n';
+      if(d.novel.narrative)r+='   서술상특징: '+d.novel.narrative.replace(/\n/g,' ').slice(0,120)+'\n';
     }else if(d.flow){
-      r+='   흐름: '+d.flow.replace(/\n/g,' ').slice(0,70)+'\n';
+      r+='   흐름: '+d.flow.replace(/\n/g,' ').slice(0,150)+'\n';
     }
     if((t==='read'||t==='lit_other')&&d.paras&&d.paras.length){
       var kws=d.paras.map(function(pr,j){return pr.keyword?('단락'+(j+1)+':'+pr.keyword):null;}).filter(Boolean);
@@ -1658,7 +1618,9 @@ function generateKakaoReport(){
     if(d.questions&&d.questions.length){
       var qs=d.questions.map(function(q){
         var s=q.status==='correct'?'O':q.status==='uncertain'?'△':q.status==='wrong'?'X':'-';
-        return q.num+'['+s+']';
+        var line=q.num+'['+s+']';
+        if(q.analysis&&q.analysis.trim())line+='('+q.analysis.replace(/\n/g,' ').slice(0,40)+')';
+        return line;
       }).join(' ');
       r+='   문항: '+qs+'\n';
     }
@@ -1675,7 +1637,7 @@ function generateKakaoReport(){
       if(att.locked&&!att.correct)r+='-> 정답 '+(circled[q.ans]||q.ans);
       r+='\n';
       var e=EXPL[i]||{};
-      if(e.reason)r+='    오답원인: '+e.reason.replace(/\n/g,' ').slice(0,60)+'\n';
+      if(e.reason)r+='    오답원인: '+e.reason.replace(/\n/g,' ').slice(0,120)+'\n';
     });
     r+='\n';
   }
@@ -1698,8 +1660,12 @@ function closeKakaoModal(){
 }
 function copyKakaoReport(){
   var text=$('kakao-report-text').textContent;
-  function fb(t){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('복사됨! 카톡에 붙여넣으세요.',3000);}
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){toast('복사됨! 카톡에 붙여넣으세요.',3000);}).catch(function(){fb(text);});}else{fb(text);}
+  function showManualCopy(){
+    var el=$('kakao-report-text');if(el){el.focus();var range=document.createRange();range.selectNodeContents(el);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);}
+    toast('자동 복사 실패 — 텍스트가 선택되었으니 직접 복사해주세요.',4000);
+  }
+  function fb(t){var ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';document.body.appendChild(ta);ta.focus();ta.select();try{var ok=document.execCommand('copy');document.body.removeChild(ta);if(ok)toast('복사됨! 카톡에 붙여넣으세요.',3000);else showManualCopy();}catch(e){document.body.removeChild(ta);showManualCopy();}}
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(function(){toast('복사됨! 카톡에 붙여넣으세요.',3000);}).catch(function(){fb(text);});}else{fb(text);}
 }
 </script>
 <div id="kakao-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);overflow-y:auto;padding:20px 12px">
@@ -1712,7 +1678,7 @@ function copyKakaoReport(){
       <button onclick="closeKakaoModal()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
     </div>
     <div style="padding:20px 24px">
-      <div id="kakao-report-text" style="background:#f8f7f2;border:1.5px solid var(--border2);border-radius:12px;padding:16px;font-family:monospace;font-size:12.5px;line-height:1.85;color:#2d2d2d;white-space:pre-wrap;max-height:55vh;overflow-y:auto;margin-bottom:16px"></div>
+      <div id="kakao-report-text" style="background:#f8f7f2;border:1.5px solid var(--border2);border-radius:12px;padding:16px;font-family:monospace;font-size:12.5px;line-height:1.85;color:#2d2d2d;white-space:pre-wrap;max-height:55vh;overflow-y:auto;margin-bottom:16px;-webkit-user-select:text;user-select:text"></div>
       <button onclick="copyKakaoReport()" style="width:100%;padding:16px;background:#FEE500;color:#3C1E1E;border:none;border-radius:14px;font-size:15px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 16px rgba(254,229,0,.35);transition:all .18s" onmouseover="this.style.background='#FDD800'" onmouseout="this.style.background='#FEE500'">
         📋 복사하기 — 카카오톡에 붙여넣으세요
       </button>
