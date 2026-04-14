@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>4월 2주차 마침내 모의고사</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap');
+:root{--bg:#0f1117;--card:#1a1d27;--accent:#4f8cff;--accent2:#6c5ce7;--correct:#00b894;--wrong:#ff6b6b;--warn:#fdcb6e;--text:#e8e8ee;--text2:#8b8fa3;--border:#2d3142;--R:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+#S0{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.hero{text-align:center;margin:36px 0 22px}
+.hero h1{font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.hero p{color:var(--text2);font-size:14px}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:var(--R);padding:22px;margin-bottom:14px;width:100%;max-width:480px;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+.mc1::before{background:var(--accent)}.mc2::before{background:var(--warn)}.mc3::before{background:var(--accent2)}
+.mc h2{font-size:17px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.bd{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.bd1{background:rgba(79,140,255,.2);color:var(--accent)}.bd2{background:rgba(253,203,110,.2);color:var(--warn)}.bd3{background:rgba(108,92,231,.2);color:var(--accent2)}
+.mc ul{list-style:none}.mc li{font-size:13.5px;line-height:1.8;color:var(--text2);padding-left:14px;position:relative}
+.mc li::before{content:'•';position:absolute;left:0}
+.mc1 li::before{color:var(--accent)}.mc2 li::before{color:var(--warn)}.mc3 li::before{color:var(--accent2)}
+.ttbl{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px}
+.ttbl th{background:rgba(79,140,255,.1);padding:7px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
+.ttbl td{padding:6px 7px;border-bottom:1px solid rgba(45,49,66,.5);color:var(--text2)}
+.ttbl td:last-child{text-align:right;color:var(--accent);font-weight:600}
+
+.nm-sec{width:100%;max-width:480px;margin-bottom:10px}
+.nm-row{display:flex;gap:10px;margin-bottom:10px}
+.nm-in{flex:1;padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.nm-in:focus{border-color:var(--accent)}.nm-in::placeholder{color:var(--text2)}
+.nm-err{color:var(--wrong);font-size:12px;display:none;margin-top:-4px;margin-bottom:6px;padding-left:4px}
+.go-btn{width:100%;max-width:480px;padding:18px;border:none;border-radius:var(--R);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:18px;font-weight:700;cursor:pointer;margin:16px 0 40px;font-family:inherit;box-shadow:0 4px 20px rgba(79,140,255,.3)}
+.go-btn:active{transform:scale(.97)}
+
+#S1{display:none}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(15,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 16px}
+.topbar-in{display:flex;justify-content:space-between;align-items:center;max-width:520px;margin:0 auto}
+.ph-lbl{font-size:13px;font-weight:700;padding:3px 10px;border-radius:20px}
+.tm{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px}
+.tm-w{color:var(--warn);animation:pu 1s infinite}.tm-d{color:var(--wrong);animation:pu .5s infinite}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.5}}
+.pgw{height:3px;background:var(--border);margin-top:6px;border-radius:2px;overflow:hidden}
+.pgf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .5s;border-radius:2px}
+
+.pa{max-width:520px;margin:0 auto;padding:16px 16px 110px}
+.phdr{margin-bottom:14px}
+.ptit{font-size:16px;font-weight:700;margin-bottom:4px}
+.pinf{font-size:12px;color:var(--text2);display:flex;gap:12px;align-items:center}
+.ptm{font-weight:600;color:var(--accent)}
+
+.qr{display:flex;align-items:center;gap:4px;padding:9px 10px;margin-bottom:5px;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:border-color .3s,background .3s}
+.qr.ans{border-color:rgba(79,140,255,.35)}
+.qr.c-ok{border-color:var(--correct);background:rgba(0,184,148,.06)}
+.qr.c-no{border-color:var(--wrong);background:rgba(255,107,107,.06)}
+.qr.lk{opacity:.45;pointer-events:none}
+.qn{font-size:13px;font-weight:700;color:var(--accent);min-width:32px;text-align:center;line-height:1.2}
+.qn .pt{color:var(--warn);font-size:9px;display:block;margin-top:1px}
+.og{display:flex;gap:6px;flex:1;justify-content:center}
+.ob{width:42px;height:42px;border-radius:50%;border:2px solid var(--border);background:transparent;color:var(--text2);font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.ob:active{transform:scale(.88)}
+.ob.sl{border-color:var(--accent);background:var(--accent);color:#fff}
+.ob.ok{border-color:var(--correct);background:var(--correct);color:#fff}
+.ob.no{border-color:var(--wrong);background:var(--wrong);color:#fff}
+
+.att-bd{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:auto;flex-shrink:0}
+.att1{background:rgba(253,203,110,.15);color:var(--warn)}
+.att2{background:rgba(255,107,107,.15);color:var(--wrong)}
+
+.bn{position:fixed;bottom:0;left:0;right:0;background:rgba(15,17,23,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));z-index:100}
+.bn-in{max-width:520px;margin:0 auto;display:flex;gap:10px}
+.nb{flex:1;padding:14px;border:none;border-radius:10px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.nb:active{transform:scale(.97)}
+.nb1{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.nb2{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.nb:disabled{opacity:.4;pointer-events:none}
+
+#S2{display:none}
+.rw{max-width:520px;margin:0 auto;padding:40px 16px;text-align:center}
+.rsc{font-size:60px;font-weight:900;line-height:1;margin:16px 0 6px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.rsb{font-size:14px;color:var(--text2);margin-bottom:24px}
+.rb{background:var(--card);border-radius:var(--R);padding:18px;margin-bottom:14px;text-align:left}
+.rb h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.rr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(45,49,66,.5);font-size:13px;color:var(--text2)}
+.rr:last-child{border:none}
+.rv{color:var(--text);font-weight:600}
+.rv-g{color:var(--correct)}.rv-r{color:var(--wrong)}.rv-y{color:var(--warn)}.rv-p{color:var(--accent2)}
+
+.kbtn{width:100%;padding:16px;border:none;border-radius:var(--R);background:#FEE500;color:#3C1E1E;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.kbtn:active{transform:scale(.97)}
+.rbtn{width:100%;padding:16px;border:none;border-radius:var(--R);color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px}
+.rb2{background:linear-gradient(135deg,var(--warn),#e17055)}
+.rb3{background:linear-gradient(135deg,var(--accent2),#a29bfe)}
+
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center;padding:20px}
+.mo.on{display:flex}
+.mb{background:var(--card);border-radius:var(--R);padding:26px 22px;max-width:400px;width:100%;text-align:center}
+.mb h3{font-size:18px;font-weight:700;margin-bottom:10px}
+.mb p{font-size:14px;color:var(--text2);margin-bottom:18px;line-height:1.6;white-space:pre-line}
+
+.kb{background:var(--card);border-radius:var(--R);padding:22px;max-width:440px;width:100%;text-align:left}
+.kb h3{font-size:16px;font-weight:700;margin-bottom:12px;text-align:center}
+#krt{background:rgba(45,49,66,.5);border-radius:10px;padding:16px;font-size:13px;line-height:1.7;color:var(--text);max-height:50vh;overflow-y:auto;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-break:break-all;margin-bottom:14px}
+.cpb{width:100%;padding:14px;border:none;border-radius:10px;background:#FEE500;color:#3C1E1E;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px}
+.clb{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text2);font-size:14px;cursor:pointer;font-family:inherit}
+
+.fl{position:fixed;inset:0;background:rgba(255,107,107,.15);z-index:150;display:none;align-items:center;justify-content:center}
+.fl.on{display:flex;animation:fi .8s ease forwards}
+@keyframes fi{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+.fl span{font-size:28px;font-weight:900;color:var(--wrong)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div id="S0">
+  <div class="hero"><h1>마침내 모의고사</h1><p>4월 2주차 · 34문항 · 60분</p></div>
+
+  <div class="mc mc1">
+    <h2><span class="bd bd1">1단계</span> 실전 풀기</h2>
+    <ul>
+      <li>총 <b>60분</b> 동안 8개 지문 34문항을 풀어요</li>
+      <li>각 지문마다 배정된 시간이 있어요</li>
+      <li>시간이 끝나면 답안이 <b>자동 잠금</b>되고 다음 지문으로 넘어가요</li>
+      <li>결과에는 <b>틀린 개수만</b> 알려줘요 (어떤 문제인지는 비밀!)</li>
+    </ul>
+    <table class="ttbl">
+      <tr><th>지문</th><th>문항</th><th>시간</th></tr>
+      <tr><td>[1~3] 인식론적 신념</td><td>3</td><td>5분</td></tr>
+      <tr><td>[4~9] 불능과 이중 매매</td><td>6</td><td>11분</td></tr>
+      <tr><td>[10~13] 분사 유동</td><td>4</td><td>7분</td></tr>
+      <tr><td>[14~17] 기초 믿음</td><td>4</td><td>7분</td></tr>
+      <tr><td>[18~21] 위경천전</td><td>4</td><td>7분</td></tr>
+      <tr><td>[22~25] 흰 그림자 / 화엄</td><td>4</td><td>7분</td></tr>
+      <tr><td>[26~29] 키 작은 자유인</td><td>4</td><td>7분</td></tr>
+      <tr><td>[30~34] 수월정청흥가 / 팔분당기</td><td>5</td><td>9분</td></tr>
+    </table>
+  </div>
+
+  <div class="mc mc2">
+    <h2><span class="bd bd2">2단계</span> 지문별 재도전</h2>
+    <ul>
+      <li>각 지문의 <b>모든 문제</b>에 다시 도전해요</li>
+      <li>지문당 최대 <b>2회</b> 도전할 수 있어요</li>
+      <li>2회 안에 모두 맞추지 못하면 다음 지문으로 넘어가요</li>
+      <li>결과에는 <b>지문별 틀린 개수</b>만 알려줘요</li>
+    </ul>
+  </div>
+
+  <div class="mc mc3">
+    <h2><span class="bd bd3">3단계</span> 최종 도전</h2>
+    <ul>
+      <li>2단계에서 끝까지 틀린 문제만 모아서 마지막 도전!</li>
+      <li>최종 결과를 확인하고 <b>카톡으로 보고</b>해요</li>
+    </ul>
+  </div>
+
+  <div class="nm-sec">
+    <div class="nm-row">
+      <input id="inpN" class="nm-in" placeholder="이름" maxlength="10">
+      <input id="inpA" class="nm-in" placeholder="학원명" maxlength="20">
+    </div>
+    <div id="nmE" class="nm-err">이름과 학원명을 모두 입력해주세요.</div>
+  </div>
+
+  <button class="go-btn" onclick="tryStart()">시작하기 →</button>
+</div>
+
+<div id="S1">
+  <div class="topbar">
+    <div class="topbar-in">
+      <span id="phL" class="ph-lbl bd1">1단계</span>
+      <span id="tmD" class="tm">60:00</span>
+    </div>
+    <div class="pgw"><div id="pgB" class="pgf" style="width:0%"></div></div>
+  </div>
+  <div id="pArea" class="pa"></div>
+  <div class="bn"><div class="bn-in">
+    <button id="bP" class="nb nb2" onclick="goPrev()">← 이전</button>
+    <button id="bN" class="nb nb1" onclick="goNext()">다음 →</button>
+  </div></div>
+</div>
+
+<div id="S2"><div id="rA" class="rw"></div></div>
+
+<div id="mTu" class="mo"><div class="mb">
+  <h3>⏰ 시간 종료!</h3>
+  <p id="mTuM">이 지문의 시간이 끝났습니다.</p>
+  <button class="nb nb1" style="width:100%" onclick="closeTu()">확인</button>
+</div></div>
+
+<div id="mK" class="mo"><div class="kb">
+  <h3>📋 카톡 보고서</h3>
+  <div id="krt"></div>
+  <button class="cpb" onclick="cpR()">📋 복사하기</button>
+  <button class="clb" onclick="clK()">닫기</button>
+</div></div>
+
+<div id="fl" class="fl"><span>⏰ 시간 종료</span></div>
+
+<script>
+const P=[
+  {id:0,t:'[1~3] 인식론적 신념과 지식 습득',tp:'독서',qs:[1,2,3],tm:300},
+  {id:1,t:'[4~9] 불능과 이중 매매의 효력',tp:'독서',qs:[4,5,6,7,8,9],tm:660},
+  {id:2,t:'[10~13] 분사 유동과 물분사 추진',tp:'독서',qs:[10,11,12,13],tm:420},
+  {id:3,t:'[14~17] 기초 믿음에 대한 견해',tp:'독서',qs:[14,15,16,17],tm:420},
+  {id:4,t:'[18~21] 위경천전',tp:'문학',qs:[18,19,20,21],tm:420},
+  {id:5,t:'[22~25] 흰 그림자 / 화엄에 오르다',tp:'문학',qs:[22,23,24,25],tm:420},
+  {id:6,t:'[26~29] 키 작은 자유인',tp:'문학',qs:[26,27,28,29],tm:420},
+  {id:7,t:'[30~34] 수월정청흥가 / 팔분당기',tp:'문학',qs:[30,31,32,33,34],tm:540}
+];
+
+const A={1:3,2:4,3:3,4:3,5:1,6:4,7:5,8:5,9:4,10:5,11:3,12:4,13:1,14:4,15:1,16:2,17:4,18:5,19:2,20:3,21:1,22:5,23:4,24:3,25:5,26:1,27:4,28:5,29:2,30:3,31:4,32:4,33:5,34:3};
+const PT=[3,8,12,17,21,25,29,34];
+const SY=['①','②','③','④','⑤'];
+
+let sN='',sA='';
+let ph=0,pi=0;
+let a1={},tTotal=3600,tPass=0,iT=null,iP=null,t0=0;
+let a2={},att={},ok2={};
+let a3={},ok3={},q3=[];
+
+function $(x){return document.getElementById(x)}
+function pd(n){return String(n).padStart(2,'0')}
+function sw(id){['S0','S1','S2'].forEach(s=>$(s).style.display='none');$(id).style.display='block';window.scrollTo(0,0)}
+
+function tryStart(){
+  const n=$('inpN').value.trim(),a=$('inpA').value.trim();
+  if(!n||!a){$('nmE').style.display='block';return}
+  $('nmE').style.display='none';sN=n;sA=a;goP1();
+}
+
+/* ═══ PHASE 1 ═══ */
+function goP1(){
+  ph=1;pi=0;a1={};t0=Date.now();tTotal=3600;
+  sw('S1');uT();
+  iT=setInterval(()=>{tTotal--;uT();if(tTotal<=0){ci(iT);ci(iP);endP1();}},1000);
+  sPT();render();
+}
+
+function sPT(){tPass=P[pi].tm;ci(iP);iP=setInterval(()=>{tPass--;uPT();if(tPass<=0){ci(iP);onTU();}},1000);}
+function ci(t){if(t)clearInterval(t)}
+
+function uT(){
+  const e=$('tmD'),m=Math.floor(tTotal/60),s=tTotal%60;
+  e.textContent=pd(m)+':'+pd(s);e.className='tm';
+  if(tTotal<=60)e.classList.add('tm-d');else if(tTotal<=300)e.classList.add('tm-w');
+}
+
+function uPT(){
+  const e=document.querySelector('.ptm');if(!e)return;
+  const m=Math.floor(tPass/60),s=tPass%60;
+  e.textContent='남은 시간: '+m+':'+pd(s);
+  e.style.color=tPass<=10?'var(--wrong)':tPass<=30?'var(--warn)':'var(--accent)';
+}
+
+function onTU(){
+  $('fl').classList.add('on');setTimeout(()=>$('fl').classList.remove('on'),900);
+  if(pi<P.length-1){$('mTuM').textContent='"'+P[pi].t+'" 시간 종료!\n다음 지문으로 이동합니다.';$('mTu').classList.add('on');}
+  else endP1();
+}
+
+function closeTu(){$('mTu').classList.remove('on');if(pi<P.length-1){pi++;sPT();render();}else endP1();}
+function endP1(){ci(iT);ci(iP);showR1();}
+
+/* ═══ RENDER ═══ */
+function render(){
+  const area=$('pArea');
+  const p=ph===3?null:P[pi];
+  const qs=ph===3?q3:p.qs;
+
+  const lbl=$('phL');
+  if(ph===1){lbl.textContent='1단계 · '+(pi+1)+'/'+P.length;lbl.className='ph-lbl bd1';}
+  else if(ph===2){lbl.textContent='2단계 · '+(att[pi]||1)+'/2회차';lbl.className='ph-lbl bd2';}
+  else{lbl.textContent='3단계 최종';lbl.className='ph-lbl bd3';}
+
+  $('pgB').style.width=((ph===3?1:pi+1)/(ph===3?1:P.length)*100)+'%';
+
+  let h='<div class="phdr"><div class="ptit">'+(ph===3?'최종 도전 — 틀린 문제 모음':p.t)+'</div>';
+  h+='<div class="pinf"><span>'+(ph===3?q3.length+'문항':p.tp+' · '+p.qs.length+'문항')+'</span>';
+  if(ph===1)h+='<span class="ptm">남은 시간: --:--</span>';
+  if(ph===2)h+='<span class="att-bd '+(att[pi]===2?'att2':'att1')+'">'+(att[pi]||1)+'/2회차</span>';
+  h+='</div></div>';
+
+  qs.forEach(q=>{
+    const is3=PT.includes(q);
+    let rc='qr',lk=false;
+    if(ph===1&&a1[q])rc+=' ans';
+    if(ph===2&&ok2[q]){rc+=' c-ok lk';lk=true;}
+    if(ph===3&&ok3[q]){rc+=' c-ok lk';lk=true;}
+
+    h+='<div class="'+rc+'" id="qr'+q+'"><div class="qn">'+q+(is3?'<span class="pt">3점</span>':'')+'</div><div class="og">';
+    for(let o=1;o<=5;o++){
+      let bc='ob';
+      if(ph===1&&a1[q]===o)bc+=' sl';
+      if(ph===2&&ok2[q]&&o===A[q])bc+=' ok';
+      if(ph===3&&ok3[q]&&o===A[q])bc+=' ok';
+      h+='<button class="'+bc+'" data-q="'+q+'" data-o="'+o+'" '+(lk?'disabled':'')+' onclick="sel('+q+','+o+')">'+SY[o-1]+'</button>';
+    }
+    h+='</div></div>';
+  });
+
+  area.innerHTML=h;
+  if(ph===1)uPT();else{$('tmD').textContent=ph===2?'재도전':'최종';$('tmD').className='tm';}
+  uNav();
+}
+
+/* SELECT — no re-render, no scroll jump */
+function sel(q,o){
+  if(ph===1){a1[q]=o;}
+  else if(ph===2){if(ok2[q])return;a2[q]=o;}
+  else{if(ok3[q])return;a3[q]=o;}
+
+  const row=$('qr'+q);if(!row)return;
+  if(ph===1)row.classList.add('ans');
+  row.querySelectorAll('.ob').forEach(b=>b.classList.toggle('sl',+b.dataset.o===o));
+}
+
+function uNav(){
+  const pr=$('bP'),nx=$('bN');
+  if(ph===1){
+    pr.style.display=pi===0?'none':'block';
+    if(pi===P.length-1){nx.textContent='제출하기 ✓';nx.onclick=endP1;}
+    else{nx.textContent='다음 →';nx.onclick=goNext;}
+  }else if(ph===2){
+    pr.style.display='none';nx.textContent='제출하기 ✓';nx.onclick=subP2;
+  }else{
+    pr.style.display='none';nx.textContent='최종 제출 ✓';nx.onclick=subP3;
+  }
+}
+
+function goNext(){if(ph===1&&pi<P.length-1){pi++;sPT();render();}}
+function goPrev(){if(ph===1&&pi>0){pi--;render();}}
+
+/* ═══ PHASE 1 RESULT — wrong count only ═══ */
+function showR1(){
+  sw('S2');
+  let c=0;for(let q=1;q<=34;q++)if(a1[q]===A[q])c++;
+  const w=34-c,el=Math.floor((Date.now()-t0)/1000),eM=Math.floor(el/60),eS=el%60;
+
+  let h='<div><p style="font-size:14px;color:var(--text2)">1단계 실전 결과</p>';
+  h+='<div class="rsc" style="'+(w===0?'':'background:linear-gradient(135deg,var(--wrong),#e17055);-webkit-background-clip:text;-webkit-text-fill-color:transparent')+'">'+w+'</div>';
+  h+='<p class="rsb">34문항 중 <b>'+w+'문항</b> 오답 · 소요 시간: '+eM+'분 '+eS+'초</p></div>';
+
+  h+='<div class="rb"><h3>안내</h3><p style="font-size:13.5px;color:var(--text2);line-height:1.7">';
+  if(w===0)h+='🎉 완벽합니다! 모든 문항을 맞혔어요!';
+  else h+='어떤 문제를 틀렸는지는 아직 비밀이에요.<br>2단계 재도전에서 스스로 찾아보세요!';
+  h+='</p></div>';
+
+  if(w>0)h+='<button class="rbtn rb2" onclick="goP2()">2단계 재도전 시작 →</button>';
+  else h+='<button class="kbtn" onclick="showRpt()"><svg width="20" height="20" viewBox="0 0 24 24" fill="#3C1E1E"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.71 6.73-.17.62-.66 2.27-.76 2.62-.12.44.16.43.34.31.14-.09 2.19-1.47 3.08-2.07.53.07 1.08.11 1.63.11 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>카톡 보고하기</button>';
+  $('rA').innerHTML=h;
+}
+
+/* ═══ PHASE 2 ═══ */
+function goP2(){
+  ph=2;pi=0;a2={};att={};ok2={};
+  P.forEach(p=>{att[p.id]=1;p.qs.forEach(q=>{ok2[q]=false;a2[q]=null;});});
+  sw('S1');render();
+}
+
+function subP2(){
+  const p=P[pi],at=att[pi]||1;let allOK=true;
+  p.qs.forEach(q=>{if(ok2[q])return;if(a2[q]===A[q])ok2[q]=true;else allOK=false;});
+
+  // visual feedback
+  p.qs.forEach(q=>{
+    const row=$('qr'+q);if(!row)return;
+    if(ok2[q]){row.classList.add('c-ok');row.querySelectorAll('.ob').forEach(b=>{b.classList.remove('sl','no');if(+b.dataset.o===A[q])b.classList.add('ok');});}
+    else{row.classList.add('c-no');row.querySelectorAll('.ob').forEach(b=>{b.classList.remove('sl');if(+b.dataset.o===a2[q]&&a2[q])b.classList.add('no');if(+b.dataset.o===A[q])b.classList.add('ok');});}
+  });
+
+  setTimeout(()=>{
+    if(allOK||at>=2){
+      if(pi<P.length-1){pi++;att[pi]=1;P[pi].qs.forEach(q=>{a2[q]=null;});render();}
+      else endP2();
+    }else{att[pi]=2;p.qs.forEach(q=>{if(!ok2[q])a2[q]=null;});render();}
+  },1200);
+}
+
+function endP2(){
+  q3=[];for(let q=1;q<=34;q++)if(!ok2[q])q3.push(q);
+  if(q3.length===0)showFin();else showR2();
+}
+
+/* PHASE 2 RESULT — per-passage wrong count */
+function showR2(){
+  sw('S2');
+  let h='<div><p style="font-size:14px;color:var(--text2)">2단계 재도전 결과</p>';
+  h+='<div class="rsc" style="background:linear-gradient(135deg,var(--warn),#e17055);-webkit-background-clip:text;-webkit-text-fill-color:transparent">'+q3.length+'</div>';
+  h+='<p class="rsb">아직 <b>'+q3.length+'문항</b>이 남았어요</p></div>';
+
+  h+='<div class="rb"><h3>지문별 남은 오답 수</h3>';
+  P.forEach(p=>{
+    let w=0;p.qs.forEach(q=>{if(!ok2[q])w++;});
+    h+='<div class="rr"><span>'+p.t+'</span><span class="rv '+(w===0?'rv-g':'rv-r')+'">'+(w===0?'✓ 완료':w+'문항')+'</span></div>';
+  });
+  h+='</div><button class="rbtn rb3" onclick="goP3()">3단계 최종 도전 →</button>';
+  $('rA').innerHTML=h;
+}
+
+/* ═══ PHASE 3 ═══ */
+function goP3(){
+  ph=3;a3={};ok3={};q3.forEach(q=>{ok3[q]=false;a3[q]=null;});
+  sw('S1');render();
+}
+
+function subP3(){
+  q3.forEach(q=>{if(a3[q]===A[q])ok3[q]=true;});
+
+  q3.forEach(q=>{
+    const row=$('qr'+q);if(!row)return;
+    if(ok3[q]){row.classList.add('c-ok');row.querySelectorAll('.ob').forEach(b=>{b.classList.remove('sl','no');if(+b.dataset.o===A[q])b.classList.add('ok');});}
+    else{row.classList.add('c-no');row.querySelectorAll('.ob').forEach(b=>{b.classList.remove('sl');if(+b.dataset.o===a3[q]&&a3[q])b.classList.add('no');if(+b.dataset.o===A[q])b.classList.add('ok');});}
+  });
+
+  setTimeout(showFin,1500);
+}
+
+/* ═══ FINAL ═══ */
+function showFin(){
+  sw('S2');
+  let c1=0,c2=0,c3=0,st=0;
+  for(let q=1;q<=34;q++){
+    if(a1[q]===A[q])c1++;else if(ok2[q])c2++;else if(ok3[q])c3++;else st++;
+  }
+  const tot=c1+c2+c3;
+
+  let h='<div><p style="font-size:14px;color:var(--text2)">🏆 최종 결과</p>';
+  h+='<div class="rsc">'+tot+'/34</div>';
+  h+='<p class="rsb">1단계 '+c1+' + 2단계 +'+c2+' + 3단계 +'+c3+'</p></div>';
+
+  h+='<div class="rb"><h3>단계별 성과</h3>';
+  h+='<div class="rr"><span>1단계 실전 정답</span><span class="rv rv-g">'+c1+'문항</span></div>';
+  h+='<div class="rr"><span>2단계 추가 정답</span><span class="rv rv-y">'+c2+'문항</span></div>';
+  h+='<div class="rr"><span>3단계 추가 정답</span><span class="rv rv-p">'+c3+'문항</span></div>';
+  h+='<div class="rr"><span>끝까지 틀린 문항</span><span class="rv rv-r">'+st+'문항</span></div>';
+  h+='</div>';
+
+  if(st>0){
+    h+='<div class="rb"><h3>끝까지 틀린 문제</h3>';
+    for(let q=1;q<=34;q++){
+      if(a1[q]!==A[q]&&!ok2[q]&&!ok3[q])
+        h+='<div class="rr"><span>'+q+'번 '+(PT.includes(q)?'[3점]':'')+'</span><span class="rv rv-r">정답: '+SY[A[q]-1]+'</span></div>';
+    }
+    h+='</div>';
+  }
+
+  h+='<button class="kbtn" onclick="showRpt()"><svg width="20" height="20" viewBox="0 0 24 24" fill="#3C1E1E"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.71 6.73-.17.62-.66 2.27-.76 2.62-.12.44.16.43.34.31.14-.09 2.19-1.47 3.08-2.07.53.07 1.08.11 1.63.11 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>카카오톡으로 보고하기</button>';
+  $('rA').innerHTML=h;
+}
+
+/* ═══ REPORT ═══ */
+function showRpt(){
+  const now=new Date(),ds=now.getFullYear()+'.'+pd(now.getMonth()+1)+'.'+pd(now.getDate());
+  const el=Math.floor((Date.now()-t0)/1000),eM=Math.floor(el/60);
+
+  let c1=0,c2=0,c3=0,st=0,stL=[];
+  for(let q=1;q<=34;q++){
+    if(a1[q]===A[q])c1++;else if(ok2[q])c2++;else if(ok3[q])c3++;else{st++;stL.push(q+'번(정답:'+SY[A[q]-1]+')');}
+  }
+
+  let pd2='';
+  P.forEach(p=>{let c=0;p.qs.forEach(q=>{if(a1[q]===A[q]||ok2[q]||ok3[q])c++;});pd2+=p.t+' '+c+'/'+p.qs.length+'\n';});
+
+  const rpt=`📝 마침내 모의고사 결과 보고
+━━━━━━━━━━━━━━━━
+👤 ${sN} (${sA})
+📅 ${ds}
+⏱ 1단계 소요시간: ${eM}분
+
+📊 단계별 성과
+1단계 실전: ${c1}문항 정답
+2단계 재도전: +${c2}문항
+3단계 최종: +${c3}문항
+✅ 최종 정답: ${c1+c2+c3}/34
+❌ 끝까지 오답: ${st}문항
+
+📋 지문별 최종 결과
+${pd2}
+${stL.length>0?'🔴 미해결: '+stL.join(', '):'🎉 모두 해결!'}`;
+
+  $('krt').textContent=rpt;$('mK').classList.add('on');
+}
+
+function cpR(){
+  const t=$('krt').textContent;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(()=>{const b=document.querySelector('.cpb');b.textContent='✅ 복사 완료!';setTimeout(()=>b.textContent='📋 복사하기',2000);}).catch(()=>fb(t));
+  }else fb(t);
+}
+function fb(t){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');const b=document.querySelector('.cpb');b.textContent='✅ 복사 완료!';setTimeout(()=>b.textContent='📋 복사하기',2000);}catch(e){alert('텍스트를 직접 선택해 복사해주세요.');}document.body.removeChild(ta);}
+function clK(){$('mK').classList.remove('on');}
+</script>
+</body>
+</html>
