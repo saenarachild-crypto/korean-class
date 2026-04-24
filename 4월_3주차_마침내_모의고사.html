@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4월 3주차 마침내 모의고사 - 셀프해설지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .exam-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* Progress Bar */
+        .progress-wrapper {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 40px 30px;
+            min-height: 500px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Step 1: 공지사항 */
+        .announcement {
+            background: #f0e6ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Step 2: 선택과목 선택 */
+        .subject-choice {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .subject-option {
+            position: relative;
+        }
+
+        .subject-option input {
+            display: none;
+        }
+
+        .subject-option label {
+            display: block;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .subject-option input:checked + label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Step 3: 정답 입력 */
+        .answers-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .answer-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .answer-item label {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .answer-item input {
+            width: 100%;
+            height: 42px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 0;
+            transition: all 0.2s;
+        }
+
+        .answer-item input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .answer-item input.error {
+            border-color: #e74c3c;
+            background: #ffe6e6;
+        }
+
+        /* Step 4: 결과 */
+        .result-container {
+            text-align: center;
+        }
+
+        .score-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .score-number {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .score-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .first-attempt-warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .wrong-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .wrong-list h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .wrong-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #e74c3c;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            flex: 0.5;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-kakao {
+            background: #FFE812;
+            color: #000;
+            width: 100%;
+            font-weight: 900;
+        }
+
+        .btn-kakao:hover {
+            background: #FFD500;
+            transform: translateY(-2px);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #00a8cc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #0066cc;
+            line-height: 1.6;
+        }
+
+        .cooltime-warning {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            color: #d63031;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* 보고서 스타일 */
+        .report-section {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .report-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .report-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .report-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .report-details strong {
+            color: #333;
+        }
+
+        .attempt-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #f0f0f0;
+            border-radius: 6px;
+        }
+
+        /* 문제지 링크 */
+        .link-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .link-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 정답 선택 버튼 */
+        .question-block {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .question-block:last-child {
+            border-bottom: none;
+        }
+
+        .question-num {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .question-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .difficulty-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            padding: 6px 12px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #666;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .difficulty-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .difficulty-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .answer-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .answer-btn {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #666;
+            background: white;
+            color: #333;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .answer-btn:hover {
+            border-color: #667eea;
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .answer-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .answers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                gap: 8px;
+            }
+
+            .subject-choice {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                flex: 1;
+                width: 100%;
+            }
+
+            .score-number {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 4월 3주차 마침내 모의고사</h1>
+            <p class="subtitle">셀프해설지 & 자동채점</p>
+            <div class="exam-info">
+                <strong>공통과목 + 선택과목 (화법과작문 / 언어와매체)</strong>
+            </div>
+        </header>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+            <div class="step-indicator">
+                <span>1단계: 시험 안내</span>
+                <span>2단계: 선택과목</span>
+                <span>3단계: 정답 입력</span>
+                <span>4단계: 채점 결과</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Step 1: 안내 -->
+            <div class="step active" id="step1">
+                <div class="announcement">💡 시험 응시 방법
+
+1) 8:20~40분 마인드 콘트롤
+   - 시험지 검토 (문학 작품 제목 확인 및 3점 문항 위치 파악)
+   - 원리 기법 지문 위치 파악
+
+2) 8:40~8:55 선택 과목 풀기
+   - 한 문제 정도 어려운 게 출제됨
+
+3) 8:55~9:20 문학 지문 풀기
+   - 모르는 작품의 내용 파악 문제는 나중에 풀 것
+
+4) 9:20~9:50 독서 지문 풀기
+   - 어려운 문제 한 두 개는 틀려도 되니 편하게 답만 찾아서 풀 것
+
+5) 9:50~10:00 답안 작성 및 못 푼 문제 풀기
+   - 다 푼 사람은 정보 확인 문제 다시 보기
+
+※ 각 파트별로 문제를 풀다가 시간을 초과했을 시, 다음 파트로 일단 넘어갈 것</div>
+
+                <div class="form-group">
+                    <label>📌 이름</label>
+                    <input type="text" id="studentName" placeholder="홍길동">
+                </div>
+
+                <div class="form-group">
+                    <label>🏫 학원명</label>
+                    <input type="text" id="academyName" placeholder="김현석 국어">
+                </div>
+
+                <div class="form-group">
+                    <label>🎯 시험 전 목표</label>
+                    <textarea id="preNotes" placeholder="예: 공통과목은 꼭 틀리지 않고, 선택과목에서 3개 이상 맞추기"></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="nextStep()">시험 시작 →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: 선택과목 선택 -->
+            <div class="step" id="step2">
+                <h2 style="margin-bottom: 25px; color: #333;">📚 선택과목 선택</h2>
+
+                <div class="info-box">
+                    ℹ️ 공통과목(1~34번)은 모두 입력하고, 아래에서 선택과목을 선택한 후 35~45번을 입력하세요.
+                </div>
+
+                <div class="subject-choice">
+                    <div class="subject-option">
+                        <input type="radio" id="subjectA" name="subject" value="화법과작문" checked>
+                        <label for="subjectA">🎤<br>화법과 작문</label>
+                    </div>
+                    <div class="subject-option">
+                        <input type="radio" id="subjectB" name="subject" value="언어와매체">
+                        <label for="subjectB">🔤<br>언어와 매체</label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="prevStep()">← 뒤로</button>
+                    <button class="btn-primary" onclick="nextStep()">다음 →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: 정답 입력 -->
+            <div class="step" id="step3">
+                <h2 style="margin-bottom: 20px; color: #333;">✏️ 정답 입력</h2>
+
+                <div class="link-buttons">
+                    <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQB1N5j6z8mlT6U33NKOU5waAQ99vq6fhRqwNaNV492L45A?e=iASKw5" target="_blank" class="link-btn">
+                        📄 문제지 보기
+                    </a>
+                </div>
+
+                <div class="attempt-info">
+                    <div>도전 횟수: <strong id="attemptCount">3/3</strong></div>
+                    <div id="coolTimeWarning"></div>
+                </div>
+
+                <div class="answers-section">
+                    <h3 class="section-title">공통과목 (1~34번)</h3>
+                    <div id="commonAnswers"></div>
+                </div>
+
+                <div class="answers-section">
+                    <h3 class="section-title" id="selectiveTitle">선택과목 (35~45번) - 화법과 작문</h3>
+                    <div id="selectiveAnswers"></div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="prevStep()">← 뒤로</button>
+                    <button class="btn-primary" id="submitBtn" onclick="submitAnswers()">정답 제출 →</button>
+                </div>
+            </div>
+
+            <!-- Step 4: 결과 -->
+            <div class="step" id="step4">
+                <div class="result-container">
+                    <div class="score-box">
+                        <div class="score-number" id="scoreDisplay">0점</div>
+                        <div class="score-label" id="scoreDetails">(0/45 정답)</div>
+                    </div>
+
+                    <div id="firstAttemptBox"></div>
+                    <div id="wrongListBox"></div>
+                    <div id="reportBox"></div>
+                    <div id="kakaoShareBox"></div>
+
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="resetAndRestart()">처음부터 다시</button>
+                        <button class="btn-primary" id="retryBtn" onclick="nextStep()">재응시 준비</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 상수
+        const ANSWERS = {
+            common: {
+                1: 2, 2: 1, 3: 4, 4: 2, 5: 3,
+                6: 4, 7: 3, 8: 1, 9: 4, 10: 1,
+                11: 5, 12: 3, 13: 1, 14: 2, 15: 5,
+                16: 4, 17: 5, 18: 5, 19: 3, 20: 5,
+                21: 3, 22: 1, 23: 1, 24: 3, 25: 2,
+                26: 2, 27: 1, 28: 4, 29: 5, 30: 4,
+                31: 4, 32: 2, 33: 3, 34: 5
+            },
+            화법과작문: {
+                35: 2, 36: 5, 37: 4, 38: 3, 39: 5, 40: 4,
+                41: 5, 42: 1, 43: 1, 44: 2, 45: 5
+            },
+            언어와매체: {
+                35: 5, 36: 3, 37: 4, 38: 5, 39: 1, 40: 3,
+                41: 2, 42: 3, 43: 4, 44: 5, 45: 3
+            }
+        };
+
+        const WAIT_MINUTES = 10;
+        const MAX_ATTEMPTS = 3;
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbw05gNe7MRMnFfo10otZ1BU-IXwKmLQGLTYQznrynRCfYzh7YMw7JYpyQjZUe8IbQFjHw/exec";
+
+        let currentStep = 1;
+        const userAnswers = {};  // 사용자 정답 저장소
+        const userDifficulty = {};  // 사용자 난이도 분류 저장소 (o/t/x)
+
+        // 초기화
+        window.addEventListener('load', () => {
+            initAnswerInputs();
+            updateAttemptInfo();
+            setupSubjectChangeListener();
+            setInterval(updateAttemptInfo, 1000);
+        });
+
+        function initAnswerInputs() {
+            // 공통과목
+            const commonGrid = document.getElementById('commonAnswers');
+            for (let i = 1; i <= 34; i++) {
+                const div = document.createElement('div');
+                div.className = 'question-block';
+                div.innerHTML = `
+                    <div class="question-num">문제 ${i}</div>
+                    <div class="question-controls">
+                        <div class="difficulty-buttons">
+                            <button class="difficulty-btn" onclick="setDifficulty(${i}, 'o', this)" title="확실히 맞을 것 같음">◯ 확실</button>
+                            <button class="difficulty-btn" onclick="setDifficulty(${i}, 't', this)" title="애매함">△ 애매</button>
+                            <button class="difficulty-btn" onclick="setDifficulty(${i}, 'x', this)" title="모르거나 못 풀음">✕ 못함</button>
+                        </div>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 1)">①</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 2)">②</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 3)">③</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 4)">④</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 5)">⑤</button>
+                        </div>
+                    </div>
+                `;
+                commonGrid.appendChild(div);
+            }
+
+            // 선택과목
+            const selectiveGrid = document.getElementById('selectiveAnswers');
+            for (let i = 35; i <= 45; i++) {
+                const div = document.createElement('div');
+                div.className = 'question-block';
+                div.innerHTML = `
+                    <div class="question-num">문제 ${i}</div>
+                    <div class="question-controls">
+                        <div class="difficulty-buttons">
+                            <button class="difficulty-btn" onclick="setDifficulty(${i}, 'o', this)" title="확실히 맞을 것 같음">◯ 확실</button>
+                            <button class="difficulty-btn" onclick="setDifficulty(${i}, 't', this)" title="애매함">△ 애매</button>
+                            <button class="difficulty-btn" onclick="setDifficulty(${i}, 'x', this)" title="모르거나 못 풀음">✕ 못함</button>
+                        </div>
+                        <div class="answer-buttons">
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 1)">①</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 2)">②</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 3)">③</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 4)">④</button>
+                            <button class="answer-btn" onclick="selectAnswer(${i}, 5)">⑤</button>
+                        </div>
+                    </div>
+                `;
+                selectiveGrid.appendChild(div);
+            }
+        }
+
+        function selectAnswer(questionNum, answerNum) {
+            userAnswers[questionNum] = answerNum;
+
+            // 현재 버튼 찾기
+            const clickedBtn = event.target;
+            const questionBlock = clickedBtn.closest('.question-block');
+            
+            if (questionBlock) {
+                // 같은 문제의 모든 버튼에서 'selected' 클래스 제거
+                const buttons = questionBlock.querySelectorAll('.answer-btn');
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                
+                // 클릭한 버튼에만 'selected' 클래스 추가
+                clickedBtn.classList.add('selected');
+            }
+        }
+
+        function setDifficulty(questionNum, difficulty, btnElement) {
+            userDifficulty[questionNum] = difficulty;
+
+            // 같은 문제의 모든 분류 버튼에서 'selected' 클래스 제거
+            const questionBlock = btnElement.closest('.question-block');
+            if (questionBlock) {
+                const diffButtons = questionBlock.querySelectorAll('.difficulty-btn');
+                diffButtons.forEach(btn => btn.classList.remove('selected'));
+                
+                // 클릭한 버튼에만 'selected' 클래스 추가
+                btnElement.classList.add('selected');
+            }
+        }
+
+        function setupSubjectChangeListener() {
+            document.querySelectorAll('input[name="subject"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const subject = document.querySelector('input[name="subject"]:checked').value;
+                    document.getElementById('selectiveTitle').textContent = 
+                        `선택과목 (35~45번) - ${subject}`;
+                    // 선택과목 변경 시 35~45번 정답 초기화
+                    for (let i = 35; i <= 45; i++) {
+                        delete userAnswers[i];
+                        delete userDifficulty[i];
+                    }
+                    // 버튼 선택 해제
+                    document.querySelectorAll('#selectiveAnswers .answer-btn.selected').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                    document.querySelectorAll('#selectiveAnswers .difficulty-btn.selected').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                });
+            });
+        }
+
+        function updateAttemptInfo() {
+            const history = JSON.parse(localStorage.getItem('attemptHistory') || '[]');
+            const remaining = Math.max(0, MAX_ATTEMPTS - history.length);
+            document.getElementById('attemptCount').textContent = `${remaining}/${MAX_ATTEMPTS}`;
+
+            const coolTimeDiv = document.getElementById('coolTimeWarning');
+            if (history.length > 0) {
+                const lastTime = history[history.length - 1].timestamp;
+                const elapsed = Math.floor((Date.now() - lastTime) / 60000);
+                const waitLeft = Math.max(0, WAIT_MINUTES - elapsed);
+
+                if (waitLeft > 0) {
+                    const seconds = 60 - Math.floor(((Date.now() - lastTime) % 60000) / 1000);
+                    coolTimeDiv.innerHTML = `⏳ 재응시까지 ${waitLeft}분 ${seconds}초`;
+                    coolTimeDiv.style.color = '#e74c3c';
+                    document.getElementById('submitBtn').disabled = true;
+                } else {
+                    coolTimeDiv.innerHTML = '';
+                    document.getElementById('submitBtn').disabled = remaining === 0;
+                }
+            } else {
+                coolTimeDiv.innerHTML = '';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        }
+
+        function nextStep() {
+            // Step 1 검증
+            if (currentStep === 1) {
+                if (!document.getElementById('studentName').value) {
+                    alert('이름을 입력해주세요.');
+                    return;
+                }
+            }
+
+            currentStep++;
+            updateUI();
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            // 스텝 표시
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById(`step${currentStep}`).classList.add('active');
+
+            // Progress bar
+            const progress = (currentStep / 4) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function submitAnswers() {
+            const history = JSON.parse(localStorage.getItem('attemptHistory') || '[]');
+
+            // 검증: 제출 횟수
+            if (history.length >= MAX_ATTEMPTS) {
+                alert('도전 횟수를 모두 소진했습니다.');
+                return;
+            }
+
+            // 검증: 쿨타임
+            if (history.length > 0) {
+                const lastTime = history[history.length - 1].timestamp;
+                const elapsed = Math.floor((Date.now() - lastTime) / 60000);
+                if (elapsed < WAIT_MINUTES) {
+                    alert(`${WAIT_MINUTES - elapsed}분 후에 재응시할 수 있습니다.`);
+                    return;
+                }
+            }
+
+            // 정답 선택 검증
+            for (let i = 1; i <= 45; i++) {
+                if (!userAnswers[i]) {
+                    alert(`${i}번 문제 정답을 선택해주세요.`);
+                    document.getElementById('step3').scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+            }
+
+            // 채점
+            const subject = document.querySelector('input[name="subject"]:checked').value;
+            const allAnswers = { ...ANSWERS.common, ...ANSWERS[subject] };
+            let correct = 0;
+            const wrongQuestions = [];
+
+            for (let num = 1; num <= 45; num++) {
+                if (userAnswers[num] === allAnswers[num]) {
+                    correct++;
+                } else {
+                    wrongQuestions.push({
+                        num: num,
+                        myAnswer: userAnswers[num],
+                        correctAnswer: allAnswers[num]
+                    });
+                }
+            }
+
+            const score = Math.round((correct / 45) * 100);
+            const isFirstAttempt = history.length === 0;
+
+            // 결과 저장
+            const result = {
+                timestamp: Date.now(),
+                studentName: document.getElementById('studentName').value,
+                academyName: document.getElementById('academyName').value,
+                subject: subject,
+                score: score,
+                correct: correct,
+                total: 45,
+                wrong: 45 - correct,
+                wrongQuestions: wrongQuestions,
+                isFirstAttempt: isFirstAttempt,
+                attemptNumber: history.length + 1
+            };
+
+            history.push(result);
+            localStorage.setItem('attemptHistory', JSON.stringify(history));
+
+            // 결과 표시
+            displayResult(result);
+
+            // GAS 전송
+            setTimeout(() => sendToGAS(result), 300);
+
+            currentStep = 4;
+            updateUI();
+        }
+
+        function displayResult(result) {
+            // 점수
+            document.getElementById('scoreDisplay').textContent = result.score + '점';
+            document.getElementById('scoreDetails').textContent = 
+                `(${result.correct}/45 정답)`;
+
+            // 도전 횟수 및 점수로 해설지 잠금 여부 판단
+            const history = JSON.parse(localStorage.getItem('attemptHistory') || '[]');
+            const canViewSolution = history.length >= MAX_ATTEMPTS || result.score === 100;
+
+            // 1회차 오답 철벽
+            const firstAttemptBox = document.getElementById('firstAttemptBox');
+            if (result.isFirstAttempt && result.wrong > 0) {
+                firstAttemptBox.innerHTML = `
+                    <div class="first-attempt-warning">
+                        🔒 1회차 도전 완료!<br>
+                        지문을 다시 한 번 꼼꼼히 읽어보고 재응시해보세요.
+                    </div>
+                `;
+                document.getElementById('wrongListBox').innerHTML = '';
+                document.getElementById('reportBox').innerHTML = '';
+                document.getElementById('kakaoShareBox').innerHTML = '';
+            } else {
+                firstAttemptBox.innerHTML = '';
+
+                // 오답 목록
+                if (result.wrongQuestions.length > 0) {
+                    let html = '<div class="wrong-list"><h3>❌ 오답 분석</h3>';
+                    result.wrongQuestions.forEach(w => {
+                        html += `<div class="wrong-item"><strong>${w.num}번:</strong> 당신의 답 <u>${w.myAnswer}</u> → 정답 <u>${w.correctAnswer}</u></div>`;
+                    });
+                    html += '</div>';
+                    document.getElementById('wrongListBox').innerHTML = html;
+                } else {
+                    document.getElementById('wrongListBox').innerHTML = 
+                        '<div style="background: #d4edda; color: #155724; padding: 20px; border-radius: 8px; font-weight: 600;">🎉 완벽합니다! 모든 문제를 맞췄습니다!</div>';
+                }
+
+                // 보고서 생성
+                displayReport(result);
+
+                // 카톡 공유
+                document.getElementById('kakaoShareBox').innerHTML = `
+                    <button class="btn-kakao" onclick="shareToKakao(${result.score}, '${result.subject}', ${result.correct}, ${result.wrong}, ${result.attemptNumber})">
+                        📱 카카오톡으로 결과 공유
+                    </button>
+                `;
+            }
+
+            // 해설지 링크 (조건부)
+            const solutionBox = document.createElement('div');
+            if (canViewSolution) {
+                solutionBox.innerHTML = `
+                    <div style="margin-top: 25px;">
+                        <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDtck0RrVtuQb7HBTraR4ujAUSTNbt7fH6Zc0O2SNpG5BQ?e=FJLvjs" target="_blank" class="link-btn" style="display: inline-block; width: auto;">
+                            📚 해설지 보기
+                        </a>
+                    </div>
+                `;
+            } else {
+                const remainingAttempts = MAX_ATTEMPTS - history.length;
+                solutionBox.innerHTML = `
+                    <div style="background: #e3f2fd; border: 2px solid #2196f3; color: #1565c0; padding: 15px; border-radius: 8px; margin-top: 25px; font-weight: 600; text-align: center;">
+                        🔒 해설지는 도전을 모두 마치거나 만점을 받으면 볼 수 있습니다.<br>
+                        <span style="font-size: 13px; opacity: 0.8;">남은 도전 횟수: ${remainingAttempts}회</span>
+                    </div>
+                `;
+            }
+            
+            // 기존 결과 표시 다음에 해설지 박스 추가
+            const resultContainer = document.querySelector('.result-container');
+            const existingSolution = resultContainer.querySelector('[data-solution-box]');
+            if (existingSolution) existingSolution.remove();
+            solutionBox.setAttribute('data-solution-box', 'true');
+            resultContainer.appendChild(solutionBox);
+
+            updateAttemptInfo();
+        }
+
+        function displayReport(result) {
+            // 분류별 통계
+            const oCount = Object.values(userDifficulty).filter(d => d === 'o').length;
+            const tCount = Object.values(userDifficulty).filter(d => d === 't').length;
+            const xCount = Object.values(userDifficulty).filter(d => d === 'x').length;
+
+            // 보고서 HTML 생성
+            let reportHTML = `
+                <div class="report-section">
+                    <div class="report-title">📊 셀프분석 보고서</div>
+                    
+                    <div class="report-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">${result.score}</div>
+                            <div class="stat-label">최종 점수</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${result.correct}</div>
+                            <div class="stat-label">정답 (${Math.round((result.correct/45)*100)}%)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${result.wrong}</div>
+                            <div class="stat-label">오답</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${result.attemptNumber}</div>
+                            <div class="stat-label">도전 횟수</div>
+                        </div>
+                    </div>
+
+                    <div class="report-details">
+                        <strong>선택과목:</strong> ${result.subject}<br>
+                        <strong>난이도 분류</strong><br>
+                        ◯ 확실: ${oCount}개<br>
+                        △ 애매: ${tCount}개<br>
+                        ✕ 못함: ${xCount}개<br>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('reportBox').innerHTML = reportHTML;
+        }
+
+        function generateKakaoReport() {
+            const subject = document.querySelector('input[name="subject"]:checked').value;
+            const history = JSON.parse(localStorage.getItem('attemptHistory') || '[]');
+            const lastResult = history[history.length - 1];
+
+            const oCount = Object.values(userDifficulty).filter(d => d === 'o').length;
+            const tCount = Object.values(userDifficulty).filter(d => d === 't').length;
+            const xCount = Object.values(userDifficulty).filter(d => d === 'x').length;
+
+            let report = '[셀프분석 제출]\n\n';
+            report += '시험명: 4월 3주차 마침내 모의고사\n';
+            report += `이름: ${document.getElementById('studentName').value}\n`;
+            report += `학원명: ${document.getElementById('academyName').value}\n`;
+            report += `선택과목: ${subject}\n\n`;
+            
+            report += '■ 문제별 분류\n';
+            for (let i = 1; i <= 45; i++) {
+                const difficulty = userDifficulty[i] || '-';
+                const diffMark = difficulty === 'o' ? '◯' : difficulty === 't' ? '△' : difficulty === 'x' ? '✕' : '-';
+                const myAns = userAnswers[i] || '-';
+                const ans = Object.assign({}, ANSWERS.common, ANSWERS[subject])[i];
+                const isCorrect = userAnswers[i] === ans ? 'O' : 'X';
+                report += `${i}번 [${diffMark}] 내답:${myAns} 정답:${ans} (${isCorrect})\n`;
+            }
+            
+            report += `\n■ 분류 통계\n`;
+            report += `◯ 확실: ${oCount}개\n`;
+            report += `△ 애매: ${tCount}개\n`;
+            report += `✕ 못함: ${xCount}개\n\n`;
+            
+            report += `■ 최종 결과\n`;
+            report += `${lastResult.score}점 (${lastResult.correct}/45 정답)\n`;
+
+            return report;
+        }
+
+        function shareToKakao(score, subject, correct, wrong, attempt) {
+            const report = generateKakaoReport();
+            
+            if (window.Kakao) {
+                try {
+                    Kakao.Link.sendDefault({
+                        objectType: 'feed',
+                        content: {
+                            title: '4월 3주차 마침내 모의고사 - 셀프분석',
+                            description: `${score}점 | ${subject} | ${attempt}회차`,
+                            imageUrl: 'https://via.placeholder.com/1200x630?text=모의고사결과',
+                            link: { webUrl: window.location.href }
+                        },
+                        buttons: [
+                            { title: '결과 보기', link: { webUrl: window.location.href } }
+                        ]
+                    });
+                } catch (e) {
+                    copyToClipboard(report);
+                }
+            } else {
+                copyToClipboard(report);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('보고서가 복사되었습니다. 카카오톡에 붙여넣기 해주세요.');
+            });
+        }
+
+        function sendToGAS(result) {
+            const payload = {
+                timestamp: new Date(result.timestamp).toLocaleString('ko-KR'),
+                studentName: result.studentName,
+                academyName: result.academyName,
+                subject: result.subject,
+                attemptNumber: result.attemptNumber,
+                score: result.score,
+                correct: result.correct,
+                wrong: result.wrong,
+                wrongList: result.wrongQuestions.map(w => w.num).join(', ')
+            };
+
+            fetch(GAS_URL, {
+                method: 'POST',
+                body: new URLSearchParams(payload)
+            }).catch(() => {
+                // 오류 무시 (네트워크 문제 등)
+            });
+        }
+
+        function resetAndRestart() {
+            if (confirm('처음부터 다시 시작하시겠습니까?')) {
+                currentStep = 1;
+                document.getElementById('studentName').value = '';
+                document.getElementById('preNotes').value = '';
+                // 버튼 선택 해제
+                document.querySelectorAll('.answer-btn.selected').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                document.querySelectorAll('.difficulty-btn.selected').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                // 저장소 초기화
+                for (let i = 1; i <= 45; i++) {
+                    delete userAnswers[i];
+                    delete userDifficulty[i];
+                }
+                updateUI();
+            }
+        }
+
+        // Kakao SDK 로드
+        const script = document.createElement('script');
+        script.src = 'https://developers.kakao.com/sdk/js/kakao.min.js';
+        script.async = true;
+        script.onload = () => {
+            if (window.Kakao && !Kakao.isInitialized()) {
+                Kakao.init('844ef57e5edd5580a2290d70387bea79');
+            }
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>
