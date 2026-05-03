@@ -117,10 +117,10 @@
         const examConfig = {
             examName: "5월 1주차 마침내 모의고사",
             announcement: "■ 중요 안내사항\n\n【도전 횟수 및 시간 제한】\n• 최대 도전 횟수: 3회\n• 각 도전 간 대기 시간: 10분\n  (1회차 완료 후 10분 경과 → 2회차 응시 가능)\n  (2회차 완료 후 10분 경과 → 3회차 응시 가능)\n\n【중요】1회차 오답 시 영구 차단\n• 1회차 도전에서 오답이 발생하면 즉시 영구 차단됨\n• 재응시 및 해설지 열람이 불가능하므로 신중하게 응시하세요\n• 반드시 시험지를 정독한 후 자신있는 답만 입력하기\n\n■ 시험 전 마인드 콘트롤\n\n1. 시간 배분 (80분 기준)\n- 공통과목(1~34): 50분\n- 선택과목(35~45): 20분\n- 최종 검토: 10분\n\n2. 풀이 전략\n- 정보확인 문제 먼저 풀기\n- 어려운 문제는 나중에 풀기\n- 확실한 것부터 표시하기\n\n■ 채점 후 분석 방법\n\n1. 문제 분류\n◯ 확실: 확실히 맞을 것 같은 문제\n△ 애매: 애매하거나 헷갈린 문제\n✕ 못함: 모르거나 못 푼 문제\n\n2. 오답 분석\n- 틀린 문제의 정답 근거 찾기\n- 내가 놓친 부분 확인\n- 문제 패턴 파악\n\n3. 최종 반성\n- 시간 배분 평가\n- 약점 분석\n- 다음 시험 계획 세우기",
-            common: {"1":"2", "2":"1", "3":"4", "4":"2", "5":"3", "6":"4", "7":"3", "8":"1", "9":"4", "10":"1", "11":"5", "12":"3", "13":"1", "14":"2", "15":"5", "16":"4", "17":"5", "18":"5", "19":"3", "20":"5", "21":"3", "22":"1", "23":"1", "24":"3", "25":"2", "26":"2", "27":"1", "28":"4", "29":"5", "30":"4", "31":"4", "32":"2", "33":"3", "34":"5"},
+            common: {"1":"5", "2":"4", "3":"2", "4":"4", "5":"1", "6":"5", "7":"4", "8":"2", "9":"2", "10":"3", "11":"2", "12":"5", "13":"1", "14":"4", "15":"1", "16":"3", "17":"3", "18":"2", "19":"3", "20":"1", "21":"3", "22":"2", "23":"2", "24":"5", "25":"1", "26":"4", "27":"1", "28":"4", "29":"5", "30":"4", "31":"3", "32":"1", "33":"2", "34":"5"},
             subjects: {
-                "화법과작문": {"35":"2", "36":"5", "37":"4", "38":"3", "39":"5", "40":"4", "41":"5", "42":"1", "43":"1", "44":"2", "45":"5"},
-                "언어와매체": {"35":"5", "36":"3", "37":"4", "38":"5", "39":"1", "40":"3", "41":"2", "42":"3", "43":"4", "44":"5", "45":"3"}
+                "화법과작문": {"35":"2", "36":"5", "37":"4", "38":"1", "39":"5", "40":"4", "41":"2", "42":"1", "43":"4", "44":"3", "45":"5"},
+                "언어와매체": {"35":"4", "36":"2", "37":"1", "38":"5", "39":"3", "40":"5", "41":"3", "42":"2", "43":"4", "44":"3", "45":"1"}
             }
         };
 
@@ -324,19 +324,19 @@
                         });
                         // 카톡 공유 성공 시 해설지 자동 열기
                         setTimeout(() => {
-                            window.open('https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDtck0RrVtuQb7HBTraR4ujAUSTNbt7fH6Zc0O2SNpG5BQ?e=FJLvjs', '_blank');
+                            window.open('https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBPFdXWCOCxSp8HeyqHY85SAZZsdGmyVMISXsMZSjhHpBY?e=8ZeK0B', '_blank');
                             alert('카톡 공유 완료! 해설지가 새 탭에서 열립니다.');
                         }, 500);
                     } catch (e) {
                         console.error('카카오톡 공유 실패:', e);
                         navigator.clipboard.writeText(report);
                         alert('복사되었습니다! 카카오톡에 붙여넣어주세요.\n\n해설지를 열까요?');
-                        window.open('https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDtck0RrVtuQb7HBTraR4ujAUSTNbt7fH6Zc0O2SNpG5BQ?e=FJLvjs', '_blank');
+                        window.open('https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBPFdXWCOCxSp8HeyqHY85SAZZsdGmyVMISXsMZSjhHpBY?e=8ZeK0B', '_blank');
                     }
                 } else {
                     navigator.clipboard.writeText(report);
                     alert('복사되었습니다! 카카오톡에 붙여넣어주세요.\n\n해설지를 열까요?');
-                    window.open('https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDtck0RrVtuQb7HBTraR4ujAUSTNbt7fH6Zc0O2SNpG5BQ?e=FJLvjs', '_blank');
+                    window.open('https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBPFdXWCOCxSp8HeyqHY85SAZZsdGmyVMISXsMZSjhHpBY?e=8ZeK0B', '_blank');
                 }
             };
 
@@ -405,6 +405,13 @@
                                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 h-64 overflow-y-auto font-mono text-sm text-slate-700 whitespace-pre-wrap">{examConfig.announcement}</div>
                             </div>
 
+                            <div className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-300">
+                                <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDxIF8Efy1MRr6c493CtGmGASuFUZab0YjDqDe6cmOUWeo?e=4fZwHo" target="_blank" className="block w-full px-6 py-5 bg-indigo-600 text-white rounded-2xl font-black text-xl text-center hover:bg-indigo-700 transition-all shadow-lg">
+                                    📄 문제지 보기 (새 탭에서 열림)
+                                </a>
+                                <p className="text-sm text-indigo-700 mt-3 text-center font-bold">준비가 되면 아래 정보를 입력하고 시작하세요</p>
+                            </div>
+
                             <div className="space-y-6">
                                 <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
                                     <label className="block text-xs font-black text-slate-400 uppercase mb-4 flex items-center gap-2"><Icon name="user" size={14}/>학생 정보</label>
@@ -445,6 +452,12 @@
 
                     {step === 2 && (
                         <div className="max-w-4xl mx-auto p-6 space-y-8">
+                            <div className="bg-indigo-50 border-2 border-indigo-300 p-6 rounded-3xl text-center">
+                                <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDxIF8Efy1MRr6c493CtGmGASuFUZab0YjDqDe6cmOUWeo?e=4fZwHo" target="_blank" className="inline-block px-8 py-4 bg-indigo-600 text-white rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-lg">
+                                    📄 문제지 보기 (새 탭)
+                                </a>
+                                <p className="text-sm text-indigo-700 mt-3 font-bold">문제지를 참고하면서 정답을 입력하세요</p>
+                            </div>
                             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
                                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Icon name="radio" size={28} className="text-indigo-600"/>선택과목 선택</h2>
                                 <div className="grid grid-cols-2 gap-4">
