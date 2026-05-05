@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>셀프분석 - 5월 마침내 모의고사 2회차</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> tailwind.config = { theme: { extend: {} } }; </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; }
+        .answer-circle {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; cursor: pointer; transition: all 0.2s;
+            background: #fff; border: 1px solid #e2e8f0;
+        }
+        .answer-circle.selected {
+            background: #4f46e5 !important; color: white !important; border-color: #4f46e5 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        const Icon = ({ name, size = 20, className = "" }) => {
+            useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [name]);
+            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
+        };
+
+        const CONFIG = {
+            hwId: "finally_exam_2026_05_02_v3",
+            maxAttempts: 2
+        };
+
+        const examConfig = {
+            examName: "5월 마침내 모의고사 2회차",
+            common: {
+                "1":"2","2":"2","3":"3","4":"1","5":"1","6":"5","7":"3","8":"5","9":"1","10":"2",
+                "11":"3","12":"3","13":"4","14":"4","15":"4","16":"4","17":"5","18":"4","19":"1","20":"3",
+                "21":"3","22":"4","23":"3","24":"5","25":"1","26":"4","27":"3","28":"5","29":"4","30":"2",
+                "31":"3","32":"5","33":"3","34":"2"
+            },
+            subjects: {
+                "화법과작문": {
+                    "35":"5","36":"5","37":"4","38":"5","39":"3","40":"3","41":"5","42":"1","43":"4","44":"4","45":"5"
+                },
+                "언어와매체": {
+                    "35":"1","36":"4","37":"4","38":"4","39":"3","40":"2","41":"3","42":"5","43":"5","44":"1","45":"5"
+                }
+            }
+        };
+
+        function StudentApp() {
+            const [step, setStep] = useState(1);
+            const [studentName, setStudentName] = useState('');
+            const [selectedSubject, setSelectedSubject] = useState('언어와매체');
+            const [questionData, setQuestionData] = useState(() => {
+                const data = {};
+                for (let i = 1; i <= 45; i++) data[i] = { myAnswer: '', difficulty: '' };
+                return data;
+            });
+            const [attemptHistory, setAttemptHistory] = useState(() => 
+                JSON.parse(localStorage.getItem(`history_${CONFIG.hwId}`) || '[]')
+            );
+
+            const currentResults = useMemo(() => {
+                let correctCount = 0;
+                let wrongNums = [];
+                for (let i = 1; i <= 34; i++) {
+                    if (questionData[i].myAnswer === examConfig.common[i]) correctCount++;
+                    else if (questionData[i].myAnswer !== '') wrongNums.push(i);
+                }
+                for (let i = 35; i <= 45; i++) {
+                    if (questionData[i].myAnswer === examConfig.subjects[selectedSubject][i]) correctCount++;
+                    else if (questionData[i].myAnswer !== '') wrongNums.push(i);
+                }
+                return { 
+                    score: Math.round((correctCount / 45) * 100), 
+                    correctCount, 
+                    wrongNums
+                };
+            }, [questionData, selectedSubject]);
+
+            const handleSubmit = () => {
+                if (attemptHistory.length >= CONFIG.maxAttempts) {
+                    alert('최대 도전 횟수(2회)를 초과하였습니다.');
+                    return;
+                }
+                const newAttempt = {
+                    attemptNum: attemptHistory.length + 1,
+                    date: new Date().toLocaleString(),
+                    score: currentResults.score,
+                    correctCount: currentResults.correctCount,
+                    wrongNums: currentResults.wrongNums,
+                    subject: selectedSubject
+                };
+                const newHistory = [...attemptHistory, newAttempt];
+                setAttemptHistory(newHistory);
+                localStorage.setItem(`history_${CONFIG.hwId}`, JSON.stringify(newHistory));
+                setStep(3);
+                window.scrollTo(0,0);
+            };
+
+            const copyReport = (attempt) => {
+                const wrongList = attempt.wrongNums || [];
+                const report = `[${examConfig.examName} 제출]\n회차: ${attempt.attemptNum}회차\n이름: ${studentName}\n과목: ${attempt.subject}\n점수: ${attempt.score}점 (${attempt.correctCount}/45)\n틀린문항: ${wrongList.join(', ') || '없음'}`;
+                navigator.clipboard.writeText(report);
+                alert(`${attempt.attemptNum}회차 리포트가 복사되었습니다! 카톡에 붙여넣어주세요.`);
+            };
+
+            return (
+                <div className="max-w-2xl mx-auto p-4 md:p-8">
+                    {step === 1 && (
+                        <div className="bg-white rounded-3xl p-8 shadow-sm border text-center space-y-6">
+                            <h1 className="text-3xl font-black text-slate-800">{examConfig.examName}</h1>
+                            <div className="flex justify-center gap-4">
+                                {[1, 2].map(num => (
+                                    <div key={num} className={`px-4 py-2 rounded-2xl border ${attemptHistory.length >= num ? 'bg-indigo-50 border-indigo-200 text-indigo-600' : 'bg-slate-50 border-slate-200 text-slate-400'} font-bold text-sm`}>
+                                        {num}회차 응시 {attemptHistory.length >= num ? '완료' : '대기'}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="space-y-4 text-left">
+                                <label className="text-sm font-bold text-slate-400 ml-1">학생 성함</label>
+                                <input type="text" placeholder="성함을 입력하세요" className="w-full p-4 bg-slate-50 rounded-2xl border outline-none focus:border-indigo-500" value={studentName} onChange={e => setStudentName(e.target.value)} />
+                                <label className="text-sm font-bold text-slate-400 ml-1">선택 과목</label>
+                                <select className="w-full p-4 bg-slate-50 rounded-2xl border outline-none" value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)}>
+                                    <option value="언어와매체">언어와매체</option>
+                                    <option value="화법과작문">화법과작문</option>
+                                </select>
+                            </div>
+                            <button onClick={() => {
+                                if(!studentName) return alert('이름을 입력해주세요');
+                                if(attemptHistory.length >= CONFIG.maxAttempts) return alert('응시 기회를 모두 사용했습니다.');
+                                setQuestionData(Object.fromEntries(Array.from({length: 45}, (_, i) => [i + 1, {myAnswer: '', difficulty: ''}])));
+                                setStep(2);
+                            }} className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold text-xl active:scale-95 transition-all">응시 시작하기</button>
+                            
+                            {attemptHistory.length > 0 && (
+                                <div className="pt-6 border-t space-y-3">
+                                    <p className="text-sm font-bold text-slate-400">기존 응시 결과 제출</p>
+                                    <div className="grid grid-cols-1 gap-2">
+                                        {attemptHistory.map((att, idx) => (
+                                            <button key={idx} onClick={() => copyReport(att)} className="p-4 bg-yellow-50 border border-yellow-100 rounded-2xl text-yellow-800 font-bold flex justify-between items-center hover:bg-yellow-100 transition-all">
+                                                <span>{att.attemptNum}회차 보고서 복사 ({att.score}점)</span>
+                                                <Icon name="copy" size={18}/>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {step === 2 && (
+                        <div className="space-y-6">
+                            <div className="bg-white p-6 rounded-3xl shadow-sm border sticky top-4 z-10 flex justify-between items-center">
+                                <span className="font-bold text-indigo-600">{attemptHistory.length + 1}회차 응시 중</span>
+                                <button onClick={handleSubmit} className="bg-indigo-600 text-white px-6 py-2 rounded-xl font-bold active:scale-95">제출</button>
+                            </div>
+                            <div className="bg-white rounded-3xl shadow-sm border overflow-hidden">
+                                {Array.from({length: 45}, (_, i) => i + 1).map(num => (
+                                    <div key={num} className="p-4 border-b last:border-0 flex items-center justify-between hover:bg-slate-50">
+                                        <span className="font-black text-slate-400 w-8">{num}</span>
+                                        <div className="flex gap-2">
+                                            {[1,2,3,4,5].map(ans => (
+                                                <button key={ans} onClick={() => setQuestionData(prev => ({...prev, [num]: {...prev[num], myAnswer: ans.toString()}}))} className={`answer-circle ${questionData[num].myAnswer === ans.toString() ? 'selected' : ''}`}>{ans}</button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <button onClick={handleSubmit} className="w-full py-5 bg-indigo-600 text-white rounded-3xl font-bold text-xl shadow-lg active:scale-95">제출 및 채점</button>
+                        </div>
+                    )}
+
+                    {step === 3 && (
+                        <div className="bg-white rounded-3xl p-8 shadow-sm border text-center space-y-8">
+                            <div>
+                                <div className="text-7xl font-black text-indigo-600">{currentResults.score}<span className="text-2xl text-slate-300">/100</span></div>
+                                <p className="text-slate-500 font-bold mt-2">{attemptHistory.length}회차 채점 완료</p>
+                            </div>
+                            
+                            <div className="bg-red-50 p-6 rounded-2xl border border-red-100 text-left">
+                                <h3 className="text-red-600 font-black mb-3 flex items-center gap-2 text-sm"><Icon name="x-circle" size={16}/> 틀린 문항 번호 (정답은 노출되지 않습니다)</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {currentResults.wrongNums.length > 0 ? currentResults.wrongNums.map(n => (
+                                        <span key={n} className="bg-white text-red-600 px-3 py-1 rounded-lg border border-red-200 font-bold text-sm">{n}번</span>
+                                    )) : <span className="text-slate-400">만점입니다!</span>}
+                                </div>
+                            </div>
+
+                            <div className="space-y-3 pt-4">
+                                <button onClick={() => copyReport(attemptHistory[attemptHistory.length-1])} className="w-full py-5 bg-yellow-400 text-yellow-900 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 shadow-lg shadow-yellow-100">
+                                    <Icon name="copy"/> {attemptHistory.length}회차 결과 복사하여 제출하기
+                                </button>
+                                <button onClick={() => setStep(1)} className="w-full py-4 bg-slate-100 text-slate-500 rounded-2xl font-bold active:scale-95">
+                                    {attemptHistory.length < CONFIG.maxAttempts ? "다시 응시하기 (홈으로)" : "확인 완료"}
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<StudentApp />);
+    </script>
+</body>
+</html>
