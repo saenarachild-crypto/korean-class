@@ -2,199 +2,260 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>5월 마침내 모의고사 2회차 - 셀프분석</title>
     <style>
-        body { font-family: sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; line-height: 1.5; }
-        .wrapper { max-width: 500px; margin: 0 auto; background: #fff; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 25px; }
-        .title { text-align: center; color: #1a1a1a; margin-bottom: 20px; }
+        body { font-family: -apple-system, sans-serif; background-color: #f4f7f6; margin: 0; padding: 15px; }
+        .box { max-width: 480px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 20px; box-sizing: border-box; }
+        .title { text-align: center; margin-top: 0; color: #333; font-size: 22px; }
         .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .btn-blue { background: #007bff; color: #fff; }
-        .btn-yellow { background: #ffeb3b; color: #3c1e1e; }
-        .btn-gray { background: #e0e0e0; color: #666; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #666; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+        select:disabled { background-color: #f9f9f9; color: #999; }
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .btn:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-blue { background: #4a6cf7; color: #fff; }
+        .btn-yellow { background: #fee500; color: #3c1e1e; }
+        .btn-gray { background: #eee; color: #666; }
+        .btn:active:not(:disabled) { opacity: 0.8; transform: scale(0.98); }
         
-        .omr-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .q-num { font-weight: bold; width: 35px; color: #555; }
-        .ans-btns { display: flex; gap: 5px; }
-        .ans-btn { width: 35px; height: 35px; border: 1px solid #ccc; background: #fff; border-radius: 50%; cursor: pointer; font-weight: bold; }
-        .ans-btn.on { background: #333; color: #fff; border-color: #333; }
-        
-        .result-box { text-align: center; padding: 20px 0; }
-        .score-text { font-size: 50px; font-weight: 900; color: #007bff; margin: 10px 0; }
-        .wrong-wrap { text-align: left; background: #fff1f0; padding: 15px; border-radius: 10px; margin: 20px 0; }
+        /* 히스토리 카드 스타일 분리 (1번 수정) */
+        .history-card {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+        .history-card button {
+            padding: 5px 10px; border: 1px solid #ccc; background: #fff; border-radius: 5px; cursor: pointer;
+        }
+
+        .omr-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 10px; border-bottom: 1px solid #f0f0f0; border-radius: 8px; transition: 0.3s; margin-bottom: 2px; }
+        .q-num { font-weight: bold; width: 30px; color: #888; }
+        .ans-btns { display: flex; gap: 6px; }
+        .ans-btn { width: 36px; height: 36px; border: 1px solid #ccc; background: #fff; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 14px; }
+        .ans-btn.selected { background: #333 !important; color: #fff !important; border-color: #333 !important; }
+        .score-display { font-size: 60px; font-weight: 900; color: #4a6cf7; margin: 15px 0; }
+        .wrong-box { background: #fff5f5; border: 1px solid #ffe3e3; padding: 15px; border-radius: 8px; text-align: left; }
         .hidden { display: none; }
-        .history-box { border-top: 2px dashed #eee; margin-top: 20px; padding-top: 15px; }
     </style>
 </head>
 <body>
 
-<div class="wrapper" id="step1">
+<div class="box" id="step1">
     <h2 class="title">5월 마침내 모의고사 2회차</h2>
     <div class="input-group">
         <label>학생 이름</label>
-        <input type="text" id="userName" placeholder="이름 입력">
+        <input type="text" id="stuName" placeholder="이름 입력">
     </div>
     <div class="input-group">
         <label>선택 과목</label>
-        <select id="userSub">
+        <select id="stuSub">
             <option value="언어와매체">언어와매체</option>
             <option value="화법과작문">화법과작문</option>
         </select>
     </div>
-    <button class="btn btn-blue" id="startBtn">응시 시작하기</button>
-    
-    <div id="historyArea" class="hidden history-box">
-        <p style="font-size:13px; color:#888; font-weight:bold;">이전 응시 기록</p>
-        <div id="historyList"></div>
+    <button class="btn btn-blue" id="btnStart" onclick="goStep2()">응시 시작하기</button>
+    <div id="historySection" class="hidden" style="margin-top:25px; border-top:1px solid #eee; padding-top:15px;">
+        <p style="font-size:12px; font-weight:bold; color:#999; margin-bottom:10px;">저장된 리포트 (기기당 최대 2회)</p>
+        <div id="historyItems"></div>
     </div>
 </div>
 
-<div class="wrapper hidden" id="step2">
-    <h3 style="margin-top:0;">답안 마킹</h3>
-    <div id="omrBoard"></div>
-    <button class="btn btn-blue" id="finishBtn">최종 제출하기</button>
+<div class="box hidden" id="step2">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <h3 style="margin:0;">답안 입력</h3>
+        <span id="counter" style="font-size:13px; font-weight:bold; color:#4a6cf7;">0 / 45 완료</span>
+    </div>
+    <div id="omrContainer"></div>
+    <button class="btn btn-blue" id="btnSubmit" onclick="processResult()">제출 및 채점</button>
 </div>
 
-<div class="wrapper hidden" id="step3">
-    <div class="result-box">
-        <h2 id="resName">채점 결과</h2>
-        <div class="score-text" id="resScore">0</div>
-        <div class="wrong-wrap">
-            <p style="margin:0 0 10px 0; font-weight:bold; color:#cf1322;">틀린 문항 번호</p>
-            <div id="resWrongs" style="line-height:1.8;"></div>
+<div class="box hidden" id="step3">
+    <div style="text-align: center;">
+        <p style="font-weight:bold; color:#888; margin-bottom:5px;">나의 점수</p>
+        <div class="score-display" id="displayScore">0</div>
+        <div class="wrong-box">
+            <p style="margin:0 0 10px 0; font-size:13px; font-weight:bold; color:#e03131;">틀린 문항 번호</p>
+            <div id="displayWrongs" style="font-weight:bold; color:#333; letter-spacing: 1px; word-break: break-all;"></div>
         </div>
-        <button class="btn btn-yellow" id="copyBtn">리포트 복사 (카톡제출용)</button>
+        <button class="btn btn-yellow" id="btnCopyReport">리포트 복사 (카톡제출)</button>
         <button class="btn btn-gray" onclick="location.reload()">처음으로</button>
     </div>
 </div>
 
 <script>
-    var STORAGE_KEY = "final_exam_2nd_2026_v7";
-    var currentAnswers = {};
-    var historyData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    var KEY = "mock_exam_2026_may_2_pro";
+    var LOCK_KEY = "device_lock_may_2_pro";
+    var userAns = {};
+    var historyData = [];
 
-    // 정답 데이터 (이미지 기반 정밀 대조 완료)
-    var ANS_DATA = {
-        common: {"1":"2","2":"2","3":"3","4":"1","5":"1","6":"5","7":"3","8":"5","9":"1","10":"2","11":"3","12":"3","13":"4","14":"4","15":"4","16":"4","17":"5","18":"4","19":"1","20":"3","21":"3","22":"4","23":"3","24":"5","25":"1","26":"4","27":"3","28":"5","29":"4","30":"2","31":"3","32":"5","33":"3","34":"2"},[cite: 1]
+    var ANS = {
+        common: {"1":"2","2":"2","3":"3","4":"1","5":"1","6":"5","7":"3","8":"5","9":"1","10":"2","11":"3","12":"3","13":"4","14":"4","15":"4","16":"4","17":"5","18":"4","19":"1","20":"3","21":"3","22":"4","23":"3","24":"5","25":"1","26":"4","27":"3","28":"5","29":"4","30":"2","31":"3","32":"5","33":"3","34":"2"},
         subjects: {
-            "언어와매체": {"35":"1","36":"4","37":"4","38":"4","39":"3","40":"2","41":"3","42":"5","43":"5","44":"1","45":"5"},[cite: 1]
-            "화법과작문": {"35":"5","36":"5","37":"4","38":"5","39":"3","40":"3","41":"5","42":"1","43":"4","44":"4","45":"5"}[cite: 1]
+            "언어와매체": {"35":"1","36":"4","37":"4","38":"4","39":"3","40":"2","41":"3","42":"5","43":"5","44":"1","45":"5"},
+            "화법과작문": {"35":"5","36":"5","37":"4","38":"5","39":"3","40":"3","41":"5","42":"1","43":"4","44":"4","45":"5"}
         }
     };
 
-    function showHistory() {
+    window.onload = function() {
+        try {
+            var saved = localStorage.getItem(KEY);
+            if(saved) historyData = JSON.parse(saved);
+            renderHistory();
+        } catch(e) { console.error(e); }
+    };
+
+    function renderHistory() {
         if(historyData.length > 0) {
-            document.getElementById('historyArea').style.display = 'block';
-            var html = "";
-            for(var i=0; i<historyData.length; i++) {
-                var h = historyData[i];
-                html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding:10px; background:#f9f9f9; border-radius:8px; font-size:14px;">' +
-                        '<span>' + (i+1) + '회차 (' + h.score + '점)</span>' +
-                        '<button onclick="copyMsg(' + i + ')" style="padding:5px 10px; cursor:pointer; border:1px solid #ccc; border-radius:5px; background:#fff;">복사</button></div>';
-            }
-            document.getElementById('historyList').innerHTML = html;
+            document.getElementById('historySection').classList.remove('hidden');
+            var container = document.getElementById('historyItems');
+            // 인라인 스타일 제거 및 CSS 클래스 적용 (1번 수정)
+            container.innerHTML = historyData.map((item, i) => 
+                `<div class="history-card">
+                    <span>${i+1}회차 (${item.score}점)</span>
+                    <button onclick='copyReport(${i})'>복사</button>
+                </div>`
+            ).join('');
         }
     }
 
-    document.getElementById('startBtn').onclick = function() {
-        var name = document.getElementById('userName').value;
-        if(!name) { alert("이름을 입력해주세요."); return; }
-        if(historyData.length >= 2) { alert("응시 기회(2회)를 모두 사용했습니다."); return; }[cite: 1]
-
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
+    function goStep2() {
+        var name = document.getElementById('stuName').value;
+        if(!name) { alert("성함을 입력해주세요."); return; }
         
-        var board = document.getElementById('omrBoard');
-        board.innerHTML = "";
-        currentAnswers = {};
+        if(localStorage.getItem(LOCK_KEY + "_final")) {
+            alert("이미 최종 응시를 완료한 기기입니다.");
+            return;
+        }
+
+        if(historyData.length >= 2) { alert("기기당 응시 기회(2회)를 모두 사용했습니다."); return; }
+
+        // 과목 선택 비활성화 (3번 수정)
+        document.getElementById('stuSub').disabled = true;
+
+        document.getElementById('step1').classList.add('hidden');
+        document.getElementById('step2').classList.remove('hidden');
+        
+        var container = document.getElementById('omrContainer');
+        container.innerHTML = "";
+        userAns = {};
 
         for(var i=1; i<=45; i++) {
             var row = document.createElement('div');
-            row.className = 'omr-row';
-            var btnsHtml = "";
-            for(var a=1; a<=5; a++) {
-                btnsHtml += '<button class="ans-btn" id="btn_' + i + '_' + a + '" onclick="clickAns(' + i + ',' + a + ')">' + a + '</button>';
+            row.className = "omr-row"; row.id = "row_" + i;
+            row.innerHTML = `<span class='q-num'>${i}</span><div class='ans-btns'>${[1,2,3,4,5].map(a => `<button class='ans-btn' id='b_${i}_${a}' onclick='selectAns(${i},${a})'>${a}</button>`).join('')}</div>`;
+            container.appendChild(row);
+        }
+
+        var savedAns = localStorage.getItem("temp_" + name);
+        if(savedAns) {
+            userAns = JSON.parse(savedAns);
+            for(var q in userAns) {
+                var btn = document.getElementById("b_" + q + "_" + userAns[q]);
+                if(btn) btn.classList.add("selected");
             }
-            row.innerHTML = '<span class="q-num">' + i + '</span><div class="ans-btns">' + btnsHtml + '</div>';
-            board.appendChild(row);
+            updateCounter();
         }
         window.scrollTo(0,0);
-    };
+    }
 
-    window.clickAns = function(q, a) {
-        for(var i=1; i<=5; i++) {
-            document.getElementById('btn_' + q + '_' + i).className = "ans-btn";
+    function selectAns(q, a) {
+        var name = document.getElementById('stuName').value;
+        for(var i=1; i<=5; i++) document.getElementById("b_" + q + "_" + i).classList.remove("selected");
+        document.getElementById("b_" + q + "_" + a).classList.add("selected");
+        var r = document.getElementById("row_" + q);
+        r.style.background = "transparent"; r.style.border = "none";
+        userAns[q] = a.toString();
+        updateCounter();
+        localStorage.setItem("temp_" + name, JSON.stringify(userAns));
+    }
+
+    function updateCounter() {
+        document.getElementById('counter').innerText = Object.keys(userAns).length + " / 45 완료";
+    }
+
+    function processResult() {
+        // 중복 제출 방지 (4번 수정)
+        var submitBtn = document.getElementById("btnSubmit");
+        submitBtn.disabled = true;
+        submitBtn.innerText = "채점 중...";
+
+        var sub = document.getElementById('stuSub').value;
+        var name = document.getElementById('stuName').value;
+        var answeredCount = Object.keys(userAns).length;
+
+        if(answeredCount < 45) {
+            for(var i=1; i<=45; i++) {
+                if(!userAns[i]) {
+                    var r = document.getElementById("row_" + i);
+                    r.style.background = "#ffe066"; r.style.border = "1px solid #fab005"; 
+                }
+            }
+            if(!confirm("미입력 문항이 있습니다. 그대로 제출하시겠습니까?")) {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "제출 및 채점";
+                return;
+            }
         }
-        document.getElementById('btn_' + q + '_' + a).className = "ans-btn on";
-        currentAnswers[q] = a.toString();
-    };
 
-    document.getElementById('finishBtn').onclick = function() {
-        var sub = document.getElementById('userSub').value;
         var corrects = 0;
         var wrongs = [];
-
-        for(var i=1; i<=34; i++) {
-            if(currentAnswers[i] === ANS_DATA.common[i]) { corrects++; }
-            else { wrongs.push(i); }
-        }
-        var subAnswers = ANS_DATA.subjects[sub];
-        for(var i=35; i<=45; i++) {
-            if(currentAnswers[i] === subAnswers[i]) { corrects++; }
-            else { wrongs.push(i); }
+        for(var i=1; i<=45; i++) {
+            var correctVal = (i <= 34) ? ANS.common[i] : ANS.subjects[sub][i];
+            if(userAns[i] === correctVal) corrects++;
+            else wrongs.push(i);
         }
 
-        var finalScore = Math.round((corrects / 45) * 100);[cite: 1]
-        var attempt = {
-            name: document.getElementById('userName').value,
-            sub: sub,
-            score: finalScore,
-            wrongs: wrongs,
-            corrects: corrects
-        };
+        var score = Math.round((corrects / 45) * 100); 
 
-        historyData.push(attempt);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(historyData));
-
-        document.getElementById('step2').style.display = 'none';
-        document.getElementById('step3').style.display = 'block';
-        document.getElementById('resScore').innerText = finalScore;
+        var res = { name: name, sub: sub, score: score, corrects: corrects, wrongs: wrongs };
+        historyData.push(res);
+        localStorage.setItem(KEY, JSON.stringify(historyData));
+        localStorage.removeItem("temp_" + name);
         
-        var wrongHtml = "";
-        for(var j=0; j<wrongs.length; j++) {
-            wrongHtml += '<span style="display:inline-block; margin-right:8px; font-weight:bold;">' + wrongs[j] + '번</span>';
-        }
-        document.getElementById('resWrongs').innerHTML = wrongHtml || "만점입니다!";[cite: 1]
+        if(historyData.length >= 2) localStorage.setItem(LOCK_KEY + "_final", "done");
+
+        // 오답 문항 로깅 보완 (5번 수정)
+        console.log("틀린 문항 데이터:", wrongs);
+        localStorage.setItem("wrong_log_last", JSON.stringify(wrongs));
+
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('step3').classList.remove('hidden');
+        document.getElementById('displayScore').innerText = score;
+        document.getElementById('displayWrongs').innerText = wrongs.length > 0 ? wrongs.join(", ") : "만점입니다!";
+        
+        document.getElementById('btnCopyReport').onclick = function() { copyReport(historyData.length - 1); };
         window.scrollTo(0,0);
-    };
+    }
 
-    document.getElementById('copyBtn').onclick = function() {
-        copyMsg(historyData.length - 1);
-    };
-
-    window.copyMsg = function(idx) {
+    // 복사 기능 Fallback 통합 (2번 수정)
+    window.copyReport = function(idx) {
         var d = historyData[idx];
-        var msg = "[5월 마침내 모의고사 2회차 결과]\n" +
-                  "이름: " + d.name + "\n" +
-                  "선택: " + d.sub + "\n" +
-                  "회차: " + (idx + 1) + "회차\n" +
-                  "점수: " + d.score + "점 (" + d.corrects + "/45)\n" +
-                  "틀린번호: " + (d.wrongs.join(", ") || "없음");[cite: 1]
-        
-        var t = document.createElement("textarea");
-        document.body.appendChild(t);
-        t.value = msg;
-        t.select();
-        document.execCommand('copy');
-        document.body.removeChild(t);
-        alert("리포트가 복사되었습니다!");
+        var text = `[5월 마침내 모의고사 2회차 결과]\n이름: ${d.name}\n선택: ${d.sub}\n회차: ${idx + 1}회차\n점수: ${d.score}점 (${d.corrects}/45)\n틀린번호: ${d.wrongs.length}개 (${d.wrongs.join(", ") || "없음"})`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+            .then(() => alert("리포트가 복사되었습니다!"))
+            .catch(() => fallbackCopy(text));
+        } else {
+            fallbackCopy(text);
+        }
     };
 
-    showHistory();
+    function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        document.body.appendChild(area);
+        area.value = text;
+        area.select();
+        document.execCommand('copy');
+        document.body.removeChild(area);
+        alert("리포트가 복사되었습니다!");
+    }
 </script>
-
 </body>
 </html>
