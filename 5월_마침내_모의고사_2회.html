@@ -4,217 +4,217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>셀프분석 - 5월 마침내 모의고사 2회차</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { theme: { extend: {} } };
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; }
-        .answer-circle {
-            width: 44px; height: 44px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; cursor: pointer; transition: all 0.2s;
-            background: #fff; border: 1px solid #e2e8f0;
-        }
-        .answer-circle.selected {
-            background: #4f46e5 !important; color: white !important; border-color: #4f46e5 !important;
-        }
+        /* 시스템 폰트 및 기본 스타일 */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #F3F4F6; margin: 0; padding: 20px; color: #1F2937; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        
+        /* 헤더 스타일 */
+        .header { background: #4F46E5; color: white; padding: 30px 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 800; }
+        .header p { margin: 10px 0 0; opacity: 0.9; font-size: 14px; }
+
+        /* 입력 폼 스타일 */
+        .content { padding: 25px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 13px; font-weight: 700; color: #6B7280; margin-bottom: 8px; margin-left: 4px; }
+        input, select { width: 100%; padding: 14px; border: 1px solid #E5E7EB; border-radius: 12px; font-size: 16px; box-sizing: border-box; outline: none; }
+        input:focus { border-color: #4F46E5; }
+
+        /* OMR 그리드 스타일 */
+        .question-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #F3F4F6; }
+        .question-num { font-weight: 800; color: #9CA3AF; width: 30px; }
+        .options { display: flex; gap: 8px; }
+        .btn-ans { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #E5E7EB; background: white; cursor: pointer; font-weight: 700; transition: 0.2s; }
+        .btn-ans.active { background: #4F46E5; color: white; border-color: #4F46E5; }
+
+        /* 버튼 스타일 */
+        .btn-main { width: 100%; padding: 18px; background: #4F46E5; color: white; border: none; border-radius: 15px; font-size: 18px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+        .btn-main:active { transform: scale(0.98); }
+        .btn-copy { background: #FACC15; color: #422006; margin-top: 10px; }
+        
+        /* 결과 화면 */
+        .result-box { text-align: center; padding: 40px 20px; }
+        .score { font-size: 64px; font-weight: 900; color: #4F46E5; margin: 0; }
+        .wrong-list { background: #FEF2F2; padding: 15px; border-radius: 12px; text-align: left; margin-top: 20px; }
+        .wrong-item { display: inline-block; background: white; color: #DC2626; padding: 4px 10px; border-radius: 6px; margin: 3px; font-size: 13px; font-weight: 700; border: 1px solid #FEE2E2; }
+        
+        .history-item { background: #F9FAFB; padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #F3F4F6; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useMemo, useEffect } = React;
+<div class="container" id="app-step1">
+    <div class="header">
+        <h1>5월 마침내 모의고사 2회차</h1>
+        <p id="attempt-info">남은 응시 기회: 2회</p>
+    </div>
+    <div class="content">
+        <div class="form-group">
+            <label>학생 성함</label>
+            <input type="text" id="studentName" placeholder="이름을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label>선택 과목</label>
+            <select id="selectedSubject">
+                <option value="언어와매체">언어와매체</option>
+                <option value="화법과작문">화법과작문</option>
+            </select>
+        </div>
+        <button class="btn-main" onclick="startExam()">응시 시작하기</button>
+        <div id="history-section" class="hidden" style="margin-top:30px; border-top:1px solid #eee; pt:20px;">
+            <p style="font-size:12px; font-weight:bold; color:#999; margin:20px 0 10px;">저장된 리포트</p>
+            <div id="history-list"></div>
+        </div>
+    </div>
+</div>
 
-        const Icon = ({ name, size = 20, className = "" }) => {
-            useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [name]);
-            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
-        };
+<div class="container hidden" id="app-step2">
+    <div class="header" style="padding: 15px 20px; position: sticky; top:0;">
+        <h1 id="exam-title" style="font-size:18px;">마킹 중</h1>
+    </div>
+    <div id="omr-container" style="background: white;"></div>
+    <div style="padding:20px;">
+        <button class="btn-main" onclick="submitExam()">제출 및 채점하기</button>
+    </div>
+</div>
 
-        const CONFIG = {
-            hwId: "finally_exam_2026_05_02_final",
-            maxAttempts: 2[cite: 1]
-        };
+<div class="container hidden" id="app-step3">
+    <div class="header">
+        <h1 id="result-user">채점 완료</h1>
+    </div>
+    <div class="content result-box">
+        <p style="font-size:14px; font-weight:bold; color:#6B7280; margin-bottom:5px;">나의 점수</p>
+        <h2 class="score" id="result-score">0</h2>
+        <div class="wrong-list">
+            <p style="font-size:12px; font-weight:bold; color:#B91C1C; margin:0 0 10px 4px;">틀린 문항 번호</p>
+            <div id="wrong-nums"></div>
+        </div>
+        <button class="btn-main btn-copy" onclick="copyCurrentReport()">리포트 복사하여 제출하기</button>
+        <button class="btn-main" style="background:#F3F4F6; color:#6B7280;" onclick="location.reload()">홈으로 돌아가기</button>
+    </div>
+</div>
 
-        const examConfig = {
-            examName: "5월 마침내 모의고사 2회차",[cite: 1]
-            // 이미지(KakaoTalk_20260505_205033221.jpg)와 100% 일치하는 정답 데이터
-            common: {
-                "1":"2", "2":"2", "3":"3", "4":"1", "5":"1", "6":"5", "7":"3", "8":"5", "9":"1", "10":"2", 
-                "11":"3", "12":"3", "13":"4", "14":"4", "15":"4", "16":"4", "17":"5", "18":"4", "19":"1", "20":"3", 
-                "21":"3", "22":"4", "23":"3", "24":"5", "25":"1", "26":"4", "27":"3", "28":"5", "29":"4", "30":"2", 
-                "31":"3", "32":"5", "33":"3", "34":"2"
-            },
-            subjects: {
-                "화법과작문": {
-                    "35":"5", "36":"5", "37":"4", "38":"5", "39":"3", "40":"3", "41":"5", "42":"1", "43":"4", "44":"4", "45":"5"
-                },
-                "언어와매체": {
-                    "35":"1", "36":"4", "37":"4", "38":"4", "39":"3", "40":"2", "41":"3", "42":"5", "43":"5", "44":"1", "45":"5"
-                }
-            }
-        };
+<script>
+    const HW_ID = "final_2026_05_02_v5";
+    const MAX_ATTEMPTS = 2;[cite: 1]
+    
+    const examConfig = {
+        common: {"1":"2","2":"2","3":"3","4":"1","5":"1","6":"5","7":"3","8":"5","9":"1","10":"2","11":"3","12":"3","13":"4","14":"4","15":"4","16":"4","17":"5","18":"4","19":"1","20":"3","21":"3","22":"4","23":"3","24":"5","25":"1","26":"4","27":"3","28":"5","29":"4","30":"2","31":"3","32":"5","33":"3","34":"2"},[cite: 1]
+        subjects: {
+            "언어와매체": {"35":"1","36":"4","37":"4","38":"4","39":"3","40":"2","41":"3","42":"5","43":"5","44":"1","45":"5"},[cite: 1]
+            "화법과작문": {"35":"5","36":"5","37":"4","38":"5","39":"3","40":"3","41":"5","42":"1","43":"4","44":"4","45":"5"}[cite: 1]
+        }
+    };
 
-        function StudentApp() {
-            const [step, setStep] = useState(1);
-            const [studentName, setStudentName] = useState('');
-            const [selectedSubject, setSelectedSubject] = useState('언어와매체');
-            const [questionData, setQuestionData] = useState(() => {
-                const data = {};
-                for (let i = 1; i <= 45; i++) data[i] = { myAnswer: '' };
-                return data;
-            });
-            const [attemptHistory, setAttemptHistory] = useState(() => 
-                JSON.parse(localStorage.getItem(`history_${CONFIG.hwId}`) || '[]')
-            );
+    let userAnswers = {};
+    let history = JSON.parse(localStorage.getItem(HW_ID) || "[]");
 
-            const currentResults = useMemo(() => {
-                let correctCount = 0;
-                let wrongNums = [];
-                for (let i = 1; i <= 34; i++) {
-                    if (questionData[i].myAnswer === examConfig.common[i]) correctCount++;
-                    else if (questionData[i].myAnswer !== '') wrongNums.push(i);
-                }
-                const subAns = examConfig.subjects[selectedSubject];
-                for (let i = 35; i <= 45; i++) {
-                    if (questionData[i].myAnswer === subAns[i]) correctCount++;
-                    else if (questionData[i].myAnswer !== '') wrongNums.push(i);
-                }
-                return { 
-                    score: Math.round((correctCount / 45) * 100), 
-                    correctCount, 
-                    wrongNums[cite: 1]
-                };
-            }, [questionData, selectedSubject]);
-
-            const handleSubmit = () => {
-                if (attemptHistory.length >= CONFIG.maxAttempts) {[cite: 1]
-                    alert('이미 모든 응시 기회를 사용했습니다.');[cite: 1]
-                    return;
-                }
-                const newAttempt = {
-                    attemptNum: attemptHistory.length + 1,
-                    date: new Date().toLocaleString(),
-                    score: currentResults.score,
-                    correctCount: currentResults.correctCount,
-                    wrongNums: currentResults.wrongNums,
-                    subject: selectedSubject
-                };
-                const newHistory = [...attemptHistory, newAttempt];
-                setAttemptHistory(newHistory);
-                localStorage.setItem(`history_${CONFIG.hwId}`, JSON.stringify(newHistory));
-                setStep(3);
-                window.scrollTo(0,0);
-            };
-
-            const copyReport = (attempt) => {
-                const report = `[${examConfig.examName} 제출]\n회차: ${attempt.attemptNum}회차\n이름: ${studentName}\n과목: ${attempt.subject}\n점수: ${attempt.score}점 (${attempt.correctCount}/45)\n틀린문항: ${attempt.wrongNums.join(', ') || '없음'}`;[cite: 1]
-                navigator.clipboard.writeText(report);
-                alert(`${attempt.attemptNum}회차 리포트가 복사되었습니다!`);[cite: 1]
-            };
-
-            return (
-                <div className="max-w-2xl mx-auto p-4 md:p-8">
-                    {step === 1 && (
-                        <div className="bg-white rounded-3xl p-8 shadow-sm border text-center space-y-6">
-                            <h1 className="text-3xl font-black text-slate-800">{examConfig.examName}</h1>
-                            <div className="flex justify-center gap-4">
-                                {[1, 2].map(num => (
-                                    <div key={num} className={`px-4 py-2 rounded-2xl border ${attemptHistory.length >= num ? 'bg-indigo-50 border-indigo-200 text-indigo-600' : 'bg-slate-50 border-slate-200 text-slate-400'} font-bold text-sm`}>
-                                        {num}회차 {attemptHistory.length >= num ? '완료' : '대기'}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="space-y-4 text-left">
-                                <label className="text-sm font-bold text-slate-400 ml-1">이름</label>
-                                <input type="text" placeholder="성함을 입력하세요" className="w-full p-4 bg-slate-50 rounded-2xl border outline-none focus:border-indigo-500" value={studentName} onChange={e => setStudentName(e.target.value)} />
-                                <label className="text-sm font-bold text-slate-400 ml-1">선택과목</label>
-                                <select className="w-full p-4 bg-slate-50 rounded-2xl border outline-none font-bold" value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)}>
-                                    <option value="언어와매체">언어와매체</option>
-                                    <option value="화법과작문">화법과작문</option>
-                                </select>
-                            </div>
-                            <button onClick={() => {
-                                if(!studentName) return alert('이름을 입력해주세요');
-                                if(attemptHistory.length >= CONFIG.maxAttempts) return alert('응시 기회가 없습니다.');
-                                setQuestionData(Object.fromEntries(Array.from({length: 45}, (_, i) => [i + 1, {myAnswer: ''}])));
-                                setStep(2);
-                            }} className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold text-xl active:scale-95 transition-all shadow-lg">응시 시작</button>
-                            
-                            {attemptHistory.length > 0 && (
-                                <div className="pt-6 border-t space-y-3 text-left">
-                                    <p className="text-sm font-bold text-slate-400 mb-2">보관된 보고서</p>
-                                    {attemptHistory.map((att, idx) => (
-                                        <button key={idx} onClick={() => copyReport(att)} className="w-full p-4 bg-yellow-50 border border-yellow-100 rounded-2xl text-yellow-800 font-bold flex justify-between items-center hover:bg-yellow-100">
-                                            <span>{att.attemptNum}회차 보고서 복사 ({att.score}점)</span>
-                                            <Icon name="copy" size={18}/>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {step === 2 && (
-                        <div className="space-y-6">
-                            <div className="bg-white p-6 rounded-3xl shadow-sm border sticky top-4 z-10 flex justify-between items-center">
-                                <span className="font-bold text-indigo-600">{attemptHistory.length + 1}회차 마킹 중</span>
-                                <button onClick={handleSubmit} className="bg-indigo-600 text-white px-6 py-2 rounded-xl font-bold active:scale-95">제출</button>
-                            </div>
-                            <div className="bg-white rounded-3xl shadow-sm border overflow-hidden">
-                                {Array.from({length: 45}, (_, i) => i + 1).map(num => (
-                                    <div key={num} className="p-4 border-b last:border-0 flex items-center justify-between hover:bg-slate-50">
-                                        <span className="font-black text-slate-400 w-8">{num}</span>
-                                        <div className="flex gap-2">
-                                            {[1,2,3,4,5].map(ans => (
-                                                <button key={ans} onClick={() => setQuestionData(prev => ({...prev, [num]: {...prev[num], myAnswer: ans.toString()}}))} className={`answer-circle ${questionData[num].myAnswer === ans.toString() ? 'selected' : ''}`}>{ans}</button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <button onClick={handleSubmit} className="w-full py-5 bg-indigo-600 text-white rounded-3xl font-bold text-xl shadow-lg active:scale-95">답안 제출 및 채점</button>
-                        </div>
-                    )}
-
-                    {step === 3 && (
-                        <div className="bg-white rounded-3xl p-8 shadow-sm border text-center space-y-8">
-                            <div className="space-y-2">
-                                <div className="text-7xl font-black text-indigo-600">{currentResults.score}<span className="text-2xl text-slate-300">/100</span></div>[cite: 1]
-                                <p className="text-slate-500 font-bold">{attemptHistory.length}회차 채점 결과</p>
-                            </div>
-                            
-                            <div className="bg-red-50 p-6 rounded-2xl border border-red-100 text-left">
-                                <h3 className="text-red-600 font-black mb-3 flex items-center gap-2 text-sm"><Icon name="x-circle" size={16}/> 틀린 문항 (정답은 노출되지 않습니다)</h3>[cite: 1]
-                                <div className="flex flex-wrap gap-2">
-                                    {currentResults.wrongNums.length > 0 ? currentResults.wrongNums.map(n => (
-                                        <span key={n} className="bg-white text-red-600 px-3 py-1 rounded-lg border border-red-200 font-bold text-sm">{n}번</span>[cite: 1]
-                                    )) : <span className="text-slate-400">오답이 없습니다. 훌륭합니다!</span>}
-                                </div>
-                            </div>
-
-                            <div className="space-y-3 pt-4">
-                                <button onClick={() => copyReport(attemptHistory[attemptHistory.length-1])} className="w-full py-5 bg-yellow-400 text-yellow-900 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 shadow-lg shadow-yellow-100">
-                                    <Icon name="copy"/> {attemptHistory.length}회차 리포트 복사하여 제출하기[cite: 1]
-                                </button>
-                                <button onClick={() => setStep(1)} className="w-full py-4 bg-slate-100 text-slate-500 rounded-2xl font-bold active:scale-95">
-                                    {attemptHistory.length < CONFIG.maxAttempts ? "홈으로 돌아가기 (재응시 가능)" : "최종 확인 완료"}
-                                </button>
-                            </div>
-                        </div>
-                    )}
+    function init() {
+        document.getElementById('attempt-info').innerText = `남은 응시 기회: ${MAX_ATTEMPTS - history.length}회`;[cite: 1]
+        if(history.length > 0) {
+            document.getElementById('history-section').classList.remove('hidden');
+            const list = document.getElementById('history-list');
+            list.innerHTML = history.map((h, i) => `
+                <div class="history-item">
+                    <span style="font-weight:bold;">${i+1}회차 (${h.score}점)</span>
+                    <button onclick="copySpecificReport(${i})" style="padding:6px 12px; border-radius:8px; border:none; background:#E5E7EB; font-weight:bold; cursor:pointer;">복사</button>
                 </div>
-            );
+            `).join('');
+        }
+    }
+
+    function startExam() {
+        const name = document.getElementById('studentName').value;
+        if(!name) return alert("이름을 입력해주세요.");
+        if(history.length >= MAX_ATTEMPTS) return alert("응시 기회를 모두 사용했습니다.");[cite: 1]
+
+        document.getElementById('app-step1').classList.add('hidden');
+        document.getElementById('app-step2').classList.remove('hidden');
+        
+        const container = document.getElementById('omr-container');
+        container.innerHTML = "";
+        userAnswers = {};
+        
+        for(let i=1; i<=45; i++) {
+            const row = document.createElement('div');
+            row.className = 'question-row';
+            row.innerHTML = `
+                <span class="question-num">${i}</span>
+                <div class="options">
+                    ${[1,2,3,4,5].map(a => `<button class="btn-ans" id="q${i}_${a}" onclick="mark(${i}, ${a})">${a}</button>`).join('')}
+                </div>
+            `;
+            container.appendChild(row);
+        }
+        window.scrollTo(0,0);
+    }
+
+    function mark(q, a) {
+        for(let i=1; i<=5; i++) document.getElementById(`q${q}_${i}`).classList.remove('active');
+        document.getElementById(`q${q}_${a}`).classList.add('active');
+        userAnswers[q] = a.toString();
+    }
+
+    function submitExam() {
+        const subject = document.getElementById('selectedSubject').value;
+        let correctCount = 0;
+        let wrongs = [];
+
+        for(let i=1; i<=34; i++) {
+            if(userAnswers[i] === examConfig.common[i]) correctCount++;
+            else wrongs.push(i);
+        }
+        const subAns = examConfig.subjects[subject];
+        for(let i=35; i<=45; i++) {
+            if(userAnswers[i] === subAns[i]) correctCount++;
+            else wrongs.push(i);
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<StudentApp />);
-    </script>
+        const score = Math.round((correctCount / 45) * 100);[cite: 1]
+        const attempt = {
+            num: history.length + 1,
+            score: score,
+            wrongs: wrongs,
+            subject: subject,
+            name: document.getElementById('studentName').value
+        };
+
+        history.push(attempt);
+        localStorage.setItem(HW_ID, JSON.stringify(history));
+
+        document.getElementById('app-step2').classList.add('hidden');
+        document.getElementById('app-step3').classList.remove('hidden');
+        document.getElementById('result-score').innerText = score;
+        document.getElementById('wrong-nums').innerHTML = wrongs.map(n => `<span class="wrong-item">${n}번</span>`).join('');[cite: 1]
+        window.scrollTo(0,0);
+    }
+
+    function copyCurrentReport() {
+        const last = history[history.length - 1];
+        const text = `[5월 마침내 모의고사 2회차 제출]\n회차: ${last.num}회차\n이름: ${last.name}\n과목: ${last.subject}\n점수: ${last.score}점\n틀린문항: ${last.wrongs.join(', ') || '없음'}`;[cite: 1]
+        copyToClipboard(text);
+    }
+
+    function copySpecificReport(index) {
+        const h = history[index];
+        const text = `[5월 마침내 모의고사 2회차 제출]\n회차: ${h.num}회차\n이름: ${h.name}\n과목: ${h.subject}\n점수: ${h.score}점\n틀린문항: ${h.wrongs.join(', ') || '없음'}`;[cite: 1]
+        copyToClipboard(text);
+    }
+
+    function copyToClipboard(text) {
+        const t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = text;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+        alert("리포트가 복사되었습니다! 카톡에 붙여넣어주세요.");
+    }
+
+    init();
+</script>
+
 </body>
 </html>
