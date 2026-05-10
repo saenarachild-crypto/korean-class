@@ -1,367 +1,127 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-<meta name="format-detection" content="telephone=no" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>김현석 국어 · 6모 대비 마침내 모의고사 OMR</title>
 
-<title>김현석 국어 · 6모 대비 마침내 모의고사 OMR</title>
+  <style>
+    /* 기존 스타일 유지 */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      background: #faf6f3; color: #2c1518; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden; min-height: 100vh;
+    }
+    button { font-family: inherit; touch-action: manipulation; }
+    input, select { font-family: inherit; touch-action: manipulation; }
 
-<style>
-*, *::before, *::after{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+    .header {
+      background: linear-gradient(135deg, #7c2c3e 0%, #5a1f2c 100%);
+      color: #faf6f3; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .header h1 { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+    .header .sub { font-size: 11.5px; opacity: 0.85; margin-top: 4px; }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",sans-serif;
-  background:#faf6f3;
-  color:#2c1518;
-  min-height:100vh;
-  font-size:15px;
-  line-height:1.5;
-}
+    .container { max-width: 640px; margin: 0 auto; padding: 14px 14px 20px; }
 
-button,input,select{
-  font-family:inherit;
-}
+    .info-card {
+      background: #fff; border-radius: 14px; padding: 14px;
+      box-shadow: 0 2px 10px rgba(124, 44, 62, 0.08); border: 1px solid #efe0e3; margin-bottom: 16px;
+    }
+    .info-card label { display: block; font-size: 12.5px; color: #7c2c3e; font-weight: 600; margin-bottom: 6px; }
+    .info-card input, .info-card select {
+      width: 100%; padding: 11px 12px; border: 1.5px solid #d8c8cc; border-radius: 10px;
+      font-size: 16px; background: #fafafa; transition: border-color 0.15s;
+    }
+    .info-card input:focus { outline: none; border-color: #7c2c3e; background: #fff; }
+    .info-row { margin-bottom: 10px; }
 
-.header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:linear-gradient(135deg,#7c2c3e 0%, #5a1f2c 100%);
-  color:#fff;
-  text-align:center;
-  padding:16px;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
+    .tab-menu { display: flex; gap: 8px; margin-bottom: 14px; }
+    .tab-btn {
+      flex: 1; background: #fff; border: 1.5px solid #d8c8cc; border-radius: 12px;
+      padding: 12px 0; font-weight: 700; font-size: 15px; color: #6c4248; cursor: pointer;
+    }
+    .tab-btn.active { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
-.header h1{
-  font-size:18px;
-  font-weight:800;
-}
+    .score-banner {
+      display: none; background: #fff8f5; border: 2px solid #7c2c3e; border-radius: 14px;
+      padding: 16px; margin-bottom: 16px; text-align: center;
+    }
+    .score-banner.show { display: block; animation: slideIn 0.35s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    .score-main { font-size: 30px; font-weight: 800; color: #7c2c3e; }
+    .score-detail { font-size: 12.5px; color: #6c4248; margin-top: 4px; }
 
-.header .sub{
-  margin-top:4px;
-  font-size:12px;
-  opacity:.82;
-}
+    .section {
+      background: #fff; border-radius: 14px; box-shadow: 0 2px 10px rgba(124, 44, 62, 0.08);
+      border: 1px solid #efe0e3; margin-bottom: 14px; overflow: hidden;
+    }
+    .section-header { padding: 11px 14px; font-weight: 700; color: #fff; background: #7c2c3e; display: flex; justify-content: space-between; }
+    .question-row { display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 6px; padding: 7px 10px; border-bottom: 1px solid #f5ecee; }
+    .question-num { font-size: 13.5px; font-weight: 700; color: #7c2c3e; text-align: center; }
 
-.container{
-  max-width:680px;
-  margin:0 auto;
-  padding:14px;
-}
+    .choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .choice {
+      height: 38px; border: 1.5px solid #d8c8cc; border-radius: 50%; background: #fff;
+      color: #6c4248; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .choice.selected { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
 
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:16px;
-  border:1px solid #efe0e3;
-  box-shadow:0 2px 10px rgba(124,44,62,.08);
-}
+    /* 채점 효과 스타일 */
+    body.submitted .question-row.correct { background: #e8f5ed; }
+    body.submitted .question-row.wrong { background: #fce8e8; }
+    body.submitted .question-row.unanswered { opacity: 0.6; background: #f0e6e8; }
+    body.submitted .choice.answer { border: 2.5px solid #2d8b5b !important; color: #2d8b5b !important; font-weight: 800 !important; background: #fff !important; }
 
-.info-row{
-  margin-bottom:12px;
-}
+    .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .btn-primary { background: #7c2c3e; color: #fff; margin-top: 10px; }
+    .btn-kakao { background: #fee500; color: #3c1e1e; margin-top: 10px; }
+    .btn-secondary { background: #eee; color: #666; margin-top: 10px; }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.info-row:last-child{
-  margin-bottom:0;
-}
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; padding: 20px; text-align: center; }
+    #report-text { width: 100%; height: 250px; margin: 15px 0; padding: 10px; font-family: monospace; font-size: 12px; background: #f9f9f9; border: 1px solid #ddd; }
 
-label{
-  display:block;
-  margin-bottom:6px;
-  font-size:13px;
-  color:#7c2c3e;
-  font-weight:700;
-}
-
-input,select{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:1.5px solid #d8c8cc;
-  background:#fafafa;
-  font-size:16px;
-}
-
-.tab-menu{
-  display:flex;
-  gap:8px;
-  margin-bottom:14px;
-}
-
-.tab-btn{
-  flex:1;
-  border:none;
-  border-radius:12px;
-  padding:12px;
-  font-weight:800;
-  background:#fff;
-  border:1.5px solid #d8c8cc;
-  color:#7c2c3e;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.tab-btn.active{
-  background:#7c2c3e;
-  color:#fff;
-  border-color:#7c2c3e;
-}
-
-.tab-content{
-  display:none;
-}
-
-.tab-content.active{
-  display:block;
-}
-
-.question-row{
-  display:grid;
-  grid-template-columns:38px 1fr;
-  align-items:center;
-  gap:8px;
-  padding:8px 10px;
-  border-bottom:1px solid #f5ecee;
-  border-radius:10px;
-  transition:.2s;
-}
-
-.question-row:last-child{
-  border-bottom:none;
-}
-
-.question-num{
-  font-weight:800;
-  text-align:center;
-}
-
-.choices{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-}
-
-.choice{
-  height:40px;
-  border-radius:50%;
-  border:1.5px solid #d8c8cc;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
-  cursor:pointer;
-  transition:.15s;
-  user-select:none;
-  touch-action:manipulation;
-}
-
-.choice.selected{
-  background:#7c2c3e;
-  border-color:#7c2c3e;
-  color:#fff;
-}
-
-.question-row.correct{
-  background:#e8f5e9;
-}
-
-.question-row.wrong{
-  background:#ffebee;
-}
-
-.question-row.empty{
-  background:#f5f5f5;
-  opacity:.68;
-}
-
-body.submitted .question-row.correct .choice.selected{
-  background:#2d8b5b;
-  border-color:#2d8b5b;
-}
-
-body.submitted .question-row.wrong .choice.selected{
-  background:#d04141;
-  border-color:#d04141;
-}
-
-body.submitted .choice.answer{
-  border:2px solid #2d8b5b !important;
-  color:#2d8b5b;
-  font-weight:900;
-  background:#fff;
-}
-
-.score-banner{
-  display:none;
-  background:#fff8f5;
-  border:2px solid #7c2c3e;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:16px;
-  text-align:center;
-}
-
-.score-banner.show{
-  display:block;
-  animation:fadeDown .28s ease-out;
-}
-
-@keyframes fadeDown{
-  from{
-    opacity:0;
-    transform:translateY(-8px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-.score-title{
-  font-size:12px;
-  font-weight:800;
-  color:#7c2c3e;
-}
-
-.score-main{
-  margin-top:4px;
-  font-size:34px;
-  font-weight:900;
-  color:#7c2c3e;
-}
-
-.score-sub{
-  font-size:16px;
-  color:#9a7b80;
-}
-
-.score-rate{
-  margin-top:4px;
-  font-size:14px;
-  font-weight:700;
-}
-
-.score-detail{
-  margin-top:10px;
-  font-size:12px;
-  color:#666;
-  line-height:1.7;
-}
-
-.btn{
-  width:100%;
-  border:none;
-  border-radius:14px;
-  padding:16px;
-  margin-top:10px;
-  font-size:15px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.15s;
-}
-
-.btn:active{
-  transform:scale(.98);
-}
-
-.btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-.btn-primary{
-  background:#7c2c3e;
-  color:#fff;
-}
-
-.btn-yellow{
-  background:#fee500;
-  color:#3c1e1e;
-}
-
-.btn-reset{
-  background:#ececec;
-  color:#666;
-  padding:12px;
-  font-size:13px;
-}
-
-.link-box{
-  text-align:center;
-  margin:14px 0;
-}
-
-.link-btn{
-  display:inline-block;
-  text-decoration:none;
-  color:#7c2c3e;
-  border:1px solid #7c2c3e;
-  border-radius:30px;
-  padding:10px 16px;
-  font-size:13px;
-  font-weight:700;
-}
-
-.hidden{
-  display:none;
-}
-
-@media (max-width:480px){
-  .choice{
-    height:37px;
-    font-size:14px;
-  }
-}
-</style>
+    .link-box { text-align: center; margin: 12px 0; }
+    .link-btn { display: inline-block; padding: 10px 20px; border: 1.5px solid #7c2c3e; border-radius: 25px; text-decoration: none; color: #7c2c3e; font-weight: 600; font-size: 13px; }
+    .hidden { display: none; }
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 20px; border-radius: 20px; opacity: 0; transition: 0.3s; z-index: 2000; pointer-events: none; }
+    .toast.show { opacity: 1; }
+  </style>
 </head>
-
 <body>
 
 <header class="header">
-  <h1>김현석 국어 · 6모 대비 마침내 모의고사</h1>
-  <div class="sub">모바일 자동 저장 OMR 시스템</div>
+  <h1>6모 대비 마침내 모의고사</h1>
+  <div class="sub">공통(1~34) + 선택(35~45) · 자동 저장</div>
 </header>
 
 <div class="container">
-
   <div class="score-banner" id="scoreBanner">
-    <div class="score-title">📊 채점 결과</div>
-
-    <div class="score-main">
-      <span id="scoreCorrect">0</span>
-      <span class="score-sub"> / 45</span>
-    </div>
-
-    <div class="score-rate" id="scoreRate">정답률 0.0%</div>
-
-    <div class="score-detail" id="scoreDetail"></div>
+    <div style="font-size:12px; font-weight:700; color:#7c2c3e; margin-bottom:5px;">📊 채점 결과</div>
+    <div class="score-main"><span id="scoreCorrect">0</span><span style="font-size:16px; color:#997a80;"> / 45</span></div>
+    <div class="score-detail" id="scoreText">정답률 0%</div>
+    <div id="wrongList" style="font-size:11px; color:#d04141; margin-top:8px; font-weight:700;"></div>
   </div>
 
-  <div class="card">
-
+  <div class="info-card">
+    <div class="info-row"><label>학생 이름*</label><input type="text" id="studentName" placeholder="실명을 입력하세요"></div>
     <div class="info-row">
-      <label>학생 이름 *</label>
-      <input type="text" id="studentName" placeholder="홍길동">
-    </div>
-
-    <div class="info-row">
-      <label>선택 과목 *</label>
-
+      <label>선택 과목*</label>
       <select id="subjectSelect">
-        <option value="화법과작문">화법과작문 (35~45)</option>
-        <option value="언어와매체">언어와매체 (35~45)</option>
+        <option value="화법과작문">화법과작문 (35~45번)</option>
+        <option value="언어와매체">언어와매체 (35~45번)</option>
       </select>
     </div>
-
   </div>
 
   <div class="tab-menu">
@@ -370,392 +130,181 @@ body.submitted .choice.answer{
   </div>
 
   <div id="common-tab" class="tab-content active">
-    <div class="card">
+    <div class="section">
+      <div class="section-header"><div>공통 문항</div><div id="commonProgress">0 / 34</div></div>
       <div id="commonList"></div>
     </div>
   </div>
 
   <div id="select-tab" class="tab-content">
-    <div class="card">
+    <div class="section">
+      <div class="section-header"><div>선택 문항</div><div id="selectProgress">0 / 11</div></div>
       <div id="selectList"></div>
     </div>
   </div>
 
-  <button class="btn btn-primary" id="submitBtn">
-    채점하기
-  </button>
+  <button class="btn btn-primary" id="submitBtn">채점하기</button>
+  <button class="btn btn-kakao" id="kakaoBtn" disabled>📋 결과 복사하기</button>
+  <button class="btn btn-secondary" onclick="resetAll()">새로 시작하기 (초기화)</button>
 
-  <button class="btn btn-yellow" id="resultBtn" disabled>
-    📋 결과 요약 보기
-  </button>
-
-  <button class="btn btn-reset" id="resetBtn">
-    데이터 초기화 (다시 풀기)
-  </button>
-
-  <div class="link-box">
-    <a class="link-btn" target="_blank"
-      href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQCM4y7LO9TvQ783n5GORG1EAbOQgAQQWx6enr-Tdrg2OMo?e=fhJRH1">
-      📄 모의고사 문제지 보기
-    </a>
-  </div>
-
-  <div class="link-box hidden" id="solutionArea">
-    <a class="link-btn" target="_blank"
-      href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDbKiUwGNiAQ66QpE6c2GSEAcQCglsfVW3dxcIQtOemWNo?e=1332K9">
-      📖 해설지 보기
-    </a>
-  </div>
-
+  <div class="link-box"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQCM4y7LO9TvQ783n5GORG1EAbOQgAQQWx6enr-Tdrg2OMo?e=fhJRH1" class="link-btn" target="_blank">📄 모의고사 문제지 보기</a></div>
+  <div id="solutionLinkArea" class="link-box hidden"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDbKiUwGNiAQ66QpE6c2GSEAcQCglsfVW3dxcIQtOemWNo?e=1332K9" class="link-btn" target="_blank">📖 해설지 보기 (복사 후 열람)</a></div>
 </div>
 
+<div class="modal-overlay" id="reportModal"><div class="modal"><h3>📋 결과 리포트</h3><textarea id="report-text" readonly></textarea><div><button class="btn btn-primary" onclick="copyReport()">결과 복사하기</button><button class="btn btn-secondary" onclick="closeModal()">닫기</button></div></div></div>
+<div class="toast" id="toast"></div>
+
 <script>
-(() => {
+(function(){
+  const $ = id => document.getElementById(id);
+  const ANS = {
+    common: [1,4,2,3,2,4,2,3,3,1,5,4,2,4,5,1,5,5,3,1,3,5,1,4,4,3,5,1,4,2,2,2,4,3],
+    "화법과작문": [4,4,3,2,3,5,1,5,5,4,1],
+    "언어와매체": [4,4,3,2,1,1,4,3,2,5,2]
+  };
+  const STORAGE_KEY = 'mock_6mo_final_v2';
+  let state = { common: new Array(34).fill(0), select: new Array(11).fill(0), submitted: false, revealed: false, name: '', sub: '화법과작문' };
 
-const ANSWERS = {
-  common: [
-    1,4,2,3,2,4,2,3,3,1,
-    5,4,2,4,5,1,5,5,3,1,
-    3,5,1,4,4,3,5,1,4,2,
-    2,2,4,3
-  ],
+  function render(el, prefix, count, offset) {
+    let html = '';
+    for(let i=1; i<=count; i++) {
+      html += `<div class="question-row" id="row-${prefix}-${i}"><div class="question-num">${i+offset}</div><div class="choices">` +
+              [1,2,3,4,5].map(c => `<button class="choice" data-p="${prefix}" data-idx="${i-1}" data-v="${c}">${c}</button>`).join('') +
+              `</div></div>`;
+    }
+    el.innerHTML = html;
+  }
+  render($('commonList'), 'c', 34, 0);
+  render($('selectList'), 's', 11, 34);
 
-  "화법과작문": [
-    4,4,3,2,3,5,1,5,5,4,1
-  ],
-
-  "언어와매체": [
-    4,4,3,2,1,1,4,3,2,5,2
-  ]
-};
-
-const STORAGE_KEY = "kr-omr-2026-june-final-01";
-
-let state = {
-  name:"",
-  subject:"화법과작문",
-  common:new Array(34).fill(0),
-  select:new Array(11).fill(0),
-  submitted:false
-};
-
-function saveState(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function loadState(){
-  const saved = localStorage.getItem(STORAGE_KEY);
-
-  if(saved){
-    state = JSON.parse(saved);
+  function updateUI() {
+    document.querySelectorAll('.choice').forEach(b => {
+      const {p, idx, v} = b.dataset;
+      const selected = (p === 'c' ? state.common : state.select)[idx];
+      b.classList.toggle('selected', selected == v);
+    });
+    $('commonProgress').innerText = `${state.common.filter(x=>x>0).length} / 34`;
+    $('selectProgress').innerText = `${state.select.filter(x=>x>0).length} / 11`;
   }
 
-  document.getElementById("studentName").value = state.name || "";
-  document.getElementById("subjectSelect").value = state.subject || "화법과작문";
+  function gradeExam(isAuto = false) {
+    if(!state.submitted && !isAuto) return;
+    
+    // 정답 클래스 초기화 
+    document.querySelectorAll('.choice').forEach(c => c.classList.remove('answer'));
+    document.querySelectorAll('.question-row').forEach(r => r.classList.remove('correct', 'wrong', 'unanswered'));
 
-  updateUI();
+    let correct = 0; let wrongs = [];
+    const sub = state.sub;
 
-  if(state.submitted){
-    grade(true);
-  }
-}
-
-function render(containerId, prefix, count){
-
-  let html = "";
-
-  for(let i=1; i<=count; i++){
-
-    const num = prefix === "s" ? i + 34 : i;
-
-    html += `
-      <div class="question-row" id="row-${prefix}-${i}">
-        <div class="question-num">${num}</div>
-
-        <div class="choices">
-          ${[1,2,3,4,5].map(c => `
-            <button
-              class="choice"
-              data-prefix="${prefix}"
-              data-idx="${i-1}"
-              data-choice="${c}">
-              ${c}
-            </button>
-          `).join("")}
-        </div>
-      </div>
-    `;
-  }
-
-  document.getElementById(containerId).innerHTML = html;
-}
-
-function updateUI(){
-
-  document.querySelectorAll(".choice").forEach(btn => {
-
-    const prefix = btn.dataset.prefix;
-    const idx = Number(btn.dataset.idx);
-    const choice = Number(btn.dataset.choice);
-
-    const arr = prefix === "c"
-      ? state.common
-      : state.select;
-
-    btn.classList.toggle(
-      "selected",
-      arr[idx] === choice
-    );
-  });
-}
-
-function choose(prefix, idx, choice){
-
-  if(state.submitted) return;
-
-  const arr = prefix === "c"
-    ? state.common
-    : state.select;
-
-  arr[idx] = arr[idx] === choice ? 0 : choice;
-
-  saveState();
-
-  updateUI();
-}
-
-function clearMarking(){
-
-  document.querySelectorAll(".question-row")
-    .forEach(row => {
-      row.className = "question-row";
+    state.common.forEach((v, i) => {
+      const row = $(`row-c-${i+1}`); const key = ANS.common[i];
+      if(v == 0) row.classList.add('unanswered');
+      else if(v == key) { correct++; row.classList.add('correct'); }
+      else { row.classList.add('wrong'); wrongs.push(i+1); }
+      row.querySelector(`[data-v="${key}"]`).classList.add('answer');
     });
 
-  document.querySelectorAll(".choice")
-    .forEach(btn => {
-      btn.classList.remove("answer");
+    state.select.forEach((v, i) => {
+      const row = $(`row-s-${i+1}`); const key = ANS[sub][i];
+      if(v == 0) row.classList.add('unanswered');
+      else if(v == key) { correct++; row.classList.add('correct'); }
+      else { row.classList.add('wrong'); wrongs.push(i+35); }
+      row.querySelector(`[data-v="${key}"]`).classList.add('answer');
     });
-}
 
-function grade(isLoad=false){
-
-  clearMarking();
-
-  let commonCorrect = 0;
-  let selectCorrect = 0;
-  let wrongs = [];
-
-  const subject = state.subject;
-
-  state.common.forEach((v,i) => {
-
-    const row = document.getElementById(`row-c-${i+1}`);
-    const answer = ANSWERS.common[i];
-
-    if(v === 0){
-      row.classList.add("empty");
-    }
-    else if(v === answer){
-      commonCorrect++;
-      row.classList.add("correct");
-    }
-    else{
-      row.classList.add("wrong");
-
-      row.querySelector(
-        `[data-choice="${answer}"]`
-      ).classList.add("answer");
-
-      wrongs.push(i+1);
-    }
-  });
-
-  state.select.forEach((v,i) => {
-
-    const row = document.getElementById(`row-s-${i+1}`);
-    const answer = ANSWERS[subject][i];
-
-    if(v === 0){
-      row.classList.add("empty");
-    }
-    else if(v === answer){
-      selectCorrect++;
-      row.classList.add("correct");
-    }
-    else{
-      row.classList.add("wrong");
-
-      row.querySelector(
-        `[data-choice="${answer}"]`
-      ).classList.add("answer");
-
-      wrongs.push(i+35);
-    }
-  });
-
-  const total = commonCorrect + selectCorrect;
-  const rate = (total / 45 * 100).toFixed(1);
-
-  state.submitted = true;
-
-  if(!isLoad){
-    saveState();
+    document.body.classList.add('submitted');
+    $('subjectSelect').disabled = true;
+    $('scoreBanner').classList.add('show');
+    $('scoreCorrect').innerText = correct;
+    $('scoreText').innerText = `정답률 ${((correct/45)*100).toFixed(1)}%`;
+    $('wrongList').innerText = wrongs.length ? `오답: ${wrongs.join(', ')}` : '만점입니다! 축하합니다.';
+    $('kakaoBtn').disabled = false;
+    $('submitBtn').disabled = true;
+    $('submitBtn').innerText = '채점 완료';
   }
 
-  document.body.classList.add("submitted");
+  $('submitBtn').onclick = () => {
+    const name = $('studentName').value.trim();
+    if(!name) { alert('이름을 입력하세요.'); $('studentName').focus(); return; }
+    state.name = name;
+    state.sub = $('subjectSelect').value;
 
-  document.getElementById("scoreBanner")
-    .classList.add("show");
+    const answered = state.common.filter(x=>x>0).length + state.select.filter(x=>x>0).length;
+    if(answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 채점할까요?`)) return;
 
-  document.getElementById("scoreCorrect")
-    .textContent = total;
+    state.submitted = true; 
+    save();
+    gradeExam();
+    window.scrollTo(0,0);
+  };
 
-  document.getElementById("scoreRate")
-    .textContent = `정답률 ${rate}%`;
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.choice');
+    if(!b) return;
+    if(state.submitted) { showToast('채점 완료 후에는 수정할 수 없습니다.'); return; }
+    const {p, idx, v} = b.dataset;
+    const arr = p === 'c' ? state.common : state.select;
+    arr[idx] = arr[idx] == v ? 0 : parseInt(v);
+    updateUI(); save();
+  });
 
-  const wrongText =
-    wrongs.length === 0
-    ? "🎉 전 문항 정답"
-    : wrongs.join(", ");
+  $('kakaoBtn').onclick = () => {
+    let text = `[6모 대비 마침내 모의고사 결과]\n성함: ${state.name}\n과목: ${state.sub}\n총점: ${$('scoreCorrect').innerText}/45\n${$('scoreText').innerText}\n${$('wrongList').innerText}`;
+    $('report-text').value = text;
+    $('reportModal').classList.add('show');
+    state.revealed = true; save();
+    $('solutionLinkArea').classList.remove('hidden');
+  };
 
-  document.getElementById("scoreDetail")
-    .innerHTML = `
-      공통: ${commonCorrect}/34 |
-      선택: ${selectCorrect}/11
-      <br>
-      오답 문항: ${wrongText}
-    `;
+  window.copyReport = async () => {
+    const text = $('report-text').value;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        showToast('리포트가 복사되었습니다!');
+      } else { throw new Error(); }
+    } catch(e) {
+      $('report-text').select(); document.execCommand('copy');
+      showToast('리포트가 복사되었습니다!');
+    }
+  };
 
-  document.getElementById("submitBtn").disabled = true;
-  document.getElementById("resultBtn").disabled = false;
-  document.getElementById("subjectSelect").disabled = true;
-
-  document.querySelectorAll(".choice")
-    .forEach(btn => {
-      btn.disabled = true;
-    });
-
-  document.getElementById("solutionArea")
-    .classList.remove("hidden");
-}
-
-function resetOMR(){
-
-  const ok = confirm(
-    "모든 답안을 삭제하고 처음부터 다시 풀까요?"
-  );
-
-  if(!ok) return;
-
-  localStorage.removeItem(STORAGE_KEY);
-
-  location.reload();
-}
-
-render("commonList", "c", 34);
-render("selectList", "s", 11);
-
-loadState();
-
-document.addEventListener("click", e => {
-
-  const btn = e.target.closest(".choice");
-
-  if(btn){
-
-    choose(
-      btn.dataset.prefix,
-      Number(btn.dataset.idx),
-      Number(btn.dataset.choice)
-    );
+  window.closeModal = () => $('reportModal').classList.remove('show');
+  window.resetAll = () => { if(confirm('모든 답안과 채점 결과가 지워집니다. 다시 푸시겠습니까?')) { localStorage.removeItem(STORAGE_KEY); location.reload(); } };
+  function showToast(m) { const t=$('toast'); t.innerText=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+  function save() { 
+    state.name = $('studentName').value.trim();
+    state.sub = $('subjectSelect').value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); 
   }
-});
 
-document.querySelectorAll(".tab-btn")
-  .forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-      document.querySelectorAll(
-        ".tab-btn, .tab-content"
-      ).forEach(el => {
-        el.classList.remove("active");
-      });
-
-      btn.classList.add("active");
-
-      document.getElementById(
-        btn.dataset.tab
-      ).classList.add("active");
-    });
-  });
-
-document.getElementById("studentName")
-  .addEventListener("input", e => {
-    state.name = e.target.value;
-    saveState();
-  });
-
-document.getElementById("subjectSelect")
-  .addEventListener("change", e => {
-    state.subject = e.target.value;
-    saveState();
-  });
-
-document.getElementById("submitBtn")
-  .addEventListener("click", () => {
-
-    state.name = document
-      .getElementById("studentName")
-      .value
-      .trim();
-
-    if(!state.name){
-      alert("이름을 입력하세요.");
-      return;
+  function load() {
+    try {
+      const s = localStorage.getItem(STORAGE_KEY);
+      if(!s) return;
+      const data = JSON.parse(s); // JSON 파손 대응 
+      Object.assign(state, data);
+      $('studentName').value = state.name || '';
+      $('subjectSelect').value = state.sub || '화법과작문';
+      updateUI();
+      if(state.submitted) gradeExam(true); // 함수 직접 실행으로 변경 
+      if(state.revealed) $('solutionLinkArea').classList.remove('hidden');
+    } catch(e) {
+      localStorage.removeItem(STORAGE_KEY);
+      console.error("데이터 로드 오류:", e);
     }
+  }
 
-    const unanswered =
-      state.common.filter(v => v===0).length +
-      state.select.filter(v => v===0).length;
-
-    if(unanswered > 0){
-
-      const ok = confirm(
-        `미응답 ${unanswered}문항이 있습니다.\n그래도 제출할까요?`
-      );
-
-      if(!ok) return;
-    }
-
-    grade();
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.tab-btn, .tab-content').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active'); $(btn.dataset.tab).classList.add('active');
+    };
   });
 
-document.getElementById("resultBtn")
-  .addEventListener("click", () => {
-
-    const summary = `
-[${state.name} 학생 결과]
-
-선택 과목: ${state.subject}
-
-${document.getElementById("scoreRate").innerText}
-
-${document.getElementById("scoreDetail").innerText}
-    `.trim();
-
-    navigator.clipboard.writeText(summary);
-
-    alert(
-      "결과 요약이 복사되었습니다.\n\n카카오톡에 바로 붙여넣기 할 수 있습니다."
-    );
-  });
-
-document.getElementById("resetBtn")
-  .addEventListener("click", resetOMR);
-
+  load();
 })();
 </script>
-
 </body>
 </html>
