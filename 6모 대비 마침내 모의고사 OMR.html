@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="format-detection" content="telephone=no" />
+
+<title>김현석 국어 · 6모 대비 마침내 모의고사 OMR</title>
+
+<style>
+*, *::before, *::after{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",sans-serif;
+  background:#faf6f3;
+  color:#2c1518;
+  min-height:100vh;
+  font-size:15px;
+  line-height:1.5;
+}
+
+button,input,select{
+  font-family:inherit;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:linear-gradient(135deg,#7c2c3e 0%, #5a1f2c 100%);
+  color:#fff;
+  text-align:center;
+  padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.header h1{
+  font-size:18px;
+  font-weight:800;
+}
+
+.header .sub{
+  margin-top:4px;
+  font-size:12px;
+  opacity:.82;
+}
+
+.container{
+  max-width:680px;
+  margin:0 auto;
+  padding:14px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+  border:1px solid #efe0e3;
+  box-shadow:0 2px 10px rgba(124,44,62,.08);
+}
+
+.info-row{
+  margin-bottom:12px;
+}
+
+.info-row:last-child{
+  margin-bottom:0;
+}
+
+label{
+  display:block;
+  margin-bottom:6px;
+  font-size:13px;
+  color:#7c2c3e;
+  font-weight:700;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1.5px solid #d8c8cc;
+  background:#fafafa;
+  font-size:16px;
+}
+
+.tab-menu{
+  display:flex;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.tab-btn{
+  flex:1;
+  border:none;
+  border-radius:12px;
+  padding:12px;
+  font-weight:800;
+  background:#fff;
+  border:1.5px solid #d8c8cc;
+  color:#7c2c3e;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.tab-btn.active{
+  background:#7c2c3e;
+  color:#fff;
+  border-color:#7c2c3e;
+}
+
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block;
+}
+
+.question-row{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-bottom:1px solid #f5ecee;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.question-row:last-child{
+  border-bottom:none;
+}
+
+.question-num{
+  font-weight:800;
+  text-align:center;
+}
+
+.choices{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+}
+
+.choice{
+  height:40px;
+  border-radius:50%;
+  border:1.5px solid #d8c8cc;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  cursor:pointer;
+  transition:.15s;
+  user-select:none;
+  touch-action:manipulation;
+}
+
+.choice.selected{
+  background:#7c2c3e;
+  border-color:#7c2c3e;
+  color:#fff;
+}
+
+.question-row.correct{
+  background:#e8f5e9;
+}
+
+.question-row.wrong{
+  background:#ffebee;
+}
+
+.question-row.empty{
+  background:#f5f5f5;
+  opacity:.68;
+}
+
+body.submitted .question-row.correct .choice.selected{
+  background:#2d8b5b;
+  border-color:#2d8b5b;
+}
+
+body.submitted .question-row.wrong .choice.selected{
+  background:#d04141;
+  border-color:#d04141;
+}
+
+body.submitted .choice.answer{
+  border:2px solid #2d8b5b !important;
+  color:#2d8b5b;
+  font-weight:900;
+  background:#fff;
+}
+
+.score-banner{
+  display:none;
+  background:#fff8f5;
+  border:2px solid #7c2c3e;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:16px;
+  text-align:center;
+}
+
+.score-banner.show{
+  display:block;
+  animation:fadeDown .28s ease-out;
+}
+
+@keyframes fadeDown{
+  from{
+    opacity:0;
+    transform:translateY(-8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.score-title{
+  font-size:12px;
+  font-weight:800;
+  color:#7c2c3e;
+}
+
+.score-main{
+  margin-top:4px;
+  font-size:34px;
+  font-weight:900;
+  color:#7c2c3e;
+}
+
+.score-sub{
+  font-size:16px;
+  color:#9a7b80;
+}
+
+.score-rate{
+  margin-top:4px;
+  font-size:14px;
+  font-weight:700;
+}
+
+.score-detail{
+  margin-top:10px;
+  font-size:12px;
+  color:#666;
+  line-height:1.7;
+}
+
+.btn{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:16px;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.btn:active{
+  transform:scale(.98);
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.btn-primary{
+  background:#7c2c3e;
+  color:#fff;
+}
+
+.btn-yellow{
+  background:#fee500;
+  color:#3c1e1e;
+}
+
+.btn-reset{
+  background:#ececec;
+  color:#666;
+  padding:12px;
+  font-size:13px;
+}
+
+.link-box{
+  text-align:center;
+  margin:14px 0;
+}
+
+.link-btn{
+  display:inline-block;
+  text-decoration:none;
+  color:#7c2c3e;
+  border:1px solid #7c2c3e;
+  border-radius:30px;
+  padding:10px 16px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.hidden{
+  display:none;
+}
+
+@media (max-width:480px){
+  .choice{
+    height:37px;
+    font-size:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <h1>김현석 국어 · 6모 대비 마침내 모의고사</h1>
+  <div class="sub">모바일 자동 저장 OMR 시스템</div>
+</header>
+
+<div class="container">
+
+  <div class="score-banner" id="scoreBanner">
+    <div class="score-title">📊 채점 결과</div>
+
+    <div class="score-main">
+      <span id="scoreCorrect">0</span>
+      <span class="score-sub"> / 45</span>
+    </div>
+
+    <div class="score-rate" id="scoreRate">정답률 0.0%</div>
+
+    <div class="score-detail" id="scoreDetail"></div>
+  </div>
+
+  <div class="card">
+
+    <div class="info-row">
+      <label>학생 이름 *</label>
+      <input type="text" id="studentName" placeholder="홍길동">
+    </div>
+
+    <div class="info-row">
+      <label>선택 과목 *</label>
+
+      <select id="subjectSelect">
+        <option value="화법과작문">화법과작문 (35~45)</option>
+        <option value="언어와매체">언어와매체 (35~45)</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="tab-menu">
+    <button class="tab-btn active" data-tab="common-tab">📘 공통 (1~34)</button>
+    <button class="tab-btn" data-tab="select-tab">📕 선택 (35~45)</button>
+  </div>
+
+  <div id="common-tab" class="tab-content active">
+    <div class="card">
+      <div id="commonList"></div>
+    </div>
+  </div>
+
+  <div id="select-tab" class="tab-content">
+    <div class="card">
+      <div id="selectList"></div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="submitBtn">
+    채점하기
+  </button>
+
+  <button class="btn btn-yellow" id="resultBtn" disabled>
+    📋 결과 요약 보기
+  </button>
+
+  <button class="btn btn-reset" id="resetBtn">
+    데이터 초기화 (다시 풀기)
+  </button>
+
+  <div class="link-box">
+    <a class="link-btn" target="_blank"
+      href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQCM4y7LO9TvQ783n5GORG1EAbOQgAQQWx6enr-Tdrg2OMo?e=fhJRH1">
+      📄 모의고사 문제지 보기
+    </a>
+  </div>
+
+  <div class="link-box hidden" id="solutionArea">
+    <a class="link-btn" target="_blank"
+      href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDbKiUwGNiAQ66QpE6c2GSEAcQCglsfVW3dxcIQtOemWNo?e=1332K9">
+      📖 해설지 보기
+    </a>
+  </div>
+
+</div>
+
+<script>
+(() => {
+
+const ANSWERS = {
+  common: [
+    1,4,2,3,2,4,2,3,3,1,
+    5,4,2,4,5,1,5,5,3,1,
+    3,5,1,4,4,3,5,1,4,2,
+    2,2,4,3
+  ],
+
+  "화법과작문": [
+    4,4,3,2,3,5,1,5,5,4,1
+  ],
+
+  "언어와매체": [
+    4,4,3,2,1,1,4,3,2,5,2
+  ]
+};
+
+const STORAGE_KEY = "kr-omr-2026-june-final-01";
+
+let state = {
+  name:"",
+  subject:"화법과작문",
+  common:new Array(34).fill(0),
+  select:new Array(11).fill(0),
+  submitted:false
+};
+
+function saveState(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadState(){
+  const saved = localStorage.getItem(STORAGE_KEY);
+
+  if(saved){
+    state = JSON.parse(saved);
+  }
+
+  document.getElementById("studentName").value = state.name || "";
+  document.getElementById("subjectSelect").value = state.subject || "화법과작문";
+
+  updateUI();
+
+  if(state.submitted){
+    grade(true);
+  }
+}
+
+function render(containerId, prefix, count){
+
+  let html = "";
+
+  for(let i=1; i<=count; i++){
+
+    const num = prefix === "s" ? i + 34 : i;
+
+    html += `
+      <div class="question-row" id="row-${prefix}-${i}">
+        <div class="question-num">${num}</div>
+
+        <div class="choices">
+          ${[1,2,3,4,5].map(c => `
+            <button
+              class="choice"
+              data-prefix="${prefix}"
+              data-idx="${i-1}"
+              data-choice="${c}">
+              ${c}
+            </button>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById(containerId).innerHTML = html;
+}
+
+function updateUI(){
+
+  document.querySelectorAll(".choice").forEach(btn => {
+
+    const prefix = btn.dataset.prefix;
+    const idx = Number(btn.dataset.idx);
+    const choice = Number(btn.dataset.choice);
+
+    const arr = prefix === "c"
+      ? state.common
+      : state.select;
+
+    btn.classList.toggle(
+      "selected",
+      arr[idx] === choice
+    );
+  });
+}
+
+function choose(prefix, idx, choice){
+
+  if(state.submitted) return;
+
+  const arr = prefix === "c"
+    ? state.common
+    : state.select;
+
+  arr[idx] = arr[idx] === choice ? 0 : choice;
+
+  saveState();
+
+  updateUI();
+}
+
+function clearMarking(){
+
+  document.querySelectorAll(".question-row")
+    .forEach(row => {
+      row.className = "question-row";
+    });
+
+  document.querySelectorAll(".choice")
+    .forEach(btn => {
+      btn.classList.remove("answer");
+    });
+}
+
+function grade(isLoad=false){
+
+  clearMarking();
+
+  let commonCorrect = 0;
+  let selectCorrect = 0;
+  let wrongs = [];
+
+  const subject = state.subject;
+
+  state.common.forEach((v,i) => {
+
+    const row = document.getElementById(`row-c-${i+1}`);
+    const answer = ANSWERS.common[i];
+
+    if(v === 0){
+      row.classList.add("empty");
+    }
+    else if(v === answer){
+      commonCorrect++;
+      row.classList.add("correct");
+    }
+    else{
+      row.classList.add("wrong");
+
+      row.querySelector(
+        `[data-choice="${answer}"]`
+      ).classList.add("answer");
+
+      wrongs.push(i+1);
+    }
+  });
+
+  state.select.forEach((v,i) => {
+
+    const row = document.getElementById(`row-s-${i+1}`);
+    const answer = ANSWERS[subject][i];
+
+    if(v === 0){
+      row.classList.add("empty");
+    }
+    else if(v === answer){
+      selectCorrect++;
+      row.classList.add("correct");
+    }
+    else{
+      row.classList.add("wrong");
+
+      row.querySelector(
+        `[data-choice="${answer}"]`
+      ).classList.add("answer");
+
+      wrongs.push(i+35);
+    }
+  });
+
+  const total = commonCorrect + selectCorrect;
+  const rate = (total / 45 * 100).toFixed(1);
+
+  state.submitted = true;
+
+  if(!isLoad){
+    saveState();
+  }
+
+  document.body.classList.add("submitted");
+
+  document.getElementById("scoreBanner")
+    .classList.add("show");
+
+  document.getElementById("scoreCorrect")
+    .textContent = total;
+
+  document.getElementById("scoreRate")
+    .textContent = `정답률 ${rate}%`;
+
+  const wrongText =
+    wrongs.length === 0
+    ? "🎉 전 문항 정답"
+    : wrongs.join(", ");
+
+  document.getElementById("scoreDetail")
+    .innerHTML = `
+      공통: ${commonCorrect}/34 |
+      선택: ${selectCorrect}/11
+      <br>
+      오답 문항: ${wrongText}
+    `;
+
+  document.getElementById("submitBtn").disabled = true;
+  document.getElementById("resultBtn").disabled = false;
+  document.getElementById("subjectSelect").disabled = true;
+
+  document.querySelectorAll(".choice")
+    .forEach(btn => {
+      btn.disabled = true;
+    });
+
+  document.getElementById("solutionArea")
+    .classList.remove("hidden");
+}
+
+function resetOMR(){
+
+  const ok = confirm(
+    "모든 답안을 삭제하고 처음부터 다시 풀까요?"
+  );
+
+  if(!ok) return;
+
+  localStorage.removeItem(STORAGE_KEY);
+
+  location.reload();
+}
+
+render("commonList", "c", 34);
+render("selectList", "s", 11);
+
+loadState();
+
+document.addEventListener("click", e => {
+
+  const btn = e.target.closest(".choice");
+
+  if(btn){
+
+    choose(
+      btn.dataset.prefix,
+      Number(btn.dataset.idx),
+      Number(btn.dataset.choice)
+    );
+  }
+});
+
+document.querySelectorAll(".tab-btn")
+  .forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      document.querySelectorAll(
+        ".tab-btn, .tab-content"
+      ).forEach(el => {
+        el.classList.remove("active");
+      });
+
+      btn.classList.add("active");
+
+      document.getElementById(
+        btn.dataset.tab
+      ).classList.add("active");
+    });
+  });
+
+document.getElementById("studentName")
+  .addEventListener("input", e => {
+    state.name = e.target.value;
+    saveState();
+  });
+
+document.getElementById("subjectSelect")
+  .addEventListener("change", e => {
+    state.subject = e.target.value;
+    saveState();
+  });
+
+document.getElementById("submitBtn")
+  .addEventListener("click", () => {
+
+    state.name = document
+      .getElementById("studentName")
+      .value
+      .trim();
+
+    if(!state.name){
+      alert("이름을 입력하세요.");
+      return;
+    }
+
+    const unanswered =
+      state.common.filter(v => v===0).length +
+      state.select.filter(v => v===0).length;
+
+    if(unanswered > 0){
+
+      const ok = confirm(
+        `미응답 ${unanswered}문항이 있습니다.\n그래도 제출할까요?`
+      );
+
+      if(!ok) return;
+    }
+
+    grade();
+  });
+
+document.getElementById("resultBtn")
+  .addEventListener("click", () => {
+
+    const summary = `
+[${state.name} 학생 결과]
+
+선택 과목: ${state.subject}
+
+${document.getElementById("scoreRate").innerText}
+
+${document.getElementById("scoreDetail").innerText}
+    `.trim();
+
+    navigator.clipboard.writeText(summary);
+
+    alert(
+      "결과 요약이 복사되었습니다.\n\n카카오톡에 바로 붙여넣기 할 수 있습니다."
+    );
+  });
+
+document.getElementById("resetBtn")
+  .addEventListener("click", resetOMR);
+
+})();
+</script>
+
+</body>
+</html>
