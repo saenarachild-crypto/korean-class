@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
-  <title>5월 4주차 마침내 모의고사 OMR · 김현석 국어</title>
+  <title>김현석 국어 · 5월 4주차 마침내 모의고사 OMR</title>
 
   <style>
     /* 기존 스타일 유지 */
@@ -73,14 +73,34 @@
     }
     .choice.selected { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
 
-    /* 채점 효과 스타일 */
-    body.submitted .question-row.correct { background: #e8f5ed; }
-    body.submitted .question-row.wrong { background: #fce8e8; }
-    body.submitted .question-row.unanswered { opacity: 0.6; background: #f0e6e8; }
-    body.submitted .choice.answer { border: 2.5px solid #2d8b5b !important; color: #2d8b5b !important; font-weight: 800 !important; background: #fff !important; }
+    /* 채점 시 정답/오답 표시 숨김 (정답 개수만 표시) */
+    body.submitted .question-row.correct,
+    body.submitted .question-row.wrong,
+    body.submitted .question-row.unanswered,
+    body.submitted .choice.answer {
+      /* 배경색이나 테두리 등 시각적 피드백 제거 */
+      background: transparent !important;
+      border: initial !important;
+      color: initial !important;
+    }
+    /* 단, 잘못된 문항 배경만 약하게 표시 가능하나 숨김 처리 (요청에 따라) */
+    body.submitted .question-row {
+      background: transparent !important;
+    }
+    body.submitted .choice {
+      border: 1.5px solid #d8c8cc !important;
+      background: #fff !important;
+      color: #6c4248 !important;
+    }
+    body.submitted .choice.selected {
+      background: #7c2c3e !important;
+      border-color: #7c2c3e !important;
+      color: #fff !important;
+    }
 
     .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; }
     .btn-primary { background: #7c2c3e; color: #fff; margin-top: 10px; }
+    .btn-primary:disabled { background: #b28a93; cursor: not-allowed; opacity: 0.7; }
     .btn-kakao { background: #fee500; color: #3c1e1e; margin-top: 10px; }
     .btn-secondary { background: #eee; color: #666; margin-top: 10px; }
     .btn:active { transform: scale(0.98); }
@@ -96,13 +116,14 @@
     .hidden { display: none; }
     .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 20px; border-radius: 20px; opacity: 0; transition: 0.3s; z-index: 2000; pointer-events: none; }
     .toast.show { opacity: 1; }
+    .timer-text { font-size: 14px; font-weight: bold; color: #d04141; margin-top: 8px; }
   </style>
 </head>
 <body>
 
 <header class="header">
   <h1>5월 4주차 마침내 모의고사</h1>
-  <div class="sub">공통(1~34) + 선택(35~45) · 자동 저장</div>
+  <div class="sub">공통(1~34) + 선택(35~45) · 자동 저장 · 최대 3회 채점</div>
 </header>
 
 <div class="container">
@@ -111,6 +132,8 @@
     <div class="score-main"><span id="scoreCorrect">0</span><span style="font-size:16px; color:#997a80;"> / 45</span></div>
     <div class="score-detail" id="scoreText">정답률 0%</div>
     <div id="wrongList" style="font-size:11px; color:#d04141; margin-top:8px; font-weight:700;"></div>
+    <div id="attemptCounter" style="font-size:12px; margin-top:6px; color:#7c2c3e;">📌 남은 채점 횟수: 3회</div>
+    <div id="cooldownTimer" class="timer-text hidden"></div>
   </div>
 
   <div class="info-card">
@@ -147,10 +170,7 @@
   <button class="btn btn-kakao" id="kakaoBtn" disabled>📋 결과 복사하기</button>
   <button class="btn btn-secondary" onclick="resetAll()">새로 시작하기 (초기화)</button>
 
-  <!-- 수정된 문제지 링크 (5월 4주차 문제지) -->
   <div class="link-box"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQB37q2ovk_2SoOthj2wrVMJAWbENtYDDUYW4hMYdTZ2Lhc?e=IxOepa" class="link-btn" target="_blank">📄 모의고사 문제지 보기</a></div>
-  
-  <!-- 수정된 해설지 링크 (5월 4주차 해설지) -->
   <div id="solutionLinkArea" class="link-box hidden"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDFOACPZTwQR5ESETUBEM9yAZmK9qndV5tMw3JHIPAOu6A?e=csMwOf" class="link-btn" target="_blank">📖 해설지 보기 (복사 후 열람)</a></div>
 </div>
 
@@ -161,33 +181,29 @@
 (function(){
   const $ = id => document.getElementById(id);
   
-  // ======================= 정답 갱신 (요청된 5월 4주차 정답) =======================
-  // 공통 1~34번 :  3 1 5 2 1 / 3 4 5 2 1 / 4 2 5 1 4 / 3 2 3 2 4 / 2 1 3 4 5 / 5 4 4 1 2 / 1 5 3 2
-  const COMMON_ANS = [
-    3,1,5,2,1,  // 1~5
-    3,4,5,2,1,  // 6~10
-    4,2,5,1,4,  // 11~15
-    3,2,3,2,4,  // 16~20
-    2,1,3,4,5,  // 21~25
-    5,4,4,1,2,  // 26~30
-    1,5,3,2     // 31~34
-  ];
-  
-  // 화법과작문 (35~45) : 1 3 4 4 4 2 3 5 5 1 2
-  const HWABEOP_ANS = [1,3,4,4,4,2,3,5,5,1,2];
-  
-  // 언어와매체 (35~45) : 2 1 4 3 3 1 2 4 5 1 5
-  const LANG_MEDIA_ANS = [2,1,4,3,3,1,2,4,5,1,5];
-  
+  // 정답 데이터 (변경 없음)
   const ANS = {
-    common: COMMON_ANS,
-    "화법과작문": HWABEOP_ANS,
-    "언어와매체": LANG_MEDIA_ANS
+    common: [3,1,5,2,1, 3,4,5,2,1, 4,2,5,1,4, 3,2,3,2,4, 2,1,3,4,5, 5,4,4,1,2, 1,5,3,2],
+    "화법과작문": [1,3,4,4,4, 2,3,5,5,1,2],
+    "언어와매체": [2,1,4,3,3, 1,2,4,5,1,5]
   };
-  // ============================================================================
   
-  const STORAGE_KEY = 'mock_5_week_final_v2';  // 구분을 위해 key 변경 (이전과 충돌 방지, but 자동저장 유지)
-  let state = { common: new Array(34).fill(0), select: new Array(11).fill(0), submitted: false, revealed: false, name: '', sub: '화법과작문' };
+  const STORAGE_KEY = 'may_4th_week_omr_v2';
+  const MAX_ATTEMPTS = 3;
+  const COOLDOWN_MINUTES = 10;
+  
+  let state = { 
+    common: new Array(34).fill(0), 
+    select: new Array(11).fill(0), 
+    submitted: false,        // 현재 최종 채점 완료 여부 (채점 후 true)
+    attemptCount: 0,         // 실제 채점을 수행한 횟수 (성공한 채점)
+    cooldownUntil: 0,        // 밀리초 타임스탬프 (이 시간까지 채금)
+    name: '', 
+    sub: '화법과작문',
+    lastScore: null          // 마지막 채점 점수 저장 (표시용)
+  };
+  
+  let timerInterval = null;
 
   function render(el, prefix, count, offset) {
     let html = '';
@@ -210,126 +226,295 @@
     $('commonProgress').innerText = `${state.common.filter(x=>x>0).length} / 34`;
     $('selectProgress').innerText = `${state.select.filter(x=>x>0).length} / 11`;
   }
-
-  function gradeExam(isAuto = false) {
-    if(!state.submitted && !isAuto) return;
+  
+  // 타이머 업데이트 및 버튼 상태 제어
+  function updateCooldownUI() {
+    const now = Date.now();
+    const cooldownTimerDiv = $('#cooldownTimer');
+    const submitBtn = $('#submitBtn');
     
-    // 정답 클래스 초기화 
-    document.querySelectorAll('.choice').forEach(c => c.classList.remove('answer'));
-    document.querySelectorAll('.question-row').forEach(r => r.classList.remove('correct', 'wrong', 'unanswered'));
-
-    let correct = 0; let wrongs = [];
+    if (state.cooldownUntil && now < state.cooldownUntil) {
+      const remainSeconds = Math.floor((state.cooldownUntil - now) / 1000);
+      const minutes = Math.floor(remainSeconds / 60);
+      const seconds = remainSeconds % 60;
+      cooldownTimerDiv.classList.remove('hidden');
+      cooldownTimerDiv.innerText = `⏳ 다음 채점까지 대기 시간: ${minutes}분 ${seconds}초`;
+      submitBtn.disabled = true;
+      if (timerInterval === null) {
+        timerInterval = setInterval(() => {
+          if (Date.now() >= state.cooldownUntil) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            cooldownTimerDiv.classList.add('hidden');
+            submitBtn.disabled = false;
+            // 추가로 채점 횟수 남아있으면 활성화
+            if (state.attemptCount >= MAX_ATTEMPTS) submitBtn.disabled = true;
+          } else {
+            updateCooldownUI();
+          }
+        }, 1000);
+      }
+    } else {
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+      cooldownTimerDiv.classList.add('hidden');
+      // 채점 횟수 제한 확인
+      if (state.attemptCount >= MAX_ATTEMPTS) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = '채점 횟수 소진';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.innerText = '채점하기';
+      }
+    }
+    
+    // 남은 채점 횟수 표시
+    const remaining = Math.max(0, MAX_ATTEMPTS - state.attemptCount);
+    $('#attemptCounter').innerHTML = `📌 남은 채점 횟수: ${remaining}회`;
+    if (state.attemptCount >= MAX_ATTEMPTS) {
+      $('#attemptCounter').style.color = "#b00";
+    } else {
+      $('#attemptCounter').style.color = "#7c2c3e";
+    }
+  }
+  
+  // 순수하게 점수만 계산 (정답/오답 개수, 리스트) - 단, 화면 표시는 틀린 개수와 점수만
+  function computeScoreOnly() {
+    let correct = 0;
+    let wrongs = [];
     const sub = state.sub;
-
+    
     state.common.forEach((v, i) => {
-      const row = $(`row-c-${i+1}`); const key = ANS.common[i];
-      if(v == 0) row.classList.add('unanswered');
-      else if(v == key) { correct++; row.classList.add('correct'); }
-      else { row.classList.add('wrong'); wrongs.push(i+1); }
-      const answerBtn = row.querySelector(`[data-v="${key}"]`);
-      if(answerBtn) answerBtn.classList.add('answer');
+      const key = ANS.common[i];
+      if(v !== 0 && v === key) correct++;
+      else if(v !== 0 && v !== key) wrongs.push(i+1);
+      else if(v === 0) wrongs.push(i+1); // 미입력도 오답 처리 (채점 시)
     });
-
+    
     state.select.forEach((v, i) => {
-      const row = $(`row-s-${i+1}`); const key = ANS[sub][i];
-      if(v == 0) row.classList.add('unanswered');
-      else if(v == key) { correct++; row.classList.add('correct'); }
-      else { row.classList.add('wrong'); wrongs.push(i+35); }
-      const answerBtn = row.querySelector(`[data-v="${key}"]`);
-      if(answerBtn) answerBtn.classList.add('answer');
+      const key = ANS[sub][i];
+      if(v !== 0 && v === key) correct++;
+      else if(v !== 0 && v !== key) wrongs.push(i+35);
+      else if(v === 0) wrongs.push(i+35);
     });
-
-    document.body.classList.add('submitted');
-    $('subjectSelect').disabled = true;
+    
+    return { correct, wrongs };
+  }
+  
+  // 채점 실행 (결과만 표시, 정답/해설 숨김)
+  function performGrading() {
+    const { correct, wrongs } = computeScoreOnly();
+    const total = 45;
+    const percent = ((correct/total)*100).toFixed(1);
+    
+    // 점수 배너 표시 (정답 개수, 오답 번호)
     $('scoreBanner').classList.add('show');
     $('scoreCorrect').innerText = correct;
-    $('scoreText').innerText = `정답률 ${((correct/45)*100).toFixed(1)}%`;
-    $('wrongList').innerText = wrongs.length ? `오답: ${wrongs.join(', ')}` : '만점입니다! 축하합니다.';
-    $('kakaoBtn').disabled = false;
-    $('submitBtn').disabled = true;
-    $('submitBtn').innerText = '채점 완료';
+    $('scoreText').innerHTML = `정답률 ${percent}%<br><span style="font-size:11px;">※ 정답과 해설은 공개되지 않습니다.</span>`;
+    if(wrongs.length > 0) {
+      $('wrongList').innerHTML = `❌ 틀린 문항 (번호만): ${wrongs.join(', ')}<br><span style="font-size:10px;">(총 ${wrongs.length}개)</span>`;
+    } else {
+      $('wrongList').innerHTML = '✅ 만점입니다! 축하합니다.';
+    }
+    
+    // 채점 완료 표시 (submitted = true)
+    state.submitted = true;
+    document.body.classList.add('submitted');
+    $('subjectSelect').disabled = true;
+    $('#kakaoBtn').disabled = false;
+    $('#submitBtn').disabled = true;
+    $('#submitBtn').innerText = '채점 완료';
+    
+    // 결과 복사용 저장
+    state.lastScore = { correct, wrongs, percent };
+    save();
   }
-
-  $('submitBtn').onclick = () => {
+  
+  // 채점하기 버튼 핸들러 (제한조건, 10분 쿨다운, 3회 제한)
+  function onSubmit() {
     const name = $('studentName').value.trim();
     if(!name) { alert('이름을 입력하세요.'); $('studentName').focus(); return; }
     state.name = name;
     state.sub = $('subjectSelect').value;
-
+    
+    // 채점 횟수 확인
+    if (state.attemptCount >= MAX_ATTEMPTS) {
+      showToast(`이미 ${MAX_ATTEMPTS}회 채점했습니다. 더 이상 채점할 수 없습니다.`);
+      return;
+    }
+    
+    // 쿨다운 확인
+    const now = Date.now();
+    if (state.cooldownUntil && now < state.cooldownUntil) {
+      const remainMin = Math.ceil((state.cooldownUntil - now) / 60000);
+      showToast(`다음 채점까지 ${remainMin}분 기다려주세요.`);
+      return;
+    }
+    
     const answered = state.common.filter(x=>x>0).length + state.select.filter(x=>x>0).length;
-    if(answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 채점할까요?`)) return;
-
-    state.submitted = true; 
+    if(answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 그래도 채점할까요?`)) return;
+    
+    // 채점 실행
+    performGrading();
+    
+    // 채점 횟수 증가 & 쿨다운 설정 (10분)
+    state.attemptCount++;
+    state.cooldownUntil = Date.now() + (COOLDOWN_MINUTES * 60 * 1000);
+    state.submitted = true;   // 이미 true
+    
     save();
-    gradeExam();
+    
+    // 쿨다운 UI 업데이트 및 버튼 비활성화
+    updateCooldownUI();
     window.scrollTo(0,0);
+  }
+  
+  // 결과 복사 (리포트 생성)
+  function generateReportText() {
+    let wrongInfo = "";
+    if (state.lastScore) {
+      wrongInfo = state.lastScore.wrongs.length ? `오답 문항: ${state.lastScore.wrongs.join(', ')}` : "만점";
+    } else {
+      wrongInfo = "정보 없음";
+    }
+    return `[5월 4주차 마침내 모의고사 결과]
+성함: ${state.name}
+과목: ${state.sub}
+총점: ${state.lastScore ? state.lastScore.correct : '?'}/45
+정답률: ${state.lastScore ? state.lastScore.percent : '?'}%
+${wrongInfo}
+※ 정답 및 해설은 비공개 처리되었습니다.`;
+  }
+  
+  // 복사 버튼 클릭 시 모달
+  $('#kakaoBtn').onclick = () => {
+    const reportText = generateReportText();
+    $('#report-text').value = reportText;
+    $('#reportModal').classList.add('show');
+    state.revealed = true;
+    save();
+    $('#solutionLinkArea').classList.remove('hidden');
   };
-
-  document.addEventListener('click', e => {
-    const b = e.target.closest('.choice');
-    if(!b) return;
-    if(state.submitted) { showToast('채점 완료 후에는 수정할 수 없습니다.'); return; }
-    const {p, idx, v} = b.dataset;
-    const arr = p === 'c' ? state.common : state.select;
-    arr[idx] = arr[idx] == v ? 0 : parseInt(v);
-    updateUI(); save();
-  });
-
-  $('kakaoBtn').onclick = () => {
-    let text = `[5월 4주차 마침내 모의고사 결과]\n성함: ${state.name}\n과목: ${state.sub}\n총점: ${$('scoreCorrect').innerText}/45\n${$('scoreText').innerText}\n${$('wrongList').innerText}`;
-    $('report-text').value = text;
-    $('reportModal').classList.add('show');
-    state.revealed = true; save();
-    $('solutionLinkArea').classList.remove('hidden');
-  };
-
+  
   window.copyReport = async () => {
-    const text = $('report-text').value;
+    const text = $('#report-text').value;
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text);
         showToast('리포트가 복사되었습니다!');
       } else { throw new Error(); }
     } catch(e) {
-      $('report-text').select(); document.execCommand('copy');
+      $('#report-text').select(); document.execCommand('copy');
       showToast('리포트가 복사되었습니다!');
     }
   };
-
-  window.closeModal = () => $('reportModal').classList.remove('show');
-  window.resetAll = () => { if(confirm('모든 답안과 채점 결과가 지워집니다. 다시 푸시겠습니까?')) { localStorage.removeItem(STORAGE_KEY); location.reload(); } };
+  
+  window.closeModal = () => $('#reportModal').classList.remove('show');
+  
+  // 초기화: 모든 데이터 리셋 (로컬스토리지 제거, 새로고침)
+  window.resetAll = () => { 
+    if(confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) { 
+      localStorage.removeItem(STORAGE_KEY); 
+      location.reload(); 
+    } 
+  };
+  
   function showToast(m) { const t=$('toast'); t.innerText=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
-  function save() { 
+  
+  function save() {
     state.name = $('studentName').value.trim();
     state.sub = $('subjectSelect').value;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); 
+    // 순환참조 방지, lastScore가 없으면 null
+    const toStore = {
+      common: state.common,
+      select: state.select,
+      submitted: state.submitted,
+      attemptCount: state.attemptCount,
+      cooldownUntil: state.cooldownUntil,
+      name: state.name,
+      sub: state.sub,
+      revealed: state.revealed,
+      lastScore: state.lastScore
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore));
   }
-
+  
   function load() {
     try {
       const s = localStorage.getItem(STORAGE_KEY);
-      if(!s) return;
-      const data = JSON.parse(s);
-      // 호환: 기존 구조와 일치하도록 할당 (state 기본값 덮어쓰기)
-      Object.assign(state, data);
-      $('studentName').value = state.name || '';
-      $('subjectSelect').value = state.sub || '화법과작문';
-      updateUI();
-      if(state.submitted) gradeExam(true);
-      if(state.revealed) $('solutionLinkArea').classList.remove('hidden');
+      if(s) {
+        const data = JSON.parse(s);
+        state.common = data.common || new Array(34).fill(0);
+        state.select = data.select || new Array(11).fill(0);
+        state.submitted = data.submitted || false;
+        state.attemptCount = data.attemptCount || 0;
+        state.cooldownUntil = data.cooldownUntil || 0;
+        state.name = data.name || '';
+        state.sub = data.sub || '화법과작문';
+        state.revealed = data.revealed || false;
+        state.lastScore = data.lastScore || null;
+        
+        $('studentName').value = state.name;
+        $('subjectSelect').value = state.sub;
+        updateUI();
+        
+        // 채점 완료 상태 처리 (정답 숨김처리 + 점수 배너 복원)
+        if (state.submitted && state.lastScore) {
+          document.body.classList.add('submitted');
+          $('subjectSelect').disabled = true;
+          $('#submitBtn').disabled = true;
+          $('#submitBtn').innerText = '채점 완료';
+          $('#kakaoBtn').disabled = false;
+          $('scoreBanner').classList.add('show');
+          $('scoreCorrect').innerText = state.lastScore.correct;
+          $('scoreText').innerHTML = `정답률 ${state.lastScore.percent}%<br><span style="font-size:11px;">※ 정답과 해설은 공개되지 않습니다.</span>`;
+          if(state.lastScore.wrongs && state.lastScore.wrongs.length) {
+            $('wrongList').innerHTML = `❌ 틀린 문항 (번호만): ${state.lastScore.wrongs.join(', ')}<br><span style="font-size:10px;">(총 ${state.lastScore.wrongs.length}개)</span>`;
+          } else {
+            $('wrongList').innerHTML = '✅ 만점입니다! 축하합니다.';
+          }
+          if (state.revealed) $('#solutionLinkArea').classList.remove('hidden');
+        } else {
+          // 아직 미채점 상태
+          document.body.classList.remove('submitted');
+          $('subjectSelect').disabled = false;
+          $('#submitBtn').disabled = false;
+          $('#kakaoBtn').disabled = true;
+          $('scoreBanner').classList.remove('show');
+        }
+        
+        // 쿨다운 및 횟수 제한 UI 적용
+        updateCooldownUI();
+      } else {
+        // 기본 초기화
+        updateCooldownUI();
+      }
     } catch(e) {
+      console.error("로드 오류", e);
       localStorage.removeItem(STORAGE_KEY);
-      console.error("데이터 로드 오류:", e);
     }
   }
-
+  
+  // 이벤트 연결
+  $('submitBtn').onclick = onSubmit;
+  
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.choice');
+    if(!b) return;
+    // 채점 완료 후 수정 불가
+    if(state.submitted) { showToast('채점 완료 후에는 답안을 수정할 수 없습니다.'); return; }
+    const {p, idx, v} = b.dataset;
+    const arr = p === 'c' ? state.common : state.select;
+    arr[idx] = arr[idx] == v ? 0 : parseInt(v);
+    updateUI(); save();
+  });
+  
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll('.tab-btn, .tab-content').forEach(el => el.classList.remove('active'));
       btn.classList.add('active'); $(btn.dataset.tab).classList.add('active');
     };
   });
-
+  
   load();
 })();
 </script>
