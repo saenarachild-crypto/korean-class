@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>호동서락기 - 김금원 | 문장별 상세 분석 + 핵심 개념</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            padding: 40px 20px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 32px 35px;
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+        }
+        .title-main {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            color: #0f2b3d;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            color: #1e466e;
+            border-left: 4px solid #e67e22;
+            padding-left: 16px;
+        }
+        .original-text {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin: 20px 0;
+            font-family: 'Times New Roman', 'Noto Serif KR', serif;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        .sentence-wrapper {
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 6px;
+            white-space: pre-wrap;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            padding: 8px 14px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .highlight {
+            background-color: #fef9c3;
+            font-weight: 600;
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+        .badge {
+            background: #e67e22;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .badge-blue {
+            background: #1e466e;
+        }
+        .list-styled {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-styled li {
+            margin: 8px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .list-styled li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 880px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+        .core-box {
+            background: #eef2ff;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 30px;
+            border: 1px solid #cbd5e1;
+        }
+        .core-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1e466e;
+            text-align: center;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .compare-table th, .compare-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .compare-table th {
+            background: #e2e8f0;
+            font-weight: 700;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 20px;
+        }
+        .poem-line {
+            font-family: 'Malgun Gothic', monospace;
+            white-space: pre-wrap;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="title-main">✍️ 호동서락기 · 김금원 (한문 기행문)</div>
+        
+        <!-- ========== 지문 전체 (문장별 분석) ========== -->
+        <div class="subtitle">■ 지문 전문</div>
+        <div class="original-text">
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">하늘이 이미 나에게 어질고 지혜로운 성품을 주시고 귀와 눈을 만들어 주셨으니 어찌 산수를 좋아하고 즐기며 견문을 넓히지 못하겠는가.</div>
+                <div class="side-analysis">📌 분석 – 반문(反问)을 통해 자신이 산수를 사랑하고 견문을 넓히는 것이 당연함을 역설. ‘하늘이 준 것’은 남녀 차별 없이 모든 인간에게 주어진 것임을 암시.</div>
+                <div class="vocab-note">📖 어구 – 어질고 지혜로운 성품: 선천적 자질. 견문: 보고 들은 지식.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">하늘이 이미 내게 총명한 재주를 주셨으니 어찌 문명(文明)한 나라에서 무엇인가를 성취할 수 없겠는가.</div>
+                <div class="side-analysis">📌 분석 – 성취에 대한 욕망을 드러냄. 같은 문장 형식 반복으로 강조. ‘문명한 나라’는 조선을 의미.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">여자로 태어났으니 깊은 담장 안에서 문을 닫아걸고 법도를 지키는 것이 옳은가. 한미한 집안에 태어났으니 처지대로 분수에 맞게 살다가 이름도 없이 사라지는 것이 옳은가.</div>
+                <div class="side-analysis">📌 분석 – 조선 시대 여성에게 강요된 삶에 대한 의문과 비판. 반복적 의문형으로 생각을 강조. 사회적 규율에 대한 도전적 태도.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">세상에는 첨윤의 거북*이 없어 굴원이 점치던 것을 본받기도 어렵다. 그러나 첨윤의 말에 이르기를 “계책에는 단점이 있고, 지혜에는 장점이 있으니 스스로 그 뜻을 행하게 한다.”라고 했으니 내 뜻은 결정되었다.</div>
+                <div class="side-analysis">📌 분석 – 고사(故事)를 인용하여 자신의 결정을 정당화. 첨윤(詹尹)은 초나라의 점쟁이. 지혜를 믿고 스스로 행동하겠다는 결심.</div>
+                <div class="vocab-note">📖 어구 – 첨윤의 거북: 점치는 데 쓰는 거북. 굴원: 초나라 시인.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">아직 혼인하지 않은 나이지만 강산의 아름다운 경치를 두루 돌아보고 증점*이 기수에서 목욕하고 무우에서 바람을 쐬고 글을 읊으며 돌아온 일을 본받겠다고 하면 성인께서도 마땅히 동의 하시리라.</div>
+                <div class="side-analysis">📌 분석 – 공자의 제자 증점(曾點)의 고사를 들어 여행의 정당성을 주장. 증점은 자연을 즐기는 삶을 공자에게 인정받았음. ‘성인’은 공자를 지칭.</div>
+                <div class="vocab-note">📖 어구 – 증점: 공자의 제자. 기수: 기수(沂水) 강. 무우: 무우(舞雩) 제단.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">마음에 계획을 정하고 부모님께 여러 번 간청하니 한참 뒤에야 겨우 허락하셨다. 그러자 가슴이 트이며 마치 매가 새장을 나와 저 푸른 하늘로 솟구쳐 오르는 것 같고, 천리마가 재갈을 벗어 던지고 천 리를 내닫는 듯한 기분이었다.</div>
+                <div class="side-analysis">📌 분석 – 부모님 허락 후 자유로움을 비유(매, 천리마)로 표현. 억눌림에서 해방된 희열. 대구적 비유로 감정 고조.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">그날로 남자 옷으로 갈아입고 짐을 꾸려 먼저 네 고을을 향해 길을 떠났다.</div>
+                <div class="side-analysis">📌 분석 – 남장(男裝)을 통해 사회적 제약을 넘어서는 행동. 여행의 시작. ‘네 고을’은 금호 사군(단양·제천 일대).</div>
+                <div class="vocab-note">📖 어구 – 네 고을: 단양, 제천 등 금호 사군.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">[A]</div>
+                <div class="side-analysis">📌 분석 – 중략 부분. 이후 금호 사군, 금강산, 관동 팔경 여행 내용이 생략됨.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(중략)</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">산과 바다의 아름다움과 웅장함을 두루 다 보고 나니 다시 수려하고 번화한 곳을 더 보고 싶어졌다. 마침내 한양으로 향하여 가다가 멀리 한양을 바라보며 <span class="highlight">㉠시 한 수를 지었다.</span></div>
+                <div class="side-analysis">📌 분석 – 금강산과 관동 팔경을 둘러본 후 한양으로 향함. 한양을 바라보며 시를 지음. ㉠이 지문.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence poem-line">한가로이 부평초처럼 멀리 노닐기를 일삼아 閒似浮萍事遠遊</div>
+                <div class="poem-line">산에 오른 지 여러 날이 되어도 멈출 줄 모르네 登臨多日不知休</div>
+                <div class="poem-line">돌아갈 마음에 즐거이 동쪽으로 흐르는 물 따라가니 歸心欣逐東流水</div>
+                <div class="poem-line">서울의 바람과 안개도 조만간 걷히리라 京洛風煙早晩收</div>
+                <div class="side-analysis">📌 분석 – 4구 한시. ‘부평초’(개구리밥) 비유로 정착하지 않고 떠도는 삶의 태도 표현. ‘멈출 줄 모르네’는 유람의 즐거움. ‘동쪽으로 흐르는 물’은 한양 방향. ‘바람과 안개’는 장애물, 곧 걷히리라는 낙관적 전망.</div>
+                <div class="vocab-note">📖 어구 – 부평초: 개구리밥, 떠다니는 풀. 경락(京洛): 서울(한양).</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">한양은 제왕의 도읍으로 억만년 태평세월의 기틀이니 구구한 좁은 소견으로 엿보고 추측할 바가 아니고 그 웅장한 형세와 엄숙한 기상이 다만 그 큰 계획을 깨닫게 할 따름이었다.</div>
+                <div class="side-analysis">📌 분석 – 한양(서울)의 웅장함을 찬양. ‘억만년 태평세월의 기틀’은 수도로서의 위상 강조.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">높고 높은 봉우리와 첩첩한 산은 용이 서리고 호랑이가 웅크린 듯 꿈틀대며 일어나는가 하면 엎드려 있기도 하고, 칼날이 서고 깃발이 펼쳐진 것 같기도 하다.</div>
+                <div class="side-analysis">📌 분석 – 비유적 표현(용·호랑이·칼·깃발)으로 산세의 웅장함과 험준함을 형상화. 대구적 표현.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">북으로 삼각산과 백악산이 큰 도시를 웅장하게 누르고, 남으로는 목멱산과 종남산이 책상을 마주한 듯 서 있으며, 왼편으로는 왕십리 벌판이 동쪽 성곽을 에워싸고 오른편으로는 만리재가 서쪽 끝을 받치고 있다.</div>
+                <div class="side-analysis">📌 분석 – 구체적 지명과 방향을 제시하며 한양의 지리적 형세를 상세히 묘사. 대구적 구조로 리듬감.</div>
+                <div class="vocab-note">📖 어구 – 삼각산, 백악산, 목멱산(남산), 종남산, 왕십리, 만리재: 서울의 지명.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">한강이 띠처럼 두르고 있고 삼강(三江)은 도시의 문으로 배와 수레가 모여든다. 강과 육지가 만나 기세가 웅장하고 물산이 풍성하니 아아, 아름답도다.</div>
+                <div class="side-analysis">📌 분석 – 한강과 삼강(三江: 한강·용산강·서강)의 경제적 중요성 언급. 영탄적 표현으로 감탄.</div>
+                <div class="vocab-note">📖 어구 – 삼강: 한강, 용산강, 서강.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">고구려의 도읍은 평양으로 비록 수양제의 위세로 천하의 군대를 동원했으나 ‘요동에 가서 헛된 죽음을 당한다.’라는 노래가 나왔고*, 또 당태종의 뛰어남으로도 한 성 밑에서 곤경을 당하여 오히려 ‘눈에 화살을 맞다.’라는 시구를 면치 못했다*. 하물며 한양은 굳건한 천연의 요새요 땅이 비옥하고 물산이 풍부한 땅이니 누가 날아서 강을 건너올 수 있겠는가.</div>
+                <div class="side-analysis">📌 분석 – 역사적 고사를 인용(수양제·당태종의 고구려 원정 실패)하여 한양의 안전성을 강조. 영탄적 어조로 결론.</div>
+                <div class="vocab-note">📖 어구 – 수양제, 당태종: 중국 황제. ‘요동에 가서 헛된 죽음을 당한다’: 고구려 원정 실패를 노래한 시.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">남산에 올라 대궐을 내려다보니 용루와 봉각에 상서로운 기운이 쌓였고, 시내를 내려다보니 회칠한 담장과 성가퀴에 아름다운 기운이 가득했다.</div>
+                <div class="side-analysis">📌 분석 – 남산(목멱산)에서 바라본 궁궐과 시내 풍경. ‘상서로운 기운’은 태평성대의 상징.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">크고 아름다운 저택들이 즐비하고, 꽉 들어찬 술집들이 하늘을 찌를 듯 마주 보고 있었다. 붉은 수레바퀴, 푸른 말발굽이 길을 비키라는 소리와 함께 동서로 내달리고, 부귀한 이들은 번화한 거리에서 다투어 뽐내고, 백마 타고 금 채찍을 들고 놀러 나온 젊은이들은 삼삼오오 짝을 지어 의기투합해서 청루와 술집에서 만나니 실로 밝은 세계의 태평한 기상이라 할 만했다.</div>
+                <div class="side-analysis">📌 분석 – 한양 시내의 번화하고 유흥적인 풍경을 생생하게 묘사. 색채어(붉은, 푸른)와 구체적 사물(수레, 말, 채찍)로 시각적 이미지 풍부. 화려함 속에서도 ‘태평한 기상’이라 긍정적 평가.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">시골에서 나고 자라 스스로 안목이 좁음을 비웃다가 성안을 두루 돌아보니 비로소 가슴이 탁 트이는 것을 느꼈다.</div>
+                <div class="side-analysis">📌 분석 – 시골 출신(여성)으로서 자신의 좁은 안목을 자조하며, 한양을 보고 감동. ‘가슴이 탁 트임’은 깨달음과 감격 표현.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">창의문을 지나 세검정을 찾았다. 시냇가 바위 위에 지어진 몇 칸 정자는 설계가 정교하고 깔끔했다. 바위 사이로 흐르는 개울물은 물살이 몹시 빨라서 폭포에 가깝고, 푸른 산이 환히 비쳐 책상 위에 쌓인 듯했다.</div>
+                <div class="side-analysis">📌 분석 – 세검정(洗劍亭) 방문. 건축물의 정교함과 자연 풍경을 비유적 표현(책상 위에 쌓인 듯)으로 묘사.</div>
+                <div class="vocab-note">📖 어구 – 창의문: 서울 성문. 세검정: 칼 씻는 정자.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">옛날에 한 장수가 전쟁에서 이긴 뒤 이 개울물에 칼을 씻은 일이 있어 임금님이 현판에 ‘세검정(洗劍亭)’이라고 쓰고, 노란 비단으로 돌렸다. 임금님의 글씨가 휘황하게 빛나니 오래도록 사라지지 않으리라. 그 옆 큰 바위에 ‘영가(詠歌)’ 두 글자를 새겼는데 비바람에 마모되고 깎여 글자를 알아보기 어려웠다.</div>
+                <div class="side-analysis">📌 분석 – 세검정의 유래와 현판 이야기. 임금의 글씨를 존경하는 태도. 오랜 시간으로 인한 풍화(風化)도 언급.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">탕춘대를 찾으니 산세가 몹시 험준하고 성체가 견고했다. 이는 바로 북한산의 관문으로 배치가 엄밀하고 계획이 원대해서 선왕이 후세를 위해 남긴 뜻을 우러러 짐작할 수 있었다.</div>
+                <div class="side-analysis">📌 분석 – 탕춘대(蕩春臺)의 군사적 중요성과 선왕의 뜻을 추모하는 태도.</div>
+                <div class="vocab-note">📖 어구 – 탕춘대: 북한산의 관문.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">실 같은 길을 따라 삼계동으로 가니 이는 김 상서의 별장이 있는 곳이다. 작은 서재가 수풀 사이로 희미하게 보이고 배치가 정결해서 상서가 쉬는 곳임을 알 수 있었다.</div>
+                <div class="side-analysis">📌 분석 – 삼계동(三溪洞) 김 상서 별장. 정갈하고 깊은 분위기.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">백석실에 올라가니 맑은 시내가 화원을 두르고 흰 돌로 다리를 놓았다. 꽃잎이 눈처럼 떨어져 섬돌에 가득한데도 쓸지 않고 사람문이 낮에도 닫혀 있어 더욱 깊고 그윽하게 느껴졌다.</div>
+                <div class="side-analysis">📌 분석 – 백석실(白石室)의 경관. 시각·후각·청각적 이미지 활용. 고요하고 적막한 분위기.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">길을 돌아 산골짜기로 들어가니 계곡 옆에 수각(水閣)이 있는데 바위 위에 ‘천수도(千樹桃)’ 세 글자가 새겨져 있어 마치 유우석의 시의 현도관*의 뜻을 보는 것 같았다. 산이 높고 골짜기는 깊으며 향기 나는 채소가 정원에 가득하고 작은 폭포도 있고 온갖 새가 지저귀고 물은 바위 사이로 졸졸 흐르고 꽃과 풀은 무성하니 그 빼어난 경치를 따라 그리기도 어려울 것 같았다.</div>
+                <div class="side-analysis">📌 분석 – 자연 경관의 아름다움을 감각적으로 묘사(시각·청각·후각). 유우석의 시(玄都觀)를 인용하여 고고한 분위기 조성. ‘그리기도 어려울 것 같았다’는 극찬.</div>
+                <div class="vocab-note">📖 어구 – 유우석: 당나라 시인. 현도관: 복사꽃으로 유명한 도교 사원.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">①시 한 편을 읊조렸다.</div>
+                <div class="poem-line">갖가지 꽃 피고 아침 기운 더하니 작은 누각이 환하고 百花朝氣小樓明</div>
+                <div class="poem-line">낮은 나막신 팔랑팔랑 날개 돋은 듯 가볍네 短腰翻如羽化輕</div>
+                <div class="poem-line">괴로운 심사 펼쳐 내어 다 씻어 내니 披得煩襟胸寫盡</div>
+                <div class="poem-line">온 산에 가득한 안개 끝이 없구나 滿山煙霧極望平</div>
+                <div class="side-analysis">📌 분석 – 시를 통해 내면의 괴로움이 해소된 기쁨과 자연의 아름다움에 대한 감동 표현. ‘나막신 팔랑팔랑’은 가벼운 동작으로 즐거움을 상징. ‘안개’는 자연 풍경이자 화자의 확 트인 심경을 반영.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">향기로운 난초를 발로 밟으며 손으로 맑은 물을 움켜쥐니 바람에 비단옷이 나부끼고 신선의 삼실개는 구름을 보고 젖어 냈다. 산과 물은 본디 주인이 없고 바람과 달 또한 그 사이에 있는 것이니 오로지 노니는 사람이 취할 뿐이다. 향기로운 풀을 밟고 지나가며 기이한 경치를 두루 찾아보았다.</div>
+                <div class="side-analysis">📌 분석 – 자연과 하나 된 체험. ‘산수는 주인이 없다’는 도가적 자연관. 여행의 궁극적 의미: 자연을 소유하는 것이 아니라 누리는 것임을 강조.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">- 김금원, 「호동서락기」</div>
+            </div>
+            
+        </div>
+        
+        <!-- ========== 핵심 개념 구조도 ========== -->
+        <div class="core-box">
+            <h3>📌 이것만은 꼭 익히자 - 호동서락기</h3>
+            
+            <!-- 1. 작품 개관 -->
+            <div class="badge">1. 작품 개관</div>
+            <ul class="list-styled">
+                <li><strong>작가</strong>: 김금원 (조선 후기 여성 문인)</li>
+                <li><strong>시대</strong>: 1850년경 (34세 때 지음, 실제 여행은 14세 때 시작)</li>
+                <li><strong>문학사적 의의</strong>: 현전하는 여성 기행 산문 최초</li>
+                <li><strong>제목 의미</strong>: ‘호동서락기(湖東西洛記)’ – 금호 사군(湖西)과 관동·관서·한양(西洛)을 여행한 기록</li>
+                <li><strong>주제</strong>: 여러 경승지를 유람하고 서울로 돌아오는 여정에서 얻은 견문과 감상, 여성의 사회적 제약에 대한 비판과 자유의지</li>
+            </ul>
+            
+            <!-- 2. 여정 구성 -->
+            <div class="badge" style="margin-top:20px;">2. 여정 구성</div>
+            <table class="compare-table">
+                <thead><tr><th>구분</th><th>여정</th><th>시기</th></tr></thead>
+                <tbody>
+                    <tr><td rowspan="4"><strong>전반부 (남장 여행)</strong></td><td>금호 사군 (단양·제천)</td><td rowspan="4">14세 ~ 혼인 전</td></tr>
+                    <tr><td>금강산·관동 팔경</td></tr>
+                    <tr><td>설악산</td></tr>
+                    <tr><td>한양 (지문에서 묘사)</td></tr>
+                    <tr><td rowspan="2"><strong>후반부 (혼인 후)</strong></td><td>관서 지역 (의주 등, 남편 따라)</td><td rowspan="2">29세 ~</td></tr>
+                    <tr><td>한양 귀환, 벗들과 시회</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- 3. 표현상 특징 -->
+            <div class="badge" style="margin-top:20px;">3. 표현상 특징</div>
+            <ul class="list-styled">
+                <li><strong>반복적 의문형</strong>: “어찌 ~ 하지 못하겠는가”, “~이 옳은가” – 자신의 생각 강조</li>
+                <li><strong>비유와 대구</strong>: 매가 새장을 나옴, 천리마, 용·호랑이, 책상, 띠 등 – 생생한 시각적 이미지</li>
+                <li><strong>고사 인용</strong>: 증점(曾點), 첨윤(詹尹), 수양제·당태종, 유우석 – 교양과 학식 과시, 자신의 행동 정당화</li>
+                <li><strong>영탄적 어조</strong>: “아아, 아름답도다”, “가슴이 탁 트이다” – 감정 고조</li>
+                <li><strong>색채어</strong>: ‘붉은 수레바퀴, 푸른 말발굽’, ‘흰 돌’, ‘푸른 산’ – 시각적 선명성</li>
+                <li><strong>감각적 이미지</strong>: 시각(꽃, 안개), 청각(새 소리, 물 흐름), 후각(향기 나는 채소), 촉감(물) – 다채로운 감각 활용</li>
+            </ul>
+            
+            <!-- 4. 핵심 주제와 비판 의식 -->
+            <div class="badge" style="margin-top:20px;">4. 핵심 주제와 비판 의식</div>
+            <ul class="list-styled">
+                <li><strong>여성의 사회적 제약 비판</strong>: “여자로 태어났으니 깊은 담장 안에서 문을 닫아걸고 법도를 지키는 것이 옳은가” – 당대 여성의 삶에 대한 근본적 의문.</li>
+                <li><strong>남장(男裝)</strong>: 사회적 규율을 넘어서는 실천적 행동. 남성 중심 사회에 대한 저항.</li>
+                <li><strong>자연과의 합일</strong>: “산과 물은 본디 주인이 없고… 노니는 사람이 취할 뿐” – 도가적 자연관, 소유 아닌 향유.</li>
+                <li><strong>여행의 의미</strong>: 견문 확장, 감정 해소(‘괴로운 심사 다 씻어내니’), 자아 성찰.</li>
+            </ul>
+            
+            <!-- 5. 시 분석 (㉠) -->
+            <div class="badge" style="margin-top:20px;">5. ㉠ 시 분석</div>
+            <ul class="list-styled">
+                <li><strong>1구</strong>: 부평초(개구리밥) 비유 – 정착하지 않고 떠도는 여행의 자유로움.</li>
+                <li><strong>2구</strong>: “멈출 줄 모르네” – 유람에 대한 열정과 즐거움.</li>
+                <li><strong>3구</strong>: “동쪽으로 흐르는 물” – 한양으로 향하는 길, 즐거운 귀환.</li>
+                <li><strong>4구</strong>: “서울의 바람과 안개도 조만간 걷히리라” – 장애물 곧 사라질 것이라는 낙관적 전망, 희망.</li>
+            </ul>
+            
+            <!-- 6. 지식인의 태도 (현학) -->
+            <div class="badge" style="margin-top:20px;">6. 지식인의 태도 (현학)</div>
+            <ul class="list-styled">
+                <li>역사적 사건(수양제·당태종의 고구려 원정)을 인용하여 한양의 안전성 논증.</li>
+                <li>중국 시인(유우석)의 시를 떠올리며 풍류와 교양 과시.</li>
+                <li>건축물의 유래(세검정, 탕춘대)와 임금의 현판을 언급하며 역사적 의미 부여.</li>
+                <li>이는 남성 사대부들의 기행문에서 흔히 보이는 ‘현학적 글쓰기’를 여성 문인이 구사했다는 점에서 특기할 만함.</li>
+            </ul>
+            
+            <!-- 7. 여느 여행기와의 차이 -->
+            <div class="badge" style="margin-top:20px;">7. 여느 여행기와의 차이</div>
+            <ul class="list-styled">
+                <li>구체적 날짜, 숙소, 노정에 대한 정보가 거의 없음 (글을 쓸 당시 20년이 지난 후 기억에 의존)</li>
+                <li>대신 감상과 철학적 성찰에 집중</li>
+                <li>남성 여행기와 달리 여성으로서 겪는 제약과 극복 과정이 핵심 주제</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        ※ 본 자료는 김금원 기행문 「호동서락기」의 PDF 원문을 <strong>한 글자도 빠짐 없이</strong> 수록하고, 각 문장별로 상세한 분석과 어구 풀이를 추가했습니다.<br>
+        문제에 표시된 ㉠ 지문을 강조 표시하였으며, 핵심 개념(작품 개관, 여정 구성, 표현 특징, 주제, 시 분석)을 구조화하여 제시했습니다.
+    </footer>
+</div>
+</body>
+</html>

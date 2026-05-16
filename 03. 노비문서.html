@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>노비문서 - 윤대성 | 문장별 상세 분석 + 핵심 개념</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            padding: 40px 20px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 32px 35px;
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+        }
+        .title-main {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            color: #0f2b3d;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            color: #1e466e;
+            border-left: 4px solid #e67e22;
+            padding-left: 16px;
+        }
+        .original-text {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin: 20px 0;
+            font-family: 'Times New Roman', 'Noto Serif KR', serif;
+            line-height: 1.7;
+        }
+        .sentence-wrapper {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 6px;
+            white-space: pre-wrap;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            padding: 8px 14px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .highlight {
+            background-color: #fef9c3;
+            font-weight: 600;
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+        .badge {
+            background: #e67e22;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .badge-blue {
+            background: #1e466e;
+        }
+        .list-styled {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-styled li {
+            margin: 8px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .list-styled li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 880px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+        .core-box {
+            background: #eef2ff;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 30px;
+            border: 1px solid #cbd5e1;
+        }
+        .core-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1e466e;
+            text-align: center;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .compare-table th, .compare-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .compare-table th {
+            background: #e2e8f0;
+            font-weight: 700;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="title-main">📜 노비문서 · 윤대성 (희곡)</div>
+        
+        <!-- ========== 지문 전체 (문장별 분석) ========== -->
+        <div class="subtitle">■ 지문 전문</div>
+        <div class="original-text">
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 저들을 설득해야 합니다. 저들도 고려 사람, 나라가 위급한 마당에 저들인들 무심할 리가 없을 것이오.</div>
+                <div class="side-analysis">📌 분석 – 노승이 노비들을 설득해야 한다고 주장. 나라의 위기 앞에서는 신분을 떠나 모두가 고려 사람임을 강조하며 공동체 의식 환기.</div>
+                <div class="vocab-note">📖 어구 – 위급한 마당: 위급한 상황. 저들인들: 저들이라도.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 새삼스럽게 애국심을 불러일으키잔 말이오?</div>
+                <div class="side-analysis">📌 분석 – 이자헌 대감이 노승의 말을 비아냥. 기득권층의 냉소적 태도와 애국심에 대한 회의적 시선을 드러냄.</div>
+                <div class="vocab-note">📖 어구 – 새삼스럽게: 갑자기, 뜬금없이. 잔: ‘자는’의 준말.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 아니오, 저들에게 조건을 내세우는 것이오.</div>
+                <div class="side-analysis">📌 분석 – 애국심 호소가 아니라 실질적 조건을 제시하겠다고 말함. 현실적 동기 부여의 중요성을 인식.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 조건이라면?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> <span class="highlight">㉠방량하는 것이오.</span></div>
+                <div class="side-analysis">📌 분석 – 노승이 ‘방량’(노비를 풀어 자유민으로 만드는 것)을 조건으로 제시. 당시 사회에서 파격적이고 혁명적인 제안. ㉠은 핵심 대사로, 희곡의 갈등을 촉발하는 장치.</div>
+                <div class="vocab-note">📖 어구 – 방량: 노비를 풀어 자유민으로 만드는 것. 노비 해방.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> (놀라) 방량이라니? 노비를 놔준단 말이오?</div>
+                <div class="side-analysis">📌 분석 – 이자헌이 놀라며 반발. ‘놀라’는 행동지시문으로 그의 충격과 당혹감을 표현. 기득권층의 경직된 사고와 신분 질서에 대한 집착을 드러냄.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 그렇소, 천적에서 풀어 주어 자유민을 만드는 것이오.</div>
+                <div class="side-analysis">📌 분석 – 노승이 ‘자유민’이라는 개념을 명시적으로 제시. ‘천적’(신분적 얽매임)에서 풀어주는 것이 방량의 본질.</div>
+                <div class="vocab-note">📖 어구 – 천적: 신분적 구속, 얽매임.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>부사:</strong> 노비를 방량한다니? 있을 수도 없는 일입니다, 대감.</div>
+                <div class="side-analysis">📌 분석 – 부사가 강력히 반대. ‘있을 수도 없는 일’이라는 표현으로 당시 사회 통념상 불가능한 일임을 강조.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>판관:</strong> 그건 불가한 일이오. 고려 개국 이래 그런 전례도 없거니와 노비를 방량한다 해 보십시오. 노비를 소유하고 있는 부호들이 들고 일어나기 심상이오. <span class="highlight">㉡더구나 관이 소유하고 있는 관노들을 풀어놓으면 일은 누가 다 합니까?</span></div>
+                <div class="side-analysis">📌 분석 – 판관이 전례·현실적 문제를 들어 반대. ‘부호들의 반발’과 ‘노동력 상실’이라는 현실적 이유를 제시. ㉡은 기득권층의 논리를 대표하는 대사.</div>
+                <div class="vocab-note">📖 어구 – 전례: 이전에 있었던 사례. 심상: 쉽게. 관노: 관청 소유의 노비.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 판관, 지금은 싸움에 이기느냐, 모두 죽느냐 하는 어려운 문제에 직면하고 있는 마당이오. 이 싸움에 패하면 충주성은 고사하고 남아 있을 사람이 없을 텐데, 도망하기에 바쁜 부호들 불평을 두려워해야겠소?</div>
+                <div class="side-analysis">📌 분석 – 노승이 생존의 문제가 최우선임을 강조. 위기 앞에서는 신분 질서를 고집할 여유가 없다고 주장. 도망간 부호들을 비판하며 현실적 우선순위를 환기.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>부사:</strong> 노비들을 일시 징발하는 건 좋으나 방량한다는 처사는 지나친 일인 것 같습니다.</div>
+                <div class="side-analysis">📌 분석 – 부사가 타협안을 제시: 일시적 동원은 가능하나 완전한 해방은 과도하다는 입장. 지배층의 온건 반대론.</div>
+                <div class="vocab-note">📖 어구 – 일시 징발: 임시로 동원함. 처사: 행동, 일.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 부사, 저들이 무엇 때문에? 누구를 위해서 싸우길 기대하겠소? 자기를 혹사한 주인을 위해 죽어 달라고 말할 수 있소?</div>
+                <div class="side-analysis">📌 분석 – 노승이 노비들의 입장에서 생각하자고 촉구. 억압하는 주인을 위해 싸우라는 것은 모순이라고 지적하며 자발적 동기 부여의 필요성을 역설.</div>
+                <div class="vocab-note">📖 어구 – 혹사: 몹시 심하게 부림.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>부사:</strong> 나라와 왕을 위해서 싸워야 합니다.</div>
+                <div class="side-analysis">📌 분석 – 부사의 충성심 강조. 지배층이 중시하는 명분(국가, 왕)을 내세우며 노비들의 의무를 강조.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 나라와 왕이라고? 나라가 누구의 것이오? 나라는 왕의 것이 아니라 백성의 것이오. 왕이 지금 하고 있는 것이 무엇이오? 섬에 피난하여 궁녀의 치맛자락에 둘러싸여 있소. 그런 왕을 위해 싸워 달라고 빌겠소?</div>
+                <div class="side-analysis">📌 분석 – 노승의 핵심 발언. 국가는 왕의 것이 아니라 백성의 것이라며, 현실의 부패한 지배층(왕을 포함)을 직격. 당대(1970년대) 독재 정권에 대한 우회적 비판으로 읽힘.</div>
+                <div class="vocab-note">📖 어구 – 궁녀의 치맛자락: 안일하고 향락적인 모습을 비유.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>부사:</strong> (화가 났다.) 대감, 스님의 말씀이 지나친 것 같습니다. / <strong>이자헌:</strong> 대사 고정하십시오.</div>
+                <div class="side-analysis">📌 분석 – 부사가 화를 내며 노승의 말을 ‘지나치다’고 규정. 이자헌이 중재하며 상황을 진정시키려 함. 지배층의 불편한 진실에 대한 방어적 반응.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 언성을 높여 미안하오. 그러나 노예들로 하여금 자신을 위해 싸우도록 하는 외엔 다른 방법이 없기에 이르는 말이오. 자신의 자유를 위해 싸운다면 저들은 기꺼이 목숨을 내던지려 할 것이오.</div>
+                <div class="side-analysis">📌 분석 – 노승이 자신의 강한 어조를 사과하면서도, ‘자유’라는 목표가 노비들에게 가장 강력한 동기임을 재확인. 희생을 각오하게 만드는 원동력.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 자유를 위해서? / <strong>노승:</strong> 그렇소, 자유요!</div>
+                <div class="side-analysis">📌 분석 – ‘자유’라는 단어가 반복되며 극적 긴장감 조성. 노승의 확신에 찬 태도.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 자유…… 심히 어려운 뜻이오.</div>
+                <div class="side-analysis">📌 분석 – 기득권층에게 ‘자유’는 생소하고 위협적인 개념. 망설임과 불안을 드러냄.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> <span class="highlight">㉢어려움을 걸지 않고 싸움에 이기기는 어렵소, 대감, 결단을 내리시오.</span></div>
+                <div class="side-analysis">📌 분석 – 노승이 이자헌에게 결단을 재촉. ㉢은 희생과 모험을 각오해야 승리할 수 있다는 현실적 조언. 결단을 촉구하며 극의 전환점 마련.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 판관은 어떻게 생각하오?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>판관:</strong> 후일이 걱정이 되지 않는 바는 아니나 지금 처한 위기를 막기 위해서 그렇게라도 해야 한다면 딴 도리는 없겠습니다. 중요한 건 싸움에 나서 주는 것이니까요.</div>
+                <div class="side-analysis">📌 분석 – 판관이 마지못해 동의. ‘후일’(나중에 노비들이 반란 일으킬 가능성)을 걱정하면서도 당장의 위기가 더 절박함을 인정. 지배층의 현실적 선택.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 나도 그렇게 생각하오.</div>
+                <div class="side-analysis">📌 분석 – 결국 방량을 약속하기로 결정됨. 그러나 이후 지배층은 약속을 배신함(중략 부분 줄거리).</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">[중략 부분 줄거리] 전쟁에 승리하면 방량을 해 주겠다는 약속을 듣고 노비군이 조직되고, 노비군의 활약으로 몽골군을 격퇴한다. 자유를 얻는다는 기대에 벅찬 노비들은 장터에서 잔치와 놀이를 즐긴다. 이를 못마땅하게 여긴 이자헌 대감이 잔치와 놀이를 금지하자, 무장한 노비들의 불만과 의심이 커진다.</div>
+                <div class="side-analysis">📌 분석 – 중략된 내용: 노비군의 승리와 지배층의 배신 움직임. 자유에 대한 기대와 현실의 괴리가 갈등을 심화시키는 지점.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> <span class="highlight">㉣대감! 어떻게 된 일이오? 장터에서 놀이를 금하게 하셨다니? 싸움이 끝난 후 돼 가는 일을 알 수가 없구려!</span></div>
+                <div class="side-analysis">📌 분석 – 노승이 놀이 금지 조치에 항의하며 당황. 지배층이 약속을 어기려는 의도를 의심하기 시작. ㉣은 노승의 분노와 경계를 드러냄.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 대사! 잘 오셨소. 나도 할 얘기가 있소. 하늘이 백성을 낼 때 비록 양천의 구별은 없으나 윗사람이 아랫사람을 시켜야 하므로 마땅히 존비가 있음이 당연하지 않을까요? 군자와 소인이 서로 달라 각각 일가를 형성하고 노예를 두어 상하의 분별을 정해 온 것이 우리의 천여 년 내려온 생활이오! 그렇지 않소?</div>
+                <div class="side-analysis">📌 분석 – 이자헌이 신분 질서의 당위성을 역사와 전통을 들어 정당화. ‘하늘이 백성을 낼 때 양천의 구별이 없으나’라는 논리로 자연적 차별을 주장. 지배층의 이데올로기를 대변.</div>
+                <div class="vocab-note">📖 어구 – 양천: 양민과 천민. 존비: 높고 낮음. 일가: 한 집안.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 사람이 모여 사는 사회에 귀천이 이루어짐을 소승이 모르는 건 아니오. 그러나 대감, 처음 우리 선조의 노비는 일종의 형벌로서 기한이 지나면 다시 평민으로 돌아가는 것이 이치였소. 그런데 지금 보오, 우리 고려는 한번 종이 되면 좀처럼 면천하기 어려워 자자손손 종신토록 우마와 같이 재산처럼 팔고, 팔리는 천하 고금에 없는 제도가 되어 버리지 않았소? 그래서 노예의 숫자는 늘어 가고 결국 양반과 적대하는 양분된 세상이 되어 버렸소. 부당한 일이라고 생각하오.</div>
+                <div class="side-analysis">📌 분석 – 노승이 역사적 사실(초기 노비는 형벌로서 기한부)을 근거로 현재의 세습적 노비 제도를 비판. 신분 이동이 불가능한 사회의 부당성을 지적하며 지배층의 논리를 정면으로 반박.</div>
+                <div class="vocab-note">📖 어구 – 면천: 노비 신분에서 풀려남. 종신토록: 평생 동안. 양분된: 둘로 나뉜.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 허나 노비를 해방시키기 위해선 나라의 풍속부터 고쳐야 하겠소. 하루아침에 바꾸니 혼란하여 법만 어그러져 갈 뿐이오. (노기) 노예의 신분으로서 양반 사대부의 아녀자를 넘보지 않나…… (자제하며) 정말 충주성은 옛과 같지 않소이다. 대사.</div>
+                <div class="side-analysis">📌 분석 – 이자헌이 점진적 개혁을 주장하며 급격한 변화를 경계. ‘노예의 신분으로 양반 사대부의 아녀자를 넘본다’는 발언에서 자신의 계층적 편견과 두려움이 드러남. ‘자제하며’는 행동지시문으로 감정을 억누르는 모습.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 어서 규율을 세우시오. 옳고 그름을 분별하여 옳은 자에게는 상을 주고 그른 자는 벌하되 신분의 고하를 가리지 말고 공평히 행하면 저들은 대감을 따를 것이오.</div>
+                <div class="side-analysis">📌 분석 – 노승이 공정한 법치(규율)를 제안. 신분에 따른 차별 없는 공평한 처우가 안정을 가져올 것이라고 주장. 이상적인 통치 원리 제시.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> <span class="highlight">ⓐ그러나 아직 우리에겐 저들을 다스릴 만한 군사가 없소.</span></div>
+                <div class="side-analysis">📌 분석 – 이자헌이 현실적 무력(군사)의 부재를 문제 삼음. 힘 없이는 통제 불가능하다는 현실주의적 입장. ⓐ는 지배층의 근본적 한계를 드러냄.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 힘으로 저들을 다스려선 안 되오. 인과 덕으로 다스려야 하오.</div>
+                <div class="side-analysis">📌 분석 – 노승이 유교적 이상(인덕 정치)을 제시. 강제가 아닌 감화와 신뢰로 다스려야 한다는 원칙. 이상주의적 관점.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> <span class="highlight">㉤대사, 다스리는 근본은 힘이오, 아무리 덕과 인을 부르짖는다 한들 인덕이나 의로움이 세상을 바꾸지는 못하오.</span></div>
+                <div class="side-analysis">📌 분석 – 이자헌이 현실 정치의 본질은 ‘힘’이라고 단언. 인덕만으로 세상을 바꿀 수 없다는 현실론. ㉤은 노승의 이상론에 대한 냉철한 반박이자, 권력의 본질에 대한 인식.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 그러나 의롭지 못한 힘은 언젠가는 또 다른 힘에 의해 멸망하고 마오. 백성은 지극히 약한 존재이나 힘으로 눌러선 안 되오. 백성은 지극히 어리석으나 퍼로써 속여도 안 되오. 백성의 마음을 얻지 못하면 백성은 언젠가 대감을 버릴 것이오. 자고로 다스리는 자는 신의와 약속을 지킬 줄 알아야 한다고 했소.</div>
+                <div class="side-analysis">📌 분석 – 노승의 반박. 불의한 힘은 결국 파멸하며, 백성의 마음을 얻는 것이 진정한 통치의 길이라고 주장. ‘신의와 약속’을 강조하며 지배층의 배신을 경고.</div>
+                <div class="vocab-note">📖 어구 – 퍼로써: 꾀(속임수)로써.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 그러나 국가 대사나 한 고을의 다스림에는 충성이 요구될 뿐이오. 어차피 누군가는 다스림을 받는 것이 치세의 근본일진대 다스리는 자나 다스림을 받는 백성이나 똑같이 자유를 누린다는 건 용납할 수가 없는 거요.</div>
+                <div class="side-analysis">📌 분석 – 이자헌이 신분 질서의 불평등을 당연시하며, 평등한 자유는 불가능하다고 주장. 지배와 피지배의 구조를 근본으로 보는 권위주의적 세계관.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>노승:</strong> 대감. 설마 저들 노비들을 배신하려 하시는 건 아니시겠지?</div>
+                <div class="side-analysis">📌 분석 – 노승이 이자헌의 진의를 의심하며 배신 가능성을 직격. 갈등의 핵심을 찌르는 질문.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>이자헌:</strong> 배신? 대사, 나는 일개 성의 목사로서 국록을 먹고 있는 몸, 내 마음대로 나라의 제도를 고칠 수는 없지 않소. 비록 나라를 구하기 위해 일시적으로 저들을 방량했으나 현실이 그를 용납지 않는 걸 어떻게 하오? 나도 이렇게 하고 싶지는 않소. 그러나 난 내가 현 여건에서 할 수 있는 최선의 방법을 택할 수밖에 없소. 나는 위로는 왕으로부터 양반 사대부 그리고 내 가족까지 생각해야 하오.</div>
+                <div class="side-analysis">📌 분석 – 이자헌의 변명과 합리화. 자신은 제도와 현실의 포로일 뿐이라고 주장. ‘국록을 먹는 몸’, ‘가족까지 생각해야 한다’는 말로 개인의 선택이 아닌 구조적 한계를 강조. 지배층의 책임 회피와 위선을 드러냄.</div>
+                <div class="vocab-note">📖 어구 – 목사: 지방 장관. 국록: 국가 봉급.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">- 윤대성, 「노비 문서」</div>
+            </div>
+            
+        </div>
+        
+        <!-- ========== 핵심 개념 구조도 ========== -->
+        <div class="core-box">
+            <h3>📌 이것만은 꼭 익히자 - 노비문서</h3>
+            
+            <!-- 1. 작품 개관 -->
+            <div class="badge">1. 작품 개관</div>
+            <ul class="list-styled">
+                <li><strong>해제</strong>: 고려 시대 노비 해방 운동 ‘만적의 난’을 소재로, 1970년대 억압적 정치 현실과 관련해 지배층의 부도덕과 모순성을 우회적으로 비판한 작품.</li>
+                <li><strong>주제</strong>: 인간 존엄의 회복과 해방을 위한 투쟁과 좌절</li>
+                <li><strong>전체 줄거리</strong>: 몽골군 침입으로 충주성 위기 → 노승의 방량 조건 제안 → 노비군 조직 및 승리 → 지배층 약속 배신 → 노비들의 항거 실패 및 비극적 결말</li>
+            </ul>
+            
+            <!-- 2. 인물 관계와 갈등 양상 -->
+            <div class="badge" style="margin-top:20px;">2. 인물 관계와 갈등 양상</div>
+            <div class="grid-2">
+                <div class="sarcasm-box" style="background:#fefaf0;">
+                    <strong>■ 지배층</strong>
+                    <ul class="list-styled">
+                        <li><strong>이자헌 대감</strong>: 성의 목사, 기득권 대표. 위기 시 방량 약속하나 이후 배신. 현실론 강조.</li>
+                        <li><strong>부사</strong>: 지배층 관료, 노승의 말에 불쾌감. 왕과 나라를 위한 충성 강조.</li>
+                        <li><strong>판관</strong>: 현실적 우려(부호 반발, 관노 문제)로 반대, 결국 위기 때문에 마지못해 동의.</li>
+                    </ul>
+                </div>
+                <div class="sarcasm-box" style="background:#fefaf0;">
+                    <strong>■ 피지배층 / 지식인</strong>
+                    <ul class="list-styled">
+                        <li><strong>노승</strong>: 의식 있는 승려, 피지배층 이익 대변. 자유와 평등의 가치를 역설, 지배층의 모순 비판.</li>
+                        <li><strong>노비들</strong>: 억압과 착취의 대상, 자유 갈망. 약속에 따라 싸웠으나 배신당하고 좌절.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 3. 갈등의 핵심 쟁점 -->
+            <div class="badge" style="margin-top:20px;">3. 갈등의 핵심 쟁점</div>
+            <table class="compare-table">
+                <thead><tr><th>쟁점</th><th>노승의 입장</th><th>지배층(이자헌·판관·부사) 입장</th></tr></thead>
+                <tbody>
+                    <tr><td>노비 동원 조건</td><td>방량(자유)을 조건으로 제시</td><td>일시 징발, 방량은 과도함</td></tr>
+                    <tr><td>국가의 주인</td><td>백성 (왕 아닌 백성의 것)</td><td>왕과 나라를 위해 싸워야 함</td></tr>
+                    <tr><td>통치 원리</td><td>인과 덕, 공평한 규율</td><td>힘과 충성이 근본</td></tr>
+                    <tr><td>노비 제도</td><td>부당한 세습 제도, 비판</td><td>천여 년 전통, 당연한 질서</td></tr>
+                    <tr><td>약속 이행</td><td>신의와 약속을 지켜야</td><td>현실 여건상 어쩔 수 없음</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- 4. 상징과 형식적 특징 -->
+            <div class="badge" style="margin-top:20px;">4. 상징과 형식적 특징</div>
+            <ul class="list-styled">
+                <li><strong>1970년대와의 연관성</strong>: 고려 시대 노비 해방 운동을 빌려 당대 독재 정권과 민주화 운동을 우회적으로 비판.</li>
+                <li><strong>노비 = 1970년대 민중</strong>: 노동을 착취당하고 인권을 유린당하던 민중들의 삶 투영.</li>
+                <li><strong>이자헌 = 지배 세력</strong>: 약속을 배신하고 기득권을 지키려는 모순된 지배층의 형상.</li>
+                <li><strong>형식적 특징</strong>: 민속극 요소, 코러스 등 다양한 형식과 기법 활용. 서사극적 성격.</li>
+            </ul>
+            
+            <!-- 5. 핵심 대사와 의미 -->
+            <div class="badge" style="margin-top:20px;">5. 핵심 대사와 의미</div>
+            <ul class="list-styled">
+                <li><strong>㉠ “방량하는 것이오.”</strong>: 노비 해방이라는 파격적 제안, 극의 갈등 촉발점.</li>
+                <li><strong>㉡ “관노들을 풀어놓으면 일은 누가 다 합니까?”</strong>: 지배층의 현실적 이해관계 대변, 노동력 착취 논리.</li>
+                <li><strong>㉢ “어려움을 걸지 않고 싸움에 이기기는 어렵소.”</strong>: 희생과 모험 없이는 승리 불가능, 결단 촉구.</li>
+                <li><strong>㉣ “장터에서 놀이를 금하게 하셨다니?”</strong>: 약속 배신 의심, 노승의 경계와 분노.</li>
+                <li><strong>㉤ “다스리는 근본은 힘이오.”</strong>: 현실 정치의 본질, 지배층의 권력 논리.</li>
+                <li><strong>“나라가 누구의 것이오? 나라는 왕의 것이 아니라 백성의 것이오.”</strong>: 작품의 핵심 메시지, 민중 주권 의식.</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        ※ 본 자료는 윤대성 희곡 「노비문서」의 PDF 원문을 <strong>한 글자도 빠짐 없이</strong> 수록하고, 각 문장별로 상세한 분석과 어구 풀이를 추가했습니다.<br>
+        문제에 표시된 ㉠~㉤, ⓐ 지문을 강조 표시하였으며, 핵심 개념(인물 관계, 갈등 쟁점, 상징, 형식적 특징)을 구조화하여 제시했습니다.
+    </footer>
+</div>
+</body>
+</html>

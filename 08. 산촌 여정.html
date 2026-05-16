@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>산촌 여정 - 이상 | 문장별 상세 분석 + 핵심 개념</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            padding: 40px 20px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 32px 35px;
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+        }
+        .title-main {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            color: #0f2b3d;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            color: #1e466e;
+            border-left: 4px solid #e67e22;
+            padding-left: 16px;
+        }
+        .original-text {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin: 20px 0;
+            font-family: 'Times New Roman', 'Noto Serif KR', serif;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        .sentence-wrapper {
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 6px;
+            white-space: pre-wrap;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            padding: 8px 14px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .highlight {
+            background-color: #fef9c3;
+            font-weight: 600;
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+        .badge {
+            background: #e67e22;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .list-styled {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-styled li {
+            margin: 8px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .list-styled li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 880px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+        .core-box {
+            background: #eef2ff;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 30px;
+            border: 1px solid #cbd5e1;
+        }
+        .core-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1e466e;
+            text-align: center;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .compare-table th, .compare-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .compare-table th {
+            background: #e2e8f0;
+            font-weight: 700;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="title-main">⛰️ 산촌 여정 · 이상 (수필)</div>
+        
+        <!-- ========== 지문 전체 (문장별 분석) ========== -->
+        <div class="subtitle">■ 지문 전문</div>
+        <div class="original-text">
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">향기로운 MJB*의 미각을 잊어버린 지도 이십여 일이 넘습니다. 이곳에는 신문도 잘 오지 않고 채전부(遞傳夫)는 이따금 ‘하도롱’ 빛 소식을 가져옵니다. 거기는 누에고치와 옥수수의 사연이 적혀 있습니다. 마을 사람들은 멀리 떨어져 사는 일가 때문에 수심이 생겼나 봅니다. 나도 ⓐ도회(都會)에 남기고 온 일이 걱정이 됩니다.</div>
+                <div class="side-analysis">📌 분석 – 산촌의 고립된 환경 묘사. 신문 오지 않고, ‘하도롱(다갈색)’ 빛 소식(우편물)이 이따금 옴. 도회(도시)에 남겨둔 가족이나 일에 대한 걱정. ‘MJB’는 커피 브랜드, 도시적 취미가 산촌에서 잊혀짐.</div>
+                <div class="vocab-note">📖 어구 – MJB: 커피 제품명. 채전부: 우편집배원(옛말). 하도롱: 다갈색. 도회: 도시.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">건너편 팔봉산에는 노루와 맷돼지가 있습니다. 그리고 기우제 지내던 개골창까지 내려와서 가재를 잡아먹는 곰을 본 사람도 있습니다. 동물원에서밖에 볼 수 없는 짐승, 산에 있는 짐승들을 사로잡아다가 동물원에 갔다 가둔 것이 아니라, 동물원에 있는 짐승들을 이런 산에다 내어놓아 준 것만 같은 착각을 자꾸만 느낍니다. 밤이 되면, 달도 없는 칠흑야(漆夜)에 팔봉산도 사람이 잠자리로 들어가듯이 어둠 속으로 아주 없어져 버립니다.</div>
+                <div class="side-analysis">📌 분석 – 동물(노루, 맷돼지, 곰)을 동물원 경험과 연결, 도시인의 시각에서 낯설게 보기(소외화 기법). ‘동물원의 짐승들을 산에 내어놓은 듯한 착각’은 익숙한 것을 낯설게 바라보는 모더니즘적 감각. 칠흑야에 산이 사라지는 듯한 표현.</div>
+                <div class="vocab-note">📖 어구 – 팔봉산: 평안남도 성천의 산. 개골창: 작은 도랑. 칠흑야: 매우 어두운 밤.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">그러나 공기는 수정처럼 밝아서 별빛만으로라도 넉넉히, 좋아하는 누가복음도 읽을 수 있을 것 같습니다. 그리고 또 참 별이 도회에서보다 갑절이나 더 많이 나옵니다. 하도 조용한 것이 처음으로 별들의 운행하는 기척이 들리는 것도 같습니다.</div>
+                <div class="side-analysis">📌 분석 – 대표 구절. 산촌의 맑은 공기, 별빛, 고요함을 감각적으로 표현. ‘별들의 운행 기척’이라는 독특한 표현(청각적 이미지). 도시보다 많은 별, 고요함이 주는 신비로움.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">객줏집 방에는 석유 등잔을 켜 놓습니다. 그 도회지의 석간과 같은 그윽한 내음새가 소년 시대의 꿈을 부릅니다. 정(鄭) 형(兄)! 그런 석유 등잔 밑에서 밤이 이슥하도록 ‘호까’—연초 갑지—부치던 생각이 납니다. 배방이가 한 마리 등잔에 올라앉아서 그 연듯빛 색깔로 혼곤한 내 꿈에 마치 영어 ‘티(T)’ 자를 쓰고 건너가듯이 유난히 기억에는 군데군데 ‘언더라인’을 하여 놓습니다. 슬퍼하는 것처럼 고개를 숙이고 도회의 여자역 장이 차표 찍는 소리 같은 그 성악을 가만히 듣습니다. 그러면 그것이 또 이발소 가위 소리와도 같아집니다. 나는 눈까지 감고 가만히 또 자세히 들어 봅니다.</div>
+                <div class="side-analysis">📌 분석 – 도시적 경험(석간 내음, 여자역 차표 소리, 이발소 가위 소리)으로 산촌의 소리와 냄새를 비유. 배방이(나방)의 움직임을 영어 알파벳 T자에 비유하는 참신함. ‘호까’(담배 종이) 부치던 기억. 도시인의 감각으로 산촌을 재해석하는 모더니즘의 전형.</div>
+                <div class="vocab-note">📖 어구 – 객줏집: 여인숙. 석간: 저녁 신문. 호까: 담배 종이(연초 갑지). 배방이: 나방. 언더라인: 밑줄.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">그리고 비망록을 꺼내어 머루 빛 잉크로 ⓑ산촌의 시정을 기초합니다.</div>
+                <div class="side-analysis">📌 분석 – 비망록에 산촌의 정취(시정)를 기록. ‘머루 빛 잉크’는 보라색 계열, 색채어로 분위기 조성.</div>
+                <div class="vocab-note">📖 어구 – 비망록: 메모장. 시정: 시적 정취.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence poem-line">그저께신문을찢어버린</div>
+                <div class="poem-line">대문은흰나비</div>
+                <div class="poem-line">봉선화는아름다운여인의귀처럼생기고</div>
+                <div class="poem-line">귀에보이는지난날의기사</div>
+                <div class="side-analysis">📌 분석 – 시적 산문. 신문 찢은 종이가 나비처럼 날리고, 봉선화를 여인의 귀에 비유. ‘귀에 보이는’은 공감각적 표현(청각 → 시각). 지난 기사를 떠올리며 과거 회상.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">얼마 있으면 목이 마릅니다. 자리 물 — 심해처럼 가라앉은 냉수를 마십니다. 석영질 광석 내음새가 나면서 폐부에 한랭한 길을 느낍니다. 나는 백지 위에 그 싸늘한 곡선을 그리라면 그릴 수도 있을 것 같습니다.</div>
+                <div class="side-analysis">📌 분석 – 냉수를 마시며 느끼는 촉각·후각·시각적 감각. ‘석영질 광석 내음’은 자연의 청량감. ‘싸늘한 곡선’은 시적 은유로, 무언가를 형상화하려는 의지.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">청석 얻은 지붕에 별빛이 내리쬐면 한겨울에 장독 터지는 것 같은 소리가 납니다. 벌레 소리가 요란합니다. 가을이 이런 시간에 엽서 한 장에 적을 만큼씩 오는 까닭입니다. 이런 때 참 무슨 재주로 광음을 헤아리겠습니까? 맥박 소리가 이 방 안을 방째 시계를 만들어 버리고 장침과 단침의 나사못이 돌아가느라고 양짝 눈이 번갈아 깜짝깜짝합니다. 코로 기계 기름 내음새가 드나듭니다. 석유 등잔 밑에서 졸음이 오는 기분입니다.</div>
+                <div class="side-analysis">📌 분석 – 별빛에 장독 터지는 소리(청각적 이미지), 벌레 소리. ‘광음’(시간)을 헤아리기 어렵다는 무상감. 맥박 소리가 시계처럼 느껴짐. 기계 기름 내음과 졸음 – 피로와 무료함.</div>
+                <div class="vocab-note">📖 어구 – 청석: 푸른빛 돌. 광음: 시간.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">‘파라마운트’ 회사 상표처럼 생긴 도회 소녀가 나오는 꿈을 조금 꿉니다. 그러다가 어느 사이에 도회에 남겨 두고 온 가난한 식구들을 꿈에 봅니다. 그들은 포로들의 사진처럼 나란히 늘어섭니다. 그리고 내게 걱정을 시킵니다. 그러면 그만 잠이 깨어 버립니다.</div>
+                <div class="side-analysis">📌 분석 – 꿈 속 도시적 환영(파라마운트 상표). 가난한 식구들에 대한 죄책감과 걱정이 현실로 돌아오게 함. ‘포로들의 사진’ 비유로 비참함 강조.</div>
+                <div class="vocab-note">📖 어구 – 파라마운트: 영화사 로고.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(중략)</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">내일은 진종일 화초만 보고 놀리라, 탈지면에 ‘알코올’을 묻혀서 온갖 근심을 문지르리라, 이런 생각을 먹습니다. 너무도 꿈자리가 뒤숭숭하여서 그리는 것입니다. 화초가 피어 만발하는 꿈, ‘그라비아’ 원색판꿈, 그림책을 보듯이 즐겁게 꿈을 꾸고 싶습니다. 그러면 간단한 설명을 위하여 상쾌한 시를 지어서 ‘7포인트’ 활자로 배치하는 것도 좋습니다.</div>
+                <div class="side-analysis">📌 분석 – 현실 도피적 소망: 꽃 구경, 알코올로 근심 씻기. 화려한 잡지(그라비아) 같은 꿈을 꾸고 싶음. 시와 활자 배치는 지식인의 취미.</div>
+                <div class="vocab-note">📖 어구 – 그라비아: 화보. 7포인트: 인쇄 활자 크기.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">도회에 화려한 고향이 있습니다. 활엽수만으로 된 산이 고향의 시각을 가려 버린 이 산촌에 팔봉산 허리를 넘는 철골 전신주가 소식의 제목만을 부호로 전하는 것 같습니다.</div>
+                <div class="side-analysis">📌 분석 – 도회가 ‘화려한 고향’으로 그리움의 대상. 전신주(근대 문물)가 소식을 전하지만 제목(요약)만 전달할 뿐, 고립감 강조.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">아침에 별에 시달려서 마당이 부스러지면 그 소리에 잠을 깹니다. 하루라는 집이 마당에 가득한 가운데 새빨간 잠자리가 병균처럼 활동입니다. 끄지 않고 잔 석유 등잔에 불이 그저 켜진 채 소멸된 밤의 흔적이 낡은 조끼 단추처럼 남아 있습니다. 작야를 방문할 수 있는 ‘요비링*’입니다. 지난밤의 체온을 방 안에 내어던진 채 마당에 나서면 마당 한 모퉁이에는 화단이 있습니다. 불타오르는 듯한 맨드라미꽃 그리고 봉선화.</div>
+                <div class="side-analysis">📌 분석 – 아침 풍경. ‘별에 시달려’라는 독특한 표현. 잠자리를 ‘병균’에 비유. 석유 등잔 불이 켜진 채 남아 밤의 흔적. ‘요비링’(초인종)으로 작야를 방문할 수 있다는 시적 상상. 맨드라미, 봉선화 등 붉은 꽃들.</div>
+                <div class="vocab-note">📖 어구 – 요비링: 초인종(일본어).</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">지하에서 빨아올리는 이 화초들의 정열에 호흡이 더워 오는 것 같습니다. 여기 처녀 손톱 끝에 물이 들 봉선화 중에는 흰 것도 섞였습니다. 흰 봉선화도 붉게 물들까 —. 조금도 이상스러울 것 없이 흰 봉선화는 꼭두서니 빛으로 곱게 물듭니다.</div>
+                <div class="side-analysis">📌 분석 – 화초의 생명력, ‘정열’이라는 표현. 흰 봉선화가 붉게 물드는 것은 자연의 신비이자 화자의 상상력. 색채어(흰, 붉게, 꼭두서니 빛)로 생생한 이미지.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">- 이상, 「산촌 여정」</div>
+            </div>
+            
+        </div>
+        
+        <!-- ========== 핵심 개념 구조도 ========== -->
+        <div class="core-box">
+            <h3>📌 이것만은 꼭 익히자 - 산촌 여정</h3>
+            
+            <!-- 1. 작품 개관 -->
+            <div class="badge">1. 작품 개관</div>
+            <ul class="list-styled">
+                <li><strong>작가</strong>: 이상 (1910–1937, 한국 모더니즘 문학 대표)</li>
+                <li><strong>배경</strong>: 평안남도 성천 – 작가가 폐병 요양을 위해 머물던 곳</li>
+                <li><strong>시기</strong>: 여름 끝에서 가을 초입 (약 20여 일간)</li>
+                <li><strong>주제</strong>: 도시인의 시각으로 바라본 산촌의 정경과 정서. 낯선 자연을 도시적 경험으로 재해석하는 모더니즘적 감각.</li>
+            </ul>
+            
+            <!-- 2. 공간 대비: 산촌 vs 도회 -->
+            <div class="badge" style="margin-top:20px;">2. 공간 대비: 산촌 vs 도회</div>
+            <table class="compare-table">
+                <thead><tr><th>산촌</th><th>도회(도시)</th></tr></thead>
+                <tbody>
+                    <tr><td>신문 오지 않음, 정보 부족</td><td>신문, 소식 풍부</td></tr>
+                    <tr><td>야생 동물(노루, 곰, 맷돼지)</td><td>동물원에서만 볼 수 있음</td></tr>
+                    <tr><td>별이 매우 많고 고요함</td><td>별 적음, 시끄러움</td></tr>
+                    <tr><td>석유 등잔, 옛날 물건</td><td>전기, 근대 문물</td></tr>
+                    <tr><td>가난한 식구들에 대한 걱정</td><td>화려한 고향, 그리움</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- 3. 감각적 이미지와 참신한 비유 -->
+            <div class="badge" style="margin-top:20px;">3. 감각적 이미지와 참신한 비유</div>
+            <ul class="list-styled">
+                <li><strong>시각적 이미지</strong>: ‘머루 빛 잉크’, ‘새빨간 잠자리’, ‘흰 봉선화’, ‘꼭두서니 빛’ – 색채어 풍부.</li>
+                <li><strong>청각적 이미지</strong>: ‘배방이 소리’, ‘장독 터지는 소리’, ‘벌레 소리’, ‘맥박 소리’, ‘차표 찍는 소리’.</li>
+                <li><strong>후각적 이미지</strong>: ‘석유 등잔 내음’, ‘석영질 광석 내음’, ‘기계 기름 내음’.</li>
+                <li><strong>참신한 비유</strong>: ‘별들의 운행하는 기척’, ‘잠자리가 병균처럼’, ‘포로들의 사진처럼’, ‘나방의 움직임을 영어 T자에 비유’.</li>
+                <li><strong>공감각적 표현</strong>: ‘귀에 보이는 지난날의 기사’ – 청각을 시각으로 전환.</li>
+            </ul>
+            
+            <!-- 4. 모더니즘 문학적 특징 -->
+            <div class="badge" style="margin-top:20px;">4. 모더니즘 문학적 특징</div>
+            <ul class="list-styled">
+                <li><strong>낯설게 하기(소외화)</strong>: 산촌의 자연물을 도시적 경험(동물원, 신문, 여자역)으로 비유.</li>
+                <li><strong>도시적 감각의 투영</strong>: 시골에서도 도시의 소리(차표, 이발소)를 떠올림.</li>
+                <li><strong>참신한 비유와 이미지의 파격</strong>: ‘별들의 운행 기척’, ‘영어 T자’, ‘파라마운트 상표’.</li>
+                <li><strong>지식인의 냉소와 자의식</strong>: ‘7포인트 활자’, ‘그라비아’ 등 인쇄·매체 용어 사용.</li>
+            </ul>
+            
+            <!-- 5. 화자의 심리 변화 -->
+            <div class="badge" style="margin-top:20px;">5. 화자의 심리 변화</div>
+            <ul class="list-styled">
+                <li><strong>처음</strong>: 산촌의 고립감, 도회의 걱정 → <strong>밤</strong>: 별빛과 고요함에 감동, 회상과 몽환 → <strong>꿈</strong>: 도회 소녀, 가난한 식구들에 대한 죄책감 → <strong>아침</strong>: 화초의 생명력에 위로, 다시 도회를 그리워함.</li>
+                <li><strong>전체적 흐름</strong>: 이질감 → 경이로움 → 무료함과 권태 → 그리움 → 자연과의 교감.</li>
+            </ul>
+            
+            <!-- 6. 동일 작가의 다른 작품과 비교 (권태) -->
+            <div class="badge" style="margin-top:20px;">6. 동일 작가의 다른 작품과 비교 (권태)</div>
+            <ul class="list-styled">
+                <li>「산촌 여정」: 별을 아름답게, 긍정적으로 바라봄. 자연과 교감, 감각적 즐거움.</li>
+                <li>「권태」: 별을 ‘권태의 피안’, ‘싱겁다’고 부정적으로 봄. 무기력, 절망.</li>
+                <li>두 작품은 같은 공간(성천)에서 쓰였으나, 병세(폐병)의 진행이나 심리 상태에 따라 정서가 극명히 대비됨.</li>
+            </ul>
+            
+            <!-- 7. 상징과 주제 -->
+            <div class="badge" style="margin-top:20px;">7. 상징과 주제</div>
+            <ul class="list-styled">
+                <li><strong>별</strong>: 도시보다 많고 밝게 빛나는 별 – 자연의 경이로움, 고요함의 상징.</li>
+                <li><strong>석유 등잔</strong>: 과거, 향수, 소년 시절의 추억.</li>
+                <li><strong>화초(맨드라미, 봉선화)</strong>: 생명력, 정열, 자연의 아름다움.</li>
+                <li><strong>도회</strong>: 화려하지만 가난한 식구들이 있는 곳, 걱정과 그리움의 대상.</li>
+                <li><strong>꿈</strong>: 현실 도피, 욕망과 죄책감의 표출.</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        ※ 본 자료는 이상 수필 「산촌 여정」의 PDF 원문을 <strong>한 글자도 빠짐 없이</strong> 수록하고, 각 문장별로 상세한 분석과 어구 풀이를 추가했습니다.<br>
+        핵심 개념(작품 개관, 공간 대비, 감각적 이미지, 모더니즘 특징, 화자 심리, 권태와 비교, 상징)을 구조화하여 제시했습니다.
+    </footer>
+</div>
+</body>
+</html>
