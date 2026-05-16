@@ -137,7 +137,7 @@
   </div>
 
   <button class="btn btn-primary" id="submitBtn">채점하기</button>
-  <button class="btn btn-kakao" id="kakaoBtn" disabled>📋 결과 복사하기</button>
+  <button class="btn btn-kakao" id="kakaoBtn">📋 결과 복사하기</button>
   <button class="btn btn-secondary" id="resetBtn">새로 시작하기 (초기화)</button>
 
   <div class="link-box"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQB37q2ovk_2SoOthj2wrVMJAWbENtYDDUYW4hMYdTZ2Lhc?e=IxOepa" class="link-btn" target="_blank">📄 모의고사 문제지 보기</a></div>
@@ -149,8 +149,8 @@
     <h3>📋 결과 리포트</h3>
     <textarea id="report-text" readonly></textarea>
     <div>
-      <button class="btn btn-primary" onclick="window.copyReport()">📋 클립보드 복사</button>
-      <button class="btn btn-secondary" onclick="window.closeModal()">닫기</button>
+      <button class="btn btn-primary" id="copyReportBtn">📋 클립보드 복사</button>
+      <button class="btn btn-secondary" id="closeModalBtn">닫기</button>
     </div>
   </div>
 </div>
@@ -168,7 +168,7 @@
     "언어와매체": [2,1,4,3,3, 1,2,4,5,1,5]
   };
   
-  const STORAGE_KEY = 'may_4th_omr_final_v5';
+  const STORAGE_KEY = 'may_4th_omr_final_v6';
   const MAX_ATTEMPTS = 3;
   const COOLDOWN_MIN = 10;
   
@@ -257,7 +257,6 @@
     }
     
     state.lastResult = { correct, wrongs, percent };
-    $('#kakaoBtn').disabled = false;
   }
   
   // 쿨다운 UI
@@ -324,11 +323,9 @@
 ※ 정답은 공개되지 않습니다.`;
   }
   
-  // 채점 버튼 클릭 (핵심 수정)
+  // 채점 버튼 클릭
   function onSubmit() {
-    console.log("onSubmit called, attemptCount:", state.attemptCount);
-    
-    // 이름 확인 - 매번 입력창에서 직접 가져옴
+    // 이름 확인
     const nameInput = $('studentName').value.trim();
     if (!nameInput) {
       alert('이름을 입력하세요.');
@@ -371,7 +368,7 @@
     window.scrollTo(0, 0);
   }
   
-  // 초기화
+  // 초기화 (새로 시작하기)
   function resetAll() {
     if (confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) {
       if (timerInterval) clearInterval(timerInterval);
@@ -395,7 +392,6 @@
       $('#cooldownTimer').classList.add('hidden');
       $('submitBtn').disabled = false;
       $('submitBtn').innerText = '채점하기';
-      $('#kakaoBtn').disabled = true;
       
       updateUI();
       save();
@@ -403,42 +399,19 @@
     }
   }
   
-  // 답안 선택
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.choice');
-    if (!btn) return;
-    
-    if (state.attemptCount > 0) {
-      showToast('채점 이후에는 답안을 수정할 수 없습니다. "새로 시작하기"를 눌러주세요.');
+  // 결과 복사 모달 열기
+  function showReportModal() {
+    if (!state.lastResult) {
+      showToast('먼저 채점을 완료해주세요.');
       return;
     }
-    
-    const p = btn.dataset.p;
-    const idx = parseInt(btn.dataset.idx);
-    const v = parseInt(btn.dataset.v);
-    if (!p) return;
-    
-    const arr = p === 'c' ? state.common : state.select;
-    const currentVal = arr[idx];
-    
-    if (currentVal === v) {
-      arr[idx] = 0;
-    } else {
-      arr[idx] = v;
-    }
-    
-    updateUI();
-    save();
-  });
-  
-  // 결과 복사 모달
-  function showReportModal() {
     const reportText = generateReportText();
     $('#report-text').value = reportText;
     $('#reportModal').classList.add('show');
   }
   
-  window.copyReport = function() {
+  // 클립보드 복사
+  function copyReport() {
     const text = $('#report-text').value;
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -452,11 +425,11 @@
       document.execCommand('copy');
       showToast('리포트가 복사되었습니다!');
     }
-  };
+  }
   
-  window.closeModal = function() {
+  function closeModal() {
     $('#reportModal').classList.remove('show');
-  };
+  }
   
   function showToast(msg) {
     const toast = $('#toast');
@@ -499,7 +472,6 @@
           $('studentName').value = state.name;
           $('subjectSelect').value = state.sub;
           if (state.lastResult) {
-            $('#kakaoBtn').disabled = false;
             $('scoreBanner').classList.add('show');
             $('scoreCorrect').innerText = state.lastResult.correct;
             $('scoreText').innerHTML = `정답률 ${state.lastResult.percent}%<br><span style="font-size:11px;">※ 정답은 공개되지 않습니다</span>`;
@@ -514,7 +486,6 @@
           $('subjectSelect').disabled = false;
           $('studentName').value = state.name;
           $('subjectSelect').value = state.sub;
-          $('#kakaoBtn').disabled = true;
         }
         
         updateCooldownUI();
@@ -533,9 +504,40 @@
     });
   });
   
+  // 답안 선택
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.choice');
+    if (!btn) return;
+    
+    if (state.attemptCount > 0) {
+      showToast('채점 이후에는 답안을 수정할 수 없습니다. "새로 시작하기"를 눌러주세요.');
+      return;
+    }
+    
+    const p = btn.dataset.p;
+    const idx = parseInt(btn.dataset.idx);
+    const v = parseInt(btn.dataset.v);
+    if (!p) return;
+    
+    const arr = p === 'c' ? state.common : state.select;
+    const currentVal = arr[idx];
+    
+    if (currentVal === v) {
+      arr[idx] = 0;
+    } else {
+      arr[idx] = v;
+    }
+    
+    updateUI();
+    save();
+  });
+  
+  // 버튼 이벤트 연결 (모두 활성화)
   $('submitBtn').onclick = onSubmit;
-  $('#resetBtn').onclick = resetAll;
-  $('#kakaoBtn').onclick = showReportModal;
+  $('resetBtn').onclick = resetAll;
+  $('kakaoBtn').onclick = showReportModal;
+  $('#copyReportBtn').onclick = copyReport;
+  $('#closeModalBtn').onclick = closeModal;
   
   load();
 })();
