@@ -150,7 +150,7 @@
     "언어와매체": [2,1,4,3,3, 1,2,4,5,1,5]
   };
   
-  const STORAGE_KEY = 'may_4th_omr_final';
+  const STORAGE_KEY = 'may_4th_omr_final_v3';
   const MAX_ATTEMPTS = 3;
   const COOLDOWN_MIN = 10;
   
@@ -196,8 +196,21 @@
     const answeredSelect = state.select.filter(x => x > 0).length;
     $('commonProgress').innerText = `${answeredCommon} / 34`;
     $('selectProgress').innerText = `${answeredSelect} / 11`;
-    $('studentName').value = state.name;
-    $('subjectSelect').value = state.sub;
+    
+    // 입력필드 값 동기화 (단, 이미 채점 시작했으면 수정 불가)
+    if (state.attemptCount === 0) {
+      $('studentName').value = state.name;
+      $('subjectSelect').value = state.sub;
+    }
+  }
+  
+  // 이름/과목 저장 (입력필드 변경 시)
+  function syncUserInfo() {
+    if (state.attemptCount === 0) {
+      state.name = $('studentName').value.trim();
+      state.sub = $('subjectSelect').value;
+      save();
+    }
   }
   
   // 점수만 계산 (정답은 숨김)
@@ -239,9 +252,6 @@
     }
     
     state.lastResult = { correct, wrongs, percent };
-    
-    // 해설지 링크는 3회 이후에도 계속 숨김 (요청 조건)
-    // $('solutionLinkArea').classList.remove('hidden'); // 주석 처리 - 해설지도 안 보이게
   }
   
   // 쿨다운 UI 업데이트
@@ -292,11 +302,17 @@
   
   // 채점 버튼 클릭
   function onSubmit() {
-    const name = $('studentName').value.trim();
-    if (!name) {
-      alert('이름을 입력하세요.');
-      $('studentName').focus();
-      return;
+    // 입력필드에서 최신값 가져오기 (첫 채점 시)
+    if (state.attemptCount === 0) {
+      const nameInput = $('studentName').value.trim();
+      if (!nameInput) {
+        alert('이름을 입력하세요.');
+        $('studentName').focus();
+        return;
+      }
+      state.name = nameInput;
+      state.sub = $('subjectSelect').value;
+      save();
     }
     
     if (state.attemptCount >= MAX_ATTEMPTS) {
@@ -311,9 +327,6 @@
       return;
     }
     
-    state.name = name;
-    state.sub = $('subjectSelect').value;
-    
     const answered = state.common.filter(x=>x>0).length + state.select.filter(x=>x>0).length;
     if (answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 그래도 채점할까요?`)) {
       return;
@@ -325,6 +338,10 @@
     // 횟수 증가 및 쿨다운 설정
     state.attemptCount++;
     state.cooldownUntil = Date.now() + (COOLDOWN_MIN * 60 * 1000);
+    
+    // 채점 후에는 이름/과목 입력필드 비활성화
+    $('studentName').disabled = true;
+    $('subjectSelect').disabled = true;
     
     save();
     updateCooldownUI();
@@ -349,6 +366,8 @@
       
       $('studentName').value = '';
       $('subjectSelect').value = '화법과작문';
+      $('studentName').disabled = false;
+      $('subjectSelect').disabled = false;
       $('scoreBanner').classList.remove('show');
       $('#cooldownTimer').classList.add('hidden');
       $('submitBtn').disabled = false;
@@ -366,8 +385,7 @@
     const btn = e.target.closest('.choice');
     if (!btn) return;
     
-    // 이미 채점을 완료한 상태에서도 답안 수정 가능하도록? 
-    // 문제: 채점 후에는 수정 막는 것이 일반적. 여기서는 채점 후 수정 불가하게 처리
+    // 이미 한 번이라도 채점했으면 답안 수정 불가
     if (state.attemptCount > 0) {
       showToast('채점 이후에는 답안을 수정할 수 없습니다. "새로 시작하기"를 눌러주세요.');
       return;
@@ -386,6 +404,21 @@
     
     updateUI();
     save();
+  });
+  
+  // 이름/과목 변경 시 저장 (채점 전까지만)
+  $('studentName').addEventListener('input', () => {
+    if (state.attemptCount === 0) {
+      state.name = $('studentName').value.trim();
+      save();
+    }
+  });
+  
+  $('subjectSelect').addEventListener('change', () => {
+    if (state.attemptCount === 0) {
+      state.sub = $('subjectSelect').value;
+      save();
+    }
   });
   
   function showToast(msg) {
@@ -423,6 +456,15 @@
         
         updateUI();
         
+        // 채점을 이미 한 상태면 입력필드 비활성화
+        if (state.attemptCount > 0) {
+          $('studentName').disabled = true;
+          $('subjectSelect').disabled = true;
+        } else {
+          $('studentName').disabled = false;
+          $('subjectSelect').disabled = false;
+        }
+        
         // 마지막 결과가 있으면 배너 표시
         if (state.lastResult && state.attemptCount > 0) {
           $('scoreBanner').classList.add('show');
@@ -437,6 +479,11 @@
         
         updateCooldownUI();
       }
+      
+      // 입력필드 값 설정
+      $('studentName').value = state.name;
+      $('subjectSelect').value = state.sub;
+      
     } catch(e) {
       console.error('로드 오류', e);
       localStorage.removeItem(STORAGE_KEY);
