@@ -204,6 +204,48 @@
       border-left: 4px solid #7c2c3e;
     }
     .hidden { display: none; }
+
+    .mark-buttons {
+      display:flex;
+      gap:6px;
+      margin-left:8px;
+    }
+    .mark-btn {
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      border:1.5px solid #d8c8cc;
+      background:white;
+      font-size:14px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+    .mark-btn.active {
+      background:#7c2c3e;
+      color:white;
+      border-color:#7c2c3e;
+    }
+    .time-box {
+      background:white;
+      border-radius:20px;
+      padding:14px;
+      margin-bottom:18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .time-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    .time-item input {
+      width:100%;
+      padding:10px;
+      border:1.5px solid #d8c8cc;
+      border-radius:12px;
+      margin-top:4px;
+    }
+
   </style>
 </head>
 <body>
@@ -229,6 +271,22 @@
     <option value="화법과작문">화법과작문 (35~45번)</option>
     <option value="언어와매체">언어와매체 (35~45번)</option>
   </select>
+</div>
+
+
+<div class="time-box">
+  <div style="font-weight:700; color:#7c2c3e;">⏱️ 지문별 소요 시간 기록</div>
+  <div class="time-grid">
+    <div class="time-item"><label>독서 1</label><input type="text" placeholder="예: 8분"></div>
+    <div class="time-item"><label>독서 2</label><input type="text" placeholder="예: 7분"></div>
+    <div class="time-item"><label>독서 3</label><input type="text" placeholder="예: 9분"></div>
+    <div class="time-item"><label>독서 4</label><input type="text" placeholder="예: 6분"></div>
+    <div class="time-item"><label>문학 1</label><input type="text" placeholder="예: 5분"></div>
+    <div class="time-item"><label>문학 2</label><input type="text" placeholder="예: 4분"></div>
+    <div class="time-item"><label>문학 3</label><input type="text" placeholder="예: 6분"></div>
+    <div class="time-item"><label>문학 4</label><input type="text" placeholder="예: 5분"></div>
+    <div class="time-item"><label>선택 과목</label><input type="text" placeholder="예: 11분"></div>
+  </div>
 </div>
 
 <div class="tab-menu">
@@ -288,7 +346,8 @@
       cooldownUntil: 0,
       name: '',
       sub: '화법과작문',
-      lastResult: null
+      lastResult: null,
+      marks: { common: new Array(34).fill(''), select: new Array(11).fill('') }
     };
     let timerInterval = null;
     
@@ -301,6 +360,11 @@
           <div class="choices">
             ${[1,2,3,4,5].map(v => `<button class="choice" data-p="c" data-idx="${i-1}" data-val="${v}">${v}</button>`).join('')}
           </div>
+          <div class="mark-buttons">
+            <button class="mark-btn" data-mark="o" data-qtype="c" data-qidx="${i-1}">○</button>
+            <button class="mark-btn" data-mark="t" data-qtype="c" data-qidx="${i-1}">△</button>
+            <button class="mark-btn" data-mark="x" data-qtype="c" data-qidx="${i-1}">✕</button>
+          </div>
         </div>`;
       }
       for(let i=1; i<=11; i++) {
@@ -308,6 +372,11 @@
           <div class="question-num">${i+34}</div>
           <div class="choices">
             ${[1,2,3,4,5].map(v => `<button class="choice" data-p="s" data-idx="${i-1}" data-val="${v}">${v}</button>`).join('')}
+          </div>
+          <div class="mark-buttons">
+            <button class="mark-btn" data-mark="o" data-qtype="s" data-qidx="${i-1}">○</button>
+            <button class="mark-btn" data-mark="t" data-qtype="s" data-qidx="${i-1}">△</button>
+            <button class="mark-btn" data-mark="x" data-qtype="s" data-qidx="${i-1}">✕</button>
           </div>
         </div>`;
       }
@@ -328,6 +397,20 @@
         if(isLocked) btn.classList.add('disabled');
         else btn.classList.remove('disabled');
       });
+
+      document.querySelectorAll('.mark-btn').forEach(btn => {
+        const type = btn.dataset.qtype;
+        const idx = parseInt(btn.dataset.qidx);
+        const mark = btn.dataset.mark;
+
+        const current = type === 'c'
+          ? state.marks.common[idx]
+          : state.marks.select[idx];
+
+        if(current === mark) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+
       const ansC = state.common.filter(v=>v>0).length;
       const ansS = state.select.filter(v=>v>0).length;
       $('#commonProgress').innerText = `${ansC}/34`;
@@ -477,7 +560,9 @@ ${wrongMsg}
           cooldownUntil: 0,
           name: '',
           sub: '화법과작문',
-          lastResult: null
+          lastResult: null,
+          marks: { common: new Array(34).fill(''), select: new Array(11).fill('') },
+      marks: { common: new Array(34).fill(''), select: new Array(11).fill('') }
         };
         $('#studentName').value = '';
         $('#subjectSelect').value = '화법과작문';
@@ -544,7 +629,7 @@ ${wrongMsg}
     function saveToLocal() {
       localStorage.setItem('may_omr_v2', JSON.stringify({
         common: state.common, select: state.select, attemptCount: state.attemptCount,
-        cooldownUntil: state.cooldownUntil, name: state.name, sub: state.sub, lastResult: state.lastResult
+        cooldownUntil: state.cooldownUntil, name: state.name, sub: state.sub, lastResult: state.lastResult, marks: state.marks
       }));
     }
     function loadFromLocal() {
@@ -559,6 +644,7 @@ ${wrongMsg}
         state.name = data.name || '';
         state.sub = data.sub || '화법과작문';
         state.lastResult = data.lastResult || null;
+        state.marks = data.marks || { common: new Array(34).fill(''), select: new Array(11).fill('') };
         $('#studentName').value = state.name;
         $('#subjectSelect').value = state.sub;
         if(state.attemptCount > 0) {
@@ -596,6 +682,34 @@ ${wrongMsg}
       saveToLocal();
     }
     
+
+    function onMarkClick(e) {
+      const btn = e.target.closest('.mark-btn');
+      if(!btn) return;
+
+      const type = btn.dataset.qtype;
+      const idx = parseInt(btn.dataset.qidx);
+      const mark = btn.dataset.mark;
+
+      const targetArr = type === 'c' ? state.marks.common : state.marks.select;
+
+      if(targetArr[idx] === mark) {
+        targetArr[idx] = '';
+        btn.classList.remove('active');
+      } else {
+        targetArr[idx] = mark;
+
+        document.querySelectorAll(`.mark-btn[data-qtype="${type}"][data-qidx="${idx}"]`).forEach(b=>{
+          b.classList.remove('active');
+        });
+
+        btn.classList.add('active');
+      }
+
+      saveToLocal();
+    }
+
+
     function initTabs() {
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -620,6 +734,8 @@ ${wrongMsg}
       
       $('#commonList').addEventListener('click', onChoiceClick);
       $('#selectList').addEventListener('click', onChoiceClick);
+      $('#commonList').addEventListener('click', onMarkClick);
+      $('#selectList').addEventListener('click', onMarkClick);
     }
     
     function init() {
