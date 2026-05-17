@@ -519,14 +519,39 @@ ${wrongMsg}
     function getReportText() {
       const currentName = $('#studentName').value.trim() || '미입력';
       const currentSub = $('#subjectSelect').value;
+      const attemptNum = state.attemptCount || 1;
+
+      // 마킹 정보 정리 로직
+      let oCommon = [], tCommon = [], xCommon = [];
+      state.marks.common.forEach((m, idx) => {
+        if(m === 'o') oCommon.push(idx + 1);
+        if(m === 't') tCommon.push(idx + 1);
+        if(m === 'x') xCommon.push(idx + 1);
+      });
+
+      let oSelect = [], tSelect = [], xSelect = [];
+      state.marks.select.forEach((m, idx) => {
+        if(m === 'o') oSelect.push(idx + 35);
+        if(m === 't') tSelect.push(idx + 35);
+        if(m === 'x') xSelect.push(idx + 35);
+      });
+
+      const markSection = `📌 [문항 분류 기록]
+• ○ (확신): ${[...oCommon, ...oSelect].join(', ') || '없음'}
+• △ (애매): ${[...tCommon, ...tSelect].join(', ') || '없음'}
+• ✕ (모름): ${[...xCommon, ...xSelect].join(', ') || '없음'}`;
+
       if(!state.lastResult) return `[5월 4주차 모의고사 결과]\n━━━━━━━━━━━━━━━━━━━━━━\n👤 이름: ${currentName}\n📚 선택과목: ${currentSub}\n⚠️ 아직 채점 전입니다. (답안 작성 중)\n━━━━━━━━━━━━━━━━━━━━━━`;
       return `[5월 4주차 마침내 모의고사 결과]
 ━━━━━━━━━━━━━━━━━━━━━━
 👤 이름: ${state.name}
 📚 선택과목: ${state.sub}
+🔥 채점 회차: ${attemptNum}회차 도전
 🎯 총점: ${state.lastResult.correct}/45점
 📊 정답률: ${state.lastResult.percent}%
 ❌ ${state.lastResult.wrongs.length ? `오답: ${state.lastResult.wrongs.join(', ')} (${state.lastResult.wrongs.length}개)` : '만점! 축하합니다 🎉'}
+━━━━━━━━━━━━━━━━━━━━━━
+${markSection}
 ━━━━━━━━━━━━━━━━━━━━━━
 ※ 정답은 공개되지 않습니다.`;
     }
@@ -541,8 +566,8 @@ ${wrongMsg}
       if(state.cooldownUntil > now) { alert(`다음 채점까지 ${Math.ceil((state.cooldownUntil-now)/60000)}분 기다려주세요.`); return; }
       const answered = state.common.filter(v=>v>0).length + state.select.filter(v=>v>0).length;
       if(answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 그래도 채점할까요?`)) return;
-      performGrading();
       state.attemptCount++;
+      performGrading();
       state.cooldownUntil = Date.now() + COOLDOWN_MIN*60*1000;
       $('#studentName').disabled = true;
       $('#subjectSelect').disabled = true;
