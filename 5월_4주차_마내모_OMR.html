@@ -5,457 +5,553 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
   <title>김현석 국어 · 5월 4주차 마침내 모의고사 OMR</title>
-
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
-      background: #faf6f3; color: #2c1518; font-size: 15px; line-height: 1.5;
-      overflow-x: hidden; min-height: 100vh;
+      font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif;
+      background: #faf6f3;
+      padding: 16px;
+      max-width: 700px;
+      margin: 0 auto;
     }
-    button { font-family: inherit; touch-action: manipulation; }
-    input, select { font-family: inherit; }
-
     .header {
-      background: linear-gradient(135deg, #7c2c3e 0%, #5a1f2c 100%);
-      color: #faf6f3; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(135deg, #7c2c3e, #5a1f2c);
+      color: white;
+      padding: 16px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    .header h1 { font-size: 17px; font-weight: 700; }
-    .header .sub { font-size: 11.5px; opacity: 0.85; margin-top: 4px; }
-
-    .container { max-width: 640px; margin: 0 auto; padding: 14px 14px 20px; }
-
     .info-card {
-      background: #fff; border-radius: 14px; padding: 14px;
-      box-shadow: 0 2px 10px rgba(124, 44, 62, 0.08); border: 1px solid #efe0e3; margin-bottom: 16px;
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-    .info-card label { display: block; font-size: 12.5px; color: #7c2c3e; font-weight: 600; margin-bottom: 6px; }
+    .info-card label { font-weight: 600; color: #7c2c3e; display: block; margin-bottom: 6px; }
     .info-card input, .info-card select {
-      width: 100%; padding: 11px 12px; border: 1.5px solid #d8c8cc; border-radius: 10px;
-      font-size: 16px; background: #fafafa;
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 14px;
+      font-size: 16px;
+      margin-bottom: 12px;
     }
-    .info-row { margin-bottom: 10px; }
-
-    .tab-menu { display: flex; gap: 8px; margin-bottom: 14px; }
+    .tab-menu {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
     .tab-btn {
-      flex: 1; background: #fff; border: 1.5px solid #d8c8cc; border-radius: 12px;
-      padding: 12px 0; font-weight: 700; font-size: 15px; color: #6c4248; cursor: pointer;
+      flex: 1;
+      background: white;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
     }
-    .tab-btn.active { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
+    .tab-btn.active {
+      background: #7c2c3e;
+      color: white;
+      border: none;
+    }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
+    .section {
+      background: white;
+      border-radius: 24px;
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+    .section-header {
+      font-size: 18px;
+      font-weight: bold;
+      padding: 8px 0;
+      border-bottom: 2px solid #f0e2e5;
+      margin-bottom: 8px;
+    }
+    .question-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f5ecee;
+    }
+    .question-num {
+      width: 55px;
+      font-weight: 700;
+      color: #7c2c3e;
+      font-size: 16px;
+    }
+    .choices {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+    }
+    .choice {
+      flex: 1;
+      text-align: center;
+      padding: 8px 0;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 40px;
+      background: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .choice.selected {
+      background: #7c2c3e;
+      border-color: #7c2c3e;
+      color: white;
+    }
+    .choice.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 12px;
+      cursor: pointer;
+      background: #eee;
+      color: #333;
+      transition: 0.1s;
+    }
+    .btn-primary { background: #7c2c3e; color: white; }
+    .btn-kakao { background: #fee500; color: #3c1e1e; }
+    .btn-warning { background: #ff9f4a; color: #2c1518; }
     .score-banner {
-      display: none; background: #fff8f5; border: 2px solid #7c2c3e; border-radius: 14px;
-      padding: 16px; margin-bottom: 16px; text-align: center;
+      background: #fff8f5;
+      border: 2px solid #7c2c3e;
+      border-radius: 24px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+      display: none;
     }
     .score-banner.show { display: block; }
-    .score-main { font-size: 30px; font-weight: 800; color: #7c2c3e; }
-    .score-detail { font-size: 12.5px; color: #6c4248; margin-top: 4px; }
-
-    .section {
-      background: #fff; border-radius: 14px; box-shadow: 0 2px 10px rgba(124, 44, 62, 0.08);
-      border: 1px solid #efe0e3; margin-bottom: 14px; overflow: hidden;
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      opacity: 0;
+      transition: 0.2s;
+      pointer-events: none;
+      z-index: 2000;
+      font-size: 13px;
     }
-    .section-header { padding: 11px 14px; font-weight: 700; color: #fff; background: #7c2c3e; display: flex; justify-content: space-between; }
-    .question-row { display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 6px; padding: 7px 10px; border-bottom: 1px solid #f5ecee; }
-    .question-num { font-size: 13.5px; font-weight: 700; color: #7c2c3e; text-align: center; }
-
-    .choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
-    .choice {
-      height: 38px; border: 1.5px solid #d8c8cc; border-radius: 50%; background: #fff;
-      color: #6c4248; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    }
-    .choice.selected { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
-
-    .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; margin-top: 10px; }
-    .btn-primary { background: #7c2c3e; color: #fff; }
-    .btn-kakao { background: #fee500; color: #3c1e1e; margin-top: 10px; }
-    .btn-secondary { background: #eee; color: #666; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .link-box { text-align: center; margin: 12px 0; }
-    .link-btn { display: inline-block; padding: 10px 20px; border: 1.5px solid #7c2c3e; border-radius: 25px; text-decoration: none; color: #7c2c3e; font-weight: 600; font-size: 13px; }
-    .hidden { display: none; }
-    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 20px; border-radius: 20px; opacity: 0; transition: 0.3s; z-index: 2000; pointer-events: none; }
     .toast.show { opacity: 1; }
     .timer-text { font-size: 13px; font-weight: bold; color: #d04141; margin-top: 8px; }
     .attempt-text { font-size: 12px; color: #7c2c3e; font-weight: 700; margin-bottom: 5px; }
-    
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
     .modal-overlay.show { display: flex; }
-    .modal { background: #fff; border-radius: 16px; width: 100%; max-width: 480px; padding: 20px; text-align: center; }
-    #report-text { width: 100%; height: 200px; margin: 15px 0; padding: 10px; font-family: monospace; font-size: 12px; background: #f9f9f9; border: 1px solid #ddd; }
+    .modal {
+      background: white;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      padding: 20px;
+      text-align: center;
+    }
+    #report-text {
+      width: 100%;
+      height: 200px;
+      margin: 15px 0;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+    .share-card {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid #efe0e3;
+    }
+    .report-preview {
+      background: #fdf9f7;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 13px;
+      white-space: pre-line;
+      line-height: 1.55;
+      margin: 12px 0;
+      border-left: 4px solid #7c2c3e;
+    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
 
-<header class="header">
-  <h1>5월 4주차 마침내 모의고사</h1>
-  <div class="sub">공통(1~34) + 선택(35~45) · 최대 3회 채점 · 채점 간 10분 대기</div>
-</header>
-
-<div class="container">
-  <div class="score-banner" id="scoreBanner">
-    <div class="attempt-text" id="attemptDisplay">📌 남은 채점 횟수: 3회</div>
-    <div class="score-main"><span id="scoreCorrect">0</span><span style="font-size:16px; color:#997a80;"> / 45</span></div>
-    <div class="score-detail" id="scoreText">정답률 0%</div>
-    <div id="wrongList" style="font-size:11px; color:#d04141; margin-top:8px; font-weight:700;"></div>
-    <div id="cooldownTimer" class="timer-text hidden"></div>
-  </div>
-
-  <div class="info-card">
-    <div class="info-row"><label>학생 이름*</label><input type="text" id="studentName" placeholder="실명을 입력하세요"></div>
-    <div class="info-row">
-      <label>선택 과목*</label>
-      <select id="subjectSelect">
-        <option value="화법과작문">화법과작문 (35~45번)</option>
-        <option value="언어와매체">언어와매체 (35~45번)</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="tab-menu">
-    <button class="tab-btn active" data-tab="common-tab">📘 공통 (1~34)</button>
-    <button class="tab-btn" data-tab="select-tab">📕 선택 (35~45)</button>
-  </div>
-
-  <div id="common-tab" class="tab-content active">
-    <div class="section">
-      <div class="section-header"><div>공통 문항</div><div id="commonProgress">0 / 34</div></div>
-      <div id="commonList"></div>
-    </div>
-  </div>
-
-  <div id="select-tab" class="tab-content">
-    <div class="section">
-      <div class="section-header"><div>선택 문항</div><div id="selectProgress">0 / 11</div></div>
-      <div id="selectList"></div>
-    </div>
-  </div>
-
-  <button class="btn btn-primary" id="submitBtn">채점하기</button>
-  <button class="btn btn-kakao" id="kakaoBtn">📋 결과 복사하기</button>
-  <button class="btn btn-secondary" id="resetBtn">새로 시작하기 (초기화)</button>
-
-  <div class="link-box"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQB37q2ovk_2SoOthj2wrVMJAWbENtYDDUYW4hMYdTZ2Lhc?e=IxOepa" class="link-btn" target="_blank">📄 모의고사 문제지 보기</a></div>
-  <div id="solutionLinkArea" class="link-box hidden"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDFOACPZTwQR5ESETUBEM9yAZmK9qndV5tMw3JHIPAOu6A?e=csMwOf" class="link-btn" target="_blank">📖 해설지 보기 (복사 후 열람)</a></div>
+<div class="header">
+  <h2>5월 4주차 마침내 모의고사</h2>
+  <div style="font-size: 12px;">공통(1~34) + 선택(35~45) · 최대 10회 채점 · 채점 간 5분 대기</div>
 </div>
 
+<div class="score-banner" id="scoreBanner">
+  <div class="attempt-text" id="attemptDisplay">📌 남은 채점 횟수: 3회</div>
+  <div class="score-main" style="font-size: 32px; font-weight:800;"><span id="scoreCorrect">0</span>/45</div>
+  <div class="score-detail" id="scoreText">정답률 0%</div>
+  <div id="wrongList" style="color:#d04141; margin-top:6px;"></div>
+  <div id="cooldownTimer" class="timer-text hidden"></div>
+</div>
+
+<div class="info-card">
+  <label>📛 학생 이름</label>
+  <input type="text" id="studentName" placeholder="실명 입력">
+  <label>📚 선택 과목</label>
+  <select id="subjectSelect">
+    <option value="화법과작문">화법과작문 (35~45번)</option>
+    <option value="언어와매체">언어와매체 (35~45번)</option>
+  </select>
+</div>
+
+<div class="tab-menu">
+  <button class="tab-btn active" data-tab="common-tab">📘 공통 (1~34)</button>
+  <button class="tab-btn" data-tab="select-tab">📕 선택 (35~45)</button>
+</div>
+
+<div id="common-tab" class="tab-content active">
+  <div class="section">
+    <div class="section-header">공통 문항 <span id="commonProgress">0/34</span></div>
+    <div id="commonList"></div>
+  </div>
+</div>
+<div id="select-tab" class="tab-content">
+  <div class="section">
+    <div class="section-header">선택 문항 <span id="selectProgress">0/11</span></div>
+    <div id="selectList"></div>
+  </div>
+</div>
+<button id="submitBtn" class="btn btn-primary">✅ 채점하기</button>
+<button id="kakaoBtn" class="btn btn-kakao">💬 카톡 공유 (보고서)</button>
+<button id="resetBtn" class="btn btn-warning">🔄 ★ 새로 시작하기 (초기화) ★</button>
+
+<div class="link-box" style="text-align:center; margin-top:12px;">
+  <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQB37q2ovk_2SoOthj2wrVMJAWbENtYDDUYW4hMYdTZ2Lhc?e=IxOepa" target="_blank" style="display:inline-block; padding:8px 16px; border:1.5px solid #7c2c3e; border-radius:30px; text-decoration:none; color:#7c2c3e;">📄 모의고사 문제지 보기</a>
+</div>
 <div class="modal-overlay" id="reportModal">
   <div class="modal">
     <h3>📋 결과 리포트</h3>
     <textarea id="report-text" readonly></textarea>
     <div>
-      <button class="btn btn-primary" id="copyReportBtn">📋 클립보드 복사</button>
-      <button class="btn btn-secondary" id="closeModalBtn">닫기</button>
+      <button id="copyReportBtn" class="btn btn-primary">📋 클립보드 복사</button>
+      <button id="closeModalBtn" class="btn btn-secondary">닫기</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast"></div>
 
 <script>
-(function(){
-  const $ = id => document.getElementById(id);
-  
-  // 정답 데이터
-  const ANS = {
-    common: [3,1,5,2,1, 3,4,5,2,1, 4,2,5,1,4, 3,2,3,2,4, 2,1,3,4,5, 5,4,4,1,2, 1,5,3,2],
-    "화법과작문": [1,3,4,4,4, 2,3,5,5,1,2],
-    "언어와매체": [2,1,4,3,3, 1,2,4,5,1,5]
-  };
-  
-  const STORAGE_KEY = 'may_4th_omr_final_v6';
-  const MAX_ATTEMPTS = 3;
-  const COOLDOWN_MIN = 10;
-  
-  let state = {
-    common: new Array(34).fill(0),
-    select: new Array(11).fill(0),
-    attemptCount: 0,
-    cooldownUntil: 0,
-    name: '',
-    sub: '화법과작문',
-    lastResult: null
-  };
-  
-  let timerInterval = null;
-  
-  // 렌더링
-  function render(el, prefix, count, offset) {
-    let html = '';
-    for(let i=1; i<=count; i++) {
-      html += `<div class="question-row" id="row-${prefix}-${i}"><div class="question-num">${i+offset}</div><div class="choices">` +
-              [1,2,3,4,5].map(c => `<button class="choice" data-p="${prefix}" data-idx="${i-1}" data-v="${c}">${c}</button>`).join('') +
-              `</div></div>`;
+  (function(){
+    const $ = sel => document.querySelector(sel);
+    
+    // 정답 데이터
+    const ANS = {
+      common: [3,1,5,2,1,3,4,5,2,1,4,2,5,1,4,3,2,3,2,4,2,1,3,4,5,5,4,4,1,2,1,5,3,2],
+      "화법과작문": [1,3,4,4,4,2,3,5,5,1,2],
+      "언어와매체": [2,1,4,3,3,1,2,4,5,1,5]
+    };
+    const MAX_ATTEMPTS = 10;
+    const COOLDOWN_MIN = 5;
+    
+    let state = {
+      common: new Array(34).fill(0),
+      select: new Array(11).fill(0),
+      attemptCount: 0,
+      cooldownUntil: 0,
+      name: '',
+      sub: '화법과작문',
+      lastResult: null
+    };
+    let timerInterval = null;
+    
+    // ----- 버튼 생성 -----
+    function buildQuestions() {
+      let commonHtml = '', selectHtml = '';
+      for(let i=1; i<=34; i++) {
+        commonHtml += `<div class="question-row">
+          <div class="question-num">${i}</div>
+          <div class="choices">
+            ${[1,2,3,4,5].map(v => `<button class="choice" data-p="c" data-idx="${i-1}" data-val="${v}">${v}</button>`).join('')}
+          </div>
+        </div>`;
+      }
+      for(let i=1; i<=11; i++) {
+        selectHtml += `<div class="question-row">
+          <div class="question-num">${i+34}</div>
+          <div class="choices">
+            ${[1,2,3,4,5].map(v => `<button class="choice" data-p="s" data-idx="${i-1}" data-val="${v}">${v}</button>`).join('')}
+          </div>
+        </div>`;
+      }
+      $('#commonList').innerHTML = commonHtml;
+      $('#selectList').innerHTML = selectHtml;
     }
-    el.innerHTML = html;
-  }
-  render($('commonList'), 'c', 34, 0);
-  render($('selectList'), 's', 11, 34);
-  
-  // UI 업데이트
-  function updateUI() {
-    document.querySelectorAll('.choice').forEach(btn => {
-      const p = btn.dataset.p;
-      const idx = btn.dataset.idx;
-      const v = btn.dataset.v;
-      if (!p) return;
-      const selected = (p === 'c' ? state.common : state.select)[parseInt(idx)];
-      if (selected == parseInt(v)) {
-        btn.classList.add('selected');
+    
+    function updateUI() {
+      const isLocked = state.attemptCount > 0;
+      document.querySelectorAll('.choice').forEach(btn => {
+        const p = btn.dataset.p;
+        const idx = parseInt(btn.dataset.idx);
+        const val = parseInt(btn.dataset.val);
+        const current = (p === 'c') ? state.common[idx] : state.select[idx];
+        if(current === val) btn.classList.add('selected');
+        else btn.classList.remove('selected');
+        
+        if(isLocked) btn.classList.add('disabled');
+        else btn.classList.remove('disabled');
+      });
+      const ansC = state.common.filter(v=>v>0).length;
+      const ansS = state.select.filter(v=>v>0).length;
+      $('#commonProgress').innerText = `${ansC}/34`;
+      $('#selectProgress').innerText = `${ansS}/11`;
+    }
+    
+    function computeScore() {
+      let correct = 0, wrongs = [];
+      state.common.forEach((v,i) => {
+        if(v===0) wrongs.push(i+1);
+        else if(v === ANS.common[i]) correct++;
+        else wrongs.push(i+1);
+      });
+      state.select.forEach((v,i) => {
+        const currentSub = $('#subjectSelect').value;
+        if(v===0) wrongs.push(i+35);
+        else if(v === ANS[currentSub][i]) correct++;
+        else wrongs.push(i+35);
+      });
+      return { correct, wrongs, percent: ((correct/45)*100).toFixed(1) };
+    }
+    
+    function performGrading() {
+      const { correct, wrongs, percent } = computeScore();
+      state.lastResult = { correct, wrongs, percent };
+      $('#scoreBanner').classList.add('show');
+      $('#scoreCorrect').innerText = correct;
+      $('#scoreText').innerHTML = `정답률 ${percent}%<br><span style="font-size:11px;">※ 정답은 공개되지 않습니다</span>`;
+      if(wrongs.length) $('#wrongList').innerHTML = `❌ 틀린 문항: ${wrongs.join(', ')} (${wrongs.length}개)`;
+      else $('#wrongList').innerHTML = '✅ 만점! 축하합니다';
+      updateKakaoPreview();
+    }
+    
+    function updateKakaoPreview() {
+      const preview = $('#kakaoPreviewArea');
+      if (!preview) return;
+      const currentName = $('#studentName').value.trim() || '미입력';
+      const currentSub = $('#subjectSelect').value;
+
+      if(!state.lastResult) {
+        preview.innerText = `📚 [5월 4주차 마침내 모의고사 결과]
+━━━━━━━━━━━━━━━━━━━━━━
+👤 이름: ${currentName}
+📖 선택과목: ${currentSub}
+⚠️ 아직 채점 결과가 없습니다. (답안 작성 중)
+━━━━━━━━━━━━━━━━━━━━━━`;
+        return;
+      }
+      const now = new Date();
+      const timeStr = `${now.getFullYear()}.${now.getMonth()+1}.${now.getDate()} ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}`;
+      const wrongMsg = state.lastResult.wrongs.length ? `❌ 오답 문항: ${state.lastResult.wrongs.join(', ')} (${state.lastResult.wrongs.length}개)` : '✅ 만점! 축하합니다 🎉';
+      preview.innerText = `📚 [5월 4주차 마침내 모의고사 결과]
+👤 이름: ${state.name}
+📖 선택과목: ${state.sub}
+🎯 총점: ${state.lastResult.correct}/45점
+📊 정답률: ${state.lastResult.percent}%
+${wrongMsg}
+⏱️ 제출시각: ${timeStr}
+※ 정답은 공개되지 않습니다.`;
+    }
+    
+    function updateCooldownUI() {
+      const now = Date.now();
+      const submitBtn = $('#submitBtn');
+      const cooldownDiv = $('#cooldownTimer');
+      const remaining = Math.max(0, MAX_ATTEMPTS - state.attemptCount);
+      $('#attemptDisplay').innerHTML = `📌 남은 채점 횟수: ${remaining}회`;
+      if(state.attemptCount >= MAX_ATTEMPTS) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = '채점 횟수 소진';
+        if(timerInterval) clearInterval(timerInterval);
+        cooldownDiv.classList.add('hidden');
+        updateUI();
+        return;
+      }
+      if(state.cooldownUntil > now) {
+        const remainSec = Math.floor((state.cooldownUntil - now)/1000);
+        const minutes = Math.floor(remainSec/60);
+        const seconds = remainSec%60;
+        cooldownDiv.classList.remove('hidden');
+        cooldownDiv.innerHTML = `⏳ 다음 채점까지: ${minutes}분 ${seconds}초`;
+        submitBtn.disabled = true;
+        if(!timerInterval) {
+          timerInterval = setInterval(() => {
+            if(Date.now() >= state.cooldownUntil) {
+              clearInterval(timerInterval);
+              timerInterval = null;
+              cooldownDiv.classList.add('hidden');
+              if(state.attemptCount < MAX_ATTEMPTS) submitBtn.disabled = false;
+              updateCooldownUI();
+            } else updateCooldownUI();
+          }, 1000);
+        }
       } else {
-        btn.classList.remove('selected');
+        if(timerInterval) clearInterval(timerInterval);
+        timerInterval = null;
+        cooldownDiv.classList.add('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerText = '✅ 채점하기';
       }
-    });
-    
-    const answeredCommon = state.common.filter(x => x > 0).length;
-    const answeredSelect = state.select.filter(x => x > 0).length;
-    $('commonProgress').innerText = `${answeredCommon} / 34`;
-    $('selectProgress').innerText = `${answeredSelect} / 11`;
-  }
-  
-  // 점수 계산
-  function computeScore() {
-    let correct = 0;
-    let wrongs = [];
-    const sub = state.sub;
-    
-    state.common.forEach((v, i) => {
-      const key = ANS.common[i];
-      if (v === 0) { wrongs.push(i+1); }
-      else if (v === key) { correct++; }
-      else { wrongs.push(i+1); }
-    });
-    
-    state.select.forEach((v, i) => {
-      const key = ANS[sub][i];
-      if (v === 0) { wrongs.push(i+35); }
-      else if (v === key) { correct++; }
-      else { wrongs.push(i+35); }
-    });
-    
-    return { correct, wrongs, total: 45 };
-  }
-  
-  // 채점 실행
-  function performGrading() {
-    const { correct, wrongs, total } = computeScore();
-    const percent = ((correct/total)*100).toFixed(1);
-    
-    $('scoreBanner').classList.add('show');
-    $('scoreCorrect').innerText = correct;
-    $('scoreText').innerHTML = `정답률 ${percent}%<br><span style="font-size:11px;">※ 정답은 공개되지 않습니다</span>`;
-    
-    if (wrongs.length > 0) {
-      $('wrongList').innerHTML = `❌ 틀린 문항: ${wrongs.join(', ')} (총 ${wrongs.length}개)`;
-    } else {
-      $('wrongList').innerHTML = '✅ 만점입니다! 축하합니다.';
+      updateUI();
     }
     
-    state.lastResult = { correct, wrongs, percent };
-  }
-  
-  // 쿨다운 UI
-  function updateCooldownUI() {
-    const now = Date.now();
-    const submitBtn = $('submitBtn');
-    const cooldownDiv = $('#cooldownTimer');
-    const remainingAttempts = Math.max(0, MAX_ATTEMPTS - state.attemptCount);
-    $('#attemptDisplay').innerHTML = `📌 남은 채점 횟수: ${remainingAttempts}회`;
-    
-    if (state.attemptCount >= MAX_ATTEMPTS) {
-      submitBtn.disabled = true;
-      submitBtn.innerText = '채점 횟수 소진';
-      if (timerInterval) clearInterval(timerInterval);
-      cooldownDiv.classList.add('hidden');
-      return;
-    }
-    
-    if (state.cooldownUntil > now) {
-      const remainSec = Math.floor((state.cooldownUntil - now) / 1000);
-      const minutes = Math.floor(remainSec / 60);
-      const seconds = remainSec % 60;
-      cooldownDiv.classList.remove('hidden');
-      cooldownDiv.innerHTML = `⏳ 다음 채점까지: ${minutes}분 ${seconds}초`;
-      submitBtn.disabled = true;
-      
-      if (timerInterval === null) {
-        timerInterval = setInterval(() => {
-          if (Date.now() >= state.cooldownUntil) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            cooldownDiv.classList.add('hidden');
-            if (state.attemptCount < MAX_ATTEMPTS) {
-              submitBtn.disabled = false;
-            }
-          } else {
-            updateCooldownUI();
-          }
-        }, 1000);
-      }
-    } else {
-      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-      cooldownDiv.classList.add('hidden');
-      submitBtn.disabled = false;
-      submitBtn.innerText = '채점하기';
-    }
-  }
-  
-  // 결과 리포트 텍스트
-  function generateReportText() {
-    if (!state.lastResult) return "아직 채점 결과가 없습니다.";
-    const wrongText = state.lastResult.wrongs.length > 0 
-      ? `오답 문항: ${state.lastResult.wrongs.join(', ')} (총 ${state.lastResult.wrongs.length}개)`
-      : "만점! 축하합니다 🎉";
-    
-    return `[5월 4주차 마침내 모의고사 결과]
+    function getReportText() {
+      const currentName = $('#studentName').value.trim() || '미입력';
+      const currentSub = $('#subjectSelect').value;
+      if(!state.lastResult) return `[5월 4주차 모의고사 결과]\n━━━━━━━━━━━━━━━━━━━━━━\n👤 이름: ${currentName}\n📚 선택과목: ${currentSub}\n⚠️ 아직 채점 전입니다. (답안 작성 중)\n━━━━━━━━━━━━━━━━━━━━━━`;
+      return `[5월 4주차 마침내 모의고사 결과]
 ━━━━━━━━━━━━━━━━━━━━━━
 👤 이름: ${state.name}
 📚 선택과목: ${state.sub}
 🎯 총점: ${state.lastResult.correct}/45점
 📊 정답률: ${state.lastResult.percent}%
-❌ ${wrongText}
+❌ ${state.lastResult.wrongs.length ? `오답: ${state.lastResult.wrongs.join(', ')} (${state.lastResult.wrongs.length}개)` : '만점! 축하합니다 🎉'}
 ━━━━━━━━━━━━━━━━━━━━━━
 ※ 정답은 공개되지 않습니다.`;
-  }
-  
-  // 채점 버튼 클릭
-  function onSubmit() {
-    // 이름 확인
-    const nameInput = $('studentName').value.trim();
-    if (!nameInput) {
-      alert('이름을 입력하세요.');
-      $('studentName').focus();
-      return;
-    }
-    state.name = nameInput;
-    state.sub = $('subjectSelect').value;
-    
-    if (state.attemptCount >= MAX_ATTEMPTS) {
-      alert(`이미 ${MAX_ATTEMPTS}회 채점했습니다. 더 이상 채점할 수 없습니다.`);
-      return;
     }
     
-    const now = Date.now();
-    if (state.cooldownUntil > now) {
-      const remainMin = Math.ceil((state.cooldownUntil - now) / 60000);
-      alert(`다음 채점까지 ${remainMin}분 기다려주세요.`);
-      return;
+    function onSubmit() {
+      const nameVal = $('#studentName').value.trim();
+      if(!nameVal) { alert('이름을 입력하세요'); return; }
+      state.name = nameVal;
+      state.sub = $('#subjectSelect').value;
+      if(state.attemptCount >= MAX_ATTEMPTS) { alert('채점 횟수를 모두 사용했습니다. 초기화 후 다시 시도하세요.'); return; }
+      const now = Date.now();
+      if(state.cooldownUntil > now) { alert(`다음 채점까지 ${Math.ceil((state.cooldownUntil-now)/60000)}분 기다려주세요.`); return; }
+      const answered = state.common.filter(v=>v>0).length + state.select.filter(v=>v>0).length;
+      if(answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 그래도 채점할까요?`)) return;
+      performGrading();
+      state.attemptCount++;
+      state.cooldownUntil = Date.now() + COOLDOWN_MIN*60*1000;
+      $('#studentName').disabled = true;
+      $('#subjectSelect').disabled = true;
+      saveToLocal();
+      updateCooldownUI();
+      showToast('채점 완료!');
     }
     
-    const answered = state.common.filter(x=>x>0).length + state.select.filter(x=>x>0).length;
-    if (answered < 45 && !confirm(`미입력 문항이 ${45-answered}개 있습니다. 그래도 채점할까요?`)) {
-      return;
-    }
-    
-    // 채점 실행
-    performGrading();
-    
-    // 횟수 증가 및 쿨다운 설정
-    state.attemptCount++;
-    state.cooldownUntil = Date.now() + (COOLDOWN_MIN * 60 * 1000);
-    
-    // 채점 후 입력필드 비활성화
-    $('studentName').disabled = true;
-    $('subjectSelect').disabled = true;
-    
-    save();
-    updateCooldownUI();
-    window.scrollTo(0, 0);
-  }
-  
-  // 초기화 (새로 시작하기)
-  function resetAll() {
-    if (confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) {
-      if (timerInterval) clearInterval(timerInterval);
-      timerInterval = null;
-      
-      state = {
-        common: new Array(34).fill(0),
-        select: new Array(11).fill(0),
-        attemptCount: 0,
-        cooldownUntil: 0,
-        name: '',
-        sub: '화법과작문',
-        lastResult: null
-      };
-      
-      $('studentName').value = '';
-      $('subjectSelect').value = '화법과작문';
-      $('studentName').disabled = false;
-      $('subjectSelect').disabled = false;
-      $('scoreBanner').classList.remove('show');
-      $('#cooldownTimer').classList.add('hidden');
-      $('submitBtn').disabled = false;
-      $('submitBtn').innerText = '채점하기';
-      
-      updateUI();
-      save();
-      showToast('초기화되었습니다. 새로 시작하세요!');
-    }
-  }
-  
-  // 결과 복사 모달 열기
-  function showReportModal() {
-    if (!state.lastResult) {
-      showToast('먼저 채점을 완료해주세요.');
-      return;
-    }
-    const reportText = generateReportText();
-    $('#report-text').value = reportText;
-    $('#reportModal').classList.add('show');
-  }
-  
-  // 클립보드 복사
-  function copyReport() {
-    const text = $('#report-text').value;
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text);
-        showToast('리포트가 복사되었습니다!');
-      } else {
-        throw new Error();
+    function resetAll() {
+      if(confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) {
+        if(timerInterval) clearInterval(timerInterval);
+        timerInterval = null;
+        state = {
+          common: new Array(34).fill(0),
+          select: new Array(11).fill(0),
+          attemptCount: 0,
+          cooldownUntil: 0,
+          name: '',
+          sub: '화법과작문',
+          lastResult: null
+        };
+        $('#studentName').value = '';
+        $('#subjectSelect').value = '화법과작문';
+        $('#studentName').disabled = false;
+        $('#subjectSelect').disabled = false;
+        $('#scoreBanner').classList.remove('show');
+        $('#cooldownTimer').classList.add('hidden');
+        $('#submitBtn').disabled = false;
+        $('#submitBtn').innerText = '✅ 채점하기';
+        updateKakaoPreview();
+        updateUI();
+        saveToLocal();
+        showToast('초기화 완료! 답안을 입력하세요.');
       }
-    } catch(e) {
-      $('#report-text').select();
-      document.execCommand('copy');
+    }
+    
+    function showReportModal() {
+      $('#report-text').value = getReportText();
+      $('#reportModal').classList.add('show');
+    }
+    
+    function copyFullReport() {
+      const text = getReportText();
+      copyToClipboard(text);
       showToast('리포트가 복사되었습니다!');
     }
-  }
-  
-  function closeModal() {
-    $('#reportModal').classList.remove('show');
-  }
-  
-  function showToast(msg) {
-    const toast = $('#toast');
-    toast.innerText = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
-  }
-  
-  function save() {
-    const toStore = {
-      common: state.common,
-      select: state.select,
-      attemptCount: state.attemptCount,
-      cooldownUntil: state.cooldownUntil,
-      name: state.name,
-      sub: state.sub,
-      lastResult: state.lastResult
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore));
-  }
-  
-  function load() {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const data = JSON.parse(saved);
+    
+    function copyKakaoMessage() {
+      const msg = getReportText();
+      copyToClipboard(msg);
+      showToast('✅ 카톡 메시지가 복사되었습니다! 카톡에 붙여넣기 하세요.');
+    }
+    
+    function copyToClipboard(text) {
+      try {
+        if(navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast('복사 완료!')).catch(() => fallbackCopy(text));
+        } else fallbackCopy(text);
+      } catch(e) { fallbackCopy(text); }
+      function fallbackCopy(t) {
+        const textarea = document.createElement('textarea');
+        textarea.value = t;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('복사 완료!');
+      }
+    }
+    
+    function closeModal() { $('#reportModal').classList.remove('show'); }
+    function showToast(msg) {
+      const toast = $('#toast');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+    
+    function saveToLocal() {
+      localStorage.setItem('may_omr_v2', JSON.stringify({
+        common: state.common, select: state.select, attemptCount: state.attemptCount,
+        cooldownUntil: state.cooldownUntil, name: state.name, sub: state.sub, lastResult: state.lastResult
+      }));
+    }
+    function loadFromLocal() {
+      const raw = localStorage.getItem('may_omr_v2');
+      if(!raw) return;
+      try {
+        const data = JSON.parse(raw);
         state.common = data.common || new Array(34).fill(0);
         state.select = data.select || new Array(11).fill(0);
         state.attemptCount = data.attemptCount || 0;
@@ -463,84 +559,80 @@
         state.name = data.name || '';
         state.sub = data.sub || '화법과작문';
         state.lastResult = data.lastResult || null;
-        
-        updateUI();
-        
-        if (state.attemptCount > 0) {
-          $('studentName').disabled = true;
-          $('subjectSelect').disabled = true;
-          $('studentName').value = state.name;
-          $('subjectSelect').value = state.sub;
-          if (state.lastResult) {
-            $('scoreBanner').classList.add('show');
-            $('scoreCorrect').innerText = state.lastResult.correct;
-            $('scoreText').innerHTML = `정답률 ${state.lastResult.percent}%<br><span style="font-size:11px;">※ 정답은 공개되지 않습니다</span>`;
-            if (state.lastResult.wrongs && state.lastResult.wrongs.length > 0) {
-              $('#wrongList').innerHTML = `❌ 틀린 문항: ${state.lastResult.wrongs.join(', ')} (총 ${state.lastResult.wrongs.length}개)`;
-            } else {
-              $('#wrongList').innerHTML = '✅ 만점입니다! 축하합니다.';
-            }
-          }
+        $('#studentName').value = state.name;
+        $('#subjectSelect').value = state.sub;
+        if(state.attemptCount > 0) {
+          $('#studentName').disabled = true;
+          $('#subjectSelect').disabled = true;
+          if(state.lastResult) {
+            $('#scoreBanner').classList.add('show');
+            $('#scoreCorrect').innerText = state.lastResult.correct;
+            $('#scoreText').innerHTML = `정답률 ${state.lastResult.percent}%`;
+            if(state.lastResult.wrongs?.length) $('#wrongList').innerHTML = `❌ 틀린 문항: ${state.lastResult.wrongs.join(', ')}`;
+            else $('#wrongList').innerHTML = '✅ 만점';
+                }
         } else {
-          $('studentName').disabled = false;
-          $('subjectSelect').disabled = false;
-          $('studentName').value = state.name;
-          $('subjectSelect').value = state.sub;
+          $('#studentName').disabled = false;
+          $('#subjectSelect').disabled = false;
         }
-        
-        updateCooldownUI();
+      } catch(e) {}
+    }
+    
+    function onChoiceClick(e) {
+      const btn = e.target.closest('.choice');
+      if(!btn) return;
+      
+      if(state.attemptCount > 0) {
+        showToast('❌ 채점 후에는 답안을 수정할 수 없습니다. "새로 시작하기"를 눌러주세요.');
+        return;
       }
-    } catch(e) {
-      console.error('로드 오류', e);
-    }
-  }
-  
-  // 탭 전환
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn, .tab-content').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
-      $(btn.dataset.tab).classList.add('active');
-    });
-  });
-  
-  // 답안 선택
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.choice');
-    if (!btn) return;
-    
-    if (state.attemptCount > 0) {
-      showToast('채점 이후에는 답안을 수정할 수 없습니다. "새로 시작하기"를 눌러주세요.');
-      return;
+      const p = btn.dataset.p;
+      const idx = parseInt(btn.dataset.idx);
+      const val = parseInt(btn.dataset.val);
+      const arr = p === 'c' ? state.common : state.select;
+      if(arr[idx] === val) arr[idx] = 0;
+      else arr[idx] = val;
+      updateUI();
+      saveToLocal();
     }
     
-    const p = btn.dataset.p;
-    const idx = parseInt(btn.dataset.idx);
-    const v = parseInt(btn.dataset.v);
-    if (!p) return;
-    
-    const arr = p === 'c' ? state.common : state.select;
-    const currentVal = arr[idx];
-    
-    if (currentVal === v) {
-      arr[idx] = 0;
-    } else {
-      arr[idx] = v;
+    function initTabs() {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn, .tab-content').forEach(el => el.classList.remove('active'));
+          btn.classList.add('active');
+          const targetId = btn.getAttribute('data-tab');
+          if(targetId) $(targetId).classList.add('active');
+          
+          if(targetId === 'kakao-tab') {
+            updateKakaoPreview();
+          }
+        });
+      });
     }
     
-    updateUI();
-    save();
-  });
-  
-  // 버튼 이벤트 연결 (모두 활성화)
-  $('submitBtn').onclick = onSubmit;
-  $('resetBtn').onclick = resetAll;
-  $('kakaoBtn').onclick = showReportModal;
-  $('#copyReportBtn').onclick = copyReport;
-  $('#closeModalBtn').onclick = closeModal;
-  
-  load();
-})();
+    function bindButtons() {
+      $('#submitBtn').onclick = onSubmit;
+      $('#resetBtn').onclick = resetAll;
+      $('#kakaoBtn').onclick = showReportModal;
+      $('#copyReportBtn').onclick = copyFullReport;
+      $('#closeModalBtn').onclick = closeModal;
+      
+      $('#commonList').addEventListener('click', onChoiceClick);
+      $('#selectList').addEventListener('click', onChoiceClick);
+    }
+    
+    function init() {
+      buildQuestions();
+      loadFromLocal();
+      bindButtons();
+      initTabs();
+      updateUI();
+      updateCooldownUI();
+      updateKakaoPreview();
+    }
+    init();
+  })();
 </script>
 </body>
 </html>

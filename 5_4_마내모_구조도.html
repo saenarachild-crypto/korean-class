@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 구조도 통합본 (원본 그대로)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            padding: 30px 20px;
+            color: #1e293b;
+        }
+        .main-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .tab-btn {
+            padding: 10px 24px;
+            border: none;
+            background: #e2e8f0;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+        .tab-btn.active {
+            background: #e67e22;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 28px 30px;
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            border-left: 6px solid #e67e22;
+            padding-left: 18px;
+            margin-bottom: 25px;
+            color: #0f2b3d;
+        }
+        .flow-arrow {
+            text-align: center;
+            font-size: 28px;
+            margin: 15px 0;
+            color: #e67e22;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .info-panel {
+            background: #fefaf0;
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid #ffe6b3;
+        }
+        .compare-item {
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            height: 100%;
+            border: 1px solid #e2e8f0;
+        }
+        .badge {
+            background: #e67e22;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        .badge-blue {
+            background: #1e466e;
+        }
+        .badge-red {
+            background: #dc2626;
+        }
+        .badge-cyan {
+            background: #0284c7;
+        }
+        .text-accent {
+            color: #e67e22;
+            font-weight: 600;
+        }
+        .list-styled {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-styled li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .list-styled li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+        hr {
+            margin: 20px 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .compare-table th, .compare-table td {
+            border: 1px solid #cbd5e1;
+            padding: 14px 12px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .compare-table th {
+            background: #1e466e;
+            color: white;
+            font-weight: 600;
+        }
+        @media (max-width: 880px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+        .conclusion-box {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border-radius: 28px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'tab1')">[1~3] 독자 편향성</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab2')">[4~9] 도가·현학</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab3')">[10~13] 초소수성</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab4')">[14~17] 부당이득·명의신탁</button>
+    </div>
+
+    <!-- ================= [1~3] 독자 편향성 ================= -->
+    <div id="tab1" class="tab-content active">
+        <div class="card">
+            <div class="section-title">📖 [1~3] 독자 편향성 · 해석 수준 이론 구조도</div>
+            <!-- 1문단 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">문제 제기 + 개념 정의</div>
+                    <p><strong>독자의 일반적 태도</strong><br>텍스트·필자 의도의 편향된 관점 점검하며 읽음</p>
+                    <p><strong>그러나</strong><br>독자 자신도 의식적/무의식적으로 특정 관점에 치우칠 수 있음 → <strong class="text-accent">독자 편향성</strong></p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge">발생 원인</div>
+                    <div class="grid-2" style="gap:10px; margin-top:8px;">
+                        <div style="background:#fff3e6; border-radius:18px; padding:12px;"><strong>🏛 사회적 측면</strong><br>고정 관념 영향</div>
+                        <div style="background:#e6f3ff; border-radius:18px; padding:12px;"><strong>🧠 개인적 측면</strong><br>심리적 요인 영향</div>
+                    </div>
+                    <p style="margin-top:12px;">글은 <strong>개인적 측면의 심리적 요인</strong>에 집중</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 2문단 -->
+            <div class="info-panel" style="margin-bottom:15px;">
+                <div class="badge">해석 수준 이론</div>
+                <p><strong>자기중심성에 기인한 심리적 거리</strong> → 독자 편향성의 대표 원인</p>
+                <p>심리적 거리: 시간·공간·발생 확률·사회적 관계 등 차원에서 느끼는 주관적 거리감</p>
+            </div>
+            <div class="grid-2">
+                <div class="compare-item">
+                    <div class="badge" style="background:#3b82f6;">🔭 심리적 거리 멂</div>
+                    <ul class="list-styled">
+                        <li>발생 가능성 낮게 느낌</li>
+                        <li>타인의 문제로 인식</li>
+                        <li><strong>상위 수준 해석</strong> (추상·원론)</li>
+                        <li>문제 본질·일반적 의미 중심</li>
+                    </ul>
+                    <div class="badge" style="background:#3b82f6; margin-top:10px;">예: 자연재해 가능성 낮다고 여김</div>
+                </div>
+                <div class="compare-item">
+                    <div class="badge" style="background:#3b82f6;">🔍 심리적 거리 가까움</div>
+                    <ul class="list-styled">
+                        <li>직접 경험 있음</li>
+                        <li>자신의 문제처럼 느낌</li>
+                        <li><strong>하위 수준 해석</strong> (구체·세부)</li>
+                        <li>사례·맥락 중심, 세부 요소 집중</li>
+                    </ul>
+                    <div class="badge" style="background:#3b82f6; margin-top:10px;">예: 유사 자연재해 피해 경험</div>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 3문단 -->
+            <div class="info-panel">
+                <div class="badge">편향의 문제점</div>
+                <p>해석 편향은 인지 과정에서 자연스럽게 나타나지만, 특정 수준에만 머무르면 텍스트를 부분적으로만 이해하게 됨.</p>
+            </div>
+            <div class="grid-2">
+                <div class="compare-item" style="border-left:5px solid #f97316;">
+                    <strong>⚠️ 상위 수준에만 머무를 경우</strong>
+                    <ul class="list-styled">
+                        <li>주제·교훈 등 일반적 의미만 파악</li>
+                        <li>구체적 근거·논증 구조 간과</li>
+                        <li><span class="text-accent">피상적 이해 위험</span></li>
+                    </ul>
+                </div>
+                <div class="compare-item" style="border-left:5px solid #f97316;">
+                    <strong>⚠️ 하위 수준에만 머무를 경우</strong>
+                    <ul class="list-styled">
+                        <li>구체적 사례·표현 방식 등 세부 사실에 집착</li>
+                        <li>전체 맥락 간과</li>
+                        <li><span class="text-accent">필자 의도 상실 위험</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 4문단 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">해결: 균형적 읽기</div>
+                    <p>편향적 읽기에서 벗어나기 위해 텍스트와의 심리적 거리를 조절해야 함.</p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge badge-blue">구체적 방법</div>
+                    <p><strong>심리적 거리 먼 독자</strong> → 관련 가상 상황 상상 유도 → 구체적 공감 형성</p>
+                    <p><strong>심리적 거리 가까운 독자</strong> → 시야 넓히기 유도 → 객관적 관점 확보</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="conclusion-box">
+                <strong>🎯 최종 결론</strong><br>
+                독자는 자신의 심리적 거리에 따른 해석 편향을 경계하며,<br>
+                상위 수준과 하위 수준을 균형 있게 활용하는 읽기를 해야 한다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= [4~9] 도가·현학 ================= -->
+    <div id="tab2" class="tab-content">
+        <div class="card">
+            <div class="section-title">🏮 [4~9] 도가의 감정 이해와 성인무정 논쟁</div>
+            <!-- (가) 장자 -->
+            <div class="info-panel" style="margin-bottom:15px;">
+                <div class="badge">(가) 장자의 감정론</div>
+                <p><strong>도가</strong>는 일반적으로 감정을 중요하게 다루지 않음. <strong>유가</strong>는 도덕적 감정(측은지심·시비지심) 확충. <strong>도가</strong>는 감정 배제 경향. 그러나 『장자』에는 감정 논의 존재 → 도가의 이상적 삶의 태도를 이해하는 단초.</p>
+            </div>
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">정(情)의 정의</div>
+                    <p>외부 세계와 관계 맺으며 자연스럽게 발생하는 심리 반응.<br>포함: 호오(好惡), 기쁨, 분노, 즐거움, 슬픔.</p>
+                    <div class="badge" style="background:#3b82f6;">핵심: 호오(好惡)</div>
+                    <p>인간은 호오에 따라 행동하는 경향. 호오가 지나치면 자연의 흐름을 제대로 보지 못함.</p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge">판단과 감정은 분리될 수 없다</div>
+                    <p>시비(옳고 그름 판단)도 감정에 속함. 인지적 판단 + 감정적 느낌 = 긴밀 연결.</p>
+                    <p>예1) 위험하다 판단 → 공포 느낌<br>예2) 죽음이 옳지 않다 판단 → 슬픔</p>
+                    <p><strong>판단 변화 → 감정 변화 가능</strong><br>예: 부인의 죽음 → 처음엔 슬픔 → 자연 변화 과정이라는 판단 → 감정 변화</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="grid-2">
+                <div class="compare-item">
+                    <div class="badge">과도한 감정의 문제</div>
+                    <p>과도한 감정 → 근심·두려움 → 몸 손상 → 감정에 얽매이면 이상적 상태 아님.</p>
+                </div>
+                <div class="compare-item">
+                    <div class="badge">성인무정(聖人無情)</div>
+                    <p>장자: 성인의 특징 = 성인무정</p>
+                    <p>혜시 비판: "성인도 인간인데 감정이 없을 수 있나?"</p>
+                    <p><strong>장자의 해명:</strong> 무정 = 감정 자체 없음 ❌, 감정에 얽매이지 않음 ✅ → 몸 해하지 않고 정신 소모 없음.</p>
+                    <p>성인은 <strong>진지(眞知)</strong>(자연과 인간에 대한 참된 앎)를 지님. 자연 흐름 순응 → 불필요한 시비 판단 감소 → 과도한 감정 이어지지 않음.</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- (나) 현학 논쟁 -->
+            <div class="info-panel" style="margin-top:15px;">
+                <div class="badge">(나) 현학에서의 성인무정 논쟁</div>
+                <p><strong>현학의 관심:</strong> 현실 정치보다 존재의 근원(유와 무의 관계, 존재의 유래) 탐구에 집중.</p>
+            </div>
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge badge-blue">하안의 입장</div>
+                    <p>자연의 운행 = 의도·목적 없음 → 성인도 자연을 닮아 외물·사태에 직면해도 <strong>감정 없음</strong> (문자 그대로의 무정).</p>
+                    <div class="quote">⚠️ 문제 발생: 공자는 제자의 죽음을 슬퍼했다는 경전 내용과 상충</div>
+                </div>
+                <div class="info-panel">
+                    <div class="badge badge-blue">왕필의 입장</div>
+                    <p><strong>"성인도 감정을 가진다"</strong> 다만 보통 사람과 다름. 성인은 <strong>신명(神明)</strong> 보유. 신명 = '무'를 꿰뚫어 보는 능력.</p>
+                    <p>무(無) = 만물의 근거, 유(有)의 원칙, 만물의 이치. 성인은 이치를 통찰하므로 감정을 느껴도 감정에 휘둘리지 않음 → 본성·이치에 부합하는 감정 표현 가능.</p>
+                    <div class="badge" style="background:#3b82f6;">공자의 슬픔 해석: 실제 슬픔 감정 존재 + 예의에 어긋나지 않게 표현됨</div>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge badge-blue">곽상의 입장</div>
+                    <p><strong>사생독화설(自生獨化說):</strong> 만물은 '무'라는 단일 근원에서 유래하지 않음. 무 = 아무것도 없음(만물의 근거 아님).</p>
+                    <p>각 존재는 각자의 <strong>성분의 이치</strong>(타고난 고유한 본분)에 따라 존재. 원래는 서로 깊이 관여할 이유 없음 → 감정 드러날 본래적 이유도 없음.</p>
+                    <p>그러나 인간은 옳고 그름 판단(인지적 태도) → 호오 발생 → 몸 해칠 감정 생성.</p>
+                    <p><strong>해결:</strong> 성분의 이치 통달 + 순응 → 불안 감정 없는 상태(무정) → 부정적 감정 사라지고 평정심 지배.</p>
+                    <div class="badge" style="background:#3b82f6;">공자의 슬픔 해석: 실제 내면 슬픔 없음. 다만 사회 구성원으로서 감정 표현 행위에 동참했을 뿐.</div>
+                </div>
+                <div class="compare-item">
+                    <div class="badge">전체 논리 축 정리</div>
+                    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                        <tr style="background:#1e466e; color:white;"><th>구분</th><th>하안</th><th>왕필</th><th>곽상</th></tr>
+                        <tr><td><strong>감정 존재</strong></td><td>감정 없음</td><td>감정 있음 (신명으로 통제)</td><td>내면 감정 없음 (평정심)</td></tr>
+                        <tr><td><strong>공자 슬픔 해석</strong></td><td>상충 (문제점)</td><td>실제 슬픔 + 예에 맞음</td><td>내면 무감정, 사회적 동참</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="conclusion-box" style="margin-top:20px;">
+                <strong>🎯 핵심 정리</strong><br>
+                장자는 감정 자체를 부정하지 않고 '얽매이지 않음'을 강조. 현학자들은 각자의 철학 체계로 재해석:<br>
+                하안(무감정) → 왕필(이치에 맞는 감정) → 곽상(평정심)으로 논쟁 전개.
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= [10~13] 초소수성 ================= -->
+    <div id="tab3" class="tab-content">
+        <div class="card">
+            <div class="section-title">💧 [10~13] 초소수성 금속 표면의 구현 원리</div>
+            <!-- 1. 문제 상황 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">문제 상황: 금속 부식</div>
+                    <ul class="list-styled">
+                        <li>금속 산화 → 표면에 극성 수산기 분포</li>
+                        <li>극성 물질인 물이 금속 표면에 넓게 퍼짐</li>
+                        <li>→ <strong class="text-accent">금속 부식 발생</strong></li>
+                    </ul>
+                </div>
+                <div class="info-panel">
+                    <div class="badge">해결 목표</div>
+                    <p>물이 퍼지지 않게 만들기 → <strong class="text-accent">초소수성 구현</strong></p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 2. 기본 개념 -->
+            <div class="grid-3">
+                <div class="compare-item"><div class="badge">친수성</div><p>물과 친화력 큼 → 물 잘 퍼짐</p></div>
+                <div class="compare-item"><div class="badge">소수성</div><p>물과 친화력 적음 → 물 잘 안 퍼짐</p></div>
+                <div class="compare-item" style="background:#e0f2fe;"><div class="badge" style="background:#e67e22;">초소수성</div><p>소수성이 극단적으로 강화됨 → 젖음성 매우 낮음 → 물방울이 퍼지지 않고 흘러감</p></div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 3. 젖음성과 계면 에너지 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">젖음성</div>
+                    <p>액체 방울이 고체 표면에 퍼지는 정도</p>
+                    <hr>
+                    <div class="badge badge-blue">계면</div>
+                    <p>서로 다른 분자들이 접하는 경계면. 내부보다 불안정 → 에너지 높음.<br><strong>계면 에너지</strong> = 계면의 단위 면적당 에너지</p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge">핵심 원리</div>
+                    <p><strong>계면 에너지 ↑ → 계면 면적 ↓ → 젖음성 ↓</strong></p>
+                    <p>자연은 불안정성을 줄이는 방향으로 작용하므로, 계면 에너지가 클수록 계면 면적이 줄어든다.</p>
+                    <p>계면 에너지는 <strong>고체·액체 종류</strong>에 따라 결정됨.</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 4. 소수성 코팅 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">초소수성 구현 방법 ①: 소수성 코팅</div>
+                    <ul class="list-styled">
+                        <li>소수성 작용기 포함 코팅제를 금속 표면에 얇게 코팅</li>
+                        <li>수산기 외부 노출 차단 → 젖음성 감소</li>
+                    </ul>
+                </div>
+                <div class="info-panel">
+                    <div class="badge badge-red">한계</div>
+                    <p>코팅만으로는 초소수성 구현 어려움 → 요철 구조 형성 추가 필요</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 5. 요철 구조 + 캐시백스터 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">초소수성 구현 방법 ②: 요철 구조 형성</div>
+                    <ul class="list-styled">
+                        <li>금속 표면에 원기둥 돌기 균일 분포 → 돌기 사이 공기층 형성</li>
+                        <li>물방울이 돌기 윗면에만 접촉 → <strong>캐시-백스터 상태</strong></li>
+                    </ul>
+                </div>
+                <div class="info-panel" style="background:#e0f2fe;">
+                    <div class="badge" style="background:#e67e22;">캐시-백스터 상태</div>
+                    <p>물방울 ↔ 돌기 윗면만 접촉</p>
+                    <ul class="list-styled">
+                        <li>고체 면적 분율 ↓ → 실제 접촉 면적 ↓</li>
+                        <li>젖음성 ↓ → 초소수성 강화</li>
+                    </ul>
+                    <p><strong>고체 면적 분율</strong> = 액체 접촉 면적 중 고체에 닿은 면적 비율<br>돌기 간격 ↑ → 감소 / 돌기 윗면 면적 ↑ → 증가</p>
+                    <p><strong>핵심 효과:</strong> 계면 에너지 자체는 그대로지만, 접촉 면적 감소로 계면 에너지가 커진 것과 같은 효과</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 6. 웬젤 상태 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge badge-red">문제 발생: 웬젤 상태 전이</div>
+                    <ul class="list-styled">
+                        <li>돌기 사이 간격 너무 큼 또는 높은 압력 발생</li>
+                        <li>물방울이 공기층 밀어냄 → 돌기 사이 침투 → <strong>웬젤 상태</strong></li>
+                    </ul>
+                </div>
+                <div class="info-panel" style="background:#fee2e2;">
+                    <div class="badge" style="background:#dc2626;">웬젤 상태</div>
+                    <ul class="list-styled">
+                        <li>물방울이 돌기 사이까지 침투 → 계면 넓어짐</li>
+                        <li>젖음성 ↑ → <strong class="text-accent">초소수성 사라짐</strong></li>
+                    </ul>
+                    <p>특히 높은 곳에서 떨어지는 빗방울(압력 큼)은 웬젤 상태 더 빠르게 발생</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 7. 나노 입자 해결책 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">추가 해결책: 소수성 나노 입자 활용</div>
+                    <p><strong>기존 해결책의 한계:</strong> 돌기 높이 증가 → 공기층 두꺼워짐 → 웬젤 상태 억제, but 돌기 마모 문제</p>
+                    <p><strong>대안:</strong> 소수성 작용기로 둘러싸인 소수성 나노 입자를 코팅제에 혼합</p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge badge-cyan">코팅 시 3가지 효과</div>
+                    <ul class="list-styled">
+                        <li>① 수산기 노출 차단 → 기본 소수성 강화</li>
+                        <li>② 돌기 표면에 미세 요철 형성 → 접촉 면적 추가 감소</li>
+                        <li>③ 공기층 붕괴 억제 → 웬젤 상태 전이 지연</li>
+                    </ul>
+                    <p><strong>최종 결과:</strong> 초소수성 강화 + 지속성 향상</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <div class="conclusion-box">
+                <strong>📊 전체 핵심 논리 흐름</strong><br>
+                금속 산화 → 수산기 형성 → 물 퍼짐 → 부식 발생 → 초소수성 필요<br>
+                소수성 코팅(수산기 차단) + 요철 구조 형성(접촉 면적 감소, 공기층) → 캐시백스터 상태 유지 → 초소수성 구현<br>
+                but 웬젤 상태 전이 가능 → 나노 입자 활용 → 공기층 안정화 + 미세 요철 추가 → 초소수성 강화 및 유지
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= [14~17] 부당이득·명의신탁 ================= -->
+    <div id="tab4" class="tab-content">
+        <div class="card">
+            <div class="section-title">⚖️ [14~17] 부당이득 반환 청구권 · 명의신탁 논쟁</div>
+            <!-- 출발 문제 -->
+            <div class="info-panel" style="text-align:center; font-size:20px; font-weight:700;">
+                "법률상 원인 없이 얻은 재산은 반환해야 하는가?"
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 1. 착오 송금 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">착오 송금 사례</div>
+                    <p>갑 → 을에게 실수 송금</p>
+                    <p>을 = 법률상 원인 없는 이득 획득 → <strong class="text-accent">부당 이득 성립</strong></p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge">법적 효과</div>
+                    <ul class="list-styled">
+                        <li>갑 = 부당 이득 반환 청구 가능 (<strong>민법 741조</strong>)</li>
+                        <li>을이 반환 거부 시 → 횡령죄 가능</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 2. 문제 확장 -->
+            <div class="info-panel" style="text-align:center;">
+                <strong>문제 확장: 불법 목적 송금도 반환 청구 가능한가?</strong><br>예: 뇌물 제공
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 3. 민법 746조 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">민법 746조 (불법 원인 급여)</div>
+                    <p>불법 목적 급부자 → <strong>반환 청구 불가</strong><br>이유: 반사회적 행위 억제 (불법 행위자 보호 차단)</p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge badge-blue">예외 상황</div>
+                    <p>수익자 책임이 훨씬 큰 경우 (급부자 기망, 수익자 불법성 현저히 큼) → 반환 청구 가능</p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 4. 명의신탁 -->
+            <div class="grid-2">
+                <div class="info-panel">
+                    <div class="badge">부동산 명의 신탁 문제</div>
+                    <p>명의 신탁 = 실제 소유자와 등기 명의자 분리<br>목적: 탈세, 투기 → 현행법상 불법 → 등기 무효</p>
+                </div>
+                <div class="info-panel">
+                    <div class="badge badge-red">민법 746조 적용 시 문제</div>
+                    <ul class="list-styled">
+                        <li>명의 수탁자가 부동산 계속 보유 → 과도한 이득</li>
+                        <li>재산 질서 혼란 초래</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 5. 대립 -->
+            <div class="grid-2">
+                <div class="compare-item" style="border-left:5px solid #10b981;">
+                    <div class="badge" style="background:#10b981;">ⓐ 대법원 다수 의견</div>
+                    <p><strong>입장: 746조 적용 불가</strong></p>
+                    <ul class="list-styled">
+                        <li>재산권 과도 제한 방지</li>
+                        <li>사회 혼란 방지</li>
+                        <li>실제 소유자 귀속이 입법 취지</li>
+                        <li>형사처벌만으로도 억제 가능</li>
+                    </ul>
+                    <p><strong>결론: 실제 소유자 보호</strong></p>
+                </div>
+                <div class="compare-item" style="border-left:5px solid #dc2626;">
+                    <div class="badge" style="background:#dc2626;">ⓑ 소수 의견</div>
+                    <p><strong>입장: 746조 적용 필요</strong></p>
+                    <ul class="list-styled">
+                        <li>현실에서 탈세·범죄 은닉 많음</li>
+                        <li>적극적 억제 필요</li>
+                        <li>공익이 더 중요</li>
+                    </ul>
+                    <p><strong>결론: 불법 행위자 보호 제한 가능</strong></p>
+                </div>
+            </div>
+            <div class="flow-arrow">▼</div>
+            <!-- 핵심 대립 -->
+            <table class="compare-table">
+                <thead><tr><th>핵심 대립</th><th>다수 의견</th><th>소수 의견</th></tr></thead>
+                <tbody>
+                    <tr><td>중시 가치</td><td>재산 질서 안정 · 실제 소유권 보호</td><td>불법 억제 · 공익 우선</td></tr>
+                    <tr><td>746조 적용</td><td>적용 불가</td><td>적용 필요</td></tr>
+                </tbody>
+            </table>
+            <div class="conclusion-box" style="margin-top:20px;">
+                <strong>🎯 핵심 쟁점</strong><br>
+                부당이득 반환 청구권(741조) vs 불법원인급여(746조) 사이에서<br>
+                명의신탁 사건은 <strong>재산권 보호(다수) vs 사회 질서 억제(소수)</strong>의 가치 충돌을 보여줌.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        ※ 지문 [1~3], [4~9], [10~13], [14~17] 구조도 원본 그대로 통합 | 각 지문별 모든 내용 포함
+    </footer>
+</div>
+
+<script>
+    function openTab(evt, tabId) {
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(tab => tab.classList.remove('active'));
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+</script>
+</body>
+</html>
