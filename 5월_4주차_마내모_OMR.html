@@ -439,8 +439,10 @@
       $('#scoreBanner').classList.add('show');
       $('#scoreCorrect').innerText = correct;
       $('#scoreText').innerHTML = `정답률 ${percent}%<br><span style="font-size:11px;">※ 정답은 공개되지 않습니다</span>`;
-      if(wrongs.length) $('#wrongList').innerHTML = `❌ 틀린 문항: ${wrongs.join(', ')} (${wrongs.length}개)`;
-      else $('#wrongList').innerHTML = '✅ 만점! 축하합니다';
+      if(wrongList) {
+        if(wrongs.length) $('#wrongList').innerHTML = `❌ 틀린 문항: ${wrongs.join(', ')} (${wrongs.length}개)`;
+        else $('#wrongList').innerHTML = '✅ 만점! 축하합니다';
+      }
       updateKakaoPreview();
     }
     
@@ -715,8 +717,10 @@ ${wrongMsg}
           document.querySelectorAll('.tab-btn, .tab-content').forEach(el => el.classList.remove('active'));
           btn.classList.add('active');
           const targetId = btn.getAttribute('data-tab');
-          if(targetId) $(targetId).classList.add('active');
-          
+          if(targetId) {
+            const targetEl = $('#' + targetId);
+            if(targetEl) targetEl.classList.add('active');
+          }
           if(targetId === 'kakao-tab') {
             updateKakaoPreview();
           }
