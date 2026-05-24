@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EBS 실전 1회 독서 지문 구조도</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    background:#eef2f6; color:#1a2733; line-height:1.5;
+    padding:24px 16px; max-width:980px; margin:0 auto;
+  }
+  .doc-head {
+    text-align:center; margin-bottom:28px;
+    border-bottom:3px solid #1c4368; padding-bottom:16px;
+  }
+  .doc-head h1 { font-size:26px; color:#1c4368; letter-spacing:-0.5px; }
+  .doc-head .sub { font-size:13px; color:#5a7184; margin-top:6px; }
+
+  .passage {
+    background:#fff; border-radius:16px; padding:24px;
+    margin-bottom:28px; box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    page-break-inside:avoid;
+  }
+  .passage-title {
+    font-size:19px; font-weight:800; color:#1c4368;
+    padding-bottom:6px; margin-bottom:4px;
+  }
+  .passage-meta { font-size:12.5px; color:#6b7c8c; margin-bottom:18px; }
+  .theme {
+    font-size:13.5px; background:#f3f7fb; border-left:4px solid #2a5f8f;
+    padding:9px 13px; border-radius:0 8px 8px 0; margin-bottom:20px; color:#2a4456;
+  }
+  .theme b { color:#1c4368; }
+
+  /* 단락 흐름 */
+  .para {
+    position:relative; padding-left:18px; margin-bottom:14px;
+    page-break-inside:avoid;
+  }
+  .para::before {
+    content:''; position:absolute; left:0; top:6px; bottom:6px;
+    width:3px; border-radius:2px;
+  }
+  .para.c1::before { background:#2a5f8f; }
+  .para.c2::before { background:#1d9e75; }
+  .para.c3::before { background:#ba7517; }
+  .para.c4::before { background:#7f77dd; }
+  .para.c5::before { background:#d4537e; }
+
+  .para-tag {
+    display:inline-block; font-size:12px; font-weight:800; color:#fff;
+    padding:2px 9px; border-radius:20px; margin-bottom:6px;
+  }
+  .para.c1 .para-tag { background:#2a5f8f; }
+  .para.c2 .para-tag { background:#1d9e75; }
+  .para.c3 .para-tag { background:#ba7517; }
+  .para.c4 .para-tag { background:#7f77dd; }
+  .para.c5 .para-tag { background:#d4537e; }
+
+  .para-body { font-size:14px; color:#2c3a47; }
+  .kw {
+    display:inline-block; background:#eef3f7; color:#1c4368;
+    font-weight:700; padding:1px 7px; border-radius:5px;
+    margin:2px 3px 2px 0; font-size:13px; white-space:nowrap;
+  }
+  .arrow-line { color:#9aa7b2; font-size:13px; }
+  .note { font-size:12.5px; color:#6b7c8c; margin-top:3px; }
+
+  .flow-down {
+    text-align:center; color:#b0bcc6; font-size:16px;
+    margin:-6px 0 8px 18px;
+  }
+
+  /* 위계용 가로 박스 */
+  .hier { display:flex; gap:12px; margin:6px 0 4px 18px; flex-wrap:wrap; }
+  .hier-box { flex:1; min-width:200px; border-radius:10px; padding:11px 13px; }
+  .hier-box .hb-title { font-weight:800; font-size:14px; margin-bottom:4px; }
+  .hier-box .hb-kw { font-size:12.5px; }
+  .hb-blue { background:#e6f1fb; } .hb-blue .hb-title { color:#0c447c; } .hb-blue .hb-kw { color:#185fa5; }
+  .hb-teal { background:#e1f5ee; } .hb-teal .hb-title { color:#085041; } .hb-teal .hb-kw { color:#0f6e56; }
+
+  @media print {
+    body { background:#fff; padding:0; }
+    .passage { box-shadow:none; border:1px solid #d5dde4; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-head">
+  <h1>EBS 실전 1회 · 독서 지문 구조도</h1>
+  <div class="sub">단락별 핵심어 중심 정리 — 김현석 국어</div>
+</div>
+
+<!-- 지문 1 -->
+<div class="passage">
+  <div class="passage-title">[1지문] 독서 공간의 의미와 확장</div>
+  <div class="passage-meta">인문 · 1~3번</div>
+  <div class="theme"><b>주제</b> 독서 공간의 의미와 독서 공간 확장의 중요성</div>
+
+  <div class="para c1">
+    <span class="para-tag">1문단 · 정의</span>
+    <div class="para-body">
+      <span class="kw">독서 공간</span>= 책을 읽고 있는 / 읽을 수 있는 공간
+      <span class="arrow-line">→ 일반적으로</span>
+      <span class="kw">물리적 독서 공간(㉠)</span>
+    </div>
+    <div class="hier">
+      <div class="hier-box hb-blue">
+        <div class="hb-title">본원적 독서 공간</div>
+        <div class="hb-kw">본래 독서 위해 존재 · 서재(개인) / 도서관(대중)</div>
+      </div>
+      <div class="hier-box hb-teal">
+        <div class="hb-title">전용된 독서 공간(㉡)</div>
+        <div class="hb-kw">목적은 다름 · 책 읽는 곳으로 활용 · 버스 / 지하철</div>
+      </div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c1">
+    <span class="para-tag">2문단 · 구분의 모호함</span>
+    <div class="para-body">
+      개념상 명확히 구분 <span class="arrow-line">↔</span> 실제론 구분 어려움
+      <div class="note">방(침실+서재), 카페·서점 → 전용된 공간 / 교실 ≈ 본원적(학습=독서 전제 시)</div>
+      <div class="note"><span class="kw">독서실</span>= 이름은 본원적, 실제는 시험공부용 → 본원적 <b>아님</b></div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c2">
+    <span class="para-tag">3문단 · 인식적 공간</span>
+    <div class="para-body">
+      <span class="kw">인식적 독서 공간(㉢)</span>
+      <span class="arrow-line">=</span> 의식 속에 형성 · <span class="kw">물리적 제약 ✕</span>
+      <div class="note">수업 시간 · 집에 가는 길 · 아침 독서 운동 · 독서 모임</div>
+      <div class="note">능동적 선택, 관계 속에서 새롭게 구성·확장</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c4">
+    <span class="para-tag">4문단 · 가상 공간으로 확장</span>
+    <div class="para-body">
+      지식 정보화 사회 + 디지털 기술 발전
+      <span class="arrow-line">→</span>
+      <span class="kw">가상 공간</span>속 독서 공간 무한 확장
+      <div class="note">비용·시간 제약 거의 없음 · 누구나 도달 · 읽기 + 쓰기 가능한 열린 공간</div>
+    </div>
+  </div>
+</div>
+
+<!-- 지문 2 -->
+<div class="passage">
+  <div class="passage-title">[2지문] 야스퍼스의 한계 상황과 실존</div>
+  <div class="passage-meta">인문(철학) · 4~7번</div>
+  <div class="theme"><b>주제</b> 한계 상황을 통한 초월자와의 만남과 실존 회복</div>
+
+  <div class="para c1">
+    <span class="para-tag">1문단 · 상황 내 존재</span>
+    <div class="para-body">
+      인간 = <span class="kw">상황 내 존재</span> · 상황에 대한 물음 = 철학의 근원
+      <div class="note">모든 상황은 인간이 <b>스스로 선택한 것이 아님</b> · 삶을 짓누름</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c1">
+    <span class="para-tag">2문단 · 한계 상황</span>
+    <div class="para-body">
+      <span class="kw">한계 상황</span>= 변경 불가 · 근원적 → <span class="kw">죽음·고통·투쟁·죄책감</span>
+      <div class="note">소멸되지 않음 · 항상 함께 · 직면 시 회의·불안·좌절</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c5">
+    <span class="para-tag">3문단 · 경험의 중요성(㉠)</span>
+    <div class="para-body">
+      한계 상황 경험 = 부정적 ✕ → <span class="kw">유한성 자각</span>
+      <div class="note">외면 = 자기 포기 · 대응 방식이 중요</div>
+      <div class="note"><b>좌절 → 초월자를 감지하는 계기</b> (㉠의 이유 핵심)</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c2">
+    <span class="para-tag">4문단 · 초월자와의 만남</span>
+    <div class="para-body">
+      세계 = 불완전 → 깨달을 때 <span class="kw">초월자</span>에게 다가감
+      <div class="note">언어로 규정 ✕ · 표상 인식 ✕ · 추론 도달 ✕</div>
+      <div class="note">한계 상황 경험 = 실존 / 초월자 만남 없이 실존 ✕</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c4">
+    <span class="para-tag">5문단 · 암호 해독 → 실존 회복</span>
+    <div class="para-body">
+      초월자는 <span class="kw">가능적 실존</span>에게 <span class="kw">암호</span>로 나타남
+      <div class="note">현실적 언어 ✕ · 다의적 · 하나로 고정 불가 · 각자의 방식으로 해독</div>
+      <div class="note"><b>암호 해독 과정 → 실존 회복</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- 지문 3 -->
+<div class="passage">
+  <div class="passage-title">[3지문] 동시 다중 라운드 경매</div>
+  <div class="passage-meta">사회(경제) · 8~11번</div>
+  <div class="theme"><b>주제</b> 동시 다중 라운드 경매 방식의 등장 배경과 성과</div>
+
+  <div class="para c1">
+    <span class="para-tag">1문단 · 심사 방식(ⓑ)</span>
+    <div class="para-body">
+      경매 전 → <span class="kw">심사</span>(사업 계획서 평가로 선정)
+      <div class="note">문제: 평가·이의 절차 → 할당까지 <b>수년 소요(시간)</b></div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c1">
+    <span class="para-tag">2문단 · 제비뽑기(ⓒ)</span>
+    <div class="para-body">
+      1982~ <span class="kw">제비뽑기</span> → 시간·노력 대폭 단축
+      <div class="note">문제: 재판매 가능 → 투기꾼 참여 → 사용권 <b>파편화(투기)</b> → 전국망 사업자 곤란</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c5">
+    <span class="para-tag">3문단 · 뉴질랜드 경매(1989)</span>
+    <div class="para-body">
+      기존 경매 방식 → <span class="kw">차순위 입찰가 지불(㉠)</span> · 동시 1회 결정
+      <div class="note">타인 입찰 정보 모름 → 낙찰이 <b>운에 좌우</b> · 가격 낮음 → 효율·수익 둘 다 실패</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c2">
+    <span class="para-tag">4문단 · 동시 다중 라운드 경매(㉡)</span>
+    <div class="para-body">
+      <span class="kw">폴 밀그럼</span> 제안 (미국 1993~) · 모든 주파수 동시 경매
+      <div class="note">라운드마다 최고가·입찰자 공개 → 전략 수정 → 새 입찰 없을 때까지 반복</div>
+      <div class="note">이전 라운드보다 많은 주파수 입찰 ✕ → <b>불공정 정보 행위 예방</b></div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c4">
+    <span class="para-tag">5문단 · 성과</span>
+    <div class="para-body">
+      <span class="kw">합리적 낙찰</span> + <span class="kw">정부 수입 극대화</span>
+      <div class="note">영국(2000) 성공 → 일반적 형태 정착 → 폴 밀그럼 등 2020 노벨 경제학상</div>
+    </div>
+  </div>
+</div>
+
+<!-- 지문 4 -->
+<div class="passage">
+  <div class="passage-title">[4지문] 초전도체와 초유체</div>
+  <div class="passage-meta">과학(물리) · 12~17번</div>
+  <div class="theme"><b>주제</b> 오너스가 냉각 실험을 통해 발견한 초전도체와 초유체</div>
+
+  <div class="para c1">
+    <span class="para-tag">1문단 · 발견 조건</span>
+    <div class="para-body">
+      물리계 ↔ 주변 환경 에너지 교환 (온도↑ = 교환↑)
+      <div class="note">거시적 물리계 → <span class="kw">온도 낮아야 양자 역학적 현상 발견</span></div>
+      <div class="note">오너스 — 4.2K 헬륨 액화 성공 → 두 현상 발견(초전도·얼지 않는 액체)</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c1">
+    <span class="para-tag">2문단 · 저항 견해 3인</span>
+    <div class="para-body">
+      절대 영도 근처 도체의 전기 저항?
+      <div class="note"><b>마티센</b>: 불순물·결함 있으면 저항 남음</div>
+      <div class="note"><b>듀어</b>: 불순물 없는 도체 → 저항 완벽히 사라짐</div>
+      <div class="note"><b>켈빈</b>: 전자 얼어붙음 → 저항 오히려 커짐</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c2">
+    <span class="para-tag">3문단 · 초전도체(수은)</span>
+    <div class="para-body">
+      1911 수은 4.2K 냉각 → <span class="kw">전기 저항 0 = 초전도 현상</span>
+      <div class="note">수은 선택: 낮은 온도에 이미 액체 → 불순물 효과 줄임</div>
+      <div class="note">단일 원소 금속 29종 초전도 발현 (15종은 2K 미만, 도달 어려움)</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c4">
+    <span class="para-tag">4문단 · 양자 액체(헬륨)</span>
+    <div class="para-body">
+      헬륨 고체화 시도 → 실패 (2.2K 아래서도 얼지 않음)
+      <div class="note">가벼운 비활성 기체 → 큰 <span class="kw">영점 운동</span> · 구속할 힘 부족(㉠)</div>
+      <div class="note">→ 절대 영도에서도 액체 = <span class="kw">양자 액체</span> · 2.2K 밀도·비열 최댓값(람다점 ㉡)</div>
+    </div>
+  </div>
+  <div class="flow-down">▼</div>
+
+  <div class="para c5">
+    <span class="para-tag">5문단 · 초유체</span>
+    <div class="para-body">
+      1937 헬륨 II 정체 규명 → 2.2K 이하 <span class="kw">상전이</span> · 점성 사라짐
+      <div class="note">저항 없이 흐름 → 초전도체와 닮음 → <span class="kw">초유체</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
