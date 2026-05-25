@@ -120,16 +120,16 @@
 </head>
 <body>
 <script>
-  // 5월 4주차 정답 및 지문 데이터 (정답 배열은 3주차와 동일하게 유지)
+  // 5월 4주차 정답 및 지문 데이터
   window.__BAKED_ASGN__ = {
-    version: "v1.1.0",
+    version: "v1.2.0",
     title: "5월 4주차 주간 과제",
     week: "2026-05-W4",
     gasUrl: "https://script.google.com/macros/s/AKfycbw05gNe7MRMnFfo10otZ1BU-IXwKmLQGLTYQznrynRCfYzh7YMw7JYpyQjZUe8IbQFjHw/exec",
-    // 독서 정답: 38문항 [cite: 1]
-    reading: { count: 38, answers: [3,5,2,4,5,4,1,2,5,1,2,4,2,5,1,4,5,3,2,5,5,1,5,4,5,4,2,1,2,3,3,1,5,3,1,3,3,5] },
-    // 문학 정답: 34문항 [cite: 1]
-    literature: { count: 34, answers: [2,3,2,1,2,4,1,2,2,3,3,5,4,2,1,4,1,1,5,5,2,3,4,3,4,3,3,5,4,4,2,3,5,1] }
+    // 독서 정답: 42문항
+    reading: { count: 42, answers: [3,5,1,2,4,5,1,2,3,4,3,1,3,2,3,2,4,2,4,3,1,1,1,2,3,4,5,1,4,5,1,5,2,1,4,4,5,1,4,4,2,5] },
+    // 문학 정답: 36문항
+    literature: { count: 36, answers: [2,3,4,5,5,3,4,4,3,3,2,5,5,4,5,2,4,3,3,5,3,4,5,2,4,5,3,1,4,3,5,2,3,4,1,4] }
   };
 </script>
 
@@ -152,11 +152,11 @@
   <div class="score-banner" id="scoreBanner">
     <div class="attempt-text" id="attemptDisplay" style="font-size:12px; color:#7c2c3e; font-weight:700; margin-bottom:5px;">📌 남은 채점 횟수: 3회</div>
     <div class="score-title">📊 채점 결과</div>
-    <div class="score-main"><span id="scoreCorrect">0</span><span class="total"> / 72</span></div>
+    <div class="score-main"><span id="scoreCorrect">0</span><span class="total"> / 78</span></div>
     <div class="score-detail" id="scoreText">정답률 0%</div>
     <div class="score-breakdown">
-      <div class="score-item reading"><span class="label">독서</span><span class="value"><span id="readingScore">0</span> / 38</span></div>
-      <div class="score-item literature"><span class="label">문학</span><span class="value"><span id="litScore">0</span> / 34</span></div>
+      <div class="score-item reading"><span class="label">독서</span><span class="value"><span id="readingScore">0</span> / 42</span></div>
+      <div class="score-item literature"><span class="label">문학</span><span class="value"><span id="litScore">0</span> / 36</span></div>
     </div>
     <div id="cooldownTimer" class="hidden" style="font-size:13px; font-weight:bold; color:#d04141; margin-top:10px;"></div>
   </div>
@@ -176,19 +176,19 @@
   </div>
 
   <div class="tab-menu">
-    <button class="tab-btn reading active" data-tab="reading-tab">📗 독서 (1~38번)</button>
-    <button class="tab-btn literature" data-tab="literature-tab">📕 문학 (1~34번)</button>
+    <button class="tab-btn reading active" data-tab="reading-tab">📗 독서 (1~42번)</button>
+    <button class="tab-btn literature" data-tab="literature-tab">📕 문학 (1~36번)</button>
   </div>
 
   <div id="reading-tab" class="tab-content active">
     <div class="section reading">
-      <div class="section-header reading"><div class="section-title">독서 전체 문항</div><div class="section-progress" id="readingProgress">0 / 38</div></div>
+      <div class="section-header reading"><div class="section-title">독서 전체 문항</div><div class="section-progress" id="readingProgress">0 / 42</div></div>
       <div class="question-list" id="readingList"></div>
     </div>
   </div>
   <div id="literature-tab" class="tab-content">
     <div class="section literature">
-      <div class="section-header literature"><div class="section-title">문학 전체 문항</div><div class="section-progress" id="litProgress">0 / 34</div></div>
+      <div class="section-header literature"><div class="section-title">문학 전체 문항</div><div class="section-progress" id="litProgress">0 / 36</div></div>
       <div class="question-list" id="literatureList"></div>
     </div>
   </div>
@@ -197,8 +197,8 @@
   <div class="btn-row"><button class="btn btn-secondary" id="resetBtn">초기화</button><button class="btn btn-primary" id="submitBtn">채점하기</button></div>
   <button class="btn btn-kakao" id="kakaoBtn" disabled>💬 카톡 보고서 만들기 (채점 후)</button>
 
-  <div class="link-box"><a href="#" class="link-btn" id="problemLinkBtn" target="_blank">📄 모의고사 문제지 보기</a></div>
-  <div id="solutionLinkArea" class="link-box hidden"><a href="#" class="link-btn" id="solutionLink" target="_blank">📖 해설지 보기</a></div>
+  <div class="link-box"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQA_Qe82qyxQTZ8mNedGf_EkAWeUFyZx0Us-TYkGqKPXCZ0?e=sgHvnP" class="link-btn" id="problemLinkBtn" target="_blank">📄 모의고사 문제지 보기</a></div>
+  <div id="solutionLinkArea" class="link-box hidden"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDvU7gWVJAmTaqq32V5LRXpAWYppPXA-v7iWNyil0XdBfE?e=bQyI1J" class="link-btn" id="solutionLink" target="_blank">📖 해설지 보기</a></div>
 
   <div class="footer-note">© 김현석 국어 · 답안 자동 저장</div>
 </div>
@@ -211,20 +211,19 @@
   const $ = id => document.getElementById(id);
   const asgn = window.__BAKED_ASGN__;
 
-  const STORAGE_KEY = 'kr-omr-may-w4-v2';
+  const STORAGE_KEY = 'kr-omr-may-w4-v3';
   const MAX_ATTEMPTS = 3;
   const COOLDOWN_MIN = 10;
   let state = { readingAnswers: new Array(asgn.reading.count).fill(0), litAnswers: new Array(asgn.literature.count).fill(0), submitted: false, score: null, readingTimes: {}, solutionRevealed: false, attemptCount: 0, cooldownUntil: 0 };
   let gasSubmitted = false;
   let cooldownTimer = null;
 
-  // 5월 4주차 지정 지문 리스트 (수정됨)
+  // 5월 4주차 지정 지문 리스트 (표지 기준 4개)
   const requiredReadings = [
-    { idx:0, title:"주희의 성리학과 그 한계", qRange:"1~4번", day:"Day 1 학습", important:true },
-    { idx:1, title:"전파의 주파수 대역과 이동 통신 기술", qRange:"5~10번", day:"Day 1 학습", important:true },
-    { idx:2, title:"소급효의 적용 조건과 조세 포탈죄의 성립", qRange:"23~26번", day:"Day 4 학습", important:true },
-    { idx:3, title:"폐포의 기능과 급성 호흡 곤란 증후군의 기작", qRange:"27~30번", day:"Day 4 학습", important:true },
-    { idx:4, title:"과실 수취의 권리", qRange:"35~38번", day:"Day 5 학습", important:true }
+    { idx:0, title:"주희의 성리학과 그 한계", qRange:"13~16번", day:"Day 3 학습", important:true },
+    { idx:1, title:"전파의 주파수 대역과 이동 통신 기술", qRange:"17~22번", day:"Day 3 학습", important:true },
+    { idx:2, title:"소급효의 적용 조건과 조세 포탈죄의 성립", qRange:"23~28번", day:"Day 4 학습", important:true },
+    { idx:3, title:"폐포의 기능과 급성 호흡 곤란 증후군의 기작", qRange:"33~36번", day:"Day 5 학습", important:true }
   ];
 
   function renderReadingTable(){
