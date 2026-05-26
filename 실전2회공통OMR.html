@@ -246,8 +246,8 @@
 <button id="resetBtn" class="btn btn-warning">🔄 ★ 새로 시작하기 (초기화) ★</button>
 
 <div class="link-box" style="text-align:center; margin-top:12px;">
-  <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBoP7VXHFuhS7I_6YAWwtahAQk0x5IAKEC4A4wrbP85lew?e=0Z4qyg" target="_blank" style="display:inline-block; padding:8px 16px; border:1.5px solid #7c2c3e; border-radius:30px; text-decoration:none; color:#7c2c3e;">📄 EBS 실전 2회 문제지 보기</a>
-  <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBoP7VXHFuhS7I_6YAWwtahAQk0x5IAKEC4A4wrbP85lew?e=qhnIhp" target="_blank" style="display:inline-block; padding:8px 16px; border:1.5px solid #7c2c3e; border-radius:30px; text-decoration:none; color:#7c2c3e; margin-left:8px;">📑 해설지 보기</a>
+  <a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQB8YWGv_YwHQYQsWhM0ldNpAYOmndola7MsA4kkyRovn6s?e=j80nZj" target="_blank" style="display:inline-block; padding:8px 16px; border:1.5px solid #7c2c3e; border-radius:30px; text-decoration:none; color:#7c2c3e;">📄 EBS 실전 2회 문제지 보기</a>
+  <a id="solutionLink" href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBoP7VXHFuhS7I_6YAWwtahAQk0x5IAKEC4A4wrbP85lew?e=qhnIhp" target="_blank" style="display:none; padding:8px 16px; border:1.5px solid #7c2c3e; border-radius:30px; text-decoration:none; color:#7c2c3e; margin-left:8px;">📑 해설지 보기</a>
 </div>
 
 <div class="modal-overlay" id="reportModal">
@@ -299,6 +299,13 @@
       $('#commonList').innerHTML = html;
     }
     
+    function updateSolutionLink() {
+      const link = $('#solutionLink');
+      if(!link) return;
+      if(state.attemptCount >= 3) link.style.display = 'inline-block';
+      else link.style.display = 'none';
+    }
+    
     function updateUI() {
       const isLocked = state.attemptCount > 0;
       document.querySelectorAll('.choice').forEach(btn => {
@@ -319,6 +326,7 @@
       
       const answered = state.answers.filter(v=>v>0).length;
       $('#commonProgress').innerText = `${answered}/34`;
+      updateSolutionLink();
     }
     
     function computeScore() {
