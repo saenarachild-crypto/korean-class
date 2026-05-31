@@ -65,17 +65,34 @@
     .section-title { font-size: 15px; }
     .section-progress { font-size: 12.5px; background: rgba(255,255,255,0.18); padding: 3px 9px; border-radius: 10px; }
     .question-list { padding: 4px 0; }
-    .question-row { display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 6px; padding: 7px 10px; border-bottom: 1px solid #f5ecee; }
+    .question-row { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 5px; padding: 7px 8px; border-bottom: 1px solid #f5ecee; }
     .question-row:last-child { border-bottom: none; }
     .question-num { font-size: 13.5px; font-weight: 700; color: #6c4248; text-align: center; }
     .reading .question-num { color: #2d6e4e; }
     .literature .question-num { color: #c66830; }
-    .choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
-    .choice { width: 100%; height: 38px; border: 1.5px solid #d8c8cc; border-radius: 50%; background: #fff; color: #6c4248; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.08s; }
+    .choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
+    .choice { width: 100%; height: 36px; border: 1.5px solid #d8c8cc; border-radius: 50%; background: #fff; color: #6c4248; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.08s; }
     .choice:active { transform: scale(0.9); }
     .choice.selected { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
     .reading .choice.selected { background: #2d6e4e; border-color: #2d6e4e; }
     .literature .choice.selected { background: #c66830; border-color: #c66830; }
+    .confidence-group { display: flex; gap: 2px; padding-left: 4px; border-left: 1px dashed #e5d4d8; margin-left: 2px; }
+    .conf-btn { width: 24px; height: 24px; border: 1.5px solid #d8c8cc; border-radius: 50%; background: #fff; font-size: 12px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; font-weight: 700; transition: transform 0.08s; }
+    .conf-btn:active:not(:disabled) { transform: scale(0.85); }
+    .conf-btn.sure { color: #2d8b5b; }
+    .conf-btn.maybe { color: #c66830; }
+    .conf-btn.guess { color: #997a80; }
+    .conf-btn.active.sure { background: #2d8b5b; color: #fff; border-color: #2d8b5b; }
+    .conf-btn.active.maybe { background: #c66830; color: #fff; border-color: #c66830; }
+    .conf-btn.active.guess { background: #6c4248; color: #fff; border-color: #6c4248; }
+    body.submitted .conf-btn { cursor: default; }
+    body.submitted .conf-btn:active { transform: none; }
+    .conf-legend { font-size: 11px; color: #997a80; padding: 6px 10px 2px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .conf-legend span { display: inline-flex; align-items: center; gap: 3px; }
+    .conf-legend b { font-size: 13px; line-height: 1; }
+    .conf-legend .sure b { color: #2d8b5b; }
+    .conf-legend .maybe b { color: #c66830; }
+    .conf-legend .guess b { color: #6c4248; }
     body.submitted .question-row.correct .choice.selected { background: #2d8b5b; }
     body.submitted .question-row.wrong .choice.selected { background: #d04141; }
     body.submitted .question-row.wrong .choice.answer, body.submitted .question-row.unanswered .choice.answer { background: #fff; border-color: #2d8b5b; color: #2d8b5b; box-shadow: inset 0 0 0 1.5px #2d8b5b; }
@@ -192,12 +209,14 @@
   <div id="common-tab" class="tab-content active">
     <div class="section reading">
       <div class="section-header reading"><div class="section-title">공통과목 (독서+문학)</div><div class="section-progress" id="commonProgress">0 / 34</div></div>
+      <div class="conf-legend"><span class="sure"><b>○</b> 확실</span><span class="maybe"><b>△</b> 애매</span><span class="guess"><b>✕</b> 모름</span></div>
       <div class="question-list" id="commonList"></div>
     </div>
   </div>
   <div id="select-tab" class="tab-content">
     <div class="section literature">
       <div class="section-header literature"><div class="section-title" id="selectSectionTitle">선택과목 (미선택)</div><div class="section-progress" id="selectProgress">0 / 11</div></div>
+      <div class="conf-legend"><span class="sure"><b>○</b> 확실</span><span class="maybe"><b>△</b> 애매</span><span class="guess"><b>✕</b> 모름</span></div>
       <div class="question-list" id="selectList"></div>
     </div>
   </div>
@@ -225,7 +244,9 @@
   const COOLDOWN_MIN = 10;
   let state = {
     commonAnswers: new Array(asgn.common.count).fill(0),
+    commonConfidence: new Array(asgn.common.count).fill(''),
     selectAnswers: new Array(11).fill(0),
+    selectConfidence: new Array(11).fill(''),
     selectedSubject: '',
     submitted: false,
     score: null,
@@ -242,6 +263,11 @@
       html += `<div class="question-row" data-q="${prefix}" data-num="${i}" id="row-${prefix}-${i}">
         <div class="question-num">${displayNum}<span class="answer-mark right">정답</span><span class="answer-mark wrong">오답</span><span class="answer-mark unanswered">미답</span></div>
         <div class="choices">${[1,2,3,4,5].map(c => `<button type="button" class="choice" data-num="${i}" data-choice="${c}">${c}</button>`).join('')}</div>
+        <div class="confidence-group">
+          <button type="button" class="conf-btn sure" data-num="${i}" data-conf="sure" title="확실히 맞다">○</button>
+          <button type="button" class="conf-btn maybe" data-num="${i}" data-conf="maybe" title="애매하다">△</button>
+          <button type="button" class="conf-btn guess" data-num="${i}" data-conf="guess" title="모르겠다">✕</button>
+        </div>
       </div>`;
     }
     listEl.innerHTML = html;
@@ -277,12 +303,13 @@
   });
 
   function onChoiceClick(e){
+    if(e.target.closest('.conf-btn')) return; // 자신감 버튼은 별도 핸들러에서 처리
+    let btn = e.target.closest('.choice');
+    if(!btn) return;
     if(document.body.classList.contains('submitted')){
       showToast('채점 직후엔 답안 수정이 불가능합니다. 대기 후 재도전하거나 초기화하세요.');
       return;
     }
-    let btn = e.target.closest('.choice');
-    if(!btn) return;
     let row = btn.closest('.question-row');
     let q = row.dataset.q, num = parseInt(row.dataset.num,10), choice = parseInt(btn.dataset.choice);
     let arr = q==='c' ? state.commonAnswers : state.selectAnswers;
@@ -301,6 +328,30 @@
       else btn.classList.remove('selected');
     });
   }
+  function onConfClick(e){
+    let btn = e.target.closest('.conf-btn');
+    if(!btn) return;
+    if(document.body.classList.contains('submitted')){
+      showToast('채점 직후엔 표시를 변경할 수 없습니다.');
+      return;
+    }
+    let row = btn.closest('.question-row');
+    let q = row.dataset.q, num = parseInt(row.dataset.num,10), conf = btn.dataset.conf;
+    let arr = q==='c' ? state.commonConfidence : state.selectConfidence;
+    arr[num-1] = arr[num-1] === conf ? '' : conf;
+    updateConfUI(q, num);
+    saveState();
+  }
+  function updateConfUI(q, num){
+    let row = $(`row-${q}-${num}`);
+    if(!row) return;
+    let arr = q==='c' ? state.commonConfidence : state.selectConfidence;
+    let current = arr[num-1] || '';
+    row.querySelectorAll('.conf-btn').forEach(btn => {
+      if(btn.dataset.conf === current) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  }
   function updateProgress(){
     let cDone = state.commonAnswers.filter(v=>v>0).length;
     let sDone = state.selectAnswers.filter(v=>v>0).length;
@@ -308,7 +359,7 @@
     $('selectProgress').textContent = `${sDone} / 11`;
   }
   function saveState(){
-    let data = { v:1, commonAnswers:state.commonAnswers, selectAnswers:state.selectAnswers, selectedSubject:state.selectedSubject, submitted:state.submitted, score:state.score, student:{ name:$('studentName').value, academy:$('studentAcademy').value }, solutionRevealed:state.solutionRevealed, attemptCount:state.attemptCount, cooldownUntil:state.cooldownUntil };
+    let data = { v:1, commonAnswers:state.commonAnswers, commonConfidence:state.commonConfidence, selectAnswers:state.selectAnswers, selectConfidence:state.selectConfidence, selectedSubject:state.selectedSubject, submitted:state.submitted, score:state.score, student:{ name:$('studentName').value, academy:$('studentAcademy').value }, solutionRevealed:state.solutionRevealed, attemptCount:state.attemptCount, cooldownUntil:state.cooldownUntil };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
   function restoreState(){
@@ -317,7 +368,9 @@
       try{
         let data = JSON.parse(raw);
         if(data.commonAnswers) state.commonAnswers = data.commonAnswers;
+        if(data.commonConfidence) state.commonConfidence = data.commonConfidence;
         if(data.selectAnswers) state.selectAnswers = data.selectAnswers;
+        if(data.selectConfidence) state.selectConfidence = data.selectConfidence;
         if(data.selectedSubject){
           state.selectedSubject = data.selectedSubject;
           const r = document.querySelector(`input[name="subject"][value="${data.selectedSubject}"]`);
@@ -335,8 +388,8 @@
         }
       }catch(e){}
     }
-    for(let i=1;i<=asgn.common.count;i++) updateRowUI('c',i);
-    for(let i=1;i<=11;i++) updateRowUI('s',i);
+    for(let i=1;i<=asgn.common.count;i++){ updateRowUI('c',i); updateConfUI('c',i); }
+    for(let i=1;i<=11;i++){ updateRowUI('s',i); updateConfUI('s',i); }
     updateProgress();
     updateSelectedSubjectUI();
     if(state.solutionRevealed) $('solutionLinkArea').classList.remove('hidden');
@@ -362,17 +415,18 @@
     if(!score) return;
     if(!state.selectedSubject || !asgn.select[state.selectedSubject]) return;
     const selData = asgn.select[state.selectedSubject];
+    // O/X 표시만 (정답 위치는 3회 소진 후 별도 함수로 노출)
     for(let i=1;i<=asgn.common.count;i++){
       let row=$(('row-c-'+i)), ans=state.commonAnswers[i-1], key=asgn.common.answers[i-1];
-      if(ans===0){ row.classList.add('unanswered'); row.querySelector(`.choice[data-choice="${key}"]`).classList.add('answer'); }
+      if(ans===0) row.classList.add('unanswered');
       else if(ans===key) row.classList.add('correct');
-      else { row.classList.add('wrong'); row.querySelector(`.choice[data-choice="${key}"]`).classList.add('answer'); }
+      else row.classList.add('wrong');
     }
     for(let i=1;i<=11;i++){
       let row=$(('row-s-'+i)), ans=state.selectAnswers[i-1], key=selData.answers[i-1];
-      if(ans===0){ row.classList.add('unanswered'); row.querySelector(`.choice[data-choice="${key}"]`).classList.add('answer'); }
+      if(ans===0) row.classList.add('unanswered');
       else if(ans===key) row.classList.add('correct');
-      else { row.classList.add('wrong'); row.querySelector(`.choice[data-choice="${key}"]`).classList.add('answer'); }
+      else row.classList.add('wrong');
     }
     document.body.classList.add('submitted');
     $('scoreBanner').classList.add('show');
@@ -381,6 +435,27 @@
     $('selectScore').textContent = score.select.correct;
     $('selectLabel').textContent = score.select.subject;
     $('scoreText').textContent = `정답률 ${Math.round((score.totalCorrect / score.total) * 100)}%`;
+    // 3회 모두 소진했을 때만 정답 위치 노출
+    if(state.attemptCount >= MAX_ATTEMPTS) showCorrectAnswers();
+  }
+
+  function showCorrectAnswers(){
+    if(!state.score || !state.selectedSubject || !asgn.select[state.selectedSubject]) return;
+    const selData = asgn.select[state.selectedSubject];
+    for(let i=1;i<=asgn.common.count;i++){
+      let row=$(('row-c-'+i)), ans=state.commonAnswers[i-1], key=asgn.common.answers[i-1];
+      if(ans !== key){
+        const ab = row.querySelector(`.choice[data-choice="${key}"]`);
+        if(ab) ab.classList.add('answer');
+      }
+    }
+    for(let i=1;i<=11;i++){
+      let row=$(('row-s-'+i)), ans=state.selectAnswers[i-1], key=selData.answers[i-1];
+      if(ans !== key){
+        const ab = row.querySelector(`.choice[data-choice="${key}"]`);
+        if(ab) ab.classList.add('answer');
+      }
+    }
   }
 
   function unlockAnswers(){
@@ -394,6 +469,7 @@
   function revealSolution(){
     state.solutionRevealed = true;
     $('solutionLinkArea').classList.remove('hidden');
+    showCorrectAnswers();
   }
 
   function updateCooldownUI(){
@@ -489,7 +565,9 @@
   $('copyReportBtn').onclick = () => { $('kakao-report-text').select(); document.execCommand('copy'); showToast('복사되었습니다'); };
 
   $('commonList').addEventListener('click', onChoiceClick);
+  $('commonList').addEventListener('click', onConfClick);
   $('selectList').addEventListener('click', onChoiceClick);
+  $('selectList').addEventListener('click', onConfClick);
   document.querySelectorAll('.tab-btn').forEach(btn=>{
     btn.onclick=()=>{
       document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
