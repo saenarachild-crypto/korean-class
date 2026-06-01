@@ -570,14 +570,71 @@
     localStorage.removeItem(STORAGE_KEY); location.reload();
   };
 
-  $('kakaoBtn').onclick = ()=>{
-    let s=state.score, name=$('studentName').value.trim()||'이름없음', academy=$('studentAcademy').value.trim();
+  function buildKakaoReport(){
+    const s = state.score;
+    const name = $('studentName').value.trim() || '이름없음';
+    const academy = $('studentAcademy').value.trim();
     const now = new Date();
     const timeStr = `${now.getFullYear()}.${now.getMonth()+1}.${now.getDate()} ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}`;
-    // 영역별 분류 라인 (독서, 문학 등)
-    const sectionLines = (s.sectionScores || []).map(sec => `  · ${sec.name} (${sec.range}): ${sec.correct}/${sec.total}`).join('\n');
-    let report = `━━━━━━━━━━━━━━━━━━\n  김현석 국어 ${asgn.title}\n━━━━━━━━━━━━━━━━━━\n▣ 학생: ${name} ${academy?`(${academy})`:''}\n▣ 총점: ${s.totalCorrect}/${s.total} (${Math.round(s.totalCorrect/s.total*100)}%)\n[공통과목] ${s.common.correct}/${s.common.total}\n${sectionLines}\n[선택과목] ${s.select.subject} (35~45): ${s.select.correct}/${s.select.total}\n▣ 채점 회차: ${state.attemptCount}/${MAX_ATTEMPTS}\n▣ 제출시각: ${timeStr}\n━━━━━━━━━━━━━━━━━━\n※ 정답은 공개되지 않습니다.`;
-    $('kakao-report-text').value = report;
+    const percentage = (s.totalCorrect / s.total * 100).toFixed(1);
+    const selData = asgn.select[state.selectedSubject];
+
+    // 영역별 점수 라인 (독서/문학 + 선택)
+    const sectionLines = (s.sectionScores || []).map(sec => `  · ${sec.name} (${sec.range}): ${sec.correct}/${sec.total}`);
+    sectionLines.push(`  · ${s.select.subject} (35~45): ${s.select.correct}/${s.select.total}`);
+
+    // 오답 목록 (틀린 답 + 미답 모두 포함)
+    const wrongList = [];
+    for(let i=0; i<asgn.common.count; i++){
+      const ans = state.commonAnswers[i];
+      if(ans === 0 || ans !== asgn.common.answers[i]) wrongList.push(i+1);
+    }
+    for(let i=0; i<11; i++){
+      const ans = state.selectAnswers[i];
+      if(ans === 0 || ans !== selData.answers[i]) wrongList.push(i+35);
+    }
+
+    // 자신감 분류 (○△✕)
+    const sureList = [], maybeList = [], guessList = [];
+    for(let i=0; i<asgn.common.count; i++){
+      const c = state.commonConfidence[i];
+      if(c === 'sure') sureList.push(i+1);
+      else if(c === 'maybe') maybeList.push(i+1);
+      else if(c === 'guess') guessList.push(i+1);
+    }
+    for(let i=0; i<11; i++){
+      const c = state.selectConfidence[i];
+      if(c === 'sure') sureList.push(i+35);
+      else if(c === 'maybe') maybeList.push(i+35);
+      else if(c === 'guess') guessList.push(i+35);
+    }
+    const hasConfMarks = sureList.length || maybeList.length || guessList.length;
+
+    let lines = [];
+    lines.push(`[${asgn.title} 결과]`);
+    lines.push(`━━━━━━━━━━━━━━━━━━━━━━`);
+    lines.push(`👤 이름: ${name}${academy ? ` (${academy})` : ''}`);
+    lines.push(`🔥 채점 회차: ${state.attemptCount}/${MAX_ATTEMPTS}회차`);
+    lines.push(`🎯 총점: ${s.totalCorrect}/${s.total}점`);
+    lines.push(`📊 정답률: ${percentage}%`);
+    lines.push(`📚 영역별 점수`);
+    sectionLines.forEach(l => lines.push(l));
+    lines.push(`❌ 오답: ${wrongList.length ? wrongList.join(', ') + ` (${wrongList.length}개)` : '없음'}`);
+    lines.push(`⏱️ 제출시각: ${timeStr}`);
+    lines.push(`━━━━━━━━━━━━━━━━━━━━━━`);
+    if(hasConfMarks){
+      lines.push(`📌 [문항 분류 기록]`);
+      lines.push(`• ○ (확신): ${sureList.length ? sureList.join(', ') : '없음'}`);
+      lines.push(`• △ (애매): ${maybeList.length ? maybeList.join(', ') : '없음'}`);
+      lines.push(`• ✕ (모름): ${guessList.length ? guessList.join(', ') : '없음'}`);
+      lines.push(`━━━━━━━━━━━━━━━━━━━━━━`);
+    }
+    lines.push(`※ 정답은 공개되지 않습니다.`);
+    return lines.join('\n');
+  }
+
+  $('kakaoBtn').onclick = ()=>{
+    $('kakao-report-text').value = buildKakaoReport();
     $('kakaoModal').classList.add('show');
   };
 
