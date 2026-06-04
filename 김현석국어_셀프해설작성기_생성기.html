@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>김현석 국어 셀프해설 작성기 · 생성기</title>
+<meta name="description" content="시험 정보와 정답만 입력하면 학생용 셀프해설 작성 HTML을 생성합니다.">
+<style>
+:root{--p:#6d3fd1;--p2:#8b5cf6;--bg:#f7f3ff;--ink:#21172f;--muted:#6b6177;--line:#e6dcf8;}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;background:linear-gradient(135deg,#f7f3ff,#fff);color:var(--ink);line-height:1.55}.wrap{max-width:1120px;margin:0 auto;padding:24px}.hero{background:linear-gradient(135deg,var(--p),#3b216d);color:#fff;border-radius:24px;padding:28px;box-shadow:0 16px 45px rgba(67,34,122,.22);margin-bottom:18px}.hero h1{margin:0 0 8px;font-size:30px;letter-spacing:-.7px}.hero p{margin:0;opacity:.9}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(72,48,120,.08);margin-bottom:18px}.card h2{font-size:19px;margin:0 0 14px;color:#3b216d}.field{margin-bottom:14px}.field label{display:block;font-weight:800;font-size:13px;color:#4c2c86;margin-bottom:7px}.field .hint{font-size:12px;color:var(--muted);margin-top:5px}input,textarea,select{width:100%;border:1.5px solid #ded2f5;border-radius:12px;padding:12px 13px;font:inherit;background:#fff;color:var(--ink);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--p2);box-shadow:0 0 0 3px rgba(139,92,246,.14)}textarea{min-height:92px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:900;cursor:pointer;background:#ede9fe;color:#3b216d}.btn.primary{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}.btn.dark{background:#21172f;color:#fff}.btn:hover{transform:translateY(-1px)}.preview{position:sticky;top:16px}.status{border-radius:14px;padding:13px 15px;background:#f8fafc;border:1px solid #e2e8f0;font-size:14px;white-space:pre-wrap}.status.ok{background:#ecfdf5;border-color:#bbf7d0;color:#166534}.status.bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}.status.warn{background:#fffbeb;border-color:#fde68a;color:#92400e}.answer-box{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.mini{font-size:12px;color:var(--muted)}.sample{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.sample button{border:1px solid #ddd;background:#fafafa;border-radius:999px;padding:7px 10px;font-weight:700;cursor:pointer}.footer{font-size:12px;color:var(--muted);text-align:center;margin:24px 0}@media(max-width:900px){.grid,.two{grid-template-columns:1fr}.wrap{padding:14px}.hero{padding:22px}.hero h1{font-size:24px}.preview{position:static}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>김현석 국어 셀프해설 작성기 · 생성기</h1>
+    <p>시험 정보와 정답을 입력하면, 학생이 <b>오답 해설·근거·다음 판단 기준</b>을 직접 작성하고 카톡 보고서로 제출하는 HTML을 만듭니다.</p>
+  </section>
+
+  <div class="grid">
+    <main>
+      <section class="card">
+        <h2>1. 기본 정보</h2>
+        <div class="field"><label>시험명</label><input id="examTitle" value="6월 대비 직전 모의고사"></div>
+        <div class="two">
+          <div class="field"><label>부제</label><input id="subtitle" value="셀프해설 작성지"></div>
+          <div class="field"><label>기록키 버전</label><input id="examKey" value="self_2026_06"><div class="hint">시험마다 다르게. 학생 작성 내용이 시험별로 따로 저장됩니다.</div></div>
+        </div>
+        <div class="two">
+          <div class="field"><label>기본 학원명</label><input id="academy" value="김현석 국어"></div>
+          <div class="field"><label>영문 파일명 (GitHub 업로드용)</label><input id="engFilename" value="self-jun"><div class="hint">영어·숫자·하이픈만. .html 자동.</div></div>
+        </div>
+        <div class="field"><label>학생 작성 조건</label><label style="font-weight:600;display:flex;gap:8px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="requireWrong" checked style="width:auto;flex:0 0 auto;margin-top:3px"> 오답 문항은 '틀린 이유' 또는 '다음 판단 기준'을 작성해야 보고서를 제출할 수 있게 합니다.</label></div>
+        <div class="field"><label>시험 안내문</label><textarea id="notice">💡 셀프해설 작성 방법
+
+1) 먼저 답을 모두 고르고 확신도(◯△✕)를 표시합니다.
+2) 틀린 문항은 자동으로 펼쳐집니다. 맞은 문항도 원하면 펼쳐서 근거를 정리하세요.
+3) 틀린 이유 · 지문 근거 · 다음 판단 기준을 직접 적습니다.
+4) 작성한 내용은 카톡 보고서로 제출됩니다.</textarea></div>
+      </section>
+
+      <section class="card">
+        <h2>2. 배포 · 링크 · 공유</h2>
+        <div class="field"><label>배포 폴더 URL</label><input id="baseUrl" value="https://saenarachild-crypto.github.io/korean-class/"><div class="hint">학생 파일을 올리는 폴더 주소입니다. 폴더가 바뀌면 여기만 고치면 됩니다. og:url과 카톡 미리보기에 사용됩니다.</div></div>
+        <div class="field"><label>문제지 링크</label><input id="paperUrl" value="https://example.com/problem.pdf"></div>
+        <div class="field"><label>정답 해설지 링크</label><input id="solutionUrl" value="https://example.com/solution.pdf"><div class="hint">학생이 셀프해설을 제출한 뒤에만 보입니다.</div></div>
+        <div class="field"><label>Google Apps Script URL</label><input id="gasUrl" placeholder="https://script.google.com/macros/s/.../exec"><div class="hint">비워두면 구글시트로 전송하지 않습니다.</div></div>
+        <div class="two">
+          <div class="field"><label>Kakao JavaScript Key</label><input id="kakaoKey" placeholder="카카오 개발자 JavaScript 키"></div>
+          <div class="field"><label>로고/미리보기 이미지 URL</label><input id="logoUrl" value="https://saenarachild-crypto.github.io/korean-class/logo.jpg"><div class="hint">카톡 썸네일과 공유 이미지. 공개 URL이어야 합니다.</div></div>
+        </div>
+        <div class="field"><label>카톡 미리보기 제목 (og:title)</label><input id="ogTitle" placeholder="비워두면: 김현석 국어 · [시험명]"><div class="hint">학생이 카톡에서 링크를 받을 때 굵게 보이는 제목.</div></div>
+        <div class="field"><label>카톡 미리보기 설명 (og:description)</label><input id="ogDesc" placeholder="예: 6월 모의평가 직전 대비 셀프해설 (공통 1~34 + 선택과목 35~45)"><div class="hint">제목 아래 회색 글씨. 비워두면 부제가 들어갑니다.</div></div>
+      </section>
+
+      <section class="card">
+        <h2>3. 정답 입력</h2>
+        <div class="field"><label>공통과목 1~34번 정답</label><textarea id="commonAns" class="answer-box">2,1,4,2,3,4,3,1,4,1,5,3,1,2,5,4,5,5,3,5,3,1,1,3,2,2,1,4,5,4,4,2,3,5</textarea><div class="hint">쉼표·공백·줄바꿈 모두 가능. 34개 필요.</div></div>
+        <div class="two">
+          <div class="field"><label>화법과 작문 35~45번</label><textarea id="hwaAns" class="answer-box">2,5,4,3,5,4,5,1,1,2,5</textarea></div>
+          <div class="field"><label>언어와 매체 35~45번</label><textarea id="unAns" class="answer-box">5,3,4,5,1,3,2,3,4,5,3</textarea></div>
+        </div>
+        <div class="sample">
+          <button onclick="clearAnswers()" type="button">정답칸 비우기</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4. 3점 문항 입력</h2>
+        <div class="field"><label>공통과목 3점 문항</label><input id="common3" placeholder="예: 4, 9, 13, 17, 22, 28, 31"><div class="hint">비워두면 45문항 균등 환산 점수로 계산됩니다.</div></div>
+        <div class="two">
+          <div class="field"><label>화법과 작문 3점 문항</label><input id="hwa3" placeholder="예: 37, 41, 44"></div>
+          <div class="field"><label>언어와 매체 3점 문항</label><input id="un3" placeholder="예: 36, 39, 43"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>5. 생성</h2>
+        <div class="btns">
+          <button class="btn primary" onclick="generateFile()" type="button">학생용 셀프해설 HTML 생성</button>
+          <button class="btn" onclick="validateOnly()" type="button">입력값 검사</button>
+          <button class="btn dark" onclick="downloadConfig()" type="button">설정 JSON 저장</button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="preview">
+      <section class="card">
+        <h2>카톡 미리보기</h2>
+        <div style="border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff">
+          <div id="ogImg" style="width:100%;aspect-ratio:1.91/1;background:#f3eefe;background-size:contain;background-position:center;background-repeat:no-repeat"></div>
+          <div style="padding:12px 14px">
+            <div id="ogT" style="font-weight:900;font-size:15px;line-height:1.35;margin-bottom:5px"></div>
+            <div id="ogD" style="color:var(--muted);font-size:13px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden"></div>
+            <div id="ogU" style="color:#9b93a8;font-size:12px;margin-top:9px"></div>
+          </div>
+        </div>
+        <div class="mini" style="margin-top:9px">입력하면 즉시 갱신됩니다. 처음 공유 시 미리보기가 안 뜨면 카카오 공유 디버거에서 캐시를 비우세요.</div>
+      </section>
+      <section class="card">
+        <h2>검사 결과</h2>
+        <div id="status" class="status warn">아직 생성 전입니다.</div>
+      </section>
+      <section class="card">
+        <h2>학생 화면 흐름</h2>
+        <div class="mini">
+          1. 이름·목표 입력<br>
+          2. 선택과목 선택<br>
+          3. 답 선택 + 확신도(◯△✕)<br>
+          4. 문항별 셀프해설 작성 (틀린 문항 자동 펼침)<br>
+          5. 점수 확인 + 카톡 보고서 제출
+        </div>
+      </section>
+    </aside>
+  </div>
+  <div class="footer">단일 HTML 파일입니다. 생성 기능은 인터넷 없이도 작동합니다.</div>
+</div>
+
+<script>
+function $(id){return document.getElementById(id)}
+function parseNums(text){return (text||'').match(/[1-5]/g)?.map(Number)||[]}
+function parseQ(text,min,max){return (text||'').match(/\d+/g)?.map(Number).filter(n=>n>=min&&n<=max)||[]}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function engSafe(s){return String(s||'').trim().replace(/\.html?$/i,'').replace(/[^a-zA-Z0-9_-]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')}
+function normBase(u){u=(u||'').trim(); if(!u)return ''; if(!/\/$/.test(u))u+='/'; return u}
+function getConfig(){
+  const common=parseNums($('commonAns').value), hwa=parseNums($('hwaAns').value), un=parseNums($('unAns').value);
+  return {
+    title:$('examTitle').value.trim(), subtitle:$('subtitle').value.trim(), examKey:$('examKey').value.trim(), academy:$('academy').value.trim(),
+    engFilename:engSafe($('engFilename').value), notice:$('notice').value, baseUrl:normBase($('baseUrl').value), requireWrong:$('requireWrong').checked,
+    paperUrl:$('paperUrl').value.trim(), solutionUrl:$('solutionUrl').value.trim(), gasUrl:$('gasUrl').value.trim(),
+    kakaoKey:$('kakaoKey').value.trim(), logoUrl:$('logoUrl').value.trim(), ogTitle:$('ogTitle').value.trim(), ogDesc:$('ogDesc').value.trim(),
+    answers:{common, hwa, un}, threePoint:{common:parseQ($('common3').value,1,34), hwa:parseQ($('hwa3').value,35,45), un:parseQ($('un3').value,35,45)}
+  }
+}
+function validateConfig(cfg){
+  const e=[];
+  if(!cfg.title)e.push('시험명을 입력해야 합니다.');
+  if(!cfg.examKey)e.push('기록키 버전을 입력해야 합니다.');
+  if(!cfg.engFilename)e.push('영문 파일명을 입력해야 합니다. (영어·숫자·하이픈)');
+  if(!cfg.baseUrl)e.push('배포 폴더 URL을 입력해야 합니다.');
+  if(cfg.answers.common.length!==34)e.push(`공통과목 정답은 34개여야 합니다. 현재 ${cfg.answers.common.length}개`);
+  if(cfg.answers.hwa.length!==11)e.push(`화법과 작문 정답은 11개여야 합니다. 현재 ${cfg.answers.hwa.length}개`);
+  if(cfg.answers.un.length!==11)e.push(`언어와 매체 정답은 11개여야 합니다. 현재 ${cfg.answers.un.length}개`);
+  const h=cfg.threePoint.common.length+cfg.threePoint.hwa.length, u=cfg.threePoint.common.length+cfg.threePoint.un.length;
+  if((h>0&&h!==10)||(u>0&&u!==10))e.push(`실제 100점 배점을 쓰려면 선택과목별 3점 문항 합이 10개여야 합니다. 현재 화작 ${h}개, 언매 ${u}개`);
+  return e;
+}
+function setStatus(msg,type){$('status').className='status '+(type||'warn');$('status').textContent=msg}
+function validateOnly(){const cfg=getConfig(), errs=validateConfig(cfg); setStatus(errs.length?errs.join('\n'):'입력값이 정상입니다. 생성 가능합니다.',errs.length?'bad':'ok')}
+function download(name,content,type){const blob=new Blob([content],{type:(type||'text/html')+';charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},300)}
+function downloadConfig(){const cfg=getConfig(); download((cfg.engFilename||'config')+'_config.json',JSON.stringify(cfg,null,2),'application/json')}
+function clearAnswers(){$('commonAns').value='';$('hwaAns').value='';$('unAns').value='';validateOnly()}
+function answerObj(arr,start){const o={}; arr.forEach((v,i)=>o[start+i]=v); return o}
+function brandTitle(){const t=$('examTitle').value.trim(); return $('ogTitle').value.trim()||('김현석 국어 · '+t)}
+function updatePreview(){
+  $('ogT').textContent=brandTitle();
+  $('ogD').textContent=$('ogDesc').value.trim()||$('subtitle').value.trim();
+  const logo=$('logoUrl').value.trim()||(normBase($('baseUrl').value)+'logo.jpg');
+  $('ogImg').style.backgroundImage='url("'+logo+'")';
+  let host=''; try{host=new URL(normBase($('baseUrl').value)).host}catch(e){host=''}
+  $('ogU').textContent=host;
+}
+function generateFile(){
+ const cfg=getConfig(), errs=validateConfig(cfg); if(errs.length){setStatus(errs.join('\n'),'bad'); return}
+ const html=studentTemplate(cfg); download(cfg.engFilename+'.html',html,'text/html');
+ setStatus('학생용 셀프해설 HTML을 생성했습니다.\n업로드 후 주소: '+cfg.baseUrl+cfg.engFilename+'.html','ok')
+}
+function studentTemplate(cfg){
+ const commonObj=answerObj(cfg.answers.common,1), hwaObj=answerObj(cfg.answers.hwa,35), unObj=answerObj(cfg.answers.un,35);
+ const resolvedLogo=cfg.logoUrl||(cfg.baseUrl+'logo.jpg');
+ const pageUrl=cfg.baseUrl+cfg.engFilename+'.html';
+ const ogTitle=cfg.ogTitle||('김현석 국어 · '+cfg.title);
+ const ogDesc=cfg.ogDesc||cfg.subtitle;
+ const cfgJson=JSON.stringify({title:cfg.title,subtitle:cfg.subtitle,examKey:cfg.examKey,academy:cfg.academy,requireWrong:cfg.requireWrong,notice:cfg.notice,baseUrl:cfg.baseUrl,pageUrl:pageUrl,paperUrl:cfg.paperUrl,solutionUrl:cfg.solutionUrl,gasUrl:cfg.gasUrl,kakaoKey:cfg.kakaoKey,logoUrl:resolvedLogo,ogTitle:ogTitle,ogDesc:ogDesc,answers:{common:commonObj,'화법과작문':hwaObj,'언어와매체':unObj},threePoint:{common:cfg.threePoint.common,'화법과작문':cfg.threePoint.hwa,'언어와매체':cfg.threePoint.un}},null,2).replace(/<\//g,'<\\/');
+ return `<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>${esc(cfg.title)} · 셀프해설</title><meta name="description" content="${esc(ogDesc)}"><meta property="og:type" content="website"><meta property="og:title" content="${esc(ogTitle)}"><meta property="og:description" content="${esc(ogDesc)}"><meta property="og:image" content="${esc(resolvedLogo)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="${esc(pageUrl)}"><style>
+:root{--p:#6d3fd1;--p2:#8b5cf6;--bg:#faf7ff;--ink:#241532;--line:#eadffd;--bad:#dc2626}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink)}.wrap{max-width:760px;margin:0 auto;padding:14px}.head{background:linear-gradient(135deg,var(--p),#3b216d);color:#fff;border-radius:22px;padding:24px;text-align:center;box-shadow:0 14px 35px rgba(59,33,109,.2)}h1{font-size:24px;margin:0 0 8px}.sub{opacity:.9}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px;box-shadow:0 8px 25px rgba(72,48,120,.07)}.notice{white-space:pre-wrap;background:#f3eefe;border-left:5px solid var(--p);border-radius:14px;padding:14px;line-height:1.65}.field{margin:13px 0}.field label{display:block;font-weight:900;color:#4c2c86;font-size:13px;margin-bottom:7px}input,textarea{width:100%;border:1.5px solid #ded2f5;border-radius:12px;padding:12px;font:inherit}textarea{min-height:64px;resize:vertical}.subjects{display:grid;grid-template-columns:1fr 1fr;gap:10px}.subjects input{display:none}.subjects label{display:block;border:2px solid #e5d8fb;border-radius:15px;text-align:center;padding:17px;font-weight:900;cursor:pointer}.subjects input:checked+label{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:var(--p)}.q{border-top:1px solid #eee;padding:13px 0}.q:first-child{border-top:0}.qn{font-weight:900;color:#4c2c86;margin-bottom:8px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.mark button,.ans button{border:1.5px solid #ddd;background:#fff;border-radius:999px;min-width:44px;height:38px;font-weight:900;cursor:pointer}.ans button{border-radius:50%;width:42px;height:42px}.mark button.on,.ans button.on{background:var(--p);border-color:var(--p);color:#fff}.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{flex:1;border:0;border-radius:14px;padding:14px;font-weight:900;background:#e9ddff;color:#3b216d;cursor:pointer}.btn.primary{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}.btn.gray{background:#4b5563;color:#fff}.score{background:linear-gradient(135deg,var(--p),#3b216d);color:#fff;text-align:center;border-radius:18px;padding:24px}.score b{font-size:48px}.scoremini{background:#f3eefe;border-radius:14px;padding:12px 14px;font-weight:900;color:#3b216d;text-align:center;margin-bottom:6px}.ecard{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}.ecard.wrong{border-color:#f3b4b4}.ehead{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;cursor:pointer;background:#faf7ff}.ecard.wrong .ehead{background:#fff5f5}.ebody{padding:12px 14px;border-top:1px solid #eee}.ebody label{display:block;font-weight:900;font-size:12px;color:#4c2c86;margin:8px 0 5px}.tag{font-size:11px;font-weight:900;padding:2px 8px;border-radius:999px}.tag.bad{background:#fde2e2;color:#b91c1c}.tag.ok{background:#dcfce7;color:#166534}.mut{color:#777;font-size:12px;font-weight:600}.chev{color:#8b5cf6;font-weight:900}.report{white-space:pre-wrap;background:#f8fafc;border-radius:14px;padding:14px;font-family:ui-monospace,Consolas,monospace;font-size:13px;max-height:340px;overflow:auto;user-select:text}.topbar{font-size:13px;color:#666;background:#f7f7f7;border-radius:12px;padding:10px;margin-bottom:12px}@media(max-width:560px){.subjects{grid-template-columns:1fr}.head{padding:20px}h1{font-size:21px}.score b{font-size:40px}}
+</style></head><body><div class="wrap"><div class="head"><h1>${esc(cfg.title)}</h1><div class="sub">${esc(cfg.subtitle)}</div></div>
+<section id="s1" class="card"><div class="notice" id="notice"></div><div class="field"><label>이름</label><input id="name" placeholder="홍길동"></div><div class="field"><label>학원명</label><input id="academy"></div><div class="field"><label>오늘의 목표</label><textarea id="memo" placeholder="예: 틀린 이유를 한 문장으로 정리하기"></textarea></div><div class="btns"><button class="btn primary" onclick="go(2)">시작</button></div></section>
+<section id="s2" class="card" hidden><h2>선택과목</h2><div class="subjects"><div><input id="subA" name="subject" type="radio" value="화법과작문" checked><label for="subA">화법과 작문</label></div><div><input id="subB" name="subject" type="radio" value="언어와매체"><label for="subB">언어와 매체</label></div></div><div class="btns" style="margin-top:16px"><button class="btn gray" onclick="go(1)">뒤로</button><button class="btn primary" onclick="go(3)">다음</button></div></section>
+<section id="s3" class="card" hidden><h2>정답 입력 & 확신도</h2><div class="topbar">답을 모두 고르고 확신도(◯△✕)를 표시하세요. 이 화면에서는 채점하지 않습니다.</div><div class="btns" style="margin-bottom:12px"><a class="btn" id="paper" target="_blank" style="text-align:center;text-decoration:none">문제지 보기</a></div><div id="answers"></div><div class="btns"><button class="btn gray" onclick="go(2)">뒤로</button><button class="btn primary" onclick="goExplain()">셀프해설 작성</button></div></section>
+<section id="s4" class="card" hidden><h2>셀프해설 작성</h2><div class="scoremini" id="eScore"></div><div class="topbar" id="eHint"></div><div id="explain"></div><div class="btns"><button class="btn gray" onclick="go(3)">뒤로</button><button class="btn primary" onclick="submitReport()">보고서 만들기</button></div></section>
+<section id="s5" class="card" hidden><div class="score" id="rScore"></div><h3>카톡 보고서</h3><div class="report" id="reportText"></div><div class="btns" style="margin-top:10px"><button class="btn primary" onclick="shareKakao()">카카오톡 공유</button><button class="btn" onclick="copyReport()">보고서 복사</button></div><div id="solBox" style="margin-top:14px"></div><div class="btns" style="margin-top:12px"><button class="btn gray" onclick="restartAll()">처음부터</button><button class="btn" onclick="rewrite()">다시 작성</button></div></section></div>
+<script>
+const CONFIG=${cfgJson};
+const A={}, M={}, EX={}; let step=1, loaded=false, LAST=null;
+function el(id){return document.getElementById(id)}
+function esc2(s){return String(s==null?'':s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]})}
+function subject(){return document.querySelector('input[name="subject"]:checked').value}
+function storageKey(){const n=(el('name').value||'no_name').trim().replace(/\\s+/g,'_'); return 'SELF_'+CONFIG.examKey+'_'+n}
+function saveDraft(){try{localStorage.setItem(storageKey(),JSON.stringify({A:A,M:M,EX:EX,subject:subject(),memo:el('memo').value,academy:el('academy').value}))}catch(e){}}
+function loadDraft(){try{const d=JSON.parse(localStorage.getItem(storageKey())||'null'); if(!d)return; Object.assign(A,d.A||{}); Object.assign(M,d.M||{}); Object.assign(EX,d.EX||{}); if(d.memo)el('memo').value=d.memo; if(d.academy)el('academy').value=d.academy; if(d.subject){const r=document.querySelector('input[name="subject"][value="'+d.subject+'"]'); if(r)r.checked=true}}catch(e){}}
+function go(n){ if(n>=2&&!el('name').value.trim()){alert('이름을 입력해주세요.');return} if(n>=2&&!loaded){loadDraft();loaded=true} step=n; [1,2,3,4,5].forEach(i=>el('s'+i).hidden=i!==n); if(n===3)renderAnswers(); if(n===4)renderExplain(); scrollTo({top:0,behavior:'smooth'}) }
+function renderAnswers(){const box=el('answers'); box.innerHTML=''; for(let num=1;num<=45;num++){const d=document.createElement('div'); d.className='q'; d.dataset.num=num; d.innerHTML='<div class="qn">문제 '+num+'</div><div class="row"><div class="mark"><button type="button" data-m="o">◯ 확실</button><button type="button" data-m="t">△ 애매</button><button type="button" data-m="x">✕ 못함</button></div><div class="ans">'+[1,2,3,4,5].map(v=>'<button type="button" data-a="'+v+'">'+['','①','②','③','④','⑤'][v]+'</button>').join('')+'</div></div>'; box.appendChild(d); if(A[num]){const b=d.querySelector('.ans button[data-a="'+A[num]+'"]'); if(b)b.classList.add('on')} if(M[num]){const b=d.querySelector('.mark button[data-m="'+M[num]+'"]'); if(b)b.classList.add('on')}}}
+function allAns(){return Object.assign({},CONFIG.answers.common,CONFIG.answers[subject()])}
+function pointMap(){const three=[].concat(CONFIG.threePoint.common,CONFIG.threePoint[subject()]); const useReal=three.length===10; const map={}; for(let i=1;i<=45;i++)map[i]=useReal?(three.indexOf(i)>=0?3:2):(100/45); return {map:map,useReal:useReal}}
+function grade(){const ans=allAns(),pm=pointMap(); let raw=0,correct=0,wrong=[]; for(let i=1;i<=45;i++){if(A[i]===ans[i]){correct++;raw+=pm.map[i]}else wrong.push(i)} const score=pm.useReal?Math.round(raw):Math.round(correct/45*100); return {ans:ans,score:score,correct:correct,wrong:wrong,useReal:pm.useReal}}
+function markLabel(m){return m==='o'?'◯ 확실':m==='t'?'△ 애매':m==='x'?'✕ 못함':'미표시'}
+function goExplain(){for(let i=1;i<=45;i++){if(!A[i]){alert(i+'번 답을 선택해주세요.'); el('answers').scrollIntoView({behavior:'smooth'}); return}} go(4)}
+function renderExplain(){const g=grade(); el('eScore').innerHTML=g.score+'점 · '+g.correct+'/45 정답 · '+(g.useReal?'실제 배점':'균등 환산'); el('eHint').textContent='틀린 문항과 △애매 문항은 자동으로 펼쳐집니다. 원하는 문항은 제목을 눌러 작성하세요. 작성 내용은 자동 저장됩니다.'+(CONFIG.requireWrong?' 오답 문항은 "틀린 이유" 또는 "다음 판단 기준"을 작성해야 제출할 수 있습니다.':' 모두 채울 필요는 없습니다.'); const ans=g.ans; const box=el('explain'); box.innerHTML=''; for(let num=1;num<=45;num++){const my=A[num],co=ans[num],wrong=my!==co; const open=wrong||M[num]==='t'; const ex=EX[num]||{}; const card=document.createElement('div'); card.className='ecard'+(wrong?' wrong':''); card.dataset.num=num; card.innerHTML='<div class="ehead"><div><b>'+num+'번</b> <span class="tag '+(wrong?'bad':'ok')+'">'+(wrong?'틀림':'맞음')+'</span> <span class="mut">내 답 '+my+' · 정답 '+co+' · '+markLabel(M[num])+'</span></div><div class="chev">'+(open?'▾':'▸')+'</div></div><div class="ebody"'+(open?'':' hidden')+'><label>틀린 이유</label><textarea data-f="r" data-n="'+num+'">'+esc2(ex.r||'')+'</textarea><label>지문 근거</label><textarea data-f="e" data-n="'+num+'">'+esc2(ex.e||'')+'</textarea><label>다음 판단 기준</label><textarea data-f="n" data-n="'+num+'">'+esc2(ex.n||'')+'</textarea></div>'; box.appendChild(card)}}
+document.addEventListener('click',function(e){const q=e.target.closest('#answers .q'); if(q){const num=Number(q.dataset.num); if(e.target.dataset.a){A[num]=Number(e.target.dataset.a); q.querySelectorAll('.ans button').forEach(b=>b.classList.toggle('on',b===e.target)); saveDraft()} if(e.target.dataset.m){M[num]=e.target.dataset.m; q.querySelectorAll('.mark button').forEach(b=>b.classList.toggle('on',b===e.target)); saveDraft()} return} const h=e.target.closest('.ehead'); if(h){const card=h.closest('.ecard'); const body=card.querySelector('.ebody'); const chev=card.querySelector('.chev'); if(body.hasAttribute('hidden')){body.removeAttribute('hidden');chev.textContent='▾'}else{body.setAttribute('hidden','');chev.textContent='▸'}}});
+document.addEventListener('input',function(e){const t=e.target; if(t.dataset&&t.dataset.f){const num=t.dataset.n; EX[num]=EX[num]||{}; EX[num][t.dataset.f]=t.value; saveDraft()}});
+document.addEventListener('change',function(e){if(e.target.name==='subject'){for(let i=35;i<=45;i++){delete A[i];delete M[i];delete EX[i]} if(step===3)renderAnswers(); saveDraft()}});
+function cut(s){s=(s||'').trim(); return s.length>120?s.slice(0,120)+'…':s}
+function buildReport(r){const ans=allAns(); const o=Object.keys(M).filter(k=>M[k]==='o').length,t=Object.keys(M).filter(k=>M[k]==='t').length,x=Object.keys(M).filter(k=>M[k]==='x').length; const L=[]; L.push('[김현석 국어 셀프해설]'); L.push('시험명: '+CONFIG.title); L.push('이름: '+r.name+' / 학원: '+r.academy); L.push('선택과목: '+r.subject); L.push('점수: '+r.score+'점 ('+r.correct+'/45) · '+(r.useReal?'실제 배점':'균등 환산')); L.push(''); L.push('■ 오답: '+(r.wrong.length?r.wrong.join(', '):'없음')); L.push('■ 확신도: ◯'+o+' △'+t+' ✕'+x); L.push(''); L.push('■ 셀프해설'); let any=false; for(let i=1;i<=45;i++){const ex=EX[i]; if(!ex)continue; if(!(ex.r||ex.e||ex.n))continue; any=true; const my=A[i],co=ans[i]; L.push('['+i+'번] 내답 '+my+' / 정답 '+co+' ('+(my===co?'맞음':'틀림')+') 확신도 '+markLabel(M[i])); if(ex.r)L.push(' - 틀린 이유: '+cut(ex.r)); if(ex.e)L.push(' - 지문 근거: '+cut(ex.e)); if(ex.n)L.push(' - 다음 판단 기준: '+cut(ex.n))} if(!any)L.push('(작성한 해설이 없습니다)'); return L.join('\\n')}
+function submitReport(){const g=grade(); if(CONFIG.requireWrong){for(let k=0;k<g.wrong.length;k++){const num=g.wrong[k]; const ex=EX[num]||{}; if(!((ex.r&&ex.r.trim())||(ex.n&&ex.n.trim()))){alert(num+'번(오답)의 "틀린 이유" 또는 "다음 판단 기준"을 작성해주세요.'); const card=document.querySelector('.ecard[data-num="'+num+'"]'); if(card){const body=card.querySelector('.ebody'); if(body)body.removeAttribute('hidden'); const chev=card.querySelector('.chev'); if(chev)chev.textContent='▾'; card.scrollIntoView({behavior:'smooth',block:'center'})} return}}} const r={score:g.score,correct:g.correct,wrong:g.wrong,useReal:g.useReal,subject:subject(),name:el('name').value.trim(),academy:el('academy').value.trim(),timestamp:Date.now()}; LAST=r; const report=buildReport(r); el('reportText').textContent=report; el('rScore').innerHTML='<b>'+g.score+'점</b><div class="sub">'+g.correct+'/45 정답 · '+(g.useReal?'실제 배점':'균등 환산')+'</div>'; const wroteWrong=g.wrong.some(function(num){const ex=EX[num]||{}; return (ex.r&&ex.r.trim())||(ex.e&&ex.e.trim())||(ex.n&&ex.n.trim())}); const canSol=(g.wrong.length===0)||wroteWrong; if(CONFIG.solutionUrl){el('solBox').innerHTML=canSol?'<a class="btn primary" target="_blank" style="display:block;text-decoration:none;text-align:center" href="'+CONFIG.solutionUrl+'">정답 해설지 보기</a>':'<div class="topbar">오답 문항 해설을 1개 이상 작성하면 정답 해설지가 열립니다.</div>'}else{el('solBox').innerHTML=''} sendGAS(r,report); saveDraft(); go(5)}
+function rewrite(){go(4)}
+function restartAll(){if(confirm('이 시험의 작성 내용을 모두 지울까요?')){try{localStorage.removeItem(storageKey())}catch(e){} for(const k in A)delete A[k]; for(const k in M)delete M[k]; for(const k in EX)delete EX[k]; el('memo').value=''; loaded=false; go(1)}}
+async function copyReport(){const text=el('reportText').innerText||''; try{await navigator.clipboard.writeText(text); alert('보고서가 복사되었습니다. 카카오톡에 붙여넣기 하세요.')}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();alert('보고서가 복사되었습니다.')}}
+function shareKakao(){const desc=LAST?(LAST.score+'점 · '+LAST.subject):(CONFIG.ogDesc||CONFIG.subtitle); if(window.Kakao&&CONFIG.kakaoKey){try{if(!Kakao.isInitialized())Kakao.init(CONFIG.kakaoKey); if(Kakao.Share){Kakao.Share.sendDefault({objectType:'feed',content:{title:CONFIG.ogTitle||('김현석 국어 · '+CONFIG.title),description:desc,imageUrl:CONFIG.logoUrl,link:{webUrl:location.href,mobileWebUrl:location.href}},buttons:[{title:'열어보기',link:{webUrl:location.href,mobileWebUrl:location.href}}]});return}}catch(e){}} copyReport()}
+function sendGAS(r,report){if(!CONFIG.gasUrl)return; const p=new URLSearchParams({timestamp:new Date(r.timestamp).toLocaleString('ko-KR'),exam:CONFIG.title,name:r.name,academy:r.academy,subject:r.subject,score:r.score,correct:r.correct,wrong:r.wrong.length,wrongList:r.wrong.join(', '),report:report}); fetch(CONFIG.gasUrl,{method:'POST',body:p,mode:'no-cors'}).catch(function(){})}
+(function init(){el('notice').textContent=CONFIG.notice; el('academy').value=CONFIG.academy||''; if(el('paper'))el('paper').href=CONFIG.paperUrl||'#'; if(CONFIG.kakaoKey){const s=document.createElement('script');s.src='https://t1.kakaocdn.net/kakao_js_sdk/2.7.5/kakao.min.js';s.async=true;document.head.appendChild(s)}})();
+<\/script></body></html>`
+}
+['examTitle','subtitle','ogTitle','ogDesc','logoUrl','baseUrl'].forEach(function(id){const e=$(id); if(e)e.addEventListener('input',updatePreview)});
+updatePreview();
+</script>
+</body>
+</html>
