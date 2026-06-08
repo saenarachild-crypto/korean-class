@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갈래 복합 실전 1 | 허균의 문집에 부치는 서문 · 시 | 수능특강 문학 사용설명서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Arial', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            padding: 35px 45px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 7px solid #c0392b;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: #0f2b3d;
+        }
+        h2 {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            margin: 45px 0 20px 0;
+            font-size: 24px;
+            border-radius: 18px;
+            border-left: 5px solid #e67e22;
+            color: #1e466e;
+        }
+        .text-block {
+            background: #fefaf0;
+            border-left: 6px solid #f1c40f;
+            padding: 22px 28px;
+            margin: 25px 0;
+            border-radius: 28px;
+            font-size: 16px;
+            line-height: 1.9;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .sentence-line {
+            margin-bottom: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 4px 8px;
+        }
+        .original {
+            font-weight: 500;
+        }
+        .inline-annotation {
+            background: #e6f7ff;
+            border-radius: 16px;
+            padding: 2px 10px;
+            font-size: 12px;
+            color: #0050b3;
+            font-family: 'Segoe UI', sans-serif;
+            white-space: nowrap;
+        }
+        .script-line {
+            margin-left: 16px;
+            margin-bottom: 4px;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 12px;
+            margin-bottom: 16px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .question-full {
+            background: #f8fafc;
+            border-radius: 26px;
+            padding: 18px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 2px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 10px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .analysis-box {
+            background: #fef9e6;
+            border-radius: 24px;
+            padding: 22px 28px;
+            margin: 25px 0 35px 0;
+            border-left: 6px solid #e67e22;
+        }
+        .analysis-box h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #b85c00;
+            font-weight: 700;
+        }
+        .analysis-box h4 {
+            font-size: 17px;
+            margin: 15px 0 8px 0;
+            color: #c0392b;
+        }
+        .bg-knowledge {
+            background: #eef2fa;
+            border-radius: 20px;
+            padding: 16px 22px;
+            margin-top: 20px;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 20px; }
+            .inline-annotation { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>갈래 복합 실전 01<br>허균의 문집에 부치는 서문 · 시</h1>
+
+    <!-- ================= (가) 서문 ================= -->
+    <h2>■ (가) 허균의 문집에 부치는 서문 – 이항복</h2>
+    <div class="text-block">
+        <div class="sentence-line"><span class="original">시란 무엇이 좋고 무엇이 귀하기에 세상 사람들이 그렇게 좋아하는 것인가?</span> <span class="inline-annotation">시의 가치에 대한 의문, 논의의 시작</span></div>
+        <div class="sentence-line"><span class="original">글을 꾸미고 웅얼거려서 잠시 사람들의 입을 벌어지게 만드는 것뿐이다.</span></div>
+        <div class="sentence-line"><span class="original">나는 예전에 시인과 광대는 풀벌레 같은 존재라고 여겼다. 시인은 생각을 소리로 내고 광대는 입으로 소리를 낸다. 풀벌레는 배로 소리를 내는 놈도 있고, 날개로 소리를 내는 놈도 있고, 다리로 소리를 내는 놈도 있고, 가슴으로 소리를 내는 놈도 있다. 소리 내는 방법은 다르지만 그 재주로 사람을 기쁘게 하기는 마찬가지다.</span> <span class="inline-annotation">시인·광대·풀벌레의 공통점: 사람을 기쁘게 함</span></div>
+        <div class="sentence-line"><span class="original">힘든가 편한가로 말하자면 벌레는 몹시 편하고 광대가 그다음이며 시인이 가장 힘들다. 벌레는 때가 되면 천기(天機)가 저절로 움직여 소리를 내니, 일부러 소리 내는 것이 아니다. 광대는 술잔을 들고 좌우에서 웃으며 하루 종일 복을 비니, 입술이 마르고 혀가 뻣뻣해져도 마음은 관여하지 않아 입은 힘들지만 마음은 편하다. 시인은 생각을 짜내어 입으로 말하고 손으로 쓰며 눈으로 보고 귀로 들어야 겨우 한 구를 완성한다. 오장육부를 힘들게 만들어 부지런히 짓는 것이 삼분의 이다.</span> <span class="inline-annotation">시 창작에는 고통과 수고가 수반됨</span></div>
+        <div class="sentence-line"><span class="original">그렇지만 세상 사람들이 이 세 가지의 순서를 매기면 시인은 마루에서 절하고 광대는 마당에 두며 벌레는 죽을 때까지 풀숲과 섬돌 사이를 벗어나지 못한다. 그렇다면 사람은 힘든 것을 귀하게 여기고 편한 것을 천하게 여기는 것인가?</span> <span class="inline-annotation">노력과 가치 평가의 기준에 따른 등급화, 인간의 모순적 인식</span></div>
+        <div class="sentence-line"><span class="original">옛사람이 말하기를 “귀한 사람은 남을 부리고 천한 사람은 남에게 부림을 받는다.” 하였으니 ㉠사물은 어찌하여 똑같지 않은 것인가. 나는 늦게야 그러한 줄 깨닫고, 마침내 손가락을 깨물어 맹세하여 시에 대해 말하기를 기피했다.</span> <span class="inline-annotation">시를 짓지 않겠다고 맹세, 시를 기피하게 된 이유</span></div>
+        <div class="sentence-line"><span class="original">그렇지만 좋은 시를 보면 문득 기뻐하였으니 ㉡마치 병이 나서 술을 절제하는 사람이 문득 술 생각이 나는 것 같았다.</span> <span class="inline-annotation">시에 대한 애정을 억누를 수 없는 마음(비유적 표현)</span></div>
+        <div class="sentence-line"><span class="original">지금 허 군*은 유, 불, 도 삼교(三敎)와 제자백가에 통달했는데, 불교의 말을 더욱 믿어 시를 지어 장식했다. 이것은 좋은 벼를 뽑아 버리고 잡초를 키우는 것과 같다. 힘들고 부지런한데도 도리어 광대나 벌레보다 못하게 될 것인데, 이 사실을 깨닫지 못하고 있다.</span> <span class="inline-annotation">불교 말로 시를 장식한 허균의 태도 비판(잡초 비유)</span></div>
+        <div class="sentence-line"><span class="original">어떤 이는 말한다.</span></div>
+        <div class="sentence-line"><span class="original">“ⓐ마음은 거북 등껍데기와 같아 속을 태우면 조짐이 바깥으로 나타나니, 이것은 마치 생각이 움직여 시를 읊는 것과 같다.”</span> <span class="inline-annotation">마음에 일어난 움직임이 시로 표현됨을 비유</span></div>
+        <div class="sentence-line"><span class="original">나는 이렇게 생각한다.</span></div>
+        <div class="sentence-line"><span class="original">생각은 물과 같고 시는 얼음과 같다. 물이 얼면 얼음이 되고 얼음이 녹으면 도로 물이 된다. 이것은 마치 생각이 움직여 시를 짓고, 시를 읊으면 다시 생각하게 되는 것과 같다. 생각이 깊지 않으면 시가 좋지 않고, 마음이 맑지 않으면 생각이 깊어질 수 없다. 그러므로 깊은 생각에서 나온 시라야 사람을 감동시킬 수 있다.</span> <span class="inline-annotation">시는 생각의 형상화, 진정한 감동의 조건</span></div>
+        <div class="sentence-line"><span class="original">나는 늙어서 시를 멀리하고 있다. 지금 마침 저녁에 집으로 돌아가다가 허 군을 만나자 나도 모르게 수레에서 내렸다. 누가 나를 이렇게 만들었는가. 시가 과연 좋고 귀한 것이기 때문인가?</span> <span class="inline-annotation">시를 기피하면서도 시에 끌리는 문인의 본능</span></div>
+        <div class="side-analysis">▶ 전개: 시에 대한 회의 → 창작의 고통과 가치 역설 → 허균의 시 비판 → 시의 본질(생각의 형상화) → 시에 대한 애정의 회귀</div>
+    </div>
+
+    <div class="analysis-box">
+        <h3>📌 감상 포인트</h3>
+        <p>이 작품은 이항복이 시 짓기의 고됨과 진정성 있는 태도에 대해 진솔하게 서술한 수필이다. 시는 단순히 글재주로 짓는 것이 아니라, 내면 깊은 곳에서 일어나는 감정과 사유의 움직임을 통해 형성되는 것임을 강조한다. 글쓴이는 시인이 되어 겉모습을 꾸미려는 이들을 경계하며, 진심과 수고를 바탕으로 한 시 창작의 어려움을 토로하고 있다.</p>
+        <p><strong>주제</strong>: 시 창작의 어려움과 그에 담긴 진정성의 가치</p>
+        
+        <h4>📌 핵심 개념 – 이것만은 꼭 익히자</h4>
+        <p><strong>포인트 1. 시에 대한 글쓴이의 생각</strong><br>
+        • ‘글을 꾸미고 웅얼거려서 잠시 사람들의 입을 벌어지게 만드는 것뿐이다.’ → 시는 글을 꾸미고 소리 내어 사람을 기쁘게 하는 것이라고 생각하였다.<br>
+        • ‘시인은 생각을 짜내어 입으로 말하고 손으로 쓰며 눈으로 보고 귀로 들어야 겨우 한 구를 완성한다.’ → 시를 짓는 일은 매우 수고롭고 어려운 일이라고 생각하였다.<br>
+        • ‘나는 늦게야 그러한 줄 깨닫고, 마침내 손가락을 깨물어 맹세하여 시에 대해 말하기를 기피했다.’ → 시를 짓지 않겠다고 맹세하고 시에 대해 말하는 것을 멀리하였다.<br>
+        • ‘허 군은 유·불·도 삼교와 제자백가에 통달했는데, 불교의 말을 더욱 믿어 시를 지어 장식했다.’ → 불교의 말로 시를 장식한 허균의 시는 바람직하지 못하다고 생각하였다.<br>
+        • ‘깊은 생각에서 나온 시라야 사람을 감동시킬 수 있다.’ → 시인의 바른 생각과 깨끗한 마음에서 나온 시가 사람을 감동시킬 수 있다고 생각하였다.<br>
+        • ‘지금 마침 저녁에 집으로 돌아가다가 허 군을 만나자 나도 모르게 수레에서 내렸다.’ → 허균의 시를 혹평하면서도 한편으로는 시를 짓지 않을 수 없는 문인의 본능을 느꼈다.</p>
+        <p><strong>포인트 2. 「허균의 문집에 부치는 서문」의 창작 배경</strong><br>
+        허균은 유배지 함열에서 그동안 지은 글을 『성소부부고(惺所覆瓿藁)』라는 문집으로 엮었다. 문 400여 편, 시 1,400여 편, 설 300여 책으로 64권에 달하는 방대한 분량이었다. 같은 해 유배에서 풀려나 서울로 돌아온 허균은 이항복에게 이 글을 받았다. 이항복은 허균의 문집 중 시를 엮은 부분만 보고 이 글을 써 준 것으로 보인다.</p>
+
+        <div class="bg-knowledge">
+            <h4>📖 배경지식 더 알아보기</h4>
+            <p><strong>고전 수필에서 문학 비평에 대해 다루는 글 읽는 법</strong><br>
+            고전 비평은 주제와 내용적 측면뿐만 아니라 작품의 갈래 및 형식적 특징과 밀접한 관련을 맺는다. 따라서 우리 고전 문학사와 관련한 배경지식을 활성화하고 비평문에서 어떠한 요소에 주목하고 있는지(가령 작품의 형식 요소, 갈래 요소 등)를 파악해야 한다. 이를 기준으로 구체적인 작품의 가치와 의의를 평가하거나 작품에 대한 글쓴이의 관점을 파악할 수 있어야 한다.</p>
+        </div>
+    </div>
+
+    <!-- ================= (나) 시 ================= -->
+    <h2>■ (나) 시 – 이창동</h2>
+    <div class="text-block">
+        <div class="sentence-line"><span class="original">S#21. 강의실(낮/내부)</span></div>
+        <div class="sentence-line"><span class="original">문화원 강의실에서 김 시인이 한창 강의를 하고 있다.</span></div>
+        <div class="sentence-line"><span class="original">김 시인 : 시를 쓴다는 것은 아름다움을 찾는 일이에요. 아시겠어요? 우리 눈앞에 보이는 것들, 이 일상의 삶 속에서 진정한 아름다움을 찾는 겁니다. 진정한 아름다움. 그냥 겉만 아름다워 보이는 것이 아니에요. 여러분들은 다 가슴속에 시를 품고 있어요. 시를 가두어 두고 있는 거예요. 그걸 풀어 줘야 해요. 가슴속에 갇혀 있는 시가 날개를 달고 날아오를 수 있도록…….</span> <span class="inline-annotation">가슴속 진정한 아름다움을 시로 표현해야 함</span></div>
+        <div class="sentence-line"><span class="original">김 시인이 문득 말을 끊는다. 미자가 손을 들고 있다.</span></div>
+        <div class="sentence-line"><span class="original">미자 : 선생님, 시상은 언제 찾아와요?</span></div>
+        <div class="sentence-line"><span class="original">김 시인 : 시상이 언제 오냐고요?</span></div>
+        <div class="sentence-line"><span class="original">미자 : 예. 아무리 시상을 얻으려고 해도 도무지 오지 않아요. 언제 시상이 오는지 좀 알았으면 좋겠어요.</span></div>
+        <div class="sentence-line"><span class="original">김 시인 : 시상은 찾아오지 않아요. 내가 찾아가서 빌어야 돼. 사정을 해야 돼. 그래도 줄 동 말 동 해요. 그게 얼마나 귀한 건데 함부로 주겠어요? 그러니까 내가 막 찾아가서 사정을 해야 돼.</span> <span class="inline-annotation">시상은 적극적 노력으로 얻는 것</span></div>
+        <div class="sentence-line"><span class="original">미자는 보일락 말락 고개를 끄덕인다. 그래도 못내 미진한 듯 묻는다. ㉢</span></div>
+        <div class="sentence-line"><span class="original">미자 : 어디로 찾아가요?</span></div>
+        <div class="sentence-line"><span class="original">시인은 순간적으로 말문이 막힌다. 그리고 약간 짜증이 나는 것을 참으려 한다. ㉣</span></div>
+        <div class="sentence-line"><span class="original">김 시인 : 그거……. 그거는……. 어디를 정해 놓고 찾아가는 것이 아니고……, 그냥 찾는 거예요. 돌아다니면서……. 시상이 어디 나 여기 있소, 하고 문패를 걸어 놓고 기다리고 있겠어요? 분명한 거는 내 주변에 있다는 거야. 멀리 있지 않고……. 지금 내가 있는 자리, 거기서 얻는 거예요. 내가 얘기했죠? 설거지통 속에도 시가 있다고…….</span> <span class="inline-annotation">일상 속에서 시상을 찾아야 함</span></div>
+        <div class="sentence-line"><span class="original">시인의 말을 듣고 있는 미자의 얼굴. 뭔가 해답을 찾으려고 애쓰는 것 같은 표정이다. ㉤</span> <span class="inline-annotation">시 창작에 대한 고민과 열망</span></div>
+        <div class="side-analysis">▶ 미자와 김 시인의 대화: 시상의 본질과 획득 방식에 대한 탐구</div>
+
+        <div class="sentence-line"><span class="original">S#92. 미자의 집(낮/내부)</span></div>
+        <div class="sentence-line"><span class="original">미자의 아파트 안. 싱크대 위 좁은 창문으로 희미한 햇살이 비껴들어 오고 있을 뿐, 집 안은 비어 있다. 현관문 쪽에서 달그락 소리가 들리는가 싶더니, 문이 열리고 미자의 딸이 들어온다. 40대 초반 정도 되어 보인다. 신발을 벗고 들어서며 미자를 부른다.</span></div>
+        <div class="sentence-line"><span class="original">수옥 : 엄마!</span></div>
+        <div class="sentence-line"><span class="original">대답이 없다. 그녀는 안방과 욱이 방의 방문을 열어 본다. 집 안에 미자는 보이지 않는다. 식탁에 앉는다. 핸드폰으로 전화를 건다. 그러나 신호는 가지만 전화는 받지 않는 듯하다. 멍하니 그 자리에 앉아 있다. 미자의 부재가 주는 알 수 없는 느낌에 사로잡힌 것 같은 얼굴이다. 시를 읽는 양미자의 목소리가 들리기 시작한다.</span></div>
+        <div class="sentence-line"><span class="original">미자 : (O.S.*) 그곳은 어떤가요</span></div>
+        <div class="sentence-line"><span class="original">얼마나 적막하나요</span> <span class="inline-annotation">오프 사운드, 미자의 시 낭송</span></div>
+
+        <div class="sentence-line"><span class="original">S#93. 아파트 앞(낮/외부)</span></div>
+        <div class="sentence-line"><span class="original">누군가의 시점으로 보이는 나무, 바람에 흔들리는 나뭇잎들. 카메라 틸트다운* 하면, 미자가 시상을 떠올리기 위해 앉아 나무를 올려다보던 곳. 미자가 앉았던 자리에 ‘신 20’의 동네 할머니가 앉아서 나무를 올려다보고 있다. 미자와 욱이 배드민턴을 치던 아파트 앞 작은 공터에는 아이들이 훌라후프를 하며 놀고 있다. 미자의 목소리 계속된다.</span></div>
+        <div class="sentence-line"><span class="original">미자 : (O.S.) 저녁이면 여전히 노을이 지고</span></div>
+        <div class="sentence-line"><span class="original">숲으로 가는 새들의 노랫소리 들리나요</span></div>
+        <div class="sentence-line"><span class="original">차마 부치지 못한 편지 당신이 받아 볼 수 있나요</span></div>
+        <div class="sentence-line"><span class="original">하지 못한 고백 전할 수 있나요</span></div>
+        <div class="sentence-line"><span class="original">시간은 흐르고 장미는 시들까요</span></div>
+
+        <div class="sentence-line"><span class="original">S#94. 버스 정류장(낮/외부)</span></div>
+        <div class="sentence-line"><span class="original">아파트 앞 버스 정류장. 그녀가 늘 버스를 타던 곳. 여느 때와 다름없는 풍경이지만, 오늘따라 버스를 기다리는 사람은 아무도 없이 비어 있다. 버스가 한 대 와서 선다. 그러나 아무도 내리지 않는다. 버스가 다시 출발한다.</span></div>
+        <div class="sentence-line"><span class="original">미자 : (O.S.) 이제 작별을 할 시간</span></div>
+        <div class="sentence-line"><span class="original">머물고 가는 바람처럼 그림자처럼</span></div>
+        <div class="side-analysis">▶ 미자의 부재와 그녀의 시(오프 사운드): 이별과 적막, 아름다움에 대한 성찰</div>
+        <div class="vocab-note">📖 O.S.: 오프 사운드(off sound) – 화면 밖에서 들리는 음성. 틸트다운: 카메라를 수직 아래로 이동하며 촬영하는 기법.</div>
+    </div>
+
+    <div class="analysis-box">
+        <h3>📌 감상 포인트</h3>
+        <p>이 작품은 이 시대의 시 쓰기가 어떠한 의미를 지니는지 물으면서 미와 윤리의 문제를 탐구하는 영화 시나리오이다. 중학생 손자와 살아가는 평범한 할머니인 미자는 아름다움을 추구하며 시를 쓰고 싶어 하는 인물이다. 그런데 어느 날 손자가 자살한 여중생의 죽음에 연루되었다는 사실을 알게 된 후, 미자의 삶은 부조리한 세상에서의 아름다운 시 쓰기라는 모순 가운데 놓인다. 이 작품을 통해 우리는 세상의 부조리함을 외면하지 않고 정면으로 바라볼 때 비로소 진정한 아름다움을 구현할 수 있다는 사실을 깨닫게 된다.</p>
+        <p><strong>주제</strong>: 부조리한 현실 속에서의 시 쓰기가 지닌 의미</p>
+        
+        <h4>📌 핵심 개념 – 이것만은 꼭 익히자</h4>
+        <p><strong>포인트 1. 시 창작 과정에서의 고뇌</strong><br>
+        • 김 시인: 시를 쓴다는 것은 진정한 아름다움을 찾는 것 / 가슴속에 품고 있는 아름다움을 풀어 줘야 함. / 삶의 주변 어디에든 있는 시상은 '찾아가서 빌어야' 할 정도로 노력을 해야 찾을 수 있음.<br>
+        • 미자: 시상을 찾는 방법에 대해 의문을 가짐. / 시상을 찾고자 애를 씀.<br>
+        • → 시를 쓰는 과정에서 겪는 시인의 고뇌를 짐작할 수 있음. 진정한 아름다움을 찾기 위해서는 자신의 주변에서 진정한 아름다움을 찾기 위해 노력해야 함.</p>
+        <p><strong>포인트 2. 화면 밖에서 등장인물의 목소리만 전달되는 것의 효과</strong><br>
+        오프 사운드는 영화에서 대사가 나오는데 화면에는 말하는 사람이 안 보이고 화면 밖에서 말이 나오는 것이다. 이 작품에서는 '시'를 낭송하는 미자의 목소리가 오프 사운드로 제시된다. 이 경우 화면에는 그 목소리의 주인공인 인물은 등장하지 않으면서 관객들이 낭송되는 시의 내용에 집중하게 하는 효과가 있다. 목소리로 전달되는 시의 내용과 그 시를 낭송하는 인물의 정서를 강조하는 것이다.</p>
+
+        <div class="bg-knowledge">
+            <h4>📖 배경지식 더 알아보기</h4>
+            <p><strong>시나리오 용어</strong><br>
+            F.I.(Fade In): 화면이 점점 밝아짐. / F.O.(Fade Out): 화면이 점점 어두워짐.<br>
+            C.U.(Close Up): 대상을 확대 촬영함. / Ins.(Insert): 특정 상황을 강조하기 위해 화면을 삽입하는 것.<br>
+            E.(Effect): 효과음(주로 화면 밖에서의 음향, 대사에 의한 효과음).</p>
+            <p><strong>영화 「시」와 이창동 감독의 인터뷰</strong><br>
+            “이 영화는 '시란 무엇인가'라는 질문을 따라가는 영화라 할 수 있는데, 「아녜스의 노래」는 그 질문에 대한 작은 대답일 수도 있는 시여야 하잖아요. '시란 무엇인가'에 대한 직접적인 답을 관객들에게 드릴 수는 없겠지만, 제가 질문할 수는 있죠. 관객들은 그 질문에 대해 각자가 대답을 떠올려 보는 방식으로 마음에 담아 갔으면 좋겠다고 생각했어요.”</p>
+        </div>
+    </div>
+
+    <!-- ================= 문제 13~18 ================= -->
+    <h2>■ 문항 분석 (13~18번)</h2>
+
+    <div class="question-full">
+        <div class="q-num">13번</div>
+        <div class="question-stem">(가)의 글쓴이에 대한 설명으로 적절하지 않은 것은?</div>
+        <div class="choice-item"><div class="choice-text">① 시에 대한 회의와 애정의 태도를 동시에 지니고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">② 시인의 생각을 담아낸 시가 사람의 정서적 반응을 불러일으킨다고 생각하고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ 시 창작의 수고와 고됨을 무의미하게 만드는 허 군의 시 창작 태도를 비판하고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ 시인, 광대, 벌레를 비교하며 시 창작 과정에서 시인이 겪는 어려움을 부각하고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ 인생의 다양한 경험이 쌓일수록 시에 담긴 생각의 깊이가 깊어질 수 있다는 깨달음을 제시하고 있다.</div></div>
+        <div class="wrong-badge">❌ 정답 ⑤ – 글쓴이는 생각이 깊어지려면 마음이 맑아야 한다고 했을 뿐, 다양한 경험이 생각의 깊이를 더한다는 언급은 없다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">14번</div>
+        <div class="question-stem">ⓐ의 의미로 가장 적절한 것은?<br><small>ⓐ “마음은 거북 등껍데기와 같아 속을 태우면 조짐이 바깥으로 나타나니, 이것은 마치 생각이 움직여 시를 읊는 것과 같다.”</small></div>
+        <div class="choice-item"><div class="choice-text">① 시는 인간이라면 누구나 가지고 있는 마음이다.</div></div>
+        <div class="choice-item"><div class="choice-text">② 시는 타인에게 받은 상처를 아물게 하는 언어이다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ 시는 바깥으로 드러나는 의미와 함축하는 의미의 차이가 존재한다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ 시는 외적으로 주어지는 자극과는 무관하게 내적으로 사유하는 힘이다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ 시는 마음의 중심에서 일어난 움직임이 겉으로 표현되어 나오는 것이다.</div></div>
+        <div class="correct-badge">✅ 정답 ⑤ – 거북 등껍데기에 불을 지지면 겉에 금이 가듯, 마음속 생각이 움직여 시로 표현됨.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">15번</div>
+        <div class="question-stem">&lt;보기&gt;를 참고하여 (가), (나)에 대해 이해한 내용으로 적절하지 않은 것은?</div>
+        <div style="background:#eef2ff; padding: 15px 20px; border-radius: 24px; margin-bottom: 20px;">
+            <strong>📖 &lt;보 기&gt;</strong><br>
+            시인은 자신의 개별적 체험이나 생각을 언어로 형상화함으로써 보편적 의미와 아름다움을 드러낸다. 이러한 시 창작 과정에서 필연적으로 시인의 고뇌가 수반되고, 시인의 창작 행위는 독자에게 심미적 즐거움과 정서적 울림을 경험하게 한다. (가)는 독자에게 진정한 감동을 주는 시의 가치가 어떤 창작의 고뇌를 통해 확보되는지에 대한 글쓴이의 견해를 제시하고 있으며, (나)는 시를 창작하고자 하는 인물을 통해 보편적 아름다움을 형상화하기 위한 시 창작 방법이 어떻게 탐구되는지 보여 준다.
+        </div>
+        <div class="choice-item"><div class="choice-text">① (가)에서 글쓴이가 ‘생각은 물과 같고 시는 얼음과 같’아 시가 창작되는 것은 물이 얼면 얼음이 되고 얼음이 녹으면 도로 물이 되는 것과 같다고 생각한 것에서 시란 시인의 생각이 언어로 형상화되는 것임을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">② (나)에서 ‘설거지통 속’에도 시가 있다고 한 김 시인의 말에서 일상생활 속 개별적 체험이 시의 소재가 되어 독자들에게 심미적 즐거움을 줄 수 있다는 것을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">③ (나)에서 시상은 ‘찾아가서 빌어야’ 얻을 수 있다는 김 시인의 말에서 시의 내용이 보편적 의미와 아름다움을 갖게 하기 위해서는 독자를 설득할 수 있어야 한다는 것을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">④ (가)에서 시란 오장육부를 힘들게 만들어 ‘부지런히 짓는 것’이라는 글쓴이의 생각과 (나)에서 미자가 시상은 언제 찾아오는 것인지를 궁금해하며 시상을 찾고자 애쓰는 모습에서 창작 과정에서 겪는 시인의 고뇌를 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ (가)에서 마음이 맑지 않으면 시를 창작할 때 깊은 생각을 담을 수 없다는 글쓴이의 생각과 (나)에서 시를 쓴다는 것은 현실 속에서 ‘진정한 아름다움’을 찾는 것이라는 김 시인의 말에서 독자에게 감동을 주는 시가 갖추어야 할 요소를 알 수 있군.</div></div>
+        <div class="wrong-badge">❌ 정답 ③ – ‘찾아가서 빌어야’는 시상을 얻기 위한 노력을 뜻할 뿐, ‘독자를 설득’해야 한다는 의미는 아니다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">16번</div>
+        <div class="question-stem">㉠~㉤에 대한 설명으로 적절하지 않은 것은?</div>
+        <div class="choice-item"><div class="choice-text">① ㉠: 시를 쓰려는 마음을 접게 된 글쓴이의 내적 갈등과 관련된 의문을 담고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">② ㉡: 시에 대한 애정을 억누를 수 없는 글쓴이의 마음이 비유적으로 제시되고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ ㉢: 미자가 김 시인의 말을 완전하게 이해하지 못했음이 드러나는 행동이다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ ㉣: 강의의 주제에서 벗어난 질문을 하는 미자로 인해 화가 난 김 시인의 반응이다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ ㉤: 시를 잘 창작하고 싶어 하는 미자의 마음이 드러난 표정이다.</div></div>
+        <div class="wrong-badge">❌ 정답 ④ – 김 시인은 미자의 질문에 짜증을 참으려 할 뿐, ‘화가 난’ 것은 아니다. 질문 자체도 강의 주제에서 완전히 벗어나지 않았다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">17번</div>
+        <div class="question-stem">(나)의 등장인물에 대한 이해로 가장 적절한 것은?</div>
+        <div class="choice-item"><div class="choice-text">① 미자는 김 시인과 함께 시를 창작하며 낭송하는 기회를 얻었다.</div></div>
+        <div class="choice-item"><div class="choice-text">② 미자는 김 시인과 나눈 대화로 인해 다른 수강생들과 갈등하는 상황에 놓였다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ 미자는 김 시인의 강의에 따라 주변에서 볼 수 있는 일상적 소재를 활용해 시를 창작했다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ 수옥은 미자가 남긴 시를 읽으며 미자의 부재로 인한 그리움을 견뎌 냈다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ 김 시인은 시와 관련된 자신의 일화를 소개하며 수강생들에게 시 창작 방법을 설명했다.</div></div>
+        <div class="correct-badge">✅ 정답 ③ – S#21의 강의 내용(설거지통, 주변에서 시를 찾아야 함)과 S#92~94의 시에 등장하는 노을, 새소리, 장미, 바람 등 일상적 소재를 통해 확인할 수 있다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">18번</div>
+        <div class="question-stem">&lt;보기&gt;는 (나)를 영상화하기 위한 제작 노트의 일부이다. 윗글의 내용에 비추어 볼 때 적절하지 않은 것은?</div>
+        <div style="background:#eef2ff; padding: 15px 20px; border-radius: 24px; margin-bottom: 20px;">
+            <strong>📖 &lt;보 기&gt;</strong><br>
+            ■ 영상 제작 계획<br>
+            • S#92에서 미자의 아파트 안으로 햇살이 들어오는 모습을 보여 줄 때, 텅 빈 집 안을 화면에 비추면서 집 안의 고요함을 부각해야겠어. …… ㄱ<br>
+            • S#92에서 미자가 사라진 것을 알고 난 후 수옥이 미자를 부르는 장면에서, 수옥이 애태우며 울부짖는 표정으로 연기하도록 해야겠어. …… ㄴ<br>
+            • S#93에서 나뭇잎의 흔들림이 잘 보이도록 카메라를 위에서 아래로 이동시키며 나무의 모습을 화면에 담아야겠어. …… ㄷ<br>
+            • S#93에서 화면에 나무의 모습에서 나무 옆에 앉아 있는 할머니의 모습, 아이들이 훌라후프를 하는 모습까지 담기도록 카메라의 시선을 이동하며 촬영해야겠어. …… ㄹ<br>
+            • S#92부터 S#94까지 화면 밖에서 들리는 음성으로 미자가 낭송하는 시의 내용이 자연스럽게 이어질 수 있도록 오디오의 통일성을 잘 유지해야겠어. …… ㅁ
+        </div>
+        <div class="choice-item"><div class="choice-text">① ㄱ</div></div>
+        <div class="choice-item"><div class="choice-text">② ㄴ</div></div>
+        <div class="choice-item"><div class="choice-text">③ ㄷ</div></div>
+        <div class="choice-item"><div class="choice-text">④ ㄹ</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ ㅁ</div></div>
+        <div class="wrong-badge">❌ 정답 ② – 지문에서 수옥은 미자를 부르고 전화를 걸지만, 애태우며 울부짖는 장면은 전혀 없음. 수옥은 멍하니 앉아 있을 뿐.</div>
+    </div>
+
+</div>
+</body>
+</html>
