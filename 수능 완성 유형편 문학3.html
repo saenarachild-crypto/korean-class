@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>문학 유형 연습 ③ - 연안 이씨 「부여노정기」 (시구별 분석 통합본)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .poem-line {
+            margin-bottom: 0.4em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin: 1.2em 0 0.8em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .footnote {
+            font-size: 12px;
+            color: #5b6e8c;
+            background: #f1f5f9;
+            padding: 12px 16px;
+            border-radius: 16px;
+            margin-top: 16px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 유형편 · 문학 09~12번</h1>
+        <p>연안 이씨 「부여노정기」 | 시구별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- 2단 지문 + 분석 -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="section-title">연안 이씨, 「부여노정기」</div>
+                <div class="poem-line">
+                    <span class="line-text">황정경 한 글자를 어찌하여 그릇 알고</span>
+                    <div class="line-analysis">← 화자가 자신을 천상에서 귀양 온 존재로 여김 (도가 경전 오독 → 인간계 적강)</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">인간에 적강하여 평생에 병이 많아</span>
+                    <div class="line-analysis">← 병약한 육체, 규방에서의 고뇌를 전생과 연결</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">북창하에 누웠으니 뜻대로 하기 어렵도다</span>
+                    <div class="line-analysis">← 사회적 제약과 질병으로 인한 좌절감</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">복희씨를 꿈꾸던가 아침에 까치 소리 과연히도 새롭도다</span>
+                    <div class="line-analysis">← 태평성대를 꿈꾸던 중 까치 소리 → 반가운 소식 예고</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">임금님 명령 전하는 소리 늘어지게 나는구나</span>
+                    <div class="line-analysis">← 청각적 이미지: 아들의 부여 현감 임명 소식을 듣는 장면</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">갑인년 방소린 듯 을묘년 감시런 듯</span>
+                    <div class="line-analysis">← 비유적 표현: 과거 급제와 감시(館試)를 회상</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">홍문관 직중 아이 편지를 올리거늘</span>
+                    <div class="line-analysis">← 아들이 직접 편지를 올림</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">전하는 것 얼핏 들어 봉함을 떼어 보니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">충청도 부여 현감 임금이 결정하니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어와 성은이야 갈수록 감축하다</span>
+                    <div class="line-analysis">← 감탄사 ‘어와’로 임금의 은혜에 감사</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">작년에 안악 영감 가문에 단비더니</span>
+                    <div class="line-analysis">← 작년에 아들이 안악 현감이 된 데 이어</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">ⓐ오늘날 이 희보는 그 더욱 망외로다</span></span>
+                    <div class="line-analysis">← 부여 현감 임명은 더욱 뜻밖의 행운</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">비록 소읍이나 네게는 고향이라</span>
+                    <div class="line-analysis">← 고향(안동)과 가까운 부여를 배려하는 어머니의 시선</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">착할사 우리 아들 일마다 기특하다</span>
+                    <div class="line-analysis">← 아들에 대한 자랑과 사랑</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">정공등 얻어 내서 병든 부모 쾌차하니</span>
+                    <div class="line-analysis">← 약재(정공등)로 병든 부모가 나음 → 효심</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">화풍은 만실하고 시절은 삼월이라</span>
+                    <div class="line-analysis">← 봄의 화창한 분위기, 기쁨의 배경</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">친척은 만당하며 시우는 촉촉하여</span>
+                    <div class="line-analysis">← 친척과 벗들이 축하하는 분위기</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이화도 향기롭다 풍백을 의논하며</span>
+                    <div class="line-analysis">← 자연과 어우러진 경사</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">성은이 거듭되니 이 역을 피할쏘냐</span>
+                    <div class="line-analysis">← 성은이 거듭되니 부임을 마다할 수 없음 → 입신양명한 아들에 대한 자부심</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">청하 초길일에 영양으로 발행하니</span>
+                    <div class="line-analysis">← 부임 행차의 시작</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">친척이 기뻐하고 벗들이 축하하니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">범 같은 많은 하졸 조수같이 밀려들어</span>
+                    <div class="line-analysis">← 많은 수행원, 위엄 있는 부임 행렬</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">보운총 좋은 말에 쌍가마를 높이 실어</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">청풍은 선배 되고 명월을 후배 삼아 추종이 십 리로다</span>
+                    <div class="line-analysis">← 과장·비유: 맑은 바람과 밝은 달이 시종처럼 따름 → 행렬의 성대함</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">좌우에 권마성은 위풍이 볼만하다</span>
+                    <div class="line-analysis">← 권마성(말·가마 앞에서 부르는 소리)의 위엄</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">당시에 듣던 소리 반갑기 그지없다</span>
+                    <div class="line-analysis">← 과거에 듣던 권마성이 반가움</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">독교를 후거하니 별수는 전혀 없네</span>
+                    <div class="line-analysis">← 말 한 마리가 끄는 가마로 전환</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">예천 땅 오천내를 발 아래 굽어보니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">용궁읍을 얼른 지나 우두원 숙소하고</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">삼산을 잠깐 들러 옛 벗님 찾아보고</span>
+                    <div class="line-analysis">← 여정 중 옛 벗을 찾아감 → 개인적 인연 회복</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">수향에서 배를 탈 때 어옹을 즐기는 듯</span>
+                    <div class="line-analysis">← 배를 탈 때 어부가 된 듯한 여유로움</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">(중략)</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">옥천을 다시 보니 반석이 더욱 좋도다</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">삼십 년 떠난 동생 옥성 와 만나 보니</span>
+                    <div class="line-analysis">← 결혼으로 단절되었던 동생과 30년 만에 상봉 → 감격</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">힘든 일에 고생 많아 청수한 그 얼굴이 반백이 다 되었네</span>
+                    <div class="line-analysis">← 세월의 무상함, 서로의 고생을 위로</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">손잡고 눈물 흘리니 회포도 엄억하다</span>
+                    <div class="line-analysis">← 눈물로 회포 풂</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">앞길이 탄탄하니 옛 말씀 다할쏜가 창연지심 그지없다</span>
+                    <div class="line-analysis">← 헤어짐의 아쉬움</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">패거리 큰 숙소에 북풍이 마주 부니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">십오야 밝은 달에 성신을 거느리고</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">백련화 한 가지가 가날프게 날아들어</span>
+                    <div class="line-analysis">← 달빛을 백련화로 비유</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">뭇사람 우러르는 중 지재현 하올 적에</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이 좋은 이 세계를 남에게 보이고자</span>
+                    <div class="line-analysis">← 아름다운 경치를 다른 이들과 공유하고 싶은 소망</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">행인이 피곤해하니 주막을 들러 가며</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">가마 메어 끄는 말이 편토록 하령하니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">앞뒤에 다리 떨기 백 배나 더하구나</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">연산에서 말을 갈아 채찍질 다시 하니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">채석강 뱃머리가 여울을 만나는 듯</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">먼지에 모인 때를 백마강에서 없애니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">금회가 탁락하야 선분이 적을쏘냐</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">고란사 청풍전은 본 듯이 알거니와</span>
+                    <div class="line-analysis">← 이미 알고 있던 장소를 실제 방문</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">조령재 청풍경을 앉아서 보겠노라</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">노성현 은진미륵 이제야 친히 보고</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">선경을 얼핏 보며 부여로 돌아드니</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">향기예 생명거동 호수입식 책전립이</span>
+                    <div class="line-analysis">← 기생과 무관들의 모습</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">하룻날에도 기묘한데 <span class="underline-phrase">ⓑ세 번을 알현하네</span></span>
+                    <div class="line-analysis">← 하루에 세 번 아랫사람들의 알현을 받음 → 부임지에서의 위엄</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">오리정 넓은 뜰에 꿀벌이 모이는 듯</span>
+                    <div class="line-analysis">← 비유: 사람들이 운집한 모습</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">전후 사령 걸친 옷과 곱창의 청천익은</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">개암이 잣는 곳에 오색이 어리었네</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">삼현 육각은 천지가 진동하니</span>
+                    <div class="line-analysis">← 과장법: 음악 소리가 천지를 진동 → 성대한 환영</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">백제 적 도읍이라 오히려 기풍 있도다</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">수문을 크게 열고 내아로 모신 적에</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">임정성 수양버들 그늘도 한가롭다</span>
+                    <div class="line-analysis">← 부여 관아에 도착하여 안치됨</div>
+                </div>
+                <div class="footnote">
+                    * <strong>각주</strong><br>
+                    • 황정경: 도가의 경전. 잘못 읽으면 인간계로 귀양 감.<br>
+                    • 복희씨: 태평성대의 상징.<br>
+                    • 정공등: 약재.<br>
+                    • 권마성: 말·가마 앞에서 부르는 소리.<br>
+                    • 독교를 후거하니: 말 한 마리가 끄는 가마.<br>
+                    • 엄억하다: 가슴을 덮는구나.<br>
+                    • 지재현 하올 적에: 고갯마루에 나타날 때.<br>
+                    • 금회가 탁락하야: 생각이나 정이 뛰어나니.<br>
+                    • 선분: 신선의 연분.<br>
+                    • 진주투심: 진주 머리 장식.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 작품 개관</div>
+                <div class="content">1802년경 창작 추정. 여성 화자가 부여 현감으로 부임하는 아들과 동행하며 하회에서 부여까지 여행한 체험을 기록한 국문 기행 가사. 공적 부임 행차에 동행하면서도 개인적 인연(옛 벗, 동생)을 찾아가는 개성적 면모가 돋보임.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 화자의 정체성과 태도</div>
+                <div class="content">자신을 천상에서 귀양 온 존재(적강)로 여기며 규방의 병약함을 고뇌. 아들의 입신양명에 대한 자부심이 강하며, 여정 중에는 사회적 제약을 벗어나 적극적으로 개인적 관계를 회복함.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 아들의 출세 과정</div>
+                <div class="content">갑인년 과거 급제 → 을묘년 감시(館試) 합격 → 안악 현감 → 부여 현감. ‘갑인년 방소린 듯 / 을묘년 감시런 듯’은 비유적 회상.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ⓐ ‘오늘날 이 희보는 그 더욱 망외로다’</div>
+                <div class="content">뜻밖의 행운(부여 현감 임명)에 대한 기쁨. 가문 차원의 경사.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ⓑ ‘세 번을 알현하네’</div>
+                <div class="content">부임지에 도착해 아랫사람들(기생·무관)이 세 차례 알현하는 의례적 절차. 아들의 지위에 따른 위엄과 성대함.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 표현 기법</div>
+                <div class="content">감탄사(어와), 청각적 이미지(까치 소리, 전교 소리), 과장(십 리 추종, 천지 진동), 비유(꿀벌 모이는 듯), 의인화(청풍·명월).</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>핵심 주제</strong><br>
+                • 아들의 부임 행차에 동행한 어머니의 자부심과 기쁨<br>
+                • 개인적 인연(옛 벗, 동생) 회복을 통한 정서적 위안<br>
+                • 아름다운 경치 감상 및 공유 욕구
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>화자는 전생(적강)과 현재 병약한 규방의 처지를 연결하며 고뇌를 드러냄.</li>
+                    <li>아들의 출세(입신양명)를 자신의 성취처럼 여기며 자부심을 표현.</li>
+                    <li>공적 부임 행차에 동행하면서도 옛 벗·동생을 찾아 개인적 정서를 해소함.</li>
+                    <li>‘이 좋은 이 세계를 남에게 보이고자’ – 경치 감상의 적극적 공유 욕구.</li>
+                    <li>과장·비유·감탄사 등 수사법을 통해 감정과 장면을 생생하게 전달.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">아들의 부임 행차에 동행한 어머니의 여정을 통해 입신양명한 아들에 대한 자부심, 개인적 인연의 회복, 그리고 아름다운 자연 감상을 그린 기행 가사.</p>
+            </div>
+
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 화자의 개성적 면모 (Zoom In)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>범주</th><th>관련 구절</th><th>의미</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">전생 인식</td>
+                        <td>황정경 일자를 어찌하여 그릇 알고 / 인간에 적강하여</td>
+                        <td>자신을 천상계 인물로 여기며 병약함과 고뇌를 해명</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">성공한 어머니로서의 자부심</td>
+                        <td>성은이 거듭되니 이 역을 피할쏘냐 / 좌우에 권마성은 위풍이 볼만하다</td>
+                        <td>아들의 입신양명을 자신의 일처럼 여김</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">개인적 인연 회복</td>
+                        <td>삼산을 잠깐 들러 옛 벗님 찾아보고 / 삼십 년 떠난 동생 옥성 와 만나 보니</td>
+                        <td>결혼으로 단절된 관계를 여정 중에 회복</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 폭 익히지!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>적강 모티프</strong> – 천상에서 귀양 온 존재로 병약함을 설명.</li>
+                    <li><strong>아들의 출세 과정</strong> – 갑인년 급제 → 을묘년 감시 → 안악 현감 → 부여 현감.</li>
+                    <li><strong>경치 공유 욕구</strong> – “이 좋은 이 세계를 남에게 보이고자” (여성 화자의 적극적 감상 태도)</li>
+                    <li><strong>과장·비유</strong> – “청풍은 선배 되고 명월을 후배 삼아”, “오리정 넓은 뜰에 꿀벌이 모이는 듯”, “삼현 육각은 천지가 진동하니”</li>
+                    <li><strong>악자 구성</strong> – 아들의 임명(편지) → 출발 → 여정 중 만남 → 부여 도착 → 환영 → 이후 홍문관 수찬 임명으로 결말.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 1번 -->
+        <div class="question-full">
+            <div class="q-num">1번</div>
+            <div class="question-stem">윗글의 화자에 대한 이해로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 평소 배를 타는 것을 싫어하여 강을 건널 때 긴장하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘수향에서 배를 탈 때 어옹을 즐기는 듯’을 통해 화자가 배를 탈 때 어부가 된 기분이었음을 알 수 있다. 즉 강을 건널 때 긴장한 것이 아니라 여유롭게 즐긴 것으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 아들이 아랫사람들을 지휘하는 모습을 보며 즐거워하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 이 글에 화자의 아들이 아랫사람들을 지휘하는 모습은 나오지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 이동하다가 미륵불을 찾아가서 가문의 번영을 위해 불공을 드리고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘노성현 은진미륵 이제야 친히 보고 / 선경을 얼핏 보며 부여로 돌아드니’를 통해 미륵불을 찾아간 것은 알 수 있지만, 가문의 번영을 위해 불공을 드렸다는 내용은 찾을 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 아름다운 경치를 다른 사람들도 즐기게 하고 싶다는 소망을 나타내고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ‘십오야 밝은 달에 성신을 거느리고 / 백련화 한 가지가 가날프게 날아들어 / 뭇사람 우러르는 중 지재현 하올 적에 / 이 좋은 이 세계를 남에게 보이고자’에서 한밤중 달빛이 비치는 아름다운 경치를 다른 사람들도 즐기게 하고 싶다는 소망을 나타내고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 아들에게 고향 사람들의 배려와 친척들의 은혜에 보답할 것을 강조하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 이 글에 친척이나 벗들이 기뻐하며 화자의 아들을 축하하고 배웅하는 모습은 나타나지만, 화자가 아들에게 고향 사람들의 배려와 친척들의 은혜에 보답할 것을 강조하는 내용은 찾을 수 없다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 가장 적절한 이해(정답).</div>
+        </div>
+
+        <!-- 문제 2번 (보기 포함) -->
+        <div class="question-full">
+            <div class="q-num">2번</div>
+            <div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은?</div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                이 작품은 화자가 지방관으로 부임하는 아들과 동행하며 하회에서 부여까지 여행한 체험을 기록한 여성 기행 가사이다. 공적인 사명감이나 관념적 이상향 등을 부각하는 이전의 사대부 기행 가사와는 달리, 이 작품에서는 사회적 제약이나 질병으로 인해 고뇌하는 공간인 규방을 벗어난 여성이 아들의 공적 부임 행차를 따라가면서 개인적인 일정을 소화하는 새로운 모습이 나타난다. 작품에 등장하는 주요 장소들은 화자의 생활 공간이거나 여행 도중 방문한 곳으로, 화자는 여정을 제시할 때 많은 사람의 배웅을 받으며 출발하는 입신양명한 아들을 둔 성공한 어머니로서의 자부심을 드러내고, 결혼으로 인해 단절되었던 개인적 인연의 대상을 찾아가는 상황을 언급하는 등 개성적 면모를 보이고 있다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ‘인간에 적강하여 평생에 병이 많아 / 북창하에 누웠으니 뜻대로 하기 어렵도다’는 화자가 자신의 전생과 규방에서의 병약한 처지를 연결하며 고뇌를 드러낸 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 화자는 자신이 전생에 천상계의 인물이었으나 황정경을 잘못 읽어 지상으로 귀양을 온 신세이며, 규방에서 병이 많은 여인의 처지로 지낸다고 생각하고 있다. 특히 ‘뜻대로 하기 어렵도다’는 화자가 느끼는 고뇌를 직접적으로 언급한 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ‘성은이 거듭되니 이 역을 피할쏘냐’는 아들이 지방관으로 부임하는 입신양명의 상황을 화자가 자신의 일처럼 여기며 성공한 어머니로서의 자부심을 드러내는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘성은이 거듭되니 이 역을 피할쏘냐’는 화자가 안악의 지방관을 거쳐 부여의 지방관으로 임명받은 아들의 출세를 자신의 일처럼 여기며 성공한 어머니로서의 자부심을 드러내는 것으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ‘청풍은 선배 되고 명월을 후배 삼아 추종이 십 리로다’는 화자가 부여로 향하는 아들을 배웅하기 위해 나온 많은 사람을 보며 감탄하는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">✅ <strong>적절하지 않음 (정답)</strong> – ‘청풍은 선배 되고 명월을 후배 삼아 추종이 십 리로다’는 맑은 바람 앞세우고 밝은 달 뒤에 두어 따르는 행렬이 십 리나 된다는 과장된 표현으로, 바로 앞의 ‘범 같은 많은 하졸 조수같이 밀려들어 / 보운총 좋은 말에 쌍가마를 높이 실어’와 연결하여 이해할 때 부여로 향하는 아들의 부임 행차가 성대함을 나타내는 표현으로 볼 수 있다. 이는 친척이나 벗 같은 많은 사람이 화자의 아들을 축하한 후의 상황이다. ‘아들을 배웅하기 위해 나온 많은 사람’이라기보다는 아들의 부임 행차 자체의 성대함을 나타낸 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ‘삼산을 잠깐 들러 옛 벗님 찾아보고’와 ‘삼십 년 떠난 동생 옥성 와 만나 보니’는 화자가 아들의 부임에 동행하다가, 사회적 제약으로 오랫동안 만나지 못한 개인적 인연의 대상을 방문해 회포를 푸는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 화자가 옛 벗과 동생을 만나는 것은 결혼으로 인해 단절되었던 개인적 인연이 있는 대상을 찾아가는 내용에 해당한다. 즉 아들이 부여로 부임하는 공적인 행차에 동행하다가 개인적 일정을 소화하며 옛 벗, 동생과 회포를 푸는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ‘고란사 청풍전은 본 듯이 알거니와’는 화자가 이미 인식하고 있었던 장소를 여행 도중에 실제로 방문한 상황임을 나타낸 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘본 듯이 알거니와’는 화자가 ‘고란사 청풍전’에 대한 배경지식이 있거나 얘기를 들은 적이 있어 해당 장소를 알고 있음을 드러내는 표현으로 볼 수 있다.</div>
+            </div>
+            <div class="wrong-badge">📍 ③번이 적절하지 않은 감상(정답).</div>
+        </div>
+
+        <!-- 문제 3번 -->
+        <div class="question-full">
+            <div class="q-num">3번</div>
+            <div class="question-stem">[A], [B]에 대한 설명으로 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① [A]에서 화자는 감탄사를 활용해 임금의 은혜에 대한 감사를 표현하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [A]의 ‘어와 성은이야 갈수록 감축하다’에서 화자가 ‘어와’라는 감탄사를 활용해 임금에 대한 감사를 표현하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② [A]에서 화자는 청각적 이미지를 활용해 아들의 임명 사실을 듣는 상황을 제시하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [A]의 ‘아침에 까치 소리 과연히도 새롭도다 / 임금님 명령 전하는 소리 늘어지게 나는구나’에서 화자가 청각적 이미지를 활용해 아들의 임명 사실을 듣는 반가운 상황을 제시하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ [B]에서 화자는 과장된 표현을 통해 아들이 부임지에서 환영받는 상황을 나타내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [B]의 ‘삼현 육각은 천지가 진동하니’는 화자가 과장된 표현을 통해 아들이 부임하는 곳인 부여에 도착해 환영받는 상황을 나타낸 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ [B]에서 [A]와 달리 화자는 비유적 표현을 통해 사람들이 모여드는 모습을 묘사하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [B]의 ‘오리정 넓은 뜰에 꿀벌이 모이는 듯’은 부여 관아에서 일하는 사람들이 모여드는 모습을 묘사한 것이다. [A]의 ‘갑인년 방소린 듯 을묘년 감시런 듯’은 비유적 표현으로 볼 수 있으나 아들의 급제와 관련한 과거를 회상하는 것이지, 사람들이 모여드는 모습과는 관련이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ [A]와 [B]에서 모두 화자는 공간의 이동에 따라 자신의 내적 갈등이 해소되는 과정을 보여 주고 있다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – [A]에는 공간의 이동이 나타나지 않으며, [B]는 공간의 이동에 따라 내용이 전개되고 있지만 화자의 내적 갈등이 해소되는 과정은 나타나지 않는다. 이 글에서 화자는 아들의 입신양명을 바라보는 만족감을 드러낼 뿐이지 특별한 내적 갈등을 경험하고 있지는 않다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 설명(정답).</div>
+        </div>
+
+        <!-- 문제 4번 -->
+        <div class="question-full">
+            <div class="q-num">4번</div>
+            <div class="question-stem">ⓐ와 ⓑ에 대한 이해로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ는 가문 차원의 경사를, ⓑ는 국가 차원의 경사를 의미하는 상황이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓐ는 화자의 아들이 부여 현감으로 임명된 소식을 가리키며, 이는 가문 차원의 경사로 볼 수 있다. 하지만 ⓑ는 화자의 아들이 부여에 도착해 아랫사람들의 알현을 받는 상황으로 국가적 경사와는 관련이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⓐ는 화자의 아들이 임금의 신뢰를 얻은, ⓑ는 화자가 임금의 신뢰를 얻은 결과이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 원칙적으로 관리의 임명을 임금이 명목상 총괄한다는 점에서 ⓐ를 화자의 아들이 임금의 신뢰를 받아 얻은 결과로 볼 여지는 있다. 그러나 ⓑ는 지방관이 부임한 당일에 아랫사람들이 알현하는 절차로, 이는 의례적이고 관습적인 행위일 뿐 화자가 임금의 신뢰를 얻은 결과로 볼 수는 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓐ는 ⓑ와 같은 극진한 대우를 받을 수 있는 원인이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ⓐ는 화자의 아들이 충청도 부여 현감으로 임명되었다는 기쁜 소식을 의미하고, ⓑ는 부여 현감이 된 화자의 아들이 부여에 도착하자 아랫사람들인 기생과 무관들이 윗사람인 현감을 순차적으로 하루에 세 번을 알현하는 상황을 나타낸 것이다. 그러므로 ⓐ는 ⓑ와 같은 대우를 받을 수 있는 원인으로 이해할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓐ와 ⓑ는 모두 화자가 힘겨운 여정을 수용하게 된 계기이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓐ로 인해 화자가 아들의 부임 행차에 동행하게 된 것이므로, ⓐ는 화자가 여정을 수용하게 된 계기로 볼 수 있다. 그러나 이 글에 나타나는 여정은 화자의 입장에서 힘겨운 것이 아니라 즐겁고 자랑스러운 것이다. 그리고 화자가 ⓑ를 위해서 힘겨운 여정을 수용한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓐ와 ⓑ는 모두 화자가 기대하지 않은 행운이 발생한 데 대한 반응이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘그 더욱 망외로다’로 볼 때 ⓐ를 표면적으로 기대하지 않은 행운으로 볼 여지는 있다. 그러나 ⓑ는 지방관의 부임과 관련된 알현이므로 기대하지 않은 행운으로 볼 수는 없다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 이해(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

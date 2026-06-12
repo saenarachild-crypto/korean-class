@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 유형편 2 - 법인의 권리 능력과 유형 (통합본)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 유형편 · 사회 01~06번</h1>
+        <p>법인의 권리 능력과 유형 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- 2단 지문 + 분석 (사용설명서 본문) -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>권리 능력이란 권리와 의무의 주체가 될 수 있는 자격을 말한다. 인간인 자연인은 출생과 동시에 권리 능력, 즉 인격을 갖는다. 반면 단체나 재산에도 권리 능력을 부여할 수 있으며 이를 법인이라고 한다. 민법에서는 법인의 성립에 정관 작성과 설립 등기를 <span class="underline-phrase">ⓐ요건</span>으로 하고 있으며, 이러한 절차를 마친 법인은 권리와 의무의 주체가 될 수 있는 법적 자격인 법인격을 취득한다. 한편 행위 능력이란 법률 행위를 통하여 법적 효과를 발생시킬 수 있는 능력을 말한다. 하지만 법인은 자연인과 달리 물리적 실체가 없으므로, 법률 행위를 수행하기 위해 의사를 결정하고 이를 집행하며 대외적으로 표시하는 기관을 두어야 한다.</p>
+                <p>자연인은 사망에 의해 권리 능력이 소멸되지만 법인은 별도의 소멸 절차를 거쳐야 한다. 소멸 절차는 해산과 청산으로 나뉜다. 해산은 <span class="underline-phrase">ⓑ존립</span> 기간의 만료, 정관에 정한 해산 사유의 발생, 파산 등으로 법인의 본래 활동이 정지되는 상태를 말한다. 해산하더라도 법인이 즉시 소멸하는 것은 아니며, 잔여 재산을 정리하는 절차인 청산을 거친다. 청산 기간 동안 법인은 본래의 사업 활동은 할 수 없고, 채무를 <span class="underline-phrase">ⓒ변제</span>하거나 자산 매각 등 재산 정리의 목적 범위 내에서만 권리 능력을 유지한다. 또한 청산 기간 동안에는 임명된 청산인이 법인의 대내외적 사무를 집행함으로써 법인의 소멸을 마무리하게 된다. 청산이 종료되면 법인격은 소멸하며, 그 사실을 제삼자에게 공시하기 위해 청산 종결 등기를 해야 한다.</p>
+                <p>법인이 어떻게 권리 능력을 가질 수 있는지에 대해서는 두 학설이 논의되어 왔다. <span class="underline-phrase">법인 의제설</span>에서는 법인은 자연인이 아니라 법률에 의해 인위적으로 만들어진 존재에 불과하다고 본다. 이 관점에서는 권리 능력의 범위를 정관에 명시된 문구를 중심으로 좁게 해석하는 경향이 강하다. 반면 <span class="underline-phrase">법인 실재설</span>에서는 법인을 자연인과 마찬가지로 독자적인 의사를 가진 실체로 보아, 정관에 명시된 것 외에도 설립 목적을 달성하는 데 필요한 행위라면 권리 능력의 범위에 포함된다고 본다.</p>
+                <p>이러한 관점의 차이는 행위 능력과 불법 행위 능력의 인정 여부에 대한 입장 차이로도 이어진다. 여기서 불법 행위 능력이란 위법한 행위로 타인에게 손해를 입혔을 때 책임을 질 수 있는 능력이다. 법인 의제설에서는 법인 자체의 행위 능력을 부정하며, 대표자의 행위를 법인의 대리 행위로 설명한다. 즉 행위의 효과만 법인에 귀속될 뿐 행위 자체는 대표자의 것이라고 본다. 불법 행위 능력 또한 대표자에게만 인정될 뿐 법인 자체의 불법 행위 능력은 부정된다. 반면 법인 실재설에서는 법인의 행위 능력을 인정하며, 위법한 행위로 타인에게 손해가 발생할 경우에는 법인이 배상 책임을 진다고 본다. 한편 실정법 차원에서, 민법 제35조는 대표자가 직무에 관하여 타인에게 손해를 가한 경우 법인이 배상 책임을 지며, 이때 대표자 역시 배상 책임을 면하지 못한다고 규정하고 있다.</p>
+                <p>법인은 구성 실체에 따라 <span class="underline-phrase">㉮사단 법인</span>과 <span class="underline-phrase">㉯재단 법인</span>으로 나뉜다. 사단 법인은 일정한 목적을 위해 결합한 사람의 단체에 법인격이 부여된 것이다. 그래서 사원이라 불리는 구성원이 존재하며 사원의 교체는 법인의 존속에 영향을 주지 않는다. 사단 법인은 최고 의결 기관인 사원 총회를 통해 의사를 결정하며, 이사회는 총회의 결정을 집행한다. 또한 사원들의 합의를 통해 정관을 변경할 수 있다. 한편 재단 법인은 설립자가 출연한 재산의 집합체에 법인격이 부여된 것으로, 출연된 재산이 법인의 존립 기반이 되므로 설립자의 사망은 법인의 존속에 영향을 주지 않는다. 재단 법인은 구성원이 존재하지 않으므로, 이사회가 최고 의결 기관으로서 설립자의 의사를 실현하기 위한 결정을 내리고 사무를 <span class="underline-phrase">ⓓ주관</span>한다. 또한 설립자의 의지를 존중하기 위해 정관 변경은 원칙적으로 허용되지 않는다.</p>
+                <p>한편 법인은 설립 목적에 따라 영리 법인과 비영리 법인으로 분류되기도 한다. 영리 법인은 사업 활동에서 발생한 이익을 그 구성원에게 분배하는 것을 목적으로 한다. 주식회사는 주주에게 지분에 비례하여 이익을 분배하는 일종의 영리 법인이다. 반면 비영리 법인은 주로 학술, 종교, 자선 등 공익적 활동을 목적으로 한다. 비영리 법인도 그 목적 달성을 위하여 필요한 범위에서 <span class="underline-phrase">ⓔ수익</span> 사업을 할 수 있으나, 그 이익은 본래의 목적을 위해 사용되어야 한다. 이러한 정의에 따르면, <span class="underline-phrase">㉰재단 법인은 언제나 비영리 법인일 수밖에 없다.</span> 이처럼 법인은 권리 능력을 보는 관점이나 분류 기준에 따라 다양한 이론이 적용되는 복합적인 성격을 지닌다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 분석 – 권리 능력과 행위 능력</div>
+                <div class="content">권리 능력: 권리·의무 주체 자격. 자연인은 출생과 동시에, 법인은 정관+등기로 취득. 행위 능력: 법률 효과 발생 능력. 법인은 물리적 실체 없으므로 기관 필요.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 분석 – 법인의 소멸 절차</div>
+                <div class="content">해산(본래 활동 정지) → 청산(잔여 재산 정리, 권리 능력 제한적 존속) → 청산 종결 등기. 청산인 임명.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>권리 능력</strong>: 권리와 의무의 주체가 될 수 있는 자격.<br>
+                • <strong>행위 능력</strong>: 법률 행위를 통해 법적 효과를 발생시킬 수 있는 능력.<br>
+                • <strong>불법 행위 능력</strong>: 위법 행위로 손해를 입혔을 때 책임 질 능력.
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 분석 – 법인 의제설 vs 법인 실재설</div>
+                <div class="content">의제설: 법인은 인위적 존재 → 권리 능력 범위 좁게 해석. 실재설: 독자적 의사 실체 → 권리 능력 범위 넓게 인정.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 분석 – 행위·불법 행위 능력에 대한 입장 차이</div>
+                <div class="content">의제설: 대표자 행위로 간주, 법인 자체 능력 부정. 실재설: 법인 자체 능력 인정. 민법 제35조: 법인과 대표자 모두 배상 책임.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 분석 – 사단 법인 vs 재단 법인</div>
+                <div class="content">사단 법인: 사람의 단체, 사원 총회 최고 의결, 정관 변경 가능. 재단 법인: 재산 집합체, 이사회 최고 의결, 정관 변경 원칙적 불가.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 6문단 분석 – 영리 법인 vs 비영리 법인</div>
+                <div class="content">영리 법인: 이익 구성원 분배. 비영리 법인: 공익 활동, 필요적 수익 사업 허용. 재단 법인은 항상 비영리(이익 분배 대상 없음).</div>
+            </div>
+
+            <!-- 독해 포인트 + 주제 + 표 -->
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>이 글은 법인의 권리 능력에 관한 두 학설(의제설·실재설)과 법인의 유형(사단/재단, 영리/비영리)을 설명한다.</li>
+                    <li>법인 의제설은 법인을 인위적 존재로 보아 권리 능력을 제한적으로 해석하고, 법인 실재설은 독자적 실체로 보아 넓게 인정한다.</li>
+                    <li>사단 법인은 사람의 단체(사원 총회), 재단 법인은 재산의 집합체(이사회 중심). 영리 법인은 이익 분배, 비영리 법인은 공익 목적.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">법인의 권리 능력에 대한 두 학설(의제설·실재설)과 법인의 다양한 유형(사단/재단, 영리/비영리)을 설명하고 있다.</p>
+            </div>
+
+            <!-- 비교 표: 의제설 vs 실재설 -->
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 법인 의제설 vs 법인 실재설</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>법인 의제설</th><th>법인 실재설</th></tr></thead>
+                    <tbody>
+                        <tr><td>법인의 본질</td><td>인위적 존재, 법률이 만든 허구</td><td>독자적 의사 가진 실체</td></tr>
+                        <tr><td>권리 능력 범위</td><td>정관 명시 문구 중심 좁게 해석</td><td>설립 목적 달성에 필요한 행위 포함 넓게 인정</td></tr>
+                        <tr><td>행위 능력</td><td>부정, 대표자의 대리 행위로 봄</td><td>인정, 법인 자체의 행위로 봄</td></tr>
+                        <tr><td>불법 행위 능력</td><td>대표자에게만 인정, 법인은 부정</td><td>법인 자체 배상 책임 인정</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 비교 표: 사단 법인 vs 재단 법인 -->
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 사단 법인 vs 재단 법인</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>사단 법인</th><th>재단 법인</th></tr></thead>
+                    <tbody>
+                        <tr><td>구성 실체</td><td>사람의 단체(사원)</td><td>재산의 집합체(출연 재산)</td></tr>
+                        <tr><td>존속 기반</td><td>사원의 교체 → 존속 영향 없음</td><td>설립자의 사망 → 영향 없음</td></tr>
+                        <tr><td>최고 의결 기관</td><td>사원 총회</td><td>이사회</td></tr>
+                        <tr><td>정관 변경</td><td>사원 합의로 가능</td><td>원칙적으로 허용되지 않음</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 폭 익히지!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>권리 능력</strong> – 권리·의무 주체 자격. 자연인: 출생 시. 법인: 정관+등기.</li>
+                    <li><strong>소멸 절차</strong> – 해산 → 청산(재산 정리) → 청산 종결 등기.</li>
+                    <li><strong>법인 의제설 vs 실재설</strong> – 권리 능력 범위, 행위 능력 인정 여부 차이.</li>
+                    <li><strong>사단 법인</strong> – 사람 중심, 총회 의결, 정관 변경 가능.</li>
+                    <li><strong>재단 법인</strong> – 재산 중심, 이사회 의결, 정관 변경 불가. 항상 비영리.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 1번 -->
+        <div class="question-full">
+            <div class="q-num">1번</div>
+            <div class="question-stem">윗글의 내용과 일치하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 주식회사에서 주주의 지분은 회사의 이익을 분배할 때의 기준이 된다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 6문단에서 주식회사는 주주에게 지분에 비례하여 이익을 분배하는 일종의 영리 법인이라고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 인간은 출생이라는 사실만으로 권리와 의무의 주체로서의 자격을 갖는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 1문단에서 인간인 자연인은 출생과 동시에 권리와 의무의 주체가 될 수 있는 자격인 권리 능력을 갖는다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 영리 법인과 비영리 법인으로 분류한 것은 법인의 설립 목적에 바탕을 둔 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 6문단에서 법인은 설립 목적에 따라 영리 법인과 비영리 법인으로 분류되기도 한다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 위법 행위로 손해를 입은 자가 상대방에게 책임을 요구할 수 있는 능력을 불법 행위 능력이라고 한다.</div>
+                <div class="choice-analysis">✅ <strong>일치하지 않음 (정답)</strong> – 4문단에서 불법 행위 능력은 위법한 행위로 타인에게 손해를 입혔을 때 책임을 질 수 있는 능력이라고 하였다. 그러나 선지는 이를 손해를 입은 자가 책임을 요구할 수 있는 능력으로 설명하여, 책임을 지는 능력과 책임을 요구하는 능력을 바꾸어 제시하고 있으므로 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 법인이 법률 행위를 수행하는 기관을 두는 까닭은, 법인은 자연인과 달리 물리적 실체가 없기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 1문단에서 법인은 자연인과 달리 물리적 실체가 없으므로, 법률 행위를 수행하기 위해 의사를 결정하고 이를 집행하며 대외적으로 표시하는 기관을 두어야 한다고 하였다.</div>
+            </div>
+            <div class="wrong-badge">📍 ④번이 내용과 일치하지 않음(정답).</div>
+        </div>
+
+        <!-- 문제 2번 -->
+        <div class="question-full">
+            <div class="q-num">2번</div>
+            <div class="question-stem">윗글을 바탕으로 법인의 소멸에 대해 설명한 내용으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 정관에 정한 해산 사유가 발생한 것이 아닌데도 법인이 해산했다면, 이는 파산에 의한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 해산은 존립 기간의 만료, 정관에 정한 해산 사유의 발생, 파산 등으로 인해 법인의 본래 활동이 정지되는 상태를 말한다고 하였다. 따라서 정관에 정한 해산 사유가 발생한 것이 아니더라도 존립 기간의 만료에 의한 해산일 수도 있으므로, 이를 반드시 파산에 의한 것이라고 단정할 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 법인의 청산은 본래의 활동이 정지되는 상태를 의미하며, 청산이 끝나면 해산 절차에 들어갈 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 해산은 본래 활동이 정지되는 상태를 의미하며 해산 이후에 잔여 재산을 정리하는 절차인 청산을 거친다고 하였다. 따라서 본래의 활동이 정지되는 상태는 청산이 아니며, 청산이 끝나면 해산 절차에 들어간다는 설명도 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 청산인은 법인의 소멸을 마무리하기 위해 임명되어, 청산의 목적 범위 내에서 법인의 대내외적 사무를 집행한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 2문단에서 청산 기간 동안에는 임명된 청산인이 법인의 대내외적 사무를 집행함으로써 법인의 소멸을 마무리하게 된다고 하였다. 또한 이 기간 동안에 법인은 청산 목적 범위 내에서만 권리 능력을 유지하므로, 청산인이 집행하는 사무 역시 해당 목적 범위 내로 한정된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 소멸 절차를 거치는 과정에서 법인격이 유지되기 위해서는 청산 기간 동안에 잔여 재산이 그대로 유지되어야 한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 청산 기간 동안 법인은 채무를 변제하거나 자산 매각 등 재산 정리의 목적 범위 내에서만 권리 능력을 유지한다고 하였다. 따라서 잔여 재산을 그대로 유지하는 것은 청산의 목적과 어긋난다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 청산 절차가 종료되었다면 해당 법인은 별도의 등기를 하지 않더라도 제삼자에게 법인의 소멸 사실을 알린 것으로 간주된다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 청산이 종료되면 법인격은 소멸하며 그 사실을 제삼자에게 공시하기 위해 청산 종결 등기를 해야 한다고 하였다. 따라서 별도의 등기를 하지 않더라도 제삼자에게 법인의 소멸 사실을 알린 것으로 간주된다는 설명은 적절하지 않다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 3번 -->
+        <div class="question-full">
+            <div class="q-num">3번</div>
+            <div class="question-stem">㉮, ㉯에 대한 설명으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉮에서 사원이 모두 교체되는 경우, 이는 해당 법인의 해산 사유가 된다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단에서 사단 법인은 사원이라 불리는 구성원이 존재하며 사원의 교체는 법인의 존속에 영향을 주지 않는다고 하였다. 따라서 사원 전원이 교체되는 상황이 발생하더라도 이를 법인의 해산 사유로 볼 수 없으므로 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉯는 설립자의 재산이 법인의 기반이 되므로, 설립자의 사망 시 법인은 해산된다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단에서 재단 법인은 출연된 재산이 법인의 존립 기반이 되며 설립자의 사망은 법인의 존속에 영향을 주지 않는다고 하였다. 따라서 설립자의 사망 시 법인이 해산된다는 설명은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉯의 이사회는 ㉮의 이사회와 달리 해당 법인의 최고 의결 기관에 해당한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 5문단에서 사단 법인은 최고 의결 기관인 사원 총회를 통해 의사를 결정하고 이사회가 그 결정을 집행하지만, 재단 법인은 이사회가 최고 의결 기관으로서 결정을 내리고 사무를 주관한다고 하였다. 따라서 재단 법인의 이사회가 사단 법인의 이사회와 달리 최고 의결 기관의 지위를 갖는다는 설명은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉯는 ㉮에 비해서 법인의 정관을 비교적 자유롭게 바꿀 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단에서 사단 법인은 사원들의 합의를 통해 정관을 변경할 수 있지만, 재단 법인은 설립자의 의지를 존중하기 위해 정관 변경이 원칙적으로 허용되지 않는다고 하였다. 따라서 재단 법인이 사단 법인에 비해 정관을 더 자유롭게 바꿀 수 있다는 설명은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉮는 ㉯와 달리 정관 작성을 하지 않더라도 법인격을 취득할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 민법에서는 법인의 성립에 정관 작성과 설립 등기를 요건으로 하고 있으며 이러한 절차를 마쳐야 법인격을 취득한다고 하였다. 따라서 사단 법인과 재단 법인은 모두 정관 작성을 해야 하므로 적절하지 않다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 4번 -->
+        <div class="question-full">
+            <div class="q-num">4번</div>
+            <div class="question-stem">㉰의 이유로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 재단 법인과 비영리 법인은 법률 행위를 위한 기관을 두어야 하는 공통점이 있기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 법인은 물리적 실체가 없으므로 법률 행위를 수행하기 위해 기관을 두어야 한다고 하였으나, 이는 모든 법인에 해당하는 설명이다. 두 법인 사이에 공통점이 존재한다는 사실만으로는 ㉰의 이유를 설명하지 못하므로 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 비영리 법인은 주로 학술, 종교, 자선과 같은 공익적 활동을 통해서 이익을 남기기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 6문단에서 비영리 법인은 학술, 종교, 자선 등 공익적 활동을 목적으로 한다고 하였다. 그런데 선지는 공익적 활동을 이익을 남기기 위한 수단으로 진술하고 있어 목적과 수단을 혼동한 설명이다. 이러한 내용은 ㉰의 이유로 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 재단 법인은 사업 활동을 통해 발생한 이익을 나누어 가질 인적 대상이 존재하지 않기 때문이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 5문단에서 재단 법인은 구성원이 존재하지 않는다고 하였고, 6문단에서 영리 법인은 사업 활동에서 발생한 이익을 그 구성원에게 분배하는 것을 목적으로 한다고 하였다. 따라서 이익을 분배받을 구성원 자체가 없는 재단 법인은 영리 법인으로 보기 어려우므로, ㉰의 이유로 가장 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 영리 법인과 비영리 법인의 분류 기준과, 사단 법인과 재단 법인의 분류 기준이 다르기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단과 6문단에서 법인은 구성 실체에 따라 사단 법인과 재단 법인으로, 설립 목적에 따라 영리 법인과 비영리 법인으로 분류된다고 하였다. 그러나 분류 기준이 다르다는 사실 자체만으로는 ㉰의 이유를 설명하지 못하므로 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 비영리 법인은 법인의 이익이 사용되어야 하는 목적을 고려한다면, 이익을 구성원에게 분배해서는 안 되기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉰의 이유는 비영리 법인은 이익을 구성원에게 분배해서는 안 되기 때문인 것이 아니라, 애초에 이익을 분배할 구성원이 존재하지 않는다는 데 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 이유(정답).</div>
+        </div>
+
+        <!-- 문제 5번 (보기 포함) -->
+        <div class="question-full">
+            <div class="q-num">5번</div>
+            <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;를 이해한 것으로 적절하지 않은 것은?</div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                (가) 법인 A는 물품 제조·판매를 목적으로 설립되었고, 정관에는 창고 임대 사업이 명시되어 있지 않다. A는 사용하지 않는 창고를 다른 업체에 임대하여 얻은 수익을 물품 제조·판매 사업의 운영 비용으로 사용하려 한다.<br>
+                (나) 법인 B는 물품을 제조·판매하는 회사이고, 목적에 맞게 운영되고 있다. 이 회사 대표자는 거래처인 ‘갑’과 물품 판매 계약을 체결하였다.<br>
+                (다) 법인 C는 건설 회사이고 목적에 맞게 운영되고 있다. 이 회사 대표자는 공사 현장 관리 중 과실로 인해 안전 조치를 미흡하게 하는 위법한 행위를 하였다. 이로 인하여 행인 ‘을’이 다쳤고 ‘을’은 손해 배상을 요구하고 있다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 법인 의제설은 법인 실재설보다 (가)의 창고 임대 사업을 A의 권리 능력의 범위에 포함하는 데 엄격한 입장을 취한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 법인 의제설은 권리 능력의 범위를 정관에 명시된 문구를 중심으로 해석하지만, 법인 실재설은 정관에 명시된 것 외에도 목적을 달성하는 데 필요한 행위라면 권리 능력의 범위에 포함된다고 본다고 하였다. 따라서 (가)의 창고 임대 사업에 대해 법인 의제설이 더 엄격한 입장을 취할 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 법인 의제설은 (나)에서 체결된 계약의 효과가 B에 귀속되는 것으로 보고, 법인 실재설은 그 계약 체결을 B의 행위로 본다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 법인 의제설은 행위의 효과만 법인에 귀속될 뿐, 대표자의 행위를 법인의 대리 행위로 설명한다고 하였다. 따라서 법인 의제설에 따르면, (나)에서 체결된 계약의 효과는 B에 귀속된다. 반면 법인 실재설은 법인 자체의 행위 능력을 인정한다고 하였으므로, (나)에서의 계약 체결은 B의 행위로 본다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 법인 실재설은 (다)에서 ‘을’에 대한 배상 책임이 C에 있다고 본다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 법인 실재설은 위법한 행위로 타인에게 손해가 발생할 경우 법인이 직접 배상 책임을 진다고 본다고 하였다. 따라서 법인 실재설에 따르면, (다)에서 ‘을’에 대한 배상 책임이 C에 있다고 본다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 민법 제35조는 (다)에서 ‘을’에 대한 배상 책임이 대표자에게 있고 C에는 없다고 본다.</div>
+                <div class="choice-analysis">✅ <strong>적절하지 않음 (정답)</strong> – 4문단에서 민법 제35조는 대표자가 직무에 관하여 타인에게 손해를 가한 경우 법인이 배상 책임을 지며, 이때 대표자 역시 책임을 면하지 못한다고 규정하고 있다고 하였다. 따라서 민법 제35조에 따르면, (다)에서 ‘을’에 대해 C 회사의 대표자도 책임을 면하지 못하고 C도 배상 책임을 진다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 법인 의제설은 (다)에서 대표자의 과실로 ‘을’에게 손해가 발생했더라도 이를 C 자체의 불법 행위로 보지 않는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 법인 의제설은 불법 행위 능력이 대표자에게만 인정될 뿐 법인 자체의 불법 행위 능력은 부정된다고 하였다. 따라서 법인 의제설에 따르면, (다)에서 ‘을’에게 손해를 입힌 불법 행위는 대표자의 행위로 보며, C 자체의 불법 행위로 보지 않는다.</div>
+            </div>
+            <div class="wrong-badge">📍 ④번이 적절하지 않은 이해(정답).</div>
+        </div>
+
+        <!-- 문제 6번 -->
+        <div class="question-full">
+            <div class="q-num">6번</div>
+            <div class="question-stem">ⓐ~ⓔ의 문맥상 의미를 파악한 것으로 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ: 법인의 성립을 위해 ‘갖추어야 할 조건으로’라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘요건(要件)’은 ‘필요한 조건.’을 의미한다. 따라서 ‘갖추어야 할 조건으로’는 문맥상 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⓑ: 법인이라는 ‘조직체를 새로 만들어 세우는’이라는 의미이다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – ‘존립(存立)’은 ‘국가, 제도, 단체, 학설 따위가 그 위치를 지키며 존재함.’을 의미한다. ‘조직체를 새로 만들어 세우는’은 ‘설립(設立)’과 관련된 의미이므로 ⓑ의 문맥상 의미로 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓒ: 법인이 진 채무를 ‘갚거나’라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘변제(辨濟)’는 ‘남에게 진 빚을 갚음.’을 의미한다. 따라서 ‘갚거나’는 문맥상 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓓ: 설립자의 의사 실현을 위한 사무를 ‘책임지고 맡아 관리한다’라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘주관(主管)’은 ‘어떤 일을 책임을 지고 맡아 관리함.’을 의미한다. 따라서 ‘책임지고 맡아 관리한다’는 문맥상 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓔ: 필요한 범위에서 ‘경제적인 이익을 내기 위한’이라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘수익(收益)’은 ‘이익을 거두어들임. 또는 그 이익.’을 의미한다. 따라서 ‘경제적인 이익을 내기 위한’은 문맥상 의미로 적절하다.</div>
+            </div>
+            <div class="wrong-badge">📍 ②번이 문맥상 의미 파악으로 적절하지 않음(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

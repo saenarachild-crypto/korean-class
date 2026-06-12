@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>문학 유형 연습 ② - 이청준 「줄」 (시구별 분석 통합본)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .story-line {
+            margin-bottom: 0.6em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin: 1.2em 0 0.8em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 유형편 · 문학 05~08번</h1>
+        <p>이청준 「줄」 | 시구별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- 2단 지문 + 분석 -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="section-title">이청준, 「줄」</div>
+                <div class="story-line">
+                    <span class="line-text">운은 허 노인을 무서워했다. 허 노인은 운을 때리지는 않았지만, 시간이 나면 언제나 뒷마당에서 회초리를 들고 운의 줄타기 연습만을 계속했다.</span>
+                    <div class="line-analysis">← 운은 아버지의 엄격한 훈육에 두려움을 느낌. 그러나 허 노인은 체벌보다 끊임없는 연습을 강조함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">참다못한 운이 어느 날 아버지 허 노인에게 속마음을 텄다.</span>
+                    <div class="line-analysis">← 운이 처음으로 공연을 하고 싶다는 소망을 표현함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 아버지 저도 이젠 사람들 앞에서 줄을 탔으면 합니다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그때 허 노인은 얼굴색이 조금 변했으나 온화하게 물었다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 그래, ……그럼 줄을 탈 때 끝이 가까워 보이느냐?</span>
+                    <div class="line-analysis">← 허 노인은 줄타기의 경지를 묻는 질문을 던짐.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 네, 바로 눈앞에 있는 것 같습니다.</span>
+                    <div class="line-analysis">← 운은 줄이 가깝게 보인다고 답함 → 아직 무아의 경지에 이르지 못함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 그럼, 가는 줄이 넓게 보이겠구나…….</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 그 위에서 뛰어놀 수 있을 것 같습니다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그러자 허 노인은 단호하게 말했다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text"><span class="underline-phrase">㉠— 안 되겠다!</span></span>
+                    <div class="line-analysis">← 줄이 넓게 보이고 뛰어놀고 싶다는 것은 줄의 너비를 의식하는 단계 → 아직 진정한 경지가 아님.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">운은 까닭을 몰랐으나 더 대꾸하지 못했다. 열여덟 살이 되었다. 운은 허 노인에게 다시 같은 청을 드렸다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 어떠냐, 줄이 넓어 보이느냐?</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 줄이 보이질 않습니다.</span>
+                    <div class="line-analysis">← 줄이 보이지 않는다는 것은 줄 자체를 의식하지 않는 경지.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">운은 불안했으나 사실대로 말했다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 그래, 줄을 타고 있을 때 아무것도 보이질 않는단 말이냐?</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 예.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 귀도 들리지 않고.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 예.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그것도 사실대로 대답했다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text"><span class="underline-phrase">㉡— 흠, 아직도 객기가 있어…….</span></span>
+                    <div class="line-analysis">← 줄이 보이지 않지만 아직 객기가 남아 있다고 판단. 허 노인의 기준은 매우 엄격함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">허 노인은 턱으로 줄을 가리켰다. 운은 또 아무 대꾸도 못 하고 줄로 올라갔다. 사실 운은 자신이 허 노인과 같이 줄을 잘 탈 수 있으리라고 생각하지는 않았다. 허 노인이 줄을 타는 모습은 정말 아름다웠다. 천장 포장을 걷어 젖히고, 넓은 밤하늘을 배경으로 허 노인은 흰옷에 조명을 받으며 줄을 건너는 것이었는데, 발을 움직이는 것 같지도 않게 그냥 흘러가듯 조용히 줄을 건너가는 노인의 모습은 유령 같기도 하고 어떤 때는 그냥 땅 위에서 하품을 하고 있는 것 같기도 했다. 이상한 것은 그렇게 줄을 타는 노인이었지만 줄에서 내려오면 그의 온몸이 언제나 땀에 흠뻑 젖어 있곤 한 것이었다. 그리고 단장은 그런 허 노인의 줄타기를 몹시도 싫어했다.</span>
+                    <div class="line-analysis">← 허 노인의 줄타기: 외관상 유려하나 내면적 긴장과 노력은 큼. 단장은 관객의 흥미를 위한 재주를 요구함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 구경꾼 놈들의 간덩이를 덜컹덜컹 내려앉게 해 주란 말야. 재주를 좀 부려, 재주를.</span>
+                    <div class="line-analysis">← 단장의 요구: 자본주의적 흥미 위주의 공연을 강요.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">단장은 허 노인을 매번 나무랐다. 허 노인은 얼굴이 파랗게 질려서 대꾸도 못 하고 땀만 뻘뻘 흘리다간 단장 앞을 힘없이 물러나오곤 했다. 그러나 그다음 날도 허 노인은 여전히 전처럼 줄을 탔다. 운은 누가 뭐래도 허 노인이 그렇게 줄을 타는 것이 좋았고, 자신도 그렇게 줄을 탈 수 있기를 바랐다.</span>
+                    <div class="line-analysis">← 허 노인은 단장의 압박 속에서도 자신의 예술적 원칙을 고수함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그러던 어느 날 밤, 그러니까 운이 허 노인에게 두 번째로 소망을 말하고 나서 1년쯤 지났을 때였다. 줄 위에서 그렇게 유연하던 노인의 발길이 삐끗 한 번 미끄러졌다. <span class="underline-phrase">ⓐ딱 한 번, 발길이 가볍게 허공을 차는 듯한 동작을 하더니 줄이 잠시 상하 반동을 했다.</span> 허 노인은 가만히 몸을 지탱하고 있다가 곧 다시 줄을 건너갔다. 누구도 그것을 실수로 생각한 사람은 없었다. 객석에 눈을 두고 있던 단장은 거기서 일어나는 무의식적인 함성에 놀라 하늘을 쳐다보았으나 줄이 상하로 조금씩 움직이는 것밖에 무슨 일이 일어났는지조차 알 수 없었을 정도였다.</span>
+                    <div class="line-analysis">← 허 노인의 첫 실수. 기력 쇠퇴를 암시하는 사건.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">“허 노인이 줄을 잘 탔다고 하는 것은 운의 생각입니까, 혹은 노인의 생각입니까?”</span>
+                    <div class="line-analysis">← 트럼펫 사내와 ‘나’(기자)의 대화. 액자식 구성 시작.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">나는 트럼펫의 사내가 숨을 좀 돌리게 하기 위하여 이야기로 뛰어들었다. 사내는 한마디 말을 하기 위해서 거의 한 번씩 숨을 들이쉬었다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">“그건 물론 운의 생각이었습니다.”</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">“그럼 이상하지 않습니까, 노인께서 운의 생각을 말씀하신다는 것은?”</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">“그렇지요. 하지만 이렇게 누워서 많이 생각을 했지요. 그리고 운은 나와 나이가 가장 가까웠으니까 내가 그의 심중을 비교적 많이 이해하는 편이었고, 그도 내게만은 조금씩 얘기를 할 때가 있었어요. 그리고 나는 그때 벌써 나팔쟁이가 다 되었으니까 웬만큼 나팔을 불어 주고 남은 시간은 대개 그 부자가 지내는 뒷마당에서 보냈었구요. 그런데 말입니다. 그러니까 허 노인이 한 번 발을 헛디뎠던 다음 날이었지요. 마침 그날도 나는 거기 있었는데, 이상하게도 그날은 허 노인이 아들의 줄타기를 보면서 땀을 뻘뻘 흘리고 있었어요. 나는 줄 위에 있는 운이 아니라 무섭도록 줄을 쏘아보고 있는 노인의 눈과 땀이 송송 솟고 있는 이마를 보고 있었지요. 그런데 <span class="underline-phrase">㉢노인이 갑자기 ‘이놈아!’ 하고 벼락같은 소리를 지르면서 줄 밑으로 내닫는 것이 아니겠습니까.</span> 그때야 나는 줄 위를 쳐다보았지요. 그런데 운은 그 소리를 듣지 못한 채 그냥 줄을 건너가고 있었습니다.</span>
+                    <div class="line-analysis">← 허 노인이 갑자기 소리를 지른 것은 운의 몰입도를 시험하기 위함. 운이 소리를 듣지 못함 → 완전한 무아경에 도달.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 이놈…… 너는 이 애비의 말도 듣지 않느냐?</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">운이 줄을 내려왔을 때 노인이 호령했으나, 그는 역시 어리둥절해 있기만 했어요. 내가 놀란 것은 그때 허 노인이 빙그레 웃었다는 것입니다. 그리고 부자는 그길로 곧 함께 주막 술집을 찾아 들어갔습니다.”</span>
+                    <div class="line-analysis">← 허 노인의 미소 → 운의 경지를 확인하고 기뻐함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">사내의 이야기는 다시 계속되었다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그날 주막에서 허 노인은 운에게 술잔을 따라 주고, 그날 밤으로 운을 줄로 오르라고 했다.</span>
+                    <div class="line-analysis">← 운에게 줄타기를 허락하며 전수 시작.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 줄 끝이 멀리 보여서는 더욱 안 되지만, 가깝고 넓어 보여서도 안 되는 법이다. 그 줄이라는 것이 눈에서 아주 사라져 버리고, 줄에만 올라서면 거기만의 자유로운 세상이 있어야 하는 게야. <span class="underline-phrase">㉣제일 위험한 것은 눈과 귀가 열리는 것이다.</span> 줄에서는 눈이 없어야 하고 귀가 열리지 않아야 하고 생각이 땅에 머무르지 않아야 한다는 소리다.</span>
+                    <div class="line-analysis">← 외부 자극을 완전히 차단한 무아의 경지가 진정한 줄타기임.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">노인은 조용조용 당부했다. 그 한마디 한마디는 마치 노인의 일생을 몇 개로 잘라서 압축해 놓은 듯한 무게와 힘과, 그리고 알 수 없는 깊이를 지니고 있었다. 자기의 전 생애를 운에게 떠넘겨 주려는 듯한 안간힘이 거기 있는 것 같았다. 운은 비로소 허 노인이 끝끝내 줄타기 자세를 바꾸지 못하는 내력을 알 것 같았다.</span>
+                    <div class="line-analysis">← 허 노인의 줄타기 철학이 고스란히 전수됨.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">— 아버지, 이젠 줄을 그만두시고 좀 쉬십시오.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">운이 말했으나 노인은 조용히 머리를 가로저었다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text"><span class="underline-phrase">㉤— 줄에서 내 발바닥의 기력이 다했다고 다른 곳을 밟고 살겠느냐? 같이 타자.</span></span>
+                    <div class="line-analysis">← 허 노인은 줄타기를 자신의 삶 그 자체로 여김. 죽음까지도 줄 위에서 맞이하려 함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그날 밤, 줄에는 두 사람이 함께 올라섰다. 운이 앞을 서고 허 노인이 뒤를 따랐다. 운이 줄을 다 건넜을 때는 객석이 뒤숭숭하니 난장판이 되어 있었다. 뒤를 따르던 허 노인이 줄에서 떨어져 이미 운명을 하고 만 뒤였다.</span>
+                    <div class="line-analysis">← 허 노인의 죽음. 후계자 운에게 모든 것을 넘기고 예술혼을 완성함.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">거기까지 듣고 나니, 나는 사내에게 더 이야기를 시켜서는 안 되겠다는 생각이 들었다. 마치 허 노인이 운에게 마지막 당부를 할 때 그랬을 법한 컴컴하고 무거운 것이 사내에게서 쉴 새 없이 흘러나왔다.</span>
+                    <div class="line-analysis">← 이야기를 듣는 ‘나’의 무거운 여운. 액자식 구성의 마무리.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 작품 개관</div>
+                <div class="content">이청준의 단편소설 「줄」은 줄타기 광대 부자의 이야기를 통해 장인 정신과 예술적 경지, 그리고 근대화 과정에서 전통 기예의 소멸을 그린 작품이다. 액자식 구성을 통해 ‘나’(기자)가 트럼펫 사내로부터 허 노인과 운의 이야기를 듣는 형식으로 전개된다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 핵심 인물</div>
+                <div class="content">• 허 노인 – 전통 줄타기의 장인. 예술적 순수성과 무아의 경지를 추구하며 단장의 상업적 요구에 굴하지 않음.<br>• 운 – 허 노인의 아들. 아버지의 가르침을 따라 마침내 무아의 경지에 도달함.<br>• 단장 – 자본주의적 흥미와 이익을 추구하는 인물. 전통 예술의 정신적 가치를 무시함.<br>• 트럼펫 사내 – 과거 서커스단 단원. 운과 가까웠으며 이야기를 전달하는 화자.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉠ ‘안 되겠다!’</div>
+                <div class="content">줄이 넓게 보이고 뛰어놀고 싶다는 운의 대답을 듣고 허 노인이 내린 판단. 줄의 너비를 의식한다는 것은 아직 줄타기에 완전히 몰입하지 못한 상태임을 의미.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉡ ‘아직도 객기가 있어’</div>
+                <div class="content">줄이 보이지 않는다는 운의 대답에도 허 노인은 ‘객기’가 남았다고 말함. 허 노인의 기준은 단순히 줄이 안 보이는 것을 넘어 완전한 무아를 요구함.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉢ 소리 지르기 – 시험</div>
+                <div class="content">허 노인이 갑자기 고함을 질러 운의 반응을 확인함. 운이 소리를 듣지 못한 것은 완전히 줄에 몰입했음을 증명. 이후 허 노인이 미소를 지으며 운에게 줄타기를 허락함.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉣ ‘제일 위험한 것은 눈과 귀가 열리는 것’</div>
+                <div class="content">허 노인이 운에게 전수하는 줄타기의 철학. 외부 자극(시각, 청각)을 완전히 차단하고 오직 줄 위의 자유로운 세계에만 집중해야 함.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉤ ‘같이 타자’</div>
+                <div class="content">자신의 기력이 다했음을 알면서도 줄을 떠나지 않고 아들과 함께 마지막 줄을 타겠다는 의지. 예술과 삶이 분리될 수 없음을 보여 줌.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>주요 모티프</strong><br>
+                • 무아(無我)의 경지 – 줄에 대한 의식조차 없는 완전한 몰입.<br>
+                • 장인 정신 – 상업성과 타협하지 않는 예술적 순수성.<br>
+                • 액자식 구성 – 트럼펫 사내의 이야기를 ‘나’가 듣는 구조.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>이 작품은 액자식 구성(내화와 외화의 교차)을 통해 서사에 깊이를 더함.</li>
+                    <li>허 노인의 질문(줄 끝이 가까운가, 넓게 보이는가)은 예술적 경지의 단계를 나타냄.</li>
+                    <li>단장과 허 노인의 갈등은 ‘예술을 위한 예술’과 ‘상업적 흥미’의 대립을 상징.</li>
+                    <li>허 노인의 죽음은 장인 정신의 완성과 전수를 의미함.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">전통 기예(줄타기)를 통해 무아의 예술 경지와 장인 정신을 추구하는 삶, 그리고 근대화·상업화 속에서 그러한 가치가 소멸되어 가는 과정을 그린다.</p>
+            </div>
+
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 허 노인 vs 단장 (갈등 구조)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>허 노인</th><th>단장</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">추구하는 가치</td><td>예술적 순수성, 무아의 경지</td><td>흥미, 이익, 관객의 반응</td></tr>
+                        <tr><td style="background:#f1f5f9;">줄타기 방식</td><td>흘러가듯 조용하고 유려함, 재주 부리지 않음</td><td>재주를 부려 관객의 간담을 서늘하게 할 것 요구</td></tr>
+                        <tr><td style="background:#f1f5f9;">결말</td><td>자신의 원칙을 지키며 죽음</td><td>결국 허 노인의 방식을 바꾸지 못함</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 폭 익히지!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>무아의 경지</strong> – 줄이 보이지 않고, 소리도 들리지 않는 상태.</li>
+                    <li><strong>액자식 구성</strong> – 현재의 ‘나’(기자)가 과거의 이야기를 듣는 구조.</li>
+                    <li><strong>허 노인의 마지막 당부</strong> – “눈이 없어야 하고 귀가 열리지 않아야 한다.”</li>
+                    <li><strong>상징</strong> – 줄타기는 예술 혼, 단장은 자본주의의 속물성.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 1번 -->
+        <div class="question-full">
+            <div class="q-num">1번</div>
+            <div class="question-stem">윗글에 대한 설명으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 이야기 속 서술자가 중심인물의 과거를 직접 관찰해 묘사하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 이야기 속 서술자인 ‘나’는 트럼펫 불던 사내의 이야기를 듣고 있다. 중심인물인 허 노인과 운의 과거를 직접 관찰하여 묘사한 인물은 트럼펫 불던 사내로, 이야기 속 서술자에 해당하지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 빈번하게 장면을 전환하여 사건의 이면을 다각도에서 조명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 외화와 내화가 교차하는 과정에서 장면 전환이 나타나고 있으나 장면 전환이 빈번하다고 보기는 어렵다. 또한 줄광대 부자와 관련된 사건은 트럼펫 불던 사내를 통해서만 전달되고 있을 뿐, 사건의 이면이 다각도에서 조명되고 있는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 현재형 문장을 사용하여 인물이 처한 상황을 현장감 있게 묘사하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 외화와 내화 모두 과거형 문장으로 서술되었을 뿐, 현재형 문장이 사용되지는 않았다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 비현실적 상황을 제시해 인물 간 갈등이 고조되는 양상을 형상화하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 관객들 앞에서 줄타기를 하려는 운과 이를 허락하지 않는 허 노인 사이의 갈등이 대화를 통해 드러나고 있을 뿐, 비현실적 상황을 통해 제시되는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 과거 상황을 보여 주는 내화와 현재 상황을 보여 주는 외화가 교차하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 이 작품은 내화와 외화가 교차하는 액자식 구성을 취하고 있다. 트럼펫 불던 사내가 들려주는 허 노인과 운의 이야기는 과거 상황을 보여 주는 내화에 해당하고, ‘나’가 트럼펫 불던 사내에게 이야기를 듣는 현재 상황은 외화에 해당한다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 2번 -->
+        <div class="question-full">
+            <div class="q-num">2번</div>
+            <div class="question-stem">㉠~㉤에 대한 이해로 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠: 허 노인은 줄이 좁고 가늘게 보이는 경지에 도달해야 한다고 생각하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 훗날 허 노인은 운의 줄타기를 허락하면서 줄이 멀리 보이거나 가깝고 넓게 보여서도 안 되고 눈에서 아주 사라져 버려야 한다고 했다. 즉 허 노인은 줄이 넓게 보인다는 운의 답변을 듣고 줄의 너비를 의식한다는 것 자체가 줄타기에 몰입하지 못하는 상태라고 판단하여 허락하지 않은 것이다. 줄이 좁고 가늘게 보이는 경지에 도달해야 한다고 생각하는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉡: 허 노인은 여전히 운이 줄타기에 몰입하지 못한 상태라고 판단하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 허 노인은 운의 답변을 듣고 아직도 객기가 있다며 관객들 앞에서 공연하는 것을 허락하지 않는다. 즉 허 노인은 여전히 운이 줄타기에 몰입하지 못한 상태라고 판단하였음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉢: 허 노인은 운의 줄타기 실력이 자신이 원하는 경지에 도달했는지 시험하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 허 노인은 줄타기를 하던 운을 향해 소리를 질렀으나 운은 그 소리를 듣지 못한다. 이를 확인한 허 노인은 운이 줄타기에 온전히 몰입했음을 알고 관객들 앞에서 줄을 타도록 허락한다. 즉 허 노인이 갑작스럽게 소리를 지른 것은 운이 자신이 원하는 경지에 도달했는지를 시험하려는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉣: 허 노인은 외부 자극으로 인해 줄타기에 몰입하지 못하는 상태를 경계하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 허 노인은 줄이 넓게 보인다는 운의 답변을 듣고 관객들 앞에서 줄타기하는 것을 허락하지 않는다. 또한 자신이 지른 소리를 듣지 못하는 운을 보고 관객들 앞에서 줄타기하는 것을 허락한다. 이처럼 허 노인은 시각적 자극과 청각적 자극을 통해 운이 줄타기에 몰입하는지를 끊임없이 확인한다. 즉 허 노인은 외부적 자극에 반응하여 줄타기에 몰입하지 못하는 상태를 경계하는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉤: 허 노인은 자신의 삶과 줄타기가 분리될 수 없다는 인식을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 허 노인은 자신의 기력이 다하더라도 줄 외의 다른 곳을 밟고 살 수 없다고 말하고 있다. 이는 줄타기를 하지 않는 삶은 무의미하다는 생각을 드러내는 것이므로, 자신의 삶과 줄타기를 분리할 수 없다는 인식을 드러내는 것이다.</div>
+            </div>
+            <div class="wrong-badge">📍 ①번이 적절하지 않은 설명(정답).</div>
+        </div>
+
+        <!-- 문제 3번 -->
+        <div class="question-full">
+            <div class="q-num">3번</div>
+            <div class="question-stem">ⓐ에 대한 설명으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 허 노인이 단장의 요구를 수용한 결과이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 단장은 허 노인에게 관객들 앞에서 재주를 부릴 것을 요구하였으나, 허 노인은 예술적 경지를 추구하는 사람으로서 단장의 요구를 수용하지 않아 왔다. ⓐ는 기력이 쇠한 허 노인이 줄타기 도중에 실수한 것에 해당한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 허 노인이 운의 줄타기를 허락하지 않은 결정적 요인이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 허 노인은 기력이 쇠하여 줄을 타던 중 실수를 하게 되었고, 다음 날 운의 줄타기 실력을 점검한 뒤에 그의 줄타기를 허락했다. 즉 허 노인은 자신이 더 이상 예전처럼 줄을 탈 수 없음을 깨닫고 운에게 줄광대의 자리를 넘겨주려는 것이다. 그러므로 ⓐ는 허 노인이 운의 줄타기를 허락하게 되는 계기로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 허 노인이 자신의 줄타기 실력이 예전과 같지 않음을 깨닫는 계기이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ⓐ에서 허 노인은 발을 헛디디는 실수를 했다. 다음 날, 허 노인은 운의 줄타기 실력을 검증한 뒤 운에게 줄광대로서의 법도와 정신을 모두 전수하였다. 그러고는 운과 함께 줄을 타다가 줄에서 떨어져 운명하고 만다. 즉 허 노인은 ⓐ로 인해 자신의 기력이 쇠하여 예전의 줄타기 실력을 보여 줄 수 없음을 깨닫고, 운에게 줄광대 자리를 넘겨주려고 했음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 운이 허 노인이 줄타기 자세를 바꾸지 못하는 내력을 궁금해하는 원인이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 운은 줄타기 자세를 바꾸지 못하는 허 노인의 내력에 대해 궁금해한 적이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 운이 허 노인에게 사람들 앞에서 줄을 타겠다는 소망을 세 번째로 말하게 된 계기이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓐ를 겪은 허 노인은 자신의 기력이 쇠했음을 깨닫고 자발적으로 운의 줄타기 실력을 검증한 뒤에 운이 관객 앞에서 줄을 타도록 허락한다. 운이 허 노인에게 사람들 앞에서 줄을 타겠다는 소망을 직접적으로 말한 것은 모두 두 번이다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 4번 (보기 포함) -->
+        <div class="question-full">
+            <div class="q-num">4번</div>
+            <div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은?</div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                「줄」은 근대화가 이루어지던 시기에 전통적 기예의 명맥을 유지하려는 장인 정신이 스러져 가는 과정을 보여 준다. 일단 기예를 수련하는 과정에서 보여 주는 장인의 법도는 지식을 중시하는 근대적 가치관과 상충한다. 전통적 기예는 말을 통한 이론 교육이나 관념적 지식에 의한 습득보다는 연습을 통한 엄격한 수련과 체득이 선행된다. 한편 자본주의의 속물성을 추구하는 근대화의 논리는 전통적 기예의 정신적 가치를 무시한다. 이로 인해 전통적 기예를 고집하는 장인은 예술적 가치와 세속적 요구 사이에서 고통받는다. 그럼에도 자신의 원칙을 고수하는 장인의 강직함을 통해 기예가 지닌 정신적 가치와 장인 정신의 고매함이 강조된다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ‘허 노인’이 ‘언제나 뒷마당에서 회초리를 들고 운의 줄타기 연습만을 계속’한 것은, 엄격한 수련을 우선시하는 전통적 기예의 법도에서 비롯된 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – <보기>에 따르면, 전통적 기예에서는 연습을 통한 엄격한 수련이 선행된다. 허 노인이 오랜 시간에 걸쳐서 회초리를 들고 운의 줄타기 연습을 시킨 것은, 엄격한 수련을 우선시하는 전통적 기예의 법도에 대응된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ‘구경꾼 놈들의 간덩이’를 내려앉게 할 ‘재주’를 부리도록 요구하는 ‘단장’은, 기예의 정신적 가치를 무시하고 자본주의의 속물성을 추구하는 근대화의 논리를 대변하는 인물이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – <보기>에 따르면, 자본주의의 속물성을 추구하는 근대화의 논리는 전통적 기예의 정신적 가치를 무시한다. 즉 예술적 경지를 추구하는 허 노인에게 구경꾼들의 흥미를 유발할 수 있도록 재주를 부릴 것을 요구하는 단장은 근대화의 논리를 대변하는 인물이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ‘단장 앞을 힘없이 물러나’온 ‘허 노인’이 ‘전처럼 줄을 탔다’는 것은, 예술적 가치와 세속적 요구 사이에서 고통받으면서도 자신의 원칙을 고수하는 장인의 강직한 면모를 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – <보기>에 따르면, 전통적 기예의 장인은 예술적 가치와 세속적 요구 사이에서 고통받지만 자신의 원칙을 고수하는 강직함을 드러낸다. 즉 허 노인이 단장의 압박에 시달리는 것은 예술적 가치와 세속적 요구 사이에서 고통받는 장인의 모습에 해당한다. 이와 동시에 허 노인이 단장의 요구와 무관하게 자신의 방식대로 줄을 타는 것은 기예의 전통적 가치를 고수하는 강직한 면모에 해당한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ‘허 노인’이 ‘운’에게 오랜 기간 ‘줄타기 연습만을 계속’ 시키다가 사람들 앞에서 ‘줄로 오르라고’ 한 후에야 ‘당부’를 하는 것은, 이론 교육보다 연습을 통한 수련과 체득이 선행되는 전통적 기예의 면모와 관련된다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 허 노인은 운이 오랜 시간 홀로 줄타기 연습을 하도록 한 뒤에, 줄을 탈 경지에 오른 것을 확인하고서야 비로소 줄타기를 허락하며 줄광대가 지켜야 할 법도를 알려 준다. <보기>에 따르면, 허 노인은 연습을 통한 엄격한 수련을 한 뒤에야 비로소 말을 통한 이론 교육을 하고 있다. 이는 연습을 통한 수련과 체득이 이론 교육보다 선행되는 전통적 기예의 면모와 관련된 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ‘허 노인’의 ‘한마디 한마디’에 담긴 ‘안간힘’은, 근대화의 흐름 속에서 전통적 기예의 명맥을 유지하려는 장인 정신이 스러져 가는 안타까운 현실을 드러낸다.</div>
+                <div class="choice-analysis">✅ <strong>적절하지 않음 (정답)</strong> – 허 노인의 한마디 한마디에 담긴 안간힘은, 전통적 기예에 내포된 정신적 가치와 고매한 장인 정신을 추구하는 태도를 형상화하는 것으로 줄타기에 대한 허 노인의 예술혼을 보여 준다. 전통적 기예의 명맥을 유지하려는 장인 정신이 스러져 가는 현실을 드러내는 것은 아니다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 감상(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

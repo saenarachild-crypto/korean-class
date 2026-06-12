@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 유형편 1 - 정도전 (원문복원)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 유형편 · 독서 1~3번</h1>
+        <p>정도전의 유교 사상과 불교 비판 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (원문 완전 복원)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 (사용설명서 원본 형식) ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>고려 말 조선 초, 새로운 국가 체제를 설계하던 정도전은 유교 중심의 도덕 정치를 추구하였다. 그는 이색, 정몽주 등의 온건파들과는 달리 새 왕조 시대로의 변혁을 위해서는 오랜 관습으로 이어진 불교를 배척해야 한다는 입장을 견지했다. 그는 「심기리편(心氣理篇)」, 「불씨잡변(佛氏雜辨)」 등의 저술을 통해 현실적 측면으로 나타난 불교의 사회적 문제를 지적하는 한편, 자신의 이기론(理氣論)을 바탕으로 불교의 핵심 사상에 대해서도 비판했다.</p>
+                <p>불교에서는 만물이 고정적인 실체가 없고, 원인인 ‘인(因)’과 조건인 ‘연(緣)’이 상호 관계하여 생겨났다가 <span class="underline-phrase">ⓐ사라진다고</span> 보았다. 모든 존재는 한 모양으로 머물러 있지 아니함을 뜻하는 ‘제행무상(諸行無常)’과 변하지 않는 자아의 실체는 존재하지 않는다는 ‘제법무아(諸法無我)’는 이러한 관점을 집약한 말이다. 이에 따라 불교에서는 물질뿐만 아니라 감각, 표상, 의지, 판단 등의 정신 활동도 비어 있음을 의미하는 ‘공(空)’과 다르지 않다고 보았다. 정도전은 이러한 사상이 인간의 도덕적 책임을 무너뜨릴 수 있다고 보았다. 만약 인간의 행위나 도덕적 주체가 실체가 없는 허상이라면, 선악의 구분도 모호해지고, 천리(天理)에 따라 정비된 사회 질서도 허망한 것으로 전락할 수 있기 때문이다.</p>
+                <p>정도전은 유교가 ‘이(理)’와 ‘기(氣)’를 중심으로 한 직관적으로 명확한 논리를 가지고 있기 때문에 현실에서 실천할 수 있는 방향을 제시한다고 보았다. 그는 ‘이’는 만물에 <span class="underline-phrase">ⓑ깃들어</span> 있는 완전하고 변하지 않는 원리이며, ‘기’는 현실에서 구체적인 사물과 현상으로 드러나게 하는 요소라고 보았다. 즉 ‘이’는 절대적이며 선한 것이지만 ‘기’의 작용에 의해 선과 악, 질서와 혼란이 만들어진다는 것이다. 그에 따르면 법과 제도는 변화하는 현실적 상황[기]에 맞게 운영되지만, 그 근본은 불변의 도덕적 원리[이]에 따라야 하는 것이다. 이는 인간 사회의 문제를 제도의 개혁을 통해 해결할 수 있으며, ‘이’와 ‘기’에는 위계가 있다는 것을 의미하는 것이다. 그는 실천의 원동력인 ‘심(心)’ 역시 ‘기’와 마찬가지로 ‘이’를 근본으로 하기 때문에 확고한 도덕 원칙과 연결되며, 충효와 같은 윤리를 실천함으로써 사회가 올바른 방향으로 간다고 보았다. 이와 달리 불교에서 말하는 ‘심’은 변화하는 ‘기’의 속성만 가지고 있기 때문에 허무주의와 연결된다고 보았다. 이러한 점들을 통해 정도전은 <span class="underline-phrase">㉮유교 윤리의 보편성과 유교적 국가 제도의 우월성을</span> 주장하였다.</p>
+                <p>정도전의 견해에 대해 불교계에서는 ‘공’에 대한 오해가 있음을 지적했다. 불교에서 말하는 ‘공’은 존재에 대한 부정인 ‘허(虛)’가 아니라 존재의 본질을 밝히려는 철학적 통찰이다. ‘공’에 대한 인식은 모든 존재가 끊임없이 변화하고 상호 의존하는 ‘작용’ 가운데 있다는 것을 깨닫는 것이다. 예를 들어 한 인간도 부모·사회·자연 등 수많은 인연 속에서 생겨났으며, 고정된 자아라는 것은 결국 집착에서 <span class="underline-phrase">ⓒ비롯된</span> 허상이라는 것이다. 따라서 ‘공’에 대한 인식은 허무주의가 아니라, 모든 사상을 통섭할 수 있는 바탕이자 집착과 고통을 줄이고 연민과 자비로 타자를 이해하게 만드는 윤리적 기반이 될 수 있다는 것이다. 유생 출신인 승려 기화는 『현정론』에서, 집착에서 <span class="underline-phrase">ⓓ벗어나</span> 공동체 속에서 타자와 조화를 이루려는 자각이야말로 진정한 실천의 출발점이라고 보았다. 자아를 해체함으로써 개인 중심의 욕망을 비우고, 중생 전체의 고통을 나의 고통처럼 느끼는 자비심을 <span class="underline-phrase">ⓔ드러내게</span> 된다는 것이다. 그는 불교의 오계(五戒)와 유교의 오상(五常)이 대응함을 언급하면서 올바른 사회를 위해 실천해야 할 윤리는 유교와 다를 바가 없다고 보았다. 기화는 유교와 불교의 지향점과 실천 윤리가 근본적으로 다르지 않다는 유불 일치론의 입장을 취하면서도, 불교가 더 큰 진리에 대한 통찰을 가지고 있다는 점을 강조했다.</p>
+                <p>정도전의 불교 비판은 단순한 교리 논쟁을 넘어, 새로운 국가 질서를 정당화하기 위한 역사적 모색에서 나온 것이었다. 정도전은 <span class="underline-phrase">㉠고려가 타락한 원인이 불교를 국가 이념으로 채택한 데서 비롯된 명확한 실천 윤리의 부족에 있다고</span> 보았고, 유교 이념에 입각한 이상 사회를 설계했다. 그에 따라 배타적 관점에서 강한 어조로 불교를 비판하면서 숭유 억불 정책의 기반을 마련하고자 하였다. 그렇지만 업(業)에 따라 인과응보와 윤회가 이루어진다는 불교적 실천 윤리는 당대 백성들의 생활 저변을 형성하고 있었으며 왕실에서도 유지되었다. 이것은 당대 불교와 유교가 상호 보완적 기능을 갖추고 있었음을 보여 준다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 분석</div>
+                <div class="content">정도전의 사상적 배경: 유교 중심 도덕 정치, 불교 배척 입장, 이기론에 기반한 비판.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 분석 – 불교 사상과 정도전의 비판</div>
+                <div class="content">불교의 핵심: 제행무상·제법무아·공(空). 정도전은 도덕적 책임 붕괴, 사회 질서 위험을 우려함.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>제행무상</strong>: 모든 존재는 끊임없이 변함.<br>
+                • <strong>제법무아</strong>: 변하지 않는 자아의 실체 없음.<br>
+                • <strong>공(空)</strong>: 모든 것이 비어 있음.
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 분석 – 정도전의 이기론</div>
+                <div class="content">‘이’는 완전·불변 원리, ‘기’는 현실적 요소. 법·제도는 ‘기’에 맞게 운영하나 근본은 ‘이’에 따라야 함. 유교 윤리의 보편성과 우월성 주장.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 분석 – 불교계의 반박</div>
+                <div class="content">‘공’은 허무가 아닌 존재 본질 통찰. 상호의존성 깨달음 → 자비와 연민의 윤리. 기화의 유불 일치론.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>오계(五戒)</strong> – 살생·투도·사음·망어·음주 금지<br>
+                📖 <strong>오상(五常)</strong> – 인·의·예·지·신
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 분석 – 역사적 의의</div>
+                <div class="content">정도전의 불교 비판은 국가 질서 정당화 과정. 숭유억불 정책 기반. 그러나 불교 실천 윤리는 민간에 깊이 자리 잡아 상호 보완적 기능.</div>
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>이 글은 정도전의 유교적 입장에서 불교를 비판한 내용과 이에 대한 불교계의 반박을 당대 상황과 연결하여 고찰하고 있다.</li>
+                    <li>유교의 이기론(理氣論)과 불교의 공(空) 사상 대비를 통해 사회 질서와 실천 윤리의 근거를 탐구한다.</li>
+                    <li>글의 구성: 1문단(문제 제기) → 2~3문단(정도전의 비판) → 4문단(불교계 반론) → 5문단(역사적 의의)</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">정도전의 유교적 관점에서 불교 비판과 그에 대한 불교계의 반론을 통해 조선 초 유교와 불교의 갈등과 상호 보완적 기능을 조명함.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 정도전 vs 불교계 (기화) 핵심 비교</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>정도전의 입장</th><th>불교계(기화)의 반론</th></tr></thead>
+                    <tbody>
+                        <tr><td>이(理) / 공(空)</td><td>‘이’는 완전·불변의 도덕 원리</td><td>‘공’은 허무가 아닌 상호의존적 존재의 본질</td></tr>
+                        <tr><td>심(心)</td><td>유교 심 = 도덕 원칙, 불교 심 = 허무주의</td><td>불교 심은 집착에서 벗어나 자비를 실천하는 근원</td></tr>
+                        <tr><td>실천 윤리</td><td>충효 등 유교 윤리가 사회 질서 유지</td><td>오계·오상이 대응하며 자비와 연민으로 확장 가능</td></tr>
+                        <tr><td>국가 이념</td><td>유교를 국가 이념으로 삼아야 함</td><td>유불 일치론, 불교도 윤리적 기반 제공</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 폭 익히지!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>제행무상·제법무아·공</strong> – 불교의 핵심 개념, 정도전은 이를 도덕적 책임의 붕괴로 비판</li>
+                    <li><strong>이기론</strong> – 유교 형이상학: 이(理)는 불변 원리, 기(氣)는 현실 요소. 법제는 기에 맞게 운영하나 근본은 이에 따라야.</li>
+                    <li><strong>유불 일치론</strong> – 기화가 주장, 오계와 오상의 대응을 근거로 실천 윤리의 공통점 강조</li>
+                    <li><strong>술어 정리</strong> – ⓐ소멸, ⓑ깃들어(스미다), ⓒ비롯되다, ⓓ해방되다, ⓔ발휘하다</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 1번 (원문) -->
+        <div class="question-full">
+            <div class="q-num">1번</div>
+            <div class="question-stem">윗글에 대한 설명으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 특정 사상이 국가 이념으로 채택됨으로써 생긴 긍정적·부정적 영향을 평가하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단에서 고려가 불교를 국가 이념으로 채택함으로써 생긴 부정적 영향에 대한 정도전의 주장이 언급되기는 하지만, 이에 대한 긍정적·부정적 영향을 평가하는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 특정 시대에 주류를 형성했던 사상들의 핵심 원리를 비교하면서 우열을 가리고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 조선 초기의 유교와 불교의 논쟁을 통해 각 사상의 핵심 원리와 우월성에 대한 주장이 제시되기는 하지만, 사상들 간의 우열을 가리는 글은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 두 사상의 사상적 기반과 철학적 개념을 종합하여 새로운 이념 체계를 제시하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 유교의 이기론과 불교의 ‘공’ 사상과 같은 두 사상의 사상적 기반과 철학적 개념이 제시되지만, 이를 종합한 새로운 이념 체계를 제시하는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 특정 사상가가 견지한 입장이 가진 한계를 지적하고 사상 간의 배타성을 부각하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 정도전이 견지한 입장에 대한 불교계의 반박이 제시되어 있지만, 그를 통해 사상 간의 배타성을 부각하는 것은 아니다. 오히려 유불 일치론과 같은 공통점과 상호 보완적 기능이 있었음을 제시하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 특정 사상가가 다른 사상에 대해 비판한 내용과 그에 대한 반박을 당대 상황과 연결하여 고찰하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 1문단에서 정도전의 사상적 배경을 제시하고, 2문단과 3문단에서 불교에 대한 정도전의 비판 내용을 제시하고 있다. 4문단에서는 이에 대한 불교계의 반박을 제시하고 있으며, 5문단에서는 이러한 비판과 반박이 가지는 의의를 당대 상황과 관련하여 고찰하고 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 2번 (원문) -->
+        <div class="question-full">
+            <div class="q-num">2번</div>
+            <div class="question-stem">㉮의 근거에 대한 설명으로 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 불교에서 말하는 ‘심(心)’은 확고한 도덕 원칙에 기반하지 않기 때문에 허무주의로 연결될 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 정도전은 실천의 원동력인 ‘심’ 역시 ‘기’와 마찬가지로 ‘이’를 근본으로 하기 때문에 확고한 도덕 원칙과 연결된다고 하였다. 이와 달리 불교에서 말하는 ‘심’은 변화하는 ‘기’의 속성만 가지고 있기 때문에 허무주의와 연결된다고 보았다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 법과 제도는 현실적 상황에 맞게 운영되더라도 도덕적 원리에 맞게 이루어져야 한다는 이기론의 논리는 직관적으로 명확하다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 정도전은 법과 제도는 ‘기’에 맞게 운영되지만 그 근본은 ‘이’에 따라야 하는 것이며, ‘이’와 ‘기’에 위계가 있다는 것은 직관적으로 명확하다고 하였다. 이것은 이기론에 기반한 유교 윤리가 국가 운영에 더 적합함을 나타내는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ‘이(理)’가 만물에 보편적으로 깃들어 있다는 이기론의 논리는 불교에서 말하는 ‘공(空)’에 대한 설명보다 사회적 질서를 잘 설명할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 정도전은 불교의 ‘공’ 사상이 천리에 따라 정비된 사회 질서도 허망한 것으로 만들 수 있다고 하였으며, 3문단에서 이와 달리 유교에서는 ‘이’를 근본으로 하기 때문에 확고한 도덕 원칙과 연결된다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 불교의 관점을 따른다면 선악의 구분이 모호해져 사회 질서를 해칠 수 있지만 유교를 따르면 천리(天理)에 따라 사회 질서를 정비할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 정도전은 ‘공’에 대한 불교의 관점을 따른다면 선악의 구분이 모호해지고, 천리에 따라 정비된 사회 질서도 허망한 것으로 전락할 수 있다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 모든 존재가 상호 의존성을 가지고 ‘작용’한다는 불교의 설명은 사회 현상에 적용할 수 없지만, ‘기’의 작용을 통해서는 모든 현상에 적용할 수 있다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 모든 존재가 상호 의존성을 가지고 ‘작용’한다는 설명은 정도전의 주장에 대한 불교계의 반박이다. 한 인간도 부모·사회·자연 등 수많은 인연 속에서 생겨났다는 부연 설명을 통해 볼 때 이러한 설명은 사회 현상에 적용될 수 있음을 알 수 있다. 또한 정도전은 이러한 설명이 사회 현상에 적용될 수 있는지에 대해서는 이야기하지 않았으므로 ㉮의 근거가 될 수가 없다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 설명(정답).</div>
+        </div>
+
+        <!-- 문제 3번 (원문) -->
+        <div class="question-full">
+            <div class="q-num">3번</div>
+            <div class="question-stem">윗글을 바탕으로 할 때, ‘정도전’과 ‘기화’ 모두 동의할 수 있는 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 사회를 바로잡기 위해서는 법과 제도가 변하지 않고 운영되어야 한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 3문단에 따르면 정도전은 법과 제도는 변화하는 현실적 상황에 맞게 운영되지만 그 근본은 불변의 도덕적 원리에 따라야 하는 것이라고 하였다. 따라서 정도전은 법과 제도가 변하지 않고 운영되어야 한다는 것에 동의하지 않을 것이다. 기화 역시 만물이 변화한다고 보았기 때문에 동의하지 않을 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 만물에는 불변의 원리가 내재하며 현실 세계의 변화는 이 원리를 따라야 한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에 따르면 정도전은 모든 존재는 고정적인 실체가 없다는 불교 사상이 인간의 도덕적 책임을 무너뜨릴 수 있다고 보았다. 따라서 선지의 진술은 정도전이 동의할 수 있는 것이다. 그러나 2문단에 따르면 불교에서는 만물이 고정적인 실체가 없다고 보며, 4문단에서 기화는 그러한 인식이 올바른 실천의 출발점이라고 하였으므로 동의하지 않을 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 윤리의 실천은 자신에게서 가까운 대상부터 점차 확대해 가는 것이 바람직하다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 윤리의 실천을 자신에게서 가까운 대상부터 한다는 것은 기준이 되는 고정된 자아가 있다는 것을 전제하는 것이다. 기화는 고정된 자아가 있다는 것에 대해 동의하지 않을 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 사회가 올바른 방향으로 나아가기 위해서는 충효 윤리를 실천하는 것이 필요하다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 3문단에 따르면 정도전은 실천의 원동력인 ‘심’ 역시 ‘이’를 근본으로 하기 때문에 확고한 도덕 원칙과 연결되며, 충효와 같은 윤리를 실천함으로써 사회를 바로잡을 수 있다고 하였다. 그러므로 올바른 사회를 위해 충효의 윤리를 실천하는 것에 동의할 것이다. 4문단에 따르면 기화는 올바른 사회를 위해 실천해야 할 윤리는 유교와 다를 바가 없다고 보고, 유교와 불교의 지향점과 실천 윤리가 근본적으로 다르지 않다는 유불 일치론의 입장을 취했다. 따라서 충효 윤리 실천에 기화도 동의할 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 끊임없이 변화하는 만물의 작용에 대한 깨달음은 사회적 실천 윤리의 바탕이 된다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 만물이 끊임없이 변화한다는 것과 이에 대한 깨달음이 올바른 실천의 바탕이 된다는 것은 불교의 관점이다. 정도전은 불변의 도덕적 원리인 ‘이’를 도덕적 실천의 바탕으로 보았으므로 동의하지 않을 것이다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 정도전과 기화 모두 동의할 수 있는 내용(정답).</div>
+        </div>
+
+        <!-- 문제 4번 (원문 전체 복원 - 보기 및 선택지 원문 그대로) -->
+        <div class="question-full">
+            <div class="q-num">4번</div>
+            <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;에 대해 보인 반응으로 적절하지 않은 것은?</div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                데카르트는 세계를 이루는 본질적 실체를 크게 물질적 실체, 정신적 실체, 무한한 실체의 세 가지로 나누어 설명했다. 물질적 실체는 일정한 넓이나 깊이, 크기 등의 형태를 가지고 공간을 차지하고 있는 성질, 즉 ‘연장(延長)’의 특성을 가지고 있으며, 입자들 간의 충돌로 변화한다고 보았다. 정신적 실체는 연장의 성질이 없지만 사유를 통해 확인할 수 있는 실체이다. 세상에 존재한다고 생각하는 모든 것을 의심할 수 있지만 ‘생각하는 나’인 정신적 실체는 의심할 수 없다고 보았다. 무한한 실체는 완전하고 변하지 않으며, 자연의 근본 원리가 되는 신과 같은 존재이다. 데카르트는 운동량 보존 법칙에 따라 입자들의 충돌은 지속되지만 그 근원은 무한한 실체가 최초에 부여한 힘이라고 보았다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 데카르트가 제시한 무한한 실체는, 완전하면서 변하지 않는다는 점에서 유교에서 말하는 ‘이’와 유사한 면이 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – <보기>에 따르면 무한한 실체는 완전하고 변하지 않으며, 자연의 근본 원리가 되는 것이다. 3문단에서 유교의 ‘이’는 만물에 깃들어 있는 완전하고 변하지 않는 원리라고 하였으므로, 데카르트가 제시한 무한한 실체와 유사하다고 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 데카르트가 제시한 물질 변화의 근원이 되는 힘은, 지속적으로 유지된다는 점에서 유교에서 말하는 ‘기’와 유사한 면이 있군.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 데카르트는 물질적 실체가 변화하는 원인은 입자들 간의 충돌이지만, 그 근원은 무한한 실체가 최초에 부여한 힘에 있다고 보았다. 그 힘은 운동량 보존 법칙에 따라 지속적으로 유지된다고 볼 수 있다. 이에 비해 유교의 ‘기’는 현실에서 구체적인 사물과 현상으로 드러나게 하는 요소라고 하였다. 따라서 지속적으로 유지된다는 것을 근거로 데카르트가 말한 물질 변화의 근원이 되는 힘과 가변적인 ‘기’가 유사하다고 보는 것은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 데카르트가 ‘생각하는 나’의 존재가 확고하다고 본 것은, 불교에서 ‘생각하는 나’의 존재도 일시적으로 생긴 결과로 보는 것과는 다르군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – <보기>에 따르면 데카르트는 ‘생각하는 나’의 존재는 다른 존재들과 달리 의심할 수 없이 확고하게 존재하는 것이라고 보았다. 이와 달리 불교의 ‘제법무아’의 논리는 고정적인 자아도 집착에서 비롯된 것으로 본다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 데카르트가 물질적 실체는 넓이나 크기 등을 가지고 일정한 공간을 차지한다고 본 것은, 불교에서 물질이 곧 ‘공’이라고 보는 것과는 다르군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에 따르면 불교에서는 물질이 곧 비어 있음을 의미하는 ‘공’이라고 하였다. ‘공’은 고정된 실체가 있는 것이 아니라, ‘인’과 ‘연’에 따라 끊임없이 변화하는 것이다. 이는 물질이 일정한 형태를 가지고 공간을 차지하는 속성을 가지고 있다는 데카르트의 관점과는 다른 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 데카르트가 정신적 실체와 물질적 실체를 구분하고 그 성격이 다르다고 본 것은, 물질뿐만 아니라 정신도 ‘공’으로 본 불교의 관점과는 다르군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – <보기>에 따르면 데카르트는 정신적 실체와 물질적 실체를 구분하고, 정신적 실체와 달리 물질적 실체는 일정한 공간을 차지하는 성질을 가지고 있다고 보았다. 이와 달리 불교에서는 물질뿐만 아니라 감각, 표상, 의지, 판단 등의 정신 활동도 ‘공’이라는 점에서 물질과 다르지 않다고 보았다.</div>
+            </div>
+            <div class="wrong-badge">📍 ②번이 적절하지 않은 반응(정답).</div>
+        </div>
+
+        <!-- 문제 5번 (원문) -->
+        <div class="question-full">
+            <div class="q-num">5번</div>
+            <div class="question-stem">㉠에 대한 불교계의 반론으로 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 백성들의 생활 저변에 불교적 실천 윤리가 있었음을 볼 때, 불교 때문에 고려가 타락했다고 보는 것은 타당하지 않다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 백성들 사이에서는 업에 따라 인과응보와 윤회가 이루어진다는 불교적 실천 윤리가 생활 저변을 형성하고 있었다는 것은, 불교에 명확한 실천 윤리가 부족해서 고려가 타락했다는 주장에 대한 반대 근거가 될 수 있다. 따라서 불교계에서 이를 근거로 반박하는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 불교는 집착을 버리고 자비를 실천하게 만드는 윤리적 자각을 강조하므로, 불교에 실천 윤리가 부족했다는 평가는 타당하지 않다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 정도전은 불교에서 말하는 ‘공’이 허무주의와 연결되며 선악이나 사회 질서도 무력화한다고 보았지만, 불교계에서는 ‘공’에 대한 인식이 자비와 이타적 행위를 실천하는 윤리적 기반이 될 수 있다고 보았다. 따라서 불교계에서 정도전이 오해한 부분을 지적하면서 반박하는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 불교의 ‘공’은 개인주의적 욕망을 버릴 것에 대해 이야기하므로, 유교 윤리와 대립하는 것이 아니라 공동체 전체의 윤리로 확장될 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 정도전은 불교의 ‘공’ 사상이 공동체의 윤리를 약화하기 때문에 고려가 타락한 원인이 되었다고 보았지만, 불교계에서는 ‘공’에 대한 인식이 모든 사상을 통섭할 수 있는 바탕이 된다고 보았다. 따라서 불교계에서는 유교 윤리와 마찬가지로 공동체 윤리를 갖추고 있음을 들어 반박할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 불교는 인과응보와 윤회의 논리를 통해 개인의 행위와 결과를 긴밀히 연결시키므로, 오히려 실천 윤리를 강화하는 방향으로 작용할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 정도전은 불교에 명확한 실천 윤리가 없기 때문에 고려가 타락했다고 주장했지만, 실제로는 불교에서 말하는 인과응보와 윤회의 논리는 백성들에게 강력한 실천 윤리로 작용했었다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 유교를 이념으로 한 나라들이라고 해서 타락하지 않으란 법은 없으며, 역사에서 어떤 사상이든 시간이 지나면 타락하는 것은 자연스러운 일이다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 불교계가 ㉠에 대해 어떤 사상이든 시간이 지나면 타락한다는 것을 근거로 반론을 하는 것은 자신들이 타락했다는 것을 인정하는 것이다. 이는 불교의 윤리가 잘못된 것이 아니라는 것을 보여 주어야 하는 상황에서 자신의 논리를 약화하는, 타당성이 없는 주장이 되므로 반론으로서 적절하지 않다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 반론(정답).</div>
+        </div>
+
+        <!-- 문제 6번 (원문) -->
+        <div class="question-full">
+            <div class="q-num">6번</div>
+            <div class="question-stem">문맥상 ⓐ~ⓔ와 바꾸어 쓰기에 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ: 소멸(消滅)한다고</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘소멸하다’는 ‘사라져 없어지다.’의 의미이므로 바꾸어 쓰기에 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⓑ: 포괄(包括)되어</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – ‘포괄되다’는 ‘일정한 대상이나 현상 따위가 한데 묶어져 어떤 범위나 한계 안에 모두 들어가다.’의 의미이다. ‘깃들다’는 ‘감정, 생각, 노력 따위가 어리거나 스미다.’의 의미이므로, 바꾸어 쓰기에 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓒ: 연유(緣由)한</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘연유하다’는 ‘어떤 일이 거기에서 비롯되다.’의 의미이므로 바꾸어 쓰기에 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓓ: 해방(解放)되어</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘해방되다’는 ‘구속이나 억압, 부담 따위에서 벗어나다.’의 의미이므로 바꾸어 쓰기에 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓔ: 발휘(發揮)하게</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘발휘하다’는 ‘재능, 능력 따위를 떨치어 나타내다.’의 의미이므로 바꾸어 쓰기에 적절하다.</div>
+            </div>
+            <div class="wrong-badge">📍 ②번이 바꾸어 쓰기에 적절하지 않음(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

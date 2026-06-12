@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>문학 유형 연습 ① - 서정주 「자화상」, 신경림 「목계 장터」 (시구별 분석 통합본)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .poem-line {
+            margin-bottom: 0.4em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .poem-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin: 1.2em 0 0.8em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 유형편 · 문학 01~04번</h1>
+        <p>서정주 「자화상」, 신경림 「목계 장터」 | 시구별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- 2단 지문 + 분석 (왼쪽: 시구별 상세 분석, 오른쪽: 종합 해설) -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="poem-title">(가) 서정주, 「자화상」</div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉠애비는 종이었다.</span> 밤이 깊어도 오지 않았다.</span>
+                    <div class="line-analysis">← 화자의 태생적 한계 – 종의 자식으로 태어난 운명</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">파뿌리같이 늙은 할머니와 대추꽃이 한 주 서 있을 뿐이었다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어매는 달을 두고 풋살구가 꼭 하나만 먹고 싶다 하였으나…… 흙으로 바람벽한 호롱불 밑에</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉡손톱이 까만 에미의 아들.</span></span>
+                    <div class="line-analysis">← 가난과 노동에 시달리는 모습의 형상화</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">갑오년이라든가 바다에 나가서는 돌아오지 않는다 하는 외할아버지의 숱 많은 머리털과</span>
+                    <div class="line-analysis">← 외할아버지와의 유사성을 통해 드러나는 기질과 운명의 동질감</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그 커다란 눈이 나는 닮았다 한다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">스물세 해 동안 나를 키운 건 팔 할이 바람이다.</span>
+                    <div class="line-analysis">← 힘겨운 삶의 여정</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉢세상은 가도 가도 부끄럽기만 하드라.</span></span>
+                    <div class="line-analysis">← 시련과 멸시를 겪는 삶</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어떤 이는 내 눈에서 죄인을 읽고 가고</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어떤 이는 내 입에서 천치를 읽고 가나</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 아무것도 뉘우치진 않으련다.</span>
+                    <div class="line-analysis">← 자신의 삶을 당당하게 받아들임.</div>
+                </div>
+                <div class="poem-line" style="margin-top: 1em;">
+                    <span class="line-text">찬란히 트여 오는 어느 아침에도</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이마 위에 얹힌 시의 이슬에는</span>
+                    <div class="line-analysis">← 고통과 상처가 창작의 원동력임을 드러냄.</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">몇 방울의 피가 언제나 섞여 있어</span>
+                    <div class="line-analysis">← 고통과 상처</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉣볕이거나 그늘이거나</span> 혓바닥 늘어뜨린</span>
+                    <div class="line-analysis">← 삶의 긍정적 순간과 부정적 순간을 아우르는 표현</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉤병든 수캐마냥 헐떡거리며 나는 왔다.</span></span>
+                    <div class="line-analysis">← 힘든 삶의 모습과 삶에 대한 의지를 함께 드러냄.</div>
+                </div>
+
+                <div class="poem-title" style="margin-top: 2em;">(나) 신경림, 「목계 장터」</div>
+                <div class="poem-line">
+                    <span class="line-text">하늘은 날더러 구름이 되라 하고</span>
+                    <div class="line-analysis">← 방랑하는 존재로 살아가라는 운명의 제시</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">땅은 날더러 바람이 되라 하네</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">청룡 흑룡 흩어져 비 개인 나루</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">잡초나 일깨우는 잔바람이 되라네</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">뱃길이라 서울 사흘 목계 나루에</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">아흐레 나흘 찾아 박가분 파는</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">가을볕도 서러운 방물장수 되라네</span>
+                    <div class="line-analysis">← 고달픈 장돌뱅이의 삶을 구체적으로 제시</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">산은 날더러 들꽃이 되라 하고</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">강은 날더러 잔돌이 되라 하네</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">산서리 맵차거든 풀 속에 얼굴 묻고</span>
+                    <div class="line-analysis">← 고통을 피해 숨는 모습, 연민과 체념</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">물여울 모질거든 바위 뒤에 붙으라네</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">민물새우 끓어넘는 토방 툇마루</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">석삼년에 한 이레쯤 천치로 변해</span>
+                    <div class="line-analysis">← 가정된 삶의 모습 (‘천치’는 잠시나마 정착한 삶)</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">짐 부리고 앉아 쉬는 떠돌이가 되라네</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">하늘은 날더러 바람이 되라 하고</span>
+                    <div class="line-analysis">← 다시 방랑을 강조하며 시를 마무리</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">산은 날더러 잔돌이 되라 하네</span>
+                    <div class="line-analysis"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 「자화상」 해제</div>
+                <div class="content">화자가 자신의 삶을 되돌아보며 존재의 의미를 제시하는 시. 종의 아들로 태어나 가난하고 멸시받는 삶을 살았지만 부끄러워하거나 후회하지 않고 당당하게 받아들이며 극복하고자 하는 태도를 보여 줌. 시련과 고통이 문학의 원동력이 되었음을 고백.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 「목계 장터」 해제</div>
+                <div class="content">떠돌이 장사꾼(장돌뱅이)의 삶의 공간인 ‘목계 장터’를 제재로 민중의 삶과 애환을 그림. 방랑과 정착 사이에서 느끼는 고뇌와 애환을 담담히 그리고 있음.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉠ ‘애비는 종이었다’</div>
+                <div class="content">태생적 한계를 밝히며 화자의 녹록지 않은 운명을 드러냄. 굴욕과 모멸, 차별을 견뎌 내야 하는 존재임을 시사.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉡ ‘손톱이 까만 에미’</div>
+                <div class="content">미천한 신분으로 인해 가난과 노동에 시달리는 삶을 시각적으로 형상화.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉢ ‘세상은 가도 가도 부끄럽기만 하드라’</div>
+                <div class="content">힘든 삶에서 느끼는 현실의 부조리. 시련으로부터 도피한 것이 아니라 현실 체험의 고백.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉣ ‘볕이거나 그늘이거나’</div>
+                <div class="content">화자가 살아오면서 경험한 긍정적·부정적 순간들을 종합적으로 나타냄.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 ㉤ ‘병든 수캐마냥 헐떡거리며’</div>
+                <div class="content">힘겨운 삶에 대한 회고이자 삶에 대한 강한 의지를 드러냄.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>천치</strong><br>
+                (가) – ‘어떤 이’의 시선으로 화자가 살아온 삶에 대한 평가.<br>
+                (나) – ‘짐 부리고 앉아 쉬는’ 삶을 가정적으로 표현.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>두 작품 모두 유사한 통사 구조의 반복을 통해 화자의 상황에 집중하게 한다.</li>
+                    <li>(가) – 과거의 상처와 고통이 정체성을 형성했음을 고백, 당당한 수용 태도.</li>
+                    <li>(나) – 방랑할 수밖에 없는 운명을 자연물(하늘, 땅, 산, 강)의 목소리를 빌려 표현.</li>
+                    <li>‘천치’ – (가)는 살아온 삶에 대한 평가, (나)는 가정된 삶의 모습.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">(가) 고통스러운 삶을 살아온 화자의 회고와 삶의 의미 탐색. (나) 떠돌이 민중의 삶의 애환과 갈등.</p>
+            </div>
+
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 두 시의 공통점/차이점</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>(가) 「자화상」</th><th>(나) 「목계 장터」</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">화자 정체</td>
+                        <td>종의 아들, 멸시받는 존재</td>
+                        <td>떠돌이 장사꾼(장돌뱅이)</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">표현 방식</td>
+                        <td>자전적 고백, 당당한 수용</td>
+                        <td>자연물(하늘·땅·산·강)의 목소리를 빌림</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">공통 표현</td>
+                        <td colspan="2">유사한 통사 구조 반복, ‘천치’ 등장</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">핵심 태도</td>
+                        <td>뉘우침 없이 삶을 긍정</td>
+                        <td>방랑의 운명을 담담히 수용</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 폭 익히지!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>유사한 통사 구조 반복</strong> – (가) ‘어떤 이는 내 눈에서~ / 어떤 이는 내 입에서~’, (나) ‘하늘은 날더러~ / 땅은 날더러~’</li>
+                    <li><strong>‘천치’의 기능</strong> – (가)는 외부 평가, (나)는 가정적 상황.</li>
+                    <li><strong>방랑 모티프</strong> – (나)에서 ‘하늘·땅·산·강’이 화자에게 방랑하는 존재가 되라고 명령.</li>
+                    <li><strong>자아의 방랑에 대한 고백</strong> – (가)는 과거 상처가 정체성 형성, (나)는 방랑 운명 수용.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 1번 -->
+        <div class="question-full">
+            <div class="q-num">1번</div>
+            <div class="question-stem">(가)와 (나)의 공통점으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 의문형 문장을 사용하여 화자의 내적 갈등을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)와 (나)에는 의문형 문장이 사용되지 않았으므로 이를 통해 화자의 내적 갈등을 드러내지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 유사한 통사 구조의 반복을 통해 화자가 처한 상황에 집중하게 하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)의 ‘어떤 이는 내 눈에서 죄인을 읽고 가고 / 어떤 이는 내 입에서 천치를 읽고 가나’, (나)의 ‘하늘은 날더러 구름이 되라 하고 / 땅은 날더러 바람이 되라 하네’와 같이 유사한 통사 구조가 반복된다. 또한 이를 통해 (가)에서는 화자가 겪는 힘든 상황, (나)에서는 정착하지 않고 방랑하는 화자의 상황에 집중시키고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 상승과 하강의 이미지를 반복적으로 사용하여 시간의 흐름을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)와 (나)는 모두 상승과 하강의 이미지가 반복되지 않으며, 이를 통해 시간의 흐름을 드러내지도 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 청자를 명시적으로 설정하여 말을 주고받는 방식으로 시상을 전개하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)와 (나)는 모두 청자를 작품에 명시적으로 설정하여 드러내지 않았다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 관조적 태도로 풍경을 바라보며 대상이 지닌 외적 아름다움을 예찬하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 관조적으로 바라보는 것은 고요한 마음으로 사물이나 현상을 관찰하거나 비추어 보는 것을 의미하는데, (가)와 (나)의 화자는 모두 특정한 사물이나 현상을 관찰하거나 비추어 보지는 않았다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절한 공통점(정답).</div>
+        </div>
+
+        <!-- 문제 2번 -->
+        <div class="question-full">
+            <div class="q-num">2번</div>
+            <div class="question-stem">㉠~㉤에 대한 설명으로 적절하지 않은 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠: 태생적 한계를 밝히며, 화자의 녹록지 않은 운명을 드러낸 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘애비는 종이었다.’는 종의 자식으로 태어난 운명을 살아 내야 하는 화자의 삶을 이야기한 것으로, 굴욕과 모멸, 차별을 견뎌 내야 하는 존재임을 드러낸다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉡: 가난으로 인해 고되게 살아가는 삶을 형상화한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘손톱이 까만 에미’는 미천한 신분으로 인해 가난과 노동에 시달리는 삶을 시각적으로 형상화한 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉢: 시련으로부터 도피해 왔던 삶에 대한 성찰이 담긴 것이다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – ‘세상은 가도 가도 부끄럽기만 하드라.’에는 힘든 삶에서 느끼는 현실의 부조리가 담겨 있을 뿐이며 화자가 시련으로부터 도피한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉣: 화자가 살아오면서 경험한 긍정적, 부정적 순간들을 종합하여 나타낸 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘볕이거나 그늘이거나’는 긍정적인 상황과 부정적인 상황에서 화자가 경험했던 것들을 종합적으로 나타낸 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉤: 힘겨움 속에서도 자신의 삶을 살아왔다는 화자의 회고를 드러낸 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘병든 수캐마냥 헐떡거리며 나는 왔다’는 병든 존재처럼 헐떡거리는 삶, 즉 힘겨운 삶에 대한 회고를 드러낸 것이자 삶에 대한 강한 의지를 드러낸 것이다.</div>
+            </div>
+            <div class="wrong-badge">📍 ③번이 적절하지 않은 설명(정답).</div>
+        </div>
+
+        <!-- 문제 3번 -->
+        <div class="question-full">
+            <div class="q-num">3번</div>
+            <div class="question-stem">(가)와 (나)의 [천치]에 대한 이해로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① (가)의 ‘천치’는 세상의 부조리에 대한 비판적 인식을, (나)의 ‘천치’는 삶의 획일성에 대한 저항적 태도를 드러낸다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)의 ‘천치’는 화자의 삶에 대한 규정을 드러낸 것이므로 세상의 부조리에 대한 비판적 인식을 보여 준 것으로 보기 어렵다. (나)의 ‘천치’는 화자와 연관된 삶을 설명한 것이며, 기존의 삶과는 다른 모습을 담고 있기에 획일적인 삶과는 거리가 멀다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (가)의 ‘천치’는 화자가 살아온 삶에 대한 평가를, (나)의 ‘천치’는 화자가 살아갈 수 있는 가정된 삶의 모습을 드러낸다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)에서 ‘천치’는 ‘어떤 이’의 시선으로 화자가 살아온 삶에 대해 평가한 표현이고, (나)에서 ‘천치’는 화자가 살아온 삶이 아닌 ‘짐 부리고 앉아 쉬는’ 삶의 존재를 가정적으로 표현한 것이므로 적절한 설명이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (가)의 ‘천치’는 화자가 외부 세계로부터 고립되는 이유를, (나)의 ‘천치’는 화자가 외부 세계와 연결되는 이유를 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)의 ‘천치’는 화자의 삶과 연관된 외부의 시선으로 외부 세계와 쉽사리 연결되지 못하는 삶과 연관된다고 볼 수 있지만, (나)의 ‘천치’는 화자에게 권유된 삶의 한 형태일 뿐 화자가 외부 세계와 연결되는 이유와는 관련이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (가)의 ‘천치’는 화자 내면의 혼란에 대한 자조적 태도를, (나)의 ‘천치’는 내면의 평온을 찾고자 하는 화자의 결연한 의지를 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)에서 ‘천치’는 외부의 시선이므로 화자의 내면과 관련이 없으며, (나)에서 ‘천치’는 외부의 권유로 제시된 것이지 화자 내면의 결연한 의지를 드러낸 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (가)의 ‘천치’는 외부의 평가로 인한 화자의 수동적 태도를, (나)의 ‘천치’는 외부의 평가로부터 벗어나고자 하는 화자의 능동성을 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)에서 ‘어떤 이’가 ‘천치’를 읽고 간 것에 대해 화자는 뉘우침 없이 자신의 삶을 바라본다는 점에서 외부의 평가에 수동적이라고 보기 어려우며, (나)의 ‘천치’는 삶의 태도에 대한 권유일 뿐 외부의 평가와는 관련이 없다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절한 이해(정답).</div>
+        </div>
+
+        <!-- 문제 4번 (보기 포함) -->
+        <div class="question-full">
+            <div class="q-num">4번</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 (가), (나)를 감상한 내용으로 적절하지 않은 것은?</div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                시에는 자아의 방랑에 대한 고백을 통해 화자의 내면을 드러내는 작품들이 있다. 과거의 상처와 고통이 자신의 정체성을 형성했음을 고백하며, 부정적인 현실에 굴하지 않고 오히려 이를 당당하게 수용하는 태도를 드러냄과 동시에 정착하지 못하는 자아와 그에 대한 인식을 다른 대상에 투영하기도 한다. 한편 방랑이 아닌 정착에 대한 의지를 품고 있지만, 결국은 방랑할 수밖에 없는 존재라는 고통스러운 운명을 수용하는 형태도 있다. 이러한 방랑의 운명은 때로는 윗대로부터 이어받은 것으로 형상화되기도 하는데, 이는 역마살과 같은 운명을 받아들이는 공동체적 인식이 개인의 정체성 형성에도 영향을 주고 있음을 보여 주는 것이다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① (가)의 ‘나를 키운 건 팔 할이 바람’이라는 고백은 고통스럽던 과거가 자신의 정체성 형성과 연관되어 있음을 드러낸 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 화자를 키운 것은 부모님의 사랑이 아닌 ‘바람’이며 그러한 화자의 모습에서 누군가는 죄인을, 누군가는 천치를 읽고 간다는 고백을 통해 화자가 스물세 해 동안 겪어야 했던 과거가 고통스러운 시간이었음을 알 수 있으며, &lt;보기&gt;에서 이러한 과거의 상처와 고통이 자신의 정체성을 형성했음을 고백하는 작품에 대해 언급하고 있으므로 적절한 설명이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (가)의 ‘외할아버지’와 닮은 화자가 ‘아무것도 뉘우치진 않’겠다고 한 것은 윗대로부터 자신에게 이어져 온 힘든 현실을 수용하는 당당한 태도를 보여 준 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘외할아버지’와 닮았다는 것은 윗대로부터 이어져 오는 힘든 현실을 의미한다고 볼 수 있으며, 힘든 현실 속에서 멸시를 받는 부끄러운 삶을 살았지만 그런 삶을 ‘뉘우치진 않’겠다는 의지적 목소리를 내는 것은 &lt;보기&gt;에 제시된, 부정적인 현실에 굴하지 않고 오히려 이를 당당하게 수용하는 태도를 드러내는 것과 연관된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (나)의 ‘하늘’과 ‘땅’이 하는 말은 자신을 방랑할 수밖에 없는 존재로 여기는 화자의 인식을 다른 대상의 목소리를 통해 간접적으로 제시한 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘하늘’과 ‘땅’이 화자에게 방랑의 이미지인 구름과 바람이 되라고 하는 것은 방랑할 수밖에 없는 자신의 운명을 직접 말하지 않고 자연물의 목소리를 빌려 표현한 것이라 할 수 있다. 이는 &lt;보기&gt;의 ‘정착하지 못하는 자아와 그에 대한 인식을 다른 대상에 투영하’는 것에 해당한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (가)의 ‘찬란히 트여 오는 어느 아침’과 (나)의 ‘석삼년에 한 이레’는 방랑이 아닌 자아의 정착에 대한 의지를 보여 주는 때이겠군.</div>
+                <div class="choice-analysis">✅ <strong>적절하지 않음 (정답)</strong> – (가)의 ‘찬란히 트여 오는 어느 아침’은 과거의 힘들었던 때가 아닌 현재의 삶을 드러낸 표현일 뿐 정착과는 연관이 없다. (나)의 ‘석삼년에 한 이레’는 ‘천치’로 변해 ‘앉아 쉬는 떠돌이’가 되어 지내기를 권유받는 기간으로 화자가 정착하고자 하는 의지를 드러낸다고 보기는 어렵다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (가)의 ‘시의 이슬’에 섞인 ‘피’와 (나)의 ‘산서리’는 화자의 정체성을 형성하는 데에 영향을 주는 상처와 고통을 형상화한 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 화자가 쓴 시에 ‘피’가 섞여 있다는 것은 고통스러운 삶을 형상화한 것이며, ‘산서리’는 맵차게 화자를 괴롭히는 것으로 화자의 고통과 연관된다. 이는 &lt;보기&gt;에서 언급한, 과거의 고통이나 운명을 받아들이는 과정에서의 고통이 정체성을 형성한다는 것과 연관된다.</div>
+            </div>
+            <div class="wrong-badge">📍 ④번이 적절하지 않은 감상(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
