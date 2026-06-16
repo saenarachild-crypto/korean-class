@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>수능완성 사용설명서 유형편 4 - 독서 심리학 (통합본)</title>
+    <title>수능완성 사용설명서 유형편 4 - 독서 심리학 (구조도 포함)</title>
     <style>
         * {
             margin: 0;
@@ -130,6 +130,110 @@
             background: #e2e8f0;
             font-weight: 600;
         }
+        /* 구조도 스타일 */
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
         .questions-section {
             padding: 30px 40px;
             background: #f8fafc;
@@ -206,6 +310,9 @@
             .questions-section {
                 padding: 20px;
             }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
@@ -213,7 +320,7 @@
 <div class="container">
     <div class="header">
         <h1>📖 수능완성 사용설명서 유형편 · 독서 01~03번</h1>
-        <p>독서 심리학 – 행동주의 vs 인지 심리학 | 원문 + 분석 + 문제 + 정답/오답 해설</p>
+        <p>독서 심리학 – 행동주의 vs 인지 심리학 | 원문 + 분석 + 문제 + 정답/오답 해설 + 구조도</p>
     </div>
 
     <!-- ========== 2단 지문 + 분석 ========== -->
@@ -256,10 +363,10 @@
                 <table style="font-size: 12.5px;">
                     <thead><tr><th>구분</th><th>행동주의 심리학</th><th>인지 심리학</th></tr></thead>
                     <tbody>
-                        <tr><td>연구 대상</td><td>객관적으로 관찰 가능한 행동</td><td>내부 인지 과정(블랙박스) 포함</td></tr>
-                        <tr><td>독서의 정의</td><td>문자 해독 → 음성 표상 → 의미 이해</td><td>정보 처리 → 의미 구성 (재구성)</td></tr>
-                        <tr><td>중심</td><td>글(자극) 중심</td><td>독자 중심</td></tr>
-                        <tr><td>배경지식 역할</td><td>고려하지 않음</td><td>의미 구성에 적극적 작용</td></tr>
+                        <tr><td>연구 대상</th><td>객관적으로 관찰 가능한 행동</th><td>내부 인지 과정(블랙박스) 포함</th></tr>
+                        <tr><td>독서의 정의</th><td>문자 해독 → 음성 표상 → 의미 이해</th><td>정보 처리 → 의미 구성 (재구성)</th></tr>
+                        <tr><td>중심</th><td>글(자극) 중심</th><td>독자 중심</th></tr>
+                        <tr><td>배경지식 역할</th><td>고려하지 않음</th><td>의미 구성에 적극적 작용</th></tr>
                     </tbody>
                 </table>
             </div>
@@ -276,14 +383,78 @@
                 <p style="font-size: 13.5px;">행동주의 심리학과 인지 심리학의 독서에 대한 관점 차이와 그 변화 과정.</p>
             </div>
 
+            <!-- 제목 변경: '이것만은 폭 익히지!' → '이것만은 꼭 익히자' -->
             <div class="info-box" style="background: #fef2e0;">
-                <h3>✨ 이것만은 폭 익히지!</h3>
+                <h3>✨ 이것만은 꼭 익히자!</h3>
                 <ul style="font-size: 13px;">
                     <li><strong>행동주의</strong> – 블랙박스 배제, 문자 해독 중심, 글 중심.</li>
                     <li><strong>인지 심리학</strong> – 내부 과정 탐구, 배경지식 활용, 의미 재구성, 독자 중심.</li>
                     <li><strong>블랙박스</strong> – 관찰 불가능한 내적 정신 과정을 비유하는 용어.</li>
                 </ul>
             </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도: 지문과 문제 사이 빈 칸에 삽입 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>독서 심리학 관점 비교</span>
+        </div>
+        <div class="structure-grid">
+            <!-- 1단계: 도입 / 관점 변화 소개 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>①</span> 독서 관점의 변화
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 독서는 의미 구성의 복합적 정신 활동</p>
+                    <p><span class="flow-badge">흐름</span> 행동주의 심리학적 관점 → 인지 심리학적 관점으로 전환</p>
+                    <div class="sub-point">✔ 1문단: 시대적·학문적 배경 제시</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 2단계: 행동주의 심리학 관점 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>②</span> 행동주의 심리학
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">연구 대상</span> 관찰 가능한 행동만, 블랙박스(내적 과정) 배제</p>
+                    <p><span class="flow-badge">독서 정의</span> 문자 해독 → 음성 표상 → 의미 이해 (자극-반응 모델)</p>
+                    <p><span class="flow-badge">중심</span> 글(자극) 중심, 배경지식 고려하지 않음</p>
+                    <div class="sub-point">🔎 2문단: 행동주의의 과학적 엄격성과 독서 해독 중심</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 3단계: 인지 심리학 관점 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>③</span> 인지 심리학
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">연구 대상</span> 내부 인지 과정(블랙박스) 탐구</p>
+                    <p><span class="flow-badge">독서 정의</span> 정보 처리 + 의미 구성 (배경지식 활용)</p>
+                    <p><span class="flow-badge">중심</span> 독자 중심, 의미 재구성 과정</p>
+                    <div class="sub-point">💬 3문단: 배경지식이 의미 구성에 적극적 역할</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 4단계: 두 관점 비교 및 결론 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>④</span> 관점 비교 & 결론
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">행동주의</span> 글 → 자극 → 반응 (단순 해독)</p>
+                    <p><span class="flow-badge">인지 심리학</span> 독자 → 능동적 의미 구성</p>
+                    <p><span class="flow-badge">핵심 차이</span> 글 중심 vs 독자 중심</p>
+                    <div class="sub-point">⚖ 4문단: 두 관점의 대비를 통해 독서 개념의 확장 정리</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 독서 관점의 역사적 변화 소개 → 행동주의(블랙박스 배제, 문자 해독 중심) → 인지 심리학(내부 과정 탐구, 배경지식 기반 의미 재구성) → 글 중심 vs 독자 중심 비교 정리
         </div>
     </div>
 

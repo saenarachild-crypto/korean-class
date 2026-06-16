@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>수능완성 사용설명서 유형편 1 - 정도전 (원문복원)</title>
+    <title>수능완성 사용설명서 유형편 1 - 정도전 (원문복원) + 구조도</title>
     <style>
         * {
             margin: 0;
@@ -130,6 +130,110 @@
             background: #e2e8f0;
             font-weight: 600;
         }
+        /* 구조도 스타일 */
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
         .questions-section {
             padding: 30px 40px;
             background: #f8fafc;
@@ -206,6 +310,9 @@
             .questions-section {
                 padding: 20px;
             }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
@@ -216,7 +323,7 @@
         <p>정도전의 유교 사상과 불교 비판 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (원문 완전 복원)</p>
     </div>
 
-    <!-- ========== 2단 지문 + 분석 (사용설명서 원본 형식) ========== -->
+    <!-- ========== 2단 지문 + 분석 ========== -->
     <div class="two-columns">
         <div class="col-left">
             <div class="original-text">
@@ -280,8 +387,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 제목 수정: '이것만은 꼭 익히자'로 변경 -->
             <div class="info-box" style="background: #fef2e0;">
-                <h3>✨ 이것만은 폭 익히지!</h3>
+                <h3>✨ 이것만은 꼭 익히자!</h3>
                 <ul style="font-size: 13px;">
                     <li><strong>제행무상·제법무아·공</strong> – 불교의 핵심 개념, 정도전은 이를 도덕적 책임의 붕괴로 비판</li>
                     <li><strong>이기론</strong> – 유교 형이상학: 이(理)는 불변 원리, 기(氣)는 현실 요소. 법제는 기에 맞게 운영하나 근본은 이에 따라야.</li>
@@ -292,11 +400,68 @@
         </div>
     </div>
 
-    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <!-- ★★★ 구조도: 지문과 문제 사이 빈 칸에 위치 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>수능형 독해</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>①</span> 도입 · 문제 제기
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">배경</span> 정도전, 유교 중심 도덕 정치 & 불교 배척 입장</p>
+                    <p><span class="flow-badge">핵심</span> 새 왕조 변혁을 위해 불교 타파 필요 → 이기론 기반 비판 시작</p>
+                    <div class="sub-point">✔ 1문단: 정도전 사상적 배경 및 논쟁의 발단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>②</span> 정도전의 비판 본론
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">불교 공격</span> 제행무상·제법무아·공(空) → 도덕적 책임 붕괴, 사회 질서 위험</p>
+                    <p><span class="flow-badge">유교 이기론</span> ‘이(理)’는 불변 도덕 원리, ‘기(氣)’는 현실 요소. 법제는 기에 맞지만 근본은 이에 따라야 함</p>
+                    <p><span class="flow-badge">㉮ 주장</span> 유교 윤리의 보편성 & 국가 제도 우월성</p>
+                    <div class="sub-point">🔎 2~3문단: 불교 비판 + 유교 형이상학의 우위 주장</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>③</span> 불교계 반론 (기화)
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">‘공’ 재해석</span> 허무주의 아님 → 존재 본질 통찰, 상호의존성 → 자비·연민의 윤리 기반</p>
+                    <p><span class="flow-badge">유불 일치론</span> 오계(五戒) ↔ 오상(五常) 대응, 실천 윤리 동일, 불교는 더 큰 진리 통찰</p>
+                    <div class="sub-point">💬 4문단: 정도전의 오해를 바로잡고 공(空)의 윤리적 가능성 제시</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>④</span> 역사적 의의 & 결론
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">정도전의 목적</span> 국가 질서 정당화, 숭유억불 정책 기반</p>
+                    <p><span class="flow-badge">현실적 한계</span> 백성·왕실에 불교 실천 윤리 깊이 뿌리 → 유교와 상호 보완적 기능</p>
+                    <div class="sub-point">⚖ 5문단: 당대 갈등을 넘어 실질적 공존과 상보성 조명</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 정도전의 유교적 비판(이기론·불교 허무주의) → 불교계의 반론(공의 윤리·유불일치) → 역사적 평가(상호 보완성)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
     <div class="questions-section">
         <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
 
-        <!-- 문제 1번 (원문) -->
+        <!-- 문제 1번 -->
         <div class="question-full">
             <div class="q-num">1번</div>
             <div class="question-stem">윗글에 대한 설명으로 가장 적절한 것은?</div>
@@ -323,7 +488,7 @@
             <div class="correct-badge">📍 ⑤번이 가장 적절한 설명(정답).</div>
         </div>
 
-        <!-- 문제 2번 (원문) -->
+        <!-- 문제 2번 -->
         <div class="question-full">
             <div class="q-num">2번</div>
             <div class="question-stem">㉮의 근거에 대한 설명으로 적절하지 않은 것은?</div>
@@ -350,7 +515,7 @@
             <div class="wrong-badge">📍 ⑤번이 적절하지 않은 설명(정답).</div>
         </div>
 
-        <!-- 문제 3번 (원문) -->
+        <!-- 문제 3번 -->
         <div class="question-full">
             <div class="q-num">3번</div>
             <div class="question-stem">윗글을 바탕으로 할 때, ‘정도전’과 ‘기화’ 모두 동의할 수 있는 것은?</div>
@@ -377,7 +542,7 @@
             <div class="correct-badge">📍 ④번이 정도전과 기화 모두 동의할 수 있는 내용(정답).</div>
         </div>
 
-        <!-- 문제 4번 (원문 전체 복원 - 보기 및 선택지 원문 그대로) -->
+        <!-- 문제 4번 -->
         <div class="question-full">
             <div class="q-num">4번</div>
             <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;에 대해 보인 반응으로 적절하지 않은 것은?</div>
@@ -408,7 +573,7 @@
             <div class="wrong-badge">📍 ②번이 적절하지 않은 반응(정답).</div>
         </div>
 
-        <!-- 문제 5번 (원문) -->
+        <!-- 문제 5번 -->
         <div class="question-full">
             <div class="q-num">5번</div>
             <div class="question-stem">㉠에 대한 불교계의 반론으로 적절하지 않은 것은?</div>
@@ -435,7 +600,7 @@
             <div class="wrong-badge">📍 ⑤번이 적절하지 않은 반론(정답).</div>
         </div>
 
-        <!-- 문제 6번 (원문) -->
+        <!-- 문제 6번 -->
         <div class="question-full">
             <div class="q-num">6번</div>
             <div class="question-stem">문맥상 ⓐ~ⓔ와 바꾸어 쓰기에 적절하지 않은 것은?</div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>수능완성 사용설명서 유형편 3 - 가상 발전소의 역할과 의의 (통합본)</title>
+    <title>수능완성 사용설명서 유형편 3 - 가상 발전소의 역할과 의의 (구조도 포함)</title>
     <style>
         * {
             margin: 0;
@@ -130,6 +130,110 @@
             background: #e2e8f0;
             font-weight: 600;
         }
+        /* 구조도 스타일 */
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
         .questions-section {
             padding: 30px 40px;
             background: #f8fafc;
@@ -206,6 +310,9 @@
             .questions-section {
                 padding: 20px;
             }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
@@ -213,7 +320,7 @@
 <div class="container">
     <div class="header">
         <h1>📖 수능완성 사용설명서 유형편 · 기술 01~05번</h1>
-        <p>가상 발전소의 역할과 의의 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설</p>
+        <p>가상 발전소의 역할과 의의 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 + 구조도</p>
     </div>
 
     <!-- 2단 지문 + 분석 (사용설명서 본문) -->
@@ -282,8 +389,9 @@
                 </table>
             </div>
 
+            <!-- 제목 변경: '이것만은 폭 익히지!' → '이것만은 꼭 익히자' -->
             <div class="info-box" style="background: #fef2e0;">
-                <h3>✨ 이것만은 폭 익히지!</h3>
+                <h3>✨ 이것만은 꼭 익히자!</h3>
                 <ul style="font-size: 13px;">
                     <li><strong>가상 발전소(VPP)</strong>: 분산형 에너지 자원을 통합하여 하나의 발전소처럼 운영하는 시스템.</li>
                     <li><strong>FR-ESS</strong>: 주파수 변동 시 충전/방전으로 주파수를 안정화. 수요＞공급 → 방전(주파수 상승), 공급＞수요 → 충전(주파수 하락).</li>
@@ -291,6 +399,80 @@
                     <li><strong>술어 정리</strong> – ⓐ대응, ⓑ기여, ⓒ창출, ⓓ유지, ⓔ보정</li>
                 </ul>
             </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도: 지문과 문제 사이 빈 칸에 삽입 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>가상 발전소 개념·기술·의의</span>
+        </div>
+        <div class="structure-grid">
+            <!-- 1단계: 도입 / 문제 제기 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>①</span> 기존 전력 계통의 한계
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">중앙 집중형</span> 대규모 발전소 중심, 안정적 생산</p>
+                    <p><span class="flow-badge">문제점</span> 고비용·환경제약·수요변동 대응 어려움, 송전망 용량·전압·손실 문제</p>
+                    <div class="sub-point">✔ 1문단: 새로운 에너지 관리 체계 필요성 대두 → 가상 발전소 등장 배경</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 2단계: 가상 발전소 개념 및 장점 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>②</span> 가상 발전소 개념
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">정의</span> 분산형 에너지 자원 통합 → 하나의 발전소처럼 운영</p>
+                    <p><span class="flow-badge">분산형 자원</span> 신재생·소규모 발전기·열병합, 소비지 인근 배전망 연결</p>
+                    <p><span class="flow-badge">장점</span> 장거리 송전망 최소화, 중앙 계통 문제 시 독립적 생산·소비 가능 → 안정성 향상</p>
+                    <div class="sub-point">🔎 2문단: ICT 연결로 최적화 전력 공급, 기존 발전소 유사 효과</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 3단계: 핵심 기술 (ESS, FR-ESS) -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>③</span> 핵심 기술: ESS·FR-ESS
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">ESS</span> 잉여 전력 저장, 수요·공급 실시간 조정</p>
+                    <p><span class="flow-badge">FR-ESS</span> 주파수 조정 전용. 주파수 = 공급-수요 균형 지표</p>
+                    <p><span class="flow-badge">동작 원리</span> 수요＞공급 → 방전(주파수 상승) / 공급＞수요 → 충전(주파수 하락)</p>
+                    <div class="sub-point">💬 3문단: 주파수 안정화를 통한 전력 품질 유지, 계통 사고 예방</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 4단계: 표준화된 통신 구조 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>④</span> 표준화된 통신 구조
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">국제 표준 프로토콜</span> 발전소·제어센터 연결, 객체 기반 데이터 교환, 운영자 제어 명령 전달</p>
+                    <p><span class="flow-badge">자동 수요 반응 프로토콜</span> 개별 분산 자원 연결, 상태 보고·응답, 실시간 제어</p>
+                    <div class="sub-point">⚙ 4문단: 전력 계통과 분산 자원 간 원활한 상호 통신 필수</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 5단계: 미래 의의 및 결론 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>⑤</span> 미래 의의 및 결론
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">효과</span> 에너지 효율 분배·안정적 공급, 신재생 확대·탄소 중립 기여</p>
+                    <p><span class="flow-badge">발전 방향</span> AI·빅데이터 결합 → 지능형 에너지 관리 체계</p>
+                    <div class="sub-point">🌟 5문단: 미래 에너지 산업 핵심 인프라, 에너지 패러다임 전환의 기술적 기반</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 기존 전력 계통의 문제점 → 가상 발전소 개념 및 분산형 자원의 장점 → ESS/FR-ESS를 통한 주파수 안정화 기술 → 표준화된 통신 구조 → 미래 의의 및 에너지 패러다임 전환
         </div>
     </div>
 
@@ -331,8 +513,7 @@
             <div class="question-stem">다음은 윗글을 읽은 학생이 가상 발전소의 특징을 정리하기 위해 메모한 내용이다. 적절하지 않은 것은?</div>
             <div style="overflow-x: auto; margin: 15px 0;">
                 <table style="width: 100%; font-size: 13px;">
-                    <thead><tr><th></th><th>기존의 전력 계통</th><th>가상 발전소</th><th></th></tr>
-                    </thead>
+                    <thead><tr><th></th><th>기존의 전력 계통</th><th>가상 발전소</th><th></th></tr></thead>
                     <tbody>
                         <tr><td><strong>전력 생산 방법</strong></td><td>대규모 발전소에서 중앙 집중형 형태로 생산함.</td><td>분산된 에너지 발전원에서 생산된 전력을 통합·관리함.</td><td>①</td></tr>
                         <tr><td><strong>송전망 설비</strong></td><td>장거리 송전망 건설이 필요함.</td><td>에너지 소비지 인근 지역의 발전원 설치를 통해 장거리 송전망 건설을 최소화함.</td><td>②</td></tr>

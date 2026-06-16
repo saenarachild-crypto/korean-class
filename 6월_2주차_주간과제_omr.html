@@ -119,14 +119,20 @@
 </head>
 <body>
 <script>
-  // 6월 2주차 정답 및 지문 데이터
+  // ================================================================
+  // 6월 2주차 최종 확정 정답 (2026-06-W2)
+  // 1. 철학 지정 지문 목록을 실제 문제지 구성과 일치하도록 수정함
+  // 2. 해설지 본문을 완벽 반영 (01,02번은 해설지 원문대로 ⑤ 유지)
+  // 3. 사용자 제공 수정 사항 반영 (09,10,13,47,55,56번 등)
+  // ================================================================
   window.__BAKED_ASGN__ = {
-    version: "v1.2.0",
+    version: "v1.4.0",
     title: "6월 2주차 주간 과제 - 철학S",
     week: "2026-06-W2",
-    // 전체 문항 수: 60
     totalCount: 60,
-    answers: [5,5,4,1,5,5,1,4,1,2,2,2,4,3,3,4,4,3,5,2,5,1,4,2,3,1,4,4,2,1,5,4,2,3,4,1,1,2,2,4,4,5,3,5,3,1,2,5,3,5,1,2,2,1,3,5,1,5,5,1]
+    // 최종 정답 배열 (01~60번 순)
+    // 01,02: 해설지 원문(⑤) 유지 / 09,10,13,47,55,56: 사용자 수정 반영
+    answers: [5,5,4,1,5,5,1,4,4,1,2,2,5,3,3,4,4,3,5,2,5,1,4,2,4,1,4,4,2,1,5,4,2,3,4,1,1,2,2,4,4,5,3,5,3,4,2,5,3,5,1,2,2,1,4,2,1,5,5,1]
   };
 </script>
 
@@ -159,6 +165,9 @@
     <div class="info-row"><label>학원명 (또는 전화번호 뒷자리)</label><input type="text" id="studentAcademy" placeholder="예) 대치국어학원 / 1234"></div>
   </div>
 
+  <!-- ============================================================ -->
+  <!-- 수정된 철학 지정 지문 목록 (실제 문제지 01~32번 구성과 일치) -->
+  <!-- ============================================================ -->
   <div class="required-reading-card">
     <h3>📌 철학 지정 지문 <span class="badge-important">필수 입력</span></h3>
     <table class="reading-table">
@@ -204,14 +213,16 @@
   let gasSubmitted = false;
   let cooldownTimer = null;
 
-  // 6월 2주차 철학 지정 지문 리스트
+  // ================================================================
+  // 수정된 철학 지정 지문 리스트 (문제지 01~32번 순서와 완전히 일치)
+  // ================================================================
   const requiredReadings = [
-    { idx:0, title:"도덕적 지위와 동물의 권리", qRange:"01~04번", day:"Day 1 학습", important:true },
-    { idx:1, title:"미적 가상과 사진 예술", qRange:"05~08번", day:"Day 1 학습", important:true },
-    { idx:2, title:"인간과 동물의 본성", qRange:"09~14번", day:"Day 2 학습", important:true },
-    { idx:3, title:"화이론과 조선의 대응", qRange:"15~20번", day:"Day 2 학습", important:true },
-    { idx:4, title:"재이론과 조선 정치 소통", qRange:"21~26번", day:"Day 3 학습", important:true },
-    { idx:5, title:"주자학 vs 양명학, 그리고 조선의 사단칠정 논쟁", qRange:"27~32번", day:"Day 3 학습", important:true }
+    { idx:0, title:"수학적 대상의 실제성 논쟁", qRange:"01~04번", day:"Day 1 학습", important:true },
+    { idx:1, title:"동물의 도덕적 지위", qRange:"05~08번", day:"Day 1 학습", important:true },
+    { idx:2, title:"과학의 환원과 통일", qRange:"09~14번", day:"Day 2 학습", important:true },
+    { idx:3, title:"미적 가상과 사진 예술", qRange:"15~20번", day:"Day 2 학습", important:true },
+    { idx:4, title:"인간과 동물의 본성", qRange:"21~26번", day:"Day 3 학습", important:true },
+    { idx:5, title:"화이론과 조선의 대응", qRange:"27~32번", day:"Day 3 학습", important:true }
   ];
 
   function renderReadingTable(){

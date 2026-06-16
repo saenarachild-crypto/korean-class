@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>문학 유형 연습 ② - 이청준 「줄」 (시구별 분석 통합본)</title>
+    <title>문학 유형 연습 ② - 이청준 「줄」 (전체 줄거리 + 구조도 통합본)</title>
     <style>
         * {
             margin: 0;
@@ -161,6 +161,125 @@
             background: #e2e8f0;
             font-weight: 600;
         }
+        /* 구조도 및 전체 줄거리 스타일 */
+        .summary-structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .summary-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .summary-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .plot-summary-box {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 24px 28px;
+            margin-bottom: 36px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2edf7;
+        }
+        .plot-summary-box p {
+            margin-bottom: 1em;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+            margin-top: 20px;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
         .questions-section {
             padding: 30px 40px;
             background: #f8fafc;
@@ -237,6 +356,9 @@
             .questions-section {
                 padding: 20px;
             }
+            .summary-structure-wrapper {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
@@ -244,7 +366,7 @@
 <div class="container">
     <div class="header">
         <h1>📖 수능완성 사용설명서 유형편 · 문학 05~08번</h1>
-        <p>이청준 「줄」 | 시구별 분석 + 문제 + 정답/오답 해설</p>
+        <p>이청준 「줄」 | 시구별 분석 + 전체 줄거리 + 구조도 + 문제/해설</p>
     </div>
 
     <!-- 2단 지문 + 분석 -->
@@ -475,7 +597,7 @@
             </div>
 
             <div class="info-box" style="background: #fef2e0;">
-                <h3>✨ 이것만은 폭 익히지!</h3>
+                <h3>✨ 이것만은 꼭 익히자!</h3>
                 <ul style="font-size: 13px;">
                     <li><strong>무아의 경지</strong> – 줄이 보이지 않고, 소리도 들리지 않는 상태.</li>
                     <li><strong>액자식 구성</strong> – 현재의 ‘나’(기자)가 과거의 이야기를 듣는 구조.</li>
@@ -486,7 +608,97 @@
         </div>
     </div>
 
-    <!-- ========== 문제 + 해설 영역 (원문 완전 복원) ========== -->
+    <!-- ========== 전체 줄거리 + 구조도 (지문 끝에 추가) ========== -->
+    <div class="summary-structure-wrapper">
+        <div class="summary-title">
+            📖 전체 줄거리 & 구조도
+            <span>이청준 「줄」 한눈에 보기</span>
+        </div>
+
+        <!-- 상세 줄거리 텍스트 -->
+        <div class="plot-summary-box">
+            <h3 style="font-size: 20px; margin-bottom: 16px; color: #1e466e;">🎪 「줄」 완전한 이야기 흐름</h3>
+            <p>문화부 기자 ‘나’는 삶에 무료함을 느끼던 중, 고향 C읍에서 “줄을 타다 승천했다”는 전설적인 줄광대의 소문을 취재하게 된다. 여관에 머물던 ‘나’는 ‘승천장의사’ 간판을 단서로 과거 서커스단에서 트럼펫을 불던 노인을 만나고, 그로부터 줄광대 허운의 비극적 일생을 듣게 된다. (액자식 구성)</p>
+            <p>허운의 아버지 허 노인은 뛰어난 줄광대였다. 그는 아내가 단장과 부정한 관계를 맺었다고 여겨 아내를 죽인 뒤, 아무 일 없었다는 듯 줄을 탔다. 허 노인에게 줄타기는 단순한 재주가 아니라 삶 자체였다. 그는 관객을 즐겁게 하는 재주나 곡예를 거부하고, 오직 줄 위에서 마음과 몸을 완전히 비운 채 걷는 일에 몰두했다. 아들 운에게도 혹독한 연습을 시켰고, 운이 “줄이 보이지 않는다”고 하자 “아직 객기가 있다”며 공연을 허락하지 않았다.</p>
+            <p>단장은 허 노인에게 “관객의 간덩이를 내려앉게 하는 재주”를 요구했지만, 허 노인은 자신의 원칙을 고수하며 조용히 줄을 탔다. 그러던 어느 날, 기력이 쇠한 허 노인이 줄에서 발을 헛디디는 실수를 한다. 다음 날 허 노인은 운이 줄을 타는 모습을 보며 갑자기 “이놈아!” 하고 고함을 질렀다. 그러나 운은 소리를 듣지 못하고 줄을 건넜고, 허 노인은 빙그레 웃으며 운에게 줄타기를 허락했다.</p>
+            <p>허 노인은 운에게 “눈과 귀가 열리는 것이 가장 위험하다”며 무아의 경지를 가르쳤다. 그리고 자신은 줄에서 내려오지 않고 아들과 함께 마지막 줄을 타기로 한다. 운이 줄을 다 건넜을 때, 뒤따르던 허 노인은 줄에서 떨어져 죽음을 맞이한다. 이후 운은 아버지의 뒤를 이어 줄광대가 되지만, 단장의 요구대로 재주를 부리지 않고 조용히 줄만 탄다.</p>
+            <p>어느 날 한 여인이 운의 공연을 보러 오기 시작한다. 운은 그녀와 사랑에 빠지고, 그녀를 기쁘게 하기 위해 줄 위에서 재주를 부리기 시작한다. 관객과 단장은 열광하지만, 운은 더 이상 예전처럼 자유롭지 못하다. 결국 운은 여인과 함께 살기 위해 줄에서 내려오려 하지만, 여인은 “내가 사랑한 것은 줄 위의 당신이었다”고 말한다. 운은 자신이 한 인간으로 사랑받은 것이 아니라 환상적 존재로 사랑받았음을 깨닫는다. 그날 밤 운은 다시 줄에 올라 모든 것을 걸고 줄을 타다가 스스로 떨어져 죽는다. 이후 사람들은 그의 죽음을 “줄광대가 승천했다”고 말하게 되고, 그 소문은 전설처럼 굳어진다.</p>
+        </div>
+
+        <!-- 구조도 (시각적 흐름) -->
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 20px; margin-bottom: 20px; color: #1e466e; text-align: center;">📌 작품 구조도 (액자식 구성 + 주요 사건)</h3>
+            <div class="structure-grid">
+                <!-- 1. 외화 (현재) -->
+                <div class="struct-card">
+                    <div class="card-head">
+                        <span>①</span> 외화 (현재)
+                    </div>
+                    <div class="card-body">
+                        <p><span class="flow-badge">화자 ‘나’</span> 문화부 기자, 무료함 속에서 취재</p>
+                        <p><span class="flow-badge">만남</span> C읍에서 트럼펫 사내를 만나 허운의 이야기를 듣게 됨</p>
+                        <div class="sub-point">✔ 프레임 이야기: 기자의 시점에서 과거 회상 시작</div>
+                    </div>
+                </div>
+                <div class="arrow-symbol">➡️</div>
+                <!-- 2. 내화 (과거 - 허 노인과 운) -->
+                <div class="struct-card">
+                    <div class="card-head">
+                        <span>②</span> 내화 (과거) - 허 노인
+                    </div>
+                    <div class="card-body">
+                        <p><span class="flow-badge">줄타기 장인</span> 무아의 경지, 상업성 거부</p>
+                        <p><span class="flow-badge">단장과 갈등</span> 재주 vs 예술 혼</p>
+                        <p><span class="flow-badge">기력 쇠퇴</span> 첫 실수 (ⓐ) → 아들에게 기회</p>
+                        <div class="sub-point">🔎 전통 예술의 고수와 세속적 압박</div>
+                    </div>
+                </div>
+                <div class="arrow-symbol">➡️</div>
+                <!-- 3. 내화 - 운의 수련과 경지 -->
+                <div class="struct-card">
+                    <div class="card-head">
+                        <span>③</span> 운의 성장
+                    </div>
+                    <div class="card-body">
+                        <p><span class="flow-badge">혹독한 연습</span> “줄이 넓게 보인다” → 거절 (㉠)</p>
+                        <p><span class="flow-badge">경지</span> “줄이 보이지 않는다” → “아직 객기” (㉡)</p>
+                        <p><span class="flow-badge">시험</span> 허 노인의 고함 (㉢) → 듣지 못함 → 인정</p>
+                        <div class="sub-point">💬 무아의 경지 확인: 외부 자극 차단</div>
+                    </div>
+                </div>
+                <div class="arrow-symbol">➡️</div>
+                <!-- 4. 전수와 죽음 -->
+                <div class="struct-card">
+                    <div class="card-head">
+                        <span>④</span> 전수 & 비극
+                    </div>
+                    <div class="card-body">
+                        <p><span class="flow-badge">허 노인의 당부</span> “눈과 귀가 열리는 것이 가장 위험하다” (㉣)</p>
+                        <p><span class="flow-badge">함께 줄타기</span> “같이 타자” (㉤) → 허 노인 추락사</p>
+                        <div class="sub-point">⚡ 장인 정신의 완성, 후계자 계승</div>
+                    </div>
+                </div>
+                <div class="arrow-symbol">➡️</div>
+                <!-- 5. 운의 말년과 승천 -->
+                <div class="struct-card">
+                    <div class="card-head">
+                        <span>⑤</span> 운의 최후
+                    </div>
+                    <div class="card-body">
+                        <p><span class="flow-badge">사랑</span> 여인을 만나 재주 부리기 시작</p>
+                        <p><span class="flow-badge">환멸</span> “내가 사랑한 것은 줄 위의 당신”</p>
+                        <p><span class="flow-badge">승천</span> 마지막 줄타기 후 스스로 떨어져 죽음 → 전설이 됨</p>
+                        <div class="sub-point">🌟 예술적 순수의 회복, 비극적 완성</div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+                📍 전체 흐름 : 현재의 기자(외화) → 과거 허 노인의 장인 정신과 단장의 갈등 → 운의 수련과 무아경 도달 → 아버지의 죽음과 계승 → 사랑을 통한 혼란 → 비극적 죽음과 ‘승천’ 전설
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
     <div class="questions-section">
         <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
 

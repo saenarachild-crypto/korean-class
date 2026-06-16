@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>수능완성 사용설명서 유형편 2 - 법인의 권리 능력과 유형 (통합본)</title>
+    <title>수능완성 사용설명서 유형편 2 - 법인의 권리 능력과 유형 (구조도 포함)</title>
     <style>
         * {
             margin: 0;
@@ -130,6 +130,110 @@
             background: #e2e8f0;
             font-weight: 600;
         }
+        /* 구조도 스타일 */
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
         .questions-section {
             padding: 30px 40px;
             background: #f8fafc;
@@ -206,6 +310,9 @@
             .questions-section {
                 padding: 20px;
             }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
@@ -213,7 +320,7 @@
 <div class="container">
     <div class="header">
         <h1>📖 수능완성 사용설명서 유형편 · 사회 01~06번</h1>
-        <p>법인의 권리 능력과 유형 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설</p>
+        <p>법인의 권리 능력과 유형 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 + 구조도</p>
     </div>
 
     <!-- 2단 지문 + 분석 (사용설명서 본문) -->
@@ -278,10 +385,10 @@
                 <table style="font-size: 12.5px;">
                     <thead><tr><th>구분</th><th>법인 의제설</th><th>법인 실재설</th></tr></thead>
                     <tbody>
-                        <tr><td>법인의 본질</td><td>인위적 존재, 법률이 만든 허구</td><td>독자적 의사 가진 실체</td></tr>
-                        <tr><td>권리 능력 범위</td><td>정관 명시 문구 중심 좁게 해석</td><td>설립 목적 달성에 필요한 행위 포함 넓게 인정</td></tr>
-                        <tr><td>행위 능력</td><td>부정, 대표자의 대리 행위로 봄</td><td>인정, 법인 자체의 행위로 봄</td></tr>
-                        <tr><td>불법 행위 능력</td><td>대표자에게만 인정, 법인은 부정</td><td>법인 자체 배상 책임 인정</td></tr>
+                        <tr><td>법인의 본질</th><td>인위적 존재, 법률이 만든 허구</th><td>독자적 의사 가진 실체</th></tr>
+                        <tr><td>권리 능력 범위</th><td>정관 명시 문구 중심 좁게 해석</th><td>설립 목적 달성에 필요한 행위 포함 넓게 인정</th></tr>
+                        <tr><td>행위 능력</th><td>부정, 대표자의 대리 행위로 봄</th><td>인정, 법인 자체의 행위로 봄</th></tr>
+                        <tr><td>불법 행위 능력</th><td>대표자에게만 인정, 법인은 부정</th><td>법인 자체 배상 책임 인정</th></tr>
                     </tbody>
                 </table>
             </div>
@@ -292,16 +399,17 @@
                 <table style="font-size: 12.5px;">
                     <thead><tr><th>구분</th><th>사단 법인</th><th>재단 법인</th></tr></thead>
                     <tbody>
-                        <tr><td>구성 실체</td><td>사람의 단체(사원)</td><td>재산의 집합체(출연 재산)</td></tr>
-                        <tr><td>존속 기반</td><td>사원의 교체 → 존속 영향 없음</td><td>설립자의 사망 → 영향 없음</td></tr>
-                        <tr><td>최고 의결 기관</td><td>사원 총회</td><td>이사회</td></tr>
-                        <tr><td>정관 변경</td><td>사원 합의로 가능</td><td>원칙적으로 허용되지 않음</td></tr>
+                        <tr><td>구성 실체</th><td>사람의 단체(사원)</th><td>재산의 집합체(출연 재산)</th></tr>
+                        <tr><td>존속 기반</th><td>사원의 교체 → 존속 영향 없음</th><td>설립자의 사망 → 영향 없음</th></tr>
+                        <tr><td>최고 의결 기관</th><td>사원 총회</th><td>이사회</th></tr>
+                        <tr><td>정관 변경</th><td>사원 합의로 가능</th><td>원칙적으로 허용되지 않음</th></tr>
                     </tbody>
                 </table>
             </div>
 
+            <!-- 제목 변경: '이것만은 폭 익히지!' → '이것만은 꼭 익히자' -->
             <div class="info-box" style="background: #fef2e0;">
-                <h3>✨ 이것만은 폭 익히지!</h3>
+                <h3>✨ 이것만은 꼭 익히자!</h3>
                 <ul style="font-size: 13px;">
                     <li><strong>권리 능력</strong> – 권리·의무 주체 자격. 자연인: 출생 시. 법인: 정관+등기.</li>
                     <li><strong>소멸 절차</strong> – 해산 → 청산(재산 정리) → 청산 종결 등기.</li>
@@ -310,6 +418,69 @@
                     <li><strong>재단 법인</strong> – 재산 중심, 이사회 의결, 정관 변경 불가. 항상 비영리.</li>
                 </ul>
             </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도: 지문과 문제 사이 빈 칸에 삽입 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>법인 개념부터 유형까지</span>
+        </div>
+        <div class="structure-grid">
+            <!-- 1단계: 권리 능력 기본 개념 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>①</span> 권리 능력·행위 능력
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">권리 능력</span> 권리·의무 주체 자격 → 자연인(출생), 법인(정관+등기)</p>
+                    <p><span class="flow-badge">행위 능력</span> 법률 효과 발생 능력. 법인은 기관 필요</p>
+                    <div class="sub-point">✔ 1문단: 법인격 취득 조건과 행위 능력의 특수성</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 2단계: 소멸 절차 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>②</span> 법인 소멸 절차
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">해산</span> 존립기간 만료·정관 해산사유·파산 → 본래 활동 정지</p>
+                    <p><span class="flow-badge">청산</span> 잔여 재산 정리, 제한적 권리 능력 유지, 청산인 집행</p>
+                    <p><span class="flow-badge">청산 종결 등기</span> 법인격 소멸 공시</p>
+                    <div class="sub-point">🔎 2문단: 해산 → 청산 → 등기 단계별 설명</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 3단계: 두 학설 비교 -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>③</span> 법인 의제설 vs 실재설
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">의제설</span> 인위적 존재 → 권리 능력 좁게 해석, 행위·불법행위능력 부정(대표자 귀속)</p>
+                    <p><span class="flow-badge">실재설</span> 독자적 실체 → 권리 능력 넓게 인정, 법인 스스로 행위·배상 책임</p>
+                    <p><span class="flow-badge">민법 제35조</span> 법인+대표자 연대 배상 책임</p>
+                    <div class="sub-point">💬 3~4문단: 학설 차이와 실정법 조화</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <!-- 4단계: 법인 유형 (사단/재단, 영리/비영리) -->
+            <div class="struct-card">
+                <div class="card-head">
+                    <span>④</span> 법인 유형 분류
+                </div>
+                <div class="card-body">
+                    <p><span class="flow-badge">사단 법인</span> 사람 단체, 사원 총회, 정관 변경 가능</p>
+                    <p><span class="flow-badge">재단 법인</span> 재산 집합체, 이사회 최고 의결, 정관 변경 불가 → 항상 비영리</p>
+                    <p><span class="flow-badge">영리 vs 비영리</span> 이익 분배 여부에 따른 구분</p>
+                    <div class="sub-point">⚖ 5~6문단: 구성 실체 + 설립 목적 기준 종합</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 권리 능력 기본 개념 → 소멸 절차 → 법인 본질에 관한 두 학설(의제설·실재설) → 행위·불법행위능력 차이 → 법인 유형(사단/재단, 영리/비영리)
         </div>
     </div>
 
