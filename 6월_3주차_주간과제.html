@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>김현석 국어 · 6월 3주차 주간 과제 OMR</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김현석 국어 · 6월 3주차 주간 과제 OMR">
+  <meta property="og:description" content="6모 대비 주간 과제 답안지 (법경제S 지정 지문 + 전체 문항)">
+  <meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/logo.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:url" content="https://saenarachild-crypto.github.io/korean-class/omr-may-week4.html">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", "Noto Sans KR", sans-serif; background: #faf6f3; color: #2c1518; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; }
+    button { font-family: inherit; touch-action: manipulation; }
+    input, select { font-family: inherit; touch-action: manipulation; }
+    .header { background: linear-gradient(135deg, #7c2c3e 0%, #5a1f2c 100%); color: #faf6f3; padding: 16px 16px calc(16px + env(safe-area-inset-top)); padding-top: calc(16px + env(safe-area-inset-top)); text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 50; }
+    .header h1 { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+    .header .sub { font-size: 11.5px; opacity: 0.85; margin-top: 4px; }
+    .container { max-width: 640px; margin: 0 auto; padding: 14px 14px 20px; }
+    .info-card, .required-reading-card { background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 2px 10px rgba(124, 44, 62, 0.08); border: 1px solid #efe0e3; margin-bottom: 16px; }
+    .info-card label { display: block; font-size: 12.5px; color: #7c2c3e; font-weight: 600; margin-bottom: 6px; }
+    .info-card label .req { color: #d04141; margin-left: 2px; }
+    .info-card input { width: 100%; padding: 11px 12px; border: 1.5px solid #d8c8cc; border-radius: 10px; font-size: 16px; background: #fafafa; transition: border-color 0.15s, background 0.15s; }
+    .info-card input:focus { outline: none; border-color: #7c2c3e; background: #fff; }
+    .info-row { margin-bottom: 10px; }
+    .info-row:last-child { margin-bottom: 0; }
+    .required-reading-card h3 { font-size: 14px; font-weight: 700; color: #2d6e4e; margin-bottom: 10px; border-left: 4px solid #2d6e4e; padding-left: 8px; }
+    .reading-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .reading-table th, .reading-table td { border: 1px solid #e2d4d6; padding: 8px 6px; text-align: left; vertical-align: top; }
+    .reading-table th { background: #f4ecee; color: #5a1f2c; font-weight: 700; }
+    .reading-table tr.important-row { background-color: #fff9e8; }
+    .time-input { width: 65px; padding: 6px 4px; border: 1px solid #d8c8cc; border-radius: 8px; font-size: 12px; text-align: center; }
+    .badge-important { background: #d04141; color: white; font-size: 9px; padding: 2px 5px; border-radius: 10px; margin-left: 6px; display: inline-block; vertical-align: middle; }
+    .tab-menu { display: flex; gap: 8px; margin-bottom: 14px; }
+    .tab-btn { flex: 1; background: #fff; border: 1.5px solid #d8c8cc; border-radius: 12px; padding: 12px 0; font-weight: 700; font-size: 15px; color: #6c4248; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
+    .tab-btn.reading.active { background: #2d6e4e; border-color: #2d6e4e; }
+    .tab-btn.literature.active { background: #c66830; border-color: #c66830; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .score-banner { display: none; background: linear-gradient(135deg, #fff8f5 0%, #fcefe8 100%); border: 2px solid #7c2c3e; border-radius: 14px; padding: 16px; margin-bottom: 16px; text-align: center; scroll-margin-top: 80px; }
+    .score-banner.show { display: block; animation: slideIn 0.35s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    .score-title { font-size: 12.5px; color: #7c2c3e; font-weight: 700; margin-bottom: 6px; }
+    .score-main { font-size: 30px; font-weight: 800; color: #7c2c3e; }
+    .score-main .total { font-size: 16px; color: #997a80; font-weight: 600; }
+    .score-detail { font-size: 12.5px; color: #6c4248; margin-top: 4px; }
+    .score-breakdown { display: flex; gap: 8px; margin-top: 12px; justify-content: center; }
+    .score-item { background: #fff; padding: 8px 12px; border-radius: 10px; flex: 1; max-width: 130px; border: 1px solid #f0e0e3; }
+    .score-item .label { color: #888; font-size: 10.5px; display: block; }
+    .score-item .value { color: #2c1518; font-size: 15px; font-weight: 700; }
+    .score-item.reading .value { color: #2d6e4e; }
+    .score-item.literature .value { color: #c66830; }
+    .section { background: #fff; border-radius: 14px; box-shadow: 0 2px 10px rgba(124, 44, 62, 0.08); border: 1px solid #efe0e3; margin-bottom: 14px; overflow: hidden; }
+    .section-header { padding: 11px 14px; font-weight: 700; color: #fff; display: flex; justify-content: space-between; }
+    .section-header.reading { background: linear-gradient(135deg, #2d6e4e 0%, #1f5238 100%); }
+    .section-header.literature { background: linear-gradient(135deg, #c66830 0%, #9d4d1c 100%); }
+    .section-title { font-size: 15px; }
+    .section-progress { font-size: 12.5px; background: rgba(255,255,255,0.18); padding: 3px 9px; border-radius: 10px; }
+    .question-list { padding: 4px 0; }
+    .question-row { display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 6px; padding: 7px 10px; border-bottom: 1px solid #f5ecee; }
+    .question-row:last-child { border-bottom: none; }
+    .question-num { font-size: 13.5px; font-weight: 700; color: #6c4248; text-align: center; }
+    .reading .question-num { color: #2d6e4e; }
+    .literature .question-num { color: #c66830; }
+    .choices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .choice { width: 100%; height: 38px; border: 1.5px solid #d8c8cc; border-radius: 50%; background: #fff; color: #6c4248; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.08s; }
+    .choice:active { transform: scale(0.9); }
+    .choice.selected { background: #7c2c3e; border-color: #7c2c3e; color: #fff; }
+    .reading .choice.selected { background: #2d6e4e; border-color: #2d6e4e; }
+    .literature .choice.selected { background: #c66830; border-color: #c66830; }
+    body.submitted .question-row.correct .choice.selected { background: #2d8b5b; }
+    body.submitted .question-row.wrong .choice.selected { background: #d04141; }
+    body.submitted .question-row.wrong .choice.answer, body.submitted .question-row.unanswered .choice.answer { background: #fff; border-color: #2d8b5b; color: #2d8b5b; box-shadow: inset 0 0 0 1.5px #2d8b5b; }
+    body.submitted .choice { cursor: default; }
+    body.submitted .choice:active { transform: none; }
+    .answer-mark { display: none; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 4px; margin-top: 2px; }
+    body.submitted .question-row.correct .answer-mark.right { display: block; background: #e8f5ed; color: #2d8b5b; }
+    body.submitted .question-row.wrong .answer-mark.wrong { display: block; background: #fce8e8; color: #d04141; }
+    body.submitted .question-row.unanswered .answer-mark.unanswered { display: block; background: #f0e6e8; color: #997a80; }
+    .btn-row { display: flex; gap: 8px; margin-top: 14px; }
+    .btn { flex: 1; padding: 13px 14px; border: none; border-radius: 12px; font-size: 14.5px; font-weight: 700; cursor: pointer; transition: opacity 0.15s, transform 0.08s; }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: linear-gradient(135deg, #7c2c3e 0%, #5a1f2c 100%); color: #fff; }
+    .btn-kakao { width: 100%; margin-top: 10px; background: #fee500; color: #3c1e1e; }
+    .btn-secondary { background: #fff; color: #7c2c3e; border: 1.5px solid #d8c8cc; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; align-items: flex-end; justify-content: center; }
+    .modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal { background: #fff; border-radius: 16px 16px 0 0; width: 100%; max-width: 540px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
+    @media (min-width: 600px) { .modal-overlay { align-items: center; padding: 16px; } .modal { border-radius: 16px; max-height: 85vh; } }
+    .modal-head { padding: 14px 16px; border-bottom: 1px solid #efe0e3; display: flex; justify-content: space-between; align-items: center; }
+    .modal-head h3 { font-size: 15.5px; color: #7c2c3e; font-weight: 700; }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; width: 36px; height: 36px; }
+    .modal-body { flex: 1; overflow-y: auto; padding: 14px 16px; }
+    #kakao-report-text { width: 100%; min-height: 280px; padding: 12px; border: 1px solid #d8c8cc; border-radius: 8px; font-family: monospace; font-size: 12.5px; line-height: 1.6; resize: vertical; background: #faf6f3; }
+    .modal-foot { padding: 12px 16px 16px; display: flex; gap: 8px; border-top: 1px solid #efe0e3; }
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: #2c1518; color: #fff; padding: 11px 20px; border-radius: 24px; font-size: 13.5px; z-index: 2000; opacity: 0; transition: opacity 0.25s; pointer-events: none; text-align: center; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .footer-note { text-align: center; font-size: 11px; color: #997a80; padding: 16px 0 8px; }
+    .link-box { text-align: center; margin: 12px 0; }
+    .link-btn { display: inline-block; background: #fff; border: 1px solid #7c2c3e; padding: 10px 16px; border-radius: 30px; text-decoration: none; color: #7c2c3e; font-weight: 600; font-size: 13px; }
+    .hidden { display: none; }
+    .notice-card { background: #fff8f5; border: 1.5px solid #d04141; border-radius: 14px; padding: 12px 14px; margin-bottom: 16px; }
+    .notice-title { font-size: 13.5px; font-weight: 800; color: #d04141; margin-bottom: 8px; }
+    .notice-list { list-style: none; padding: 0; margin: 0; }
+    .notice-list li { font-size: 12.5px; color: #2c1518; padding: 3px 0 3px 16px; position: relative; line-height: 1.55; }
+    .notice-list li::before { content: "•"; color: #d04141; position: absolute; left: 4px; font-weight: 700; }
+    .notice-list li b { color: #7c2c3e; }
+  </style>
+</head>
+<body>
+<script>
+  // ================================================================
+  // 6월 3주차 최종 확정 정답 (2026-06-W3)
+  // 1. 법경제S 지정 지문 목록을 실제 문제지 구성과 일치하도록 수정함
+  // 2. 사용자 제공 54자리 정답 문자열 완벽 반영
+  // ================================================================
+  window.__BAKED_ASGN__ = {
+    version: "v2.0.0",
+    title: "6월 3주차 주간 과제 - 법경제S",
+    week: "2026-06-W3",
+    totalCount: 54,
+    // 최종 정답 배열 (01~54번 순)
+    // 출처: 사용자 제공 문자열 "355225325425143542534453135313244151354425141545124143"
+    answers: [3,5,5,2,2,5,3,2,5,4,2,5,1,4,3,5,4,2,5,3,4,4,5,3,1,3,5,3,1,3,2,4,4,1,5,1,3,5,4,4,2,5,1,4,1,5,4,5,1,2,4,1,4,3]
+  };
+</script>
+
+<header class="header">
+  <h1>김현석 국어 · 6월 3주차 주간 과제</h1>
+  <div class="sub">6모 대비 OMR · 법경제S 지정 지문</div>
+</header>
+
+<div class="container">
+  <div class="notice-card">
+    <div class="notice-title">⚠️ 채점 안내</div>
+    <ul class="notice-list">
+      <li><b>채점은 최대 3회</b>까지 가능합니다.</li>
+      <li>채점 사이에는 <b>10분 대기 시간</b>이 있어요. (다시 풀어볼 시간)</li>
+      <li>3회를 모두 사용해야 <b>📖 해설지</b>가 열립니다.</li>
+      <li>채점 직후엔 답안 수정이 불가, 대기가 끝나면 다시 수정·재도전할 수 있어요.</li>
+    </ul>
+  </div>
+
+  <div class="score-banner" id="scoreBanner">
+    <div class="attempt-text" id="attemptDisplay" style="font-size:12px; color:#7c2c3e; font-weight:700; margin-bottom:5px;">📌 남은 채점 횟수: 3회</div>
+    <div class="score-title">📊 채점 결과</div>
+    <div class="score-main"><span id="scoreCorrect">0</span><span class="total"> / 54</span></div>
+    <div class="score-detail" id="scoreText">정답률 0%</div>
+    <div id="cooldownTimer" class="hidden" style="font-size:13px; font-weight:bold; color:#d04141; margin-top:10px;"></div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-row"><label>학생 이름<span class="req">*</span></label><input type="text" id="studentName" placeholder="홍길동"></div>
+    <div class="info-row"><label>학원명 (또는 전화번호 뒷자리)</label><input type="text" id="studentAcademy" placeholder="예) 대치국어학원 / 1234"></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 법경제S 지정 지문 목록 (실제 문제지 01~54번 구성과 일치) -->
+  <!-- ============================================================ -->
+  <div class="required-reading-card">
+    <h3>📌 법경제S 지정 지문 <span class="badge-important">필수 입력</span></h3>
+    <table class="reading-table">
+      <thead><tr><th>순번</th><th>지문 제목</th><th>문항</th><th>소요 시간(분)</th><th>일차</th></tr></thead>
+      <tbody id="readingTimeTable"></tbody>
+    </table>
+    <p style="font-size:11px; color:#997a80; margin-top:8px;">※ 해당 지문은 반드시 풀이 시간을 기록해야 과제 완료로 간주됩니다.</p>
+  </div>
+
+  <div class="tab-menu">
+    <button class="tab-btn reading active" data-tab="reading-tab">📗 법경제S 지문 (1~54번)</button>
+  </div>
+
+  <div id="reading-tab" class="tab-content active">
+    <div class="section reading">
+      <div class="section-header reading"><div class="section-title">전체 문항</div><div class="section-progress" id="readingProgress">0 / 54</div></div>
+      <div class="question-list" id="readingList"></div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:11.5px; color:#7c2c3e; margin-top:14px; font-weight:600;">⚠️ 채점은 최대 3회, 채점 사이 10분 대기</div>
+  <div class="btn-row"><button class="btn btn-secondary" id="resetBtn">초기화</button><button class="btn btn-primary" id="submitBtn">채점하기</button></div>
+  <button class="btn btn-kakao" id="kakaoBtn" disabled>💬 카톡 보고서 만들기 (채점 후)</button>
+
+  <div class="link-box"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQCtbR80-MIcTZkxPuq7Lq1ZAZFCDEQiKFUZq1ib5NfIKto?e=gWJzYG" class="link-btn" id="problemLinkBtn" target="_blank">📄 모의고사 문제지 보기</a></div>
+  <div id="solutionLinkArea" class="link-box hidden"><a href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBKGlXIxZFFQYTxKDMnH0h0AaBwscs-QZsTudhlEFcnQCw?e=v6Fd6h" class="link-btn" id="solutionLink" target="_blank">📖 해설지 보기</a></div>
+
+  <div class="footer-note">© 김현석 국어 · 답안 자동 저장</div>
+</div>
+
+<div class="modal-overlay" id="kakaoModal"><div class="modal"><div class="modal-head"><h3>📋 카톡 보고서</h3><button class="modal-close" id="modalCloseBtn">✕</button></div><div class="modal-body"><textarea id="kakao-report-text" readonly></textarea></div><div class="modal-foot"><button class="btn btn-secondary" id="copyReportBtn">📋 복사</button><button class="btn btn-primary" id="closeAfterCopyBtn">완료</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const asgn = window.__BAKED_ASGN__;
+
+  const STORAGE_KEY = 'kr-omr-jun-w3-v1';
+  const MAX_ATTEMPTS = 3;
+  const COOLDOWN_MIN = 10;
+  let state = { readingAnswers: new Array(asgn.totalCount).fill(0), litAnswers: [], submitted: false, score: null, readingTimes: {}, solutionRevealed: false, attemptCount: 0, cooldownUntil: 0 };
+  let gasSubmitted = false;
+  let cooldownTimer = null;
+
+  // ================================================================
+  // 법경제S 지정 지문 리스트 (문제지 01~54번 순서와 완전히 일치)
+  // ================================================================
+  const requiredReadings = [
+    { idx:0, title:"처분의 취소", qRange:"01~04번", day:"Day 1 학습", important:true },
+    { idx:1, title:"주식회사 이사의 경영 책임", qRange:"09~12번", day:"Day 1 학습", important:true },
+    { idx:2, title:"행정 행위의 구분과 건축 허가", qRange:"23~28번", day:"Day 2 학습", important:true },
+    { idx:3, title:"시장 집중도와 기업 결합의 제한 여부", qRange:"34~39번", day:"Day 2 학습", important:true },
+    { idx:4, title:"유동성 함정과 그 해결책", qRange:"44~48번", day:"Day 3 학습", important:true },
+    { idx:5, title:"비교 우위론과 신무역론에 따른 무역 발생", qRange:"49~54번", day:"Day 3 학습", important:true }
+  ];
+
+  function renderReadingTable(){
+    const tbody = $('readingTimeTable');
+    if(!tbody) return;
+    let html = '';
+    requiredReadings.forEach((r, i) => {
+      let val = state.readingTimes[r.title] || '';
+      let importantClass = r.important ? 'important-row' : '';
+      html += `<tr class="${importantClass}">
+        <td>${i+1}</td>
+        <td>${r.title} ${r.important ? '<span class="badge-important">매우 중요</span>' : ''}</td>
+        <td>${r.qRange}</td>
+        <td><input type="number" class="time-input" data-title="${r.title}" value="${val}" placeholder="분" min="1" max="180"></td>
+        <td>${r.day}</td>
+        </tr>`;
+    });
+    tbody.innerHTML = html;
+    document.querySelectorAll('.time-input').forEach(inp => {
+      inp.addEventListener('change', (e) => {
+        let val = e.target.value.trim();
+        if(val !== '') {
+          let num = parseInt(val,10);
+          if(isNaN(num) || num <= 0 || num > 180) { e.target.value = ''; return; }
+          state.readingTimes[e.target.dataset.title] = num;
+        } else { delete state.readingTimes[e.target.dataset.title]; }
+        saveState();
+      });
+    });
+  }
+
+  function validateRequiredTimes(){
+    for(let r of requiredReadings){ if(!state.readingTimes[r.title]) return false; }
+    return true;
+  }
+
+  function renderSection(listEl, prefix, count){
+    let html = '';
+    for(let i=1;i<=count;i++){
+      html += `<div class="question-row" data-q="${prefix}" data-num="${i}" id="row-${prefix}-${i}">
+        <div class="question-num">${i}<span class="answer-mark right">정답</span><span class="answer-mark wrong">오답</span><span class="answer-mark unanswered">미답</span></div>
+        <div class="choices">${[1,2,3,4,5].map(c => `<button type="button" class="choice" data-num="${i}" data-choice="${c}">${c}</button>`).join('')}</div>
+      </div>`;
+    }
+    listEl.innerHTML = html;
+  }
+
+  renderSection($('readingList'), 'r', asgn.totalCount);
+  renderReadingTable();
+
+  function onChoiceClick(e){
+    if(document.body.classList.contains('submitted')){
+      showToast('채점 직후엔 답안 수정이 불가능합니다. 대기 후 재도전하거나 초기화하세요.');
+      return;
+    }
+    let btn = e.target.closest('.choice');
+    if(!btn) return;
+    let row = btn.closest('.question-row');
+    let q = row.dataset.q, num = parseInt(row.dataset.num,10), choice = parseInt(btn.dataset.choice);
+    let arr = q==='r' ? state.readingAnswers : state.litAnswers;
+    arr[num-1] = arr[num-1] === choice ? 0 : choice;
+    updateRowUI(q, num);
+    updateProgress();
+    saveState();
+  }
+  function updateRowUI(q, num){
+    let row = $(`row-${q}-${num}`);
+    if(!row) return;
+    let arr = q==='r' ? state.readingAnswers : state.litAnswers;
+    let selected = arr[num-1] || 0;
+    row.querySelectorAll('.choice').forEach(btn => {
+      if(parseInt(btn.dataset.choice)===selected) btn.classList.add('selected');
+      else btn.classList.remove('selected');
+    });
+  }
+  function updateProgress(){
+    let rDone = state.readingAnswers.filter(v=>v>0).length;
+    $('readingProgress').textContent = `${rDone} / ${asgn.totalCount}`;
+  }
+  function saveState(){
+    let data = { v:2, readingAnswers:state.readingAnswers, litAnswers:state.litAnswers, submitted:state.submitted, score:state.score, student:{ name:$('studentName').value, academy:$('studentAcademy').value }, readingTimes:state.readingTimes, solutionRevealed:state.solutionRevealed, attemptCount:state.attemptCount, cooldownUntil:state.cooldownUntil };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+  function restoreState(){
+    let raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      try{
+        let data = JSON.parse(raw);
+        if(data.readingAnswers) state.readingAnswers = data.readingAnswers;
+        if(data.litAnswers) state.litAnswers = data.litAnswers;
+        if(data.student){ $('studentName').value = data.student.name; $('studentAcademy').value = data.student.academy; }
+        if(data.readingTimes) state.readingTimes = data.readingTimes;
+        if(typeof data.attemptCount === 'number') state.attemptCount = data.attemptCount;
+        if(typeof data.cooldownUntil === 'number') state.cooldownUntil = data.cooldownUntil;
+        if(data.solutionRevealed) state.solutionRevealed = true;
+        if(data.submitted){
+          state.submitted = true;
+          state.score = data.score;
+          applyGradingUI(data.score);
+          $('kakaoBtn').disabled = false;
+        }
+      }catch(e){}
+    }
+    for(let i=1;i<=asgn.totalCount;i++) updateRowUI('r',i);
+    updateProgress();
+    renderReadingTable();
+    if(state.solutionRevealed) $('solutionLinkArea').classList.remove('hidden');
+    updateCooldownUI();
+  }
+
+  function gradeAll(){
+    let rCorrect=0, rWrong=[], rUn=[];
+    const mapper = {"①":1,"②":2,"③":3,"④":4,"⑤":5, 1:1, 2:2, 3:3, 4:4, 5:5};
+    for(let i=0;i<asgn.totalCount;i++){
+      let ans=state.readingAnswers[i], key=mapper[asgn.answers[i]];
+      if(ans===0) rUn.push(i+1); else if(ans===key) rCorrect++; else rWrong.push({num:i+1, mine:ans, correct:key});
+    }
+    return { reading:{ correct:rCorrect, total:asgn.totalCount, wrong:rWrong, unanswered:rUn }, totalCorrect:rCorrect, total:asgn.totalCount };
+  }
+
+  function applyGradingUI(score){
+    const mapper = {"①":1,"②":2,"③":3,"④":4,"⑤":5, 1:1, 2:2, 3:3, 4:4, 5:5};
+    for(let i=1;i<=asgn.totalCount;i++){
+      let row=$(('row-r-'+i)), ans=state.readingAnswers[i-1], key=mapper[asgn.answers[i-1]];
+      if(ans===0){ row.classList.add('unanswered'); row.querySelector(`.choice[data-choice="${key}"]`).classList.add('answer'); }
+      else if(ans===key) row.classList.add('correct');
+      else { row.classList.add('wrong'); row.querySelector(`.choice[data-choice="${key}"]`).classList.add('answer'); }
+    }
+    document.body.classList.add('submitted');
+    $('scoreBanner').classList.add('show');
+    $('scoreCorrect').textContent = score.totalCorrect;
+    $('scoreText').textContent = `정답률 ${Math.round((score.totalCorrect / score.total) * 100)}%`;
+  }
+
+  function unlockAnswers(){
+    document.body.classList.remove('submitted');
+    document.querySelectorAll('.question-row').forEach(row => {
+      row.classList.remove('correct','wrong','unanswered');
+      row.querySelectorAll('.choice.answer').forEach(c => c.classList.remove('answer'));
+    });
+  }
+
+  function revealSolution(){
+    state.solutionRevealed = true;
+    $('solutionLinkArea').classList.remove('hidden');
+  }
+
+  function updateCooldownUI(){
+    const now = Date.now();
+    const submitBtn = $('submitBtn');
+    const cooldownDiv = $('cooldownTimer');
+    const remaining = Math.max(0, MAX_ATTEMPTS - state.attemptCount);
+    $('attemptDisplay').innerHTML = `📌 남은 채점 횟수: ${remaining}회`;
+
+    if(state.attemptCount >= MAX_ATTEMPTS){
+      submitBtn.disabled = true;
+      submitBtn.textContent = '채점 횟수 소진';
+      if(cooldownTimer){ clearInterval(cooldownTimer); cooldownTimer = null; }
+      cooldownDiv.classList.add('hidden');
+      document.body.classList.add('submitted');
+      revealSolution();
+      return;
+    }
+
+    if(state.cooldownUntil > now){
+      const remainSec = Math.floor((state.cooldownUntil - now)/1000);
+      const minutes = Math.floor(remainSec/60);
+      const seconds = remainSec%60;
+      cooldownDiv.classList.remove('hidden');
+      cooldownDiv.innerHTML = `⏳ 다음 채점까지: ${minutes}분 ${seconds}초`;
+      submitBtn.disabled = true;
+      submitBtn.textContent = '대기 중...';
+      if(!cooldownTimer){
+        cooldownTimer = setInterval(() => {
+          if(Date.now() >= state.cooldownUntil){
+            clearInterval(cooldownTimer);
+            cooldownTimer = null;
+            updateCooldownUI();
+          } else updateCooldownUI();
+        }, 1000);
+      }
+    } else {
+      if(cooldownTimer){ clearInterval(cooldownTimer); cooldownTimer = null; }
+      cooldownDiv.classList.add('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = '채점하기';
+      if(state.attemptCount > 0 && state.attemptCount < MAX_ATTEMPTS){
+        unlockAnswers();
+      }
+    }
+  }
+
+  function showToast(msg){ let t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+
+  $('submitBtn').onclick = ()=>{
+    if(!$('studentName').value.trim()){ showToast('이름을 입력하세요'); return; }
+    if(!validateRequiredTimes()){ showToast('필수 독서 지문의 소요 시간을 모두 입력해야 채점 가능합니다.'); return; }
+    if(state.attemptCount >= MAX_ATTEMPTS){ showToast('채점 횟수를 모두 사용했습니다.'); return; }
+    const now = Date.now();
+    if(state.cooldownUntil > now){
+      showToast(`다음 채점까지 ${Math.ceil((state.cooldownUntil-now)/60000)}분 기다려주세요.`);
+      return;
+    }
+    if(state.attemptCount === 0){
+      if(!confirm('채점은 최대 3회, 채점 사이 10분 대기 시간이 있습니다.\n3회를 모두 사용해야 해설지가 열립니다.\n\n채점을 시작할까요?')) return;
+    }
+    let score = gradeAll();
+    state.submitted = true;
+    state.score = score;
+    state.attemptCount++;
+    applyGradingUI(score);
+    $('kakaoBtn').disabled = false;
+    if(state.attemptCount < MAX_ATTEMPTS){
+      state.cooldownUntil = Date.now() + COOLDOWN_MIN*60*1000;
+    }
+    saveState();
+    updateCooldownUI();
+    showToast(`채점 완료! (${state.attemptCount}/${MAX_ATTEMPTS}회차)`);
+  };
+
+  $('resetBtn').onclick = ()=>{
+    if(!confirm('답안을 초기화하시겠습니까?')) return;
+    localStorage.removeItem(STORAGE_KEY); location.reload();
+  };
+
+  $('kakaoBtn').onclick = ()=>{
+    let s=state.score, name=$('studentName').value.trim()||'이름없음', academy=$('studentAcademy').value.trim();
+    const now = new Date();
+    const timeStr = `${now.getFullYear()}.${now.getMonth()+1}.${now.getDate()} ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}`;
+    let report = `━━━━━━━━━━━━━━━━━━\n  김현석 국어 ${asgn.title}\n━━━━━━━━━━━━━━━━━━\n▣ 학생: ${name} ${academy?`(${academy})`:''}\n▣ 총점: ${s.totalCorrect}/${s.total} (${Math.round(s.totalCorrect/s.total*100)}%)\n▣ 채점 회차: ${state.attemptCount}/${MAX_ATTEMPTS}\n▣ 제출시각: ${timeStr}\n━━━━━━━━━━━━━━━━━━\n※ 정답은 공개되지 않습니다.`;
+    $('kakao-report-text').value = report;
+    $('kakaoModal').classList.add('show');
+  };
+
+  $('modalCloseBtn').onclick = () => $('kakaoModal').classList.remove('show');
+  $('closeAfterCopyBtn').onclick = () => $('kakaoModal').classList.remove('show');
+  $('copyReportBtn').onclick = () => { $('kakao-report-text').select(); document.execCommand('copy'); showToast('복사되었습니다'); };
+
+  $('readingList').addEventListener('click', onChoiceClick);
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+      $(btn.dataset.tab).classList.add('active');
+    };
+  });
+
+  restoreState();
+})();
+</script>
+</body>
+</html>
