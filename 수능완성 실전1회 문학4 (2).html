@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 1회 - 32~34 (현대시)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .poem-line {
+            margin-bottom: 0.4em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .line-analysis .highlight {
+            color: #c0392b;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .poem-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin: 1.2em 0 0.8em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .analysis-box .exam-tip {
+            display: block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .note-box {
+            background: #fef9e6;
+            border: 1px solid #f1c40f;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 1회 · 문학 32~34</h1>
+        <p>백석 「흰 바람벽이 있어」 · 안도현 「연탄 한 장」 | 시구별 분석 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="poem-title">(가) 백석, 「흰 바람벽이 있어」</div>
+                <div class="poem-line">
+                    <span class="line-text">오늘 저녁 이 좁다란 방의 흰 바람벽에</span>
+                    <div class="line-analysis">← 화자의 외로움을 투영하는 공간</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어쩐지 쓸쓸한 것만이 오고 간다</span>
+                    <div class="line-analysis">← <span class="highlight">쓸쓸함</span> – 화자의 내적 정서가 외부로 투영됨</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이 흰 바람벽에</span>
+                    <div class="line-analysis">← <span class="highlight">반복</span> – 흰 바람벽이 화자의 정서를 투영하는 매개체</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">희미한 십오 촉(十五燭) 전등이 지치운 불빛을 내어던지고</span>
+                    <div class="line-analysis">← <span class="highlight">빈곤한 삶</span>을 형상화하는 배경</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">때글은 다 낡은 무명샤쓰가 어두운 그림자를 쉬이고</span>
+                    <div class="line-analysis">← 낡은 옷과 그림자 – 화자의 <span class="highlight">가난과 고독</span>을 구체화</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리고 또 달디단 따끈한 감주나 한잔 먹고 싶다고 생각하는</span>
+                    <div class="line-analysis">← 감주(甘酒) – 화자가 갈망하는 <span class="highlight">위안</span></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 가지가지 외로운 생각이 헤매인다</span>
+                    <div class="line-analysis">← <span class="highlight">외로움</span> – 화자의 다양한 내면적 갈등</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그런데 이것은 또 어인 일인가</span>
+                    <div class="line-analysis">← <span class="highlight">시선의 전환</span> – 과거/외부로 시선 확장</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이 흰 바람벽에</span>
+                    <div class="line-analysis">← <span class="highlight">반복</span> – 매개체로서의 흰 바람벽 재확인</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 가난한 늙은 어머니가 있다</span>
+                    <div class="line-analysis">← 어머니의 등장 – 화자의 <span class="highlight">그리움과 안타까움</span></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 가난한 늙은 어머니가</span>
+                    <div class="line-analysis">← <span class="highlight">반복</span> – 어머니의 가난과 고령 강조</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이렇게 시퍼러둥둥하니 추운 날인데 차디찬 물에 손은 담그고</span>
+                    <div class="line-analysis">← <span class="highlight">구체적 생활상</span> – 차가운 물에 손을 담그고 무·배추를 씻는 모습</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">무이며 배추를 씻고 있다</span>
+                    <div class="line-analysis">← <span class="highlight">대상에 대한 애틋함과 안타까움</span></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">또 내 사랑하는 사람이 있다</span>
+                    <div class="line-analysis">← 사랑하는 사람의 등장 – <span class="highlight">그리움의 대상</span></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 사랑하는 어여쁜 사람이</span>
+                    <div class="line-analysis">← <span class="highlight">반복</span> – 대상에 대한 애정 강조</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어느 먼 앞대 조용한 개포가의 나즈막한 집에서</span>
+                    <div class="line-analysis">← <span class="highlight">공간적 거리감</span> – '먼 앞대'로 인한 단절감</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그의 지아비와 마주 앉어 대굿국을 끓여 놓고 저녁을 먹는다</span>
+                    <div class="line-analysis">← <span class="highlight">타인의 행복</span> – 사랑하는 사람의 일상, 하지만 화자는 그곳에 없음</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">벌써 어린것도 생겨서 옆에 끼고 저녁을 먹는다</span>
+                    <div class="line-analysis">← <span class="highlight">완성된 가족</span> – 화자가 속하지 못한 공간</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그런데 또 이즈막하야 어느 사이엔가</span>
+                    <div class="line-analysis">← <span class="highlight">시간의 흐름</span> – 다시 현재로 회귀</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이 흰 바람벽엔</span>
+                    <div class="line-analysis">← <span class="highlight">반복</span> – 흰 바람벽으로 다시 시선 집중</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 쓸쓸한 얼굴을 쳐다보며</span>
+                    <div class="line-analysis">← <span class="highlight">자아 성찰</span> – 자신의 쓸쓸한 얼굴을 바라봄</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이러한 글자들이 지나간다</span>
+                    <div class="line-analysis">← <span class="highlight">글자들</span> – 화자의 내면을 대변하는 존재</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">― 나는 이 세상에서 가난하고 외롭고 높고 쓸쓸하니 살어가도록 태어났다</span>
+                    <div class="line-analysis">← <span class="highlight">운명의 수용</span> – 가난·외로움·고독을 타고난 운명으로 인식</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리고 이 세상을 살어가는데</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 가슴은 너무도 많이 뜨거운 것으로 호젓한 것으로 사랑으로 슬픔으로 가득 찬다</span>
+                    <div class="line-analysis">← <span class="highlight">내면의 풍요로움</span> – 결핍에도 불구하고 가슴은 뜨거운 감정으로 가득</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리고 이번에는 나를 위로하는 듯이 나를 울력하는 듯이</span>
+                    <div class="line-analysis">← <span class="highlight">글자들의 위로</span> – 자신을 위로하는 내면의 목소리</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">눈질을 하며 주먹질을 하며 이런 글자들이 지나간다</span>
+                    <div class="line-analysis">← <span class="highlight">의인화</span> – 글자들이 살아 움직이며 위로와 격려를 제공</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">― 하늘이 이 세상을 내일 적에 그가 가장 귀해하고 사랑하는 것들은 모두</span>
+                    <div class="line-analysis">← <span class="highlight">보편적 진리</span> – 하늘이 사랑하는 존재들</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">가난하고 외롭고 높고 쓸쓸하니 그리고 언제나 넘치는 사랑과 슬픔 속에 살도록 만드신 것이다</span>
+                    <div class="line-analysis">← <span class="highlight">운명의 승화</span> – 가난과 외로움이 오히려 하늘이 사랑한 증거</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">초생달과 바구지꽃과 짝새와 당나귀가 그러하듯이</span>
+                    <div class="line-analysis">← <span class="highlight">자연물의 예시</span> – 초생달·바구지꽃·짝새·당나귀도 같은 운명</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리고 또 '프랑시쓰 쨈'과 도연명과 '라이넬 마리아 릴케'가 그러하듯이</span>
+                    <div class="line-analysis">← <span class="highlight">문학적 전통의 예시</span> – 프랑시스 잠·도연명·릴케도 같은 운명</div>
+                </div>
+
+                <div class="poem-title" style="margin-top: 2em;">(나) 안도현, 「연탄 한 장」</div>
+                <div class="poem-line">
+                    <span class="line-text">또 다른 말도 많고 많지만</span>
+                    <div class="line-analysis">← 화자의 선택적 고백 시작</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">삶이란</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나 아닌 그 누구에게</span>
+                    <div class="line-analysis">← <span class="highlight">이타적 삶</span> – 타인을 위한 존재</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">기꺼이 연탄 한 장 되는 것</span>
+                    <div class="line-analysis">← <span class="highlight">연탄 한 장</span> – 자기희생의 상징</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">방구들 선득선득해지는 날부터 이듬해 봄까지</span>
+                    <div class="line-analysis">← 겨울철 – 연탄이 필요한 계절</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">조선 팔도 거리에서 제일 아름다운 것은</span>
+                    <div class="line-analysis">← <span class="highlight">일상의 아름다움</span> – 연탄 차가 오르는 모습</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">연탄 차</span>가 부릉부릉</span>
+                    <div class="line-analysis">← <span class="highlight">연탄 차</span> – 이타적 삶을 실천하는 매개체</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">힘쓰며 언덕길 오르는 거라네</span>
+                    <div class="line-analysis">← 헌신적 노력의 이미지</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">해야 할 일이 무엇인가를 알고 있다는 듯이</span>
+                    <div class="line-analysis">← 존재의 목적 의식</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">연탄</span>은, 일단 제 몸에 불이 옮겨붙었다 하면</span>
+                    <div class="line-analysis">← <span class="highlight">연탄</span> – 자기 소멸을 통한 헌신</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">하염없이 뜨거워지는 것</span>
+                    <div class="line-analysis">← 자신을 모두 태워 열을 내는 존재</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">매일 따스한 밥과 국물 퍼먹으면서도 몰랐네</span>
+                    <div class="line-analysis">← <span class="highlight">자기 성찰</span> – 일상의 혜택을 당연하게 여겼음을 반성</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">온몸으로 사랑하고 나면</span>
+                    <div class="line-analysis">← 사랑의 실천 – 온전한 헌신</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">한 덩이 재로 쓸쓸하게 남는 게 두려워</span></span>
+                    <div class="line-analysis">← <span class="highlight">자기희생의 양가성</span> – 헌신 후 남는 공허함에 대한 두려움</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">여태껏 나는 그 누구에게 연탄 한 장도 되지 못하였네</span>
+                    <div class="line-analysis">← <span class="highlight">자기 반성</span> – 아직 온전히 헌신하지 못했음을 고백</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">생각하면</span>
+                    <div class="line-analysis">← 성찰의 계기</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">삶이란</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">나를 산산이 으깨는</span> 일</span>
+                    <div class="line-analysis">← <span class="highlight">자기희생의 행위</span> – 자신을 부수어 타인을 위한 길을 만듦</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">눈 내려 세상이 미끄러운 어느 이른 아침에</span>
+                    <div class="line-analysis">← 험난한 환경 속에서도</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나 아닌 그 누가 마음 놓고 걸어갈</span>
+                    <div class="line-analysis">← 타인이 안전하게 걸어갈</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그 길을 만들 줄도 몰랐었네, 나는</span>
+                    <div class="line-analysis">← <span class="highlight">반성과 깨달음</span> – 이타적 삶의 가치를 깨닫지 못했음을 고백</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <!-- ===== 작품 개관 ===== -->
+            <div class="analysis-box">
+                <div class="title">📌 (가) 「흰 바람벽이 있어」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 백석<br>
+                    <strong>▶ 화자:</strong> 가난과 외로움을 운명으로 인식하지만 이를 승화하려는 자아<br>
+                    <strong>▶ 핵심 사물:</strong> <span class="highlight">흰 바람벽</span> – 화자의 외로움과 결핍을 투영하는 <span class="highlight">객관적 상관물</span><br>
+                    <strong>▶ 표현 기법:</strong> 반복·의인화·대비·상징<br>
+                    <strong>▶ 시상 전개:</strong> 현재의 외로움 → 과거(어머니·사랑하는 이)의 회상 → 글자들을 통한 위로와 승화<br>
+                    <strong>▶ 주제:</strong> 현실의 결핍 속에서 주변 사물과 내면의 목소리를 통해 존재 의미를 발견하고 승화하는 과정<br>
+                    <strong>▶ 수능 포인트:</strong> <span class="highlight">객관적 상관물</span>로서의 흰 바람벽, 의인화를 통한 자기 위로, 역사적 인물(도연명·릴케)과 자연물을 통한 보편성 확보
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '흰 바람벽'은 화자의 외로움을 투영하는 <strong>객관적 상관물</strong>입니다. 시에서 사물이 단순한 배경이 아닌 화자의 심리를 드러내는 매개체로 기능한다는 점에 주목하세요.</div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 (나) 「연탄 한 장」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 안도현<br>
+                    <strong>▶ 화자:</strong> 자기희생을 통해 타인을 위한 삶을 지향하는 자아<br>
+                    <strong>▶ 핵심 사물:</strong> <span class="highlight">연탄</span> – 자기희생과 헌신의 상징<br>
+                    <strong>▶ 표현 기법:</strong> 상징·역설·대비<br>
+                    <strong>▶ 시상 전개:</strong> 삶의 정의 → 연탄(이타적 삶)에 대한 묘사 → 자기 반성 → 깨달음과 다짐<br>
+                    <strong>▶ 주제:</strong> 자기희생을 통해 타인을 위한 가치 있는 삶의 자세를 제시<br>
+                    <strong>▶ 수능 포인트:</strong> 연탄의 상징적 의미, '한 덩이 재로 남는 게 두렵다'의 <span class="highlight">역설적 표현</span>, '산산이 으깨는' 행위의 의미, '그 길'의 상징성
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '연탄'은 일상적 사물이지만 <strong>자기희생과 헌신의 상징</strong>으로 승화되었습니다. 시적 화자가 일상적 소재를 어떻게 상징화하는지 분석하세요.</div>
+            </div>
+
+            <!-- ===== 핵심 시어 ===== -->
+            <div class="vocab-box">
+                📖 <strong>핵심 시어</strong><br>
+                • <strong>흰 바람벽</strong>: 화자가 직면한 현실(외로움·가난)의 상징이자, 화자의 정체성을 확인하는 <span class="highlight">객관적 상관물</span><br>
+                • <strong>글자들</strong>: 화자 내면의 목소리, 자기 위로의 <span class="highlight">시각화</span> (의인화)<br>
+                • <strong>연탄</strong>: 자기희생과 헌신의 <span class="highlight">상징</span><br>
+                • <strong>연탄 차</strong>: 일상 속에서 이타적 삶을 실천하는 <span class="highlight">매개체</span><br>
+                • <strong>그 길</strong>: 타인이 안전하게 걸어갈 수 있도록 화자가 만든 <span class="highlight">희생의 길</span>
+            </div>
+
+            <!-- ===== 독해 포인트 ===== -->
+            <div class="info-box">
+                <h3>🎯 수능 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>공통점</strong>: 두 시 모두 화자가 자신을 둘러싼 현실의 결핍들을 인식하고, 주변 사물을 통해 정서나 태도를 고백한다.</li>
+                    <li><strong>(가)의 전개</strong>: 현재의 외로움(흰 바람벽) → 과거/타인의 회상(어머니·사랑하는 이) → 내면의 글자들을 통한 <span class="highlight">위안과 승화</span></li>
+                    <li><strong>(나)의 전개</strong>: 삶의 정의(연탄 한 장) → 연탄의 자기희생적 속성 → 자기 반성 → <span class="highlight">깨달음과 다짐</span></li>
+                    <li><strong>승화 vs 헌신</strong>: (가)는 결핍을 <span class="highlight">내면화하여 승화</span>, (나)는 결핍을 <span class="highlight">외부로 향해 헌신</span></li>
+                    <li><strong>시적 화자의 태도</strong>: (가)는 자신의 운명을 수용하고 위안을 찾는 반면, (나)는 자신의 부족함을 반성하고 다짐하는 태도를 보인다.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">(가) 현실의 결핍 속에서 주변 사물과 내면의 목소리를 통해 자신의 존재 의미를 발견하고 승화하는 과정. (나) 자기희생을 통해 타인을 위한 가치 있는 삶의 자세를 제시하고, 이를 실천하지 못한 자신을 반성함.</p>
+            </div>
+
+            <!-- ===== 비교 표 ===== -->
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 두 시 비교 – 수능형 분석</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>(가) 「흰 바람벽이 있어」</th><th>(나) 「연탄 한 장」</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">작가</td>
+                        <td>백석</td>
+                        <td>안도현</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">핵심 사물</td>
+                        <td>흰 바람벽, 글자들</td>
+                        <td>연탄, 연탄 차, 그 길</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">사물의 기능</td>
+                        <td>자아 확인·정서 투영의 <span class="highlight">객관적 상관물</span></td>
+                        <td>자기희생·이타적 삶의 <span class="highlight">상징물</span></td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">화자의 정서</td>
+                        <td>쓸쓸함 → 위안과 승화</td>
+                        <td>반성과 다짐</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">화자의 태도</td>
+                        <td>결핍을 수용하고 승화</td>
+                        <td>자기희생을 통한 헌신을 다짐</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">주제</td>
+                        <td>고독한 존재의 정체성 발견과 승화</td>
+                        <td>이타적 삶의 가치 실현을 위한 반성과 다짐</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">표현 기법</td>
+                        <td>의인화·반복·<span class="highlight">객관적 상관물</span></td>
+                        <td>상징·역설·<span class="highlight">일상적 사물의 상징화</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ===== 수능 필수 체크 ===== -->
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 수능 필수 체크!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>공통점</strong>: 현실의 결핍을 인식하고 주변 사물을 통해 자신의 정서나 태도를 고백</li>
+                    <li><strong>(가)의 사물</strong>: 흰 바람벽(고립·외로움) → 글자들(자기 위로) – <span class="highlight">내면적 승화</span></li>
+                    <li><strong>(나)의 사물</strong>: 연탄(자기희생) → 연탄 차(이타적 삶) – <span class="highlight">외부적 헌신</span></li>
+                    <li><strong>객관적 상관물</strong>: (가)에서 흰 바람벽이 화자의 심리를 투영하는 매개체로 기능</li>
+                    <li><strong>역설</strong>: (나) '한 덩이 재로 쓸쓸하게 남는 게 두렵다' – 희생의 결과에 대한 두려움이 오히려 희생의 가치를 강조</li>
+                    <li><strong>의인화</strong>: (가) '글자들이 눈질을 하며 주먹질을 하며' – 자신을 위로하는 내면의 목소리를 생생하게 형상화</li>
+                    <li><strong>시선의 이동</strong>: (가) 현재의 방 → 과거(어머니) → 타인(사랑하는 이) → 다시 현재(흰 바람벽) → 내면(글자들)으로 확장</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 1회 32~34</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>(가)</span> 「흰 바람벽이 있어」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 흰 바람벽에 투영된 쓸쓸함과 외로움</p>
+                    <p><span class="flow-badge">전개</span> 어머니·사랑하는 이의 회상 (과거/타인으로 시선 확장)</p>
+                    <p><span class="flow-badge">결말</span> 글자들을 통한 위로와 운명의 승화</p>
+                    <div class="sub-point">✔ <span class="highlight">내면적 성찰</span>을 통한 극복 – 쓸쓸함에서 위안으로</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(나)</span> 「연탄 한 장」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 삶의 정의: 연탄 한 장 되는 것</p>
+                    <p><span class="flow-badge">전개</span> 연탄의 자기희생적 속성과 '연탄 차'의 아름다움</p>
+                    <p><span class="flow-badge">갈등</span> 재로 남는 두려움과 자기 반성</p>
+                    <p><span class="flow-badge">결말</span> 산산이 으깨는 삶을 통한 깨달음과 다짐</p>
+                    <div class="sub-point">✔ <span class="highlight">외부 지향적 헌신</span> – 반성과 다짐의 완성</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>공통점</span></div>
+                <div class="card-body">
+                    <p><span class="flow-badge">현실 인식</span> 결핍을 직시</p>
+                    <p><span class="flow-badge">사물 활용</span> 주변 사물로 정서 고백</p>
+                    <p><span class="flow-badge">태도</span> 승화 또는 헌신으로 극복</p>
+                    <div class="sub-point">💬 두 시 모두 현실의 결핍을 사물을 통해 승화하거나 헌신으로 전환</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : (가) 결핍의 인식과 내적 승화 → (나) 희생과 외적 헌신 → 공통: 주변 사물을 통한 정서 고백
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 32번 (PDF 원문 완전 일치) -->
+        <div class="question-full">
+            <div class="q-num">32</div>
+            <div class="question-stem">(가)에 대한 설명으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0092</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① '희미한 십오 촉 전등'과 '때글은 다 낡은 무명샤쓰'는 을씨년스러운 분위기를 형상화하면서 화자의 빈곤한 삶을 부각하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – PDF 18페이지 32번 ①번 선택지와 완전히 일치합니다. '십오 촉 전등'의 희미한 불빛과 '때글은 다 낡은 무명샤쓰'는 화자의 가난하고 쓸쓸한 삶을 구체적으로 보여 줍니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② '시퍼러둥둥하니 추운 날인데 차디찬 물에 손은 담그고 무이며 배추를 씻고 있'는 모습은 '늙은 어머니'의 생활상을 구체적으로 묘사하며 대상에 대한 화자의 애틋함과 안타까움을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – PDF 32번 ②번 선택지와 완전히 일치합니다. 어머니의 고된 노동을 생생하게 묘사하며 화자의 애틋한 심정을 드러냅니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ '개포가의 나즈막한 집'은 '좁다란 방'과 대비되며 화자가 보고 싶어 하는 대상에 대한 그리움을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – PDF 32번 ③번 선택지와 완전히 일치합니다. 화자가 있는 '좁다란 방'과 사랑하는 사람이 있는 '개포가의 나즈막한 집'은 공간적 대비를 이루며 그리움을 강화합니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ '대굿국을 끓여 놓고 저녁을 먹는다'는 '감주나 한잔 먹고 싶다고 생각하는' 화자의 상황과 대비되며 화자의 단절감을 심화하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – PDF 32번 ④번 선택지와 완전히 일치합니다. '대굿국을 끓여 놓고 저녁을 먹는다'는 사랑하는 사람의 따뜻한 일상을 보여 주는 것이며, '감주'를 먹고 싶어 하는 화자의 상황과 단절감을 드러냅니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ '어린것'은 '어여쁜 사람'과 함께 화자가 '쓸쓸한 얼굴'로부터 벗어나도록 위로를 해 주는 존재로 제시되고 있다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – PDF 32번 ⑤번 선택지와 완전히 일치합니다. '어린것'은 사랑하는 사람의 가족 구성원으로 제시될 뿐, 화자가 '쓸쓸한 얼굴'로부터 벗어나도록 위로하는 존재로 제시되지 않았습니다. 오히려 화자는 그 모습을 바라보며 단절감을 느낍니다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 설명(정답).</div>
+        </div>
+
+        <!-- 문제 33번 (PDF 원문 완전 일치) -->
+        <div class="question-full">
+            <div class="q-num">33</div>
+            <div class="question-stem">그 길에 대한 이해로 가장 적절한 것은? <span class="ref-num">26051-0093</span></div>
+            <div class="note-box">
+                ※ '그 길'은 (나) 시에 등장하는 상징적 공간으로, 화자가 만들고자 하는 삶의 여정을 의미합니다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 과거의 추억을 드러내며, 이에 대한 화자의 그리움을 나타내는 길이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그 길'은 과거의 추억이나 그리움보다는 현재의 삶의 여정과 이타적 실천을 상징합니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 다른 이의 어려움에 대한 공감과 이와 관련된 화자의 성찰이 드러나는 길이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – '그 길'은 화자가 타인(나 아닌 그 누구)이 마음 놓고 걸어갈 수 있도록 만드는 길로, 타인의 어려움에 대한 공감과 자기희생적 성찰이 드러납니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 사회의 부조리함을 드러내고, 이에 대한 화자의 비판 의식을 보여 주는 길이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그 길'은 사회 부조리에 대한 비판보다는 개인의 내적 성찰과 이타적 실천과 관련됩니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 화자가 스스로의 노력을 통해 얻은 깨달음을 바탕으로 혼자 걸어 나가는 길이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그 길'은 화자가 혼자 걸어가는 길이 아니라, 타인이 걸어갈 수 있도록 만드는 희생의 길입니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 화자가 오랫동안 꿈꿔 온 이상적인 공간으로, 화자가 느끼는 불안감과 분리되는 길이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그 길'은 이상적 공간이라기보다는 현실에서 실천해야 할 이타적 삶의 길입니다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절한 이해(정답).</div>
+        </div>
+
+        <!-- 문제 34번 -->
+        <div class="question-full">
+            <div class="q-num">34</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 (가), (나)를 감상한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0094</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                시에서 화자는 자신을 둘러싼 현실의 결핍들을 인식하고, 이에 대한 자신의 정서나 태도를 주변의 사물을 이용하여 고백하기도 한다. (가)는 자신이 있는 공간의 사물을 통해 현실의 외로움과 가난이라는 자신의 운명을 수용하며 고독한 존재라는 정체성을 드러냄과 동시에 자신을 둘러싼 현실의 부정적 요소들을 승화하고자 한다. 한편 (나)는 일상적 사물에 상징적 의미를 부여하며 현실의 이기적인 태도를 넘어선 자기희생적 태도를 강조한다. 이는 타인을 위한 가치 있는 삶의 자세를 제시한 것이다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① (가)의 '이 세상에서 가난하고 외롭고 높고 쓸쓸하니 살어가도록 태어났다'는 '나'의 고백은 현실의 결핍을 인정하고 자신의 운명을 수용하고 있는 모습이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;보기&gt;에서 "(가)는 현실의 외로움과 가난이라는 자신의 운명을 수용"한다고 했으므로 적절합니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (나)의 '한 덩이 재로 쓸쓸하게 남는 게 두렵다'는 고백은 타인을 위해 자기를 희생한 뒤 공허함을 느꼈던 화자의 과거 모습을 고백한 것이겠군.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 이 구절은 과거의 경험을 고백한 것이 아니라, 자기희생 이후 남게 될 공허함에 대한 <span class="highlight">두려움</span>을 드러낸 것입니다. &lt;보기&gt;에서는 (나)가 "자기희생적 태도를 강조"한다고 했지, 과거의 공허함을 고백한다고 하지 않았습니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (가)에서는 '이 흰 바람벽'이라는 사물을 반복적으로 사용하여 외로움이라는 내적 정서를 심화하였다면, (나)에서는 '연탄'이라는 주변의 사물을 통해 타인을 위한 삶의 자세를 강조하였군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)의 흰 바람벽은 고독을 심화하는 사물로, (나)의 연탄은 자기희생을 상징하는 사물로 &lt;보기&gt;와 일치합니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (가)에서는 '그러하듯이'에 해당하는 사물들과 인물들을 나열하며 고독한 존재라는 화자의 정체성을 부각한 것이라면, (나)에서는 '연탄 차'라는 일상적 사물에 아름다운 행위라는 상징적 의미를 부여한 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)의 '그러하듯이'는 초생달·바구지꽃·짝새·당나귀·프랑시스 잠·도연명·릴케 등과 연결되며 정체성 부각에 기여하고, (나)의 '연탄 차'는 이타적 삶의 상징으로 적절합니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (가)에서 '글자들'이 '눈질을 하며 주먹질을 하'는 것은 화자가 스스로를 격려하고 싶은 마음을 시각화한 것이라면, (나)의 '산산이 으깨는'은 '연탄'의 이미지를 통해 타인을 위한 삶의 태도가 어떤 것인지를 드러낸 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – '글자들'의 의인화는 자기 격려로, '산산이 으깨는'은 자기희생으로 &lt;보기&gt;와 일치합니다.</div>
+            </div>
+            <div class="wrong-badge">📍 ②번이 적절하지 않은 감상(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

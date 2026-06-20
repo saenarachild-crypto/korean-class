@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 1회 - 18~23 (상춘곡 · 침류대기)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .poem-line {
+            margin-bottom: 0.4em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .line-analysis .highlight {
+            color: #c0392b;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .poem-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin: 1.2em 0 0.8em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .analysis-box .exam-tip {
+            display: block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .note-box {
+            background: #fef9e6;
+            border: 1px solid #f1c40f;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 1회 · 문학 18~23</h1>
+        <p>정극인 「상춘곡」 · 이수광 「침류대기」 | 시구/문장별 통합 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 통합 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="poem-title">(가) 정극인, 「상춘곡」</div>
+                <div class="poem-line">
+                    <span class="line-text">홍진(紅塵)에 묻힌 분네 이내 생애(生涯) 어떠한고</span>
+                    <div class="line-analysis">← 속세에 묻혀 사는 자신의 삶에 대한 반문</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">옛사람 풍류(風流)를 미칠까 못 미칠까</span>
+                    <div class="line-analysis">← 옛 선인들의 풍류를 따를 수 있을지 자문</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">천지간(天地間) 남자(男子) 몸이 날만 한 이 많건마는</span>
+                    <div class="line-analysis">← 나와 같은 존재가 많지만</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">산림(山林)에 묻혀 있어 지락(至樂)을 모르는가</span>
+                    <div class="line-analysis">← 산림에 묻혀 사는 참된 즐거움을 모르는가</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">수간모옥(數間茅屋)을 벽계수(碧溪水) 앞에 두고</span>
+                    <div class="line-analysis">← 몇 칸 띠집을 맑은 시냇물 앞에 두고</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">송죽(松竹)을 울울락락(鬱鬱樂樂)에 풍월주인(風月主人) 되었어라</span>
+                    <div class="line-analysis">← 소나무와 대나무가 울창한 곳에서 풍월의 주인이 됨</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">엇그제 겨울 지나 새봄이 돌아오니</span>
+                    <div class="line-analysis">← 봄의 도래</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">도화행화(桃花杏花)는 석양리(夕陽裏)에 피어 있고</span>
+                    <div class="line-analysis">← 복숭아꽃·살구꽃이 석양에 피어 있음</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">녹양방초(綠楊芳草)는 세우 중(細雨中)에 푸르도다</span>
+                    <div class="line-analysis">← 푸른 버들과 향기로운 풀이 보슬비에 푸르름</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">갈로 말아 냄가 붓으로 그려 냄가</span>
+                    <div class="line-analysis">← 이 경치를 글로 말할까 붓으로 그릴까</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">조화신공(造化神功)이 물물(物物)마다 헌사롭다</span>
+                    <div class="line-analysis">← 조물주의 신비로운 솜씨가 만물마다 새롭구나</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉠수풀에 우는 새는 춘기(春氣)를 못내 겨워 소리마다 교태(嬌態)로다</span></span>
+                    <div class="line-analysis">← <span class="highlight">의인화</span> - 새에 화자의 흥취를 이입 / <span class="highlight">물아일체</span>의 경지 - 자연과 화자가 하나 되는 감정 이입</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">물아일체(物我一體)어니 흥(興)이야 다를쏘냐</span>
+                    <div class="line-analysis">← 물아일체라 흥취야 다를 리 있으랴</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">시비(柴扉)에 걸어 보고 정자(亭子)에 앉아 보니</span>
+                    <div class="line-analysis">← 사립문에 기대어 보고 정자에 앉아 보니</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">소요음영(逍遙吟詠)하야 산일(山日)이 적적(寂寂)한데</span>
+                    <div class="line-analysis">← 소요하며 읊조리니 산의 해가 적적한데</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">한중진미(閑中眞味)를 알 이 없이 혼자로다</span>
+                    <div class="line-analysis">← 한가로움 속의 참된 맛을 알 이 없이 혼자로다</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이봐 이웃들아 산수(山水) 구경 가자스라</span>
+                    <div class="line-analysis">← 이웃에게 산수 구경 가자고 권유</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">답청(踏青)은 오늘 하고 욕기(浴沂)는 내일(來日) 하세</span>
+                    <div class="line-analysis">← 봄나들이는 오늘 하고, 물놀이는 내일 하자</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉡아침에 채산(採山)하고 저녁에 조수(釣水)하세</span></span>
+                    <div class="line-analysis">← <span class="highlight">대구법</span> - '아침에~저녁에~'의 대칭 구조 / <span class="highlight">시간적 순서</span>에 따른 시상 전개 - 하루 일과를 통해 전원 생활의 여유로움 강조</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">갓 피어 익은 술을 갈건(葛巾)으로 걸려 놓고</span>
+                    <div class="line-analysis">← 갓 빚은 술을 갈건으로 걸러 놓고</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">꽃나무 가지 꺾어 수(數) 놓고 먹으리라</span>
+                    <div class="line-analysis">← 꽃가지를 꺾어 수를 놓고 먹으리라</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">화풍(和風)이 건듯 불어 녹수(綠水)를 건너오니</span>
+                    <div class="line-analysis">← 화창한 바람이 살랑불어 푸른 물을 건너오니</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">청향(清香)은 잔에 지고 낙홍(落紅)은 옷에 진다</span>
+                    <div class="line-analysis">← 맑은 향기는 잔에 내리고 떨어진 꽃은 옷에 묻는다</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">준중(樽中)이 비었거든 날다려 아뢰어라</span>
+                    <div class="line-analysis">← 술잔이 비었거든 나에게 알려라</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">소동(小童) 아해더러 주가(酒家)에 술을 물어</span>
+                    <div class="line-analysis">← 아이를 시켜 주가에 술을 사오라</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">어른은 막대 짚고 아이는 술을 메고</span>
+                    <div class="line-analysis">← 어른은 지팡이 짚고 아이는 술을 메고</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">미음완보(微吟緩步)하야 시냇기에 혼자 앉아</span>
+                    <div class="line-analysis">← 읊조리며 천천히 걸어 시냇가에 혼자 앉아</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text"><span class="underline-phrase">㉢명사(明沙) 맑은 물에 잔 씻어 부어 들고</span></span>
+                    <div class="line-analysis">← <span class="highlight">상징</span> - '무릉도원' 연상을 통한 이상향 지향 / 고고한 풍류 의식과 <span class="highlight">이상향(무릉도원)</span>에 대한 동경</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">청류(清流)를 급어보니 떠오나니 도화(桃花)로다</span>
+                    <div class="line-analysis">← 맑은 물을 떠보니 떠오르는 것은 복숭아꽃이로다</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">무릉(武陵)이 가깝도다 저 산이 거기인고</span>
+                    <div class="line-analysis">← 무릉도원이 가깝구나, 저 산이 거기인가</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">송간(松間) 세로(細路)에 두견화(杜鵑花)를 부치 들고</span>
+                    <div class="line-analysis">← 솔숲 사이 좁은 길에 진달래를 이고</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">봉두(峰頭)에 급히 올라 구름 속에 앉아 보니</span>
+                    <div class="line-analysis">← 봉우리에 급히 올라 구름 속에 앉아 보니</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">천촌만락(千村萬落)이 곳곳이 벌려 있네</span>
+                    <div class="line-analysis">← 수많은 마을이 곳곳에 펼쳐져 있네</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">연하일휘(煙霞日輝)는 금수(錦繡)를 재밋는 듯</span>
+                    <div class="line-analysis">← 안개와 노을, 햇빛이 비단을 짜는 듯</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">엇그제 검은 들이 봄빛도 유여(有餘)할사</span>
+                    <div class="line-analysis">← 겨울에 검었던 들판이 봄빛도 넉넉하다</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">공명(功名)도 날 꺼리고 부귀(富貴)도 날 꺼리니</span>
+                    <div class="line-analysis">← 공명도 나를 멀리하고 부귀도 나를 멀리하니</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">청풍명월(清風明月) 외(外)에 어떤 벗이 있사올고</span>
+                    <div class="line-analysis">← 맑은 바람과 밝은 달 외에 어떤 벗이 있으리오</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">단표누항(簞瓢屢空)에 헛된 생각 아니 하네</span>
+                    <div class="line-analysis">← 가난하지만 헛된 생각은 하지 않네</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">아모타, 백년행락(百年行樂)이 이만한들 어찌하리</span>
+                    <div class="line-analysis">← 아! 백년의 행락이 이만한들 어찌하리</div>
+                </div>
+
+                <div class="poem-title" style="margin-top: 2em;">(나) 이수광, 「침류대기」</div>
+                <div class="poem-line">
+                    <span class="line-text">정엽원동은 창덕궁의 서쪽에 있는데, 솔과 골짜기가 깊숙한 데 다가 그 골짜기로부터 시냇물이 흘러 내려와서 서늘하고 아름다운 운치를 갖고 있었다.</span>
+                    <div class="line-analysis">← 정엽원동의 지리적 위치와 경관 묘사</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 일찍이 실록국에서 일하고 있어서 아침저녁으로 이곳을 지나게 되었다. 그러나 <span class="underline-phrase">㉣늘 직책에 얽매이다 보니</span> 한 번도 조용히 찾아볼 수 없어서 한탄만 하였다.</span>
+                    <div class="line-analysis">← 관료로서의 한계와 아쉬움 고백 / <span class="highlight">현실(관료 생활)과 이상(자연)</span>의 대비 - 글쓴이가 유희경의 초대를 받아들인 <span class="highlight">서사적 동기</span></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그러던 중 하루는 유희경(劉希慶)을 따라 금천교 위에 올라갔다가 그 다리 아래로 시냇물이 흐르고 그 시냇물 위로 무수히 떨어진 꽃잎들이 떠내려오는 것을 보고 기쁜 마음으로 이렇게 말했다.</span>
+                    <div class="line-analysis">← 유희경과 함께 금천교에서 꽃잎을 목격</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">"아마 무릉도원이 여기서 멀지 않나 보군. 이 물을 따라 올라가면 만리장성의 노역을 면하기 위해 피난 왔다가 수백 년 동안 죽지도 않고 살아 있다는 그 진나라 사람도 만나 보겠군."</span>
+                    <div class="line-analysis">← 무릉도원을 연상하며 이상향에 대한 기대</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그러나 유희경이 살짝 웃으며 말했다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">"이 물의 상류에 내가 살고 있네. 나는 그곳에 누대를 지어 놓고 있는데 마침 복숭아꽃이 활짝 피었다네. 어젯밤에 비바람이 몹시 불리니 아마 오늘 그 꽃잎들이 많이 떨어졌나 보군. 공이 만일 가 보겠다면 내 마땅히 이곳의 주인으로서 기쁘게 맞이하겠네."</span>
+                    <div class="line-analysis">← 유희경이 자신의 거처를 소개하며 초대</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 기쁜 마음으로 그를 따라갔다. 한 백 발자국 남짓 올라가자 오른쪽에 경치 좋은 곳이 있었다. 그곳이 바로 그가 사는 곳이었다. 흐르는 물이 맑고 찬데, 그 물가에 돌을 쌓아 누대를 지었다. 그 누대의 섬들은 흐르는 물 위로 한 자 남짓 높게 쌓여 있었다. 그래서 물을 베고 있다는 뜻으로 '침류대'라는 이름을 붙인 것일까?</span>
+                    <div class="line-analysis">← 침류대의 위치와 명칭 유래</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">이 누대의 아래위에는 다른 꽃이라고는 없고 오직 복숭아나무 수십 그루가 개울물의 좌우에 늘어서 있어서, 그 나무의 떨어지는 꽃들이 붉은 비가 되어 물 위로 떠내려갔다. 그리고 이 개울은 한 폭의 비단을 펼쳐 놓은 듯 출렁출렁 춤을 추었다. 옛날 사람이 일컫는 무릉도원이라는 곳도 여기보다 낫지는 않을 듯하다. 당나라 사람 조영(祖詠)이 그의 시에서 "무릉도원의 멋을 저잣거리에서도 찾을 수 있다."라고 한 뜻을 이제야 알 것 같다.</span>
+                    <div class="line-analysis">← 침류대 주변의 아름다운 경치와 무릉도원과의 비교</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 감탄하며 말했다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">"옛날 유신(劉晨)이라는 자는 천태산(天台山)의 도원에 들어가서 신선을 만나 돌아오지 않았다고 하는데, <span class="underline-phrase">㉤그대가 바로 유신 같은 사람이 아닌가?</span> 나는 지금 다행스럽게도 이 신비스러운 경치를 보았으니 무릉도원을 찾아갔던 어부의 느낌이 나와 같았겠지. 내 이 물에 들어가서 이 물로 입을 가신다고 하여 방해될 것이 있겠는가?"</span>
+                    <div class="line-analysis">← 유희경을 유신에 비유하며 이상향에 도달한 기쁨</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">우리는 서로 마주 보며 한바탕 웃은 뒤에 물가에 자리를 펴고 앉았다. 졸졸 흐르는 물소리에 굳이 씻지 않아도 깨끗해졌다. 속세의 터끌 하나 묻어 있지 않은 곳이라서 온갖 잡념이 가시니, 정신과 기운이 저절로 맑아져서 바람이 불지 않아도 날아갈 듯하였다. 속세를 벗어난 경지가 참으로 이런 것인가?</span>
+                    <div class="line-analysis">← 속세를 초월한 경지에서 느끼는 청량감</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리고 나는 이곳의 경치를 보고 유희경을 새삼 다시 알게 되었다. 이 물이 복잡한 도시에 가까이 있는데도 술 속에 깊이 숨어 있으니, 마치 옛날 은사(隱士)가 자취를 감추고 있는 것 같았다. 그리고 그 흐름이 알고 좁은데도 물이 더럽지 않고 깨끗하기만 하니, 이는 마치 훌륭한 은사와 비교하면서 이 누대를 '침류'라고 이름지은 것임을 알겠다.</span>
+                    <div class="line-analysis">← 유희경의 은일적 삶에 대한 이해와 침류대 명칭의 의미</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리하여 나는 그에게 이렇게 말했다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">"깊숙이 근원을 쌓고 깨끗이 성품을 닦은 뒤에 오로지 <span class="underline-phrase">[A]숨기기</span>만을 최선으로 삼지 말고, 덕을 성취시키는데 힘쓰기 바라겠네. 다시 말해 남에게 베풀 수 있는 것을 자꾸 막아서 그것을 혼자만 즐기려고 한다면 이 역시 애석한 일일세. 공자가 말하기를 '팔배개를 하고 모로 누워 있더라도 즐거움이 그 가운데 있다'고 한 것과 같이 아무리 가난하더라도 그 즐거움을 버리지 않겠다는 취지로 본다면 아마 올바른 도리에 거의 가까울 것 같네."</span>
+                    <div class="line-analysis">← <span class="highlight">은둔(숨기기) vs 실천(베풂)</span>의 대비 - 유희경에게 덕을 펼치고 베풀 것을 권함</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그제야 그는 기쁜 마음으로 나를 바라보며 이르기를, "내 오늘에야 즐거워할 바를 깨달았네." 하였다.</span>
+                    <div class="line-analysis">← 유희경이 글쓴이의 조언을 수용하고 깨달음을 얻음</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <!-- 작품 개관 -->
+            <div class="analysis-box">
+                <div class="title">📌 (가) 「상춘곡」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 장르:</strong> 강호가사 (조선 전기 가사)<br>
+                    <strong>▶ 성격:</strong> 자연 친화적, 안빈낙도적, 풍류적<br>
+                    <strong>▶ 표현 기법:</strong> 대구법·반복·의인화·상징·비유<br>
+                    <strong>▶ 시상 전개:</strong> <span style="color:#c0392b;">시간적 순서</span>에 따른 봄날의 즐거움 → <span style="color:#c0392b;">공간적 확장</span>(자택→주변 산수→봉우리)<br>
+                    <strong>▶ 핵심 주제:</strong> 속세를 벗어나 자연 속에서 누리는 참된 즐거움과 안빈낙도<br>
+                    <strong>▶ 수능 출제 포인트:</strong> 물아일체의 경지, 무릉도원(이상향) 이미지, 세속적 가치 부정, 대구와 반복의 효과
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '물아일체'는 수능 문학에서 자주 출제되는 동양적 세계관입니다. 자연과 화자가 하나 되는 경지를 통해 화자의 정서를 파악하세요.</div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 (나) 「침류대기」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 장르:</strong> 기문(記文) – 고전 수필<br>
+                    <strong>▶ 성격:</strong> 감상적, 교훈적, 이상향 지향적<br>
+                    <strong>▶ 표현 기법:</strong> 이상향과 현실의 교차, 비유(유신에 빗댐), 인용(조영·공자)<br>
+                    <strong>▶ 구조:</strong> 도입(방문 계기) → 전개(경치 감상과 감탄) → 결말(깨달음과 교훈)의 3단 구조<br>
+                    <strong>▶ 핵심 주제:</strong> 현실 속 이상향의 발견과 은둔을 넘어선 덕의 실천<br>
+                    <strong>▶ 수능 출제 포인트:</strong> 이상향(무릉도원)과 현실의 교차, 대화를 통한 깨달음 전달, [A] '숨기기'의 의미(은둔 vs 실천)
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '기문'은 방문 기록을 통해 감상과 교훈을 전달하는 장르입니다. 공간(침류대)과 인물(유희경)의 의미를 함께 분석하세요.</div>
+            </div>
+
+            <!-- 어구 풀이 -->
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>홍진(紅塵)</strong>: 속세, 세속<br>
+                • <strong>조화신공(造化神功)</strong>: 조물주의 신비로운 솜씨<br>
+                • <strong>물아일체(物我一體)</strong>: 사물과 내가 하나가 됨<br>
+                • <strong>답청(踏青)</strong>: 봄나들이<br>
+                • <strong>욕기(浴沂)</strong>: 시냇물에서 목욕하며 즐기는 풍류<br>
+                • <strong>단표누항(簞瓢屢空)</strong>: 가난하지만 안빈낙도하는 삶
+            </div>
+
+            <!-- 독해 포인트 -->
+            <div class="info-box">
+                <h3>🎯 수능 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>생활 체험의 공통점</strong>: (가)는 화자 자신의 거주지, (나)는 타인의 거주지에서의 체험. 둘 다 일상적 생활 공간에서의 경치 감상이며, 장기간 명승지 기행이 아닌 <strong>짧은 시간의 생활 체험</strong>이라는 점이 핵심.</li>
+                    <li><strong>이상향 이미지의 기능</strong>: 무릉도원을 통해 <strong>상상의 관념을 현실에 적용</strong>하여 자연에 대한 예찬과 체험에 대한 자부심을 나타냄.</li>
+                    <li><strong>구조적 특징</strong>: (가)는 시간적 순서 + 공간적 확장, (나)는 도입-전개-결말의 3단 구조.</li>
+                    <li><strong>표현 기법 비교</strong>: (가)는 대구·반복·의인화, (나)는 비유·인용·대비.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">(가) 봄날의 자연 속에서 누리는 풍류와 안빈낙도의 삶. (나) 현실 속의 이상향 체험과 은둔을 넘어선 덕의 실천.</p>
+            </div>
+
+            <!-- 비교 표 -->
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 (가)와 (나) 비교 – 수능형 분석</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>(가) 「상춘곡」</th><th>(나) 「침류대기」</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">장르</td>
+                        <td>강호가사(시)</td>
+                        <td>기문(산문)</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">체험 공간</td>
+                        <td>화자 자신의 거주지 주변</td>
+                        <td>유희경의 거주지(침류대) 주변</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">표현 기법</td>
+                        <td>대구·반복·의인화·상징</td>
+                        <td>비유·인용·대비·설의</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">이상향 이미지</td>
+                        <td>무릉도원 연상</td>
+                        <td>무릉도원과 직접 비교</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">화자의 태도</td>
+                        <td>자연과의 합일, 자족</td>
+                        <td>감상 + 교훈(덕의 실천 권유)</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">시상/구조</td>
+                        <td>시간적 순서, 공간적 확장</td>
+                        <td>도입-전개-결말 3단 구성</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 수능 필수 체크 -->
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 수능 필수 체크!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>무릉도원</strong> – (가) '무릉이 가깝도다', (나) 무릉도원 언급 → <span style="color:#c0392b;">이상향에 대한 동경과 현실에서의 발견</span></li>
+                    <li><strong>물아일체</strong> – (가)에서 자연과 화자가 하나 되는 경지 → <span style="color:#c0392b;">동양적 세계관의 핵심</span></li>
+                    <li><strong>안빈낙도</strong> – (가) '단표누항에 헛된 생각 아니 하네', (나) 공자 인용 → <span style="color:#c0392b;">가난 속에서도 즐거움을 찾는 태도</span></li>
+                    <li><strong>시간적 순서</strong> – (가) ㉡ '아침에~저녁에~' → <span style="color:#c0392b;">일상적 생활 체험의 구체화</span></li>
+                    <li><strong>은둔과 실천의 대비</strong> – (나) [A] '숨기기' vs '덕을 성취시키는 것' → <span style="color:#c0392b;">작품의 핵심 교훈</span></li>
+                    <li><strong>생활 체험</strong> – 두 작품 모두 <span style="color:#c0392b;">일상적 생활 공간에서의 경치 감상</span>과 이상향 연계</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 1회 18~23</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>(가)</span> 「상춘곡」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 속세를 벗어나 산림에 묻힌 삶의 반문</p>
+                    <p><span class="flow-badge">전개</span> 봄날의 자연 경관과 풍류 즐김 (시간적 순서·공간적 확장)</p>
+                    <p><span class="flow-badge">결말</span> 안빈낙도와 자연과의 합일(물아일체)·무릉도원 연상</p>
+                    <div class="sub-point">✔ 강호가사: 자연 친화적 삶과 자족</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(나)</span> 「침류대기」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 직책에 얽매여 경치를 못 본 아쉬움</p>
+                    <p><span class="flow-badge">전개</span> 유희경의 초대 → 침류대 방문, 무릉도원 연상</p>
+                    <p><span class="flow-badge">결말</span> 은둔을 넘어 덕을 베풀 것을 권유 ([A])</p>
+                    <div class="sub-point">✔ 기문: 이상향 체험과 성찰</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>공통점</span></div>
+                <div class="card-body">
+                    <p><span class="flow-badge">이상향</span> 무릉도원 이미지 활용</p>
+                    <p><span class="flow-badge">체험</span> 일상적 생활 공간에서의 경치 감상</p>
+                    <p><span class="flow-badge">태도</span> 자연에 대한 예찬과 체험에 대한 자부심</p>
+                    <div class="sub-point">💬 두 작품 모두 이상향 지향성과 생활 체험 속 자연 친화적 태도 공유</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : (가) 자연 속 풍류와 안빈낙도 + 무릉도원 연상 → (나) 이상향 체험과 덕의 실천 권유
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 18번 -->
+        <div class="question-full">
+            <div class="q-num">18</div>
+            <div class="question-stem">(가)와 (나)의 공통점으로 가장 적절한 것은? <span class="ref-num">26051-0078</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 색채 이미지를 대조하며 계절의 변화를 보여 주고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 봄의 색채를 드러내지만 (나)는 특정 계절을 강조하지 않으며 색채 대조를 통해 계절 변화를 보여 주지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 직접적으로 관찰한 자연물에 대한 감흥을 드러내고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)는 화자가 직접 본 봄의 자연(꽃, 새, 물 등)에 대한 감흥을, (나)는 글쓴이가 직접 본 침류대의 경치에 대한 감흥을 드러내고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 역사적 인물을 떠올리며 현실 개선의 의지를 강조하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 역사적 인물을 떠올리지 않으며, (나)는 무릉도원·유신을 언급하나 현실 개선 의지보다는 이상향에 대한 동경에 가깝다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 청자의 물음에 답변하는 방식을 통해 깨달음을 전하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 청자가 명시적으로 설정되지 않았으며, (나)는 대화가 있으나 청자의 물음-답변 구조보다는 글쓴이의 독백과 권유에 가깝다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 속세의 덧없음을 비판하며 그와 대비되는 자연의 영속성을 부각하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 속세를 비판하기보다 자연의 즐거움을 노래하며, (나)는 속세의 덧없음을 비판하지 않는다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절한 공통점(정답).</div>
+        </div>
+
+        <!-- 문제 19번 -->
+        <div class="question-full">
+            <div class="q-num">19</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 (가), (나)를 감상한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0079</span></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                (가)는 화자가 자신의 거주지나 그 주변의 공간에서 체험한, (나)는 글쓴이가 타인의 거주지나 그 주변의 공간에서 체험한 내용을 드러내고 있다. (가)와 (나)의 체험은 거주지의 제시와 거주지 주변의 길이나 시냇가, 산 등에서 유유자적하는 모습으로 형상화되고 있는데, 이것은 장기간 여러 명승지를 기행하는 것이 아니라 짧은 시간 동안 한가롭게 걸어 다니면서 일상적인 생활 공간의 경치를 감상하는 일종의 생활 체험으로 볼 수 있다. 이러한 체험 과정에서 작가는 자신이 감상한 자연의 아름다움을 동양적 이상향의 이미지와 연결하고 있는데, 이는 상상의 관념을 현실에 적용하는 방식을 통해 생활 공간에서 접하는 자연에 대한 예찬과 자신의 체험에 대한 자부심을 나타내려는 의도로 볼 수 있다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① (가)의 '소요음영하야'와 '미음완보하야'는 화자가 일상적인 생활 공간을 한가롭게 걸으며 즐기는 모습으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;보기&gt;에서 "짧은 시간 동안 한가롭게 걸어 다니면서 일상적인 생활 공간의 경치를 감상하는 생활 체험"에 해당한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (나)의 '누대'는 글쓴이가 방문한 유희경의 거주지를 가리키는 것으로, 글쓴이는 그 주변 공간에서 유희경과 함께 유유자적하고 있다고 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;보기&gt;에서 "(나)는 글쓴이가 타인의 거주지나 그 주변의 공간에서 체험한 내용"에 해당한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (나)의 '무릉도원이라는 곳도 여기보다 낫지는 않을 듯하다'는 글쓴이가 아름다운 자연을 접하는 체험에 대해 자부심을 나타낸 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;보기&gt;에서 "생활 공간에서 접하는 자연에 대한 예찬과 자신의 체험에 대한 자부심"에 해당한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (가)의 '두견화를 부치 들고'와 (나)의 '이 신비스러운 경치를 보았으니'는 이상향의 이미지를 현실에 적용하기 위해 애쓰는 행위로 볼 수 있겠군.</div>
+                <div class="choice-analysis">✅ <strong>적절하지 않음 (정답)</strong> – (가)의 '두견화를 부치 들고'는 단순히 진달래꽃을 이고 산에 오르는 행위로, 이상향의 이미지를 현실에 적용하기 위해 애쓰는 행위라고 보기 어렵다. (나)의 '이 신비스러운 경치를 보았으니'는 감탄의 표현일 뿐 애쓰는 행위로 보기 어렵다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (가)의 "무릉이 가깝도다"와 (나)의 "바람이 불지 않아도 날아갈 듯하였다"는 생활 체험에서 접하는 자연에 대한 예찬의 태도를 나타낸 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 두 표현 모두 자연의 아름다움에 감탄하며 예찬하는 태도를 드러낸다.</div>
+            </div>
+            <div class="wrong-badge">📍 ④번이 적절하지 않은 감상(정답).</div>
+        </div>
+
+        <!-- 문제 20번 -->
+        <div class="question-full">
+            <div class="q-num">20</div>
+            <div class="question-stem">㉠~㉤에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0080</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠: 화자가 자신의 흥취를 새에 이입하여 자연과의 일체감을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – '수풀에 우는 새는 봄기운을 못내 즐거워'는 화자의 흥취를 새에 투영한 물아일체의 표현이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉡: 화자가 시간적 순서에 따라 봄날을 즐기는 상황을 제시하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – '아침에 채산하고 저녁에 조수하세'는 하루의 시간적 순서에 따른 활동을 제시한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉢: 화자가 시냇가에서 이웃들과 어울려 술을 마시는 상황을 나타내고 있다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – ㉢에서 화자는 '시냇기에 혼자 앉아' 잔을 씻고 마시고 있으며, 이웃들과 어울리는 상황이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉣: 글쓴이가 평소 골짜기 안을 방문하지 못한 이유를 밝히고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – '늘 직책에 얽매이다 보니'는 정엽원동(골짜기)을 방문하지 못한 이유를 밝히고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉤: 글쓴이가 아름다운 경치 속에서 살아가는 유희경을 긍정적으로 평가하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 유희경을 유신에 비유하며 신선과 같은 존재로 긍정적으로 평가하고 있다.</div>
+            </div>
+            <div class="wrong-badge">📍 ③번이 적절하지 않은 이해(정답).</div>
+        </div>
+
+        <!-- 문제 21번 -->
+        <div class="question-full">
+            <div class="q-num">21</div>
+            <div class="question-stem">(가)의 화자에 대한 설명으로 가장 적절한 것은? <span class="ref-num">26051-0081</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 봄을 맞이한 들판을 바라보며 겨울의 자취를 그리워하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 겨울을 그리워하기보다 봄의 경치를 즐기고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 온갖 자연물을 만들어 봄의 자연을 즐기는 초월적 존재를 부러워하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 화자는 초월적 존재를 부러워하기보다 자신이 자연 속에서 풍류를 즐기고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 유한한 인생에 대해 한탄하며 남은 인생을 더욱 즐기려는 모습을 보이고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 인생의 유한함을 한탄하기보다 현재의 즐거움에 집중하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 세속적 가치에 대한 부정적 인식을 드러내며 자연 친화적 태도를 보이고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – '공명도 날 꺼리고 부귀도 날 꺼리니'에서 세속적 가치에 대한 부정적 인식을, '청풍명월 외에 어떤 벗이 있사올고'에서 자연을 벗 삼는 자연 친화적 태도를 드러낸다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 산의 정상에 천천히 오르며 주변 자연물의 속성에 주목하고 교훈을 전달하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 교훈을 전달하기보다 자연의 아름다움을 감상하고 즐기는 데 초점이 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 22번 -->
+        <div class="question-full">
+            <div class="q-num">22</div>
+            <div class="question-stem">&lt;보기&gt;의 ⑨, ⑩에 들어갈 학생의 답변 내용을 추론할 때 가장 적절한 것은? <span class="ref-num">26051-0082</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                선생님: 만약 작가가「상춘곡」의 마지막 행을 '아모타, 호의호식(好衣好食)과 멀어진들 어떠하리'로 표현했다면 어떤 효과를 기대한 것으로 볼 수 있을까요?<br>
+                학생: 현재 (가)의 마지막 행은 화자가 자신의 생활에 대한 ⑨<u> </u>을 드러낸 것으로 이해할 수 있습니다. 만약 이것을 '아모타, 호의호식(好衣好食)과 멀어진들 어떠하리'로 표현한다면 글의 맥락상 화자가 ⑩<u> </u>을/를 강조하는 것으로 볼 수 있습니다.
+            </div>
+            <div style="overflow-x:auto;">
+                <table style="font-size:13px;">
+                    <thead><tr><th></th><th>⑨</th><th>⑩</th></tr></thead>
+                    <tbody>
+                        <tr><td>①</td><td>만족감</td><td>정신적 가치와 물질적 가치의 조화를 바라는 소망</td></tr>
+                        <tr><td>②</td><td>만족감</td><td>부귀영화보다는 청빈한 삶이 좋다는 인식</td></tr>
+                        <tr><td>③</td><td>기대감</td><td>가난에서 벗어나 좀 더 나은 생활을 하겠다는 포부</td></tr>
+                        <tr><td>④</td><td>기대감</td><td>속세에 대한 강한 미련과 출세에 대한 각오</td></tr>
+                        <tr><td>⑤</td><td>겸손함</td><td>세상 사람들이 자신의 삶을 본받게 만들려는 의도</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ⑨: 만족감, ⑩: 정신적 가치와 물질적 가치의 조화를 바라는 소망</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 원문 '아모타, 백년행락이 이만한들 어찌하리'는 화자의 생활에 대한 <strong>만족감</strong>을 드러낸다. '호의호식과 멀어진들 어떠하리'로 바꾸면 물질적 풍요보다 정신적 가치를 중시하는 태도를 강조하게 된다. '조화를 바라는 소망'보다는 '청빈한 삶이 좋다는 인식'에 더 가깝다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⑨: 만족감, ⑩: 부귀영화보다는 청빈한 삶이 좋다는 인식</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 원문은 현재 생활에 대한 만족감을 드러낸다. '호의호식과 멀어진들 어떠하리'는 부귀영화보다 청빈한 삶을 선택하겠다는 의미로, 화자의 가치관을 더욱 강조하게 된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⑨: 기대감, ⑩: 가난에서 벗어나 좀 더 나은 생활을 하겠다는 포부</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 원문은 기대감보다 만족감에 가깝다. 또한 바꾼 표현은 가난에서 벗어나려는 포부와 반대 방향이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⑨: 기대감, ⑩: 속세에 대한 강한 미련과 출세에 대한 각오</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 바꾼 표현은 속세에 대한 미련이 아니라 오히려 속세를 초월한 태도를 강조한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⑨: 겸손함, ⑩: 세상 사람들이 자신의 삶을 본받게 만들려는 의도</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 원문이나 바꾼 표현 모두 타인을 의식한 겸손이나 교훈적 의도보다는 개인의 내적 만족과 가치관에 초점이 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절한 추론(정답).</div>
+        </div>
+
+        <!-- 문제 23번 -->
+        <div class="question-full">
+            <div class="q-num">23</div>
+            <div class="question-stem">[A]에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0083</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 글쓴이는 유희경이 훌륭한 은사의 품격을 지녔다고 생각하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – '옛날 은사가 자취를 감추고 있는 것 같았다'는 표현에서 유희경을 훌륭한 은사로 평가하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 유희경은 글쓴이의 조언을 긍정적으로 수용하며 새로운 깨달음을 얻고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 마지막 문장에서 "내 오늘에야 즐거워할 바를 깨달았네"라고 하여 조언을 수용하고 깨달음을 얻었음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 글쓴이는 유희경이 자연에서 얻은 정신적 가치를 타인과 나누기를 바라고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – "남에게 베풀 수 있는 것을 자꾸 막아서 그것을 혼자만 즐기려고 한다면 이 역시 애석한 일"이라는 말에서 타인과 나누기를 바라고 있음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 글쓴이는 성현의 말을 인용하며 자신이 바람직하게 여기는 삶을 유희경에게 권하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 공자의 말을 인용하여 안빈낙도의 삶을 권하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 유희경은 도시와 가까운 누대의 지리적 장점과 정결한 시냇물의 속성을 고려하여 누대의 이름을 지었다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 누대의 이름 '침류'는 글쓴이가 유희경의 삶을 은사에 비유하며 해석한 것이지, 유희경이 지리적 장점을 고려해 직접 지은 것이 아니다. "이는 마치 훌륭한 은사와 비교하면서 이 누대를 '침류'라고 이름지은 것임을 알겠다"는 글쓴이의 해석이다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 이해(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

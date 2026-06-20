@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 1회 - 04~07 (피아제 인지 발달)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .figure-box {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .figure-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .figure-caption {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-top: 10px;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 1회 · 독서 04~07</h1>
+        <p>피아제의 전개념적 사고기(인지 발달 이론) | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>인간의 인지 발달을 연구한 피아제는 만 2세에서 만 4세까지를 '전개념적 사고기'라고 부르고, 이 시기에 인지적 성장과 언어 발달이 빠른 속도로 이루어진다고 보았다. 그는 이 시기에 유아가 눈앞에 존재하지 않는 대상이나 사건을 머릿속에서 표상하고 그것을 언어나 상징물로 대체할 수 있게 되며, 언어의 발달로 영아의 시기에 비해 의사소통이 효율적으로 이루어진다고 보았다. 그러나 실제와 실제가 아닌 것을 완전히 구분하기 힘들며, 자기 중심적인 사고를 하는 등 인지적으로 미성숙한 모습을 보여 주기도 한다고 보았다. 피아제는 이런 전개념적 사고기의 인지적 특성을 <span class="underline-phrase">자기중심성</span>, <span class="underline-phrase">물활론적 사고</span>, <span class="underline-phrase">인공론적 사고</span>, <span class="underline-phrase">전환적 추론</span>, <span class="underline-phrase">보존 개념의 미획득</span>으로 설명하였다.</p>
+                <p>피아제는 전개념적 사고기의 유아는 모든 것을 자기 중심적으로 생각하는 자기중심성을 가지고 있다고 하였다. 즉 자신이 좋아하는 것을 다른 사람도 좋아하고, 자신이 보는 것을 다른 사람도 보고 있다고 생각하는 것이다. 자기중심적 사고는 유아의 배려심이 부족하여 나타나는 것이 아니라 인지의 미성숙에서 기인한 자연스러운 현상이다. 자기중심적 사고를 잘 보여 주는 것은 피아제의 '세 산 모형 실험'이다. 외관이 다른 세 개의 산 모형을 탁자 위에 배치하고 탁자를 중심으로 유아의 반대편에 앉은 인형에게 보이는 세 산 모형의 모습을 나타내는 사진을 유아에게 선택하게 하였을 때, 대부분 유아는 자신이 본 세 산 모형과 똑같은 형태의 사진을 선택하였다.</p>
+                <p>피아제는 물활론적 사고와 인공론적 사고도 전개념적 사고기의 유아의 대표적인 특징으로 보았다. 물활론적 사고란 생명이 없는 대상이나 자연현상에 생명과 감정을 부여하는 것이고, 인공론적 사고란 자연물이나 자연현상이 어떤 목적을 위해 만들어졌거나 누군가에 의해 만들어졌다고 생각하는 것이다. 예를 들어 유아가 "그림자가 나를 좋아해서 따라오잇."라고 하는 것은 물활론적 사고라고 할 수 있고, "달은 밤에 무섭지 말라고 만들어 놓은 거야."라고 하는 것은 인공론적 사고라고 할 수 있다.</p>
+                <p>피아제는 전개념적 사고기의 유아는 어떤 현상의 원인과 결과 간의 관계를 추론하는 능력이 부족하여, 귀납적 추론이나 연역적 추론과 같은 논리적인 사고를 하지 못하는 대신 <span class="underline-phrase">전환적 추론</span>을 한다고 보았다. 전환적 추론이란 사건이나 현상의 유사성이나 인접성을 바탕으로 비논리적인 인과관계를 설정하는 것을 말한다. 예를 들어 유아가 거짓말을 한 날 감기에 걸린 후 "내가 거짓말을 해서 감기에 걸린 거야."라고 한다면 전환적 추론이라고 할 수 있다. 이는 유아가 사건이나 현상의 과학적, 논리적 원리를 이해하지 못해, 쉽게 설명할 수 있는 자신의 경험이나 감정을 사건이나 현상에 연결하여 해석하기 때문에 발생한다.</p>
+                <p>보존 개념은 어떤 대상의 외양이 바뀌어도 양, 수, 부피 등 대상의 본질적 속성이 바뀌지 않는다는 것을 이해하는 능력을 의미하는데, 피아제는 전개념적 사고기에는 보존 개념이 획득되지 않는다고 하였다. 이 시기의 유아가 보존 개념을 획득하지 못하는 이유에 대해 피아제는, 첫째로 두 개 이상의 차원을 동시에 고려하지 못하고 한 가지 차원에만 주의를 집중하는 <span class="underline-phrase">중심화 현상</span>, 둘째로 지각적 특성에 의해서 주로 판단하는 <span class="underline-phrase">직관적 사고</span>, 셋째로 어떤 변화가 일어났을 때 이것을 이전의 상태로 되돌릴 수 있다는 것을 이해하지 못하는 특성인 <span class="underline-phrase">비가역성</span> 때문이라고 설명하였다.</p>
+                <p>피아제의 유아 인지 발달에 대한 실험이나 연구는 세 산 모형 실험처럼 유아의 관심이 낮은 맥락 조건을 사용하거나 유아에게 너무 어려운 언어적 설명을 사용하여 유아가 자신의 인지 능력을 제대로 발휘할 수 없어, 유아의 실제 능력을 과소평가했다는 비판을 받았다. 하지만 유아가 단순히 인지적으로 미성숙하다는 인식을 넘어서, 성인과 다른 유아의 독자적인 사고 방식을 연구했다는 점에서 의의가 있다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 분석 – 전개념적 사고기 개관</div>
+                <div class="content">피아제는 만 2~4세를 전개념적 사고기로 명명. 인지·언어 발달이 빠르나, 자기중심적 사고 등 미성숙함. 다섯 가지 인지적 특성 제시.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 분석 – 자기중심성</div>
+                <div class="content">자신의 관점이 타인과 동일하다고 생각. 배려심 부족이 아닌 인지 미성숙. '세 산 모형 실험'으로 입증.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>전개념적 사고기</strong>: 만 2~4세, 상징적 사고 시작 but 논리 부족<br>
+                • <strong>자기중심성</strong>: 타인의 관점을 고려하지 못함<br>
+                • <strong>물활론적 사고</strong>: 무생물에 생명·감정 부여<br>
+                • <strong>인공론적 사고</strong>: 자연물이 목적을 위해 만들어졌다고 생각
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 분석 – 물활론적·인공론적 사고</div>
+                <div class="content">물활론: 무생물에 생명·감정 부여 (예: 그림자가 나를 좋아함). 인공론: 자연물이 목적을 가지고 만들어짐 (예: 달은 무섭지 말라고 만듦).</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 분석 – 전환적 추론</div>
+                <div class="content">비논리적 인과관계 설정 (유사성·인접성 기반). 예: 거짓말 → 감기. 과학적 원리 이해 부족으로 발생.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>핵심 용어</strong><br>
+                • <strong>전환적 추론</strong>: 유사성·인접성에 기반한 비논리적 인과 추론<br>
+                • <strong>보존 개념</strong>: 외양이 변해도 본질적 속성(양·수·부피)은 불변
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 분석 – 보존 개념과 미획득 이유</div>
+                <div class="content">보존 개념: 외양 변화에도 본질 속성 불변. 미획득 이유: ① 중심화 현상 ② 직관적 사고 ③ 비가역성.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 6문단 분석 – 피아제 이론의 의의와 비판</div>
+                <div class="content">비판: 유아의 관심·언어 수준을 고려하지 않아 능력 과소평가. 의의: 성인과 다른 유아의 독자적 사고 방식 연구.</div>
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>이 글은 피아제의 전개념적 사고기(만 2~4세)의 다섯 가지 인지적 특성(자기중심성·물활론적 사고·인공론적 사고·전환적 추론·보존 개념 미획득)을 설명하고, 그 원인(중심화·직관적 사고·비가역성)과 이론의 의의 및 비판을 다룬다.</li>
+                    <li>글의 구성: 1문단(개관) → 2문단(자기중심성) → 3문단(물활론·인공론적 사고) → 4문단(전환적 추론) → 5문단(보존 개념) → 6문단(의의와 비판)</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">피아제는 전개념적 사고기 유아의 인지적 특성(자기중심성·물활론적 사고·인공론적 사고·전환적 추론·보존 개념 미획득)을 설명하고, 그 원인과 이론의 의의 및 한계를 제시한다.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 전개념적 사고기 다섯 가지 특성</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>특성</th><th>설명</th><th>예시</th></tr></thead>
+                    <tbody>
+                        <tr><td>자기중심성</td><td>타인의 관점을 고려하지 못함</td><td>세 산 모형 실험: 자신이 본 것 선택</td></tr>
+                        <tr><td>물활론적 사고</td><td>무생물에 생명·감정 부여</td><td>"그림자가 나를 좋아해"</td></tr>
+                        <tr><td>인공론적 사고</td><td>자연물이 목적을 위해 만들어짐</td><td>"달은 무섭지 말라고 만든 거야"</td></tr>
+                        <tr><td>전환적 추론</td><td>비논리적 인과관계 설정</td><td>"거짓말해서 감기 걸렸어"</td></tr>
+                        <tr><td>보존 개념 미획득</td><td>외양 변화에도 본질 불변을 이해 못함</td><td>액체 보존 실패</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>전개념적 사고기 다섯 가지 특성</strong>: 자기중심성 · 물활론적 사고 · 인공론적 사고 · 전환적 추론 · 보존 개념 미획득</li>
+                    <li><strong>보존 개념 미획득의 세 가지 원인</strong>: 중심화 현상 · 직관적 사고 · 비가역성</li>
+                    <li><strong>전환적 추론</strong>: 유사성·인접성에 기반한 비논리적 인과 추론 (귀납·연역과 대비)</li>
+                    <li><strong>피아제 이론의 의의</strong>: 성인과 다른 유아의 독자적 사고 방식을 연구함</li>
+                    <li><strong>비판점</strong>: 유아의 관심·언어 수준을 고려하지 않아 능력 과소평가</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 1회 04~07</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 전개념적 사고기 개관</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">시기</span> 만 2세 ~ 만 4세</p>
+                    <p><span class="flow-badge">특징</span> 상징적 사고·언어 발달 vs 인지 미성숙</p>
+                    <p><span class="flow-badge">다섯 가지 특성</span> 자기중심성 · 물활론 · 인공론 · 전환적 추론 · 보존 개념 미획득</p>
+                    <div class="sub-point">✔ 1문단: 전개념적 사고기의 정의와 다섯 가지 특성 소개</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 세부 특성 설명</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">자기중심성</span> 타인 관점 고려 못함 (세 산 모형 실험)</p>
+                    <p><span class="flow-badge">물활론적 사고</span> 무생물에 생명·감정 부여</p>
+                    <p><span class="flow-badge">인공론적 사고</span> 자연물이 목적을 위해 만들어짐</p>
+                    <p><span class="flow-badge">전환적 추론</span> 유사성·인접성 기반 비논리적 인과</p>
+                    <div class="sub-point">🔎 2~4문단: 각 특성의 개념과 예시 제시</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 보존 개념과 이론 평가</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">보존 개념</span> 외양 변화에도 본질 속성 불변</p>
+                    <p><span class="flow-badge">미획득 원인</span> 중심화 · 직관적 사고 · 비가역성</p>
+                    <p><span class="flow-badge">비판</span> 유아 능력 과소평가 (맥락·언어 문제)</p>
+                    <p><span class="flow-badge">의의</span> 유아 독자적 사고 방식 연구</p>
+                    <div class="sub-point">💬 5~6문단: 보존 개념 설명 + 이론의 의의와 한계</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 전개념적 사고기 개관 → 다섯 가지 특성 상세 설명 → 보존 개념과 이론 평가(의의·비판)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 4번 -->
+        <div class="question-full">
+            <div class="q-num">04</div>
+            <div class="question-stem">윗글에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0064</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 피아제는 두 개 이상의 차원을 동시에 고려하는 것은 보존 개념의 획득과 관련이 있다고 보았다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 5문단에서 보존 개념 미획득 이유 중 첫째로 "두 개 이상의 차원을 동시에 고려하지 못하고 한 가지 차원에만 주의를 집중하는 중심화 현상"을 들었으므로, 두 개 이상의 차원을 동시에 고려하는 것은 보존 개념 획득과 관련이 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 피아제는 자신이 느끼는 것을 다른 사람도 느끼고 있다고 생각하는 것이 자기중심성에 해당한다고 보았다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 "자신이 좋아하는 것을 다른 사람도 좋아하고, 자신이 보는 것을 다른 사람도 보고 있다고 생각하는 것"이 자기중심성이라고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 피아제는 전개념적 사고기의 유아가 배려에 대한 교육을 통해 자기중심적 사고에서 벗어날 수 있다고 보았다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 2문단에서 "자기중심적 사고는 유아의 배려심이 부족하여 나타나는 것이 아니라 인지의 미성숙에서 기인한 자연스러운 현상"이라고 했다. 따라서 배려 교육을 통해 벗어날 수 있다고 보지 않았다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 피아제는 만 2세에서 만 4세까지의 시기에 인간의 인지적 성장과 언어 발달이 빠른 속도로 일어난다고 보았다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단에서 "이 시기에 인지적 성장과 언어 발달이 빠른 속도로 이루어진다고 보았다"고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 피아제의 유아 인지 발달에 대한 실험과 연구는 유아의 관심이나 언어 능력을 세밀하게 고려하지 못했다는 비판을 받았다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 6문단에서 "유아의 관심이 낮은 맥락 조건을 사용하거나 유아에게 너무 어려운 언어적 설명을 사용"했다는 비판을 받았다고 했다.</div>
+            </div>
+            <div class="wrong-badge">📍 ③번이 적절하지 않은 이해(정답).</div>
+        </div>
+
+        <!-- 문제 5번 -->
+        <div class="question-full">
+            <div class="q-num">05</div>
+            <div class="question-stem">전환적 추론에 대해 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0065</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 귀납적 추론이나 연역적 추론과 다르게 논리적인 사고로 볼 수 없다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 "귀납적 추론이나 연역적 추론과 같은 논리적인 사고를 하지 못하는 대신 전환적 추론을 한다"고 했으므로, 논리적 사고가 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 유아가 사건이나 현상을 자신의 경험에 관련지을 때 발생할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 "자신의 경험이나 감정을 사건이나 현상에 연결하여 해석하기 때문에 발생한다"고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 유아가 사건의 유사성이나 인접성을 바탕으로 사고할 때 나타날 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 "사건이나 현상의 유사성이나 인접성을 바탕으로" 한다고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 어떤 사건의 인과 관계를 논리적으로 추론하는 능력이 부족하여 발생하는 사고방식이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 "원인과 결과 간의 관계를 추론하는 능력이 부족하여" 발생한다고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 유아가 특정한 현상의 과학적인 원리를 이해하고 자신의 수준에 맞는 쉬운 단어를 사용하여 설명하는 것이다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 전환적 추론은 과학적 원리를 이해하지 못하고 비논리적으로 연결하는 것이므로, 과학적 원리를 이해하고 설명하는 것은 전환적 추론이 아니다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 이해(정답).</div>
+        </div>
+
+        <!-- 문제 6번 (정답 ④로 수정) -->
+        <div class="question-full">
+            <div class="q-num">06</div>
+            <div class="question-stem">윗글을 읽은 학생이 &lt;보기&gt;에 대해 보인 반응으로 <strong>가장 적절한</strong> 것은? <span class="ref-num">26051-0066</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                심리학자 김은 전개념적 사고기 유아를 대상으로 인지 발달 능력을 확인하기 위해, 유아에게 친숙하고 흥미가 있는 놀이인 숨바꼭질에서 착안한 '경찰 인형 실험'을 하였다. 경찰 인형 실험은 실험자가 모형 벽과 경찰 인형을 우선 배치한 후, 유아에게 소년 인형이 잡히지 않도록 경찰이 볼 수 없는 곳에 소년 인형을 배치하라고 하는 것이다. 이때 유아들은 한 명의 경찰이 배치된 상황뿐 아니라 <그림>과 같이 두 명의 경찰이 배치된 복잡한 상황에서도 대부분 소년 인형을 잘 숨겼다.
+                <div class="figure-box">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 탁자 -->
+                        <rect x="100" y="120" width="200" height="15" fill="#d4a373" stroke="#8d6e3f" stroke-width="1.5"/>
+                        <rect x="120" y="135" width="10" height="40" fill="#b8956a"/>
+                        <rect x="270" y="135" width="10" height="40" fill="#b8956a"/>
+                        <!-- 경찰 인형 1 (왼쪽) -->
+                        <circle cx="140" cy="95" r="12" fill="#1e466e" stroke="#0d2b4a" stroke-width="1.5"/>
+                        <rect x="134" y="105" width="12" height="18" fill="#2a5f8a" rx="2"/>
+                        <rect x="134" y="120" width="12" height="10" fill="#1e466e" rx="2"/>
+                        <!-- 경찰 인형 2 (오른쪽) -->
+                        <circle cx="260" cy="95" r="12" fill="#1e466e" stroke="#0d2b4a" stroke-width="1.5"/>
+                        <rect x="254" y="105" width="12" height="18" fill="#2a5f8a" rx="2"/>
+                        <rect x="254" y="120" width="12" height="10" fill="#1e466e" rx="2"/>
+                        <!-- 소년 인형 (중간, 벽 뒤) -->
+                        <circle cx="200" cy="95" r="10" fill="#e67e22" stroke="#c0392b" stroke-width="1.5"/>
+                        <rect x="195" y="103" width="10" height="14" fill="#f39c12" rx="2"/>
+                        <rect x="195" y="115" width="10" height="8" fill="#e67e22" rx="2"/>
+                        <!-- 벽 -->
+                        <rect x="180" y="85" width="8" height="35" fill="#7f8c8d" stroke="#5d6d7e" stroke-width="1.5"/>
+                        <rect x="212" y="85" width="8" height="35" fill="#7f8c8d" stroke="#5d6d7e" stroke-width="1.5"/>
+                        <text x="170" y="75" font-size="10" fill="#555" text-anchor="middle">벽</text>
+                        <text x="230" y="75" font-size="10" fill="#555" text-anchor="middle">벽</text>
+                        <text x="200" y="60" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="bold">소년 인형</text>
+                        <text x="140" y="78" font-size="10" fill="#1e466e" text-anchor="middle" font-weight="bold">경찰</text>
+                        <text x="260" y="78" font-size="10" fill="#1e466e" text-anchor="middle" font-weight="bold">경찰</text>
+                        <text x="200" y="165" font-size="11" fill="#555" text-anchor="middle">〈그림〉</text>
+                    </svg>
+                    <div class="figure-caption">〈그림〉두 명의 경찰이 배치된 상황</div>
+                </div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 김의 경찰 인형 실험은 피아제의 세 산 모형 실험과 달리 전개념적 사고기 유아의 자기중심성이 잘 드러나는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 경찰 인형 실험은 유아가 타인의 시야(경찰의 관점)를 고려해야 하는 과제로, 유아가 자신의 관점이 아닌 타인의 관점에서 생각해야 하므로 자기중심성을 극복하는 모습을 보여 준다. 따라서 '자기중심성이 잘 드러나는군'은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 김의 경찰 인형 실험의 결과에 따르면 전개념적 사고기 유아의 인지 수준이 피아제가 생각한 것보다 높지 않다는 것을 알 수 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 유아가 복잡한 상황에서도 소년 인형을 잘 숨겼으므로, 피아제가 생각한 것보다 인지 수준이 더 높을 가능성을 보여 준다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 김의 경찰 인형 실험과 피아제의 세 산 모형 실험은 모두 전개념적 사고기 유아가 개인별로 인지 능력의 차이가 크다는 것을 보여 주는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두 실험 모두 개인별 차이보다는 전개념적 사고기 유아의 공통된 인지 특성을 보여 주는 데 초점이 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 김의 경찰 인형 실험과 피아제의 세 산 모형 실험의 결과에서 유아의 인지 능력이 다르게 나타나는 것은 실험에 사용한 맥락 조건의 차이가 영향을 미쳤겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 피아제의 세 산 모형 실험은 유아의 관심이 낮은 맥락 조건을 사용했다는 비판을 받았고, 김의 실험은 친숙하고 흥미로운 놀이(숨바꼭질)를 사용했다. 따라서 맥락 조건의 차이가 유아의 인지 능력 발휘에 영향을 미쳤을 가능성이 있어 가장 적절한 반응이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 김의 경찰 인형 실험은 피아제의 세 산 모형 실험과 달리 특정 상황에서 타인의 시각적 관점을 전개념적 사고기 유아가 추론할 수 있는지를 판단하기 위한 실험이군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 세 산 모형 실험도 타인의 시각적 관점을 추론할 수 있는지를 판단하는 실험이므로, "달리"라고 보기는 어렵다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 가장 적절한 반응(정답).</div>
+        </div>
+
+        <!-- 문제 7번 -->
+        <div class="question-full">
+            <div class="q-num">07</div>
+            <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;의 <span class="underline-phrase">ⓐ~ⓒ</span>를 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0067</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                <span class="underline-phrase">ⓐ</span> 아이가 나무토막을 앞뒤로 움직이며 자동차 소리와 유사한 '부릉부릉, 빵빵'이라는 소리를 내면서 놀고 있다.<br><br>
+                <span class="underline-phrase">ⓑ</span> 아이가 비가 내리는 것을 보고 '비가 오는 건 하늘이 내 화분을 불쌍히 여겨서 물을 주고 싶어서 그런 거야.'라고 말했다.<br><br>
+                <span class="underline-phrase">ⓒ</span> 아이에게 같은 모양의 투명한 컵 A, B에 같은 양의 우유를 담아 놓고 A, B 중 어떤 컵의 우유가 더 많은지 물었더니 똑같다고 이야기하였다. 그런데 B에 담긴 우유를 가늘고 긴 컵인 C에 옮겨 담는 것을 보여 주고 A와 C 중 어떤 컵의 우유가 더 많은지 물었더니 C에 담긴 우유가 더 많다고 하였다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ: 아이가 눈앞에 없는 대상을 상징물로 대체하는 사례로 전개념적 사고기를 넘어선 것을 보여 준다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 나무토막을 자동차로 상징화하는 것은 전개념적 사고기의 상징적 사고 능력을 보여 주는 것이지, 이를 "넘어선 것"이라고 볼 수 없다. 전개념적 사고기는 상징적 사고가 가능한 시기이므로 적절하지 않은 설명이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⓑ: 아이가 인공론적 사고를 바탕으로 특정 현상을 해석하는 것을 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – "하늘이 내 화분을 불쌍히 여겨서"는 무생물(하늘)에 감정을 부여한 것이므로 <strong>물활론적 사고</strong>에 해당한다. 인공론적 사고는 자연물이 목적을 위해 만들어졌다고 생각하는 것이므로, 이는 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓒ: 아이가 보존 개념을 획득하지 못한 것이므로 전개념적 사고기의 특성을 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 액체 보존 개념 실패 사례로, 전개념적 사고기의 전형적 특성이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓒ: 아이가 C에 담긴 우유를 다시 B에 담으면 이전의 모습과 같아진다는 것을 알지 못하는 것으로 비가역성을 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 비가역성은 변화를 이전 상태로 되돌릴 수 있다는 것을 이해하지 못하는 것이므로 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓑ: 아이가 생명이 없는 대상에 감정을 부여하는 물활론적 사고를 하고 있는 것을 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – "하늘이 내 화분을 불쌍히 여겨서"는 무생물(하늘)에 감정(불쌍히 여김)을 부여한 물활론적 사고의 예시로 적절하다.</div>
+            </div>
+            <div class="wrong-badge">📍 ①번이 적절하지 않은 이해(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

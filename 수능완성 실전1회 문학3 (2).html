@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 1회 - 28~31 (오정희 「동경」)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .story-line {
+            margin-bottom: 0.3em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .line-analysis .highlight {
+            color: #c0392b;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin: 1em 0 0.5em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .analysis-box .exam-tip {
+            display: block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 1회 · 문학 28~31</h1>
+        <p>오정희 「동경」 | 문장별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="section-title">[앞부분 줄거리]</div>
+                <div class="story-line">
+                    <span class="line-text">시청 공무원으로 일하다가 정년 퇴직한 '그'는, 20년</span>
+                    <div class="line-analysis">← 정년 퇴직한 노인, 주인공 '그'</div>
+                </div>
+
+                <div class="story-line" style="margin-top: 0.8em;">
+                    <span class="line-text">그는 만화경을 눈에 갖다 대고 빙글빙글 돌렸다. 잘게 자른 색종이 조각들이 거울면의 굴절에 따라 모였다 흩어지며 여러 가지 꽃 모양을 만들었다.</span>
+                    <div class="line-analysis">← 만화경을 돌리며 색종이의 변화를 관찰 – <span class="highlight">상징적 시작</span></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">만화경 속의 조화는 현란하지도 신기하지도 않았다. 흩일과 겹일꽃의 단순한 집합과 확산일 뿐이었다. 옛사람들은 만화경을 돌리며 우주의 원리와 이치를 본다고 했다.</span>
+                    <div class="line-analysis">← 만화경에 대한 냉정한 평가, <span class="highlight">옛사람들의 지혜</span> 언급 – 노인의 냉철한 시선</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">엿그제였던가, 점심 산책에 나선 그가 주택가 골목을 벗어나 큰길에 이르렀을 때 그는 주위를 집요하게 빙 돌며 따라오는 빛무늬를 보았다. 어깨와 다리, 가슴짝에 함부로 와닿는 빛을 털어내며 눈살을 찌푸렸으나 하얗게 번쩍이는 그것이 길과 사람들 사이로 정령처럼 춤추며 뛰어다니다가 다시금 그에게로 되돌아와 얼굴에 오래 머무르자 그는 문득 얼굴이 좋아드는 공포를 느꼈다. 센 빛살에 눈을 뜨지 못하며 그는 소리쳤다. 누구나, 거울 장난을 하는 게. 그때 행행한 목소리가 날아왔다. 안녕하세요, 할아버지. 아이가 미장원 충계에 앉아 있었다. 아이의 손에는 날카롭게 모가 선 거울 조각이 들려 있었다. 다치면 어찌려고 그러니. 그러나 아이는 말했다. 유리 가게에 가서 동그랗게 잘라 달라고 하면 된대요. 내일 유치원에서 만화경을 만들 거예요. 만화경은 뭐든지 다 보이는 요술 상자래요. 그러면서 아이는 길을 건너 달려갔다. 뭐든지 다 보인다고? 그는 아이의 등 뒤에 대고 물었으나 물론 진정한 호기심은 아니었다. 단지 의미 없는 되물음이었을 뿐이었다.</span>
+                    <div class="line-analysis">← <span class="highlight">아이와의 만남</span> – 거울 조각과 만화경 이야기 / <span class="highlight">생명력의 상징</span>으로서의 아이 등장</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그리고 어제낮, 그는 놀이터의 벤치에서 그 애의 가방과 함께 놓인 만화경을 보았다. 집으로 오는 동안을 참지 못해 도중에 유치원 가방을 벗어쳐 두고 자전거 가게로 달려가는 그 애의 버릇을 그는 알고 있었다. 아이는 이 요술 상자를 통해 무엇을 들여다보았을까. 그는 아이의 눈이 되어 아이의 눈에 비친 모든 것을 보고자 하는 욕망으로 만화경을 집어들었다. 그것을 품에 감추고 어제 오후 내내 그는 잃어버린 만화경을 찾기 위해 헛되어 모래더미를 헤치는 아이를 지켜보았다. 내 만화경을 누가 훔쳐 갔어요. 전시회에 낼 거라고 선생님이 그랬는데요. 아이는 울면서 벌써 수십 번이나 들여다보았을, 가방과 만화경이 놓였던 긴 의자 밑을 다시 들여다보았다.</span>
+                    <div class="line-analysis">← <span class="highlight">퇴행적 행동</span> – '그'가 아이의 만화경을 훔쳐 봄 / <span class="highlight">생명에의 동경</span>을 드러냄</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">뼈든지 볼 수 있대요. 그는 아이의 말을 흉내 내어 중일거리며 빠르게 만화경을 돌렸다. 돌리는 속도가 빨라짐에 따라 유리와 거울과 색종이가 어울려 모였다 흩어지는 모양이 다양해졌다. 그것은 어찌면 빠른 속도로 분열하고 번식하는 병원균과도 같았다. 색종이의 선명한 색감 때문인지도 몰랐다.</span>
+                    <div class="line-analysis">← <span class="highlight">아이 말 흉내내기</span> – 모방을 통한 생명력 동경</div>
+                </div>
+
+                <div class="story-line" style="margin-top: 0.8em;">
+                    <span class="line-text">(중략)</span>
+                    <div class="line-analysis"></div>
+                </div>
+
+                <div class="story-line" style="margin-top: 0.8em;">
+                    <span class="line-text">치약과 칫솔로 표면에 달라붙은, 갈국수를 먹고 난 뒤의 고춧가루 따위 찌꺼기를 꼼꼼히 닦아 내자 틀니는 싱싱하고 정결하게 빛났다. 틀니의 잇몸은 갓 떼어 낸 살점처럼 연분홍빛으로 건강해 보였다. 그는 헐떡이며, 치약 거품을 가득 물고 허옇게 웃고 있는 이빨들을 바라보았다. <span class="underline-phrase">㉠거울 속으로, 청년처럼 검은 머리는, 무너진 입과 졸아든 인중, 참혹하게 파인 볼 때문에 더 젊어 보였다.</span></span>
+                    <div class="line-analysis">← ㉠ <span class="highlight">거울(자아 확인)</span> – 검은 머리(젊음)와 무너진 입·졸아든 인중(노화)의 <span class="highlight">대비</span> / 젊음에 대한 열망과 노화에 대한 직면이 동시에 드러남</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">방으로 돌아온 그는 틀니가 담긴 물컵을 머리맡에 놓고 퇴침을 베고 누웠다. 잠에 빠지는 과정은 언제나 어둑신하고 한없이 긴 회랑(回廊)을 걸어가는 것과도 같았다. 어쩌면 이미 혼백이 되어 연도(羨道)를 걸어가는 것이나 아닐까.</span>
+                    <div class="line-analysis">← <span class="highlight">회랑·연도 비유</span> – 잠과 죽음 사이의 경계, <span class="highlight">죽음 의식</span>의 암시</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">열린 방문으로 아내의 모습이 빤히 보였다. 혼곤하게 빠져드는 가수 상태에서 아내의 손은 반죽을 궁굴려 몸체를 만들고 귀와 뿔을 세우고 꼬리와 다리를 만들어 붙였다. 그가 한 번도 본 적이 없는 이상한 형체였다. 아내는 그것을 이미 만들어진 다른 것들과 나란히 볕이 드는 마루턱에 세우며 웅얼웅얼 낮게 중얼거렸다.</span>
+                    <div class="line-analysis">← 아내가 <span class="highlight">맥(貘)</span>을 빚는 모습 – 죽음 의식의 구체화</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">할아버지는 돌아가실 때까지 흉몽에 시달리셨다우. 머리가 깨질 듯 아프다고 했어요. 흉몽 때문에 머리가 아픈 건지 머리가 아파서 나쁜 꿈만 꾼 것인지는 그분 자신도 몰랐어요. 무당을 불러 푸닥거리를 하고 장님에게 경을 읽히기도 했지만 그 무서운 두통을 낫게 하지는 못했어요…… 이름난 대목이었다는 아내의 조부 이야기는 그도 몇 차례인가 들어 알고 있었다…… 새벽이고 밤중이고 흉한 꿈에 눌려 비명을 지르고 깨어나면 머리가 아파서 미친 사람처럼 온 집 안을 뒹굴며 다녔지요. 할머니는 그 양반이 묏자리에 집을 많이 지어 그런 거라고 말했지요. 그는 회랑의 어슴푸레한 모퉁이에서 흰 끈을 머리에 동이고 비명을 질러 대는 등 굽은 노인의 뒷모습을 본다…… 그래서 할아버지는 이상한 짐승의 모양을 손칼로 깎았지요. 코끼리 같기도 하고 곰 같기도 하고 아무튼 참 이상한 모양이었지요. 맥(貘)이라던가, 나쁜 꿈을 먹는 짐승이래요. 중얼거리는 동안에도 아내의 손이 쉼 없이 반죽을 떼어 내어 형체를 만들고 있었다…… 할아버지는 그것을 타구와 함께 머리맡에 두었어요. 때문에 타구에 가득 괸 가래침은 마치 맥이 밤새 먹고 이른 새벽에 토해 놓은 흉몽과 같았지요. 할아버지는 관 속에 맥을 같이 넣어 달라고 유언을 하셨어요. 죽은 후에도 나쁜 꿈에 시달릴 것을 겁내셨던 모양이에요. 죽은 사람도 꿈을 꾸는 걸까. 어린 내게는 그것이 퍽 이상했는데 지금은 할아버지가 그러셨던 걸 이해할 수 있어요. 옛날 사람들은 자기가 쓰던 물건, 부리던 하인들의 모양까지 흙으로 빚어 무덤 속에 같이 넣었다잖아요? 아내의 조부는 이제 길고 희미한 시간의 회랑 끝에서 편안히 잠들어 있다. 머리맡에 맥을 세워 두고. 어쩌면 그에게 최면을 걸 듯 느릿느릿 낮게 읊조리는 아내의 말소리에 손을 잡혀 그는, 더러는 어슴푸레 떠오르는 시간 속을 자꾸 걸어간다. 그것은 마치 감광제가 고루 발리지 않은 필름과도 같다. 어느 부분은 저 홀로 발광체인 듯 환히 빛나며 뚜렷이 떠오르고 어느 부분은 아주 깜깜해서 아무것도 보이지 않는다. 그러나 그는 굳이 잊혀진 것을 되살리고자 안타까워하지 않는다. 기억하고 싶은 것만 기억하는 것은 늙은이에게 주어진 보잘것없는 특권인 것이다.</span>
+                    <div class="line-analysis">← 아내의 조부 이야기 – <span class="highlight">맥(貘)</span>: 나쁜 꿈을 먹는 짐승 / <span class="highlight">순환적 의식</span> – 죽음이 끝이 아니라는 인식 / <span class="highlight">기억의 선택성</span> – 노년의 특권</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그러나 그가 지금 주춤거리고 섰는 이곳은 어디인가. 언젠가 가 보았던 박물관의 전시실 같기도 했다. 그곳은 토우(土偶)나 동경(銅鏡) 따위 죽은 사람들의 부장품들만을 진열한 방이었다. 땅속에 묻혀 천년 세월을 산, 이제는 말끔히 녹을 닦아 낸 <span class="underline-phrase">㉡구리거울</span>을 보자 그는 자신이 아주 오래전에 죽은 옛사람인 듯 느껴졌었다. 관람객이 한 명도 없이 텅 빈 전시실에는 두꺼운 양탄자가 깔려 있어 자신의 발소리조차 들리지 않았었기 때문이라고, 어둡고 눅눅한 회랑을 걸어 나오며 그는 잠깐 스쳐 간 괴이한 기분에 대해 변명하였다.</span>
+                    <div class="line-analysis">← ㉡ <span class="highlight">구리거울(동경)</span> – <span class="highlight">죽음의 상징</span> / 부장품으로서의 의미 – 죽음의 의식이 투사됨</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text"><span class="underline-phrase">㉢영로를 묻었을 때 그는 그가 묻고 돌아선 것이, 미쳐 가는 봄빛을 이기지 못해 성급히 부패하기 시작한 시체가 아니라 한 조각 거울이었다고 생각했었다.</span></span>
+                    <div class="line-analysis">← ㉢ <span class="highlight">사별과 그리움</span> – 죽은 아들 영로를 거울로 인식 / <span class="highlight">거울 = 매개체</span> – 그리움이 투영됨</div>
+                </div>
+                <div class="story-line" style="margin-top: 1em; font-size: 13px; color: #5b6e8c;">
+                    *연도: 고분의 입구에서 시체를 안치한 방까지 이르는 길.<br>
+                    *가수: 의식이 반쯤 깨어 있는 상태로 자는 잠.<br>
+                    *대목: 큰 건축물을 잘 짓는 목수. 혹은 '목수'를 높여 이르는 말.<br>
+                    *타구: 가래나 침을 뱉는 그릇.<br>
+                    *토우: 흙으로 만든 사람이나 동물의 상. 종교적·주술적 대상물, 부장품, 완구 따위로 사용하였다.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <!-- 작품 개관 -->
+            <div class="analysis-box">
+                <div class="title">📌 「동경」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 장르:</strong> 현대 소설<br>
+                    <strong>▶ 성격:</strong> 심리적, 상징적, 노년의 고독과 죽음 의식<br>
+                    <strong>▶ 핵심 소재:</strong> <span class="highlight">거울(동경)</span> – 다층적 의미로 기능<br>
+                    <strong>▶ 표현 기법:</strong> 상징·비유·내적 독백·대비·의인화<br>
+                    <strong>▶ 서술 방식:</strong> <span class="highlight">3인칭 전지적 시점</span> + 주인공 '그'의 의식 초점화<br>
+                    <strong>▶ 핵심 주제:</strong> 노년의 고독과 노화·죽음에 대한 인식, 생명에의 동경과 죽음의 순환적 수용<br>
+                    <strong>▶ 수능 출제 포인트:</strong> 거울의 다층적 의미(자아 확인·죽음의 상징·사별의 매개체), 아이와 노인의 대비, 맥의 상징성, 기억의 선택성
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '동경(銅鏡)'은 제목이자 핵심 상징물입니다. <strong>거울의 의미를 4가지 층위</strong>로 나누어 분석하세요: ①자아 확인 ②죽음의 상징 ③사별의 매개체 ④생명에의 동경.</div>
+            </div>
+
+            <!-- 인물 및 소재 -->
+            <div class="analysis-box">
+                <div class="title">📌 인물 및 상징 소재</div>
+                <div class="content">
+                    <strong>▶ '그'</strong>: 정년 퇴직한 노인 – 노화와 죽음에 대한 불안, 생명에의 동경<br>
+                    <strong>▶ 아이</strong>: 생명력과 호기심의 상징 – 만화경 소유자<br>
+                    <strong>▶ 아내</strong>: 맥을 빚으며 조부 이야기를 전달 – 전통과 죽음 의식의 전승자<br>
+                    <strong>▶ 아내의 조부</strong>: 흉몽에 시달렸고 맥을 만들어 부장 – 죽음 이후의 평안을 추구<br>
+                    <strong>▶ 영로</strong>: '그'의 죽은 아들 – 사별과 그리움의 대상<br>
+                    <strong>▶ 맥(貘)</strong>: 나쁜 꿈을 먹는 상상의 짐승 – 죽음 이후 평안을 바라는 <span class="highlight">순환적 의식</span>의 상징
+                </div>
+            </div>
+
+            <!-- 거울의 의미 -->
+            <div class="analysis-box">
+                <div class="title">📌 거울(동경)의 다층적 의미</div>
+                <div class="content">
+                    <table style="font-size:12.5px;">
+                        <thead><tr><th>거울</th><th>의미</th><th>기능</th></tr></thead>
+                        <tbody>
+                            <tr><td>㉠ 거울</td>
+                            <td>자아 확인</td>
+                            <td>젊음과 노화의 대비, 신체적 부조화 직면</td></tr>
+                            <tr><td>㉡ 구리거울(동경)</td>
+                            <td>죽음의 상징</td>
+                            <td>죽은 옛사람과의 동일시, 죽음의 질서 인식</td></tr>
+                            <tr><td>㉢ 영로</td>
+                            <td>사별과 그리움</td>
+                            <td>죽은 아들에게 투영된 매개체</td></tr>
+                            <tr><td>만화경</td>
+                            <td>생명에의 동경</td>
+                            <td>아이의 호기심과 생명력에 대한 동경 유발</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="exam-tip">💡 수능 TIP: 거울은 단순한 반사 도구가 아니라 <strong>인물의 심리와 죽음 의식을 드러내는 복합적 상징물</strong>입니다.</div>
+            </div>
+
+            <!-- 구절별 분석 -->
+            <div class="analysis-box">
+                <div class="title">📌 ㉠ '거울 속으로~ 더 젊어 보였다'</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 거울 속 자신의 모습 – 검은 머리(젊음)와 무너진 입·졸아든 인중(노화)의 공존<br>
+                    <strong>▶ 표현 기법:</strong> <span class="highlight">대비</span> – 젊음과 노화의 병치<br>
+                    <strong>▶ 수능 포인트:</strong> 젊음에 대한 열망과 노화에 대한 <span class="highlight">냉혹한 자아 확인</span>
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 ㉡ '구리거울'(동경)</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 박물관에 전시된 부장품 – 죽은 사람들의 유물<br>
+                    <strong>▶ 수능 포인트:</strong> <span class="highlight">죽음의 의식이 투사된 상징물</span> – 자신을 죽은 옛사람처럼 느끼게 함
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 ㉢ '영로를 묻었을 때~ 한 조각 거울'</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 죽은 아들 영로를 시체가 아닌 거울로 인식<br>
+                    <strong>▶ 수능 포인트:</strong> <span class="highlight">사별의 고통과 그리움이 투영된 매개체</span> – 거울을 통해 아들을 기억함
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>만화경</strong>: 색종이 조각이 거울에 반사되어 여러 모양을 만드는 장난감<br>
+                • <strong>맥(貘)</strong>: 나쁜 꿈을 먹는 전설의 짐승<br>
+                • <strong>동경(銅鏡)</strong>: 구리로 만든 거울, 부장품으로 사용됨<br>
+                • <strong>토우(土偶)</strong>: 흙으로 만든 인형, 부장품<br>
+                • <strong>연도</strong>: 고분의 입구에서 시체를 안치한 방까지 이르는 길
+            </div>
+
+            <!-- 독해 포인트 -->
+            <div class="info-box">
+                <h3>🎯 수능 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>거울의 다층적 의미</strong>: ㉠자아 확인 → ㉡죽음의 상징 → ㉢사별의 매개체 → 만화경(생명에의 동경)</li>
+                    <li><strong>아이 vs 노인</strong>: 아이는 생명력·호기심의 상징, 노인은 아이의 행동을 모방하거나 물건을 탐하는 <span class="highlight">퇴행적 모습</span>을 통해 생명에의 동경을 드러냄</li>
+                    <li><strong>맥(貘)</strong>: 흉몽을 없애는 상징물 → <span class="highlight">죽음이 끝이 아니라는 순환적 의식</span>을 드러내 죽음에 대한 두려움을 극복하려는 태도</li>
+                    <li><strong>회랑·연도 이미지</strong>: 잠과 죽음 사이의 경계, 죽음으로 향하는 과정을 형상화</li>
+                    <li><strong>기억의 선택성</strong>: "기억하고 싶은 것만 기억하는 것은 늙은이에게 주어진 특권" – 노화를 자연의 섭리로 수용하는 태도</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">노년의 주인공이 일상 속 사물(만화경·거울·틀니·맥)을 통해 노화와 죽음에 대한 불안을 직면하고, 생명에 대한 동경과 죽음에 대한 순환적 인식을 드러내는 과정.</p>
+            </div>
+
+            <!-- 비교 표 -->
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 거울의 기능 비교</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>거울 유형</th><th>의미</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">실물 비춤</td>
+                        <td>㉠ 거울</td>
+                        <td>젊음에의 열망 + 신체적 부조화 직면</td>
+                    </tr>
+                        <tr><td style="background:#f1f5f9;">부장품</td>
+                        <td>㉡ 구리거울(동경)</td>
+                        <td>죽음의 의식이 투사된 상징물</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">동일시</td>
+                        <td>㉢ 영로</td>
+                        <td>사별의 고통과 그리움이 투영된 매개체</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">놀이 도구</td>
+                        <td>만화경</td>
+                        <td>생명에의 동경을 유발</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 수능 필수 체크 -->
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 수능 필수 체크!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>거울의 다층적 의미</strong>: 자아 확인 · 죽음의 상징 · 사별의 매개체 · 생명에의 동경</li>
+                    <li><strong>아이와 노인의 대비</strong>: 생명력과 호기심 vs 죽음을 향한 현실 – 퇴행을 통한 동경</li>
+                    <li><strong>맥(貘)</strong>: 흉몽을 먹는 짐승 → <span class="highlight">죽음 이후의 평안을 바라는 순환적 의식</span></li>
+                    <li><strong>회랑·연도 이미지</strong>: 잠과 죽음 사이의 경계, 죽음으로 향하는 과정</li>
+                    <li><strong>기억의 선택성</strong>: "기억하고 싶은 것만 기억하는 것은 늙은이에게 주어진 특권" – <span class="highlight">노화를 자연의 섭리로 수용</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 1회 28~31</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 만화경과 아이</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">만화경</span> 우주의 원리 연상, 현란하지 않음</p>
+                    <p><span class="flow-badge">아이</span> 거울 조각, 만화경 이야기</p>
+                    <p><span class="flow-badge">'그'</span> 만화경을 훔쳐 봄 → <span class="highlight">생명에의 동경</span></p>
+                    <div class="sub-point">✔ 만화경을 매개로 한 아이와의 교감 – 퇴행적 모습</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 틀니와 거울</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">㉠</span> 거울 속 자신: 검은 머리 vs 무너진 입</p>
+                    <p><span class="flow-badge">잠</span> 회랑·연도 비유 → <span class="highlight">죽음 의식</span></p>
+                    <p><span class="flow-badge">아내</span> 맥을 빚음</p>
+                    <div class="sub-point">🔎 노화의 직면과 죽음 의식의 등장</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 아내의 조부 이야기</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">흉몽</span> 두통, 고통</p>
+                    <p><span class="flow-badge">맥</span> 나쁜 꿈을 먹는 짐승</p>
+                    <p><span class="flow-badge">유언</span> 관에 맥을 넣어 달라 – <span class="highlight">순환적 의식</span></p>
+                    <div class="sub-point">💬 죽음 이후의 평안을 바라는 인간의 의지</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 박물관의 동경과 영로</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">㉡</span> 구리거울(동경) → 죽은 옛사람처럼 느낌</p>
+                    <p><span class="flow-badge">㉢</span> 영로를 묻을 때 거울로 인식 – <span class="highlight">사별과 그리움</span></p>
+                    <p><span class="flow-badge">결론</span> 죽음의 인식과 수용</p>
+                    <div class="sub-point">⚖ 죽음의 상징과 사별의 그리움</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 만화경과 아이(생명에의 동경) → 틀니·거울(노화 직면) → 맥(죽음 의식) → 동경·영로(죽음의 인식과 수용)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 28번 -->
+        <div class="question-full">
+            <div class="q-num">28</div>
+            <div class="question-stem">윗글에 대한 설명으로 가장 적절한 것은? <span class="ref-num">26051-0088</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 시대적 배경을 구체적으로 묘사해 부정적인 세태를 비판하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 시대적 배경이 구체적으로 묘사되지 않았으며, 세태 비판이 주제가 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 인물 간의 대화를 통해 인물이 겪은 사건의 비현실적인 면모를 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 대화가 일부 있지만, 사건의 비현실적인 면모를 드러내기 위한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 공간의 이동에 따라 서술자를 달리하여 사건의 의미를 입체적으로 조명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 서술자는 일관되게 3인칭 전지적 시점이며, 공간 이동에 따라 서술자가 달라지지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 서술의 초점이 되는 인물의 시선으로 주변 상황을 제시하며 그에 대한 정서를 서술하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – '그'의 시선을 통해 만화경, 아이, 거울, 아내 등의 상황이 제시되며, 그에 따른 정서(공포, 동경, 그리움 등)가 서술되고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 새로운 인물의 등장과 개입을 통해 중심인물의 부정적 상황이 개선될 가능성을 암시하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 새로운 인물(아이)이 등장하지만, '그'의 상황이 개선될 가능성을 암시하지는 않는다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 29번 -->
+        <div class="question-full">
+            <div class="q-num">29</div>
+            <div class="question-stem">윗글에 대한 이해로 가장 적절한 것은? <span class="ref-num">26051-0089</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① '그'는 아이의 만화경을 놀이터에서 우연히 주었다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그'는 만화경을 주운 것이 아니라 <strong>훔쳐</strong> 가졌다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② '그'는 만화경을 찾기 위해 아이와 함께 놀이터를 뒤졌다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그'는 아이가 만화경을 찾는 모습을 <strong>지켜보기만</strong> 했을 뿐, 함께 뒤지지 않았다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ '그'와 '그'의 아내 모두 반죽을 궁굴려서 맥을 만들고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 맥을 만드는 것은 <strong>아내</strong>이며, '그'는 그것을 지켜보고 있을 뿐이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ '그'는 죽은 아들을 땅에 묻으면서 그 옆에 동경을 같이 묻었다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '그'는 영로를 묻을 때 <strong>시체가 아니라 거울을 묻었다고 생각</strong>했을 뿐, 실제로 동경을 같이 묻은 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ '그'의 아내는 예전에도 '그'에게 조부 이야기를 들려준 적이 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – "아내의 조부 이야기는 그도 몇 차례인가 들어 알고 있었다"는 대목에서 예전에도 들려준 적이 있음을 알 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 적절한 이해(정답).</div>
+        </div>
+
+        <!-- 문제 30번 -->
+        <div class="question-full">
+            <div class="q-num">30</div>
+            <div class="question-stem">&lt;보기&gt;를 근거로 ㉠~㉢을 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0090</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                이 소설의 제목인 '동경'은 구리로 만든 거울을 뜻한다. 이 작품에는 여러 거울이 등장해 다양한 기능을 수행한다. 실물을 그대로 비추는 거울은 젊음에 대한 인물의 열망을 드러내는 도구이자 신체적 부조화를 직면하게 만드는 냉혹한 자아 확인의 도구로 기능한다. 장례 의식에 쓰인 유물이나 죽은 인물과 동일시되는 소재로 사용된 경우는 죽음의 의식이 투사된 상징물이나 사별의 고통과 그리움이 투영된 매개체로 기능한다고 볼 수 있다. 또한 거스를 수 없는 냉혹한 죽음의 질서를 보여 주는 소재로도 기능한다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠은 '그'의 '검은 머리'를 비춘다는 점에서 젊음에 대한 인물의 열망을 드러내는 도구로 기능한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉠ 거울 속 '검은 머리'는 젊음에 대한 열망을 드러낸다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉠은 '검은 머리'와 '무너진 입과 졸아든 인중, 참혹하게 파인 볼'의 대비를 보여 준다는 점에서 인물에게 신체적 부조화를 직면하게 만드는 냉혹한 자아 확인의 도구로 기능한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 젊음과 노화의 대비를 통해 신체적 부조화를 직면하게 한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉡은 박물관에 전시된 '죽은 사람들의 부장품'이라는 점에서 죽음의 의식이 투사된 상징물로 기능한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 구리거울(동경)은 부장품으로, 죽음의 의식이 투사된 상징물이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉡은 '그'에게 '죽은 옛사람인 듯한 느낌'을 유발한다는 점에서 죽음의 질서를 거스르고자 하는 인물의 의지를 불러일으키는 소재로 기능한다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – ㉡은 '그'에게 죽은 옛사람인 듯한 느낌을 유발하지만, 이는 죽음의 질서를 <strong>인식</strong>하게 하는 것이지, <strong>거스르고자 하는 의지</strong>를 불러일으키는 것은 아니다. &lt;보기&gt;에서는 "거스를 수 없는 냉혹한 죽음의 질서를 보여 주는 소재"라고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉢은 '그'에게 죽은 아들 '영로'와 동일시되는 소재로 인식된다는 점에서 사별의 고통과 죽은 아들에게 대한 그리움이 투영된 매개체로 기능한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 영로를 거울로 인식한 것은 사별의 고통과 그리움이 투영된 것이다.</div>
+            </div>
+            <div class="wrong-badge">📍 ④번이 적절하지 않은 이해(정답).</div>
+        </div>
+
+        <!-- 문제 31번 -->
+        <div class="question-full">
+            <div class="q-num">31</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 윗글을 감상한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0091</span></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                「동경」은 주변 누구와도 공유할 수 없는 노년만의 고독한 문제인 노화와 죽음을 다루는 소설로, 죽음으로 향해 가는 현실에 직면한 인물들의 여러 방어적 자세가 나타난다. 거침없고 호기심 많은 아이는 생명감과 역동성이 충만한 존재인데, 노인은 이러한 존재의 행동을 유심히 관찰해 모방하거나 아이의 물건을 탐하는 등의 퇴행적 모습을 보임으로써 생명에의 동경을 드러낸다. 더불어 흉몽을 없애는 상징물을 만드는 행동을 통해 죽어서도 평안하기를 바라는 관념을 표출하는데, 이는 사후 세계를 인정하면서도 죽음이 끝이 아니라는 순환적 의식을 드러내어 죽음에 대한 두려움을 극복하려는 것이다. 이를 통해 이 소설은 노년의 일상적 삶이 생명의 역동성에서 멀어진 상황임을 강조할 뿐만 아니라, 인간은 죽음이라는 자연의 섭리 앞에서 무력할 수밖에 없는 존재임을 보여 준다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① '그'가 '뭐든지 다 보이는 요술 상자'에 대해 '진정한 호기심'이 아닌 '의미 없는 되물음'을 하는 것은, 노년의 일상이 아이가 지닌 생명의 역동성에서 멀어진 상황임을 보여 주는군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 아이의 생명력에 비해 노인의 무기력함이 대비된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② '그'가 '아이의 눈에 비친 모든 것을 보고자 하는 욕망으로 만화경을 집어'드는 것은, 죽음으로 향해 가는 현실에 직면한 인물이 아이의 물건을 탐하는 퇴행적 모습에 해당하는군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 아이의 만화경을 훔치는 것은 퇴행적 모습으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ '그'가 '뭐든지 볼 수 있다'는 '아이의 말을 흉내 내'는 것은, 노년의 인물이 생명감이 충만한 존재의 행동을 유심히 관찰하여 모방하는 모습을 통해 생명에의 동경을 드러내는 것이군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 아이의 말을 흉내 내는 것은 모방이며, 생명에의 동경을 드러낸다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ '아내의 조부'가 '관 속에 맥을 같이 넣어 달라고 유언을 하'는 것은, 죽어서도 평안하기를 바라는 관념을 표출함으로써 죽음이 끝이 아니라는 순환적 의식을 드러내려는 것이군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 맥을 부장하는 것은 죽음 이후의 평안을 바라는 순환적 의식이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ '아내의 조부'가 '길고 희미한 시간의 회랑 끝에서 편안히 잠들어 있는 것은, 노년의 인물이 죽음을 맞이한 상황을 통해 인간이 죽음이라는 자연의 섭리 앞에서 무력할 수밖에 없음을 나타내는군.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 아내의 조부는 이미 <strong>죽은</strong> 인물이다. '노년의 인물이 죽음을 맞이한 상황'이라기보다는, 죽은 후에도 맥 덕분에 편안히 잠들어 있는 모습으로, &lt;보기&gt;의 "죽음이 끝이 아니라는 순환적 의식"을 보여 주는 것이다. 또한 &lt;보기&gt;는 "인간은 죽음이라는 자연의 섭리 앞에서 무력할 수밖에 없는 존재"라고 했지만, 여기서는 오히려 맥을 통해 죽음 이후의 평안을 도모하는 인간의 의지가 드러난다.</div>
+            </div>
+            <div class="wrong-badge">📍 ⑤번이 적절하지 않은 감상(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
