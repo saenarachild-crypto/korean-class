@@ -133,9 +133,23 @@
     .notice-list li { font-size: 12.5px; color: #2c1518; padding: 3px 0 3px 16px; position: relative; line-height: 1.55; }
     .notice-list li::before { content: "•"; color: #d04141; position: absolute; left: 4px; font-weight: 700; }
     .notice-list li b { color: #7c2c3e; }
+
+    /* 답안 입력 버튼이 모바일/미리보기에서도 확실히 보이도록 보강 */
+    .question-row { grid-template-columns: 34px minmax(190px, 1fr) 86px; }
+    .choices { min-width: 190px; }
+    .choice { min-width: 34px; height: 36px; font-size: 14px; }
+    @media (max-width: 430px) {
+      .container { padding-left: 10px; padding-right: 10px; }
+      .question-row { grid-template-columns: 28px minmax(165px, 1fr) 78px; gap: 3px; padding: 7px 5px; }
+      .choices { min-width: 165px; gap: 2px; }
+      .choice { min-width: 30px; height: 34px; font-size: 13px; }
+      .conf-btn { width: 22px; height: 22px; font-size: 11px; }
+      .confidence-group { gap: 1px; padding-left: 3px; }
+    }
   </style>
 </head>
 <body>
+<noscript><div style="padding:16px;margin:16px;border:2px solid #d04141;border-radius:12px;background:#fff8f5;color:#2c1518;font-weight:700;line-height:1.6;">이 답안지는 JavaScript가 켜져 있어야 문제 번호와 ①~⑤ 답안 입력 버튼이 보입니다. Chrome 또는 Edge에서 열어 주세요.</div></noscript>
 <script>
   // 6월 3주차 마침내 연계모의고사 정답 및 데이터[cite: 1]
   window.__BAKED_ASGN__ = {
@@ -206,6 +220,16 @@
       </label>
     </div>
     <p style="font-size:11px; color:#997a80; margin-top:8px;">※ 응시한 선택과목을 정확히 골라야 35~45번이 채점됩니다.</p>
+  </div>
+
+
+  <div class="notice-card" style="border-color:#7c2c3e;background:#fff;">
+    <div class="notice-title" style="color:#7c2c3e;">✅ 답안 입력 방법</div>
+    <ul class="notice-list">
+      <li>각 문항 번호 오른쪽의 <b>① ② ③ ④ ⑤ 버튼</b>을 눌러 답을 입력하세요.</li>
+      <li>답을 누르면 버튼 색이 바뀝니다. 다시 누르면 선택이 취소됩니다.</li>
+      <li>공통 1~34번 입력 후 위의 <b>선택(35~45번)</b> 탭을 눌러 선택과목 답안을 입력하세요.</li>
+    </ul>
   </div>
 
   <div class="tab-menu">
@@ -280,8 +304,14 @@
     listEl.innerHTML = html;
   }
 
-  renderSection($('commonList'), 'c', asgn.common.count, 0);
-  renderSection($('selectList'), 's', 11, 34);
+  try {
+    renderSection($('commonList'), 'c', asgn.common.count, 0);
+    renderSection($('selectList'), 's', 11, 34);
+  } catch (e) {
+    $('commonList').innerHTML = '<div style="padding:16px;color:#d04141;font-weight:700;">답안 입력 버튼을 불러오지 못했습니다. 파일을 다운로드한 뒤 Chrome 또는 Edge에서 다시 열어 주세요.</div>';
+    $('selectList').innerHTML = '<div style="padding:16px;color:#d04141;font-weight:700;">답안 입력 버튼을 불러오지 못했습니다. 파일을 다운로드한 뒤 Chrome 또는 Edge에서 다시 열어 주세요.</div>';
+    console.error(e);
+  }
 
   function updateSelectedSubjectUI(){
     if(state.selectedSubject && asgn.select[state.selectedSubject]){
