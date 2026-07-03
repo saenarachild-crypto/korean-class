@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>수능 학습 콘텐츠 HTML 변환 작업 매뉴얼 (ver. 1.0)</title>
+    <title>수능 학습 콘텐츠 HTML 변환 작업 매뉴얼 (ver. 2.0)</title>
     <style>
         * {
             margin: 0;
@@ -50,6 +50,11 @@
             border-bottom: 1px solid #e2e8f0;
             padding-bottom: 6px;
         }
+        h4 {
+            font-size: 17px;
+            margin: 18px 0 10px 0;
+            color: #1e466e;
+        }
         .code-block {
             background: #1e293b;
             color: #e2e8f0;
@@ -75,6 +80,13 @@
             margin: 20px 0;
             border-left: 5px solid #e74c3c;
         }
+        .success {
+            background: #f0fdf4;
+            padding: 16px 24px;
+            border-radius: 24px;
+            margin: 20px 0;
+            border-left: 5px solid #22c55e;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -97,6 +109,16 @@
             margin: 20px 0;
             border-left: 5px solid #22c55e;
         }
+        .example-box {
+            background: #fef9e6;
+            border: 1px solid #f1c40f;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .example-box strong {
+            color: #b45309;
+        }
         footer {
             text-align: center;
             margin-top: 48px;
@@ -104,6 +126,15 @@
             border-top: 1px solid #e2e8f0;
             font-size: 13px;
             color: #5b6e8c;
+        }
+        .badge {
+            display: inline-block;
+            background: #1e466e;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
         }
         @media (max-width: 640px) {
             .container { padding: 20px; }
@@ -115,13 +146,19 @@
 <body>
 <div class="container">
     <h1>📚 수능 학습 콘텐츠 HTML 변환 작업 매뉴얼</h1>
-    <p style="font-size: 16px; margin-bottom: 20px;">버전 1.0 | 기준: 2027 수능완성 사용설명서(유형편) + 문제 완성본 PDF | 작성일: 2026.06.12</p>
+    <p style="font-size: 16px; margin-bottom: 20px;">버전 2.0 | 기준: 2027 수능완성 사용설명서(유형편) + 문제 완성본 PDF | 작성일: 2026.07.03</p>
 
     <div class="note">
         <strong>🎯 매뉴얼의 목적</strong><br>
         본 매뉴얼은 AI(Claude 등)와 인간 협업자가 <strong>『수능완성 사용설명서 유형편』 및 『수능 완성 문제 완성본』 PDF</strong>를 원본 그대로 HTML로 변환할 수 있도록,<br>
         모든 규칙, 형식, 기술적 요구사항, 검증 절차를 체계화한 문서입니다.<br>
         <strong>한 글자도 다르지 않은 원문 복원 + 2단 분석 + 상세 오답 해설</strong>이 핵심입니다.
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ 가장 중요한 원칙</strong><br>
+        <strong>“원문 그대로”</strong>는 절대적인 기준입니다. 지문, 문제, 선택지, 보기 모두 PDF와 <strong>한 글자도 달라서는 안 됩니다.</strong><br>
+        AI가 “내용이 같다”, “의미가 같다”고 판단하더라도 <strong>문장이 다르면 불합격</strong>입니다.
     </div>
 
     <h2>📌 0. 작업의 핵심 조건</h2>
@@ -165,6 +202,7 @@
 &lt;div class="container"&gt;<br>
     &lt;div class="header"&gt;...&lt;/div&gt;<br>
     &lt;div class="two-columns"&gt;...&lt;/div&gt;<br>
+    &lt;div class="structure-wrapper"&gt;...&lt;/div&gt;  &lt;!-- ★ 구조도 추가 --&gt;<br>
     &lt;div class="questions-section"&gt;...&lt;/div&gt;<br>
 &lt;/div&gt;<br>
 &lt;/body&gt;<br>
@@ -174,7 +212,15 @@
     <h2>📝 3. 왼쪽 원문 영역(지문) 상세 구성</h2>
     <h3>3.1 독서 지문 (사회·과학·기술·인문)</h3>
     <div class="code-block">
-&lt;p&gt;... &lt;span class="underline-phrase"&gt;ⓐ요건&lt;/span&gt;으로 하고 있으며 ...&lt;/p&gt;
+&lt;p&gt;... &lt;span class="underline-phrase"&gt;㉠초란색&lt;/span&gt; 개념은 예측이 엇갈리는 문제를 드러내어 ...&lt;/p&gt;
+    </div>
+    <div class="note">
+        <strong>📌 독서 지문 처리 시 주의사항</strong>
+        <ul>
+            <li>문단 구분을 <strong>반드시</strong> 유지할 것 (PDF의 문단 나누기 그대로)</li>
+            <li>밑줄(<code>㉠~㉤</code>, <code>ⓐ~ⓔ</code>)은 <code>.underline-phrase</code> 클래스로 표시</li>
+            <li><strong>지문 마지막 문단은 절대 축약하지 말 것</strong> – 원문 그대로 복사</li>
+        </ul>
     </div>
 
     <h3>3.2 문학 작품</h3>
@@ -191,66 +237,136 @@
 
     <h2>📌 4. 오른쪽 분석 영역 구성</h2>
     <ul>
-        <li><code>.analysis-box</code> – 문단별 분석, 인물 분석, 핵심 개념</li>
-        <li><code>.vocab-box</code> – 어구 풀이 (연두 테두리)</li>
-        <li><code>.info-box</code> – 독해 포인트, 주제, ‘이것만은 폭 익히지!’</li>
-        <li><code>.highlight-table</code> – 비교 표</li>
+        <li><code>.analysis-box</code> – <strong>문단별 분석</strong>: 각 문단의 핵심 내용을 사용설명서 기반으로 정리</li>
+        <li><code>.vocab-box</code> – <strong>어구 풀이</strong>: 핵심 용어 정의 (연두 테두리)</li>
+        <li><code>.info-box</code> – <strong>독해 포인트</strong>: 글의 구성, 주제, 핵심 논리 포인트</li>
+        <li><code>.highlight-table</code> – <strong>비교 표</strong>: 개념 비교, 철학자별 입장 비교 등</li>
+        <li><code style="background:#fef2e0; padding:2px 6px; border-radius:4px;">.info-box[style*="fef2e0"]</code> – <strong>수능 필수 체크</strong>: ‘이것만은 꼭 익히자!’</li>
     </ul>
-    <p>분석 내용은 사용설명서의 핵심 문장을 요약·정리하되, 원문 의미를 훼손하지 않아야 함.</p>
+    <div class="warning">
+        <strong>⚠️ 분석 작성 시 주의</strong><br>
+        분석 내용은 <strong>사용설명서의 핵심 문장</strong>을 요약·정리하되, 원문 의미를 훼손하지 않아야 합니다.<br>
+        <strong>사용설명서에 없는 내용을 임의로 추가하지 마세요.</strong>
+    </div>
+
+    <h2>🧭 4-1. 구조도 (필수 항목)</h2>
+    <div class="note">
+        <strong>📌 구조도는 반드시 포함해야 합니다.</strong><br>
+        지문의 글 전개 흐름을 한눈에 파악할 수 있도록 <strong>구조도(Structure Diagram)</strong>를 추가하세요.
+    </div>
+    <ul>
+        <li>구조도는 <code>.structure-wrapper</code> 안에 <code>.structure-grid</code>로 구성</li>
+        <li>각 카드(<code>.struct-card</code>)는 <strong>글의 단계별 흐름</strong>을 나타냄</li>
+        <li>카드 사이에 <code>.arrow-symbol</code>로 진행 방향 표시 (➡️)</li>
+        <li>각 카드에는 <strong>해당 문단의 핵심 내용</strong>과 <strong>문단 번호</strong>를 함께 표시</li>
+        <li>하단에 <strong>전체 흐름 요약</strong>을 한 줄로 추가</li>
+    </ul>
+    <div class="example-box">
+        <strong>📌 구조도 예시 (귀납의 정당화 지문)</strong><br>
+        <div style="background:#f8fafc; padding:12px; border-radius:12px; margin-top:8px; font-size:13px;">
+            <strong>① 귀납 정의 &amp; 흄·러셀</strong> → <strong>② 굿맨의 비판 &amp; 초란색</strong> → <strong>③ 스윈번의 기준 &amp; 굿맨 재비판</strong>
+        </div>
+        <div style="margin-top:6px; font-size:13px; color:#2c3e66;">
+            📍 전체 흐름 : 귀납 개념 → 흄(회의) → 러셀(조건부 옹호) → 굿맨 비판(초란색) → 스윈번 대안(두 기준) → 굿맨 재비판(기준 자의성)
+        </div>
+    </div>
 
     <h2>🧪 5. 문제 + 해설 영역 (매우 중요)</h2>
+    <div class="warning">
+        <strong>⚠️ 문제 및 선택지는 PDF 원문과 반드시 1:1로 일치해야 합니다.</strong><br>
+        <strong>절대</strong> 선택지를 재작성하거나 순서를 바꾸지 마세요.<br>
+        PDF의 ①~⑤번 선택지를 <strong>그대로</strong> 복사하여 붙여넣기하세요.
+    </div>
     <div class="code-block">
 &lt;div class="question-full"&gt;<br>
-    &lt;div class="q-num"&gt;1번&lt;/div&gt;<br>
+    &lt;div class="q-num"&gt;01&lt;/div&gt;<br>
     &lt;div class="question-stem"&gt;(문제 지문 원문)&lt;/div&gt;<br>
-    &lt;div class="choice-item"&gt;<br>
-        &lt;div class="choice-text"&gt;① ...&lt;/div&gt;<br>
-        &lt;div class="choice-analysis"&gt;❌ &lt;strong&gt;오답&lt;/strong&gt; – 이유&lt;/div&gt;<br>
+    &lt;div class="choice-item correct"&gt;<br>
+        &lt;div class="choice-text"&gt;① ... (PDF 원문 그대로)&lt;/div&gt;<br>
+        &lt;div class="choice-analysis"&gt;✅ &lt;strong&gt;정답&lt;/strong&gt; – PDF 해설 내용&lt;/div&gt;<br>
     &lt;/div&gt;<br>
-    &lt;div class="correct-badge"&gt;📍 ①번이 정답&lt;/div&gt;<br>
+    &lt;div class="choice-item wrong"&gt;<br>
+        &lt;div class="choice-text"&gt;② ... (PDF 원문 그대로)&lt;/div&gt;<br>
+        &lt;div class="choice-analysis"&gt;❌ &lt;strong&gt;오답&lt;/strong&gt; – PDF 해설 내용&lt;/div&gt;<br>
+    &lt;/div&gt;<br>
+    &lt;div class="correct-badge"&gt;📍 정답 ①번&lt;/div&gt;<br>
 &lt;/div&gt;
     </div>
     <ul>
-        <li><strong>정답 선택지</strong>: <code>✅ &lt;strong&gt;정답&lt;/strong&gt; – (근거)</code></li>
-        <li><strong>오답 선택지</strong>: <code>❌ &lt;strong&gt;오답&lt;/strong&gt; – (이유)</code> 또는 <code>❌ &lt;strong&gt;오답 아님 (적절함)</code></li>
-        <li><strong>보기</strong>: <code>#eef2ff</code> 배경 박스에 원문 그대로 삽입</li>
+        <li><strong>정답 선택지</strong>: <code>.choice-item.correct</code> + <code>✅ <strong>정답</strong> – (근거)</code></li>
+        <li><strong>오답 선택지</strong>: <code>.choice-item.wrong</code> + <code>❌ <strong>오답</strong> – (이유)</code></li>
+        <li><strong>보기</strong>: <code>.view-box</code> 클래스에 PDF 원문 그대로 삽입</li>
+        <li><strong>문항 번호</strong>: PDF의 <strong>실제 번호</strong>와 일치해야 함 (001번, 002번 등)</li>
     </ul>
 
-    <h2>🎨 6. 스타일 규칙 핵심</h2>
-    <ul>
-        <li>2단: <code>.two-columns { display: flex; }</code>, <code>@media (max-width: 900px) { flex-direction: column; }</code></li>
-        <li>밑줄: <code>.underline-phrase { background: #fcf4d9; border-bottom: 2px solid #e67e22; }</code></li>
-        <li>시구 해설: <code>.line-analysis { border-left: 2px solid #e67e22; font-family: monospace; color: #2c5282; }</code></li>
-        <li>문제 영역: <code>.question-full { border: 1px solid #cfdfed; border-radius: 26px; }</code></li>
-    </ul>
+    <h2>📋 5-1. 문제 유형별 처리</h2>
+    <table>
+        <thead><tr><th>유형</th><th>처리 방법</th><th>예시</th></tr></thead>
+        <tbody>
+            <tr><td>일반 선택형</td>
+            <td>①~⑤ 선택지를 PDF 원문 그대로 복사</td>
+            <td>“윗글에 대한 이해로 적절하지 않은 것은?”</td></tr>
+            <tr><td>ㄱ~ㄹ / 보기</td>
+            <td>보기 박스(<code>.view-box</code>)에 원문 삽입, 선택지는 PDF 순서 유지</td>
+            <td>“다음의 ㄱ~ㄹ에 대해 판단한 것으로...”</td></tr>
+            <tr><td>빈칸 추론</td>
+            <td>표 형태로 A, B에 들어갈 말을 선택</td>
+            <td>“A와 B에 들어갈 말을 바르게 짝지은 것은?”</td></tr>
+            <tr><td>어휘/문맥</td>
+            <td>밑줄 친 단어의 의미를 묻는 문제, PDF 선택지 그대로</td>
+            <td>“㉠의 의미로 가장 적절한 것은?”</td></tr>
+        </tbody>
+    </table>
 
-    <h2>🔍 7. 최종 검토 및 원문 비교 (필수 단계)</h2>
+    <h2>🔍 6. 최종 검토 및 원문 비교 (필수 단계)</h2>
     <div class="checklist">
         <strong>✅ 비교할 항목 (반드시 확인)</strong>
         <ul style="margin-top: 10px;">
-            <li>지문 전체 (문단 수, 문장 순서, 띄어쓰기, 특수문자, 각주)</li>
-            <li>밑줄 위치 (ⓐ~ⓔ, ㉠~㉤, [A], [B])</li>
-            <li>문제 지문 (번호, 내용)</li>
-            <li>선택지 (①~⑤, 내용 순서)</li>
-            <li>보기 (전체 텍스트)</li>
-            <li>정답 표시</li>
-            <li>오답 해설 (지문 근거와 일치)</li>
+            <li>☐ 지문 전체 (문단 수, 문장 순서, 띄어쓰기, 특수문자, 각주)</li>
+            <li>☐ 밑줄 위치 (ⓐ~ⓔ, ㉠~㉤, [A], [B])</li>
+            <li>☐ <strong>지문 마지막 문단이 축약되지 않았는지</strong> (반드시 원문 그대로)</li>
+            <li>☐ 문제 지문 (번호, 내용)</li>
+            <li>☐ 선택지 (①~⑤, 내용 순서 – <strong>재작성 금지</strong>)</li>
+            <li>☐ 보기 (전체 텍스트)</li>
+            <li>☐ 정답 표시</li>
+            <li>☐ 오답 해설 (지문 근거와 일치)</li>
+            <li>☐ <strong>문항 번호가 PDF와 일치하는지</strong> (001번이 누락되면 안 됨)</li>
         </ul>
     </div>
+
     <div class="warning">
-        <strong>⚠️ 중요</strong><br>
-        HTML 완성 후 반드시 PDF 원문을 옆에 열고 한 줄씩 비교하세요.<br>
-        한 글자라도 다르면 수정해야 합니다.
+        <strong>⚠️ 자주 발생하는 오류</strong>
+        <ul>
+            <li><strong>지문 축약</strong>: 마지막 문단을 요약하지 말고 원문 그대로 복사</li>
+            <li><strong>선택지 재작성</strong>: “내용이 같다”고 생각해도 <strong>문장이 다르면 오류</strong></li>
+            <li><strong>문항 누락</strong>: PDF의 모든 문항(001번부터)이 포함되었는지 확인</li>
+            <li><strong>문항 순서 변경</strong>: PDF 순서 그대로 유지</li>
+            <li><strong>분석 내용 임의 추가</strong>: 사용설명서에 없는 내용을 넣지 말 것</li>
+            <li><strong>구조도 누락</strong>: 구조도는 필수 항목</li>
+        </ul>
     </div>
 
-    <h2>📄 8. 파일 저장 및 전달</h2>
+    <div class="success">
+        <strong>✅ 검증 완료 사례: 실전 2회 01~05 (귀납의 정당화)</strong><br>
+        본 매뉴얼의 규칙에 따라 다음 항목을 모두 확인 완료:
+        <ul style="margin-top:8px;">
+            <li>지문: 흄·러셀·굿맨·스윈번·초란색 논쟁 – 원문 100% 일치</li>
+            <li>001~005번 문항 – PDF 순서 및 선택지 완전 일치</li>
+            <li>001번: “윗글을 통해 답을 찾을 수 없는 질문은?” – 선택지 원문 복원</li>
+            <li>003번: “㉠의 의미로 가장 적절한 것은?” – 선택지 원문 복원</li>
+            <li>구조도 포함 – 글 전개 흐름 시각화</li>
+            <li>사용설명서 분석 – 오른쪽 열에 문단별 분석·어구 풀이·독해 포인트 포함</li>
+        </ul>
+    </div>
+
+    <h2>📄 7. 파일 저장 및 전달</h2>
     <ul>
-        <li>파일명: <code>[작품명/주제]_[유형].html</code> (예: <code>정도전_유교_불교_비판.html</code>)</li>
+        <li>파일명: <code>[작품명/주제]_[유형].html</code> (예: <code>귀납의_정당화_01~05.html</code>)</li>
         <li>인코딩: UTF-8</li>
         <li>공유 시 HTML 파일 그대로 전달 (별도 리소스 없음)</li>
     </ul>
 
-    <h2>🧭 9. 프롬프트 템플릿 (다른 AI에게 지시할 때)</h2>
+    <h2>🧭 8. 프롬프트 템플릿 (다른 AI에게 지시할 때)</h2>
     <div class="code-block">
 다음은 '수능완성 사용설명서(유형편)'과 '수능 완성 문제 완성본' PDF의 원문입니다.  
 아래 규칙에 따라 완전한 HTML 파일로 변환해 주세요.
@@ -264,30 +380,35 @@
 6. 반응형 웹 (모바일에서 2단 세로 전환)
 7. 파일명은 [작품명_주제.html] 한글 저장
 8. CSS는 내부 스타일로 작성
-9. 완성 후 반드시 원문과 비교하여 누락·오탈자 확인 (한 글자도 달라서는 안 됨)
+9. <strong>구조도(Structure Diagram)를 반드시 포함</strong> (글 전개 흐름을 카드 형태로 시각화)
+10. <strong>지문, 문제, 선택지는 PDF와 100% 일치</strong> – 한 글자도 달라서는 안 됨 (축약·재작성 금지)
+11. <strong>문항 번호는 PDF 순서 그대로</strong> (001번부터 누락 없이)
 
 【원문】
 [여기에 지문 + 문제 + 보기 전체를 붙여넣기]
     </div>
 
-    <h2>✅ 10. 최종 체크리스트 (출력 전 반드시 확인)</h2>
+    <h2>✅ 9. 최종 체크리스트 (출력 전 반드시 확인)</h2>
     <div class="checklist">
         <ul style="margin-left: 20px;">
             <li>☐ 지문에 모든 밑줄(ⓐ~ⓔ, ㉠~㉤)이 빠짐없이 표시되었는가?</li>
+            <li>☐ <strong>지문이 PDF와 한 글자도 다르지 않은가?</strong> (마지막 문단 포함)</li>
             <li>☐ 원문의 문단 구분이 유지되었는가?</li>
-            <li>☐ 각 문제의 선택지가 PDF 순서와 동일한가?</li>
+            <li>☐ 각 문제의 선택지가 PDF 순서와 <strong>내용까지</strong> 동일한가? (재작성 금지)</li>
+            <li>☐ <strong>문항 번호가 PDF와 일치하는가?</strong> (누락된 번호는 없는가?)</li>
             <li>☐ 각 선택지에 ✅ 또는 ❌ 표시와 함께 상세한 오답 이유가 있는가?</li>
             <li>☐ 보기가 있다면 원문 그대로이며, 배경색이 적용되었는가?</li>
             <li>☐ 오른쪽 분석 박스가 비어 있지 않고, 사용설명서의 핵심 내용을 담고 있는가?</li>
+            <li>☐ <strong>구조도가 포함되어 있는가?</strong> (글 전개 흐름을 시각화)</li>
             <li>☐ 반응형 테스트 (브라우저 너비 줄였을 때 깨지지 않는가?)</li>
             <li>☐ 파일명이 한글로 명확하고, 저장 시 UTF-8 인코딩인가?</li>
         </ul>
     </div>
 
     <div class="note">
-        <strong>📎 참고: 이미 제작된 결과물</strong><br>
-        독서 유형1~4, 문학 유형1~4 총 8개의 HTML 파일이 본 매뉴얼 규칙에 따라 제작되었으며,<br>
-        원문 PDF와 비교 시 한 글자도 다르지 않음을 확인했습니다.
+        <strong>📎 참고: 검증 완료 결과물</strong><br>
+        실전 2회 01~05 (귀납의 정당화) HTML 파일이 본 매뉴얼 v2.0 규칙에 따라 제작되었으며,<br>
+        PDF 원문과 비교 시 <strong>지문·문제·선택지 모두 100% 일치</strong>함을 확인했습니다.
     </div>
 
     <footer>

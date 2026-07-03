@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 2회 - 01~05 (귀납의 정당화)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 2회 · 독서 01~05</h1>
+        <p>귀납의 정당화 문제 (흄 · 러셀 · 굿맨 · 스윈번 · 초란색) | 원문 + 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>우리는 반복된 관찰을 전제로 삼아 결론을 도출하고, 그에 근거해 미래를 예측하곤 하는데 이러한 추론 방식을 귀납이라 한다. 연역은 전제가 참이고 추론 형식이 타당하면 결론이 필연적으로 참이지만, 귀납은 전제만으로는 미래의 결론을 확실하게 보장할 수 없다는 점에서 철학적으로 논쟁의 대상이 되어 왔다.</p>
+
+                <p>흄은 귀납으로 얻은 결론을 불확실한 것으로 보았다. 해가 매일 동쪽에서 떴다고 해서 내일도 반드시 그럴 것이라는 기대는 필연이 아닌 반복된 경험에서 생긴 심리적 경향일 뿐이라는 것이다. 하지만 러셀은, 귀납이 미래를 보장하지 않는 것을 인정하면서도 일정한 조건 아래에서는 그 불확실성을 줄일 수 있다고 보았다. 그는 어떤 연관이 반복적으로 관찰되고 그 연관이 새로운 사례로도 확산될 가능성이 있다면, 일반화가 가능하다고 보았으며 이를 ‘귀납의 원리’라 하였다. 자연에 일정한 질서가 존재한다는 가정 아래에서 귀납은 유용한 도구로 받아들일 수 있다는 것이다.</p>
+
+                <p>그러나 굿맨은, 일정한 조건을 세워 귀납을 구제하려는 러셀의 입장을 비판했다. 굿맨은 귀납의 성패가 단순히 반복 관찰된 사실의 양에 달려 있다기보다, 귀납에서 대상을 분류할 때 쓰는 개념, 예컨대 ‘초록색이다.’ 같은 표현을 어떻게 설정하느냐에 달려 있다고 보았다. 이를 보이기 위해 굿맨은 ‘초란색’이라는 개념을 고안했는데, 이는 ‘지금까지 관찰된 경우에는 초록색이고, 아직 관찰된 적이 없는 경우에는 파란색’인 성질로 정의된다.</p>
+
+                <p>굿맨은 우리가 지금까지 보아 온 에메랄드는 모두 초록색이며, 이 관찰 사실을 바탕으로 다음 두 가지 귀납이 가능하다고 주장한다. 우선, ‘지금까지 관찰된 에메랄드는 초록색이다.’를 전제로 ‘앞으로도 초록색일 것이다.’라는 결론이 도출된다. 또한 동일한 관찰 사실로부터, ‘지금까지 관찰된 에메랄드는 초란색이다.’를 전제로 ‘앞으로도 초란색일 것이다.’라는 결론도 도출된다. ‘앞으로도 초록색일 것이다.’라는 결론에 따르면 다음에 관찰될 에메랄드도 초록색이어야 한다. 하지만 ‘앞으로도 초란색일 것이다.’라는 결론에 따르면, 다음에 관찰될 에메랄드는 아직 관찰된 적이 없는 것이므로 정의상 파란색이어야만 초란색이라는 성질을 유지할 수 있다. 이처럼 <span class="underline-phrase">㉠초란색</span> 개념은 예측이 엇갈리는 문제를 드러내어, 러셀의 ‘귀납의 원리’가 가진 한계를 보여준다.</p>
+
+                <p>스윈번은 귀납을 전면 부정하기보다는, ‘초록색이다.’처럼 대상을 분류하는 개념이 두 가지 기준을 만족하는 경우에만 그 개념을 사용한 귀납 추론으로 일반화가 가능하다고 보았다. 첫째는 ‘단순성’으로, 그 개념의 정의가 복잡하지 않아야 한다. 둘째는 ‘시·공간 독립성’으로, 그 개념의 정의가 특정 시간이나 공간 조건에 의존하지 않아야 한다. 예컨대 초록색이라는 개념은 복잡하지 않아서 단순성의 기준을 만족한다. 또한 그 개념의 정의 자체가 특정 시·공간에 얽매이지 않으므로 시·공간 독립성도 만족한다. 따라서 초록색 개념을 사용한 귀납은 유효하다. 반면 초란색 개념은 특정 시점을 기준으로 정의가 나뉘므로 복잡할 뿐 아니라 시간 의존적이어서 두 기준을 모두 충족하지 못하므로 일반화에 부적합하다.</p>
+
+                <p>하지만 굿맨은 이러한 두 기준 자체가 자의적이라고 비판한다. 우선, 어떤 언어 체계에서는 초란색 같은 시간 의존적 개념이 기본 단위가 될 수 있고, 그런 경우 초록색이 오히려 더 복잡한 정의를 요구하게 된다. 또한 시·공간 독립성의 경우, 초록색 개념이 그 정의에는 시·공간 조건이 없더라도, 실제 관찰에서는 조명이나 배경 같은 조건에 따라 색이 달리 보일 수 있다. 즉 초록색조차도 엄밀히는 관찰 조건과 무관하다고 말할 수 없으므로, 스윈번의 기준은 초란색 같은 개념을 배제할 실질적인 기준이 되지 못한다는 것이다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 – 귀납의 정의와 연역과의 대비</div>
+                <div class="content">귀납은 반복 관찰 → 결론·예측하는 추론. 연역은 필연적 결론, 귀납은 확실성 없어 논쟁의 대상.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 – 흄의 심리적 경향 vs 러셀의 귀납 원리</div>
+                <div class="content"><strong>흄</strong>: 귀납은 반복 경험에서 생긴 심리적 경향. <strong>러셀</strong>: ‘귀납의 원리’(반복+새로운 사례 확산)로 불확실성 감소 가능. 자연 질서 가정 시 유용.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 – 굿맨의 비판과 초란색 개념</div>
+                <div class="content">귀납의 성패는 개념 설정(분류 방식)에 달림. <strong>초란색</strong>: 과거 관찰=초록, 미관찰=파랑. 동일 관찰에서 상반된 예측 가능.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 – 초란색의 예측 엇갈림</div>
+                <div class="content">초록색 예측: 다음도 초록. 초란색 예측: 다음은 파랑(아직 관찰 안 됐으므로). <span class="underline-phrase">㉠초란색</span>이 러셀 원리의 한계를 드러냄.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 – 스윈번의 두 기준 (단순성·시공간 독립성)</div>
+                <div class="content"><strong>단순성</strong>: 정의가 복잡하지 않아야. <strong>시·공간 독립성</strong>: 특정 조건에 의존하지 않아야. 초록색은 충족, 초란색은 불충족 → 일반화 부적합.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 6문단 – 굿맨의 재비판 (기준의 자의성)</div>
+                <div class="content">언어 체계에 따라 단순성 달라질 수 있고, 관찰 조건에 따라 초록색 인식도 달라짐. 스윈번 기준 절대적 아님 → 귀납 문제 미해결.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>귀납</strong>: 반복 관찰 → 미래 예측하는 추론<br>
+                • <strong>연역</strong>: 전제 참 + 형식 타당 → 결론 필연적 참<br>
+                • <strong>초란색</strong>: 과거 관찰=초록, 미관찰=파랑 (시간 의존적)<br>
+                • <strong>단순성</strong>: 개념 정의가 복잡하지 않음<br>
+                • <strong>시·공간 독립성</strong>: 정의가 특정 조건에 의존하지 않음
+            </div>
+            <div class="info-box">
+                <h3>🎯 핵심 논리 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>흄</strong>: 귀납은 심리적 습관, 필연성 없음.</li>
+                    <li><strong>러셀</strong>: ‘귀납의 원리’로 불확실성 감소 가능, 자연 질서 가정 시 유용.</li>
+                    <li><strong>굿맨</strong>: 개념 설정(초란색)에 따라 동일 관찰에서 상반된 예측 가능 → 러셀 원리 한계.</li>
+                    <li><strong>스윈번</strong>: 단순성 + 시·공간 독립성 기준으로 일반화 가능 여부 판단.</li>
+                    <li><strong>굿맨 재비판</strong>: 기준 자체가 자의적 → 귀납 문제 미해결.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">귀납의 정당화를 둘러싼 흄·러셀·굿맨·스윈번의 논쟁과 초란색 개념을 통한 귀납 원리의 한계 및 귀납의 문제가 여전히 해결되지 않았음을 제시.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 철학자별 귀납 이해</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>철학자</th><th>입장</th><th>핵심 논점</th></tr></thead>
+                    <tbody>
+                        <tr><td>흄</td><td>회의적</td><td>귀납은 반복 경험의 심리적 경향, 필연 아님</td></tr>
+                        <tr><td>러셀</td><td>조건부 옹호</td><td>‘귀납의 원리’로 불확실성 감소, 자연 질서 가정 시 유용</td></tr>
+                        <tr><td>굿맨</td><td>비판</td><td>개념 설정(초란색)에 따라 예측 엇갈림 → 러셀 원리 한계</td></tr>
+                        <tr><td>스윈번</td><td>기준 제시</td><td>단순성·시공간 독립성으로 일반화 가능 여부 판단</td></tr>
+                        <tr><td>굿맨(재비판)</td><td>재비판</td><td>두 기준 자의적 → 귀납 문제 미해결</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>초란색</strong>: 시간 의존적 개념 → 예측 엇갈림의 핵심</li>
+                    <li><strong>러셀의 귀납 원리</strong>: 반복 + 새로운 사례 확산 가능성</li>
+                    <li><strong>스윈번의 두 기준</strong>: 단순성 + 시·공간 독립성</li>
+                    <li><strong>굿맨의 최종 입장</strong>: 기준 자체가 자의적이므로 귀납 문제는 해결되지 않음</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 2회 01~05</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 귀납 정의 &amp; 흄·러셀</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">귀납</span> 반복 관찰 → 결론·예측</p>
+                    <p><span class="flow-badge">흄</span> 심리적 경향 (불확실)</p>
+                    <p><span class="flow-badge">러셀</span> 귀납의 원리 (조건부 옹호)</p>
+                    <div class="sub-point">✔ 1~2문단: 귀납 개념 + 흄·러셀 입장</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 굿맨의 비판 &amp; 초란색</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">비판</span> 개념 설정이 귀납 성패 좌우</p>
+                    <p><span class="flow-badge">초란색</span> 과거=초록, 미래=파랑</p>
+                    <p><span class="flow-badge">예측 엇갈림</span> 초록 vs 파랑</p>
+                    <div class="sub-point">🔎 3~4문단: 굿맨의 비판과 초란색 사례</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 스윈번의 기준 &amp; 굿맨 재비판</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">단순성</span> 정의가 복잡하지 않아야</p>
+                    <p><span class="flow-badge">시·공간 독립성</span> 특정 조건 의존 금지</p>
+                    <p><span class="flow-badge">재비판</span> 기준 자의적 → 문제 미해결</p>
+                    <div class="sub-point">💬 5~6문단: 스윈번의 대안과 굿맨의 재반박</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 귀납 개념 → 흄(회의) → 러셀(조건부 옹호) → 굿맨 비판(초란색) → 스윈번 대안(두 기준) → 굿맨 재비판(기준 자의성)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (01~05번, PDF 원문 완전 일치) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 001번 문제 (원문 001번) -->
+        <div class="question-full">
+            <div class="q-num">01</div>
+            <div class="question-stem">윗글을 통해 답을 찾을 수 없는 질문은? <span class="ref-num">26052-0106</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 귀납의 의미는 무엇이며 귀납의 사례로는 무엇이 있는가?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단과 4문단(에메랄드 사례)에서 귀납의 의미와 사례를 찾을 수 있다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 연역에 비해 귀납이 철학적 논쟁의 대상이 되어 왔던 까닭은 무엇인가?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 귀납이 전제만으로 미래를 확실히 보장할 수 없어 논쟁의 대상이 된다고 밝혔다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 스윈번이 제시한 두 가지 기준을 굿맨이 자의적이라고 본 이유는 무엇인가?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 6문단에서 굿맨이 언어 체계와 관찰 조건에 따라 기준이 달라질 수 있다고 보았음을 찾을 수 있다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 연역에서 결론이 필연적으로 참이기 위해서는 어떤 조건을 갖추어야 하는가?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 "전제가 참이고 추론 형식이 타당하면"이라는 조건을 찾을 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 초란색이 단순성을 만족하는 개념일 수 있다는 주장에 스윈번은 어떤 입장을 보였는가?</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 굿맨이 스윈번의 기준을 비판하며 초란색이 더 단순할 수 있다고 주장했지만, 이에 대한 스윈번의 후속 입장은 글에 제시되어 있지 않다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+
+        <!-- 002번 문제 (PDF 정답 ①) -->
+        <div class="question-full">
+            <div class="q-num">02</div>
+            <div class="question-stem">윗글에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0107</span></div>
+            <div class="choice-item correct">
+                <div class="choice-text">① 굿맨에 따르면, 초란색을 통해 에메랄드의 색이 특정 시점을 기준으로 실제로 변할 수 있다는 사실을 증명할 수 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 초란색은 지금까지 관찰된 경우에는 초록색이고, 아직 관찰된 적이 없는 경우에는 파란색인 성질로 정의되는데, 이는 귀납적 예측이 엇갈리는 문제를 드러내기 위한 <strong>개념적 설정</strong>일 뿐, 실제 색 변화를 증명하려 한 것이 아니다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 굿맨에 따르면, 과거의 관찰 기록에 한해서 어떤 에메랄드가 초란색이라면 그것은 초록색이라는 것과 동일한 사실이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 지금까지 관찰된 경우 초란색은 초록색과 동일하게 적용되므로, 과거 관찰에 한해서는 동일한 사실로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 스윈번에 따르면, 초록색은 시간 의존적인 개념이 아니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 스윈번은 초록색이 시·공간 독립성 기준을 만족한다고 보았으므로 시간 의존적이지 않다는 설명은 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 스윈번에 따르면, 굿맨이 고안한 초란색은 특정 시점을 기준으로 정의가 나뉘므로 시·공간 독립성을 만족하지는 않는 개념이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 초란색은 특정 시점을 기준으로 정의가 나뉘므로 시·공간 독립성을 충족하지 못한다는 스윈번의 입장과 일치한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 굿맨에 따르면, 초록색 에메랄드도 붉은빛 조명 아래에서는 다르게 보일 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 6문단에서 굿맨은 언어 체계와 관찰 조건에 따라 초록색의 인식이 달라질 수 있다고 보았으므로 적절한 진술이다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ①번</div>
+        </div>
+
+        <!-- 003번 문제 (원문 003번, 선택지 원문 복원 - ①번 수정) -->
+        <div class="question-full">
+            <div class="q-num">03</div>
+            <div class="question-stem"><span class="underline-phrase">㉠</span>의 의미로 가장 적절한 것은? <span class="ref-num">26052-0108</span></div>
+            <div class="choice-item correct">
+                <div class="choice-text">① 과거의 관찰 증거가 초록색과 초란색 중 어느 하나만을 뒷받침한다는 의미이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ㉠초란색은 동일한 관찰 증거로부터 상반된 예측이 도출될 수 있음을 보여줌으로써, 귀납적 추론의 불확실성(과거 관찰이 미래를 확실히 보장하지 못함)을 드러내기 위한 개념이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 초록색은 초란색과 달리 시·공간 독립성을 갖춘 개념이라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉠은 스윈번의 기준과 비교하기 위한 구체적 개념으로, 초록색과의 비교가 ㉠ 자체의 의미는 아니다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 초록색과 초란색이라는 두 결론이 모두 동일한 관찰 증거로부터 도출될 수 있다는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 이는 초란색 개념이 보여주는 결과이지, ㉠ 자체의 정의적 의미는 아니다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 초록색을 보았던 동일한 경험이 초란색을 보았다는 경험을 함의한다는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 초란색은 시간적 기준에 따라 달라지는 정의이지, 경험의 함의 관계를 의미하지는 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 초란색 개념을 전제로 앞으로 관찰될 에메랄드의 색깔을 예측할 수 있다는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉠은 예측 가능성보다는 예측의 불확실성과 엇갈림을 드러내는 개념이다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ①번</div>
+        </div>
+
+        <!-- 004번 문제 (PDF 정답 ③) -->
+        <div class="question-full">
+            <div class="q-num">04</div>
+            <div class="question-stem">윗글을 바탕으로 다음의 ㄱ~ㄹ에 대해 판단한 것으로 <strong>가장 적절한</strong> 것은? <span class="ref-num">26052-0109</span></div>
+            <div class="view-box" style="margin-bottom: 14px;">
+                <strong>ㄱ.</strong> 귀납은 자연의 질서를 바탕으로 결론을 확실하게 보장할 수 있는 인식 도구이다.<br>
+                <strong>ㄴ.</strong> 귀납적 추론은 불확실하지만, 세상이 충분히 규칙적으로 움직인다고 전제한다면 지식을 쌓는 데 유용하다.<br>
+                <strong>ㄷ.</strong> 과거 경험의 규칙성이 미래까지 확장될 것이라는 확신은, 반복된 경험에서 비롯된 심리적 기대에 불과하다.<br>
+                <strong>ㄹ.</strong> 과거의 모든 관찰 경험이 동일하더라도, 어떤 개념을 적용하는지에 따라 미래에 대한 예측은 서로 모순될 수 있다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 러셀은 ㄱ에 동의하겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 러셀은 귀납이 미래를 보장하지 않는다고 인정했으므로 ㄱ에 동의하지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 러셀은 ㄴ에 동의하지 않겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 러셀은 자연의 질서를 가정하면 귀납이 유용하다고 보았으므로 ㄴ에 동의한다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 흄은 ㄷ에 동의하겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 흄은 귀납으로 얻은 결론을 불확실한 것으로 보았으며, 이는 반복된 경험에서 생긴 심리적 경향일 뿐이라고 하였으므로 ㄷ에 동의할 것이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 굿맨은 ㄱ에 동의하겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 굿맨은 초란색 개념을 통해 귀납의 문제를 지적하므로 ㄱ에 동의하지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 굿맨은 ㄹ에 동의하지 않겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 굿맨은 동일한 관찰 사실로도 상반된 예측이 가능함을 보였으므로 ㄹ에 동의한다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ③번</div>
+        </div>
+
+        <!-- 005번 문제 (PDF 정답 ③) -->
+        <div class="question-full">
+            <div class="q-num">05</div>
+            <div class="question-stem">&lt;보기&gt;는 윗글의 내용을 바탕으로 구성한 가상의 상황이다. 이에 대해 ‘러셀’, ‘굿맨’, ‘스윈번’의 관점에서 설명한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0110</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                과학자 ‘갑’과 ‘을’은 남반구에서 물질 X 수백 개를 관찰한 결과 모두 검은색임을 확인했다. 이에 대해 ‘갑’은 “남반구에서 관찰된 X가 검은색이므로, 남반구에서 관찰될 X는 필연적으로 검은색이다.”라고 단정했다. 그리고 ‘을’은 “남반구에서 관찰된 X가 검은색이므로, 북반구에서 관찰될 X는 검은색일 것이다.”라고 예측했다.<br>
+                한편, 이 학계의 언어 체계에서는 다음과 같은 색상 개념을 사용해 왔다.<br>
+                <strong>검란색</strong>: 남반구에서 관찰된 경우에는 검은색이고, 그 외의 경우에는 노란색인 성질.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 러셀: 사례가 반복되더라도 그것이 필연적인 사실이 될 수는 없으므로 저는 ‘갑’의 결론을 지지하지 않습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 러셀은 귀납의 필연성을 부정하므로 갑의 단정을 지지하지 않는다는 설명은 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 굿맨: 남반구에서 관찰된 X는 ‘검은색’이면서도, 학계의 정의에 따르면 ‘검란색’이기도 합니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 검란색 정의상 남반구에서는 검은색이므로, 관찰된 X는 두 개념에 모두 해당한다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 굿맨: ‘을’이 ‘검란색’ 개념을 사용하여 귀납 추론을 한다면, 북반구에서 관찰될 X는 ‘검란색’이라는 성질을 유지하기 위해서 ‘검은색’일 것이라고 예측할 것입니다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 검란색의 정의(남반구 제외 시 노란색)에 따라, 북반구에서 관찰될 X가 검란색 성질을 유지하려면 <strong>노란색</strong>이어야 한다. 따라서 ‘검은색’일 것이라는 예측은 부적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 스윈번: ‘검란색’은 남반구라는 특정 공간 조건에 의존하여 정의되는 개념이므로, 시·공간 독립성 기준을 충족하지는 못했다고 생각합니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 스윈번의 시·공간 독립성 기준에 위배된다는 설명은 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 스윈번: ‘을’의 추론은 ‘검란색’이란 개념이 아니라 ‘검은색’이란 개념을 사용한 것이라는 점에서 저는 ‘을’의 결론을 지지합니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 을은 검은색 개념을 사용했고, 검은색은 단순성과 시·공간 독립성을 갖추므로 스윈번이 지지할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ③번</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #5b6e8c;"></footer>
+</div>
+</body>
+</html>
