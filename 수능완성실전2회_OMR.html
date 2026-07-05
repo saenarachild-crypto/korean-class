@@ -149,7 +149,7 @@
   "title": "수능 완성 실전2회 공통",
   "subTitle": "공통",
   "type": "mock",
-  "storageKey": "kr-omr-2026-07-suwan2-v1",
+  "storageKey": "kr-omr-2026-07-suwan2-v2",
   "maxAttempts": 3,
   "cooldownMin": 10,
   "problemLink": "https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDMSzQ1LO8SQaBVSrgIycshAY9MY3pugmTyAdR7Lnzz9Rg?e=Nz0NLG",
@@ -168,7 +168,7 @@
     "answers": [
       5,
       1,
-      1,
+      4,
       3,
       3,
       2,
@@ -183,17 +183,17 @@
       1,
       5,
       2,
+      5,
       3,
       1,
       4,
       5,
-      3,
       4,
       2,
       5,
       3,
-      4,
-      4,
+      5,
+      5,
       4,
       4,
       5,
@@ -215,48 +215,14 @@
     ]
   },
   "sectionB": {
-    "label": "선택과목",
-    "shortLabel": "선택",
-    "tabIcon": "📕",
-    "tabLabel": "선택 (35~45번)",
+    "label": "",
+    "shortLabel": "",
+    "tabIcon": "",
+    "tabLabel": "",
     "color": "literature",
     "startNum": 35,
-    "count": 11,
-    "answers": null,
-    "variants": {
-      "hwajak": {
-        "name": "화법과 작문",
-        "answers": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      },
-      "eonmae": {
-        "name": "언어와 매체",
-        "answers": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      }
-    }
+    "count": 0,
+    "answers": []
   }
 };
 </script>
@@ -274,7 +240,7 @@
       <li>채점 사이에는 <b><span id="cooldownLabel">10</span>분 대기 시간</b>이 있어요. (다시 풀어볼 시간)</li>
       <li><b><span id="maxAttemptsLabel2">3</span>회</b>를 모두 사용해야 <b>📖 해설지</b>가 열립니다.</li>
       <li>채점 직후엔 답안 수정이 불가, 대기가 끝나면 다시 수정·재도전할 수 있어요.</li>
-      <li id="selectNotice" class="hidden"><b>선택과목을 먼저 선택해야 채점이 됩니다.</b></li>
+      <li id="selectNotice" style="display:none;"><b>선택과목을 먼저 선택해야 채점이 됩니다.</b></li>
     </ul>
   </div>
 
@@ -298,18 +264,18 @@
     <ul class="rr-list" id="requiredReadingsList"></ul>
   </div>
 
-  <div class="select-subject-card" id="selectSubjectCard">
+  <div class="select-subject-card" id="selectSubjectCard" style="display:none;">
     <h3>📝 선택과목 선택 <span class="badge-important">필수</span></h3>
     <div class="subject-options" id="subjectOptions"></div>
     <p style="font-size:11px; color:#997a80; margin-top:8px;">※ 응시한 선택과목을 정확히 골라야 채점이 됩니다.</p>
   </div>
 
-  <div class="tab-menu">
+  <div class="tab-menu" style="display:none;">
     <button class="tab-btn active" id="tabBtnA" data-tab="sectionA-tab"></button>
     <button class="tab-btn" id="tabBtnB" data-tab="sectionB-tab"></button>
   </div>
 
-  <div id="sectionA-tab" class="tab-content active">
+  <div id="sectionA-tab" class="tab-content active" style="display:block;">
     <div class="section" id="sectionADiv">
       <div class="section-header" id="sectionAHeader">
         <div class="section-title" id="sectionATitle"></div>
@@ -319,7 +285,7 @@
       <div class="question-list" id="sectionAList"></div>
     </div>
   </div>
-  <div id="sectionB-tab" class="tab-content">
+  <div id="sectionB-tab" class="tab-content" style="display:none;">
     <div class="section" id="sectionBDiv">
       <div class="section-header" id="sectionBHeader">
         <div class="section-title" id="sectionBTitle"></div>
@@ -425,10 +391,12 @@
     // 단순 두 섹션
     breakdownHtml += `<div class="score-item ${A.color||'reading'}"><span class="label">${A.shortLabel||A.label}</span><span class="value"><span id="sectionAScore">0</span> / ${A.count}</span></div>`;
   }
-  if(hasVariants){
-    breakdownHtml += `<div class="score-item select"><span class="label" id="selectLabel">선택</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
-  } else {
-    breakdownHtml += `<div class="score-item ${B.color||'literature'}"><span class="label">${B.shortLabel||B.label}</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+  if(B.count > 0) {
+    if(hasVariants){
+      breakdownHtml += `<div class="score-item select"><span class="label" id="selectLabel">선택</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+    } else {
+      breakdownHtml += `<div class="score-item ${B.color||'literature'}"><span class="label">${B.shortLabel||B.label}</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+    }
   }
   $('scoreBreakdown').innerHTML = breakdownHtml;
   $('scoreTotal').textContent = A.count + B.count;
@@ -638,7 +606,7 @@
     } else {
       const aEl = $('sectionAScore'); if(aEl) aEl.textContent = score.sectionA.correct;
     }
-    $('sectionBScore').textContent = score.sectionB.correct;
+    if($('sectionBScore')) $('sectionBScore').textContent = score.sectionB.correct;
     if(hasVariants && score.sectionB.subject) $('selectLabel').textContent = score.sectionB.subject;
     $('scoreText').textContent = '정답률 ' + (score.totalCorrect / score.total * 100).toFixed(1) + '%';
     if(state.attemptCount >= MAX_ATTEMPTS) showCorrectAnswers();
@@ -783,7 +751,7 @@
       lines.push((A.shortLabel || A.label) + ' : ' + s.sectionA.correct + '/' + s.sectionA.total);
     }
     const bLabel = hasVariants && s.sectionB.subject ? s.sectionB.subject : (B.shortLabel || B.label);
-    lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total);
+    if(B.count > 0) { lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total); }
     lines.push('');
 
     if(s.subSectionScores && s.subSectionScores.length){
@@ -799,9 +767,7 @@
       lines.push('');
     }
 
-    lines.push('[' + bLabel + ' 오답]');
-    lines.push(joinOrNone(bItems.map(item => item.text)));
-    lines.push('');
+    if(B.count > 0) { lines.push('[' + bLabel + ' 오답]'); lines.push(joinOrNone(bItems.map(item => item.text))); lines.push(''); }
 
     lines.push('[위험 문항]');
     lines.push('');
