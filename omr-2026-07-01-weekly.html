@@ -146,84 +146,133 @@
   // BAKED_ASGN: 제작기에서 주입
   window.__BAKED_ASGN__ = {
   "version": "1.0",
-  "title": "수능 완성 실전2회 공통",
-  "subTitle": "공통",
-  "type": "mock",
-  "storageKey": "kr-omr-2026-07-suwan2-v2",
+  "title": "7월 1주차 주간 과제",
+  "subTitle": "",
+  "type": "weekly",
+  "storageKey": "kr-omr-2026-07-01-weekly-v1",
   "maxAttempts": 3,
   "cooldownMin": 10,
-  "problemLink": "https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDMSzQ1LO8SQaBVSrgIycshAY9MY3pugmTyAdR7Lnzz9Rg?e=Nz0NLG",
-  "problemLinkLabel": "모의고사 문제지 보기",
-  "solutionLink": "https://goe2427-my.sharepoint.com/:u:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBYaTzxzk4AR5hYeht4egeJAfC_JPmP2ILVXK-jsmNnWQg?e=dlCddd",
-  "ogDescription": "수능 완성 실전2회 공통 · 답안지",
-  "ogUrl": "https://saenarachild-crypto.github.io/korean-class/omr-2026-07-suwan2.html",
+  "problemLink": "https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQAzGl4Sd8GGR7CZsriuacc7Ad53z89jX1WB5ckpHxRfCnw?e=O9DrIQ",
+  "problemLinkLabel": "과제 문제지 보기",
+  "solutionLink": "#",
+  "ogDescription": "7월 1주차 주간 과제 · 답안지",
+  "ogUrl": "https://saenarachild-crypto.github.io/korean-class/omr-2026-07-01-weekly.html",
   "sectionA": {
-    "label": "공통과목 (독서+문학)",
-    "shortLabel": "공통",
+    "label": "독서",
+    "shortLabel": "독서",
     "tabIcon": "📗",
-    "tabLabel": "공통 (1~34번)",
+    "tabLabel": "독서 (1~38번)",
     "color": "reading",
     "startNum": 1,
-    "count": 34,
+    "count": 38,
     "answers": [
-      5,
       1,
+      5,
+      2,
+      3,
+      1,
+      5,
+      2,
+      4,
+      5,
+      2,
+      2,
+      1,
+      5,
       4,
       3,
+      5,
+      2,
+      1,
+      3,
+      5,
+      4,
+      5,
+      4,
+      2,
+      1,
+      4,
+      4,
+      2,
+      4,
+      5,
       3,
       2,
       4,
       1,
-      5,
-      4,
-      5,
-      4,
       2,
-      4,
-      1,
-      5,
-      2,
-      5,
-      3,
-      1,
-      4,
-      5,
-      4,
-      2,
-      5,
       3,
       5,
-      5,
-      4,
-      4,
-      5,
-      4,
-      4,
       3
-    ],
-    "subSections": [
-      {
-        "name": "독서",
-        "startNum": 1,
-        "endNum": 17
-      },
-      {
-        "name": "문학",
-        "startNum": 18,
-        "endNum": 34
-      }
     ]
   },
   "sectionB": {
-    "label": "",
-    "shortLabel": "",
-    "tabIcon": "",
-    "tabLabel": "",
+    "label": "문학",
+    "shortLabel": "문학",
+    "tabIcon": "📕",
+    "tabLabel": "문학 (1~34번)",
     "color": "literature",
-    "startNum": 35,
-    "count": 0,
-    "answers": []
-  }
+    "startNum": 1,
+    "count": 34,
+    "answers": [
+      3,
+      4,
+      4,
+      1,
+      5,
+      3,
+      5,
+      2,
+      2,
+      4,
+      2,
+      3,
+      4,
+      2,
+      4,
+      2,
+      1,
+      1,
+      3,
+      2,
+      2,
+      4,
+      1,
+      5,
+      2,
+      5,
+      5,
+      3,
+      2,
+      4,
+      5,
+      2,
+      5,
+      5
+    ]
+  },
+  "requiredReadings": [
+    {
+      "title": "분자의 스펙트럼에서 나타나는 흡수띠",
+      "qRange": "1번-4번",
+      "day": ""
+    },
+    {
+      "title": "철학과 형법에서의 원인에 대한 이해",
+      "qRange": "5번-10번",
+      "day": ""
+    },
+    {
+      "title": "하먼의 예술론",
+      "qRange": "17번-20번",
+      "day": ""
+    },
+    {
+      "title": "중앙은행의 통화정책",
+      "qRange": "25번-28번",
+      "day": ""
+    }
+  ]
 };
 </script>
 
@@ -240,7 +289,7 @@
       <li>채점 사이에는 <b><span id="cooldownLabel">10</span>분 대기 시간</b>이 있어요. (다시 풀어볼 시간)</li>
       <li><b><span id="maxAttemptsLabel2">3</span>회</b>를 모두 사용해야 <b>📖 해설지</b>가 열립니다.</li>
       <li>채점 직후엔 답안 수정이 불가, 대기가 끝나면 다시 수정·재도전할 수 있어요.</li>
-      <li id="selectNotice" style="display:none;"><b>선택과목을 먼저 선택해야 채점이 됩니다.</b></li>
+      <li id="selectNotice" class="hidden"><b>선택과목을 먼저 선택해야 채점이 됩니다.</b></li>
     </ul>
   </div>
 
@@ -264,18 +313,18 @@
     <ul class="rr-list" id="requiredReadingsList"></ul>
   </div>
 
-  <div class="select-subject-card" id="selectSubjectCard" style="display:none;">
+  <div class="select-subject-card" id="selectSubjectCard">
     <h3>📝 선택과목 선택 <span class="badge-important">필수</span></h3>
     <div class="subject-options" id="subjectOptions"></div>
     <p style="font-size:11px; color:#997a80; margin-top:8px;">※ 응시한 선택과목을 정확히 골라야 채점이 됩니다.</p>
   </div>
 
-  <div class="tab-menu" style="display:none;">
+  <div class="tab-menu">
     <button class="tab-btn active" id="tabBtnA" data-tab="sectionA-tab"></button>
     <button class="tab-btn" id="tabBtnB" data-tab="sectionB-tab"></button>
   </div>
 
-  <div id="sectionA-tab" class="tab-content active" style="display:block;">
+  <div id="sectionA-tab" class="tab-content active">
     <div class="section" id="sectionADiv">
       <div class="section-header" id="sectionAHeader">
         <div class="section-title" id="sectionATitle"></div>
@@ -285,7 +334,7 @@
       <div class="question-list" id="sectionAList"></div>
     </div>
   </div>
-  <div id="sectionB-tab" class="tab-content" style="display:none;">
+  <div id="sectionB-tab" class="tab-content">
     <div class="section" id="sectionBDiv">
       <div class="section-header" id="sectionBHeader">
         <div class="section-title" id="sectionBTitle"></div>
@@ -391,12 +440,10 @@
     // 단순 두 섹션
     breakdownHtml += `<div class="score-item ${A.color||'reading'}"><span class="label">${A.shortLabel||A.label}</span><span class="value"><span id="sectionAScore">0</span> / ${A.count}</span></div>`;
   }
-  if(B.count > 0) {
-    if(hasVariants){
-      breakdownHtml += `<div class="score-item select"><span class="label" id="selectLabel">선택</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
-    } else {
-      breakdownHtml += `<div class="score-item ${B.color||'literature'}"><span class="label">${B.shortLabel||B.label}</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
-    }
+  if(hasVariants){
+    breakdownHtml += `<div class="score-item select"><span class="label" id="selectLabel">선택</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+  } else {
+    breakdownHtml += `<div class="score-item ${B.color||'literature'}"><span class="label">${B.shortLabel||B.label}</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
   }
   $('scoreBreakdown').innerHTML = breakdownHtml;
   $('scoreTotal').textContent = A.count + B.count;
@@ -606,7 +653,7 @@
     } else {
       const aEl = $('sectionAScore'); if(aEl) aEl.textContent = score.sectionA.correct;
     }
-    if($('sectionBScore')) $('sectionBScore').textContent = score.sectionB.correct;
+    $('sectionBScore').textContent = score.sectionB.correct;
     if(hasVariants && score.sectionB.subject) $('selectLabel').textContent = score.sectionB.subject;
     $('scoreText').textContent = '정답률 ' + (score.totalCorrect / score.total * 100).toFixed(1) + '%';
     if(state.attemptCount >= MAX_ATTEMPTS) showCorrectAnswers();
@@ -751,7 +798,7 @@
       lines.push((A.shortLabel || A.label) + ' : ' + s.sectionA.correct + '/' + s.sectionA.total);
     }
     const bLabel = hasVariants && s.sectionB.subject ? s.sectionB.subject : (B.shortLabel || B.label);
-    if(B.count > 0) { lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total); }
+    lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total);
     lines.push('');
 
     if(s.subSectionScores && s.subSectionScores.length){
@@ -767,7 +814,9 @@
       lines.push('');
     }
 
-    if(B.count > 0) { lines.push('[' + bLabel + ' 오답]'); lines.push(joinOrNone(bItems.map(item => item.text))); lines.push(''); }
+    lines.push('[' + bLabel + ' 오답]');
+    lines.push(joinOrNone(bItems.map(item => item.text)));
+    lines.push('');
 
     lines.push('[위험 문항]');
     lines.push('');
