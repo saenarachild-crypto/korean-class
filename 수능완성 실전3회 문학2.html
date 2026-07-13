@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 22~27 (김성한 「무명로」 / 이강백 「물고기 남자」)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #4a3a6e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #faf9fd; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 1.1em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label {
+            display: block; color: #7c3aed; font-weight: 800; font-size: 17px; margin: 20px 0 10px 0;
+        }
+        .middle-summary {
+            background: #f1f5f9; border: 1px dashed #94a3b8; border-radius: 16px; padding: 12px 18px;
+            font-size: 13.5px; color: #475569; margin: 18px 0;
+        }
+        .middle-summary strong { color: #334155; }
+        .bracket-span {
+            border-left: 3px solid #94a3b8; padding-left: 10px; margin: 6px 0; background: #f8fafc; border-radius: 0 10px 10px 0;
+        }
+        .bracket-badge {
+            display: inline-block; background: #475569; color: white; font-weight: 700; font-size: 12px;
+            padding: 1px 9px; border-radius: 10px; margin-bottom: 4px;
+        }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #4a3a6e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #6a4c93;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #4a3a6e; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .compare-flow { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+        .compare-box {
+            flex: 1; min-width: 200px; border-radius: 18px; padding: 14px 16px; font-size: 12.5px;
+        }
+        .compare-box.a { background: #fde9e9; border: 1.5px solid #ef4444; }
+        .compare-box.b { background: #eafbf0; border: 1.5px solid #16a34a; }
+        .compare-box h4 { margin-bottom: 8px; font-size: 14px; }
+        .compare-result {
+            background: #f1eafc; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin-top: 10px;
+        }
+        .soljae-box {
+            background: #fff8e6; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin: 10px 0; border: 1px solid #f1c40f;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #6a4c93; padding-left: 20px;
+        }
+        .structure-title span { background: #4a3a6e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #4a3a6e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #6a4c93;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #4a3a6e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #4a3a6e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #4a3a6e; }
+        .passage-study h3 { font-size: 17px; margin: 14px 0 8px 0; color: #4a3a6e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🎭 수능완성 사용설명서 실전 3회 · 현대 소설+극 22~27</h1>
+        <p>(가) 김성한, 「무명로」 / (나) 이강백, 「물고기 남자」 | 원문 + 문단별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <span class="sub-label">(가) 김성한, 「무명로」</span>
+                <div class="middle-summary">
+                    <strong>[앞부분 줄거리]</strong> 이재신은 해방 후 집을 장만해 세를 놓지만, 실제로는 배급 탈 돈조차 없이 가난하다. 그러던 중 아내 양춘자가 이웃인 여 반장과 함께 밀주를 만들어 팔고자 하고, 이재신도 이를 돕는다.
+                </div>
+                <p>야간 순시 중의 순경이 총을 메고 서 있었다.</p>
+                <p>“댁에선 도대체 뭘 하시는 거요?”</p>
+                <p>“허긴 뭘 합니까아?”</p>
+                <p>“뭘 합니까아라? 난 코두 아무것두 없는 줄 아시우? 하여튼 부인과는 얘기할 수 없으니 주인 좀 봅시다.”</p>
+                <p>이때 이재신이 안방 문을 열고 마루에 나타났다.</p>
+                <p><span class="underline-phrase">“아 이거 박 선생이 아니시우?”</span> <span class="phrase-label">이재신이 순경과 구면임을 알 수 있음.</span></p>
+                <p>이재신이 먼저 말을 걸었다.</p>
+                <p>“아― 이 선생이십니까?”</p>
+                <p>“글쎄 아까부터 목소리가 어쩐지 박 선생 같다구 생각은 하면서두…… 어서 이리루 올라오시우.”</p>
+                <p>“아―니 좀 바빠서, 그런데 이 선생 이거 안 되겠는걸요. 선생께서 <span class="underline-phrase">이런 일</span><span class="phrase-label">밀주를 만들어 파는 불법적인 일</span>을 하실 줄은 몰랐습니다.”</p>
+                <p><span class="underline-phrase">“아 박 선생께서도 아시다시피 저야 날마다 되지두 않는 일을 가지구 동분서주하지 않소? 첫새벽에 나갔다가 저녁 늦게 들어오니 집안일이 어떻게 돌아가는지 모르고 지낸답니다. 오늘에야 알구 보니 이 판국이구려.”</span> <span class="phrase-label">이재신이 집에서 밀주를 만든다는 사실을 모르고 있는 것처럼 둘러댐.</span></p>
+                <p>침착하기 이를 데 없고 말도 조리가 있었다. 자기는 전연 모르는 사이에 집안에서 철없는 계집들이 자기마저 감쪽같이 속이고 이런 일을 저지른 것이니 친한 사이라 널리 양해하여 주면 다시는 그런 일이 없도록 엄히 단속하겠노라고 단언하고 나서 한잔 같이 나누자고 박 순경의 손목을 잡았다.</p>
+                <p>순경은 듣기만 하다가 빈정댔다.</p>
+                <p><span class="underline-phrase">“집안에서 생긴 일을 주인 되시는 이가 몰랐다? 이거 고금에 드문 일이 벌어졌군. 하여튼 밤도 깊었으니, 내일 파출소에 좀 와 주실까요?”</span> <span class="phrase-label">박 순경은 집에서 밀주를 만드는 것을 알지 못했다는 이재신의 말을 믿지 못하고 출두를 요청함.</span></p>
+                <p>순경은 발을 돌렸다.
+                <span class="para-note">← 이재신이 박 순경에게 밀주 만든 일을 적발당함.</span></p>
+                <p>파랑 대문까지 배웅 나왔던 이재신 부처는 올라가 마루에 주저 앉았다. 깊은 밤이라 구경꾼 하나 없었지마는 이렇게 떠들썩해놓고 보니 감출 것도 없고, 부끄러움도 사라져 버렸다.</p>
+                <p>“배라먹을 년, 술은 뭐 썩어 자빠진 술, 난 모른다 이젠.”</p>
+                <p><span class="underline-phrase">양춘자는 없는 반장을 두고 욕설을 퍼부었다. 또 한번 몹쓸 년의 유혹에 걸린 것이요, 모두가 여 반장의 잘못으로만 생각되었다.</span> <span class="phrase-label">양춘자는 여 반장과 함께 밀주를 만들어 팔기로 했으나 박 순경에게 걸리자 여 반장을 탓함. → 남 탓만 하는 몰염치한 인물</span></p>
+                <p>“그년만 없으믄 밀주인지 뭔지 생각이나 해? 흥, 참 별꼴 다 보겠네.”</p>
+                <p>포르르 달려가서 여 반장네 담을 두드렸다.</p>
+                <p>순경이 지르는 호통에 여 반장도 잠이 깨어 큰일 난 줄은 알았으나 어찌할 도리가 없어 이불 밑에서 떨고만 있다가 순경이 가는 소리를 듣고 일어나서 옷을 주워 입는 길이었다.</p>
+                <p><span class="underline-phrase">양춘자의 안방에서는 삼자 회의가 열렸다. 왼쪽 다리를 깊숙이 바른 무릎에 올려놓고 쉴 새 없이 담배를 피우는 이재신은 종시 말이 없고 두 여인만은 처음부터 옥신각신이었다.</span> <span class="phrase-label">양춘자와 여 반장 → 모두 남 탓만 하는 몰염치한 인물</span></p>
+                <p>서로 자기가 잘했고 따라서 책임은 저편이 져야 한다는 것이었다. 침묵을 깨뜨리고 이재신이 입을 열었다.</p>
+                <p><span class="underline-phrase">“염려들 마시우. 아까 그 박 순경은 내가 잘 아는 사람이니 한 잔 멕여서 어루만져 놓으면 될 거요. 그래두 안 되면 쌀이나 한 가마 갖다 안겨 놓지. 줘서 싫다는 사람이 어디 있어? 요새 멕여서 안 되는 일이 어디 있는 줄 아시우?”</span> <span class="phrase-label">뇌물을 바쳐 박 순경을 매수하고자 함. / 뇌물로 공권력을 매수하는 등의 부정부패가 만연한 시대상</span>
+                <span class="para-note">← 이재신은 박 순경을 매수하기로 결심함.</span></p>
+                <p>(중략)</p>
+                <p><span class="underline-phrase">들어서자 이재신은 코가 땅에 닿도록 절하고 나서 간밤의 실례를 사과하고 금후로는 절대 그런 일이 없도록 할 터이니 양해하여 달라고 청을 드렸다.</span> <span class="phrase-label">이재신이 박 순경을 찾아가 정중한 태도로 반성하는 척함.</span></p>
+                <p>한참 동안 묵묵히 앉아 있던 박 순경이 입을 열었다.</p>
+                <p><span class="underline-phrase">“피차에 생활은 다 궁하지 않습니까? 궁하기는 제가 이 선생보다 더할 겁니다. 그러니 궁하다는 것이 얼마나 참기 어려운가는 저도 잘 알고 있습니다. 선생께서도 생각다 못해 부득이해서 하셨겠지요.</span> <span class="phrase-label">이재신이 궁핍한 형편이어서 부득이하게 불법적인 일을 했을 것이라며 이재신의 처지를 이해하는 듯한 말을 함.</span>
+                <span class="underline-phrase">허지만 법이 있으니 어떡합니까? 다시는 그런 일이 없도록 해 주시지요.”</span> <span class="phrase-label">어떤 경우에도 법을 어기는 일을 해서는 안 된다는 신념을 밝힘. → 박 순경이 이재신에게 경고함.</span></p>
+                <p>박 순경은 다시 입을 다물었다. 몸이 몹시 불편한 듯하였다. 다른 소리는 들으나 마나 한 것이고 하여튼 다시는 그러지 않도록 하라는 말은 확실히 용서한다는 뜻으로 해석되었다. 호주머니에 있는 돈을 몇 번이나 몰래 만지면서 술이나 한잔 나누러 나가자고 말을 꺼내려다가 삼켜 버렸다. 몸도 불편하려니와 그의 생김새를 가만 보아하니 자칫하다가는 창피를 당할 것도 같았다. 공손히 치사하고 일어서 나왔다. 막상 나와 보니 돈 한 푼 안들이고 큰일이 해결되었으니 더 바랄 것이 없었다.</p>
+                <p>― <span class="underline-phrase">오늘 재수는 상지상(上之上)이로다.</span>
+                <span class="para-note">← 밀주 만든 일로 이재신이 박 순경의 경고를 받음.</span></p>
+                <p>한길에 나온 재신은 몇 걸음 옮겨 놓다가 다시 돌이켜 생각했다.</p>
+                <p>― <span class="underline-phrase">이번 일만이라면 그냥 두어도 무방하겠지마는 앞으로 어떤 일이 생길는지 모른다. 지금 삶아 두지 않으면 다음부터 일이 있을 때에 부탁하기 어려울 것이다. 기왕 갖고 온 돈이니 버리는 셈 치고 술이나 좀 사다 안겨 놓자.</span> <span class="phrase-label">이재신은 추후 불미스러운 일이 발생했을 때 이번처럼 박 순경에게 쉽게 용서받기 위해 미리 뇌물을 바치고자 함. → 이재신 = 기회주의적 인물</span></p>
+                <p><span class="underline-phrase">상점에 가서 이리저리 뒤적거리다가 일천오백 원으로 ㉮포도주 세 병을 사서 깨끗한 종이에 싸 가지고 다시 박 순경네 대문을 들어섰다.</span> <span class="phrase-label">박 순경에게 바칠 뇌물: ① 이재신의 부정적 면모를 보여 줌. ② 박 순경이 거절함으로써 그의 청렴함을 보여 줌.</span>부인은 어디로 갔는지 안 보이고 박 순경이 혼자 앉아 약을 마시고 있었다.</p>
+                <p>대문간으로 들어간 이재신은 마당에서 굽신했다.</p>
+                <p>“약소합니다마는 한잔 맛 보시우. 포도주는 몸에두 괜찮습니다. 이번엔 뭐라구 감살 해야 할지 모르겠습니다.”</p>
+                <p><span class="underline-phrase">“아니, 전 술은 못합니다.”</span> <span class="phrase-label">이재신의 뇌물을 거절하는 박 순경의 청렴한 면모 ①</span></p>
+                <p>“이건 포도준데 맛도 좋고 어린애라두 마시는 겁니다.”</p>
+                <p><span class="underline-phrase">“저는 주(酒) 자 붙은 것은 뭐든지 못합니다.”</span> <span class="phrase-label">이재신의 뇌물을 거절하는 박 순경의 청렴한 면모 ②</span></p>
+                <p>이재신은 무작정 술병을 방 안에 들여놓고 대문을 막 나가려고 하였다. 순경이 큰 소리로 불렀다.</p>
+                <p>“이 선생, 할 말이 있으니 잠깐만 들어오시오.”</p>
+                <p>이재신은 개화장을 구석에 세워 놓고 방에 들어가 앉았다.</p>
+                <p>“이 선생, 사고파는 물건은 따로 있는 게 아니겠지요?”</p>
+                <p>“네?”</p>
+                <p>이재신은 알 듯 모를 듯한 소리였다.</p>
+                <p>“저도 한번 장사치로 나서 볼까 하는데 호수가 틀리지는 않았겠지요?”</p>
+                <p>“무슨 말씀인지…….”</p>
+                <p>이재신은 더욱 모를 소리였다.</p>
+                <p><span class="underline-phrase">“법이라는 밀주를 팔면 어떨까 했는데…….”</span> <span class="phrase-label">박 순경이 법을 지키겠다는 의지를 드러냄. → 이재신과 대조적인 인물</span></p>
+                <p>이재신은 대답을 못 했다. 이죽거리는 품이 자기를 사람으로 보지 않는 것만은 틀림없었다.</p>
+                <p>이 이재신을 어떻게 보구 하는 잡소리냐?</p>
+                <p>― <span class="underline-phrase">못난 녀석, 남은 없어 못 먹는데 쌀 한 톨이라두 들어오는건 받아 넣는 것이 장땡이지, 똥별짜리가 잘난 체 깨끗한 체해 보았자 누가 알아나 주나? 제까짓 것이 어찌구? 작년 가을에 김 경감두 쌀 한 말 갖다줬더니 고맙다구 고스란히 받지 않았나……흥, 싫으면 그만둬라.</span> <span class="phrase-label">청렴하고 양심적인 박 순경을 부정적으로 바라보는 이재신 → 이재신에 대한 독자의 비판 의식을 유도함.</span>
+                <span class="para-note">← 이재신이 박 순경에게 뇌물을 바치지만 박 순경이 이를 거절함.</span></p>
+                <p style="text-align:right; font-weight:600;">- 김성한, 「무명로」</p>
+
+                <span class="sub-label">(나) 이강백, 「물고기 남자」</span>
+                <div class="middle-summary">
+                    <strong>[앞부분 줄거리]</strong> 김진만과 이영복은 브로커에게 속아 양식장에 공동 투자했으나 적조 때문에 망해 생계를 위협받는다. 어느 날, 적조를 구경하러 온 관광선이 암초에 부딪혀 인근 바다에 침몰한다.
+                </div>
+                <div class="bracket-span">
+                    <span class="bracket-badge">A</span>
+                    <p style="margin-bottom:6px;">브로커: 사실은, 내가 최후통첩하러 왔어요. 난 더 이상 기다리지 않겠습니다. 이젠 ㉯양식장을 팔든가 말든가, 두 분이 상의해서 결정하세요.</p>
+                    <p style="margin-bottom:6px;">김진만: 지금 당장……?</p>
+                    <p style="margin-bottom:6px;">브로커: 네, 바로 지금요!</p>
+                    <p style="margin-bottom:6px;">김진만: 염병할!</p>
+                    <p style="margin-bottom:6px;">브로커: 자, 어떻게 할 겁니까?</p>
+                    <p style="margin-bottom:6px;">김진만: 우린 조급할 것 없어. 당신이 우리 양식장을 사고 싶어 몸살이 난 모양이군.</p>
+                    <p style="margin-bottom:0;"><span class="underline-phrase">브로커: 난 다 알게 됐어요. 선생이 뭣 때문에 배짱을 부리는지 알게 됐다구요. ㉠침몰한 배의 실종자 시체를 찾아 주면 유가족들이 사례비로 큰돈을 준다니까, 혹시나 그걸 찾아볼 생각이죠?</span> <span class="phrase-label">브로커는 김진만이 양식장을 파는 일에 갑자기 여유를 부리게 된 이유를 짐작하고 있음. → 실종자 시체를 찾아 보상금을 얻으려고 하는 김진만의 의도를 정확히 파악함.</span></p>
+                </div>
+                <div class="bracket-span">
+                    <span class="bracket-badge">B</span>
+                    <p style="margin-bottom:6px;"><span class="underline-phrase">김진만: 염병할, 난 그런 치사한 생각 없어!</span> <span class="phrase-label">정곡을 찔렸지만 부인하는 김진만</span></p>
+                    <p style="margin-bottom:6px;">브로커: 그럼 내 자전거를 뺏어 타고 뻔질나게 읍내를 드나든 건 뭡니까?</p>
+                    <p style="margin-bottom:6px;">김진만: 증거를 대라구, 증거를!</p>
+                    <p style="margin-bottom:6px;">브로커: 며칠 전엔 어떤 여자를 데리고 왔었잖아요. 남편 시체를 찾아 주면 삼천만 원 준다는 여자를요. 그래도 잡아뗄 거예요?</p>
+                    <p style="margin-bottom:6px;">김진만: 이거 염병 앓다가 꼬꾸라지겠군!</p>
+                    <p style="margin-bottom:0;">브로커: 그 심정 이해 못 하는 건 아닙니다. 양식장이 망했으니, 무슨 짓을 해서라도 살 방법을 찾고 싶겠죠. 하지만 잘 들어요. 두 분을 위해서 충고하는 건데, 구질구질하게 시체 따위에 희망을 걸지 마세요.</p>
+                </div>
+                <p><span class="underline-phrase">김진만: 누가 시체한테 희망을 건댔어?</span></p>
+                <p><span class="underline-phrase">브로커: ㉡시체한테 희망 건 사람들이 많아요. 실종자 가족들 중에는 그런 자들이 있지요. 실종자가 살아 돌아오면 기뻐해야 할텐데, 도리어 노골적으로 실망하는 인간이 있거든요. 그런 인간은 인간이 아닙니다. 짐승만도 못한, 아니 벌레만도 못한 존재지요. 심지어 죽은 시체를 놓고 다투는 인간도 있어요. 보상금은 자기가 받아야 한다면서, 서로 아귀처럼 싸우거든요. 그런데 자기 가족 시체도 아닌, 남의 시체로 돈을 벌겠다니……도대체 아귀만도 못한 그런 존재는 무어라고 해야죠?</span> <span class="phrase-label">보상금을 받을 목적으로 실종자들의 생환을 반가워하지 않는 가족들이나 시체를 두고 다투는 사람들에 대해 ‘아귀만도 못한’ 존재라고 비난함. → 차익을 노리는 브로커도 그들과 다를 바 없음. → ‘브로커’에 대한 독자의 비판적 인식을 유도함.</span></p>
+                <div class="bracket-span">
+                    <span class="bracket-badge">C</span>
+                    <p style="margin-bottom:6px;"><span class="underline-phrase">김진만: 뭐라고 할지는…… 염병할, 하루만 여유를 줘! 하루 더 생각해 보고 결정할 테니까!</span> <span class="phrase-label">브로커에게 정곡을 찔린 김진만이 브로커의 재촉에 압박감을 느낌.</span></p>
+                    <p style="margin-bottom:6px;">브로커: 그거, 확실해요?</p>
+                    <p style="margin-bottom:0;">김진만: 확실하지!</p>
+                </div>
+                <p>브로커: (이영복을 바라보며) 선생도 확실히 대답하세요.</p>
+                <p>이영복: (침묵한다.)</p>
+                <p>김진만: <span class="underline-phrase">㉢저 친구가 대답 안 하는 건 가격 때문이야! 십분지 일은 말도 안 돼! 우리 조건은 최소한 원금의 십분지 사라구!</span> <span class="phrase-label">브로커가 요구하는 양식장의 가격(십분지 일) vs 김진만이 요구하는 양식장의 가격(십분지 사)</span></p>
+                <p><span class="underline-phrase">브로커: 십분지 일입니다. 그 이상은 절대로 못 줘요! (의자에서 일어선다.) 계약서는 놓고 갑니다. 난 내일 저녁 다시 오죠. 오늘 당장 결판을 내려고 했는데, 하루 더 기회를 주는 거예요. 내일 올 테니까 두 분 동업자끼리 사이좋게 의논하여 결정해두세요.</span> <span class="phrase-label">원금의 십분지 일의 가격으로 양식장을 거래하자는 내용</span>
+                <span class="para-note">← 브로커가 김진만에게 양식장을 자신에게 팔 것을 재촉함.</span></p>
+                <p>(중략)</p>
+                <p>브로커: 양식장 계약서는 왜 찢어져 있죠?</p>
+                <p><span class="underline-phrase">이영복: 그가 떠나면서 나에게 팔았어요, 자기 몫을요. 공동 소유였던 양식장을 이젠 나 혼자 갖게 됐습니다.</span> <span class="phrase-label">이영복은 시체를 건네고 받은 보상금을 김진만에게 전부 주는 대신에, 김진만 몫의 양식장을 자신이 갖기로 함.</span></p>
+                <p>브로커: 선생이 혼자……?</p>
+                <p>이영복: 네.</p>
+                <p>브로커: 그걸 전부 가져서 무얼 하려구요?</p>
+                <p>이영복: (침묵)</p>
+                <p>브로커: 아까 보여 준, 그 물고기 남자인가 뭔가를 양식할 건가요?</p>
+                <p>이영복: (침묵)</p>
+                <p><span class="underline-phrase">브로커 : 적조 때문에 아무것도 살지 못합니다. 실컷 고생만 하고, 잔뜩 손해만 보고…… 선생이 직접 경험하셨잖아요.</span> <span class="phrase-label">브로커는 양식장을 소유하게 될 존재가 손해를 볼 수밖에 없음을 알고 있음. → 이를 알고도 팔려고 함. → 브로커 = 이기적이고 물질만능주의적 인물</span></p>
+                <p>이영복: <span class="underline-phrase">㉣그래서 나 자신이 갖기로 한 겁니다.</span></p>
+                <div class="bracket-span">
+                    <span class="bracket-badge">D</span>
+                    <p style="margin-bottom:6px;"><span class="underline-phrase">브로커: 무슨 말씀인지……?</span> <span class="phrase-label">브로커는 이영복의 의도를 짐작하지 못해 당황함.</span></p>
+                    <p style="margin-bottom:6px;">이영복: (침묵)</p>
+                    <p style="margin-bottom:0;">브로커: 그러니까 뭡니까? 혼자 다 갖겠다는 건…… 남에겐 팔지 않겠다, 그런 뜻입니까?</p>
+                </div>
+                <p>이영복: 네.</p>
+                <p>브로커: 왜요?</p>
+                <p><span class="underline-phrase">이영복: 내가 팔면…… 산 사람은 나처럼 실컷 고생만 하고, 잔뜩 손해만 볼 겁니다. 그걸 알면서 양식장을 팔 수는 없죠.</span> <span class="phrase-label">또 다른 피해자가 발생하지 않도록 자신이 손해를 감수하겠다는 이영복의 의지 → 이영복 = 타인을 위해 자신의 손해를 감수하는 선량한 인물</span></p>
+                <div class="bracket-span">
+                    <span class="bracket-badge">E</span>
+                    <p style="margin-bottom:0;"><span class="underline-phrase">브로커: 별 희한한 생각을 하셨군요. 도대체 선생이 다른 사람과 무슨 상관이 있습니까? 선생을 잘 아는 사람이 양식장을 살 리는 없고, 전혀 모르는 사람이 사게 될 텐데요? (손가락으로 자기 자신을 가리킨다.) 자, 나를 보십시오! 선생과 다른 사람 사이에, 그 중간에, 브로커인 내가 있습니다. 선생은 일단 양식장을 나에게 넘겨주세요. 그럼 나는 적조가 사라지기를 기다렸다가, 그걸 살 사람을 찾아내 파는 겁니다. 그 경우, 선생은 누가 샀는지 모르며, 산 사람 역시 누가 팔았는지 모릅니다. 실컷 고생을 하고 잔뜩 손해를 봐도, 중간에 있는 나를 욕할 뿐 모르는 사람을 욕하진 않죠. 그러니 얼마나 편리합니까, 나라는 존재가? 선생이 들을 욕을 내가 중간에서 대신 듣고, 선생이 받을 원망을 내가 중간에서 대신 받습니다. 선생은 아무 걱정 마세요. 그저 홀가분한 기분으로 나에게 양식장을 팔고 떠나기만 하면 되는 겁니다.</span> <span class="phrase-label">브로커는 자신이 얻을 차익을 노리고 다른 사람에게 양식장을 팔려고 함. → 브로커 = 탐욕적이고 이기적인 인물</span></p>
+                </div>
+                <p><span class="underline-phrase">이영복: 하지만 이젠 비켜 주시지요. 중간에서 가로막고 있을 필요가 없습니다.</span></p>
+                <p>브로커: 날…… 비키라구요?</p>
+                <p>이영복: 네. <span class="underline-phrase">㉤이제서야 비로소 알게 된 사실입니다. 나는 전혀 모르는 사람과도 깊은 관계가 있다는 것을요.</span></p>
+                <p>브로커: 이런…… 선생은 뭔가 지나치게 과민해지셨군요.</p>
+                <p><span class="underline-phrase">이영복: 난 정상이에요. 이 세상의 그 어떤 모르는 사람이 괴로우면 나도 괴로워야 당연하고, 그 모르는 사람이 기쁘면 나도 기뻐야 당연하죠.</span> <span class="phrase-label">타인의 손해는 자신과 무관하다는 브로커의 주장에 동의하지 않음. → 이영복 = 사람 사이의 도덕적 연대와 공동체적 가치를 중시하는 인물</span>
+                <span class="para-note">← 브로커의 회유에도 불구하고 이영복은 양식장을 팔지 않기로 결심함.</span></p>
+                <p style="text-align:right; font-weight:600;">- 이강백, 「물고기 남자」</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 무명로 – 서두: 밀주 적발</div>
+                <div class="content">순경이 이재신 집의 밀주 제조를 적발하러 온다. 이재신은 구면인 박 순경을 반갑게 맞으며 자신은 전혀 몰랐다고 능청스럽게 둘러대지만, 박 순경은 믿지 않고 파출소 출두를 요구한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 무명로 – 남 탓하는 두 여인, 뇌물을 결심하는 이재신</div>
+                <div class="content">양춘자는 밀주를 함께 만든 여 반장을 탓하고, 두 사람은 서로 책임을 미룬다. 이재신은 박 순경에게 뇌물(쌀 혹은 술)을 먹여 무마하면 된다며 아내를 안심시킨다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 무명로 – 박 순경의 경고와 이재신의 뇌물 시도</div>
+                <div class="content">이재신이 정중히 사과하자 박 순경은 궁핍한 처지는 이해하지만 법은 지켜야 한다고 경고한다. 이재신은 이를 용서로 해석하고 안도하지만, 추후를 대비해 포도주 세 병을 사서 뇌물로 바친다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 무명로 – 박 순경의 거절과 이재신의 비난</div>
+                <div class="content">박 순경은 “주(酒) 자 붙은 것은 뭐든지 못한다”며 뇌물을 거절하고, 법을 지키겠다는 의지를 밝힌다. 이재신은 오히려 청렴한 박 순경을 어리석다고 비난하며, 예전에 뇌물을 받았던 김 경감과 비교한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 물고기 남자 – 브로커의 최후통첩과 의심[A]</div>
+                <div class="content">브로커는 양식장을 팔 것을 종용하며, 김진만이 실종자 시체를 찾아 보상금을 얻으려 한다고 의심한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 물고기 남자 – 김진만의 부인과 브로커의 비난[B]</div>
+                <div class="content">김진만은 의혹을 부인하지만, 브로커는 보상금을 노려 실종자의 생환을 반기지 않는 사람들을 ‘아귀만도 못한 존재’라 비난한다. 이는 브로커 자신에게도 해당되는 이중성을 보여 준다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 물고기 남자 – 가격 협상[C]과 이영복의 단독 소유</div>
+                <div class="content">김진만과 브로커가 양식장 매매가로 신경전을 벌인다. [중략] 이후 이영복은 자신이 구조한 실종자(‘물고기 남자’)의 보상금을 김진만에게 넘기는 대신 양식장 전체를 홀로 소유하게 된다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 물고기 남자 – 이영복의 결심[D][E]</div>
+                <div class="content">이영복은 양식장을 팔면 산 사람도 자신처럼 손해를 볼 것이라며 팔지 않겠다고 한다. 브로커는 중간에서 자신이 욕을 대신 들어주는 존재라며 회유하지만, 이영복은 “전혀 모르는 사람과도 깊은 관계가 있다”며 이를 거부하고 브로커를 몰아낸다.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>부처</strong>: 남편과 아내를 아울러 이르는 말.<br>
+                • <strong>상지상(上之上)</strong>: 더할 수 없이 좋음을 비유적으로 이르는 말.<br>
+                • <strong>한길</strong>: 사람이나 차가 많이 다니는 넓은 길.
+            </div>
+            <div class="info-box">
+                <h3>🎯 감상 포인트</h3>
+                <p style="font-size: 13.5px;"><strong>(가) 「무명로」</strong>: 이 작품은 가난한 처지에 허세를 부리며 불법적인 일을 반복하는 인물을 내세워서 인간의 위선을 풍자하고 불법이 통용되던 부패한 현실을 고발하는 소설이다. 더불어 부조리한 현실에 영합하지 않고 끝까지 양심을 지키는 긍정적인 인물과 대비시킴으로써 부조리한 현실을 어떻게 살아가는 것이 바람직한지 독자에게 질문을 던지고 있다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">인간의 위선과 부패한 현실에 대한 풍자</p>
+                <p style="font-size: 13.5px; margin-top: 14px;"><strong>(나) 「물고기 남자」</strong>: 이 작품은 적조로 인해 양식장이 망하고 관광선이 침몰하면서 벌어지는 사건을 통해 인간의 생명보다 물질적 이익을 중시하는 부조리한 세태를 고발하는 희곡이다. 자신이 비싸게 판 양식장을 다시 싸게 사들여 다른 사람에게 비싸게 되팔려고 하는 브로커의 모습, 실종자가 생존하여 사망 보험금을 못 받게 된 유족들이 실망하는 모습 등을 제시함으로써 자신의 생존을 위해 타인의 고통을 아랑곳하지 않는 이기적 인물들에 대한 강한 비판 의식을 유도하고 있다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">경제적 이익을 위해 타인의 고통이나 인명을 등한시하는 물신주의적 세태에 대한 비판</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 이것만은 꼭 익히자! (가) 포인트 1 – 서술상의 특징 (문항 22 관련)</h3>
+                <ul style="font-size: 13px; margin-left: 18px;">
+                    <li>시간의 흐름에 따라 사건이 전개되는 순행적 구성을 취함.</li>
+                    <li>인물의 행동과 인물 간의 대화를 통해 갈등 상황을 보여 주고 있음.</li>
+                    <li>새 인물의 등장으로 인해 인물 간 갈등이 촉발되고 있음.</li>
+                    <li>전체적으로 3인칭 관찰자 시점을 취하여 상황을 객관적으로 묘사하되 부분적으로 전지적 시점을 취하여 인물의 내면 심리를 제시함.</li>
+                </ul>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 (가) 포인트 2 – 대조적 인물 간의 갈등 양상 (문항 23 관련)</h3>
+                <div class="compare-flow">
+                    <div class="compare-box a">
+                        <h4>이재신</h4>
+                        <ul style="margin-left: 16px;">
+                            <li>집에서 밀주 만든 일을 모른 척하며 거짓말을 함.</li>
+                            <li>추후의 일을 대비해 박 순경에게 뇌물을 바치고자 함. 포도주 세 병을 뇌물로 건넴.</li>
+                        </ul>
+                        <div class="soljae-box">→ 불법적인 일을 통해 자신의 이익을 추구하는 부정적인 인물 → 타락한 세태를 대변하는 인물</div>
+                    </div>
+                    <div class="compare-box b">
+                        <h4>박 순경</h4>
+                        <ul style="margin-left: 16px;">
+                            <li>이재신의 말을 믿지 않고 파출소로 호출함.</li>
+                            <li>가난한 처지에도 법을 지킬 필요가 있다는 신념을 밝힘. 포도주 세 병을 거절함.</li>
+                        </ul>
+                        <div class="soljae-box">→ 자신의 이익보다 법을 지키는 것을 중시하는 양심적인 인물 → 타락한 세태와 대비되는 인물</div>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 (가) 포인트 3 – 소재의 기능 (문항 26, 27 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>소재</th><th>의미</th><th>기능</th></tr></thead>
+                    <tbody>
+                        <tr><td>밀주</td><td>이재신 부처가 불법적으로 몰래 만들다가 박 순경에게 걸린 것</td><td>불법을 자행해 사익을 챙기는 이재신 부처의 몰염치한 면모를 보여 주는 소재</td></tr>
+                        <tr><td>포도주 세 병</td><td>이재신이 박 순경을 매수하기 위해 뇌물로 바치고자 한 것</td><td>뇌물을 활용해 공권력을 매수하는 이재신의 물질만능주의적 면모를 보여 주는 소재이자, 뇌물을 거절하는 박 순경의 청렴함과 양심을 드러내는 계기가 되는 소재</td></tr>
+                        <tr><td>쌀 한 말</td><td>이재신이 김 경감을 매수하기 위해 뇌물로 바친 것</td><td>부패한 공권력, 비리와 부정부패가 만연한 사회를 보여 주는 소재</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ (가) 배경지식 더 알아보기 – 김성한의 작품 세계 (문항 27 관련)</h3>
+                <p style="font-size: 13px;">1950년대는 전쟁으로 인한 불안과 혼돈으로 기존의 가치 체계가 붕괴되었고, 그로 인한 인간 실존의 문제들이 나타나기 시작하면서 실존주의 사조가 유입되었다. 작가 김성한(1919~2010)은 이러한 불안과 혼돈의 시대를 배경으로 하여 부조리한 인물을 전면에 내세워 혼란하고 무질서하고 부조리한 세계의 면모를 들여다본다. 「무명로」 역시 ‘이재신’과 그의 처 ‘양춘자’를 내세워 인간의 위선과 부패한 현실을 꼬집는 작품이다. 이재신의 위신에 대한 허세와 과장은 박 순경을 찾아간 순간에 극명하게 나타난다. 박 순경이 이재신의 뇌물인 포도주를 받지 않자 이재신은 자신의 잣대로 그의 어리석음을 비판한다. 이를 통해 뇌물을 주고받는 것이 통용되던 당대의 부패한 사회상을 고발함과 동시에 부조리를 부조리로 인식하지 못하는 타락한 인물을 비판하는 효과를 거둔다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 3인칭 관찰자 시점의 특징은 무엇인가요?</div>
+                3인칭 관찰자 시점은 서술자가 이야기 밖에 위치하면서 이야기 속 주요 사건에 대해서 관찰하고 묘사하는 역할만을 맡으면서 서술하는 방식을 말합니다. 그래서 작중 인물들의 내면을 침투하지 않은 채 객관적인 태도로 서술하기 때문에 서술자의 해설이나 판단, 주관적 평가가 최소화되어 극적인 효과를 거둔다는 특징이 있습니다. 서술자가 전하는 객관적인 설명을 통해 독자가 인물의 심리나 작가의 의도를 적극적으로 상상하고 추론해 내야 하므로, 복잡한 심리나 내용을 전달하기에 어렵다는 한계가 있습니다. 그럼에도 불구하고 사실주의 소설과 같이 사건 전달의 객관성을 확보할 필요가 있는 작품에서는 3인칭 관찰자 시점을 활용하기도 합니다.
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 (나) 포인트 1 – 인물의 발언과 의미 (문항 24 관련)</h3>
+                <table style="font-size: 12px;">
+                    <thead><tr><th>발언</th><th>의미</th></tr></thead>
+                    <tbody>
+                        <tr><td>브로커: 침몰한 배의 실종자 시체를 찾아 주면 유가족들이 사례비로 큰돈을 준다니까, 혹시나 그걸 찾아볼 생각이죠?</td><td>브로커는 김진만이 양식장 거래에 배짱을 부리자 양식장을 파는 대신에 실종자의 시체를 찾고 보상금을 얻는 방법으로 큰돈을 벌고자 하는 것은 아닌지 의심함.</td></tr>
+                        <tr><td>브로커: 시체한테 희망 건 사람들이 많아요.</td><td>‘시체한테 희망 건 사람들’은 보상금을 얻기 위해 실종자가 생환하면 실망하는 가족들이나 남의 시체를 놓고 아귀처럼 다투는 사람들을 가리킴. → 브로커가 비판적으로 인식하는 존재임.</td></tr>
+                        <tr><td>김진만: 저 친구가 대답 안 하는 건 가격 때문이야! 십분지 일은 말도 안 돼! 우리 조건은 최소한 원금의 십분지 사라구!</td><td>김진만은 브로커가 제안한 가격을 못마땅해하며 원금의 십분지 사의 가격을 받고자 함. → 두 가격 중 어떤 가격으로 거래하더라도 김진만과 이영복은 원금을 확보할 수 없음.</td></tr>
+                        <tr><td>이영복: 그래서 나 자신이 갖기로 한 겁니다.</td><td>이영복은 양식장을 사서 타인에게 되팔려는 브로커의 전략을 저지하고자 함. → 이영복은 타인의 피해를 막기 위해 자신이 손해를 감수하고자 함.</td></tr>
+                        <tr><td>이영복: 이제서야 비로소 알게 된 사실입니다. 나는 전혀 모르는 사람과도 깊은 관계가 있다는 것을요.</td><td>이영복은 타인의 고통이나 기쁨이 자신과 무관한 것이 아니라는 사실을 깨달았음. → 사회적 연대의 필요성을 자각함.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 (나) 포인트 2 – ‘양식장’의 기능 (문항 26 관련)</h3>
+                <div class="soljae-box">
+                    • 타인의 손해를 초래하면서 자신의 이득을 추구하는 브로커의 이기적 면모를 드러냄.<br>
+                    • 브로커와 김진만, 이영복의 갈등이 고조되는 요인임.<br>
+                    • 자신의 손해를 감수하면서까지 브로커의 행동에 영합하지 않으려는 이영복의 의지를 드러냄.
+                </div>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 (나) 포인트 3 – 인물 간 갈등 양상 (문항 27 관련)</h3>
+                <div class="compare-flow">
+                    <div class="compare-box a">
+                        <h4>김진만, 이영복</h4>
+                        <p>원금의 십분지 사의 가격으로 팔고자 함.</p>
+                    </div>
+                    <div class="compare-box b">
+                        <h4>브로커</h4>
+                        <p>원금의 십분지 일의 가격으로 사고자 함.</p>
+                    </div>
+                </div>
+                <p style="font-size: 12.5px; margin: 6px 0;">→ ‘김진만, 이영복’은 비싸게 산 양식장을 싸게 팔아야 하는 처지에 직면함. ‘브로커’는 자신의 사익을 추구하기 위해 타인의 손해를 아랑곳하지 않음. → 이기적이고 물질만능주의적 인물</p>
+                <div class="compare-flow">
+                    <div class="compare-box b">
+                        <h4>이영복</h4>
+                        <p>양식장을 팔지 않고자 함.</p>
+                    </div>
+                    <div class="compare-box a">
+                        <h4>브로커</h4>
+                        <p>양식장을 팔라고 설득함.</p>
+                    </div>
+                </div>
+                <p style="font-size: 12.5px; margin-top: 6px;">→ ‘이영복’은 자신의 손해를 감수하려는 입장, ‘브로커’는 자신의 이익을 추구하려는 입장임. ‘이영복’은 타인의 피해를 최소화하려는 선량한 인물, ‘브로커’는 타인의 피해를 초래하는 속악한 인물임.</p>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ (나) 배경지식 더 알아보기</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>이 작품에 드러난 주제 의식</strong><br>「물고기 남자」는 ‘관광선 침몰’이라는 중심 사건을 계기로 여러 인물의 욕망이 부딪히는 구조를 통해 탐욕이 지배하는 세상에 대한 강한 비판과 환멸을 드러내는 작품이다. 더불어 자본의 횡포에 잠식당한 현대 사회의 폐쇄성을 고발하고 있다. 그러나 단순히 현실 비판에 그치지 않고 성숙한 인물이자 각성된 자아인 ‘이영복’을 통해 현실 극복의 가능성도 함께 제시한다. 이영복이 ‘물고기 남자’의 희생을 대가로 새로운 각성에 이르는 과정은 사회 전반에 걸쳐 만연한 탐욕과 이기심을 극복할 수 있는 방안을 보여 주는데, 바로 인간다움의 진정성과 깨어진 관계성의 회복이 그에 해당한다.</p>
+                <p style="font-size: 13px;"><strong>‘물고기 남자’에 대한 정보를 알 수 있는 장면</strong><br>남자: 뭔가 새로운 걸 발견했거든요.<br>이영복: 뭘요?<br>남자: 새로운 계산법을요. 나 죽으면 슬퍼할 사람이 몇이나 되느냐, 지금까지는 그렇게 계산했었는데, 전혀 다른 방법이 생각났어요. 나 죽으면 기뻐할 사람이 얼마나 되느냐. 이렇게 계산하는 거죠. (손가락들을 꼽으면서) 이것 보세요. 놀랍게도 열 사람이 금방 넘어요!<br>이영복: 그― 그래서요?<br>남자: 아, 이걸 왜 몰랐을까! 내가 죽으면 남이 슬퍼하기만을 생각했었는데, 기뻐할 수도 있다니― 파라다이스호가 침몰할 때 알았더라면, 난 구차하게 살지 않았을 거예요.<br>김진만은 보상금을 얻을 목적으로 시체를 건지려다가 생존자인 ‘남자’를 구해 오는데, 그가 ‘물고기 남자’이다. 생존자인 ‘남자’의 생명은 아내가 받을 보험금의 담보이자 김진만이 받을 보상금의 담보이다. 그가 살아 있다는 사실이 오히려 아내와 김진만이 이득을 얻는 데 방해가 되자, 구조된 남자는 미움과 박대의 대상으로 추락하고 그도 삶의 의미를 잃는다. 이처럼 ‘물고기 남자’를 둘러싼 주변 인물들의 냉혹한 반응은 인간성과 삶의 본질에 대한 성찰을 유도한다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 소재의 기능을 묻는 문항은 어떻게 접근해야 할까요? (문항 26 관련)</div>
+                작품 속에 등장하는 소재가 사건 전개에 어떠한 역할을 하는지를 파악할 수 있어야 합니다. 그러기 위해서는 특정 인물이 그 소재를 어떠한 의도로 사용하려고 하는지를 알아야 하므로 인물의 성격과 태도, 행동의 의미 등 장면의 맥락에 대한 전반적인 파악이 선행되어야 합니다. 예를 들어 「물고기 남자」에서 ‘양식장’을 둘러싼 인물 간 갈등이 그려지면서 양식장은 사건 전개의 핵심 소재이자 인물의 성격이나 태도를 드러내는 기능을 합니다. 브로커는 양식장이 적조로 인해 망하게 될 것을 알고 있음에도 불구하고 비싸게 팔아 다시 싸게 사들인 뒤 새로운 사람에게 비싸게 팔고자 합니다. 즉 양식장을 통해 브로커가 타인의 피해를 아랑곳하지 않고 자신의 사익만을 추구하는 물질만능주의적 인물임을 알 수 있습니다. 한편, 이영복은 망한 양식장을 브로커에게 팔면 원금의 일부를 얻을 수 있음에도 불구하고 김진만의 몫까지 산 뒤에 브로커에게 팔지 않겠다고 선언합니다. 자신이 원금의 일부를 확보할 기회를 버리고 브로커에게 피해를 당할 새로운 희생자가 발생하지 않게 하기 위해 손해를 감수하는 것입니다. 즉 양식장을 통해 이영복이 타인을 위해 자신의 손해를 감수하는 이타적인 인물임을 알 수 있습니다. 따라서 작품의 후반부에 양식장을 둘러싼 브로커와 이영복의 갈등은, 자신의 사익만을 추구하는 탐욕적이고 이기적인 인물과 자신의 손해를 감수하려는 이타적이고 희생적인 인물의 대립 양상으로 이해할 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 지문 구조도 (사건 전개 흐름) <span>실전 3회 22~27</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> (가) 밀주 적발</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">사건</span> 박 순경이 이재신 집의 밀주 제조를 적발</p>
+                    <p><span class="flow-badge">반응</span> 이재신은 몰랐다며 둘러대지만 출두 요구받음</p>
+                    <div class="sub-point">✔ (가) 전반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> (가) 뇌물과 거절</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">시도</span> 이재신, 박 순경에게 포도주를 뇌물로 바침</p>
+                    <p><span class="flow-badge">거절</span> 박 순경, 법을 지키겠다며 뇌물 거절·경고</p>
+                    <div class="sub-point">✔ (가) 후반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> (나) 최후통첩과 의심</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">갈등</span> 브로커, 양식장 매매 최후통첩[A][B]</p>
+                    <p><span class="flow-badge">협상</span> 김진만-브로커 가격 신경전[C]</p>
+                    <div class="sub-point">✔ (나) 전반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> (나) 이영복의 단독 소유</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">거래</span> 이영복, 김진만 몫까지 사서 단독 소유</p>
+                    <p><span class="flow-badge">의도</span> 타인의 피해를 막기 위한 결정[D]</p>
+                    <div class="sub-point">✔ (나) 중반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>⑤</span> (나) 이영복의 각성</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">거부</span> 브로커의 회유를 물리침[E]</p>
+                    <p><span class="flow-badge">깨달음</span> 타인과의 깊은 관계를 자각함</p>
+                    <div class="sub-point">✔ (나) 후반부</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : (가) 밀주 적발 → 뇌물 시도와 거절 / (나) 최후통첩과 의심 → 가격 협상 → 이영복의 단독 소유 → 브로커의 회유와 이영복의 거부·각성
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 22번 -->
+        <div class="question-full">
+            <div class="q-num">22</div>
+            <div class="question-stem">(가)에 대한 설명으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 역순행적 구성을 통해 사건의 원인을 밝히고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 시간의 흐름에 따라 사건이 전개되고 있을 뿐, 역순행적 구성을 취하고 있지는 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 제삼자의 개입을 통해 인물 간 갈등이 해소되고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 박 순경이 등장하면서 이재신 부처가 밀주를 만드는 것이 발각되었다. 이로 인해 이재신 아내와 여 반장, 박 순경과 이재신의 갈등이 촉발되었을 뿐, 갈등이 해소되는 것은 아니다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 인물 간의 대화를 통해 갈등 상황을 보여 주고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 밀주가 적발되는 장면과 다음 날 이재신이 박 순경네 집을 방문한 장면에서 이재신과 박 순경의 대화를 통해 두 인물의 갈등 상황이 드러나고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 외양 묘사를 통해 인물의 입체적 성격을 부각하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 인물의 외양을 묘사한 부분을 찾을 수 없고, 성격이 변화하는 입체적인 인물도 등장하고 있지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 동시에 발생한 두 사건을 병치하여 긴장감을 조성하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 시간의 흐름에 따라 하나의 이야기가 전개되고 있을 뿐, 동시에 발생한 두 사건을 병치하고 있지는 않다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절함(정답). [유형] 서술상의 특징 파악</div>
+        </div>
+
+        <!-- 문제 23번 -->
+        <div class="question-full">
+            <div class="q-num">23</div>
+            <div class="question-stem">(가)에 대한 이해로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 박 순경은 집에서 아내가 밀주를 만드는 줄 몰랐다는 이재신의 발언을 믿지 않고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 박 순경은 ‘집안에서 생긴 일을 주인 되시는 이가 몰랐다? 이거 고금에 드문 일이 벌어졌군.’이라고 했으므로 밀주에 대해 모른 척하는 이재신의 발언을 믿지 않고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② 박 순경은 이재신이 건넨 포도주가 이재신이 만든 밀주라고 생각하여 이를 받지 않고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 박 순경은 법이라는 밀주를 파는 장사치가 되어 보겠다고 말할 정도로 법을 지키는 청렴한 인물이다. 따라서 그가 이재신이 건넨 포도주를 받지 않은 것은 뇌물을 받는 불법적인 행동을 하지 않으려는 것일 뿐, 이재신이 만든 밀주라고 생각했기 때문이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 이재신은 뇌물을 통해 박 순경에게 적발된 일을 무마할 수 있다는 말로 아내를 안심시키고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘한잔 멕여서’, ‘쌀이나 한 가마 갖다 안겨 놓지.’ 등의 발언을 보면, 이재신은 박 순경에게 뇌물을 바칠 생각을 한다. 즉 뇌물을 통해 박 순경에게 밀주가 발각된 사건을 무마할 수 있다는 말로 아내를 안심시키고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 박 순경은 상대의 궁핍한 처지를 이해하면서도 정해진 법을 준수해야 한다는 신념을 밝히고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 박 순경은 이재신이 궁핍한 형편이어서 부득이하게 불법적인 일을 했을 것이라며 이재신의 처지를 이해하는 듯한 말을 하고 있다. 그러면서도 법을 어기는 일을 해서는 안 된다는 신념을 밝히며 이재신에게 경고하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 이재신은 이번 일을 무마할 목적이 아니라 추후에 도움을 요청할 목적으로 뇌물을 주기로 결심하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 박 순경에게 경고를 받은 이재신은 돈 한 푼 안 들이고 큰일을 해결했다며 안심하다가 앞으로 생길 일에 대비하고자 술을 사 들고 다시 박 순경을 찾아간다. 즉 이번 일을 무마할 목적이 아니라 추후에 도움을 요청할 목적으로 박 순경에게 뇌물을 바치려는 것이다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 적절하지 않음(정답). [유형] 작품의 내용 파악</div>
+        </div>
+
+        <!-- 문제 24번 -->
+        <div class="question-full">
+            <div class="q-num">24</div>
+            <div class="question-stem">(나)의 <span class="underline-phrase">㉠~㉤</span>에 대한 설명으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠: 브로커는 김진만이 실종자 시체를 찾아 보상금을 얻으려고 한다고 의심하고 있음을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커는 양식장 거래에 배짱을 부리는 김진만을 보고서, 원하는 가격으로 팔리지 않는 양식장 대신에 실종자의 시체를 찾아 보상금을 얻는 방법으로 큰돈을 벌고자 하는 것은 아닌지 의심하고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② ㉡: 보상금을 받을 목적으로 실종자들의 생환을 애타게 기다리는 유가족들이 많음을 알 수 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ‘시체한테 희망 건 사람들’은 보상금을 얻기 위해 실종자가 생환하면 실망하는 가족들이나 남의 시체를 놓고 아귀처럼 다투는 사람들을 가리킨다. 보상금을 얻을 목적이 있는 유가족들은 실종자의 생환을 애타게 기다리지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉢: 김진만과 이영복이 브로커에게 양식장을 팔더라도 양식장을 구입할 때의 원금 전액을 확보할 수 없는 상태임을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커가 양식장을 사겠다며 제안한 가격은 원금의 십분지일이고, 김진만은 원금의 십분지 사의 가격을 받고 싶어 한다. 어떤 가격으로 거래가 성립하더라도 김진만과 이영복은 양식장을 구입할 때의 원금 전액을 확보할 수 없는 상태이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉣: 이영복이 양식장을 타인에게 되팔려는 브로커의 전략을 저지하려는 의도가 있음을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 이영복은 적조로 인해 망한 양식장을 브로커에게 다시 팔지 않고 김진만의 몫까지 사서 양식장 전체를 소유한다. 이는 브로커가 그 양식장을 다시 산 뒤 다른 사람에게 되팔아 이득을 챙기려고 하는 것을 저지하기 위함이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉤: 이영복이 낯선 타인의 고통이 자신과 무관한 것이 아니라는 사실을 깨달았음을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커는 타인이 손해를 입더라도 이영복과 아무 상관이 없는 존재이니 괜찮다고 말했으나, 이영복은 이에 동의하지 않는다. 타인의 괴로움과 기쁨이 자신에게 그대로 이어진다고 말함으로써 낯선 타인의 고통이 자신과 무관한 것이 아니라는 사실을 깨달았다고 볼 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 적절하지 않음(정답). [유형] 구절의 의미 파악</div>
+        </div>
+
+        <!-- 문제 25번 -->
+        <div class="question-full">
+            <div class="q-num">25</div>
+            <div class="question-stem">(나)를 무대에서 상연한다고 했을 때, <span class="underline-phrase">[A]∼[E]</span>에 대한 연출가의 조언으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① [A]: ‘브로커’와 ‘김진만’이 각자의 입장을 내세워 신경전을 벌이는 상황이므로, 강경한 태도가 드러나도록 연기해 주세요.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커는 당장 양식장을 팔 것을 종용하고 김진만은 조급할 것이 없다며 브로커의 요구를 들어주지 않는다. 즉 양식장 판매를 둘러싸고 각자의 입장을 내세워 신경전을 벌이는 상황이므로, 서로 강경한 태도로 연기하는 것이 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② [B]: ‘브로커’가 ‘김진만’의 해명을 듣고 그에 대한 오해를 푸는 상황이므로, 겸연쩍은 심정이 드러나도록 연기해 주세요.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 브로커는 김진만의 행적을 관찰한 결과를 내세워서 김진만이 시체를 건져 돈을 벌려는 의도가 있음을 간파하여 그러한 돈벌이 방식이 비도덕적임을 비난하고 있다. 이에 김진만은 처음에 사실을 부인하다가 당황해하고 있다. 즉 [B]에서 브로커가 김진만에 대한 오해를 푸는 것은 아니므로 겸연쩍은 심정이 드러나도록 연기하는 것은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ [C]: ‘김진만’이 상대방의 발언에 압박감을 느끼는 상황이므로, 다급한 심정이 드러나도록 연기해 주세요.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커가 김진만의 의도를 간파하자, 정곡을 찔린 김진만은 당황해하며 최후통첩을 하려는 브로커에게 고민할 시간을 달라고 요구하고 있다. 따라서 압박감을 느끼는 김진만이 다급한 심정이 드러나도록 연기하는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ [D]: ‘브로커’가 상대방의 의도를 간파하지 못하는 상황이므로, 의아해하는 심정이 드러나도록 연기해 주세요.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커는 적조로 인해 망할 수밖에 없는 양식장임에도 불구하고 자신에게 팔기는커녕 오히려 김진만의 것까지 사 버린 이영복의 의도를 이해하지 못해 어리둥절한 상태이다. 따라서 의아해하는 심정이 드러나도록 연기하는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ [E]: ‘브로커’가 상대방이 얻을 이익을 내세워 회유하는 상황이므로, 확신에 찬 태도가 드러나도록 연기해 주세요.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 브로커는 자신과의 거래를 통해 이영복이 얻을 이익을 내세워서 이영복에게 양식장을 팔 것을 설득하고 있다. 양식장을 구매할 사람의 원망이 브로커에게 향할 것이기 때문에 이영복에게 걱정하지 말고 양식장을 팔라고 종용하고 있다. 따라서 브로커가 상대방을 회유하기 위해 확신에 찬 태도가 드러나도록 연기하는 것은 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 적절하지 않음(정답). [유형] 연극 연출의 방법과 효과 추리</div>
+        </div>
+
+        <!-- 문제 26번 -->
+        <div class="question-full">
+            <div class="q-num">26</div>
+            <div class="question-stem"><span class="underline-phrase">㉮</span>와 <span class="underline-phrase">㉯</span>에 대한 설명으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉯와 달리, ㉮는 특정 인물의 자기반성적 태도를 유발하는 계기가 된다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 박 순경은 이재신이 뇌물로 바치려는 ㉮를 거절하였는데, 이에 대해 이재신은 박 순경의 어리석음을 비난할 뿐 자기반성을 하지는 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉮와 달리, ㉯는 개인과 사회의 갈등에서 개인의 좌절을 초래하는 요인이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 자신의 이익을 위해 타인을 이용하는 사람이 만연한 사회에서 이영복은 ㉯를 브로커에게 팔지 않음으로써 부정적인 사회에 영합하지 않고 자신의 소신대로 행동한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉮와 ㉯는 모두 인물의 소망이 실현되는 데 기여한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 이재신은 박 순경에게 ㉮를 바쳐 추후에 도움을 요청할 기회를 잡기를 소망했으나, 박 순경이 거절함에 따라 소망이 무산된다. 이영복은 브로커에게 ㉯를 팔지 않음으로써 자신과 같은 피해자가 나오지 않기를 소망하는데, 브로커와의 거래가 불발됨에 따라 소망이 실현될 가능성이 생긴다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ ㉮와 ㉯는 모두 특정 인물의 부정적 면모를 드러내는 소재이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ㉮는 이재신이 박 순경에게 바치기 위해 구매한 뇌물로, 부정한 방법으로 청탁하려는 이재신의 면모를 드러내는 소재이다. ㉯는 브로커가 이영복에게 싸게 사들여서 다른 사람에게 비싼 값에 팔려고 하는 것으로, 타인의 손해를 초래하면서까지 자신의 이득을 추구하는 브로커의 이기적 면모를 드러내는 소재이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉮는 인물 간 갈등이 해소되도록 만들고, ㉯는 인물 간 갈등이 고조되도록 만든다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 박 순경이 ㉮를 거절하면서 이재신에게 법을 지킬 것을 경고하였으므로 인물 간 갈등이 해소되었다고 볼 수 없다. 이영복과 브로커는 ㉯를 거래하는 문제로 각자의 입장을 주장하고 있기 때문에 인물 간 갈등이 고조되었다고 볼 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 가장 적절함(정답). [유형] 배경 및 소재의 기능 파악</div>
+        </div>
+
+        <!-- 문제 27번 -->
+        <div class="question-full">
+            <div class="q-num">27</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 (가), (나)를 감상한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                (가)와 (나)는 모두 사회 전반에 만연한 탐욕과 이기심을 보여 주며, 인물 간 갈등 구도를 통해 속악함과 선량함의 대비를 나타내고 있다. 불법과 사기를 자행해 사익을 챙기거나 남 탓만 하는 몰염치한 인물, 인간의 생명 가치를 경제적 가치로 치환하거나 돈으로 타인을 쉽게 매수할 수 있다고 믿는 물질만능주의적 인물, 부패한 공권력의 모습을 보여 주는 인물 외에도, 묵묵히 자신의 공간에서 정의를 지키거나 타인을 위해 자신에게 예상되는 손해를 감수하고자 하는 인물의 모습도 나타난다. 이를 통해 속악한 인물에 대한 독자나 관객의 비판 의식을 유도하면서 그들이 활개를 치는 환경, 즉 부정부패와 비양심이 만연한 타락한 세태를 고발하고 있다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① (가)에서 ‘책임은 저편이 져야 한다’는 ‘두 여인’을 통해, 남 탓만 하는 몰염치한 인물에 대한 독자의 비판 의식을 유도한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)에서 박 순경에게 밀주가 발각되자 양춘자와 여 반장은 서로 ‘책임은 저편이 져야 한다’며 다툰다. 불법적인 일에 자발적으로 동참했던 ‘두 여인’이 서로를 탓하는 것을 통해, 남 탓만 하는 몰염치한 인물의 부정적 면모를 드러내 독자의 비판 의식을 유도한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (가)에서 김 경감이 이재신이 건넨 ‘쌀 한 말’을 받았다는 사실을 통해, 부패한 공권력의 모습을 고발한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)에서 이재신은 예전에 뇌물인 ‘쌀 한 말’을 받았던 김 경감을 떠올리며 포도주를 받지 않은 박 순경을 비난하고 있다. 즉 김 경감을 통해 뇌물을 받은 부패한 공권력의 모습을 보여줌으로써 부정부패가 만연한 세태를 고발한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (나)의 이영복이 브로커에게 ‘양식장을 팔 수는 없’다고 한 것을 통해, 속악한 인물과 대비되어 타인을 위해 자신에게 예상되는 손해를 감수하려는 선량한 인물의 모습을 보여 준다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나)에서 브로커는 이득을 얻기 위해 이영복의 양식장을 저렴하게 사서 새로운 사람에게 비싸게 팔고자 한다. 이영복은 브로커에게 속아 자신의 양식장을 사게 될 타인이 손해 볼 것을 염려하여 브로커에게 ‘양식장을 팔 수는 없’다고 한다. 즉 이영복은 브로커와 같은 속악한 인물과 대비되는 존재로, 타인을 위해 자신에게 예상되는 손해를 감수하려는 선량한 인물의 모습을 보여 준다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ (가)에서 박 순경이 ‘밀주’를 처리하는 과정과 (나)에서 브로커가 ‘최후통첩’을 하는 과정을 통해, 불법을 자행하는 인물이 공권력과 결탁해 사익을 추구하는 모습을 나타낸다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)에서 박 순경은 이재신에게 생활이 아무리 궁하더라도 법을 어기는 일이 없도록 하라고 경고하며 이재신이 건네는 포도주도 거절한다. 즉 박 순경은 ‘밀주’를 처리하는 과정에서 묵묵히 정의를 지키는 모습을 보여 주었으므로 불법을 자행하는 인물이 공권력과 결탁한 것은 아니다. 한편 (나)에서 브로커는 이영복에게 양식장을 팔 것을 종용하며 타인의 손해를 신경 쓸 필요가 없다고 설득한다. 즉 브로커는 사기를 자행하는 인물이기는 하지만 ‘최후통첩’을 하는 과정에서 공권력과 결탁하고 있지는 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (가)에서 ‘멕여서 안 되는 일’이 없다는 장담과 (나)에서 ‘시체를 놓고 다투는 인간’에 대한 언급을 통해, 물질만능주의적 인물이 활개를 치는 타락한 세태를 드러낸다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)에서 이재신은 밀주가 걸리자 박 순경에게 술이나 쌀을 주겠다면서 요새 ‘멕여서 안 되는 일’이 없다고 장담한다. 이는 돈으로 타인을 쉽게 매수하여 부정부패를 저지르는 일이 만연했음을 드러낸다. (나)에서 보상금을 얻기 위해 ‘시체를 놓고 다투는 인간’은 인간의 생명 가치를 경제적 가치로 치환하는 인물이다. 따라서 (가)와 (나)는 모두 물질만능주의적 인물이 활개를 치는 타락한 세태를 드러낸다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 적절하지 않음(정답). [유형] 외적 준거에 따른 작품 감상</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <h3>※ (가) 김성한, 「무명로」</h3>
+        <ul>
+            <li><strong>해제</strong>: 작품은 가난한 처지에 허세를 부리며 불법적인 일을 반복하는 인물을 내세워서 인간의 위선을 풍자하고 불법이 통용되던 부패한 현실을 고발하는 소설이다. 더불어 부조리한 현실에 영합하지 않고 끝까지 양심을 지키는 긍정적인 인물과 대비시킴으로써 부조리한 현실을 어떻게 살아가는 것이 바람직한지 독자에게 질문을 던지고 있다.</li>
+            <li><strong>주제</strong>: 인간의 위선과 부패한 현실에 대한 풍자</li>
+        </ul>
+        <h3>※ (나) 이강백, 「물고기 남자」</h3>
+        <ul>
+            <li><strong>해제</strong>: 이 작품은 적조로 인해 양식장이 망하고 관광선이 침몰하면서 벌어지는 사건을 통해 인간의 생명보다 물질적 이익을 중시하는 부조리한 세태를 고발하는 희곡이다. 자신이 비싸게 판 양식장을 다시 싸게 사들여 다른 사람에게 비싸게 되팔려고 하는 브로커의 모습, 실종자가 생존하여 사망 보험금을 못 받게 된 유족들이 실망하는 모습, 보상금을 얻기 위해 시체를 발견하고 기쁨의 함성을 지르는 일꾼들의 모습 등을 제시함으로써 자신의 생존을 위해 타인의 고통을 아랑곳하지 않는 이기적 인물들에 대한 강한 비판 의식을 유도하고 있다.</li>
+            <li><strong>주제</strong>: 경제적 이익을 위해 타인의 고통이나 인명을 등한시하는 물신주의적 세태에 대한 비판</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 18~21 (작자 미상, 「두껍전」)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #7c3f1d; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 1.1em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .original-text .inline-note {
+            display: block; text-align: center; color: #2563eb; font-size: 12px; font-weight: 600; margin: 2px 0 8px 0;
+        }
+        .middle-summary {
+            background: #f1f5f9; border: 1px dashed #94a3b8; border-radius: 16px; padding: 12px 18px;
+            font-size: 13.5px; color: #475569; margin: 18px 0;
+        }
+        .middle-summary strong { color: #334155; }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #7c3f1d; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #b5651d;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #7c3f1d; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .compare-flow { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+        .compare-box {
+            flex: 1; min-width: 200px; border-radius: 18px; padding: 14px 16px; font-size: 12.5px;
+        }
+        .compare-box.fox { background: #fff3e6; border: 1.5px solid #f97316; }
+        .compare-box.toad { background: #eafbf0; border: 1.5px solid #16a34a; }
+        .compare-box h4 { margin-bottom: 8px; font-size: 14px; }
+        .compare-result {
+            background: #fdeee2; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin-top: 10px;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #b5651d; padding-left: 20px;
+        }
+        .structure-title span { background: #7c3f1d; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #7c3f1d; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #b5651d;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #7c3f1d; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #7c3f1d; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #7c3f1d; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📜 수능완성 사용설명서 실전 3회 · 고전 소설 18~21</h1>
+        <p>작자 미상, 「두껍전」 | 원문 + 문단별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>“오늘 우리 모꼬지에 조용히 좌(座)를 정(定)하여 예법을 정(正)할 것이거늘, 한갓 요란만 하고 무례하니, 아무리 우리 모꼬진들 해연치<span class="vocab-mark">*</span> 아니하랴.”</p>
+                <p>노루란 놈이 턱을 끄덕이며 웃어 왈,</p>
+                <p>“말씀이 가장 유리하니, 원컨대 선생은 좋은 도리를 가르쳐 좌정케 하소서.”</p>
+                <p>토끼 모든 손님을 돌아보아 가로되,</p>
+                <p><span class="underline-phrase">“내 일찍 들으니 ‘조정(朝廷)은 막여작(莫如爵)이요 향당(鄕黨)은 막여치(莫如齒)<span class="vocab-mark">*</span> ’라 하오니, 부질없이 다투지 말고 연치(年齒)<span class="vocab-mark">*</span>를 차려 좌를 정하소서.”</span> <span class="phrase-label">토끼가 자리를 정하는 기준을 제시함.</span></p>
+                <p>노루가 허리를 수그리고 펄쩍 뛰어 내달아 왈,</p>
+                <p><span class="underline-phrase">“내가 나이 많아 허리가 굽었노라. 상좌(上座)에 처함이 마땅하다.”</span> <span class="phrase-label">겉모습이 나이 판단의 잣대가 될 수 있다고 여김.</span></p>
+                <p>하고, 암탉걸음으로 엉금엉금 기어 상좌에 앉으니.</p>
+                <p>여우란 놈이 생각하되, ‘저놈이 한갓 허리 굽은 것으로 나이 많은 체하고 상좌에 앉으니, 난들 어찌 무슨 간계로 나이 많은 체 못 하리오.’ 하고 나룻<span class="vocab-mark">*</span>을 쓰다듬으며 내달아 왈,</p>
+                <p><span class="underline-phrase">“내 나이 많아서 나룻이 세었노라.”</span><span class="phrase-label">겉모습이 나이 판단의 잣대가 될 수 있다고 여김.</span>한 대,</p>
+                <p>노루 답 왈,</p>
+                <p><span class="underline-phrase">“네 나이 많다 하니, 어느 갑자(甲子)에 났는가? 호패<span class="vocab-mark">*</span>를 올리라.”</span> <span class="phrase-label">구체적인 출생 연도를 확인하고자 함.</span></p>
+                <p>하니,</p>
+                <p>여우 답 왈,</p>
+                <p>“소년 시절에 호협(豪俠)하기를 좋아하여 주색청루에 다닐 적에 술이 대취(大醉)하여 오다가, 대신(大臣) 가시는 길 건넜다하고 호패를 떼여 이때까지 찾지 못하였거니와, <span class="underline-phrase">천지개벽한 후 처음에 황하수(黃河水) 치던 시절에 나더러 힘세다 하고 가래 장부(丈夫) 되었으니, 내 나이 많지 아니하리오?</span> <span class="phrase-label">육체적 능력을 내세우며 땅의 일부를 창조하는 데 이바지하였다고 과시함.</span>나는 이러하거니와 너는 어느 갑자에 났느냐?”</p>
+                <p>노루 답 왈,</p>
+                <p><span class="underline-phrase">“천지개벽하고 하늘에 별 박을 때에, 날더러 궁통하다<span class="vocab-mark">*</span> 하여 별자리를 분간하여 도수를 정하였으니, 내 나이 많지 아니하리오?”</span> <span class="phrase-label">정신적 능력을 내세우며 하늘의 일부를 창조하는 데 이바지하였다고 과시함.</span></p>
+                <p>하고, 둘이 상좌를 다투거늘.
+                <span class="para-note">← 노루와 여우가 상좌를 차지하기 위해 다툼.</span></p>
+                <p><span class="underline-phrase">두꺼비 곁에 엎드렸다가 생각하되, ‘저놈들이 서로 거짓말로 나이 많은 체하니 난들 거짓말 못 하리오.’ 하고, 공연히 건넛산을 바라보고 슬피 눈물을 흘리거늘.</span> <span class="phrase-label">여우와 노루의 말이 진실이 아님을 인지함.</span></p>
+                <p>여우 꾸짖어 왈,</p>
+                <p><span class="underline-phrase">“저 흉간한 놈은 무슨 설움이 있기에, 남의 경연에 참례(參禮)하여 상상치 못한 형상을 뵈느냐?”</span> <span class="phrase-label">두꺼비가 눈물을 흘리는 것에 음흉한 속내가 있을 것이라고 생각함.</span></p>
+                <p>두꺼비 답 왈,</p>
+                <p>“저 건너 고향나무를 보니 자연 비창하여 그리하노라.”</p>
+                <p>여우 왈,</p>
+                <p>“고향나무 빈틈으로 네 고조할아버지가 나오던 구멍이냐? 어찌 설워하느냐?”</p>
+                <p>두꺼비 정색 대(對) 왈,</p>
+                <p>“네 주둥이만 살아 어른을 모르고 말을 함부로 하거니와, 네 귀가 있거든 내 설워하는 바를 들어 보라. 내 소년 때에 저 나무 세 주를 심었더니, <span class="underline-phrase">한 주는 맏아들이 별 박는 방망이로 베고,</span> <span class="phrase-label">노루가 별을 박을 때 사용한 방망이를 두꺼비의 맏아들이 만듦.</span><span class="underline-phrase">한 주는 둘째 아들이 황하수 칠 때에 준천부사(濬川府使)<span class="vocab-mark">*</span>하여 가랫장부<span class="vocab-mark">*</span> 하려고 베었더니,</span> <span class="phrase-label">여우가 황하수를 칠 때 사용한 가래를 두꺼비의 둘째 아들이 만듦.</span>그 나무 벤 동티<span class="vocab-mark">*</span>로 두 아들이 다 죽고, 다만 저 나무 한 주와 내 목숨만 살았으니, 내 그때에 죽고만 싶으되 천명인 고로 이때까지 살아 있다가, 오늘날 저 나무를 다시 보니 자연 비감하도다.”</p>
+                <p>여우 왈,</p>
+                <p>㉠<span class="underline-phrase">“진실로 그러하시면 우리 중에는 나이 제일 높단 말인가?”</span> <span class="phrase-label">천지개벽 이전에 두꺼비와 두 아들이 했다는 일을 바탕으로 이와 같이 반응함.</span></p>
+                <p>두꺼비 답 왈,</p>
+                <p>“네 아무리 이러한 짐승인들 그중에도 소견이 있을 것이니, 생각하여 보면 네 고고(高高) 존장(尊丈)<span class="vocab-mark">*</span>이 넘으니라.”</p>
+                <p>토끼 이 말을 듣고 꿇어 여쭈되,</p>
+                <p>“그러하시면 두껍 존장이 상좌에 앉으소서.”
+                <span class="para-note">← 두꺼비가 거짓 이야기를 지어내어 상좌를 차지함.</span></p>
+
+                <div class="middle-summary">
+                    <strong>[중략 부분 줄거리]</strong> 두꺼비가 우위를 차지한 것에 분노한 여우는, 두꺼비와 세상 구경한 바를 겨루려 하지만 오히려 만물의 근본도 모른다며 무시당한다. 이에 여우는 하늘에 올라가 직녀성<span class="vocab-mark">*</span>을 거쳐 남극노인성<span class="vocab-mark">*</span> 등을 구경했다고 꾸며 대며 두꺼비를 조롱하고자 한다.
+                </div>
+
+                <p>“구경을 다 한 후에 회정(回程)하여 한 곳에 다다르니, 만첩산곡 초목이 무성한 곳에 초당 삼간이 반공(半空)에 걸렸거늘, 바라보니 거문고 소리 들리는지라. 다리도 아프고 담배도 한 대 먹고자 하여 들어가니, 한 노인이 동자에게 명하여 차 한 그릇과 실과 한 그릇과 술 삼 배를 주거늘 먹은즉 족히 요기되는지라.</p>
+                <p>노인 왈,</p>
+                <p>‘노처(老妻)는 병으로 괴로이 지내거니와, 그 병 근본은 베 짜다가 얻은 병이 십여 년이 넘었으되, 종시 감세 없고 점점 극중하여 백약이 무효하고 곡기 끊은 지 오랜지라. 의원에게 물은즉 베틀을 살라 술에 타 먹으라 하기로 그리하여도 조금도 효험이 없으니, 지금은 죽기만 바라노라.’</p>
+                <p>하거늘.</p>
+                <p><span class="underline-phrase">가만히 생각하니 직녀성에 베틀 괴었던 돌이 응당 약이 될 듯하여 노인께 고(告) 왈,</span> <span class="phrase-label">직녀성을 다녀온 증표로 이 돌을 받았냐고 앞서 자랑함.</span></p>
+                <p>‘내게 좋은 약이 있으니 아무리 병세 극중하여도 이 약을 써보소서.’</p>
+                <p>하고 그 돌을 갈아 술에 타서 공복에 한 보시기 먹으니 즉시 쾌차한지라.</p>
+                <p>이 노인이 기쁨을 이기지 못하여 무수히 칭찬하여 왈,</p>
+                <p>‘천만뜻밖에 그대를 만나 죽을 사람을 살렸으니 은혜 각골난망이라.’</p>
+                <p>하고 품속에서 붉은 구슬을 주며 왈,</p>
+                <p><span class="underline-phrase">‘이 구슬 한 개를 삼키면 산수에 다닐 때에 몸이 변화하느니라.’</span> <span class="phrase-label">여우 변신 설화를 활용하여 자신이 직접 경험한 것처럼 지어냄.</span></p>
+                <p>하거늘, 받아 삼키고 그길로 인간에 내려오니 정신이 쇄락(灑落)하고 변화하였노라. ”</p>
+                <p>하니.
+                <span class="para-note">← 여우가 하늘 곳곳을 구경했다고 자랑함.</span></p>
+                <p>두꺼비 답 왈,</p>
+                <p>[A 시작]“그러하면 그때 나도 보탑상(寶榻床)에 올라가 남극노인성으로 더불어 바둑 두다가 술이 대취하여 난간에 의지하였더니, 문밖에서 들리는 소리에 잠을 깨어 동자더러 물으니.</p>
+                <p><span class="underline-phrase">동자 대 왈, ‘밖에 어떠한 짐승이 빛은 누르고 주둥이 뾰쪽하고 도적개 모양 같은 것이 똥 발 채 왔다.’ 하거늘.</span> <span class="phrase-label">여우의 외양을 묘사함.</span></p>
+                <p><span class="underline-phrase">동자에게 명하여, ‘긴 장대로 쫓아라!’ 하였더니, 그때 네가 왔던가 싶다. 네가 온 줄 알았더라면 천일주 먹은 똥 덩이나 먹여 보냈다면 좋을 뻔하였도다!”[A 끝]</span><span class="phrase-label">남극노인성에 여우가 들어오지 못하도록 쫓아냈다고 함으로써 남극노인성을 구경했다고 지어낸 여우의 말을 거짓으로 만듦.</span></p>
+                <p>하니, 좌중이 박장대소하더라.
+                <span class="para-note">← 여우의 말을 거짓으로 만듦으로써 두꺼비가 여우를 조롱함.</span></p>
+                <p style="text-align:right; font-weight:600;">- 작자 미상, 「두껍전」</p>
+
+                <div class="footnote-box">
+                    ✽해연치: 몹시 이상스러워 놀랍지.<br>
+                    ✽조정은 막여작이요 향당은 막여치: 조정에서는 벼슬이 높음을, 시골 동네에서는 나이 많음을 무겁게 여김.<br>
+                    ✽연치: ‘나이’의 높임말.<br>
+                    ✽나룻: 수염.<br>
+                    ✽호패: 조선 시대에 신분을 증명하기 위해 지니고 다니던 패.<br>
+                    ✽궁통하다: 깊이 연구하여 통달하다.<br>
+                    ✽준천부사: 물이 잘 흐르도록 하는 일을 맡은 책임자.<br>
+                    ✽가랫장부: 농기구인 가래의 자루와 넓죽한 바닥.<br>
+                    ✽동티: 땅, 돌, 나무 따위를 잘못 건드려 재앙을 받는 일.<br>
+                    ✽존장: 자기 아버지와 벗으로 사귀는 사람을 높여 이르는 말.<br>
+                    ✽직녀성: 거문고자리에서 가장 밝은 별로, 칠월 칠석날 밤에 소를 치는 견우와 베를 짜는 직녀가 만난다는 고사가 전해짐.<br>
+                    ✽남극노인성: 중국 고대 천문학에서 사람의 수명을 맡아본다고 믿었던 별을 의인화한 것임.<br>
+                    ✽‘이 구슬 한 개를 ∼ 변화하였노라.: 여우가 처녀로 둔갑하여 소년과 구슬을 주고받으며 놀았다는 여우 구슬 설화에서 나옴.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 도입부 분석 – 좌정 기준을 둘러싼 갈등의 시작</div>
+                <div class="content">모꼬지(잔치)에서 좌(자리)를 정하는 문제로 혼란이 일자, 토끼가 ‘조정은 막여작, 향당은 막여치’라는 옛말을 인용하여 나이(연치)를 기준으로 좌를 정하자고 제안한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 노루와 여우의 나이 겨루기</div>
+                <div class="content">노루는 허리가 굽은 겉모습을, 여우는 흰 나룻(수염)을 근거로 각각 나이가 많다고 주장한다. 노루가 호패(구체적 출생 연도)를 요구하자, 여우는 호패를 잃어버렸다며 허구적 사건을 지어내고, 천지개벽 이후 황하수를 칠 때 가래 자루가 되었다는 것으로 육체적 능력을 과시한다. 노루는 하늘에 별을 박을 때 별자리를 정했다는 것으로 정신적 능력을 과시하며 맞선다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 두꺼비의 등장과 거짓 눈물</div>
+                <div class="content">두꺼비는 노루와 여우의 말이 모두 거짓임을 간파하고, 자신도 거짓말로 대응하기 위해 건넛산을 보며 슬피 우는 연기를 한다. 여우가 그 속내를 의심하며 꾸짖자, 두꺼비는 고향나무에 얽힌 사연(거짓 이야기)을 지어낸다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 두꺼비의 논리 – 나무와 두 아들 이야기</div>
+                <div class="content">두꺼비는 소년 시절 심은 나무 세 그루 중 하나는 맏아들이 노루의 별 박는 방망이로, 하나는 둘째 아들이 여우의 가래(장부)로 베었다고 말한다. 즉 노루와 여우가 썼다는 연장은 두꺼비의 아들들이 만든 것이므로, 천지개벽 이전부터 존재한 두꺼비가 가장 연장자라는 논리가 성립한다(㉠). 결국 토끼도 두꺼비를 상좌에 앉게 한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 [중략] 이후 – 여우와 두꺼비의 하늘 구경 겨루기</div>
+                <div class="content">여우는 하늘에 올라가 직녀성, 남극노인성 등을 구경했고, 직녀성의 베틀 괴었던 돌로 노인의 병을 고쳐 주어 보답으로 변신하는 붉은 구슬을 받았다고 자랑한다. 이는 여우 구슬 설화를 자신의 경험처럼 꾸며낸 것이다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 두꺼비의 반격 – [A]</div>
+                <div class="content">두꺼비는 자신이 먼저 남극노인성에 가서 노인과 바둑을 두다가, 문밖에 나타난 여우(빛이 누렇고 주둥이가 뾰족한 짐승)를 ‘긴 장대로 쫓으라’고 했다는 이야기를 지어낸다. 이로써 여우가 남극노인성을 구경했다는 말 자체를 거짓으로 만들어 버리고, 좌중은 박장대소한다.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어휘 풀이</strong><br>
+                • <strong>공연히</strong>: 괜히. 아무 까닭이나 실속이 없게.<br>
+                • <strong>고향나무</strong>: 회양목과의 상록 활엽 관목.<br>
+                • <strong>회정(回程)하여</strong>: 돌아오는 길에 올라.<br>
+                • <strong>각골난망(刻骨難忘)</strong>: 남에게 입은 은혜가 뼈에 새길 만큼 커서 잊지 아니함.<br>
+                • <strong>박장대소(拍掌大笑)</strong>: 손뼉을 치며 크게 웃음.
+            </div>
+            <div class="info-box">
+                <h3>🎯 감상 포인트</h3>
+                <p style="font-size: 13.5px;">이 작품은 의인화된 동물들이 각자 자기가 나이가 많음을 자랑하여 그중 한 인물이 가장 연장자로 판명된다는 쟁좌형 우화 소설이다. 연장자로서의 자질을 드러내기 위해 중국의 경전이나 고사, 설화, 소설 등 다양한 정보와 지식을 망라하는 인물들의 말하기에 주목해야 한다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">상좌를 차지하기 위한 동물들의 논쟁과 그에 대한 풍자</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 이것만은 꼭 익히자! 포인트 1 – 작품의 특징 (문항 18, 21 관련)</h3>
+                <ul style="font-size: 13px; margin-left: 18px;">
+                    <li>의인화된 동물의 목소리로 인간 세계를 풍자함.</li>
+                    <li>인물 간의 주고받는 말하기로 서사가 진행됨.</li>
+                    <li>경험적 사실에서 벗어난 과장된 이야기가 장황하게 이어짐.</li>
+                    <li>설화와 소설, 중국의 역사와 고사 등 다양한 지식을 망라함.</li>
+                </ul>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 포인트 2 – 등장인물들의 나이 겨루기 (문항 19 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>인물</th><th>내세운 근거</th></tr></thead>
+                    <tbody>
+                        <tr><td>노루</td><td>허리가 굽음. 천지개벽한 후 별자리를 정하는 일에 참여함.</td></tr>
+                        <tr><td>여우</td><td>수염이 희어짐. 천지개벽한 후 황하수를 치는 일에 참여함.</td></tr>
+                        <tr><td>두꺼비</td><td>소년 시절에 고향나무 세 주를 심음. 두 아들이 자신이 심은 나무를 베어 천지 만물 창조를 위한 연장을 만듦.</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 12.5px; margin-top: 8px; background:#eef2ff; border-radius: 12px; padding: 8px 12px;">→ 노루와 여우: 노화를 보여 주는 겉모습, 두 인물이 참여한 일의 시기 등을 볼 때 누가 더 연장자인지 결정할 수가 없음. / 두꺼비의 반응: 두꺼비와 그의 두 아들이 한 일이 자신과 노루가 한 일보다 앞선 시기에 한 일이라는 생각을 바탕으로 두꺼비의 말에 반응함.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 포인트 3 – 여우와 두꺼비의 하늘 구경한 바 겨루기 (문항 20, 21 관련)</h3>
+                <div class="compare-flow">
+                    <div class="compare-box fox">
+                        <h4>여우</h4>
+                        <ul style="margin-left: 16px;">
+                            <li>직녀성, 남극노인성 등을 구경했다고 꾸며 댐.</li>
+                            <li>직녀성의 베틀 괴었던 돌을 베 짜다가 얻은 병의 치료 약으로 내어 주었다고 과시함.</li>
+                            <li>약에 대한 보답으로 변신하는 능력이 생겼다고 자랑함.</li>
+                        </ul>
+                    </div>
+                    <div class="compare-box toad">
+                        <h4>두꺼비</h4>
+                        <p>남극노인성에 여우보다 먼저 가서 여우가 들어오지 못하도록 쫓아내었다고 함.</p>
+                    </div>
+                </div>
+                <div class="compare-result">
+                    • 두꺼비가 남극노인성을 구경하고 왔다는 여우의 이야기를 거짓으로 만들어서 조롱함.<br>
+                    • 객관적인 증거가 아닌, 인물의 지혜와 말솜씨에 의해 승패가 결정됨.
+                </div>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 배경지식 더 알아보기</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>「두껍전」의 등장인물</strong><br>
+                노루 – 잔치를 베풀고 손님을 청하는 인물. 벼슬아치 또는 지역의 유지를 상징한다고 보기도 함.<br>
+                백호산군 – 흰 호랑이. 힘세고 사나워 잔치에 초대받지 못한 인물. 수탈을 일삼는 탐관오리와 같은 존재를 상징한다고 보기도 함.<br>
+                토끼 – 작고 힘은 없으나 어려운 문제를 해결할 수 있도록 재치를 발휘하는 인물. 지혜로운 평민을 상징한다고 보기도 함.<br>
+                여우 – 이기기 위해 수단과 방법을 가리지 않는 인물. 간사한 꾀로 상대를 비꼬거나 신체적 특징을 바탕으로 인신공격하기도 함. 상대방의 약점만을 찾아내려 궁리하는 간사한 인물을 상징한다고 보기도 함.<br>
+                두꺼비 – 작고 우습게 생겼지만 지혜로운 인물. 박학다식하며 뛰어난 말솜씨를 자랑함. 학식이 많고 세상 물정도 두루 섭렵한 경험 많은 노인을 상징한다고 보기도 함.</p>
+                <p style="font-size: 13px;"><strong>우화 소설의 주제</strong><br>동물을 의인화한 이야기는 구전 설화로서 오랜 내력을 가지고 있다. 흔히 우화 소설은 이러한 설화를 모태로 한 소설을 이르며, 의인화한 인물을 통하여 인간성의 결함이나 부조리를 비판하려는 윤리적·교훈적 목적의식이 강한 점이 특징이다. 이러한 작품들은 표면적으로는 관습화된 동물의 특징을 인물의 성격으로 드러내면서, 이면적으로는 인간 사회의 문제를 다루어 허위를 교묘하게 풍자하고 진실을 일깨우는 데 중요한 역할을 해 왔다. 「두껍전」은 인기 있는 작품이었는데, 작고 못난 두꺼비가 터무니없는 거짓말로 상좌를 차지하는 것은 설화에서 흔히 볼 수 있는 사회적인 위치 전도의 양상을 보여 주는 것이라 할 수 있다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 쟁좌형 소설은 무엇인가요? (문항 21 관련)</div>
+                ‘쟁좌’는 ‘자리를 다투다.’라는 의미입니다. 즉 쟁좌형 소설은 등장인물들이 어떤 자리를 차지하기 위해 논쟁을 벌이는 형식의 소설을 말합니다. 이러한 소설은 더 크게 보자면 누가 어른인지를 다투는 ‘쟁장형(爭長型)’ 설화를 근원으로 하는데, 여러 인물이 나이가 많음을 자랑하여 그중 한 인물이 가장 연장자로 판명된다는 형식을 지니고 있습니다. 구비 설화로 비슷한 이야기가 다수 전해지고 있으며, 「수궁가」의 모족 회의 대목도 이에 해당한다고 볼 수 있습니다. 박지원의 「민옹전」에서는 오래 산 사람을 보았냐는 ‘나’의 질문에 ‘민옹’이 두꺼비와 토끼의 나이 자랑 이야기를 들려주는데 글 많이 읽은 이가 가장 오래 산 사람이라는 말을 전해 주기도 합니다. 이러한 이야기는 상대방의 말을 바탕으로 상대를 조롱하거나 논박하며 맞받아치는 말하기가 반복된다는 공통점이 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 지문 구조도 (사건 전개 흐름) <span>실전 3회 18~21</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 좌정 기준 제시</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">문제</span> 모꼬지에서 좌(자리)를 정하는 문제로 혼란</p>
+                    <p><span class="flow-badge">제안</span> 토끼, 나이(연치)를 기준으로 좌를 정하자 함</p>
+                    <div class="sub-point">✔ 도입부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 노루·여우의 나이 겨루기</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">노루</span> 굽은 허리, 별자리 정한 일로 과시</p>
+                    <p><span class="flow-badge">여우</span> 흰 나룻, 황하수 가래 자루 일로 과시</p>
+                    <div class="sub-point">✔ 전반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 두꺼비의 역전</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">거짓 눈물</span> 고향나무 사연을 지어냄</p>
+                    <p><span class="flow-badge">논리</span> 두 아들이 노루·여우의 연장을 만듦 → 최연장자로 인정(㉠)</p>
+                    <div class="sub-point">✔ 중반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 하늘 구경 겨루기 [중략 이후]</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">여우</span> 직녀성·남극노인성 구경, 변신 구슬 자랑</p>
+                    <p><span class="flow-badge">두꺼비</span> 남극노인성에서 여우를 쫓아냈다고 반격[A]</p>
+                    <div class="sub-point">✔ 후반부</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>⑤</span> 결말</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">결과</span> 여우의 말이 거짓임이 드러나 좌중 박장대소</p>
+                    <p><span class="flow-badge">의미</span> 지혜와 말솜씨로 승패가 결정됨</p>
+                    <div class="sub-point">✔ 결말부</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 좌정 기준 제시 → 노루·여우의 나이 겨루기 → 두꺼비의 역전(최연장자 인정) → 여우·두꺼비의 하늘 구경 겨루기 → 두꺼비의 반격과 결말
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 18번 -->
+        <div class="question-full">
+            <div class="q-num">18</div>
+            <div class="question-stem">윗글의 인물에 대한 이해로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 토끼는 모임의 특징을 고려하여 자리를 정하는 기준을 제시하였다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 토끼는 ‘원컨대 선생은 좋은 도리를 가르쳐 좌정케’ 해 달라는 노루의 청을 듣고, ‘조정은 막여작이요 향당은 막여치’라 하면서 ‘연치를 차려 좌를 정’할 것을 제시하고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② 두꺼비는 웃어른에게 예의를 다하지 않는 여우가 상좌에 앉을 수는 없다며 비난하였다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ‘네 주둥이만 살아 어른을 모르고 말을 함부로’ 한다며 두꺼비가 여우를 꾸짖는 부분은 있으나, 여우가 웃어른에게 예의를 다하지 않는다는 이유로 상좌에 앉을 수 없다며 비난한 것은 아니다. 또한 두꺼비가 여우보다 어른인 척하는 것은 상좌를 차지하기 위한 술수이므로, 두꺼비가 실제로 여우보다 웃어른인지도 판단할 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 노루와 여우는 노화를 보여 주는 겉모습이 나이 판단의 잣대가 될 수 있다고 생각하였다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 노루가 ‘내가 나이 많아 허리가 굽었’다고 하자, 여우는 ‘내 나이 많아서 나룻이 세었’다고 하는 것을 볼 때, 노루와 여우는 노화를 보여 주는 겉모습이 나이 판단의 잣대가 될 수 있다고 생각한 것이라고 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 두꺼비는 노루와 여우의 논쟁을 바탕으로 두 인물보다 연장자라고 주장하기 위한 거짓 이야기를 만들었다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 두꺼비는 여우와 노루의 말을 들으며 ‘곁에 엎드렸다가 생각하’고는 여우가 황하수를 칠 때 쓴 가래, 노루가 별 박을 때 쓴 방망이를 자신의 두 아들이 만들었기 때문에 여우와 노루보다 자신의 나이가 많다는 거짓 이야기를 만들고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 여우는 육체적 능력을, 노루는 정신적 능력을 내세우며 땅과 하늘의 일부를 창조하는 데 이바지하였다고 뽐내었다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 여우는 ‘천지개벽한 후 처음에 황하수 치던 시절에 나더러 힘세다 하고 가래 장부 되었’다고 말하고 있고, 노루는 ‘천지개벽하고 하늘에 별 박을 때에, 날더러 궁통하다 하여 별자리를 분간하여 도수를 정하였’다고 말하고 있다. 여우는 ‘힘세다’는 육체적 능력을, 노루는 ‘궁통하다’는 정신적 능력을 내세운 것이라고 할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 적절하지 않음(정답). [유형] 작품의 내용 이해</div>
+        </div>
+
+        <!-- 문제 19번 -->
+        <div class="question-full">
+            <div class="q-num">19</div>
+            <div class="question-stem"><span class="underline-phrase">㉠</span>과 같이 반응한 이유로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 두꺼비만이 고향나무에 얽힌 사연을 알고 있기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 고향나무에 얽힌 사연은 두꺼비가 연장자라고 주장하기 위해 거짓으로 지어낸 것이다. 이 사연을 두꺼비만이 알고 있다는 이유로 ㉠과 같이 반응한 것이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 여우가 두꺼비의 고조할아버지에 대해 모르고 있기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘고향나무 빈틈으로 네 고조할아버지가 나오던 구멍이냐?’라고 여우가 말하는 것은 갑작스럽게 눈물을 흘리는 두꺼비를 조롱하는 것이지, 두꺼비의 고조할아버지를 여우가 모른다는 이유로 ㉠과 같이 반응한 것이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 두꺼비의 두 아들이 두꺼비보다 먼저 세상을 떠났다는 사실을 알게 되었기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두꺼비는 ‘그 나무 벤 동티로 두 아들이 다 죽’었다고 말하고 있으나, 두꺼비의 두 아들이 두꺼비보다 먼저 세상을 떠났다는 사실을 알게 되었다는 이유로 ㉠과 같이 반응한 것이 아니다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 두꺼비의 두 아들이 여우와 노루가 했다는 일의 연장을 만들었다는 말을 들었기 때문이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 여우는 ‘천지개벽한 후 처음에 황하수 치던 시절에’ ‘가래 장부 되었’다고 말하고, 노루는 ‘천지개벽하고 하늘에 별 박을 때에’ ‘별자리를 분간하여 도수를 정하였’다고 말하면서 서로 자신이 연장자라고 자랑하였다. 그러나 두꺼비가 소년 시절에 심은 나무를 두꺼비의 ‘맏아들이 별 박는 방망이로 베고’, ‘둘째 아들이 황하수 칠 때에 준천부사하여 가랫장부 하려고 베었’다는 것을 볼 때, 여우와 노루가 했다는 일의 연장인 가래와 방망이는 두꺼비가 심은 나무를 베어 두꺼비의 두 아들이 만든 것이므로 두꺼비가 가장 나이가 많다는 논리가 된다. 두꺼비의 말을 들은 여우는 이와 같은 추론을 바탕으로 ㉠과 같이 반응한 것이라고 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 여우와 노루의 나이는 추정 불가능한 것과 달리 두꺼비의 나이는 추정이 가능하기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 여우, 노루, 두꺼비는 모두 거짓으로 자신이 연장자라고 주장하고 있다. 따라서 세 인물의 나이는 모두 추정이 불가능하므로 두꺼비의 나이만을 추정할 수 있다는 이유로 ㉠과 같이 반응한 것이 아니다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 가장 적절함(정답). [유형] 작품의 맥락 이해</div>
+        </div>
+
+        <!-- 문제 20번 -->
+        <div class="question-full">
+            <div class="q-num">20</div>
+            <div class="question-stem"><span class="underline-phrase">[A]</span>에 대한 설명으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 잊고 있었던 과거의 일을 상기함으로써 여우의 기억이 왜곡된 것임을 밝히고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두꺼비는 ‘그때 네가 왔던가 싶다.’라며 과거의 일을 상기하는 듯이 말하고는 있으나, 이는 여우의 말에 대응하기 위한 거짓말하기이므로, 잊고 있었던 과거의 일을 상기한다고 할 수 없다. 또한 두 인물 모두 거짓을 말하고 있으므로, 여우의 기억이 왜곡된 것임을 밝히는 것도 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 여우에게 결례를 범한 일을 인정하면서 착오에서 비롯된 실수였다고 변명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두꺼비는 ‘네가 온 줄’ 모르고 ‘긴 장대로 쫓’으라 명했다고 말하면서 결례를 범한 일을 인정하는 듯이 말하고는 있으나, 이는 여우를 조롱하기 위한 것이지 착오에서 비롯된 실수였다고 변명하는 것이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 여우가 만나고 싶어 하는 인물과의 경험을 구체화함으로써 여우보다 우월한 지위를 확보하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두꺼비는 ‘남극노인성으로 더불어 바둑 두다가 술이 대취하’였다는 경험을 말하고 있으나, 남극노인성은 여우가 만났다고 자랑했던 인물이지 만나고 싶어 하는 인물이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 여우의 외모를 구체적으로 묘사함으로써 과거에 확신하지 못했던 일을 뒤늦게 깨닫게 되었음을 고백하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘빛은 누르고 주둥이 뾰쪽하고 도적개 모양 같은 것’이라고 여우의 외모를 묘사하고는 있으나, 이는 여우의 말을 듣고 지어낸 거짓 이야기이므로 두꺼비가 과거에 확신하지 못했던 일을 뒤늦게 깨달았다고 고백하는 것이 아니다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 여우가 구경하고 왔다는 장소에서 동 시간대에 겪었다는 일을 제시함으로써 여우의 말을 거짓으로 만들고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 두꺼비는 여우가 남극노인성에 도착하기 전에 이미 ‘술이 대취하여 난간에 의지하였’다가 자신보다 늦게 도착한 여우를 ‘긴 장대로 쫓’으라 했다고 말하고 있다. 두꺼비의 말에 따르면 여우는 남극노인성에 발도 들이지 못하고 쫓겨난 것이 되므로, 두꺼비는 여우가 구경하고 왔다는 남극노인성에서 동시간대에 자신이 겪었다는 일을 제시함으로써 여우의 말을 거짓으로 만드는 것이라고 할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 적절함(정답). [유형] 시점 및 서술상의 특징 파악</div>
+        </div>
+
+        <!-- 문제 21번 -->
+        <div class="question-full">
+            <div class="q-num">21</div>
+            <div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                「두껍전」은 ‘상좌’를 두고 벌이는 논쟁을 통해 등장인물 간의 관계가 설정되는 작품이다. 경쟁적 관계에 있는 인물들은 서로의 말이 진실이 아니라는 점을 인지하고 있는데, 이들은 허구적인 사건을 지어내기도 하고, 설화, 중국의 역사, 고사 등을 직접 경험한 것처럼 꾸며 내어 자기 과시를 위한 근거로 삼기도 한다. 따라서 상대방은 적절한 현실적 근거를 요구하거나 관련 지식을 끌어들여 주장을 반박한다. 이러한 인물들의 말하기는 정직할수록 욕망을 채우는데 불리한 상황에서, 지식을 유용하게 활용함으로써 상좌를 차지하기 위한 것이라고 할 수 있다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 여우가 ‘엉금엉금 기어 상좌에 앉’은 노루를 보고 ‘어찌 무슨 간계로’ 그 자리를 차지할 수 있을지 고민하는 것은, 노루의 말이 진실이 아니라는 점을 인지하고 그에 대응할 수 있는 거짓된 말하기를 생각하는 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 여우는 ‘저놈이 한갓 허리 굽은 것으로 나이 많은 체’한다면서 노루의 말을 거짓이라고 생각하고 있다. 따라서 자신이 더 ‘나이 많은 체’하기 위해 여우가 생각하는 ‘간계’는 노루의 거짓에 대응할 수 있는 거짓된 말하기라고 할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ‘호패를 올리라’는 노루에게 여우가 ‘호패를 떼여’ ‘찾지 못하였’다고 하는 것은, 나이가 많다는 말에 대한 현실적인 근거를 제공할 수 없는 상황에서 허구적인 사건을 지어내어 상황을 무마하려 한 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 노루는 “네 나이 많다 하니, 어느 갑자에 났는가? 호패를 올리라.”라며 여우의 말에 대한 현실적인 근거를 요구하고 있다. 그러자 여우는 ‘소년 시절에 호협하기를 좋아하여 ∼ 대신 가시는 길 건넜다 하고 호패를 떼여 이때까지 찾지 못하였’다는 허구적인 사건을 지어내어 호패가 없는 상황을 무마하려 하고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 여우가 ‘슬피 눈물을 흘리’는 두꺼비에게 ‘저 흉간한 놈’이라며 꾸짖는 것은, 두꺼비의 정직하지 않은 말하기가 자신을 불리한 상황에 놓이게 했다는 것을 깨달았기 때문이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 여우가 두꺼비를 ‘저 흉간한 놈’이라며 꾸짖으며, “고향나무 빈틈으로 네 고조할아버지가 나오던 구멍이냐? 어찌 설워하느냐?”라고 추궁하는 것은, 두꺼비에게 자신이 연장자라고 하기 위한 음흉한 속내가 있다고 보기 때문이다. 여우의 꾸짖음은 존재를 드러내지 않던 두꺼비의 갑작스러운 눈물에 대한 반응이므로, 두꺼비의 정직하지 않은 말하기가 자신을 불리한 상황에 놓이게 했다는 것을 깨달았기 때문이라고 감상하는 것은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 여우가 ‘베 짜다가 얻은 병’의 치료 약으로 ‘직녀성에 베틀 괴었던 돌’을 노인에게 내어 주었다고 한 것은, 경쟁적 관계에 있는 두꺼비에게 자기 과시를 위한 근거로 직녀성에 얽힌 고사를 활용한 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 직녀는 하늘나라에서 베를 짜는 일을 맡은 고사의 인물로, 직녀성의 여신이다. 여우는 직녀성에 얽힌 고사를 근거로 하여 자신이 하늘나라를 구경하고 왔다면서 두꺼비에게 자기 과시를 하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 여우가 하늘에서 노인에게 받은 ‘붉은 구슬을’ 삼키고 ‘인간에 내려’와 ‘몸이 변화하’는 능력이 생겼다고 하는 것은, 상좌를 차지하겠다는 욕망을 채우기 위해 설화에 대해 가지고 있는 지식을 유용하게 활용한 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 여우가 하늘에서 보답의 뜻으로 노인에게 받은 ‘붉은 구슬을’ 삼킨 덕에 ‘몸이 변화하’였다고 하는 것은, ‘여우 구슬’이라는 여우 변신 설화를 자신이 직접 경험한 일처럼 꾸며 낸 것이라고 할 수 있다. 이는 상좌를 차지하겠다는 욕망을 채우기 위해 설화에 대해 가지고 있는 지식을 유용하게 활용한 것이라고 할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 적절하지 않음(정답). [유형] 외적 준거에 따른 작품 감상</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <ul>
+            <li><strong>해제</strong>: 이 작품은 동물을 의인화한 우화 소설로, 작가와 창작 연대는 알 수 없다. 두꺼비가 주인공인 고전 소설들을 아울러 ‘두껍전류’라고 하는데, 여러 짐승이 상좌를 차지하기 위해 다투는 쟁좌형(爭座型)과 하늘나라의 선관(仙官)이 죄를 지어 두꺼비의 형상으로 땅에 내려온 적강형(謫降型) 등이 있다. 그중 다양한 제목의 이본이 있는 쟁좌형이 가장 대중적인 유형이었다고 볼 수 있다. 이러한 작품은 여러 인물이 각자 자기가 나이가 많음을 자랑하여 그중 한 인물이 가장 연장자로 판명된다는 형식을 지니고 있는데, 인물들이 연장자로서의 자질을 드러내기 위해 중국의 경전이나 고사, 설화, 소설 등 다양한 정보와 지식을 망라하는 말하기를 주고받는다는 특징이 있다.</li>
+            <li><strong>주제</strong>: 상좌를 차지하기 위한 동물들의 논쟁과 그에 대한 풍자</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
