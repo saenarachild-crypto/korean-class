@@ -264,6 +264,7 @@
 <script>
   (function(){
     const $ = sel => document.querySelector(sel);
+
     // 마침내 모의고사 시뮬 1회 34문항 정답
     const ANSWERS = [4, 3, 4, 1, 5, 2, 4, 4, 1, 3, 1, 5, 2, 1, 3, 5, 5, 2, 1, 4, 2, 5, 5, 4, 3, 4, 4, 1, 3, 2, 2, 5, 3, 5];
 
@@ -281,6 +282,7 @@
       times: new Array(8).fill('') // 지문별 소요 시간 데이터 동기화용 배열 추가
     };
     let timerInterval = null;
+
     function buildQuestions() {
       let html = '';
       for(let i=1; i<=34; i++) {
@@ -298,12 +300,14 @@
       }
       $('#commonList').innerHTML = html;
     }
+
     function updateSolutionLink() {
       const link = $('#solutionLink');
       if(!link) return;
       if(state.attemptCount >= 3) link.style.display = 'inline-block';
       else link.style.display = 'none';
     }
+
     function updateUI() {
       const isLocked = state.attemptCount > 0;
       document.querySelectorAll('.choice').forEach(btn => {
@@ -314,12 +318,14 @@
         if(isLocked) btn.classList.add('disabled');
         else btn.classList.remove('disabled');
       });
+
       document.querySelectorAll('.mark-btn').forEach(btn => {
         const idx = parseInt(btn.dataset.idx);
         const mark = btn.dataset.mark;
         if(state.marks[idx] === mark) btn.classList.add('active');
         else btn.classList.remove('active');
       });
+
       // 소요 시간 입력 필드 복원
       document.querySelectorAll('.time-input').forEach(input => {
         const tidx = parseInt(input.dataset.tidx);
@@ -327,10 +333,12 @@
         if(isLocked) input.disabled = true;
         else input.disabled = false;
       });
+
       const answered = state.answers.filter(v=>v>0).length;
       $('#commonProgress').innerText = `${answered}/34`;
       updateSolutionLink();
     }
+
     function computeScore() {
       let correct = 0, wrongs = [];
       state.answers.forEach((v,i) => {
@@ -340,6 +348,7 @@
       });
       return { correct, wrongs, percent: ((correct/34)*100).toFixed(1) };
     }
+
     function performGrading() {
       const { correct, wrongs, percent } = computeScore();
       state.lastResult = { correct, wrongs, percent };
@@ -349,6 +358,7 @@
       if(wrongs.length) $('#wrongList').innerHTML = `❌ 틀린 문항: ${wrongs.join(', ')} (${wrongs.length}개)`;
       else $('#wrongList').innerHTML = '✅ 만점! 축하합니다';
     }
+
     function updateCooldownUI() {
       const now = Date.now();
       const submitBtn = $('#submitBtn');
@@ -390,10 +400,10 @@
       }
       updateUI();
     }
+
     function getReportText() {
       const currentName = state.name || '미입력';
       const attemptNum = state.attemptCount || 1;
-      
 
       let oList = [], tList = [], xList = [];
       state.marks.forEach((m, idx) => {
@@ -401,6 +411,7 @@
         if(m === 't') tList.push(idx+1);
         if(m === 'x') xList.push(idx+1);
       });
+
       const markSection = `📌 [문항 분류 기록]
 • ○ (확신): ${oList.join(', ') || '없음'}
 • △ (애매): ${tList.join(', ') || '없음'}
@@ -411,10 +422,9 @@
       state.times.forEach((t, i) => {
         if(t) timeLines.push(`• ${labels[i]}: ${t}분`);
       });
-      const timeSection = timeLines.length > 0 
-        ? `\n⏱️ [지문별 소요 시간]\n${timeLines.join('\n')}\n━━━━━━━━━━━━━━━━━━━━━━` 
+      const timeSection = timeLines.length > 0
+        ? `\n⏱️ [지문별 소요 시간]\n${timeLines.join('\n')}\n━━━━━━━━━━━━━━━━━━━━━━`
         : '';
-      
 
       if(!state.lastResult) {
         return `[마침내 모의고사 시뮬 1회 결과]\n━━━━━━━━━━━━━━━━━━━━━━\n👤 이름: ${currentName}\n⚠️ 아직 채점 전입니다.\n━━━━━━━━━━━━━━━━━━━━━━`;
@@ -431,6 +441,7 @@ ${markSection}
 ━━━━━━━━━━━━━━━━━━━━━━
 ※ 정답은 공개되지 않습니다.`;
     }
+
     function onSubmit() {
       const nameVal = $('#studentName').value.trim();
       if(!nameVal) { alert('이름을 입력하세요'); return; }
@@ -448,6 +459,7 @@ ${markSection}
       updateCooldownUI();
       showToast('채점 완료!');
     }
+
     function resetAll() {
       if(confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) {
         if(timerInterval) clearInterval(timerInterval);
@@ -473,15 +485,18 @@ ${markSection}
         showToast('초기화 완료! 답안을 입력하세요.');
       }
     }
+
     function showReportModal() {
       $('#report-text').value = getReportText();
       $('#reportModal').classList.add('show');
     }
+
     function copyFullReport() {
       const text = getReportText();
       copyToClipboard(text);
       showToast('리포트가 복사되었습니다!');
     }
+
     function copyToClipboard(text) {
       try {
         if(navigator.clipboard && navigator.clipboard.writeText) {
@@ -502,6 +517,7 @@ ${markSection}
         showToast('복사 완료!');
       }
     }
+
     function closeModal() { $('#reportModal').classList.remove('show'); }
     function showToast(msg) {
       const toast = $('#toast');
@@ -509,6 +525,7 @@ ${markSection}
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
+
     function saveToLocal() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         answers: state.answers,
@@ -520,6 +537,7 @@ ${markSection}
         times: state.times
       }));
     }
+
     function loadFromLocal() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if(!raw) return;
@@ -532,6 +550,7 @@ ${markSection}
         state.lastResult = data.lastResult || null;
         state.marks = data.marks || new Array(34).fill('');
         state.times = data.times || new Array(8).fill('');
+
         $('#studentName').value = state.name;
         if(state.attemptCount > 0) {
           $('#studentName').disabled = true;
@@ -547,6 +566,7 @@ ${markSection}
         }
       } catch(e) {}
     }
+
     function onChoiceClick(e) {
       const btn = e.target.closest('.choice');
       if(!btn) return;
@@ -561,6 +581,7 @@ ${markSection}
       updateUI();
       saveToLocal();
     }
+
     function onMarkClick(e) {
       const btn = e.target.closest('.mark-btn');
       if(!btn) return;
@@ -576,6 +597,7 @@ ${markSection}
       }
       saveToLocal();
     }
+
     function onTimeInput(e) {
       const input = e.target;
       if(!input.classList.contains('time-input')) return;
@@ -583,6 +605,7 @@ ${markSection}
       state.times[tidx] = input.value.trim();
       saveToLocal();
     }
+
     function bindEvents() {
       $('#submitBtn').onclick = onSubmit;
       $('#resetBtn').onclick = resetAll;
@@ -595,6 +618,7 @@ ${markSection}
         input.addEventListener('input', onTimeInput);
       });
     }
+
     function init() {
       buildQuestions();
       loadFromLocal();
