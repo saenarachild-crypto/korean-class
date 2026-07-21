@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>수특완 지문 단기 암기 훈련 (1회)</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Apple SD Gothic Neo',sans-serif;background:#faf6f3;padding:16px;max-width:600px;margin:0 auto;color:#2c1518;-webkit-text-size-adjust:100%}
+  .header{background:linear-gradient(135deg,#7c2c3e,#5a1f2c);color:#fff;padding:16px;border-radius:20px;text-align:center;margin-bottom:20px}
+  .header h2{font-size:19px}
+  .header .sub{font-size:12px;margin-top:6px;color:#f0d8dd}
+  .info-card,.section,.time-box{background:#fff;border-radius:20px;padding:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  label.lb{font-weight:600;color:#7c2c3e;display:block;margin-bottom:6px;font-size:14px}
+  input[type=text],select{width:100%;padding:12px;border:1.5px solid #d8c8cc;border-radius:14px;font-size:16px;background:#fff;color:#2c1518}
+  input:focus,select:focus{outline:none;border-color:#7c2c3e}
+  .mt{margin-top:12px}
+  .btn{width:100%;padding:14px;border:none;border-radius:40px;font-weight:bold;font-size:16px;margin-top:12px;cursor:pointer}
+  .btn-primary{background:#7c2c3e;color:#fff}
+  .btn-primary:disabled{opacity:.45;cursor:not-allowed}
+  .btn-kakao{background:#fee500;color:#3c1e1e}
+  .btn-warning{background:#ff9f4a;color:#2c1518}
+  .btn-ghost{background:#fff;border:1.5px solid #d8c8cc;color:#7c2c3e}
+  .row{display:flex;gap:8px}.row>.btn{flex:1}
+  .hidden{display:none}
+  .muted{color:#96827f;font-size:13px}
+  .steps{display:flex;gap:6px;margin-bottom:14px}
+  .steps .s{flex:1;text-align:center;font-size:11px;color:#a68e92;padding:7px 2px;border-radius:30px;background:#f4e9eb;font-weight:700}
+  .steps .s.on{background:#7c2c3e;color:#fff}
+  /* reading */
+  .timer{font-size:34px;font-weight:800;text-align:center;color:#7c2c3e;font-variant-numeric:tabular-nums}
+  .timer.low{color:#d04141}
+  .tbar{height:8px;background:#f0e2e5;border-radius:6px;overflow:hidden;margin:8px 0 4px}
+  .tbar>i{display:block;height:100%;background:#7c2c3e;width:100%;transition:width 1s linear}
+  .passage{background:#fffdfc;border:1.5px solid #ecdfe2;border-radius:16px;padding:16px;font-size:15.5px;line-height:1.9;
+    white-space:pre-wrap;word-break:keep-all;max-height:58vh;overflow:auto}
+  .passage .ptitle{font-weight:800;color:#7c2c3e;font-size:14px;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #f0e2e5}
+  .passage .fn{display:block;margin-top:12px;font-size:12.5px;color:#96827f;line-height:1.7}
+  .curtain{background:repeating-linear-gradient(45deg,#f6ecee,#f6ecee 12px,#efdfe3 12px,#efdfe3 24px);
+    border:1.5px dashed #cbb2b8;border-radius:16px;padding:40px 16px;text-align:center;color:#96827f;font-weight:600}
+  /* quiz */
+  .q{padding:14px 0;border-top:1px solid #f5ecee}.q:first-child{border-top:0}
+  .qt{font-weight:600;margin-bottom:10px;font-size:15px;line-height:1.7}
+  .ox{display:flex;gap:8px}
+  .ox button{flex:1;padding:11px;border:1.5px solid #d8c8cc;border-radius:40px;background:#fff;font-size:16px;font-weight:bold;cursor:pointer;color:#2c1518}
+  .ox button.sel{background:#7c2c3e;border-color:#7c2c3e;color:#fff}
+  .q.correct{background:#f2faf4;border-radius:14px;padding:12px}
+  .q.wrong{background:#fdeff0;border-radius:14px;padding:12px}
+  .fb{font-size:13px;margin-top:8px;font-weight:700}.fb.ok{color:#1f8a4c}.fb.no{color:#d04141}
+  .cloze input{display:inline-block;width:auto;min-width:96px;max-width:230px;padding:6px 8px;font-size:15px;border:0;border-bottom:2px solid #7c2c3e;border-radius:0;background:#fdf5f7;margin:0 2px;color:#2c1518}
+  .clz-line{line-height:2.2}
+  /* result */
+  .score-banner{background:#fff8f5;border:2px solid #7c2c3e;border-radius:24px;padding:18px;text-align:center;margin-bottom:16px}
+  .score-main{font-size:36px;font-weight:800}
+  .score-main.pass{color:#1f8a4c}.score-main.fail{color:#d04141}
+  .attempt-text{font-size:12px;color:#7c2c3e;font-weight:700;margin-bottom:6px}
+  .wrongline{color:#d04141;margin-top:8px;font-size:14px;font-weight:600}
+  .codebox{background:#5a1f2c;color:#fff;border-radius:16px;padding:16px;text-align:center;margin:12px 0}
+  .codebox .lab{font-size:12px;color:#f0d8dd;margin-bottom:6px}
+  .codebox .code{font-size:20px;font-weight:800;letter-spacing:1px;font-family:ui-monospace,Menlo,monospace;word-break:break-all}
+  .anskey{background:#f2faf4;border:1.5px solid #bfe6cb;border-radius:16px;padding:14px;margin-top:12px;font-size:14px;line-height:1.9}
+  .anskey b{color:#1f8a4c}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.show{display:flex}
+  .modal{background:#fff;border-radius:24px;width:100%;max-width:480px;padding:20px;text-align:center}
+  #report-text{width:100%;height:210px;margin:15px 0;padding:10px;font-family:monospace;font-size:12px;background:#f9f9f9;border:1px solid #ddd;border-radius:12px}
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 20px;border-radius:30px;opacity:0;transition:.2s;pointer-events:none;font-size:13px;z-index:2000}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>수특완 지문 단기 암기 훈련</h2>
+  <div class="sub">가천대 약술 대비 · 원문을 단기간에 암기 · 100점까지 반복</div>
+</div>
+
+<!-- ===== 시작 ===== -->
+<div id="scr-start">
+  <div class="info-card">
+    <label class="lb">📛 학생 이름 (실명 · 완료 코드에 사용)</label>
+    <input type="text" id="studentName" placeholder="실명 입력" autocomplete="off">
+    <label class="lb mt">📖 훈련할 지문</label>
+    <select id="passageSel"></select>
+    <label class="lb mt">⏱️ 읽기(암기) 시간</label>
+    <select id="readTime">
+      <option value="240">4분 (권장)</option>
+      <option value="180">3분</option>
+      <option value="300">5분 (처음 연습용)</option>
+    </select>
+    <div id="doneNote" class="muted mt hidden"></div>
+    <button class="btn btn-primary mt" id="startBtn">암기 시작 ▶</button>
+  </div>
+
+  <div class="section" id="homeworkCard">
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:4px">📤 과제 제출</div>
+    <div class="muted" id="hwStatus" style="margin-bottom:2px"></div>
+    <button class="btn btn-kakao" id="submitAllBtn">💬 카톡 과제 보고서 제출</button>
+    <button class="btn btn-warning" id="resetBtn">🔄 전체 기록 초기화</button>
+  </div>
+
+  <p class="muted" style="text-align:center">원문을 정해진 시간 안에 읽고 → 가린 뒤 문제를 풉니다. <b>100점을 맞을 때까지 반복</b>하며, 100점이 되면 정답이 공개되고 완료 코드가 발급됩니다.</p>
+</div>
+
+<!-- ===== 읽기 ===== -->
+<div id="scr-read" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s on">① 원문 암기</div><div class="s">② 내용 확인</div><div class="s">③ 빈칸 복원</div></div>
+    <div class="attempt-text" id="readAttempt"></div>
+    <div class="timer" id="timer">04:00</div>
+    <div class="tbar"><i id="tbarFill"></i></div>
+    <div id="readArea">
+      <div class="passage" id="passageBox"></div>
+      <button class="btn btn-ghost" id="hideBtn">다 외웠어요 · 가리고 문제 풀기</button>
+    </div>
+    <div id="curtainArea" class="hidden">
+      <div class="curtain">원문을 가렸습니다.<br>기억을 떠올리며 문제를 풀어 보세요.</div>
+      <button class="btn btn-primary" id="toQuizBtn">문제 풀기 ▶</button>
+      <button class="btn btn-ghost" id="peekBtn">⏱ 20초만 다시 보기 (감점 없음, 횟수 기록)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== OX ===== -->
+<div id="scr-ox" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s">① 원문 암기</div><div class="s on">② 내용 확인</div><div class="s">③ 빈칸 복원</div></div>
+    <div class="section-header" style="font-weight:bold;color:#7c2c3e;margin-bottom:6px">내용 확인 (O / X)</div>
+    <div id="oxList"></div>
+    <button class="btn btn-primary" id="oxNext" disabled>다음 (빈칸 복원) ▶</button>
+  </div>
+</div>
+
+<!-- ===== 빈칸 ===== -->
+<div id="scr-cloze" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s">① 원문 암기</div><div class="s">② 내용 확인</div><div class="s on">③ 빈칸 복원</div></div>
+    <div class="section-header" style="font-weight:bold;color:#7c2c3e;margin-bottom:4px">핵심 개념 빈칸 복원</div>
+    <p class="muted" style="margin-bottom:6px">기억으로 빈칸을 채우세요. 띄어쓰기는 채점에 반영하지 않습니다.</p>
+    <div id="clozeList"></div>
+    <button class="btn btn-primary" id="clozeGrade">채점하기 ✅</button>
+  </div>
+</div>
+
+<!-- ===== 결과 ===== -->
+<div id="scr-result" class="hidden">
+  <div class="score-banner">
+    <div class="attempt-text" id="resAttempt"></div>
+    <div class="score-main" id="scoreMain">--</div>
+    <div id="scoreDetail" style="font-size:13px;margin-top:4px"></div>
+    <div class="wrongline hidden" id="wrongLine"></div>
+  </div>
+
+  <!-- 미달 -->
+  <div id="failWrap" class="hidden">
+    <div class="section" style="text-align:center">
+      <p style="font-weight:700;color:#d04141;margin-bottom:4px">아직 100점이 아닙니다.</p>
+      <p class="muted">정답은 <b>100점을 맞아야</b> 공개됩니다. 원문을 다시 읽고 도전하세요!</p>
+      <button class="btn btn-primary" id="retryBtn">원문 다시 읽고 도전 🔁</button>
+    </div>
+  </div>
+
+  <!-- 100점 -->
+  <div id="passWrap" class="hidden">
+    <div class="section">
+      <div style="text-align:center;font-size:17px;font-weight:800;color:#1f8a4c;margin-bottom:4px">🎉 100점! 암기 완료</div>
+      <div id="nextNote" class="muted hidden" style="text-align:center;background:#f2faf4;border:1.5px solid #bfe6cb;border-radius:14px;padding:12px;margin-bottom:4px"></div>
+      <div class="anskey" id="ansKey"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="btn btn-kakao" id="submitAllBtn2">💬 카톡 과제 보고서 제출</button>
+    <div class="row">
+      <button class="btn btn-ghost" id="reviewBtn">원문 다시 보기</button>
+      <button class="btn btn-warning" id="homeBtn">다른 지문</button>
+    </div>
+  </div>
+  <div class="passage hidden" id="reviewPassage" style="margin-bottom:20px"></div>
+</div>
+
+<!-- 보고서 모달 -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3 style="color:#7c2c3e">📋 카톡 보고서</h3>
+    <textarea id="report-text" readonly></textarea>
+    <button class="btn btn-primary" id="copyReportBtn">📋 클립보드 복사</button>
+    <button class="btn btn-warning" id="closeModalBtn">닫기</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s);};
+
+  function normAns(s){return (s||"").replace(/\s+/g,"").replace(/[·.,]/g,"").toLowerCase();}
+
+  /* ===== 지문 데이터 (원문 그대로) ===== */
+  var PASSAGES=[
+  {
+    pid:"D02", title:"[독서] 착오 송금과 수취인의 선의·악의",
+    src:"2027 수능특강 독서 01강 · EBS 26002-0114~0118",
+    text:
+`현대 사회에서 디지털 금융 기술의 발달은 금융 거래의 속도와 편의성을 극적으로 향상시켰다. 모바일 뱅킹 등을 통해 몇 번의 터치만으로 송금이 이루어지는 시대가 도래했지만, 이러한 기술 발전은 예상치 못한 문제도 야기했다. 대표적인 사례가 바로 착오 송금이다. 착오 송금이란 송금인이 실수로 의도하지 않은 계좌에 돈을 보내는 경우를 말하며, 입력 오류, 수취인 착오 선택 등 다양한 원인에 의해 발생한다. 착오 송금이 발생했을 때, 송금인은 즉시 해당 은행에 이를 신고하고 반환을 요청하며, 은행은 중개자로서 수취인에게 연락하여 송금 실수임을 알리고 자발적 반환을 유도한다. 이때 수취인이 동의하면 간단하게 환급 절차가 이루어지지만, 반환을 거부하거나 연락이 닿지 않는 경우에는 상황이 복잡해진다. 송금인이 직접 법적 절차를 진행해야 하기 때문이다. 착오 송금인, 즉 실수로 돈을 잘못 보낸 사람은 그 실수를 바로잡기 위해 직접 회수를 시도하지만, 법적 대응에 들어가는 비용과 시간, 절차적 복잡성으로 인해 실질적인 피해를 감내해야 한다. 특히 금액이 소액일 경우, 회수에 드는 행정적 노력과 비용이 실익을 초과하기도 하며, 수취인의 연락처조차 파악하지 못하는 경우가 많아, 송금인은 문제 해결에 어려움을 겪을 수밖에 없다. 이에 따라 착오 송금인은 단순 실수가 부당한 손실로 이어지는 현실에 불합리함을 느끼며, 제도적 보완과 금융 기관의 적극적인 역할을 요구하는 입장을 갖게 된다.
+법적으로 볼 때 착오 송금인은 민법 제741조에 따라 부당 이득 반환을 청구할 수 있다. 이 조항은 '법률상 원인 없이 타인의 재산 또는 노무로 인하여 이익을 얻고 이로 인하여 타인에게 손해를 가한 자는 그 이익을 반환하여야 한다.'라고 명시하고 있으며, 이는 송금인이 민사 소송을 통해 수취인을 상대로 반환을 청구할 수 있는 근거가 된다. 그러나 소송은 절차가 번거롭고 시간과 비용이 드는 데다, 수취인이 고의적으로 반환을 회피하는 경우 송금인의 부담은 더욱 커진다. 일부 수취인은 본인의 계좌에 갑작스럽게 입금된 금액을 처음에는 자신의 정당한 수입으로 오해할 수 있고, 또 일부 수취인은 송금인의 연락을 받지 못한 상태에서 이루어진 입금만으로는 착오 송금임을 인지하지 못하는 경우도 있다. 그런데 반환 요청을 받거나 은행을 통해 연락을 받으면 수취인은 타인의 돈을 잠깐 맡고 있는 보관자가 된다. 형사상으로 수취인이 송금 실수임을 인지하고도 고의로 반환을 거부하거나 돈을 임의로 사용한 경우, 횡령죄가 성립할 수 있다. 횡령죄는 타인의 재산을 보관하는 자가 반환을 거부하거나 이를 임의로 사용한 경우에 성립하는데, 횡령죄가 성립할 경우 수취인은 형사 처벌을 받을 수 있다. 핵심적인 쟁점은 수취인의 행동이 선의였는지 악의였는지의 여부다. 선의란 착오 송금임을 몰랐던 경우로, 이때는 민사적 반환 의무만 존재하며 형사 처벌 대상은 아니다. 반면 악의란 송금 실수임을 알고도 반환을 거부하거나 소비한 경우로, 이때는 형사적 책임이 성립한다. 대표적인 판례로 2021년의 착오 송금 사건이 있다. A는 실수로 920만 원을 다른 사람의 계좌에 송금했고, 수취인은 이 돈이 자신의 것이 아님을 인지한 뒤에도 반환하지 않고 생활비로 소비하였다. 법원은 이에 대해 "수취인이 자금의 출처를 알고 있었는데, 이를 반환하지 않고 소비한 점에서 불법 영득 의사가 인정된다."라고 하며, 징역 2개월에 집행 유예 1년을 선고하였다. 이는 착오 송금에 대한 법원의 명확한 판단 기준을 보여 준다. 은행은 송금 행위의 통로 역할을 하지만, 실질적으로 착오 송금을 발생시킨 주체는 아니다. 착오 송금은 송금인의 실수로 인해 발생한 것이므로, 은행은 법적 책임을 지지 않는다. 다만 금융 소비자 보호 차원에서 수취인에게 연락, 반환 의사 확인, 신고 절차 안내 등을 수행하며, 착오 송금 반환 지원 제도에서도 중요한 협력 주체로 참여한다. 그러나 수취인이 반환을 거부할 경우, 은행은 연락처나 주소와 같은 수취인의 개인 정보를 송금인에게 제공할 수 없고, 반환을 강제할 권한도 없다. 이러한 법적·제도적 한계는 송금인에게 은행이 소극적이라는 인상을 줄 수 있지만, 실제로는 개인 정보 보호법 등 관련 법률에 따라 제한을 받는 것이다. 이러한 한계를 보완하고 송금인의 부담을 완화하기 위해 도입된 것이 바로 착오 송금 반환 지원 제도이다. 이 제도는 예금 보험 공사가 운영하며, 착오 송금한 송금인의 신청이 있는 경우 예금 보험 공사가 지원 계정에서 착오 송금 수취인에 대한 부당 이득 반환 채권을 매입하고 수취인에게 자진으로 돌려줄 것을 안내한다. 만약 수취인이 불응 시 법원에 지급 명령을 신청하여 돈을 회수하며 회수 비용을 공제한 후 남은 금액을 착오 송금인에게 돌려준다. 신청 요건은 첫째, 착오 송금 금액이 건당 5만 원 이상 1억 원 이하일 것, 둘째, 송금일로부터 1년 이내일 것, 셋째, 수취인이 자발적으로 반환하지 않았을 것이다. 이 제도는 송금인의 심리적 부담을 줄이는 데 기여하며, 제도 시행 이후 실제 회수율도 일정 수준 향상되었다. 착오 송금 문제는 기술의 편리함과 인간의 실수가 만나는 지점에서 발생한다. 이로 인해 송금인은 억울한 손실을 입고, 수취인은 의도와 관계없이 법적 책임을 질 수 있으며, 은행은 중재자로서 실무적 역할을 수행하지만 법적 강제력이 부족하다. 이들 세 당사자의 입장은 모두 일리가 있으며, 따라서 이해관계가 충돌할 수밖에 없다. 이처럼 착오 송금은 단순한 금융 실수가 아니라, 개인의 권리와 의무, 제도의 한계와 사회적 정의가 교차하는 문제이다. 따라서 착오 송금 문제는 개인 차원에서의 신중함과 공공 차원의 제도적 완성이 모두 요구되는 영역이라 할 수 있다.`,
+    fn:"",
+    ox:[
+      ["착오 송금이 발생하면 은행이 그 법적 책임을 진다.", false],
+      ["수취인이 착오 송금임을 몰랐던 '선의'의 경우 형사 처벌 대상이 아니다.", true],
+      ["착오 송금 반환 지원 제도는 예금 보험 공사가 운영한다.", true],
+      ["반환 지원 제도는 송금일로부터 3년 이내에 신청해야 한다.", false],
+      ["악의의 수취인은 횡령죄가 성립해 형사적 책임을 질 수 있다.", true]
+    ],
+    cloze:[
+      ["착오 송금인은 민법 제", "741", ["741조","제741"], "조에 따라 부당 이득 반환을 청구할 수 있다."],
+      ["착오 송금임을 몰랐던 경우를 ", "선의", [], ", 알고도 반환을 거부·소비한 경우를 악의라 한다."],
+      ["반환 지원 제도는 ", "예금보험공사", ["예금 보험 공사","예보"], "가 운영한다."],
+      ["신청 요건상 금액은 건당 5만 원 이상 ", "1억원", ["1억","1억 원"], " 이하여야 한다."],
+      ["신청은 송금일로부터 ", "1년", ["일년"], " 이내여야 한다."]
+    ]
+  },
+  {
+    pid:"D03", title:"[독서] 야스퍼스의 한계 상황과 암호",
+    src:"2027 수능특강 독서 02강 · EBS 26002-0290~0293",
+    text:
+`독일 철학자 야스퍼스는 인간을 상황 내 존재로 규정하며, 상황에 대한 물음을 철학이 시작되는 근원이라고 하였다. 인간이 상황 내에 존재하고 있다는 사실에 대한 자각을 곧 철학의 근본이라고 본 것이다. 인간은 모두 상황에 구속되어 있으며, 삶의 순간마다 이미 자신이 어떤 상황 속에 구속되어 있다는 사실을 알고 있다. 이렇게 인간을 구속하고 있는 모든 상황은 인간 자신이 선택한 것이 아니다. 이런 의미에서 상황은 낯선 것으로 인간의 삶을 방해하며 짓누른다.
+야스퍼스는 일상에서 접하는 일반적 상황과 달리 인간이 능동적인 노력을 통해 변경할 수 없는 결정적이고 근원적인 상황이 있다고 하였다. 죽음, 고통, 투쟁, 죄책감이 이에 해당하는데, 야스퍼스는 이러한 상황을 한계 상황이라고 불렀다. 한계 상황은 결코 소멸되지 않는 것이며, 살아가는 동안 인간과 항상 함께 있는 것이다. 그러나 인간은 끊임없이 인간을 압도하는 한계 상황에 직면하면서도, 자신이 결코 이러한 상황에서 벗어날 수 없음을 인정하려 하지 않는다. 인간은 이러한 한계 상황 앞에서 자신이 가진 모든 지식과 행동의 근거에 회의를 느끼게 되며, 삶의 가장 내면적인 근거가 흔들리는 불안을 감지하고 좌절하게 된다. 그러나 한계 상황의 경험은 부정적으로 볼 것이 아니다. 인간은 유한하고 불완전한 존재이다. 한계 상황을 통하여 인간은 자신의 유한성을 깨닫게 되는 것이다. 이러한 한계 상황을 외면하는 것은 결국 자기 자신을 포기하는 것과 마찬가지다. 한계 상황에서 벗어날 수 없음을 인정하지 않고, 자신을 좌절하게 만드는 한계 상황을 단지 회피하려고만 하는 인간은 한계 상황의 배후에 있는 것을 이해할 수 없다. 그래서 야스퍼스는 인간이 이러한 한계 상황에 어떻게 대응하는가가 중요하다고 보았다. 인간을 압도하는 한계 상황은 좌절이라는 깊은 아픔을 가져다주지만, 이러한 좌절은 인간이 초월자를 감지하는 계기가 된다. 야스퍼스는 한계 상황을 경험하는 것과 실존하는 것이 결국 같은 것이라고 하였다. 인간이 인식하는 세계는 결코 완결된 전체가 아니며, 조화 있는 총체적 구조를 지니거나 명확한 인과의 틀 속에서 합목적성을 띠는 것이 아니다. 그래서 세계는 그 자체만으로는 이해되지 않는 불완전한 것이다. 이러한 사실을 깨달을 때 인간은 비로소 초월자에게로 다가갈 수 있다. 인간 이상의 것, 인간을 넘어서 그 뒤에 숨겨져 있는 어떤 존재가 바로 초월자이다. 초월자는 인간의 언어로 설명되거나 규정될 수 없고, 표상을 통해 어떤 대상으로 인식할 수 없으며, 추론을 통해 도달할 수 있는 것이 아니다. 이러한 초월자와의 만남 없이 인간은 실존할 수 없으며, 인간은 한계 상황의 경험을 통해서만 초월자 앞에 설 수 있다. 초월자는 오직 한계 상황을 자각하고 자신의 실존을 찾고자 하는 인간, 즉 가능적 실존에게만 비대상적 존재로서 나타나는데, 직접적으로 나타나는 것이 아니라 암호로 나타난다. 따라서 암호는 초월자가 가능적 실존에게 말을 걸어오는 언어라고 볼 수 있다. 암호는 인간으로서는 알 수도 없고 접근할 수도 없는, 지평 저 너머에 있는 초월자를 지시하고 해명해 주는 언어이다. 암호는 보편타당한 것으로 경험되거나 검증될 수 있는 것이 아니기 때문에 인간의 현실적인 언어가 아니다. 인간의 언어를 통해 파악할 수 없는 초월자는 오직 암호에 의해서만 나타나기 때문에 인간은 이 암호를 해독하지 않으면 안 된다. 초월자의 암호는 하나의 의미로 고정될 수 없는 다의적인 것이다. 이러한 암호는 실존이 되려고 노력하는 인간에 의해서만 각자의 방식으로 해독된다. 야스퍼스는 이러한 암호 해독의 과정을 통해 인간이 자신의 실존을 회복할 수 있다고 보았다.`,
+    fn:"",
+    ox:[
+      ["야스퍼스는 죽음·고통·투쟁·죄책감을 한계 상황의 예로 들었다.", true],
+      ["한계 상황의 경험은 오직 부정적으로만 보아야 한다.", false],
+      ["초월자는 추론을 통해 도달할 수 있는 대상이다.", false],
+      ["초월자는 가능적 실존에게 '암호'로 나타난다.", true],
+      ["암호는 하나의 의미로 고정되는 일의적인 언어이다.", false]
+    ],
+    cloze:[
+      ["인간이 능동적 노력으로 변경할 수 없는 근원적 상황을 ", "한계상황", ["한계 상황"], "이라 한다."],
+      ["한계 상황을 통해 인간은 자신의 ", "유한성", [], "을 깨닫는다."],
+      ["한계 상황을 자각하고 실존을 찾는 인간을 ", "가능적실존", ["가능적 실존"], "이라 한다."],
+      ["초월자는 직접 나타나지 않고 ", "암호", [], "로 나타난다."],
+      ["초월자의 암호는 하나로 고정될 수 없는 ", "다의적", ["다의적인"], " 것이다."]
+    ]
+  },
+  {
+    pid:"D09", title:"[독서] 무이구곡도와 고산구곡도",
+    src:"2027 수능특강 독서 01강 · EBS 26002-0090~0094",
+    text:
+`조선에서는 16세기 이후 이황과 이이로 대표되는 사림 계열의 성리학 연구가 심화되었다. 조선의 성리학자들은 주희의 행적을 이상적인 학자의 모습이라고 인식했다. 성리학을 집대성한 주희는 무이산에 은거하며 무이정사를 짓고 학문을 닦고 후학 양성에 힘을 쏟았다. 중국에서 무이산은 일찍부터 도교의 성지로 알려졌으나 주희가 은거하면서부터 더욱 유명해졌다. 주희는 친구들과 배를 타고 무이산의 아홉 굽이 계류를 따라 펼쳐진 아름다운 경치를 보고 구곡의 실경을 묘사한 「무이도가」를 지었다. 「무이도가」는 자연 속에서 심신을 수양한다는 주희의 성리학적 자연관을 보여 주는 대표적인 문학 작품으로, 차운시가 다수 지어졌고 무이구곡이 그림으로도 그려졌다. 조선에서는 주희의 행적을 따라 성리학을 기반으로 심신을 수양하고 학문에 정진하는 것이 사대부 사회의 문화적 유행이 되었다. 다만 그 수용 양상은 이황의 학통을 따랐던 사대부들과 이이의 학통을 따랐던 사대부들 간에 차이가 있었다. 이황은 「무이도가」를 차운한 시를 지었고, 다른 사람이 소장하고 있던 「무이구곡도」의 빈 공간에 주희의 「무이도가」를 써 주기도 하였다는 기록이 전해진다. 이황의 학통을 따랐던 사대부들은 주희의 「무이도가」를 차운한 시를 자주 지었을 뿐만 아니라 「무이구곡도」를 반복적으로 제작하였다. 현전하는 그림으로는 강세황이 「무이구곡도」를 그린 두루마리 화첩이 있다. 화첩에는 주희와 이황에 대한 존경의 마음을 구체적으로 밝힌 이익의 글이 함께 실려 있다. 이익은 글에서 「무이구곡도」는 주희의 초상화와 같아서 빠짐없이 자세히 그려 내어야 한다고 했다. 이와 같이 「무이도가」를 차운하여 시를 짓거나 「무이구곡도」를 그리고 소장하는 등의 행위는 이황과 그의 학풍을 따랐던 사대부들을 중심으로 이루어졌다. 이들은 「무이도가」를 자연을 마주하여 느끼는 흥(興)의 발현이자 성정 도야의 내용을 담고 있는 시로 보고, 「무이구곡도」를 주희의 성리학적 이상이 구현된 상징적 공간인 무이산을 대신하는 시각적 이미지로 인식하였기 때문에 모사에 치중하였다. 한편 이이와 그의 학통을 따랐던 사대부들은 주희의 무이정사나 「무이도가」를 동경하는 단계를 넘어서 조선식 구곡을 경영하는 양상을 보인다. 이이는 황해도 고산군에 정사를 짓고 후학을 양성하며 「고산구곡가」를 지었다. 이를 주제로 이이가 죽은 뒤에 그의 학통을 따랐던 사대부들에 의해 「고산구곡도」가 그려졌다. 이들은 「무이도가」를 학문으로 나아가는 순서를 담고 있는 시로 보고, 경관이 빼어난 조선의 특정 지역에 정사를 짓고 학문을 닦고 후학 양성을 겸하였을 뿐만 아니라 주희를 따라 구곡을 설정하여 경영하며 구곡시를 짓고 그 지역의 실제 경관을 바탕으로 구곡도를 그렸다. 조선식 구곡의 경영은 주희에 대한 조선 성리학자들의 존경이 어느 정도였는지를 보여 주는 사례로, 중국에서는 비슷한 사례를 거의 찾아볼 수 없다. 이이의 학통을 따랐던 사대부들 가운데 노론 계열 문인들은 구곡 경영을 통해 주희로부터 이이로 이어지는 학문적 계보를 노론이 이어받았다는 점을 드러내려고 했다. 주희의 학문을 계승했다는 정통성을 확보하는 것을 상징적으로 보여 줄 수 있는 것이 구곡의 재현이라고 보았기 때문이다. 노론 출신 김수증은 경관이 빼어난 강원도 화천군 곡운에 농수정을 짓고 후학을 양성하였다. 그는 화가 조세걸을 초대하여 현장을 돌아보게 한 다음 「곡운구곡도」를 그리게 하였다. 10년이 지난 다음 김수증은 아들, 조카들과 함께 「무이도가」를 차운하여 지은 「곡운구곡가」와 조세걸의 그림을 엮어 시화첩을 만들었다. 다른 예로 화가인 김홍도와 김득신 등 9명이 실제 경관으로 짐작되는 장면을 각각 그린 다음 여기에 시를 적어 표구한 「고산구곡시화도」 12폭 병풍을 꼽을 수 있다. 병풍에 포함된 글은 이이의 「고산구곡가」와 송시열의 시 등 노론 계열 문인들의 시나 발문이다. 「고산구곡도」는 이이가 주희의 학문을 계승하였고, 다시 그 학문적 계보가 송시열로 이어진다는 것을 드러내며 노론의 결속을 강화하려는 목적을 지녔다고 할 수 있다.`,
+    fn:"*차운시: 남이 지은 시의 운자(韻字)를 따서 지은 시.\n*도야: 훌륭한 사람이 되도록 몸과 마음을 닦아 기름을 비유적으로 이르는 말.",
+    ox:[
+      ["주희는 무이산에 은거하며 「무이도가」를 지었다.", true],
+      ["이황의 학통은 「무이구곡도」의 모사보다 조선식 구곡 경영에 치중했다.", false],
+      ["이이의 학통은 조선의 실제 경관을 바탕으로 구곡도를 그렸다.", true],
+      ["조선식 구곡 경영은 중국에서도 흔히 볼 수 있는 사례였다.", false],
+      ["「고산구곡도」는 노론의 결속 강화라는 목적을 지녔다.", true]
+    ],
+    cloze:[
+      ["주희는 아홉 굽이 계류의 경치를 묘사한 ", "무이도가", ["「무이도가」"], "를 지었다."],
+      ["이황의 학통은 「무이구곡도」의 ", "모사", [], "에 치중하였다."],
+      ["이이는 황해도 고산군에 정사를 짓고 ", "고산구곡가", ["「고산구곡가」"], "를 지었다."],
+      ["이이의 학통 중 ", "노론", ["노론계열"], " 계열 문인들이 구곡 경영으로 학문적 계보를 드러냈다."],
+      ["「고산구곡도」는 이이의 학문이 ", "송시열", [], "로 이어짐을 드러낸다."]
+    ]
+  },
+  {
+    pid:"D15", title:"[독서] 후성 유전: DNA 메틸화와 히스톤 아세틸화",
+    src:"2027 수능특강 독서 01~02강 · EBS 26002-0158~0161",
+    text:
+`생명체의 유전 정보는 아데닌, 구아닌, 사이토신, 티민으로 구성된 디엔에이(DNA) 염기 서열에 저장되어 있다. 동일한 염기 서열을 가진 세포들이라도 유전자 발현 양상은 다를 수 있는데, 이러한 현상을 후성 유전으로 설명할 수 있다. 후성 유전이란 DNA 염기 서열의 변화 없이 화학적 변형을 통해 유전자 발현을 조절하는 과정으로, 대표적인 예로는 DNA 메틸화, 히스톤의 아세틸화 등이 있다.
+DNA 메틸화는 유전자의 전사 조절 부위인 프로모터 내 사이토신에 메틸기가 부착되어 특정 유전자의 전사가 억제되는 과정이다. 이 과정은 주로 사이토신과 구아닌이 인접한 서열(CpG)에서 일어나며, DNA 메틸화 효소(DNMT)의 촉매 작용으로 촉진된다. 메틸화된 DNA는 전사 인자들의 결합을 방해하는 구조를 형성하여 유전자 발현을 차단하는 일종의 정지 신호 역할을 한다. 반면, 히스톤의 아세틸화는 전사를 촉진하는 화학적 변형이다. 히스톤은 DNA에 감겨 있는 단백질 구조체인데, 그 꼬리 부분의 라이신 잔기에 아세틸기가 결합하면 히스톤과 DNA 간의 상호 작용이 느슨해진다. 이는 마치 단단히 감겨 있던 실타래가 풀리는 것처럼, 전사 인자들이 DNA에 쉽게 접근할 수 있도록 하여 유전자 발현을 촉진한다. 반면, 히스톤 탈아세틸화 효소(HDAC)는 라이신 잔기에서 아세틸기를 제거하여 DNA-히스톤 복합체의 구조를 더욱 조밀하게 만들고 유전자 발현을 억제한다. 한편, 정상적인 세포에서는 종양 억제 유전자가 활성화되어 세포의 분열을 조절하고 무제한 증식을 방지한다. 그러나 후성 유전적 시스템에 오류가 발생하면 이러한 보호 메커니즘이 무너질 수 있다. 예를 들어 종양 억제 유전자의 프로모터 부위에 DNA 메틸화가 과도하게 일어나거나 히스톤에서 아세틸기가 제거되면 해당 유전자 전사가 억제된다. 이러한 오류로 인해 종양 억제 유전자의 기능이 상실되면 세포 주기 조절 시스템이 붕괴된다. 나아가 세포 자살 프로그램이 비활성화되면서 세포는 정상적인 수명을 다해도 사멸하지 않고 무한히 증식하게 된다. 이와 같은 과정을 통해 정상 세포가 암세포로 변질된다. 기존의 항암제는 주로 비정상적으로 빠르게 분열하는 암세포의 특성을 표적으로 하여 암세포를 공격하는 방식이었으나, 이 방법은 정상 세포 중 분열 속도가 빠른 세포에도 손상을 가해 심각한 부작용을 초래했다. 이러한 한계를 극복하기 위해 후성 유전적 오류를 교정하는 새로운 항암제가 등장하게 되었다. 이 치료제는 후성 유전적 메커니즘을 복원하여 암세포가 정상 세포처럼 행동하도록 유도한다. 후성 유전적 항암제인 5-아자사이티딘과 5-아자-2-디옥시사이티딘과 같은 약물은 DNMT를 저해하는 작용을 한다. 이 약물들은 종양 억제 유전자 프로모터 부위에 과도하게 일어난 메틸화를 제거함으로써 전사 기능을 회복시킨다. 이를 통해 억제되었던 종양 억제 유전자의 발현이 다시 활성화되고 암세포의 성장이 저지된다. 한편, 보리노스타트는 HDAC를 저해하여 히스톤의 아세틸화 상태를 유지시킴으로써, 억제되어 있던 종양 억제 유전자의 발현을 촉진한다. 그 결과 암세포에서 세포 자살 프로그램이 재가동되어 암세포가 사멸하게 된다. 암 발생에 대한 기존의 설명 모델인 누드슨의 '이중 적중 모델'은 종양 억제 유전자의 두 대립 유전자 모두에 돌연변이가 발생해야 종양이 생긴다고 보았다. 이 모델은 망막 아세포종과 같은 유전성 암의 발생 메커니즘을 설명하는 데 중요한 역할을 했다. 그러나 후성 유전학의 발전에 따라 '확장된 이중 적중 모델'에서는 암 발생의 경로가 더욱 다양해졌다. 이에 따르면 하나의 대립 유전자에는 돌연변이가, 다른 하나에는 후성 유전적 오류가 발생해도 종양이 발생할 수 있다. 더 나아가 두 대립 유전자 모두에 후성 유전적 오류만 있어도 암이 발병할 수 있다는 것이 밝혀졌다. 이러한 발견은 암의 발생 기전이 기존에 생각했던 것보다 훨씬 다양하고 복잡함을 시사한다. 후성 유전적 오류는 돌연변이와 달리 가역적 특성을 지니므로, 적절한 약물 치료를 통해 암세포는 원래의 정상 세포로 돌아올 수 있다. 현재 후성 유전적 약물은 일부 암종에서 효과를 보이고 있으며, 다양한 암종에 대한 임상 연구가 진행 중이다.`,
+    fn:"*전사(轉寫): DNA의 유전 정보가 일단 전령 RNA에 옮겨지는 과정.\n*프로모터(promoter): RNA 중합 효소가 결합하는 DNA 가닥의 한 부위.",
+    ox:[
+      ["DNA 메틸화는 유전자의 전사를 억제하는 방향으로 작용한다.", true],
+      ["히스톤 아세틸화는 전사 인자의 접근을 막아 발현을 억제한다.", false],
+      ["보리노스타트는 HDAC를 저해하여 아세틸화 상태를 유지시킨다.", true],
+      ["후성 유전적 오류는 돌연변이와 달리 가역적 특성을 지닌다.", true],
+      ["확장된 이중 적중 모델은 두 대립 유전자 모두 돌연변이여야만 암이 생긴다고 본다.", false]
+    ],
+    cloze:[
+      ["DNA 염기 서열 변화 없이 화학적 변형으로 발현을 조절하는 과정을 ", "후성유전", ["후성 유전"], "이라 한다."],
+      ["프로모터 내 사이토신에 ", "메틸기", [], "가 부착되면 전사가 억제된다."],
+      ["히스톤 라이신 잔기에 ", "아세틸기", [], "가 결합하면 전사가 촉진된다."],
+      ["아세틸기를 제거해 발현을 억제하는 효소는 ", "HDAC", ["히스톤탈아세틸화효소"], "이다."],
+      ["후성 유전적 오류는 돌연변이와 달리 ", "가역적", ["가역"], "이다."]
+    ]
+  }
+  ];
+
+  /* ===== 저장 (OMR 방식: localStorage) ===== */
+  var LS="sooteukwan_memory_v1";
+  var store={name:"", prog:{}}; // prog[pid]={attempts, done}
+  function load(){ try{var d=JSON.parse(localStorage.getItem(LS)); if(d){store=d; if(!store.prog)store.prog={};}}catch(e){} }
+  function save(){ try{localStorage.setItem(LS, JSON.stringify(store));}catch(e){} }
+  function prog(pid){ if(!store.prog[pid]) store.prog[pid]={attempts:0,done:false,best:0}; return store.prog[pid]; }
+
+  /* ===== 세션 상태 ===== */
+  var st={p:null, readSec:240, timeLeft:0, timer:null, peek:0, readUsed:0, ox:[]};
+
+  /* ===== 초기화 ===== */
+  load();
+  var sel=$("#passageSel");
+  PASSAGES.forEach(function(p,i){
+    var o=document.createElement("option"); o.value=i; o.textContent=p.title; sel.appendChild(o);
+  });
+  if(store.name) $("#studentName").value=store.name;
+  sel.onchange=function(){ refreshDoneNote(); };
+
+  /* ===== 순차 잠금 ===== */
+  function isDone(i){ var pr=store.prog[PASSAGES[i].pid]; return !!(pr&&pr.done); }
+  function frontier(){ for(var i=0;i<PASSAGES.length;i++){ if(!isDone(i)) return i; } return PASSAGES.length; } // 첫 미완료 index
+  function allDone(){ return frontier()>=PASSAGES.length; }
+  function refreshSelect(){
+    var f=frontier();
+    PASSAGES.forEach(function(p,i){
+      var o=sel.options[i];
+      if(isDone(i)){ o.textContent="✅ "+(i+1)+". "+p.title; o.disabled=false; }
+      else if(i===f){ o.textContent="▶ "+(i+1)+". "+p.title+" (현재 과제)"; o.disabled=false; }
+      else { o.textContent="🔒 "+(i+1)+". "+p.title; o.disabled=true; }
+    });
+    // 현재 선택이 잠겨 있으면 현재 과제(frontier)로 이동
+    if(sel.options[sel.selectedIndex] && sel.options[sel.selectedIndex].disabled){
+      sel.value=String(Math.min(f, PASSAGES.length-1));
+    }
+    refreshDoneNote();
+  }
+  refreshSelect();
+
+  function refreshDoneNote(){
+    var i=+sel.value, p=PASSAGES[i], pr=prog(p.pid), n=$("#doneNote");
+    if(pr.done){ n.classList.remove("hidden"); n.innerHTML="이 지문은 이미 <b style='color:#1f8a4c'>100점 완료</b>했습니다. 복습으로 다시 도전할 수 있어요."; }
+    else if(sel.options[i].disabled){ n.classList.remove("hidden"); n.innerHTML="🔒 <b>잠긴 지문</b>입니다. 앞 지문을 먼저 100점으로 끝내세요."; }
+    else if(pr.attempts>0){ n.classList.remove("hidden"); n.innerHTML="지난 시도: <b>"+pr.attempts+"회</b> (아직 미완료)"; }
+    else n.classList.add("hidden");
+  }
+
+  function show(id){ ["start","read","ox","cloze","result"].forEach(function(s){
+    document.getElementById("scr-"+s).classList.toggle("hidden", s!==id); }); window.scrollTo(0,0); }
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+
+  $("#startBtn").onclick=function(){
+    var name=$("#studentName").value.trim();
+    if(!name){ alert("이름을 먼저 입력하세요."); return; }
+    if(sel.options[+sel.value].disabled){ alert("🔒 앞 지문을 먼저 100점으로 끝내야 이 지문을 열 수 있어요."); return; }
+    store.name=name; save();
+    st.p=PASSAGES[+sel.value];
+    st.readSec=+$("#readTime").value;
+    st.peek=0;
+    beginRead();
+  };
+
+  /* ===== 읽기 ===== */
+  function beginRead(){
+    show("read");
+    var pr=prog(st.p.pid);
+    $("#readAttempt").textContent="🔁 지금까지 시도 "+pr.attempts+"회 · 이번엔 100점 도전!";
+    $("#readArea").classList.remove("hidden");
+    $("#curtainArea").classList.add("hidden");
+    $("#hideBtn").textContent="다 외웠어요 · 가리고 문제 풀기";
+    var box=$("#passageBox");
+    var fnHtml = st.p.fn ? '<span class="fn">'+esc(st.p.fn)+'</span>' : '';
+    box.innerHTML='<div class="ptitle">'+esc(st.p.title)+' &nbsp;·&nbsp; <span style="font-weight:600;color:#a68e92">'+esc(st.p.src)+'</span></div>'+esc(st.p.text)+fnHtml;
+    box.scrollTop=0;
+    st.timeLeft=st.readSec; updateTimer();
+    clearInterval(st.timer);
+    st.timer=setInterval(function(){ st.timeLeft--; updateTimer(); if(st.timeLeft<=0){clearInterval(st.timer); hidePassage(true);} },1000);
+  }
+  function updateTimer(){
+    var m=Math.floor(st.timeLeft/60),s=st.timeLeft%60,p=function(n){return(n<10?"0":"")+n;};
+    var t=$("#timer"); t.textContent=p(m)+":"+p(s); t.classList.toggle("low",st.timeLeft<=30);
+    $("#tbarFill").style.width=(st.timeLeft/st.readSec*100)+"%";
+  }
+  $("#hideBtn").onclick=function(){ clearInterval(st.timer); hidePassage(false); };
+  function hidePassage(auto){
+    st.readUsed=st.readSec-(auto?0:st.timeLeft);
+    $("#readArea").classList.add("hidden");
+    $("#curtainArea").classList.remove("hidden");
+  }
+  $("#peekBtn").onclick=function(){
+    st.peek++;
+    $("#readArea").classList.remove("hidden");
+    $("#curtainArea").classList.add("hidden");
+    $("#hideBtn").textContent="다시 가리기";
+    clearInterval(st.timer); st.timeLeft=20; updateTimer();
+    st.timer=setInterval(function(){ st.timeLeft--; updateTimer(); if(st.timeLeft<=0){clearInterval(st.timer);hidePassage(true);} },1000);
+  };
+  $("#toQuizBtn").onclick=buildOX;
+
+  /* ===== OX ===== */
+  function buildOX(){
+    if(!st.p.ox || st.p.ox.length===0){ st.ox=[]; buildCloze(); return; }
+    show("ox");
+    st.ox=new Array(st.p.ox.length).fill(null);
+    var wrap=$("#oxList"); wrap.innerHTML="";
+    st.p.ox.forEach(function(item,i){
+      var q=document.createElement("div"); q.className="q";
+      q.innerHTML='<div class="qt">'+(i+1)+'. '+esc(item[0])+'</div><div class="ox"><button data-v="O">O</button><button data-v="X">X</button></div>';
+      q.querySelectorAll(".ox button").forEach(function(b){
+        b.onclick=function(){
+          q.querySelectorAll(".ox button").forEach(function(x){x.classList.remove("sel");});
+          b.classList.add("sel"); st.ox[i]=(b.dataset.v==="O");
+          $("#oxNext").disabled = st.ox.indexOf(null)>-1;
+        };
+      });
+      wrap.appendChild(q);
+    });
+    $("#oxNext").disabled=true;
+  }
+  $("#oxNext").onclick=buildCloze;
+
+  /* ===== 빈칸 ===== */
+  function buildCloze(){
+    show("cloze");
+    var wrap=$("#clozeList"); wrap.innerHTML="";
+    st.p.cloze.forEach(function(c,i){
+      var line=document.createElement("div"); line.className="q cloze";
+      line.innerHTML='<div class="clz-line">'+esc(c[0])+'<input type="text" data-i="'+i+'" autocomplete="off">'+esc(c[3])+'</div>';
+      wrap.appendChild(line);
+    });
+    $("#clozeGrade").disabled=false;
+  }
+
+  /* ===== 채점 ===== */
+  $("#clozeGrade").onclick=function(){
+    // OX 채점
+    var oxScore=0;
+    st.p.ox.forEach(function(item,i){ if(st.ox[i]===item[1]) oxScore++; });
+    // 빈칸 채점
+    var inputs=$("#clozeList").querySelectorAll("input");
+    var clzScore=0, clzResult=[];
+    st.p.cloze.forEach(function(c,i){
+      var val=normAns(inputs[i].value);
+      var accept=[c[1]].concat(c[2]||[]).map(normAns);
+      var ok=(val!=="" && accept.indexOf(val)>-1);
+      if(ok) clzScore++;
+      clzResult.push(ok);
+    });
+    var total=st.p.ox.length+st.p.cloze.length;
+    var raw=oxScore+clzScore;
+    var pct=Math.round(raw/total*100);
+    st.result={oxScore:oxScore, clzScore:clzScore, pct:pct, clzResult:clzResult};
+    // 기록
+    var pr=prog(st.p.pid); pr.attempts++; pr.best=Math.max(pr.best||0,pct);
+    if(pct>=100) pr.done=true;
+    save();
+    showResult();
+  };
+
+  function showResult(){
+    show("result");
+    var r=st.result, pr=prog(st.p.pid), pass=(r.pct>=100);
+    $("#resAttempt").textContent="🔁 시도 "+pr.attempts+"회차";
+    var sm=$("#scoreMain"); sm.textContent=r.pct+"점"; sm.className="score-main "+(pass?"pass":"fail");
+    var oxPart = (st.p.ox&&st.p.ox.length) ? ("OX "+r.oxScore+"/"+st.p.ox.length+" · ") : "";
+    $("#scoreDetail").innerHTML=oxPart+"빈칸 "+r.clzScore+"/"+st.p.cloze.length+
+      " · 읽기 "+(st.readUsed||st.readSec)+"초 · 다시봄 "+st.peek+"회";
+    // 미달 시 틀린 항목 번호만(정답 비공개)
+    var wl=$("#wrongLine");
+    if(!pass){
+      var wrongOx=[], wrongClz=[];
+      st.p.ox.forEach(function(it,i){ if(st.ox[i]!==it[1]) wrongOx.push(i+1); });
+      r.clzResult.forEach(function(ok,i){ if(!ok) wrongClz.push(i+1); });
+      var msg=[];
+      if(wrongOx.length) msg.push("OX "+wrongOx.join(","));
+      if(wrongClz.length) msg.push("빈칸 "+wrongClz.join(","));
+      wl.classList.remove("hidden");
+      wl.innerHTML="❌ 다시 볼 문항: "+msg.join(" / ")+" (정답은 100점 시 공개)";
+    } else wl.classList.add("hidden");
+
+    $("#failWrap").classList.toggle("hidden", pass);
+    $("#passWrap").classList.toggle("hidden", !pass);
+
+    // 전체 완료 시에만 결과 화면 제출 버튼 노출
+    $("#submitAllBtn2").classList.toggle("hidden", !allDone());
+
+    if(pass){
+      // 정답 공개
+      var html="<b>✅ 정답 공개</b><br><br><b>OX 정답</b><br>";
+      st.p.ox.forEach(function(o,i){ html+=(i+1)+". "+(o[1]?"O":"X")+" — "+esc(o[0])+"<br>"; });
+      html+="<br><b>빈칸 정답</b><br>";
+      st.p.cloze.forEach(function(c,i){ html+=(i+1)+". "+esc(c[0])+"<b>"+esc(c[1])+"</b>"+esc(c[3])+"<br>"; });
+      $("#ansKey").innerHTML=html;
+      // 다음 지문 안내
+      var np=$("#nextNote");
+      if(allDone()){ np.innerHTML="🎉 <b>모든 지문 완료!</b> 아래 '카톡 과제 보고서 제출'을 눌러 선생님께 보내세요."; $("#homeBtn").textContent="처음으로"; }
+      else { np.innerHTML="다음 지문 <b>"+(frontier()+1)+"번</b>이 열렸습니다. '다음 지문으로'를 눌러 이어서 하세요."; $("#homeBtn").textContent="다음 지문으로 ▶"; }
+      np.classList.remove("hidden");
+    } else {
+      $("#nextNote").classList.add("hidden");
+      $("#homeBtn").textContent="다른 지문";
+    }
+    refreshSelect();
+    $("#reviewPassage").classList.add("hidden");
+  }
+
+  $("#retryBtn").onclick=function(){ st.peek=0; beginRead(); };
+  $("#homeBtn").onclick=function(){ show("start"); refreshSelect(); updateHwStatus(); };
+  $("#reviewBtn").onclick=function(){
+    var rp=$("#reviewPassage");
+    if(!rp.classList.contains("hidden")){ rp.classList.add("hidden"); return; }
+    var fnHtml=st.p.fn?'<span class="fn">'+esc(st.p.fn)+'</span>':'';
+    rp.innerHTML='<div class="ptitle">'+esc(st.p.title)+'</div>'+esc(st.p.text)+fnHtml;
+    rp.classList.remove("hidden");
+  };
+
+  /* ===== 카톡 보고서 (OMR 방식) — 전체 완료 시에만 제출 ===== */
+  function fullDate(){ var d=new Date(),p=function(n){return(n<10?"0":"")+n;}; return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()); }
+
+  // 전체 과제 제출 보고서 (모든 지문 100점 완료 시)
+  function reportAll(){
+    var lines=[], total=0;
+    PASSAGES.forEach(function(p,i){
+      var pr=store.prog[p.pid];
+      lines.push((i+1)+". "+p.title+" — 시도 "+pr.attempts+"회 ✅");
+      total+=pr.attempts;
+    });
+    return "[수특완 지문 단기 암기 훈련 · 과제 제출]\n"+
+      "━━━━━━━━━━━━━━━━━━\n"+
+      "👤 이름: "+(store.name||"미입력")+"\n"+
+      "📅 제출일: "+fullDate()+"\n"+
+      "🎯 전 지문 100점 완료 ("+PASSAGES.length+"개)\n"+
+      "🔁 총 시도: "+total+"회\n"+
+      "━━━━━━━━━━━━━━━━━━\n"+
+      lines.join("\n")+"\n"+
+      "━━━━━━━━━━━━━━━━━━";
+  }
+
+  function openReport(text){ $("#report-text").value=text; $("#reportModal").classList.add("show"); }
+  function trySubmit(){
+    if(!store.name){ alert("이름을 먼저 입력하세요."); return; }
+    if(!allDone()){ alert("🔒 모든 지문을 100점으로 끝내야 과제를 제출할 수 있어요.\n(현재 "+frontier()+" / "+PASSAGES.length+" 완료)"); return; }
+    openReport(reportAll());
+  }
+  $("#submitAllBtn").onclick=trySubmit;
+  $("#submitAllBtn2").onclick=trySubmit;
+  $("#closeModalBtn").onclick=function(){ $("#reportModal").classList.remove("show"); };
+  $("#copyReportBtn").onclick=function(){
+    var t=$("#report-text").value;
+    function done(){ toast("보고서가 복사됐어요! 카톡에 붙여넣어 선생님께 보내세요."); }
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, fb);
+    else fb();
+    function fb(){ var ta=document.createElement("textarea"); ta.value=t; ta.style.position="fixed"; ta.style.top="-9999px"; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(ta); done(); }
+  };
+
+  /* ===== 초기화 + 과제 현황 ===== */
+  $("#resetBtn").onclick=function(){
+    if(confirm("모든 지문의 시도 기록과 완료 코드가 지워집니다. 초기화할까요?")){
+      store={name:store.name, prog:{}}; save();
+      refreshSelect(); updateHwStatus();
+      toast("초기화 완료!");
+    }
+  };
+  function updateHwStatus(){
+    var cnt=0; PASSAGES.forEach(function(p){ if(store.prog[p.pid]&&store.prog[p.pid].done) cnt++; });
+    var done=allDone(), btn=$("#submitAllBtn");
+    if(done){ $("#hwStatus").innerHTML="🎉 <b style='color:#1f8a4c'>전 지문 완료!</b> 이제 카톡 과제 보고서를 제출할 수 있어요."; }
+    else { $("#hwStatus").innerHTML="완료 <b style='color:#1f8a4c'>"+cnt+"</b> / "+PASSAGES.length+" 지문 — <b style='color:#d04141'>모든 지문을 100점으로 끝내야 제출됩니다.</b>"; }
+    btn.disabled=!done; btn.style.opacity=done?"1":"0.45";
+  }
+  updateHwStatus();
+
+  function toast(m){ var t=$("#toast"); t.textContent=m; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},2200); }
+})();
+</script>
+</body>
+</html>
