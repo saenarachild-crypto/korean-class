@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>수능 완성 실전 5회 OMR</title>
+<title>수능 완성 실전 5회 OMR</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -394,7 +394,6 @@
       const currentName = state.name || '미입력';
       const attemptNum = state.attemptCount || 1;
       
-
       let oList = [], tList = [], xList = [];
       state.marks.forEach((m, idx) => {
         if(m === 'o') oList.push(idx+1);
@@ -415,7 +414,6 @@
         ? `\n⏱️ [지문별 소요 시간]\n${timeLines.join('\n')}\n━━━━━━━━━━━━━━━━━━━━━━` 
         : '';
       
-
       if(!state.lastResult) {
         return `[수능 완성 실전 5회 결과]\n━━━━━━━━━━━━━━━━━━━━━━\n👤 이름: ${currentName}\n⚠️ 아직 채점 전입니다.\n━━━━━━━━━━━━━━━━━━━━━━`;
       }
