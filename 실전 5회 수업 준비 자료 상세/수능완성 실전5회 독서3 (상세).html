@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>수능완성 실전5회 독서3 · 8~11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #4a3a6e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #faf9fd; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 0.3em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text p.stanza-gap { margin-top: 1.2em; }
+        .original-text .underline-phrase {
+            background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label {
+            display: block; color: #7c3aed; font-weight: 800; font-size: 17px; margin: 20px 0 10px 0;
+        }
+        .bracket-tag {
+            display: block; text-align: right; font-size: 12px; font-weight: 700; color: #ffffff;
+            background: #475569; padding: 1px 10px; border-radius: 10px; width: fit-content;
+            margin: 4px 0 14px auto;
+        }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #4a3a6e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #6a4c93;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #4a3a6e; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .compare-flow { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+        .compare-box {
+            flex: 1; min-width: 200px; border-radius: 18px; padding: 14px 16px; font-size: 12.5px;
+        }
+        .compare-box.a { background: #fde9e9; border: 1.5px solid #ef4444; }
+        .compare-box.b { background: #eafbf0; border: 1.5px solid #16a34a; }
+        .compare-box h4 { margin-bottom: 8px; font-size: 14px; }
+        .soljae-box {
+            background: #fff8e6; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin: 10px 0; border: 1px solid #f1c40f;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #6a4c93; padding-left: 20px;
+        }
+        .structure-title span { background: #4a3a6e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #4a3a6e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #6a4c93;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #4a3a6e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #4a3a6e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #4a3a6e; }
+        .passage-study h3 { font-size: 17px; margin: 14px 0 8px 0; color: #4a3a6e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style></head><body>
+<div class="container">
+<div class="header"><h1>⚖️ 수능완성 실전 5회 · 독서3 8~11</h1>
+<p>사회 「사회 통제를 보는 세 관점」 | 원문 + 구절별 지문 분석 + 어휘 + 판서 + 문항 분석 + 지문 연구</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p><span class="underline-phrase">사회 과학에서 사회 통제는 구성원들을 사회의 규범에 순응하게 만드는 모든 절차와 방법을 지칭한다</span><span class="phrase-label">사회 통제의 개념</span>. 이때 규범이란, <span class="underline-phrase">어떤 행동을 할 때 기준이 되는 규칙 혹은 지침을 의미한다</span><span class="phrase-label">규범의 개념</span>. 사회 과학에서는 규범을 두 가지 측면으로 파악하는데, 우선 <span class="underline-phrase">규범은 하나의 사회를, 다른 규범에 따라 존재하는 사회와 구별함으로써 그 사회를 구성한다</span><span class="phrase-label">규범의 기능 ①</span>. 또한 <span class="underline-phrase">규범은 개인으로 하여금 자신이 특정한 사회 속에서 살아가며 그 사회에 속한다고 여기도록 한다</span><span class="phrase-label">규범의 기능 ②</span>. 즉 사회화와 문화의 습득 과정도 담당한다. 이렇듯 규범은 사회 및 사회 구성원의 형성과 존속의 토대가 되기 때문에 사회는 규범을 보호하려 한다. <span class="underline-phrase">사회 통제란 바로 이러한 규범의 보존을 위해 사회가 행하는 모든 것을 통칭한다</span><span class="phrase-label">사회 통제의 기능</span>고 할 수 있다. <span class="para-note">← 사회 통제의 의미와 규범의 기능</span></p>
+<p class="stanza-gap">일반적으로 사회 통제의 이론은 <span class="underline-phrase">사회 질서의 바탕이 되는 규범을 어떻게 인식하느냐에 따라 구분</span><span class="phrase-label">사회 통제 이론의 구분 기준</span>되는데, ‘합의적 관점’, ‘갈등 이론적 관점’, ‘상호 작용론적 관점’으로 나누어 볼 수 있다. 우선 합의적 관점은 사회의 중요한 문제나 갈등에 대해 <span class="underline-phrase">구성원들이 합의하여 일정한 규범을 창출하고 이를 통해 화합을 달성하는 것이 가능하다</span><span class="phrase-label">합의적 관점의 전제</span>고 본다. 사회 구성원들이 공유하는 규범은 곧 안정적이고 질서 잡힌 사회의 핵심이 되고, 사회 통제가 이를 보장하게 되는 것이다. 이와 같은 관점에서 <span class="underline-phrase">범죄나 일탈은 사회 전체가 합의한 일반적 규범을 위반하고 사회 구성원이 맡고 있는 기능적 역할을 방기하는 것</span><span class="phrase-label">합의적 관점에서의 일탈의 의미</span>으로 이해된다. 이때 사회 통제는 강제력을 통해 이러한 일탈을 규율하는 역할을 수행하며, <span class="underline-phrase">사회 구성원들의 합의에 근거한 규범을 보호한다는 점에서 정당성을 확보한다</span><span class="phrase-label">합의적 관점에서의 사회 통제의 정당성 근거</span>. <span class="para-note">← 합의적 관점에서의 규범과 사회 질서 유지</span></p>
+<p class="stanza-gap">이에 반해 갈등 이론적 관점은 규범을 사회 구성원들 사이의 자발적인 합의에 의한 것으로 보지 않는다. <span class="underline-phrase">갈등 이론적 관점에서 규범은 사회의 다양한 집단 중에서 특권을 누리는 집단이 권력을 가지지 못한 집단을 지배하여 자신들의 이익을 보호하려는 수단일 뿐이다</span><span class="phrase-label">갈등 이론적 관점에서의 규범의 의미</span>. 따라서 규범은 특정한 이해관계에만 봉사하려는 목적을 띠고 만들어진 것일 뿐이다. <span class="underline-phrase">갈등 이론적 관점에서는 규범 유지를 위한 사회 통제는 기득권을 가진 집단이 그렇지 못한 집단을 억압하기 위한 장치에 불과하기 때문에 정당성을 가지기 어렵다</span><span class="phrase-label">갈등 이론적 관점에서의 사회 통제</span>. 또한 이 관점에서 <span class="underline-phrase">범죄와 일탈은 단순히 인성, 도덕성과 같은 개인적 차원의 문제가 아니라 정치적이고 사회적인 함의를 지니게 된다</span><span class="phrase-label">갈등 이론적 관점에서의 일탈의 의미</span>. <span class="para-note">← 갈등 이론적 관점에서의 규범과 지배 집단의 이익</span></p>
+<p class="stanza-gap">상호 작용론적 관점에서는 합의적 관점과 갈등 이론적 관점과 달리 <span class="underline-phrase">규범의 근본적 성격을 규정하려 하지 않는다</span><span class="phrase-label">상호 작용론적 관점의 특징</span>. 이 관점에서 <span class="underline-phrase">규범은 사회의 구성원들이 일상적으로 상호 작용하는 과정에서 자연스럽게 나타나는 그 무엇</span><span class="phrase-label">상호 작용론적 관점에서의 규범의 의미</span>이다. 따라서 여기서는 규범 자체보다, 한 사람이 그 규범을 어떻게 인식하고 이에 따라 행동하는가를 더 중요하게 여긴다. 객관적 법칙이 존재하는 자연적 현상에서와는 달리 규범을 둘러싼 사회적 현상에는 그러한 법칙이 존재할 수 없기 때문에 개인의 성향과 주관을 더 중요하게 고려하는 것이다. 개인은 자신을 둘러싼 환경을 주관적으로 해석하여 어떤 행위를 하는데, 이에 대한 타인의 반응을 통해 자신의 행위를 반성적으로 평가하여 필요한 경우 교정한다. <span class="underline-phrase">상호 작용론적 관점은 이러한 과정 자체를 사회 통제로 파악한다</span><span class="phrase-label">상호 작용론적 관점에서의 사회 통제의 의미</span>. <span class="para-note">← 상호 작용론적 관점에서의 규범과 개인의 주관적 해석</span></p>
+<p class="stanza-gap">사회 통제에 대한 다양한 이론적 관점은 <span class="underline-phrase">단순히 규범을 유지하는 방식만이 아니라, 사회를 바라보는 근본적인 태도와 인간을 이해하는 방식의 차이를 드러낸다</span><span class="phrase-label">규범의 다층적 의미</span>. 규범은 통일성과 질서를 제공하기도 하지만 때로는 갈등과 불평등을 드러내는 기준이 되기도 하며 또 다른 측면에서는 개인이 사회 속에서 자신을 성찰하고 조율하는 계기로 작용하기도 한다. 따라서 <span class="underline-phrase">사회 통제를 단순한 규율의 문제가 아니라, 사회 구성원 간의 관계 맺음과 의미 형성의 과정으로 이해할 필요가 있다</span>. <span class="para-note">← 사회 통제 이해의 다층적 의미</span></p>
+</div></div><div class="col-right"><div class="analysis-box"><div class="title">📌 1문단 · 사회 통제와 규범</div><div class="content">사회 통제=구성원을 규범에 순응하게 하는 모든 절차·방법. 규범은 ①한 사회를 다른 사회와 구별해 사회를 &#x27;구성&#x27;, ②개인이 그 사회에 속한다고 여기게 함(사회화·문화 습득). 규범은 사회·구성원 형성·존속의 토대 → 사회는 규범 보호 = 사회 통제.</div></div>
+<div class="analysis-box"><div class="title">📌 2문단 · 합의적 관점</div><div class="content">구성원들이 합의해 규범을 창출·공유 → 안정·질서의 핵심. 범죄·일탈=합의된 규범 위반, 기능적 역할 방기. 사회 통제=강제력으로 일탈 규율, 합의에 근거해 &#x27;정당성&#x27; 확보 → 사회 결속 회복·체계 유지에 기여.</div></div>
+<div class="analysis-box"><div class="title">📌 3문단 · 갈등 이론적 관점</div><div class="content">규범은 자발적 합의가 아님. 특권 집단이 권력 없는 집단을 지배해 자기 이익을 보호하는 &#x27;수단&#x27;. 사회 통제=기득권의 억압 장치 → 정당성 확보 어려움. 범죄·일탈은 개인 문제가 아니라 정치적·사회적 함의를 지님.</div></div>
+<div class="analysis-box"><div class="title">📌 4문단 · 상호 작용론적 관점</div><div class="content">규범의 근본 성격을 규정하려 하지 않음. 규범은 일상적 상호 작용에서 자연스럽게 나타남 → &#x27;규범을 어떻게 인식·행동하는가&#x27;가 중요. 개인은 환경을 주관적으로 해석해 행위하고, 타인의 반응으로 자기 행위를 반성·교정 → 이 과정 자체가 사회 통제.</div></div>
+<div class="analysis-box"><div class="title">📌 5문단 · 관점 차이의 의미</div><div class="content">세 관점은 규범 유지 방식만이 아니라 &#x27;사회를 보는 태도·인간 이해&#x27;의 차이를 드러냄. 규범은 질서·갈등·성찰의 계기가 모두 될 수 있음 → 사회 통제를 관계 맺음·의미 형성의 과정으로 이해할 필요.</div></div>
+<div class="vocab-box">📖 <strong>어휘</strong><br>• <strong>지침(指針)</strong>: 생활이나 행동 따위의 지도적 방법이나 방향을 인도하여 주는 준칙.<br>• <strong>존속(存續)</strong>: 어떤 대상이 그대로 있거나 어떤 현상이 계속됨.<br>• <strong>통칭(統稱)</strong>: 통틀어 이르거나 가리킴. 또는 그런 명칭이나 말.<br>• <strong>방기(放棄)</strong>: 내버리고 아예 돌아보지 아니함.<br>• <strong>규율(規律)</strong>: 질서나 제도를 좇아 다스림.<br>• <strong>함의(含意)</strong>: 말이나 글 속에 어떠한 뜻이 들어 있음. 또는 그 뜻.</div>
+<div class="info-box"><h3>🎯 독해 포인트</h3><p style="font-size:13.5px;">&#x27;규범을 무엇으로 보는가&#x27;에 따라 세 관점이 갈린다는 분류형 지문. ①합의적=합의의 산물(사회 통제는 정당), ②갈등론=지배 집단의 이익 수단(정당성 약함), ③상호작용론=일상 상호작용의 산물(규범의 성격 규정 안 함, 개인의 인식·반응 중시)이라는 대비를 표로 정리. 특히 &#x27;정당성&#x27; 유무(합의○/갈등×)와 &#x27;범죄·일탈&#x27;을 보는 시선의 차이가 자주 출제됨.</p><h3 style="margin-top:16px;">📌 주제</h3><p style="font-size:13.5px;">사회 통제에 대한 합의적·갈등 이론적·상호 작용론적 관점의 차이</p></div></div></div>
+<div class="structure-wrapper" style="background:#0f3324;border-top:3px solid #2b4a38;"><div class="structure-title" style="color:#ffe486;border-left-color:#ffe486;">📝 수업 판서 (칠판) <span style="background:#0b2a1e;color:#ffe486;">8~11</span></div><div style="max-width:1180px;margin:0 auto;"><svg viewBox="0 0 1640 900" xmlns="http://www.w3.org/2000/svg" font-family="'Nanum Pen Script','Gaegu',cursive" style="width:100%;height:auto;display:block;border-radius:14px;"><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#164531"/><stop offset="1" stop-color="#0f3324"/></linearGradient></defs><rect x="0" y="0" width="1640" height="900" rx="18" fill="url(#bg)"/><rect x="10" y="10" width="1620" height="880" rx="12" fill="none" stroke="#3a5a48" stroke-width="8"/><text x="820.0" y="78" fill="#ffe486" font-size="44" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">⚖️ 사회 통제를 보는 세 관점</text><line x1="440.0" y1="96" x2="1200.0" y2="96" stroke="#ffe486" stroke-width="3" stroke-linecap="round"/><path d="M420.0,70 Q280.0,150 240.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><path d="M1220.0,70 Q1360.0,150 1400.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><text x="820.0" y="150" fill="#f4f4ec" font-size="28" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">사회 통제 = 규범 보존을 위한 모든 것 (규범을 무엇으로 보는가?)</text><rect x="90" y="210" width="470" height="560" rx="20" fill="none" stroke="#9ad8ff" stroke-width="3"/><text x="325.0" y="258" fill="#9ad8ff" font-size="32" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">① 합의적 관점</text><text x="116" y="310" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">규범 = 구성원의</text><text x="116" y="362" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">&#x27;합의&#x27;의 산물</text><text x="116" y="414" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">사회 질서·화합의 핵심</text><text x="116" y="466" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">일탈 = 규범 위반·</text><text x="116" y="518" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">역할 방기</text><text x="116" y="570" fill="#ffe486" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">→ 통제는 &#x27;정당성&#x27; O</text><text x="325.0" y="748" fill="#7fe0c8" font-size="23" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">체계 유지에 기여</text><rect x="585" y="210" width="470" height="560" rx="20" fill="none" stroke="#ff9db2" stroke-width="3"/><text x="820.0" y="258" fill="#ff9db2" font-size="32" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">② 갈등 이론적</text><text x="611" y="310" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">규범 = 특권 집단이</text><text x="611" y="362" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">권력 없는 집단 지배·</text><text x="611" y="414" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">이익 보호하는 &#x27;수단&#x27;</text><text x="611" y="466" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">통제 = 억압 장치</text><text x="611" y="518" fill="#ffe486" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">→ 정당성 확보 어려움</text><text x="611" y="570" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">일탈 = 정치·사회적</text><text x="820.0" y="748" fill="#7fe0c8" font-size="23" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">함의를 지님</text><rect x="1080" y="210" width="470" height="560" rx="20" fill="none" stroke="#a8e6a1" stroke-width="3"/><text x="1315.0" y="258" fill="#a8e6a1" font-size="32" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">③ 상호 작용론적</text><text x="1106" y="310" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">규범의 성격 규정 X</text><text x="1106" y="362" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">일상 상호작용에서</text><text x="1106" y="414" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">자연스럽게 나타남</text><text x="1106" y="466" fill="#ffe486" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">→ 규범 &#x27;인식·행동&#x27;</text><text x="1106" y="518" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">이 중요</text><text x="1106" y="570" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">주관적 해석→반응→</text><text x="1315.0" y="748" fill="#7fe0c8" font-size="23" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">교정 = 통제</text></svg></div><div style="margin-top:14px;text-align:center;font-size:13px;color:#94a3b8;">※ 손글씨 폰트(Nanum Pen)는 인터넷 연결 시 자동 적용됩니다.</div></div>
+<div class="passage-study" style="background:#fbf7ef;border-top:3px solid #e0c9a6;">
+<h2 style="color:#7c3f1d;">📘 사용설명서 지문 분석 <span style="font-size:14px;color:#9a7b52;">(EBS 수능완성 사용설명서)</span></h2>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">🧩 핵심 개념</h3>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 1 · 규범과 사회 통제</div><div class="content">규범: 행동의 기준이 되는 규칙이나 지침. 규범의 기능: 사회를 구성하고, 개인이 그 사회의 구성원이라고 인식하게 함. 사회 통제: 사회가 규범을 보존하기 위해 행하는 모든 절차와 방법. 사회 통제의 목적·필요성: 사회의 토대가 되는 규범 보호.</div></div>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 2 · 범죄 또는 일탈에 대한 관점별 의미</div><div class="content">합의적 관점: 사회 전체가 합의한 규범 위반과 사회 구성원이 맡고 있는 기능적 역할의 방기. 갈등 이론적 관점: 억압적 사회 구조의 산물. 인성·도덕성 같은 개인적 차원의 문제가 아닌 정치적·사회적 문제. 상호 작용론적 관점: 규범에 대한 주관적 해석 차이에서 비롯된 행위. 절대적 기준 없음.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">📎 이것만은 꼭 익히자!</h3>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 1 · 규범의 의미와 기능, 사회 통제의 의미</div><div class="content">규범(행동의 기준이 되는 규칙·지침) → [사회 구성 기능] + [사회화 기능] → 사회 및 사회 구성원의 형성과 존속의 토대 → 사회 통제(규범의 보존을 위해 사회가 행하는 모든 것) → 사회 구성원의 형성 및 존속 보장.</div></div>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 2 · 사회 통제에 대한 세 가지 관점 비교</div><div class="content">규범의 성격: 합의(구성원 합의의 산물→안정·질서의 핵심) / 갈등(지배 집단의 이익 보호 수단·도구) / 상호작용(일상적 상호작용에서 자연 형성). 사회 통제의 역할: 합의(강제력으로 일탈 규율→사회 결속 회복) / 갈등(기득권층이 피지배층을 억압하는 장치) / 상호작용(타인의 반응→개인의 자기 성찰·교정). 정당성 여부: 합의(구성원 합의 근거→정당성 확보) / 갈등(이해관계 편향→정당성 없음) / 상호작용(고정된 판단 기준 없음→맥락에 따라 상이). 일탈의 의미: 합의(합의된 일반 규범 위반·기능적 역할 방기) / 갈등(억압·불평등 구조의 정치·사회적 산물) / 상호작용(규범의 주관적 해석 차이에서 비롯). 사회 통제의 근거: 합의(합의에 근거한 규범 보호) / 갈등(근거 없음-억압) / 상호작용(타인의 반응을 통한 자기 성찰).</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">✨ 배경지식 더 알아보기</h3>
+<div class="analysis-box" style="border-left-color:#0ea5a0;background:#effefb;"><div class="title">합의적 관점의 이론적 토대 – 뒤르켐과 기능주의</div><div class="content">합의적 관점은 뒤르켐의 이론에 뿌리를 둔다. 뒤르켐은 사회가 구성원이 공유하는 &#x27;집합 의식&#x27;에 의해 유지된다고 보았다. 규범은 이 집합 의식의 산물이며, 범죄·일탈은 집합 의식에 대한 도전이다. 뒤르켐은 범죄가 사회에서 &#x27;정상적인&#x27; 현상이라고 주장했다. 범죄에 대한 처벌 과정이 오히려 구성원들의 도덕 감정을 강화하고 사회적 결속을 높이기 때문이다. 즉 일탈과 그에 대한 사회 통제는 오히려 규범을 재확인하고 강화하는 기능을 한다.</div></div>
+<div class="analysis-box" style="border-left-color:#0ea5a0;background:#effefb;"><div class="title">갈등 이론적 관점의 이론적 토대 – 마르크스와 비판 사회학</div><div class="content">갈등 이론적 관점은 마르크스와 막스 베버의 사상, 20세기 비판 사회학에 기반한다. 마르크스는 법과 규범이 경제적 지배 계급의 이해관계를 반영한다고 보았다. 지배 계급은 자신들의 이익을 지키기 위해 법·규범을 제정하고 국가(경찰·법원 등)를 통해 이를 강제한다. 현대 갈등 이론가들은 마르크스의 경제적 계급 개념을 인종·국적 등으로 확장했다. 예컨대 19세기 미국 흑인 노예제하에서 노예의 탈출을 금지한 &#x27;도주 노예법&#x27;은 지배 집단의 이익을 위한 규범이 어떻게 작동하는지를 보여 주는 사례이다.</div></div>
+<div class="analysis-box" style="border-left-color:#0ea5a0;background:#effefb;"><div class="title">낙인 이론 – 하워드 베커</div><div class="content">낙인 이론은 하워드 베커의 저서 「아웃사이더」에서 체계화되었다. 베커는 &#x27;일탈은 그 행위의 고유한 성질이 아니라, 타인이 그 행위에 규칙을 적용하고 위반자라는 딱지를 붙인 결과&#x27;라고 주장했다. 낙인의 과정은 어떤 행위를 특정 집단이 &#x27;일탈&#x27;로 규정하면 행위자에게 &#x27;일탈자&#x27; 낙인이 찍히고, 이에 행위자는 낙인을 내면화하면서 일탈적 행동을 강화하게 되는 것이다. 이처럼 사회 통제(낙인 찍기)는 일탈을 줄이는 것이 아니라 오히려 만들어 낸다.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">💬 EBS Q&amp;A</h3>
+<div class="qa-box"><div class="q">Q. 서로 다른 관점을 사례에 적용하는 문항은 어떻게 해결해야 하나요? (문항 11 관련)</div><div>A. 문항 11은 AI 얼굴 인식 CCTV 도입 사례를 세 관점으로 어떻게 해석할 수 있는지 묻는다. 사례 사실을 읽고 곧바로 판단하기보다, 지문 속 관점을 짧은 문장으로 먼저 정리한 뒤 사례에 대응시키는 것이 중요하다. 합의적=&#x27;공동 이익과 질서 유지&#x27;, 갈등=&#x27;기득권의 이익과 억압&#x27;, 상호작용=&#x27;개인의 인식과 상호 반응&#x27;으로 압축할 수 있다. 사례 속 &#x27;안전 강화&#x27;, &#x27;감시와 사생활 침해&#x27;, &#x27;찬반 의견의 갈림&#x27;을 어느 관점과 연결해야 하는지가 분명해진다. 사례의 표현을 그대로 받아들이지 말고 지문 속 개념과 대응시켜 보는 것이 핵심이다.</div></div>
+<div class="info-box" style="background:#f0fdf4;border-left-color:#22c55e;"><h3>🔗 엮어 읽기 — 상징적 상호 작용 이론</h3><p style="font-size:13.5px;">미드가 주창한 상징적 상호 작용 이론은 인간을 사회적 압력에 규정되는 수동적 존재로 보던 입장에 반발해 인간의 능동적 측면을 부각한다. 인간이 상호 작용하는 가운데 발생하는 일상적 현상과 주관적 동기·의미를 사회·문화 현상의 중요 요소로 본다. 상징적 의미는 외부 세계와의 지속적 상호 작용을 통해 구성되며, 자아는 타인과의 관계 속에서 사회 관습의 내면화를 통해 형성된다. 미드는 자아 발달을 유희기→게임 단계→&#x27;일반화된 타자&#x27;의 3단계로 설명하고, 객체로서의 &#x27;나(me)&#x27;와 주체로서의 &#x27;나(I)&#x27;를 구분했다.</p></div>
+</div>
+<div class="questions-section"><h2 style="font-size:26px;margin-bottom:20px;">■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+<div class="question-full"><div class="q-num">08</div>
+<div class="question-stem">‘규범’에 대한 설명으로 적절하지 <u>않은</u> 것은?</div>
+<div class="choice-item"><div class="choice-text">① 사회 구성원으로 하여금 특정 사회에 속해 있다는 소속감을 부여한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 규범은 개인으로 하여금 자신이 특정한 사회 속에서 살아가며 그 사회에 속한다고 여기게 함으로써 사회의 구성원을 형성한다고 하였다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">② 사회의 유지와 안녕을 위해 사회가 행하는 모든 조치와 방법을 포함한다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 1문단에서 사회 통제란 규범의 보존을 위해 사회가 행하는 모든 것을 통칭한다고 할 수 있다고 하였다. 사회의 유지와 안녕을 위해 사회가 행하는 모든 조치와 방법은 ‘사회 통제’의 정의이지 ‘규범’의 정의가 아니다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 하나의 사회를 다른 사회와 구별함으로써 특정 사회를 구성하는 기반이 된다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 규범은 하나의 사회를, 다른 규범에 따라 존재하는 사회와 구별함으로써 그 사회를 구성한다고 하였다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ 특정 사회를 존속 가능하게 하는 토대로서 사회 구성원에게 문화를 습득하게 한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 규범은 사회화와 문화의 습득 과정도 담당하는 것이며, 사회 및 사회 구성원의 형성과 존속의 토대가 되기 때문에 사회는 규범을 보호하려 한다고 하였다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ 사회 구성원들이 사회 내에서 어떤 행동을 할 때 기준이 되는 규칙 혹은 지침을 의미한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 규범이란, 어떤 행동을 할 때 기준이 되는 규칙 혹은 지침을 의미한다고 하였다.</div>
+</div>
+<div class="correct-badge">📍 정답 ② &nbsp;[유형] 세부 내용 파악</div></div>
+<div class="question-full"><div class="q-num">09</div>
+<div class="question-stem">㉠에 대한 이해로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 사회 규범은 일상적 상호 작용 속에서 주관적으로 해석되며, 사회 통제는 자기 성찰과 교정 과정이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 사회 규범을 개인의 주관적 해석과 상호 반응 속에서 형성된다고 보고, 통제를 자기 성찰과 교정 과정으로 파악하는 것은 규범의 본질 규정보다 개인이 규범을 어떻게 인식·조율하는가에 초점을 두는 상호 작용론적 관점에 대한 설명이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 사회 규범은 지배 집단의 이익을 위해 만들어진 것이며, 사회 통제는 억압의 수단으로 작용한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 사회 규범을 지배 집단의 이해관계를 반영한 것으로 보고 사회 통제를 억압 수단으로 보는 것은 규범이 합의의 산물이 아니라 권력관계의 산물이라는 갈등 이론적 관점이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 사회 규범은 개인의 도덕성 차이에서 비롯되며, 사회 통제는 이러한 도덕성의 차이를 보완하는 장치이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 합의적 관점은 사회의 중요한 문제나 갈등에 대해 구성원들이 합의하여 일정한 규범을 창출한다고 하였다. 합의적 관점에서 사회 통제는 이러한 규범을 보호하는 장치로 본다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">④ 사회 규범은 구성원의 합의로 형성되며, 사회 통제는 강제력을 통해 규범의 일탈을 규율하고 사회적 결속을 회복한다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 사회 규범이 사회 구성원들의 합의로 형성되고, 사회 통제가 강제력을 통해 규범의 일탈을 규율하여 사회적 결속을 회복한다고 보는 것은 공유된 규범의 존재와 체계 유지를 위한 기능적 역할로 사회 통제를 바라본 합의적 관점에 부합한다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ 사회 규범은 사회 통제의 개입이 없어도 자생적으로 유지되며, 사회 통제는 강제력 없이 자발적 순응에만 의존하는 보조적 장치이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 합의적 관점은 사회 규범을 강제력 있는 사회 통제로 보장하고 회복해 체계 유지에 기여한다고 본다.</div>
+</div>
+<div class="correct-badge">📍 정답 ④ &nbsp;[유형] 세부 내용 파악</div></div>
+<div class="question-full"><div class="q-num">10</div>
+<div class="question-stem">&lt;보기&gt;의 관점과 윗글을 비교한 내용으로 가장 적절한 것은?</div>
+<div class="view-box"><div class="vb-title">&lt;보기&gt;</div><p>&lt; 보 기 &gt;</p><p>전통적으로 사회 통제는 종속 변수에 해당하는 것으로 이해되어 왔는데, 이는 사회 통제가 주로 규범 위반, 즉 일탈에 대한 반작용으로 개념화되어 왔기 때문이다. 즉 규범의 성격과 상관없이 다양한 형태의 범죄와 일탈이 사후적으로 사회 통제적 반응을 이끌어 내는 것으로 여겨져 온 것이다. 낙인 이론은 바로 이러한 관점에 반대한다. 낙인 이론에서 범죄와 일탈은 개인에 대해 귀속 또는 낙인을 찍는 과정의 산물일 뿐이며, 사회 통제가 오히려 일탈의 원인이 된다. 일탈이 사회 통제에 대한 반작용으로 이해되는 것이다.</p></div>
+<div class="choice-item"><div class="choice-text">① 사회 통제를 종속 변수로 보는 &lt;보기&gt;의 전통적 관점과 달리, 합의적 관점은 사회 통제를 일탈을 예방하기 위한 장치로 생각한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;에서 전통적으로 사회 통제는 규범의 성격과 상관없이 다양한 형태의 범죄와 일탈이 사후적으로 사회 통제적 반응을 이끌어 내는 것으로 여겨져 온 것이라고 하였다. 즉 예방이 아니라 사후적 반응으로 사회 통제를 말한 것이다. 2문단에 따르면, 합의적 관점도 사회 통제는 강제력을 통해 일탈을 규율하고 사회적 결속을 회복하여 사회 체계 유지에 기여하는 것으로 본다. 이는 사후적 반응이면서도 사회 질서 유지라는 기능적 역할을 강조한 것이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 범죄와 일탈이 사회 통제를 이끌어 낸다는 &lt;보기&gt;의 전통적 관점과 달리, 갈등 이론적 관점은 사회 통제의 부작용을 줄이기 위해 규범의 성격을 고려하지 않는다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;의 전통적 관점에서는 사회 통제는 규범의 성격과 상관없이 다양한 형태의 범죄와 일탈이 사후적으로 사회 통제적 반응을 이끌어 내는 것으로 여겨져 온 것이라고 하였다. 2문단에서 일반적으로 사회 통제의 이론은 사회 질서의 바탕이 되는 규범을 어떻게 인식하느냐에 따라 구분된다고 하였고, 3문단에서 갈등 이론적 관점에서 규범은 특정한 이해관계에만 봉사하려는 목적을 띠고 만들어진 것일 뿐이라고 하였다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">③ 개인에 대한 낙인 과정이 일탈의 원인이 된다는 &lt;보기&gt;의 낙인 이론과 달리, 갈등 이론적 관점은 정치적·사회적 불평등으로 인한 결과로 일탈을 이해한다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — &lt;보기&gt;의 낙인 이론에서 범죄와 일탈은 귀속 또는 낙인을 찍는 과정의 산물일 뿐이며, 사회 통제가 오히려 일탈의 원인이 된다고 하였다. 3문단에서 갈등 이론적 관점은 규범은 특정한 이해관계에만 봉사하려는 목적을 띠고 만들어진 것일 뿐이라고 하였다. 갈등 이론적 관점에서는 범죄와 일탈은 단순히 인성, 도덕성과 같은 개인적 차원의 문제가 아니라 정치적이고 사회적인 함의를 지니는 것이라고 하였다. 즉 갈등 이론적 관점에서 일탈은 억압적 구조와 불평등한 구조 속에서 발생하는 것이라고 하였다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ &lt;보기&gt;의 낙인 이론과 합의적 관점 모두 규범을 창출해 내는 사회 통제의 긍정적 기능을 강조한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;의 낙인 이론은 사회 통제가 오히려 일탈의 원인이 된다고 하며 사회 통제의 부정적 기능을 언급하고 있다. 2문단에 따르면, 합의적 관점은 규범 보존과 질서 유지라는 긍정적 기능을 강조한다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ &lt;보기&gt;의 낙인 이론과 상호 작용론적 관점 모두 범죄와 일탈을 개인의 도덕성 문제로 한정하여 사회 통제를 설명한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;의 낙인 이론에서 범죄와 일탈은 귀속 또는 낙인을 찍는 과정의 산물일 뿐이라고 하였다. 4문단에서 상호 작용론적 관점은 한 사람이 그 규범을 어떻게 인식하고 이에 따라 행동하는가를 더 중요하게 여긴다고 하였다. &lt;보기&gt;의 낙인 이론과 이 글의 상호 작용론적 관점 모두 범죄와 일탈을 개인의 도덕성 문제로 한정하는 것은 아니다.</div>
+</div>
+<div class="correct-badge">📍 정답 ③ &nbsp;[유형] 다른 견해와의 비교</div></div>
+<div class="question-full"><div class="q-num">11</div>
+<div class="question-stem">다음은 국어 수업 시간에 수행한 학습 활동지의 일부이다. 윗글을 고려할 때, 탐구 질문에 대한 답으로 적절하지 <u>않은</u> 것은?</div>
+<div class="view-box"><div class="vb-title">&lt;보기&gt;</div><p>&lt; 보 기 &gt;</p><p>일부 지자체에서 AI 기반 얼굴 인식 기술이 탑재된 CCTV를 도입하려는 움직임이 확산되면서, 범죄 예방 효과와 시민의 개인 정보 침해 우려가 충돌하고 있다. 이 기술은 수배자나 실종자를 자동 탐지해 빠른 대응을 가능하게 하여 다수 시민의 안전과 공동 이익을 강화한다. 하지만 시민의 일상까지 감시 범위가 확대될 수 있어 사생활 침해 문제가 제기된다. 시민 의견도 찬반으로 갈리고 있으며, 전문가들은 기술 도입에 앞서 사회적 합의와 명확한 법적 기준이 선행되어야 한다고 강조한다.</p><p>[탐구 질문]</p><p>AI 얼굴 인식 CCTV 도입은 정당한 사회 통제인가요?</p></div>
+<div class="choice-item"><div class="choice-text">① 얼굴 인식 기술 도입이 시민의 일상까지 감시하여 개인의 권리를 침해하는 수단이 된다면, 갈등 이론적 관점에서는 정당한 통제로 보기 어렵다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 학습 활동지에서 AI 기반 얼굴 인식 기술은 시민의 일상까지 감시 범위가 확대될 수 있어 사생활 침해 문제가 제기된다고 하였다. 이는 AI 얼굴 인식 CCTV가 개인의 권리를 침해하는 수단이 될 수 있음을 보여 준다. 3문단에서 갈등 이론적 관점에서는 규범 유지를 위한 사회 통제는 기득권을 가진 집단이 그렇지 못한 집단을 억압하기 위한 장치에 불과하기 때문에 정당성을 가지기 어렵다고 하였다. AI 얼굴 인식 CCTV 기술이 ‘범죄 예방’이라는 명분과 달리 ‘시민 감시’와 ‘권리 침해’의 수단으로 사용된다면, 이는 갈등 이론적 관점이 비판하는 ‘억압적 통제’에 해당하므로 정당한 통제로 볼 수 없다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 얼굴 인식 기술이 사회 구성원 다수의 안전과 공동 이익을 강화하는 방향이라면, 사회적 합의를 통해 규범을 형성한다는 합의적 관점에서 정당성을 확보할 수 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 2문단에서 합의적 관점에서는 사회 구성원들이 공유하는 규범은 곧 안정적이고 질서 잡힌 사회의 핵심이 되고, 사회 통제가 이를 보장하게 되는 것이라고 하였다. 또한 강제력을 통한 사회적 결속의 회복은 합의적 관점에서 전제하는 사회 통제의 목적을 실현하는 것이며, 결과적으로 사회 체계 유지에 기여하는 것이라고 하였다. 학습 활동지에서 AI 기반 얼굴 인식 기술은 수배자나 실종자를 자동 탐지해 빠른 대응이 가능하게 하여 다수 시민의 안전과 공동 이익을 강화한다고 하였다. 이는 강제력을 통해 사회적 결속을 회복할 수 있고, 사회 체계 유지에 기능적으로 기여한다고 볼 수 있으므로 합의적 관점에서 정당성을 확보할 수 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 얼굴 인식 기술 도입에 대해 시민들의 인식과 반응이 서로 다르게 나타난다면, 상호 작용론적 관점에서는 그 사회 통제의 효과나 정당성을 단일하게 판단하기 어렵다고 본다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 4문단에 따르면, 상호 작용론적 관점은 규범과 통제를 고정된 실체가 아니라 개인의 주관적 해석과 상호 반응의 과정에서 생성되는 것으로 본다. 학습 활동지의 시민 의견도 찬반으로 갈리고 있다는 사실은 AI 기반 얼굴 인식 기술에 대한 사람들의 인식이 저마다 다름을 의미한다. AI 기반 얼굴 인식 기술 도입에 대한 시민들의 다양한 인식 차이로 통제의 효과나 정당성을 단일하게 판단하기 어렵다는 내용은 상호 작용론적 관점과 일치한다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ 얼굴 인식 기술 도입에 앞서 사회적 합의와 명확한 법적 기준이 마련된다면, 사회 통제가 규범의 정당성을 전제로 이루어져야 한다는 합의적 관점에서 그 도입은 정당하다고 볼 수 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 2문단에 따르면, 합의적 관점에서는 사회 규범이 구성원들의 합의를 통해 정당성을 획득하며, 사회 통제는 이 규범을 안정적으로 유지하기 위해 필요한 과정으로 간주된다. 학습 활동지에서 전문가들이 기술 도입에 앞서 사회적 합의와 명확한 법적 기준이 선행되어야 한다고 강조한 것은 AI 기반 얼굴인식 기술 도입에 앞서 사회적 합의와 법적 근거가 마련되어야 한다는 합의적 관점의 주장과 일치한다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">⑤ 얼굴 인식 기술을 통해 수배자나 실종자 탐지에 빠른 대응이 가능하다는 점을 중시한다면, 사회 통제가 특정 집단의 이익을 반영한다는 갈등 이론적 관점에서 도입의 정당성을 주장할 수 있다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 3문단에 따르면, 갈등 이론적 관점은 규범과 사회 통제가 권력 집단의 이익을 극대화하기 위해 만들어졌다고 본다. 학습 활동지에 따르면, AI 기반 얼굴 인식 기술이 수배자나 실종자 탐지에 빠른 대응을 가능하게 하는 점은 특정 집단의 이익이 아니라, 공공의 이익을 강화하는 것이라고 할 수 있다. 갈등 이론적 관점에서는 공공의 안전과 이익을 사회 통제의 정당성 근거로 인정하지 않는다. 오히려 갈등 이론적 관점에서는 AI 기반 얼굴 인식 기술이 일반 시민을 감시하고 억압하려는 기득권의 이익을 위한 것이라고 비판하며 통제의 정당성을 부정할 것이다.</div>
+</div>
+<div class="correct-badge">📍 정답 ⑤ &nbsp;[유형] 구체적 사례 적용</div></div>
+</div>
+<div class="passage-study"><h2>📚 지문 연구 [교사용]</h2><p style="margin:4px 0;"><strong>해제 : 이 글은 사회 과학에서 중요한 개념인 사회 통제를 중심으로, 규범의 의미와 사회 통제를 바라보는 다양한 이론적 관점을 설명하고 있다. 사회 통제는 사회 구성원들이 사회의 규범에 순응하도록 만드는 모든 절차와 방법을 의미한다. 규범은 사회를 성립시키고 개인이 사회의 일원임을 인식하게 하며, 사회화와 문화 습득의 토대가 된다. 합의적 관점은 규범을 사회 구성원들의 합의로 형성된 것으로 보며, 사회 질서와 화합을 유지하는 데 기여한다고 설명한다. 갈등 이론적 관점은 규범을 지배 집단의 이익을 보호하는 수단으로 이해하고, 사회 통제를 억압의 장치로 파악한다. 상호 작용론적 관점은 규범을 상호 작용 과정 속에서 형성되는 것으로 보고, 개인의 주관적 해석과 타인의 반응을 통한 자기 조율 과정을 사회 통제로 이해한다. 따라서 사회 통제는 규범 유지에만 한정되지 않고 사회 질서, 불평등, 관계 형성 등 다양한 의미를 지닌다.</strong></p><p style="margin:4px 0;"><strong>주제 : 사회 통제에 대한 합의적·갈등 이론적·상호 작용론적 관점 차이</strong></p><p style="margin:4px 0;"><strong>구성</strong></p><p style="margin:2px 0 2px 18px;color:#334155;">- 1문단: 사회 통제의 의미와 규범의 기능</p><p style="margin:2px 0 2px 18px;color:#334155;">- 2문단: 합의적 관점에서의 규범과 사회 질서 유지</p><p style="margin:2px 0 2px 18px;color:#334155;">- 3문단: 갈등 이론적 관점에서의 규범과 지배 집단의 이익</p><p style="margin:2px 0 2px 18px;color:#334155;">- 4문단: 상호 작용론적 관점에서의 규범과 개인의 주관적 해석</p><p style="margin:2px 0 2px 18px;color:#334155;">- 5문단: 사회 통제 이해의 다층적 의미</p></div>
+</div></body></html>

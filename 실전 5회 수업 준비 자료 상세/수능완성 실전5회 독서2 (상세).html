@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>수능완성 실전5회 독서2 · 4~7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #4a3a6e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #faf9fd; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 0.3em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text p.stanza-gap { margin-top: 1.2em; }
+        .original-text .underline-phrase {
+            background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label {
+            display: block; color: #7c3aed; font-weight: 800; font-size: 17px; margin: 20px 0 10px 0;
+        }
+        .bracket-tag {
+            display: block; text-align: right; font-size: 12px; font-weight: 700; color: #ffffff;
+            background: #475569; padding: 1px 10px; border-radius: 10px; width: fit-content;
+            margin: 4px 0 14px auto;
+        }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #4a3a6e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #6a4c93;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #4a3a6e; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .compare-flow { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+        .compare-box {
+            flex: 1; min-width: 200px; border-radius: 18px; padding: 14px 16px; font-size: 12.5px;
+        }
+        .compare-box.a { background: #fde9e9; border: 1.5px solid #ef4444; }
+        .compare-box.b { background: #eafbf0; border: 1.5px solid #16a34a; }
+        .compare-box h4 { margin-bottom: 8px; font-size: 14px; }
+        .soljae-box {
+            background: #fff8e6; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin: 10px 0; border: 1px solid #f1c40f;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #6a4c93; padding-left: 20px;
+        }
+        .structure-title span { background: #4a3a6e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #4a3a6e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #6a4c93;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #4a3a6e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #4a3a6e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #4a3a6e; }
+        .passage-study h3 { font-size: 17px; margin: 14px 0 8px 0; color: #4a3a6e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style></head><body>
+<div class="container">
+<div class="header"><h1>🎨 수능완성 실전 5회 · 독서2 4~7</h1>
+<p>인문·예술 「볼츠의 매체 미학」 | 원문 + 구절별 지문 분석 + 어휘 + 판서 + 문항 분석 + 지문 연구</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p>산업 혁명 이후 예술과 기술의 결합이 본격적으로 진행되면서 예술 영역에서 일어난 가장 큰 변화는 이미지가 무한정 복제될 수 있다는 것이었다. 발터 베냐민이 지적했듯이 예술 작품에 대한 복제는 어느 시대나 늘 존재했지만, <span class="underline-phrase">원본만이 가지고 있는 고고한 분위기, 즉 ‘오라(aura)’가 있기 때문에 복제품은 복제품에 머무를 수밖에 없었다</span><span class="phrase-label">복제품과 다른 원본만의 우월함</span>. 그러나 영화와 사진이라는 무한정 복제될 수 있는 예술 형식이 생겨나면서 원본과 복제품의 관계에 큰 변화가 일어났다. 원본이 무엇인지를 알 수 없으며 원본을 감상할 기회보다 복제품을 통해 예술을 접할 기회가 훨씬 더 많아지면서, <span class="underline-phrase">베냐민은 영화와 사진이 가져온 변화의 시간을 ㉠예술의 운명적 시간이자 오라의 몰락이라고 정의했다</span><span class="phrase-label">이전까지와는 다른 예술에 대한 정의가 필요함</span>. 디지털 혁명으로 원본이 더욱더 무의미해진 상황에서 독일의 철학자 노르베르트 볼츠는 <span class="underline-phrase">매체 자체가 예술의 형식과 내용을 규정한다는 ‘매체 미학’을 전개했다</span>. <span class="para-note">← 볼츠가 매체 미학을 전개한 배경</span></p>
+<p class="stanza-gap">볼츠는 현대 사회가 매체 의존적 사회라고 정의하고 매체 의존성을 현실의 지각 측면에서 접근한다. 그는 <span class="underline-phrase">직접적인 세계 지각 대신 매개된 지각이 전면적으로 등장했다고 주장한다</span><span class="phrase-label">직접 지각하지 않고 매체를 통해 지각함</span>. 실제 우리 생활을 보면 동영상 채널을 통해 세상에서 일어나는 일들을 확인하고, 주변 풍경을 보면서 목적지를 찾아가는 것이 아니라 스마트폰의 길 찾기를 통해 자신의 위치와 목적지를 확인한다. 이러한 매체 의존적 사회에서 지배적인 매체도 변화했다. 이전에는 문자 매체가 지배적이었다면 이제는 이미지를 중심으로 한 시각 매체, 더 나아가 복합 매체가 중심 매체로 등장했다. 볼츠는 이에 대해 <span class="underline-phrase">구텐베르크 은하계, 즉 문자 문화는 몰락하고 시각 중심의 문화가 시작되었다</span><span class="phrase-label">문자 중심의 문화가 지배적 영향력을 잃게 됨</span>고 평했다. 이것은 문자의 역할 자체가 없어졌다는 것이 아니라 <span class="underline-phrase">문자를 중심으로 형성된 특권 계급의 고급 문화가 몰락하고, 누구나 접근하고 향유할 수 있는 매체 중심으로 문화가 변화했음</span><span class="phrase-label">사용 매체에 따른 계급이나 문화적 우열이 사라짐</span>을 나타낸다. <span class="para-note">← 매체 의존적 사회와 지배적 매체의 변화</span></p>
+<p class="stanza-gap">볼츠는 <span class="underline-phrase">현대인들이 매체 의존적 사회에 살고 있기 때문에 미학이 현실에 충실하기 위해서는 매체를 중심으로 논의되어야 한다</span><span class="phrase-label">미학이 매체를 중심으로 논의되어야 하는 이유</span>고 주장한다. 이전까지는 <span class="underline-phrase">예술에 대해 존재, 진리, 정신, 아름다움을 핵심으로 두고 작품을 분석하는 데 중점을 두었다</span><span class="phrase-label">내용 중심의 예술관</span>면 변화된 매체 환경에서는 <span class="underline-phrase">작품이 어떤 매체를 이용해서 전달되고, 수용자에게 어떻게 지각되고 체험되는가가 중심 문제가 되는 것</span><span class="phrase-label">매체 중심의 예술관</span>이다. 따라서 미학은 해석과 관조를 기반으로 한 예술 이해나 미적 체험이 아니라 감성적 지각을 중심으로 한 감성학이 되어야 한다고 주장한다. 누구나 스마트폰 하나로 영상을 만들고, 이미지를 편집하여 공유할 수 있는 환경에서 전통적인 아름다움이나 진리라는 개념, 작가의 비판적 의도 등은 예술에 필수적인 것이 아니라는 것이다. <span class="para-note">← 예술을 감성학으로 규정한 볼츠의 관점</span></p>
+<p class="stanza-gap">감성학으로서의 매체 미학은 예술 작품이나 아름다움에 대해 분석하는 것이 아니라 예술 작품과 수용자 간의 관계에 주목한다. 그에 따라 <span class="underline-phrase">‘예술이란 무엇이며, 어떤 문제의식을 가지고 있어야 하는가’라는 문제 설정이 불필요</span><span class="phrase-label">예술과 예술 아닌 것의 구분 및 예술의 지향점에 대한 문제의식</span>하며, <span class="underline-phrase">그런 질문을 필요로 했던 근대적 의미의 ㉡예술은 종말을 맞이했다</span><span class="phrase-label">새로운 관점의 예술관이 필요함</span>고 보았다. 따라서 그는 현재의 매체 환경과 예술의 연관성에서 중요한 것은 미디어 환경 디자인이라고 주장한다. <span class="underline-phrase">예전에는 오랜 기간의 훈련을 통해서 가능했던 예술 창작이 이제는 컴퓨터의 도움으로 누구나 쉽게 할 수 있는 것이 되었다</span><span class="phrase-label">주제 의식·훈련을 통한 기예의 연마가 핵심이 아님</span>. 이러한 시대에 <span class="underline-phrase">예술가에게 진정으로 필요한 것은 미디어를 이용하는 창조적인 아이디어</span><span class="phrase-label">예술에 대한 새로운 관점</span>라는 것이다. 볼츠는 디지털 시대의 예술은 고정된 물질로서의 작품이 아니라, 입력에 따라 변화하고 상호 작용하는 알고리즘적 형식이며, 관조가 아닌 참여를 요구한다고 보았다. <span class="para-note">← 감성학으로서의 매체 미학의 특성</span></p>
+<p class="stanza-gap">볼츠의 관점에서 볼 때 매체 환경은 단지 예술이 표현되는 외형적 조건이 아니라, 예술 자체의 정의와 존재 방식을 변화시키는 구조이다. <span class="underline-phrase">이전 시기의 예술이 문명에 대한 비판과 같은 내용이나 오라를 가진 형식을 통해 독자성을 강화했다</span><span class="phrase-label">이전 시대의 예술이 갖추어야 할 내용과 형식</span>면, 디지털 시대의 예술은 오히려 생산자와 소비자의 경계를 허물고 새로운 감각의 질서를 창출한다. 볼츠는 이 변화 속에서 <span class="underline-phrase">예술의 본질이 소멸했다고 보지 않고 오히려 매체의 변화에 따라 혁신해 간다</span><span class="phrase-label">이전 시기의 예술은 종말을 맞이했지만 매체 변화에 따라 계속 변화해 나감</span>고 본다. <span class="para-note">← 디지털 시대의 예술의 존재 방식</span></p>
+</div></div><div class="col-right"><div class="analysis-box"><div class="title">📌 1문단 · 오라의 몰락과 매체 미학의 등장</div><div class="content">산업 혁명 후 이미지의 무한 복제. 베냐민: 원본의 &#x27;오라&#x27; 때문에 복제품은 복제품일 뿐이었으나, 영화·사진으로 원본/복제품 관계 변화 → ㉠&#x27;오라의 몰락&#x27;. 디지털 혁명으로 원본이 더 무의미해진 상황에서 볼츠가 &#x27;매체 미학&#x27;(매체가 예술의 형식·내용을 규정)을 전개.</div></div>
+<div class="analysis-box"><div class="title">📌 2문단 · 매체 의존적 사회와 지배 매체 변화</div><div class="content">볼츠: 현대는 &#x27;매체 의존적 사회&#x27;—직접 지각 대신 매개된 지각(동영상·길찾기). 지배 매체가 문자→시각(이미지)·복합 매체로 이동 → &#x27;구텐베르크 은하계(문자 문화)의 몰락&#x27;. 이는 문자 소멸이 아니라 특권 계급의 고급 문화 몰락, 누구나 향유하는 문화로의 변화.</div></div>
+<div class="analysis-box"><div class="title">📌 3문단 · 감성학으로의 전환</div><div class="content">매체 의존 사회에선 미학이 매체 중심이어야 함. 기존: 존재·진리·정신·아름다움 분석 → 변화: 어떤 매체로 전달·지각·체험되는가가 중심. 해석·관조의 미학이 아니라 &#x27;감성적 지각&#x27;의 &#x27;감성학&#x27;으로. 전통적 아름다움·진리·작가의 비판 의도는 필수 아님.</div></div>
+<div class="analysis-box"><div class="title">📌 4문단 · 근대적 예술의 종말과 미디어 디자인</div><div class="content">감성학은 작품 자체가 아니라 &#x27;작품–수용자 관계&#x27;에 주목 → &#x27;예술이란 무엇인가&#x27;를 묻던 ㉡근대적 예술은 종말. 중요한 것은 &#x27;미디어 환경 디자인&#x27;. 창작이 쉬워진 시대, 예술가에게 필요한 것은 &#x27;창조적 아이디어&#x27;. 디지털 예술=알고리즘적 형식, 관조가 아닌 &#x27;참여&#x27; 요구.</div></div>
+<div class="analysis-box"><div class="title">📌 5문단 · 예술의 소멸이 아닌 혁신</div><div class="content">매체 환경은 예술의 정의·존재 방식을 바꾸는 구조. 디지털 예술은 생산자/소비자 경계를 허물고 새 감각 질서를 창출. 볼츠는 예술의 본질이 소멸한 게 아니라 매체 변화에 따라 &#x27;혁신&#x27;한다고 봄.</div></div>
+<div class="vocab-box">📖 <strong>어휘</strong><br>• <strong>고고(孤高)</strong>: 세상일에 초연하여 홀로 고상함.<br>• <strong>구텐베르크</strong>: 독일의 활판 인쇄 발명자(1398?~1468).<br>• <strong>향유(享有)</strong>: 누리어 가짐.<br>• <strong>관조(觀照)</strong>: 고요한 마음으로 사물·현상을 관찰하거나 비추어 봄.<br>• <strong>감성학(感性學)</strong>: 인간의 감성이 지닌 본질과 구조를 구명하는 학문.<br>• <strong>알고리즘</strong>: 입력된 자료로부터 원하는 출력을 유도해 내는 규칙의 집합.<br>• <strong>독자성(獨自性)</strong>: 다른 것과 구별되는 혼자만의 특유한 성질.<br>• <strong>창출(創出)</strong>: 전에 없던 것을 처음으로 지어내거나 만들어 냄.</div>
+<div class="info-box"><h3>🎯 독해 포인트</h3><p style="font-size:13.5px;">베냐민(오라의 몰락)→볼츠(매체 미학)로 이어지는 관점의 흐름과, &#x27;기존 미학 vs 감성학&#x27;의 대비가 핵심. ①오라=원본의 분위기, 그 &#x27;몰락&#x27;의 의미, ②문자→이미지로 지배 매체 이동(구텐베르크 은하계의 몰락은 &#x27;고급 문화&#x27;의 몰락), ③분석 대상이 &#x27;작품&#x27;에서 &#x27;작품–수용자 관계&#x27;로 이동하며 &#x27;관조→참여&#x27;로 바뀐다는 점을 정리. 볼츠는 예술의 &#x27;소멸&#x27;이 아니라 &#x27;혁신&#x27;을 말한다는 결론에 주의.</p><h3 style="margin-top:16px;">📌 주제</h3><p style="font-size:13.5px;">디지털 혁명 시대 예술의 변화에 대한 볼츠의 관점</p></div></div></div>
+<div class="structure-wrapper" style="background:#0f3324;border-top:3px solid #2b4a38;"><div class="structure-title" style="color:#ffe486;border-left-color:#ffe486;">📝 수업 판서 (칠판) <span style="background:#0b2a1e;color:#ffe486;">4~7</span></div><div style="max-width:1180px;margin:0 auto;"><svg viewBox="0 0 1640 900" xmlns="http://www.w3.org/2000/svg" font-family="'Nanum Pen Script','Gaegu',cursive" style="width:100%;height:auto;display:block;border-radius:14px;"><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#164531"/><stop offset="1" stop-color="#0f3324"/></linearGradient></defs><rect x="0" y="0" width="1640" height="900" rx="18" fill="url(#bg)"/><rect x="10" y="10" width="1620" height="880" rx="12" fill="none" stroke="#3a5a48" stroke-width="8"/><text x="820.0" y="78" fill="#ffe486" font-size="44" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">🎨 볼츠의 매체 미학</text><line x1="440.0" y1="96" x2="1200.0" y2="96" stroke="#ffe486" stroke-width="3" stroke-linecap="round"/><path d="M420.0,70 Q280.0,150 240.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><path d="M1220.0,70 Q1360.0,150 1400.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><rect x="110" y="180" width="300" height="80" rx="16" fill="none" stroke="#ff9db2" stroke-width="3"/><text x="260" y="230" fill="#ff9db2" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">오라의 몰락</text><rect x="470" y="180" width="300" height="80" rx="16" fill="none" stroke="#9ad8ff" stroke-width="3"/><text x="620" y="230" fill="#9ad8ff" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">매체 의존 사회</text><rect x="850" y="180" width="300" height="80" rx="16" fill="none" stroke="#a8e6a1" stroke-width="3"/><text x="1000" y="230" fill="#a8e6a1" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">감성학 전환</text><rect x="1240" y="180" width="300" height="80" rx="16" fill="none" stroke="#ffe486" stroke-width="3"/><text x="1390" y="230" fill="#ffe486" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">예술의 혁신</text><line x1="410" y1="220" x2="470" y2="220" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round"/><polyline points="455,226 470,220 455,214" fill="none" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="770" y1="220" x2="850" y2="220" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round"/><polyline points="835,226 850,220 835,214" fill="none" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="1150" y1="220" x2="1240" y2="220" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round"/><polyline points="1225,226 1240,220 1225,214" fill="none" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text x="110" y="300" fill="#7fe0c8" font-size="24" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">베냐민 : 복제 → 오라 몰락</text><text x="470" y="300" fill="#7fe0c8" font-size="24" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">문자 → 이미지 매체</text><text x="850" y="300" fill="#7fe0c8" font-size="24" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">관조 → 감성적 지각</text><text x="1240" y="300" fill="#7fe0c8" font-size="24" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">소멸 아닌 매체 혁신</text><rect x="150" y="380" width="1340" height="180" rx="18" fill="none" stroke="#f4f4ec" stroke-width="2.5"/><text x="180" y="430" fill="#f4f4ec" font-size="30" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">◆ 기존 미학  vs  감성학(매체 미학)</text><text x="180" y="485" fill="#9ad8ff" font-size="26" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">기존 : 존재·진리·아름다움 → &#x27;작품&#x27; 자체 분석 / 해석·관조</text><text x="180" y="532" fill="#a8e6a1" font-size="26" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">감성학 : &#x27;작품–수용자 관계&#x27; → 매체·전달·체험 / 참여·아이디어</text><rect x="300" y="610" width="1040" height="210" rx="20" fill="none" stroke="#ffe486" stroke-width="2.5"/><text x="330" y="662" fill="#ffe486" font-size="30" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">핵심 개념 정리</text><text x="360" y="712" fill="#f4f4ec" font-size="26" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 오라 = 원본만의 고고한 분위기 (㉠ 몰락)</text><text x="360" y="758" fill="#f4f4ec" font-size="26" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 구텐베르크 은하계 몰락 = &#x27;고급 문화&#x27;의 몰락(문자 소멸 X)</text><text x="360" y="802" fill="#f4f4ec" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• ㉡ 근대적 예술의 종말 → 미디어 환경 디자인 중시</text></svg></div><div style="margin-top:14px;text-align:center;font-size:13px;color:#94a3b8;">※ 손글씨 폰트(Nanum Pen)는 인터넷 연결 시 자동 적용됩니다.</div></div>
+<div class="passage-study" style="background:#fbf7ef;border-top:3px solid #e0c9a6;">
+<h2 style="color:#7c3f1d;">📘 사용설명서 지문 분석 <span style="font-size:14px;color:#9a7b52;">(EBS 수능완성 사용설명서)</span></h2>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">🧩 핵심 개념</h3>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 1 · 발터 베냐민의 &#x27;오라&#x27; 이론</div><div class="content">베냐민은 예술 작품의 고유한 가치가 근대 이후 어떻게 변화하는지를 설명하기 위해 &#x27;오라&#x27;를 제시했다. 오라는 작품이 특정한 시간·공간 속에 단 하나로 존재할 때 형성되는 독특한 분위기이자 권위로, 작품의 역사성·전통성에서 비롯되며 감상자에게 경외감과 거리감을 느끼게 한다. 그러나 사진·영화 같은 기술 발달로 복제가 가능해지면서 오라는 약화되고, 작품과 감상자 사이의 거리감이 사라지며 원본의 고유성·권위도 약화된다. 예술은 의식적·전통적 맥락에서 향유되는 대상이 아니라 일상에서 쉽게 접하는 소비 대상으로 전환된다. 베냐민은 이 변화를 부정적으로만 보지 않았는데, 오라의 붕괴가 전통적 권위를 약화시키는 동시에 소수에게 제한되던 예술을 대중에게 개방하는 계기가 되었기 때문이다.</div></div>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 2 · 감성학으로서의 매체 미학</div><div class="content">볼츠는 현대 사회를 매체 의존적 사회로 규정하고 미학의 중심도 변화해야 한다고 본다. 전통 미학이 작품의 진리·아름다움·의미 해석에 초점을 두었다면, 오늘날에는 작품이 어떤 매체로 전달되고 수용자가 이를 어떻게 지각·경험하는지가 핵심이 된다. 이때 미학은 관조·해석의 학문이 아니라 감각적 경험을 탐구하는 감성학으로 전환된다. 감성학으로서의 매체 미학은 작품 자체보다 매체를 통해 형성되는 지각 방식과 수용자의 체험을 중시하므로, &#x27;예술이란 무엇인가&#x27;라는 본질적 질문은 약화되고 매체 환경을 어떻게 구성·활용할 것인가가 핵심 과제가 된다.</div></div>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 3 · 볼츠의 관점에서 본 현대 예술의 특성</div><div class="content">현대 예술은 매체 환경 변화 속에서 성격이 근본적으로 달라진다. 디지털 시대의 예술은 고정된 물질적 작품이 아니라 변화하고 상호 작용하는 알고리즘적 형식으로 존재하며, 수동적 관조가 아니라 적극적 참여를 요구한다. 생산자와 소비자의 경계가 허물어지고 누구나 매체로 창작·향유에 참여한다. 예술의 핵심은 전통적 아름다움·진리·작가의 의도가 아니라 매체를 활용한 창의적 아이디어와 경험 설계에 있으며, 중요한 것은 작품 자체보다 미디어 환경 디자인이다. 현대 예술은 매체 변화에 따라 소멸하는 것이 아니라 감각 중심의 새로운 형태로 끊임없이 혁신되는 과정에 있다.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">📎 이것만은 꼭 익히자!</h3>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 1 · 오라의 몰락과 예술의 종말</div><div class="content">「오라는 몰락했다」: 오라(원본의 분위기)라는 무한정 복제될 수 있는 예술 형식이 생겨남 / 원본이 무엇인지 알 수 없고 복제품으로 예술을 접할 기회가 늘어남 / 원본과 복제품의 구분이 무의미해짐. 「예술은 종말을 맞이했다」: &#x27;예술이란 무엇인가?&#x27;(예술과 예술 아닌 것의 구분)가 불필요 / &#x27;예술은 어떤 주제를 가져야 하는가?&#x27;는 다양한 현대 예술을 설명하지 못함. → 새로운 관점의 예술관이 필요함. 볼츠: 예술의 본질은 소멸하지 않고 매체 변화에 따라 혁신해 감.</div></div>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 2 · 볼츠의 이론에 대한 비판</div><div class="content">[볼츠의 주장] 전통적으로 주목해 온 아름다움·진리 개념, 작가의 비판적 의도 등은 예술에 필수적이지 않음 / 매체 중심으로 소통하는 매체 의존적 사회이므로 예술도 매체 중심으로 논의되어야 함. [비판] 전통적으로 예술은 사회를 비판하고 현실을 성찰하는 역할을 해 왔는데 볼츠는 이 비판적 기능을 축소함 / 매체는 여론을 조작하거나 비판적 담론을 약화하기 쉬우므로, 매체에 담기는 내용과 예술의 의도에 주목할 필요가 있음.</div></div>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 3 · 디지털 아트에 대한 감상 (문항 07 보기)</div><div class="content">&#x27;AI의 꿈&#x27;—AI가 수백만 장의 이미지 데이터를 학습해 생성한 영상, 관람자가 &#x27;작품 속에 있다&#x27;는 느낌을 받고 움직임에 따라 이미지·소리가 달라짐. 작가도 결과를 모름. → 원본의 오라가 있는 것이 아님 / 감각적 지각 중심의 양식 / 상호 작용하는 알고리즘적 형식 / 예술가에게는 미디어를 이용하는 아이디어가 중요함.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">✨ 배경지식 더 알아보기</h3>
+<div class="analysis-box" style="border-left-color:#0ea5a0;background:#effefb;"><div class="title">단토의 예술론</div><div class="content">아서 단토는 현대 예술이 일정한 방향성을 갖지 않는 단계에 이르렀다고 보고 이를 &#x27;예술의 종말&#x27;로 설명했다. 이 종말은 예술 활동의 소멸이 아니라 예술을 규정해 온 역사적 기준·발전 서사가 더 이상 유효하지 않음을 뜻한다. 그는 앤디 워홀의 작품(일상 상품과 외형상 구별되지 않는 기성품)을 통해, 무엇이 예술인지 판단하는 기준이 더 이상 감각적 형식에 있지 않다고 보았다. 어떤 대상이 예술이 되려면 단순한 물건이 아니라 예술로 해석되는 맥락 속에 놓여야 하며, 이때 미술관·비평가·예술가·관람자로 이루어진 &#x27;예술 세계&#x27;가 중요한 역할을 한다. 결국 단토의 예술 종말론은 예술의 끝이 아니라 전통적 기준의 해체와 새로운 이해 방식의 등장을 설명하며, 예술이 사라진 것이 아니라 다양한 가능성으로 확장되었다고 본다.</div></div>
+<div class="info-box" style="background:#f0fdf4;border-left-color:#22c55e;"><h3>🔗 엮어 읽기 — 예술 정의에 대한 미학 이론의 전개</h3><p style="font-size:13.5px;">미학의 문제 중 하나가 &#x27;예술의 정의&#x27;이다. 아리스토텔레스의 모방론(재현의 투명성)은 낭만주의(감정 표현·왜곡된 표현 허용) 등장으로 쇠퇴했고, 콜링우드의 표현론(예술가의 마음·정신적 대상)과 벨의 형식론(&#x27;의미 있는 형식&#x27;)이 등장했다. 20세기 중반 뒤샹의 「샘」 이후, 웨이츠는 예술의 공통 요소를 부정하는 &#x27;예술 정의 불가론&#x27;을, 디키는 예술계의 절차·관례로 예술을 규정하는 &#x27;제도론&#x27;을 제시했다. 이 논의들은 예술의 공통 본질(필요충분조건)을 찾으려는 시도이다.</p></div>
+</div>
+<div class="questions-section"><h2 style="font-size:26px;margin-bottom:20px;">■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+<div class="question-full"><div class="q-num">04</div>
+<div class="question-stem">윗글을 읽고 이해한 내용으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 예술품에 대한 복제는 예술과 기술이 본격적으로 결합되면서 생겨난 현상이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 베냐민이 지적했듯이 예술 작품에 대한 복제는 어느 시대나 늘 존재했다고 하였다. 따라서 복제가 예술과 기술이 본격적으로 결합되면서 생겨난 현상은 아니다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 베냐민은 원본과 복제품 사이뿐만 아니라 복제품 사이에도 위계가 존재한다고 보았다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 베냐민은 원본에는 ‘오라’가 있기 때문에 복제품은 복제품에 머무를 수밖에 없다고 하였다. 원본과 복제품 사이에 위계가 있다고 하였지만, 복제품 사이에도 위계가 존재한다고 본 것은 아니다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 볼츠는 예술이 구현하려는 아름다움이 무엇인지를 핵심으로 두고 작품을 분석하려 했다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에 따르면, 아름다움을 핵심으로 두고 작품을 분석하는 것은 이전까지의 예술에 대한 관점이다. 볼츠는 변화된 환경에서는 어떤 매체를 이용해서 전달되고, 수용자에게 어떻게 지각되고 체험되는가가 중심 문제라고 하였다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">④ 구텐베르크 은하계의 몰락은 지배적 매체의 변화와 함께 특권 계급이 향유하던 문화도 몰락했음을 의미한다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 2문단에 따르면, 볼츠는 문자 문화는 몰락하고 시각 중심의 문화가 시작된 것을 구텐베르크 은하계의 몰락이라고 하였다. 문자 문화의 몰락은 특권 계급과 그 계급이 독점적으로 향유하던 고급 문화의 몰락과 연결된다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ 누구나 예술 작품의 생산자가 될 수 있는 매체 환경에서는 해석과 관조를 기반으로 한 예술 이해가 중요하다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 4문단에 따르면, 누구나 생산자가 될 수 있는 변화된 매체 환경에서는 관조가 아닌 참여를 요구한다.</div>
+</div>
+<div class="correct-badge">📍 정답 ④ &nbsp;[유형] 세부 내용 파악</div></div>
+<div class="question-full"><div class="q-num">05</div>
+<div class="question-stem">㉠과 ㉡에 대한 이해로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① ㉠은 복제품이 원본을 대체하고 있는 현상에서, ㉡은 예술 작품이 상품 디자인에 사용되는 현상에서 비롯된 말이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ㉠은 복제품과 원본의 차이가 나지 않는 것을 이야기하는 것이지, 복제품이 원본을 대체한다고 보는 것은 아니다. ㉡은 볼츠가 예술을 감성학으로 보면서 나온 것으로, 예술 작품이 상품 디자인에 사용되는 현상에서 비롯된 말이 아니다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">② ㉠은 원본과 복제품을 구분하는 것이, ㉡은 예술과 예술 아닌 것을 구분하는 것이 무의미한 일이 되었음을 나타낸다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — ㉠은 원본과 복제품의 구분이 모호해지면서 원본이 무엇인지를 알 수 없는 상황을 이야기한다. 원본의 오라를 찾기가 어렵기 때문에 원본과 복제품을 구분하는 것이 무의미해졌음을 나타낸다. ㉡은 ‘예술이란 무엇이며, 어떤 문제의식을 가지고 있어야 하는가’라는 문제 설정이 불필요해진 상황을 나타내는 것이다. 즉 예술과 예술 아닌 것을 구분해 왔던 근대적 의미의 예술이 종말을 맞이하고, 새로운 형태의 예술이 등장했음을 이야기하는 것이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ ㉠은 영화와 사진이 주류 예술이 되었음을, ㉡은 그래픽 디자인이 예술의 범주로 인정받게 되었음을 선언하는 것이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ㉠은 오라를 통해 예술품의 가치를 설명하던 방식이 무의미해졌다는 것을 이야기하는 것이지, 영화와 사진이 주류 예술이 되었다는 것을 선언하기 위해 한 말은 아니다. ㉡은 예술의 범주가 무의미해졌다는 것을 나타내기 때문에, 이를 그래픽 디자인이 예술의 범주로 인정받게 되었음을 선언하는 것으로 이해하는 것은 적절하지 않다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ ㉠은 산업 혁명 이후 예술에서 오라의 의미가, ㉡은 디지털 혁명 시대에 예술의 의미가 확립되는 계기가 된 주장이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ㉠은 산업 혁명 이후 예술에서 오라가 중요하지 않게 된 것을 나타낸다. 그러므로 오라의 의미가 확립되는 계기가 된 것은 아니다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ ㉠은 원본과 복제품의 위상이 역전되는 현상을, ㉡은 근대적 의미의 예술이 사라져 가는 현상을 비판하기 위한 말이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ㉠은 원본과 복제품의 위상이 역전되는 현상, 즉 복제품이 원본보다 우위에 있게 되는 현상을 이야기한 것이 아니다. ㉡은 근대적 의미의 예술이 몰락했다는 것을 이야기할 뿐, 이것에 대해 비판적 입장을 가지는 것은 아니다.</div>
+</div>
+<div class="correct-badge">📍 정답 ② &nbsp;[유형] 글의 의도, 목적 추론</div></div>
+<div class="question-full"><div class="q-num">06</div>
+<div class="question-stem">&lt;보기&gt;의 관점에서 ‘볼츠’의 견해를 비판한 내용으로 가장 적절한 것은?</div>
+<div class="view-box"><div class="vb-title">&lt;보기&gt;</div><p>&lt; 보 기 &gt;</p><p>매체는 사회적 소통을 가능하게 하지만 왜곡되기 쉬운 도구이다. 매체는 민주적 공론장을 활성화할 수도 있지만, 여론을 조작하거나 비판적 담론을 약화하는 방향으로 작용할 수 있다. 또한 약자에 대한 혐오적 표현들이 유희라는 명목으로 공유되기도 한다.</p></div>
+<div class="choice-item"><div class="choice-text">① 현대 사회를 매체 의존적 사회로 정의함으로써 혐오적 표현들도 일종의 유희로 용인하고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 볼츠가 현대 사회를 매체 의존적 사회로 정의한 것은 맞지만, 그러한 정의가 혐오적 표현을 용인한다는 것과 연결되지는 않는다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 예술을 감성적 지각을 중심으로 재편해야 한다고 함으로써 이성적 공론장의 활성화를 막고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;의 관점은 공론장을 활성화해야 한다는 것이 아니라 사회적 매체를 통한 공론장이 왜곡될 수 있다는 것이다. 또한 볼츠의 이론이 이성적 공론장의 활성화를 막는다는 근거도 없다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 현대의 매체 환경을 예술이 표현되는 외형적 조건으로 봄으로써 예술의 사회적 소통 기능을 외면하고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 볼츠는 매체 환경을 단순히 예술이 표현되는 외형적 조건으로 보지는 않았다. 또한 볼츠가 예술의 사회적 소통 기능을 외면하고 있다는 것은 적절하지 않은 비판이다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">④ 매체에 어떤 내용을 담아야 하는지를 이야기하지 않음으로써 예술의 방향성과 사회적 역할을 간과하고 있다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — &lt;보기&gt;에서는 매체가 민주적 공론장을 활성화할 수도 있지만, 여론 조작이나 혐오적 표현들이 유통될 수도 있음을 주목하고 있다. 매체에 어떤 내용을 담느냐에 따라 매체가 긍정적 역할을 하기도 하고 부정적 역할을 하기도 한다는 것이다. 볼츠는 매체에 대한 분석을 강조하면서 이전 시기의 예술이 문명에 대한 비판과 같은 내용에 주목한 것과는 다른 입장을 보였다. 그러므로 볼츠의 매체 미학은 예술의 내용이 가진 사회적 책임이나 방향성을 간과한다는 한계가 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ 매체의 특성에 따라 다룰 수 있는 담론이 달라진다는 점을 무시함으로써 사회적 담론을 약화하는 결과를 가져왔다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;에서는 매체가 사회적 소통의 기능을 하지만 왜곡되기 쉽다는 것에 대해 이야기할 뿐, 매체에 따라 다룰 수 있는 담론이 달라진다는 것을 이야기하는 것이 아니다. 또한 사회적 담론을 약화하는 요인은 여론 조작과 같은 요인이라고 하였다.</div>
+</div>
+<div class="correct-badge">📍 정답 ④ &nbsp;[유형] 글에 드러난 관점, 내용 비판</div></div>
+<div class="question-full"><div class="q-num">07</div>
+<div class="question-stem">&lt;보기&gt;는 학생의 감상문이다. 윗글을 바탕으로 &lt;보기&gt;에 대해 보인 반응으로 적절하지 <u>않은</u> 것은?</div>
+<div class="view-box"><div class="vb-title">&lt;보기&gt;</div><p>&lt; 보 기 &gt;</p><p>어제 미술관에 디지털 아트계의 거장으로 불리는 김○○ 작가의 ‘인터랙티브 아트전(展)’을 보러 갔었다. 가장 흥미로웠던 작품은 인공 지능이 수백만 장의 이미지 데이터를 학습하여 생성한 영상을 체험할 수 있도록 한 「AI의 꿈」이라는 작품이었다. 처음 스크린 안으로 들어갔을 때, 나는 작품을 보는 것이 아니라 ‘작품 속에 있다’는 느낌을 받았다. 몽환적인 이미지와 소리는 내 움직임에 따라 달라졌는데, 제목 그대로 AI의 꿈속을 돌아다니는 느낌이 들었다. 두 번째로 스크린 안으로 들어갔을 때 손을 흔들어 보자 처음에 보았던 것과 다른 이미지와 소리가 나왔다. 작가의 설명으로는 자신이 한 일은 AI에 몇 가지 명령을 입력한 것일 뿐이며, 자신도 실제 어떤 이미지와 소리가 나올지 모른다고 했다.</p></div>
+<div class="choice-item"><div class="choice-text">① 인공 지능이 영상을 생성하기 위해 학습한 이미지 데이터는 원본으로서의 오라를 가진 작품으로 보기는 어렵겠군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 오라는 원본만이 가지고 있는 고고한 분위기를 말한다. 인공지능이 학습한 것은 디지털 이미지인데, 디지털 이미지는 원본이 무의미한 것이다. 따라서 학습한 작품에 오라가 없을 것이라는 반응은 적절하다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② ‘작품 속에 있다’는 느낌을 받았다는 것은 예술의 이해가 해석과 관조를 기반으로 이루어지는 것이 아님을 보여 주는군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘작품 속에 있다’는 것은 작품을 보는 것, 즉 관조하는 것과 달리 직접 체험하는 상황을 말한다. 이것은 4문단에서 이야기한 디지털 시대 예술의 특징이라고 할 수 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 두 번째로 스크린 안에 들어가 손을 흔들어 보자 이전과 다른 이미지가 나오는 것은 디지털 예술이 알고리즘적 형식이라는 것을 보여 주는군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 4문단에서 디지털 시대의 예술은 고정된 물질로서의 작품이 아니라, 입력에 따라 변화하고 상호 작용하는 알고리즘적 형식이라고 하였다. 스크린 안에 들어갔을 때 행동에 따라 각각 다른 이미지와 소리가 나오는 것은 입력에 따라 변화하는 알고리즘적 형식을 보여 주는 것이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ 작품에서 이미지와 소리가 달라지고 작가도 실제 무엇이 나올지 모른다는 것을 볼 때, 작가가 문명 비판과 같은 주제를 의도한 것으로 보기는 어렵겠군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에서 볼츠는 디지털 시대의 작품은 어떤 매체를 이용해서 전달되고, 수용자에게 어떻게 지각되고 체험되는가가 중심 문제가 된다고 하였으며, 작가의 비판적 의도는 예술에 필수적인 것이 아니라고 보았다. &lt;보기&gt;의 작품은 볼츠의 견해에 부합하는 특성을 가지고 있으며, 작가도 실제 무엇이 나올지 모른다는 것을 볼 때, 문명 비판과 같은 주제를 의도한 것으로 보기는 어렵다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">⑤ 작가가 자신이 한 일이 몇 가지 명령을 입력한 것일 뿐이라는 것은 예술이 생산자와 소비자의 경계가 모호해져 비전문가의 영역이 되었음을 보여 주는군.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 4문단에서 누구나 쉽게 예술가가 될 수 있는 시대에 예술가에게 진정으로 필요한 것은 미디어를 이용하는 창조적인 아이디어라고 한 것을 고려할 때, 작가가 몇 가지 명령을 입력한 것은 예술가로서의 창조적인 아이디어라고 할 수 있다. &lt;보기&gt;에서 김○○ 작가가 디지털 아트계의 거장으로 불린다는 것은 이러한 창조적인 아이디어를 인정받았기 때문이라고 할 수 있다. 그러므로 이를 예술이 비전문가의 영역이 되었다는 것으로 해석하는 것은 적절하지 않다.</div>
+</div>
+<div class="correct-badge">📍 정답 ⑤ &nbsp;[유형] 구체적 사례 적용</div></div>
+</div>
+<div class="passage-study"><h2>📚 지문 연구 [교사용]</h2><p style="margin:4px 0;"><strong>해제 : 이 글은 디지털 혁명 시대의 예술에 대한 볼츠의 관점을 설명하고 있다. 영화와 사진이 등장한 이후 예술은 원본과 복제품의 구분이 모호해지게 되었다. 이에 대해 베냐민은 오라의 몰락이라고 보았지만, 볼츠는 디지털 혁명의 시대에 매체 자체가 예술의 형식과 내용을 규정한다는 매체 미학을 전개했다. 볼츠는 현대 사회가 매체 의존적 사회라고 분석하면서 지배적인 매체도 문자에서 이미지 중심으로 변화하고 있다고 보았다. 볼츠는 현대인들이 매체 의존적 사회에 살고 있기 때문에 전통적인 아름다움에 대한 분석 대신 감성학으로의 전환이 필요하다고 보았다. 그는 누구나 컴퓨터로 창작을 할 수 있는 시대에 전통적인 관점의 예술은 종말을 맞이했다고 보고, 예술 작품과 수용자 간의 관계에 주목했다. 새로운 매체 환경에서 예술의 본질은 소멸하지 않고 매체의 변화에 따라 혁신해 간다고 보았다.</strong></p><p style="margin:4px 0;"><strong>주제 : 디지털 혁명 시대 예술의 변화에 대한 볼츠의 관점</strong></p><p style="margin:4px 0;"><strong>구성</strong></p><p style="margin:2px 0 2px 18px;color:#334155;">- 1문단: 볼츠가 매체 미학을 전개한 배경</p><p style="margin:2px 0 2px 18px;color:#334155;">- 2문단: 매체 의존적 사회와 지배적 매체의 변화</p><p style="margin:2px 0 2px 18px;color:#334155;">- 3문단: 예술을 감성학으로 규정한 볼츠의 관점</p><p style="margin:2px 0 2px 18px;color:#334155;">- 4문단: 감성학으로서의 매체 미학의 특성</p><p style="margin:2px 0 2px 18px;color:#334155;">- 5문단: 디지털 시대의 예술의 존재 방식</p></div>
+</div></body></html>
