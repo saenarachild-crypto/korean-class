@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>수능완성 실전5회 문학1 · 18~21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #4a3a6e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #faf9fd; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 0.3em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text p.stanza-gap { margin-top: 1.2em; }
+        .original-text .underline-phrase {
+            background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label {
+            display: block; color: #7c3aed; font-weight: 800; font-size: 17px; margin: 20px 0 10px 0;
+        }
+        .bracket-tag {
+            display: block; text-align: right; font-size: 12px; font-weight: 700; color: #ffffff;
+            background: #475569; padding: 1px 10px; border-radius: 10px; width: fit-content;
+            margin: 4px 0 14px auto;
+        }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #4a3a6e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #6a4c93;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #4a3a6e; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .compare-flow { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+        .compare-box {
+            flex: 1; min-width: 200px; border-radius: 18px; padding: 14px 16px; font-size: 12.5px;
+        }
+        .compare-box.a { background: #fde9e9; border: 1.5px solid #ef4444; }
+        .compare-box.b { background: #eafbf0; border: 1.5px solid #16a34a; }
+        .compare-box h4 { margin-bottom: 8px; font-size: 14px; }
+        .soljae-box {
+            background: #fff8e6; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin: 10px 0; border: 1px solid #f1c40f;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #6a4c93; padding-left: 20px;
+        }
+        .structure-title span { background: #4a3a6e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #4a3a6e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #6a4c93;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #4a3a6e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #4a3a6e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #4a3a6e; }
+        .passage-study h3 { font-size: 17px; margin: 14px 0 8px 0; color: #4a3a6e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style></head><body>
+<div class="container">
+<div class="header"><h1>🏥 수능완성 실전 5회 · 문학1 18~21</h1>
+<p>최인호 「견습 환자」 (현대 소설) | 원문 + 구절별 지문 분석 + 어휘 + 판서 + 문항 분석 + 지문 연구</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="color:#475569;background:#f1f5f9;border-radius:10px;padding:8px 12px;">[앞부분 줄거리] ‘나’는 습성 늑막염을 진단받고 한 병원에 입원한다.</p>
+<p><span class="underline-phrase">㉠내가 정말로 아프기 시작한 것은 늙은 간호원이 병실 앞에 내 이름이 새겨진 문패를 걸어 준 후, 수의 같은 환자복을 주었을 때였다.</span><span class="phrase-label">입원 후 문패가 걸리고 환자복을 지급받은 뒤에야 아픈 몸 상태를 자각함(시스템이 ‘환자’ 정체성을 부여)</span> 누가 입던 환자복이었는지 몰라도 체구에 맞지 않는 환자복을 입고 우두커니 서 있는 꼬락서니는 평소에 생각하던 자기의 이미지를 완전히 깨뜨려 버리기에 충분하였으며, 내 얼굴엔 완연히 병색이 드러나 보이기 시작했다. 누구의 부축 없이는 변소에도 가지 않았고, 의사만 보면 공연히 매어달리고픈 충동을 받곤 했다.</p>
+<p class="stanza-gap">입원한 다음 날, 한 떼의 의사들이 병실로 몰려와, 겁에 질려 있는 나를 전범 다루듯 사납게 벽 쪽을 향하게 한 다음, 주삿바늘로 옆구리를 찔러 굉장한 양의 노르께한 액체를 빼내었고, <span class="underline-phrase">나는 집행을 기다리는 죄수처럼 유난히 하얀 병실 벽을 마주 바라보며 그들의 작업이 끝날 때까지 약간 울고 있었다.</span><span class="phrase-label">진단을 받는 ‘나’가 자신을 ‘전범·죄수’와 동일시함 → 병동의 규칙과 의료진의 지시에 순응하는 환자의 처지를 비유적으로 드러냄</span></p>
+<p class="stanza-gap">그리고 작업을 끝마치고 사라져 가는 <span class="underline-phrase">그 집행인들의 흰 가운에서 병실 벽처럼 차디찬 체온을 절감했다.</span><span class="phrase-label">의료진의 기계적이고 비인간적인 속성을 부각함</span></p>
+<p class="stanza-gap">나는 이렇게 입원 생활을 시작했으며, 어느 틈엔가 아침이면 <span class="underline-phrase">체온계를 입에 물고 사탕을 깨물세라 조심스럽게 녹이는 유아처럼 체온을 재는 모범 환자가 되고 말았다.</span><span class="phrase-label">병동의 규칙·의료진의 지시에 순응하여 환자의 본분에 충실한 자신을 ‘모범 환자’로 표현함</span> 그러나 입원한 지 일주일쯤 후부터는 어느 정도 병이 차도를 보이기 시작해서 열도 정상으로 내려갔고, 더욱이 내 병은 가벼운 폐결핵에서 기인된 늑막염으로 까짓 폐결핵이야 요새 약들이 좋으니까 감기 정도로 생각해 두면 틀림없다는 의사의 말투에, 한편은 불안도 하고 한편 위안도 되어, 언제는 반쯤 남기던 죽을 꾸역꾸역 모조리 긁어 먹게 되었던 것이다. <span class="underline-phrase">㉡그러면서도 차츰차츰 결핵에 걸린 자신이 실감되어 오고, 아무리 약이 좋다고 하나 앞으로는 긴 시간 창백한 얼굴로 낙엽 구르는 소리에도 눈물을 흘려야 하는 폐병 환자 노릇을 해야 한다는 사실이 억울해져서, 나는 몇 번이고 세면대 긴 체경 앞에 서서 메기처럼 눈을 껌벅껌벅이며 혼자 울었다.</span><span class="phrase-label">병에 차도를 보이지만 폐병 환자 노릇을 해야 하는 처지를 실감한 ‘나’의 복잡한 심경</span> <span class="para-note">← 병원에 입원해 진단을 받으면서 자신의 처지를 실감하게 된 ‘나’</span></p>
+<p class="stanza-gap">그러나 도대체 병이라면 어디를 만지면 통증이 오고, 어디를 움직이면 감지할 수 있는 감각이 와야 할 텐데, 이건 어디를 만져도 아프지 않고, 그저 오후만 되면 끈적끈적한 늪지대에 빠져버린 듯한 미열만 오는 것으로, 좀 후에는 에잇 모르겠다는 안이한 체념으로 시간 맞추어 밥을 먹고, 빈 시간이면 잠을 자는 입원 생활에 만족하게 되어 버렸다.</p>
+<p class="stanza-gap"><span class="underline-phrase">입원 생활은 금붕어 같은 생활이었다. 모든 환자들은 양순한 민물고기처럼 조용히 지느러미로 미동을 하면서 병원을 부유하고 있었다.</span><span class="phrase-label">병원에 입원한 환자들의 수동적이고 권태로운 삶을 비유함</span> 나는 이 붕어 같은 병원 생활이 무척 마음에 들었다. 오랜 방황 끝에 고향에 닻을 내린 범선처럼 나는 한가로웠고, 그리고 즐거웠다.</p>
+<p class="stanza-gap" style="color:#64748b;">(중략)</p>
+<p>그러다가 반대편에 서서 어둠에 웅크리고 있는 병동을 바라보면 참으로 기괴한 감격에 싸여 버리는 것이었다. 병동은 파도가 밀려오는 철 지난 해변에 서 있는 방갈로처럼 우울하게 해감 냄새를 피우고 있었다. … 그들은 보육기 속에서 생명을 키워 가는 유아와 같은 행동을 하고 있었다. 그것은 정말 생생한 경이였다.</p>
+<p class="stanza-gap">일 층, 이 층, 삼 층, 사 층, 모든 병동은 밤에도 환히 눈을 뜨고 있었다. … <span class="underline-phrase">㉢나는 그들이 균을 잡아먹는 백혈구와 같다고 생각했다.</span><span class="phrase-label">의료진을 균을 제거하는 기계적 기능으로만 인식함</span> 그리고 그들의 무표정하고 뻣뻣한 얼굴에서, 균을 거부하는 강력한 항생제의 효능을 느껴야 했다.</p>
+<p class="stanza-gap">그즈음, 나는 새로운 사실을 발견했다. <span class="underline-phrase">입원한 이후 저들의 얼굴에서 웃음을 발견치 못했다는 중대한 사실이었다.</span><span class="phrase-label">웃음이 결여된 의료진을 발견함</span> 그런 생각은 참으로 불쑥 일어난 느낌이었다.</p>
+<p class="stanza-gap">언젠가 나는 외국 잡지에서 잘 인쇄된 화장품 광고를 본 일이 있었다. … 그런데 만일 그 사내가 그 최면술 거는 듯한 매혹적인 웃음을 제거하고 무표정하게 서 있었다면, 나는 그 화보가 미안수 선전 광고라고는 생각지 않았을 것이다.</p>
+<p class="stanza-gap">그 병원 의사들은 미안수 선전 광고에 나올 만한 사내들이 미소를 결여하였음으로 하여, <span class="underline-phrase">자기 병원 왕래를 권장하는 무표정한 히포크라테스의 모델로 아깝게 전락해 버린 듯 보였다.</span><span class="phrase-label">감정이 결여된 채 기계적으로 환자를 치료하는 의료진을 비유함</span> … 저들이 만약 외무 사원처럼 웃으며 환자의 증세를 물어본다면, 그 환자는 얼마나 심리적인 위안을 받을 것인가.</p>
+<p class="stanza-gap"><span class="underline-phrase">㉣이리하여 나는 그들을 웃기기 위해서 고용된 사설 코미디언 같은 무거운 책임 의식을 갖게 되었고,</span><span class="phrase-label">의료진을 웃기려는 시도 → 환자와 의료진의 관계 역전을 시도함</span> 밤낮으로 그들이 무엇을 원하고 있는가를 알아내려 애를 썼다. 나는 스스로의 청진기를 들고 그들을 진단하기 시작했고, … 이드와 에고 학설을 응용해서 그들을 웃겨 보려던 <span class="underline-phrase">나의 첫 번째 시도는 곧 좌절되고 말았다. 왜냐하면 그들은 유난히 가려운 곳도 없었고, 무언가 가지고 싶은 욕구 본능도 퇴화되어 버린 것 같았기 때문이었다.</span><span class="phrase-label">‘나’의 시도가 좌절된 이유 — 의료진들은 인간적인 욕구의 결핍을 느끼지 못함</span></p>
+<p class="stanza-gap">그들은 잠을 자야 할 땐 수면제를 먹었으며, 배가 고플 땐 의사 전용 식당에서 영양이 풍부한 햄버그스테이크를 뜯었다. … 성욕이 고개를 들면 간단히 진통제로 말살해 버렸다. <span class="underline-phrase">㉤도대체가 그들은 충분한 영양을 취하고 있는 온상 속의 귀족 식물이었던 것이다.</span><span class="phrase-label">식욕·성욕·취미 등 인간적인 면모를 통제한 채 결핍 없이 살아가는 의료진의 모습</span> 며칠이 지나도 나는 그들이 가려워하는 곳을 발견하지 못하였다. <span class="para-note">← 의료진들에게 웃음이 결여되었다는 사실을 발견한 ‘나’</span></p>
+<p style="text-align:right;font-weight:600;">- 최인호, 「견습 환자」</p>
+<p class="footnote-box">✽전범: ‘전쟁 범죄인’을 줄여 이르는 말. &nbsp; ✽체경: 몸 전체를 비추어 볼 수 있는 큰 거울. &nbsp; ✽미안수: 피부에 수분을 주어 피부 표면을 다듬는 화장수(=로션).</p>
+</div></div><div class="col-right"><div class="analysis-box"><div class="title">📌 장면 1 · 환자 되기 (㉠)</div><div class="content">&#x27;나&#x27;는 문패가 걸리고 환자복을 입은 뒤부터 &#x27;정말로&#x27; 아프기 시작. 체구에 안 맞는 환자복 → 병색이 드러남. 시스템이 &#x27;환자&#x27;라는 정체성을 부여함(㉠).</div></div>
+<div class="analysis-box"><div class="title">📌 장면 2 · 의료진의 비인간성</div><div class="content">한 떼의 의사들이 &#x27;전범 다루듯&#x27; 옆구리를 찔러 액체를 빼냄 → &#x27;집행인&#x27;처럼 차디찬 체온. 의료 행위를 처벌·집행에 빗대어 시스템의 냉정함 부각.</div></div>
+<div class="analysis-box"><div class="title">📌 장면 3 · 시스템에 길드는 &#x27;나&#x27; (㉡)</div><div class="content">&#x27;모범 환자&#x27;가 됨. 병이 차도를 보이는데도 결핵 환자 정체성이 실감(㉡). 만져도 안 아픈 미열뿐 → 체념·안주하며 &#x27;금붕어 같은&#x27; 입원 생활에 만족(민물고기·범선 비유).</div></div>
+<div class="analysis-box"><div class="title">📌 장면 4 · 웃음 없는 의료진의 발견 (㉢)</div><div class="content">병동을 &#x27;백혈구&#x27;로, 의사를 &#x27;항생제&#x27;로 인식(㉢). 그러다 의료진의 얼굴에서 &#x27;웃음&#x27;을 본 적 없다는 사실을 발견 → 미안수 광고의 &#x27;웃음&#x27; 비유로 무표정한 &#x27;히포크라테스 모델&#x27; 비판.</div></div>
+<div class="analysis-box"><div class="title">📌 장면 5 · 웃기기 프로젝트의 좌절 (㉣㉤)</div><div class="content">&#x27;나&#x27;는 그들을 웃기려는 &#x27;사설 코미디언&#x27;의 책임 의식을 가짐(㉣). 이드·에고 학설을 응용하나 좌절 — 그들은 가려운 곳도 욕구도 없는 &#x27;온상 속의 귀족 식물&#x27;(㉤). 시스템에 완전히 길든 존재에 대한 연민·비판.</div></div>
+<div class="vocab-box">📖 <strong>어휘</strong><br>• <strong>전범</strong>: &#x27;전쟁 범죄인&#x27;을 줄여 이르는 말.<br>• <strong>체경</strong>: 몸 전체를 비추어 볼 수 있는 큰 거울.<br>• <strong>미안수</strong>: 피부에 수분을 주어 피부 표면을 다듬는 화장수(=로션).</div>
+<div class="info-box"><h3>🎯 독해 포인트</h3><p style="font-size:13.5px;">통제적 병원 시스템을 우화적·비유적으로 비판하는 1인칭 소설. ①&#x27;나&#x27;가 시스템에 의해 &#x27;환자&#x27;가 되고 길드는 과정(㉠→㉡), ②의료진을 &#x27;집행인·백혈구·항생제·귀족 식물&#x27;로 보는 냉소적 비유, ③웃음을 되찾아 주려는 시도의 &#x27;실패&#x27;(㉣㉤)가 억압적 시스템에 균열을 내려는 개인의 한계와 순응하는 이들에 대한 연민을 드러낸다. 물(금붕어·민물고기·해초) 이미지의 반복도 주목.</p><h3 style="margin-top:16px;">📌 주제</h3><p style="font-size:13.5px;">억압적인 병원 시스템에 대한 비판과, 웃음을 잃은 의료진에 대한 연민</p></div></div></div>
+<div class="structure-wrapper" style="background:#0f3324;border-top:3px solid #2b4a38;"><div class="structure-title" style="color:#ffe486;border-left-color:#ffe486;">📝 수업 판서 (칠판) <span style="background:#0b2a1e;color:#ffe486;">18~21</span></div><div style="max-width:1180px;margin:0 auto;"><svg viewBox="0 0 1640 900" xmlns="http://www.w3.org/2000/svg" font-family="'Nanum Pen Script','Gaegu',cursive" style="width:100%;height:auto;display:block;border-radius:14px;"><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#164531"/><stop offset="1" stop-color="#0f3324"/></linearGradient></defs><rect x="0" y="0" width="1640" height="900" rx="18" fill="url(#bg)"/><rect x="10" y="10" width="1620" height="880" rx="12" fill="none" stroke="#3a5a48" stroke-width="8"/><text x="820.0" y="78" fill="#ffe486" font-size="44" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">🏥 견습 환자 : 시스템 비판과 연민</text><line x1="440.0" y1="96" x2="1200.0" y2="96" stroke="#ffe486" stroke-width="3" stroke-linecap="round"/><path d="M420.0,70 Q280.0,150 240.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><path d="M1220.0,70 Q1360.0,150 1400.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><rect x="120" y="200" width="300" height="80" rx="16" fill="none" stroke="#ff9db2" stroke-width="3"/><text x="270" y="250" fill="#ff9db2" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">환자 되기</text><text x="270" y="315" fill="#7fe0c8" font-size="22" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">문패·환자복(㉠)</text><rect x="470" y="200" width="300" height="80" rx="16" fill="none" stroke="#9ad8ff" stroke-width="3"/><text x="620" y="250" fill="#9ad8ff" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">시스템에 길듦</text><text x="620" y="315" fill="#7fe0c8" font-size="22" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">모범환자(㉡)·금붕어</text><rect x="820" y="200" width="300" height="80" rx="16" fill="none" stroke="#a8e6a1" stroke-width="3"/><text x="970" y="250" fill="#a8e6a1" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">웃음 부재 발견</text><text x="970" y="315" fill="#7fe0c8" font-size="22" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">백혈구·항생제(㉢)</text><rect x="1180" y="200" width="300" height="80" rx="16" fill="none" stroke="#ffc078" stroke-width="3"/><text x="1330" y="250" fill="#ffc078" font-size="26" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">웃기기 좌절</text><text x="1330" y="315" fill="#7fe0c8" font-size="22" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">귀족 식물(㉤)</text><line x1="420" y1="240" x2="470" y2="240" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round"/><polyline points="455,246 470,240 455,234" fill="none" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="770" y1="240" x2="820" y2="240" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round"/><polyline points="805,246 820,240 805,234" fill="none" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="1120" y1="240" x2="1180" y2="240" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round"/><polyline points="1165,246 1180,240 1165,234" fill="none" stroke="#ffe486" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="150" y="400" width="1340" height="180" rx="18" fill="none" stroke="#f4f4ec" stroke-width="2.5"/><text x="180" y="450" fill="#f4f4ec" font-size="30" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">◆ 의료진을 향한 냉소적 비유</text><text x="180" y="505" fill="#9ad8ff" font-size="26" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">집행인·죄수 / 백혈구·항생제 / 히포크라테스 모델 / 온상 속 귀족 식물</text><text x="180" y="548" fill="#a8e6a1" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">→ 감정 소거된 기계적 시스템 + 웃음 잃은 이들에 대한 &#x27;연민&#x27;</text><rect x="300" y="630" width="1040" height="180" rx="20" fill="none" stroke="#ffe486" stroke-width="2.5"/><text x="330" y="682" fill="#ffe486" font-size="30" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">주제</text><text x="360" y="735" fill="#f4f4ec" font-size="27" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">억압적 병원 시스템 비판 &amp; 웃음을 잃은 의료진에 대한 연민</text><text x="360" y="782" fill="#7fe0c8" font-size="25" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">(개인의 저항은 번번이 &#x27;실패&#x27; → 균열 내기의 한계)</text></svg></div><div style="margin-top:14px;text-align:center;font-size:13px;color:#94a3b8;">※ 손글씨 폰트(Nanum Pen)는 인터넷 연결 시 자동 적용됩니다.</div></div>
+<div class="passage-study" style="background:#fbf7ef;border-top:3px solid #e0c9a6;">
+<h2 style="color:#7c3f1d;">📘 사용설명서 지문 분석 <span style="font-size:14px;color:#9a7b52;">(EBS 수능완성 사용설명서)</span></h2>
+<div class="info-box" style="background:#fff6e9;border-left-color:#b5651d;"><h3>📖 전체 줄거리</h3><p style="font-size:14px;">&#x27;나&#x27;는 습성 늑막염 진단을 받고 병원에 입원한다. &#x27;나&#x27;는 처음에 능동적으로 병원을 찾은 것과 달리, 환자복을 갈아입고 나서야 비로소 아프기 시작한다. 병원 생활에 차츰 적응하면서 간호원들과 의사들에게 관심을 보이던 &#x27;나&#x27;는 그들이 웃지 않음을 깨닫고, 자신이 그들을 웃겨야 한다는 책임 의식을 갖는다. 여러 시도가 번번이 좌절되자 초조해하던 &#x27;나&#x27;는 퇴원 하루 전날 병동을 다니며 문패를 모조리 바꿔 버리지만, 다음 날 아침 모든 문패가 원상태로 돌아와 있고 병원 시스템에는 아무런 흔적도 남지 않는다. &#x27;나&#x27;는 퇴원하는 길에 젊은 인턴이 아름다운 여인과 콜라를 마시며 웃음을 띤 듯한 모습을 보고 감격하며, 통행금지 시간·신호등·시민증을 챙겨야 하는 일상으로 돌아간다.</p></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">📎 이것만은 꼭 익히자!</h3>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 1 · 서술상의 특징</div><div class="content">시간의 흐름에 따라 사건이 전개되는 순행적 구성을 취함. 특별한 갈등 상황 없이 중심인물이 주변을 관찰하며 느끼는 내면 심리를 중심으로 이야기가 전개됨. 이야기 내부의 서술자(&#x27;나&#x27;)가 자신의 심리와 주변에서 벌어지는 상황을 묘사하여 서술하는 1인칭 주인공 시점을 취함.</div></div>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 2 · &#x27;웃음&#x27;에 대한 &#x27;나&#x27;의 인식</div><div class="content">① 의료진들에게 결핍된 요소이자 화장품 광고 속 사내들과 대조되는 요인. ② 환자들이 의료진들로부터 심리적 위안을 받을 수 있는 요소. ③ 의학적 권력을 지닌 존재가 권위를 드러내기 위해 제거해야 하는 요소. ④ 의료진들이 인간적인 욕구에 대한 결핍 없이 기계적으로 살아가는 존재임을 깨닫는 계기.</div></div>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 3 · 비유적 표현과 의미</div><div class="content">&#x27;전범 다루듯&#x27;·&#x27;죄수처럼&#x27; → 의료진들의 지시에 순응하며 진단을 받아야 하는 환자로서의 처지. &#x27;금붕어 같은 생활&#x27; → 병원에 입원한 환자들의 수동적이고 권태로운 삶. &#x27;양순한 민물고기&#x27; → 병동 규범에 순응하는 유순한 환자들. &#x27;균을 잡아먹는 백혈구&#x27;·&#x27;무표정한 히포크라테스의 모델&#x27; → 감정이 결여된 채 기계적으로 환자들을 치료하는 의료진. &#x27;온상 속의 귀족 식물&#x27; → 인간적인 욕구를 통제한 채 결핍 없이 살아가는 의료진의 모습.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">✨ 배경지식 더 알아보기</h3>
+<div class="analysis-box" style="border-left-color:#0ea5a0;background:#effefb;"><div class="title">근대의 규율 권력의 작동 기제를 보여 주는 장면</div><div class="content">「견습 환자」 속 &#x27;병원&#x27;은 근대의 규율 권력 중 생명을 통제하는 생체 권력이 작용하는 공간이다. 의료진은 의학적 권력을 지닌 진단의 주체가 되고 &#x27;나&#x27;는 그 앞에서 순응해야 하는 진단의 대상이 되면서 권력관계가 형성된다. 병원 규율에 적응하며 만족감을 느끼는 환자들의 모습은 사회 권력의 작동 기제에 순종적으로 복종한 결과이며, &#x27;웃음&#x27;을 짓지 않는 의료진들의 무표정한 얼굴은 내적 감정의 표출을 통제함으로써 환자와의 관계에서 우위를 점하는 권력의 모습이다. &#x27;나&#x27;가 퇴원한 직후 통행금지 시간·신호등·시민증을 챙겨야 하는 장면은, 병원 밖의 생활도 병원에서의 생활과 다를 바 없음을 암시한다. 즉 근대의 규율 권력이 일상의 미시적 차원에서 작동하기에, 벗어날 수 없는 개인들은 규율을 내재화하고 스스로를 통제하여 유순한 존재로 전락하게 됨을 보여 준다.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">💬 EBS Q&amp;A</h3>
+<div class="qa-box"><div class="q">Q. 비유적 표현의 의미를 파악하는 문항을 잘 풀기 위해서는 어떻게 해야 할까요?</div><div>A. 비유적 표현은 어떤 대상을 직접 설명하지 않고 다른 대상에 빗대어 의미를 전달하는 방식으로, 빗대는 대상은 표현하려는 대상과의 유사성을 바탕으로 선별된다. 따라서 유사성을 파악하려면 비유가 사용된 구절의 문맥을 먼저 파악하는 것이 우선이다. 「견습 환자」에서 병동에 입원한 &#x27;나&#x27;는 &#x27;전범·죄수·유아&#x27; 등에 빗대어지는데, 해당 장면에서 &#x27;나&#x27;는 지시에 따라 진찰을 받는 자신의 모습을 묘사하고 있다. 즉 병원의 규율에 순응하며 유순한 존재가 되어 가는 &#x27;나&#x27;의 처지를 보여 주는 맥락적 의미를 갖는다. &#x27;전범·죄수&#x27;는 자신을 억압하는 시스템에 길들여져야 하는 처지, &#x27;유아&#x27;는 자립 능력이 없어 수동적 태도를 취할 수밖에 없는 처지를 드러낸다.</div></div>
+</div>
+<div class="questions-section"><h2 style="font-size:26px;margin-bottom:20px;">■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+<div class="question-full"><div class="q-num">18</div>
+<div class="question-stem">윗글에 대한 설명으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 시간의 흐름에 따라 인물 간 갈등이 고조되고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 시간의 흐름에 따라 사건이 전개되고 있는 것은 맞지만, 인물 간 갈등은 나타나 있지 않다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 역순행적 구성을 통해 사건의 인과 관계를 밝히고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 시간의 흐름에 따른 순차식 구성을 취하고 있으므로 역순행적 구성에 해당하지 않는다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 현재형 진술을 활용해 사건을 현장감 있게 전달하고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 전반적으로 ‘-았-/-었-’ 등의 과거 시제 선어말 어미를 활용한 과거형 진술을 취하고 있다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">④ 특별한 갈등 상황 없이 인물의 내면 심리를 중심으로 서사가 전개되고 있다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 병원에 입원한 ‘나’는 병동을 둘러보다가 의료진들이 웃지 않는다는 사실을 깨닫고 그들을 웃기기 위해 세밀히 관찰하기 시작한다. 즉 특별한 갈등 상황 없이 인물이 주변을 관찰하며 느끼는 내면 심리를 중심으로 서사가 전개되고 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ 새로운 인물이 등장하면서 인물 간 갈등 양상이 긍정적인 양상으로 개선되고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 처음부터 등장한 환자, 간호원, 의사 들이 계속 나타날 뿐, 새로운 인물이 등장했다고 보기 어렵다. 또한 인물 간 갈등 양상이 나타난 부분도 찾기 어렵다.</div>
+</div>
+<div class="correct-badge">📍 정답 ④ &nbsp;[유형] 서술상의 특징 파악</div></div>
+<div class="question-full"><div class="q-num">19</div>
+<div class="question-stem">윗글의 웃음에 대한 ‘나’의 인식으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 자신이 병원 생활에 만족감을 느끼는 요인이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 시간 맞추어 밥을 먹고 빈 시간에 잠을 자는 금붕어와 같은 입원 생활에 적응하면서 병원 생활에 만족감을 표하였다. 그러다가 뒤늦게 병원 의사들이 웃지 않는다는 사실을 발견하였다. 즉 ‘나’는 웃음으로 인해 병원 생활에 만족한 것이 아니라 그 전에 이미 병원 생활에 만족하고 있었다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② ‘병동’에 있는 모든 존재에게 결핍감을 유발한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’가 의사들의 얼굴에 웃음이 없는 것을 문제 삼았을 뿐, ‘병동’의 모든 존재가 웃음에 대해 결핍감을 느끼는 것은 아니다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">③ ‘의사들’이 ‘환자’에게 줄 수 있는 심리적 위안으로 작용한다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — ‘나’는 의사들이 웃으면서 증세를 묻는다면 환자가 심리적인 위안을 받을 것이라고 생각했다. 즉 ‘나’는 ‘의사들’의 웃음이 ‘환자’에게 줄 수 있는 심리적 위안으로 작용한다고 인식하고 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ ‘미안수 선전 광고’ 속 ‘사내들’과 ‘병원 의사들’을 동일시하게 된 근거이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 웃지 않는 의사들을 보고서 ‘미안수 선전 광고’ 속 ‘사내들’이 띠는 매혹적인 웃음이 결여됨으로써 무표정한 히포크라테스의 모델로 전락했다고 생각했다. 따라서 의사들을 광고 속 사내들과 동일시하고 있는 것은 아니다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ ‘간호원들’, ‘외무 사원’과 달리 ‘의사들’을 부정적으로 인식하게 된 이유이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 간호원들과 의사들을 관찰하다가 그들의 얼굴에서 웃음을 발견하지 못했다는 사실을 깨닫는다. 즉 ‘간호원들’과 ‘의사들’이 서로 대조적으로 인식되는 대상은 아니다.</div>
+</div>
+<div class="correct-badge">📍 정답 ③ &nbsp;[유형] 작품의 내용 이해</div></div>
+<div class="question-full"><div class="q-num">20</div>
+<div class="question-stem">㉠~㉤에 대한 설명으로 적절하지 <u>않은</u> 것은?</div>
+<div class="choice-item"><div class="choice-text">① ㉠: ‘나’는 자신이 처한 상황이 변화된 뒤에야 자신의 아픈 몸 상태를 자각하게 되었다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 환자복을 입고 병실 문패에 자신의 이름이 걸리자 몸이 아프기 시작했다고 했다. 즉 자신이 처한 상황이 변화된 뒤에야 자신의 아픈 몸 상태를 비로소 자각하게 된 것이다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">② ㉡: ‘나’는 입원한 직후부터 계속 병에 차도가 없는 것을 불안해하고 있다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — ㉡에서 ‘나’가 억울함과 슬픔을 느끼는 건 폐병 환자로 긴 시간 입원 생활을 해야 하는 자신의 처지를 실감하게 되었기 때문이다. ㉡ 이전의 상황을 보면, ‘나’는 입원 후에 조금씩 차도를 보였고 의사가 약들이 좋으니 감기 정도로 생각하라고 말하자 불안하면서도 위안을 받았다고 했다. 따라서 입원한 직후부터 계속 병에 차도가 없었다는 설명은 적절하지 않다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ ㉢: ‘나’는 의사들이 환자의 병을 치료하는 직분을 충실하게 이행하는 존재라고 인식하고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 병실을 다니며 질병에 걸린 환자들을 치료하는 의료진들을 보고 있다. 즉 환자의 병을 치료하는 직분에 충실한 그들의 모습을 ‘균을 잡아먹는 백혈구’에 빗댄 것이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ ㉣: ‘나’는 의사들이 자신에게 요구한 적이 없는 역할을 자청하여 그 일에 진지하게 임하고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 의사들의 얼굴에 웃음이 없음을 깨닫고 그들을 웃기기 위해 애를 쓰고 있다. 코미디언 역할은 누군가가 ‘나’에게 요구한 것이 아니라 ‘나’가 자청한 것이다. 또한 ‘나’는 이에 대해 무거운 책임 의식을 느낄 정도로 진지하게 임하고 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ ㉤: ‘나’는 의사들이 인간적 욕구가 퇴화되어 결핍을 자각하지 못하는 상태라고 생각하고 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — ‘나’는 의사들을 관찰한 결과, 그들이 가려운 곳도 없고 욕구 본능이 퇴화되어 버린 것 같다고 생각하고 있다. 즉 ‘온상 속의 귀족 식물’에는, 인간적 욕구가 퇴화된 의사들이 결핍을 자각하지 못하는 상태라는 ‘나’의 생각이 반영되어 있다.</div>
+</div>
+<div class="correct-badge">📍 정답 ② &nbsp;[유형] 구절의 의미 이해</div></div>
+<div class="question-full"><div class="q-num">21</div>
+<div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 적절하지 <u>않은</u> 것은?</div>
+<div class="view-box"><div class="vb-title">&lt;보기&gt;</div><p>&lt; 보 기 &gt;</p><p>푸코에 따르면, 근대의 규율 권력은 일상의 미시적 차원에서 작동하기 때문에 이를 내재화한 개인은 외부의 감시가 없어도 스스로를 통제해 유순한 존재가 된다. 특히 푸코는 권력이 생명 자체를 통제하는 방식을 설명하기 위해 ‘생체 권력’이라는 개념을 제시했다. 병에 걸린 신체는 의학적 권력을 지닌 존재 앞에서 관찰의 대상으로 전락하면서 의료진과 환자 사이에 간수와 죄수의 관계와 같은 권력관계가 형성되고 환자들은 병원 규칙과 의료진의 지시에 순응하게 된다. 이러한 생체 권력의 작동 방식과 그에 대한 저항을 다룬 소설이 「견습 환자」이다. 병원에 입원한 주인공은 관찰 대상인 환자의 본분에서 벗어나 은밀한 관찰의 주체로서 의사들을 진단하며 생체 권력의 관계에서 역전을 시도하지만 이내 실패한다. 이를 통해 일상에 잠재된 규율 권력의 견고함을 보여 준다.</p></div>
+<div class="choice-item"><div class="choice-text">① ‘의사들’이 ‘나’를 ‘전범 다루듯’ 하거나 ‘나’가 자신을 ‘죄수처럼’ 인식하는 것은, 의료진과 환자 사이에 형성된 권력관계에서 비롯된 것에 해당하겠군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;에서는 병에 걸린 신체가 의학적 권력을 지닌 존재 앞에서 관찰의 대상으로 전락하고 의료진과 환자 사이에 간수와 죄수의 관계와 같은 권력관계가 형성된다고 했다. 그러므로 ‘의사들’이 몰려와 ‘나’를 ‘전범 다루듯’ 대하고 ‘나’가 자신을 집행을 기다리는 ‘죄수처럼’ 인식하는 것은, 의료진과 환자 사이에 형성된 권력관계에서 비롯된 것이다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② ‘나’가 ‘아침이면 체온계를 입에’ 무는 ‘모범 환자’가 된 것은, 의학적 권력을 지닌 존재의 관찰 대상으로서 환자의 본분에 충실한 모습에 해당하겠군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;에 따르면, 병원에 입원한 환자는 의학적 권력을 지닌 존재 앞에서 관찰의 대상으로 전락하며 의료진의 지시에 순응하게 된다. 그러므로 ‘나’가 ‘아침이면 체온계를 입에’ 물고 체온을 재는 ‘모범 환자’가 된 것은, 관찰 대상으로서 환자의 본분에 충실한 모습에 해당한다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ ‘나’가 ‘시간 맞추어 밥을 먹고, 빈 시간이면 잠을 자는 입원 생활에 만족’하는 것은, 병원에서 작동하는 규율 권력을 내재화한 개인이 병원 규칙에 순응하는 모습에 해당하겠군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;에 따르면, 일상의 미시적 차원에서 작동하는 규율 권력을 내재화한 개인은 외부의 감시가 없어도 스스로를 통제해 유순한 존재가 된다. ‘나’가 병원이 정한 시간에 맞추어 먹고 자는 생활에 적응하게 되면서 만족감을 느끼는 것은, 환자 개인이 병원 규칙에 순응하는 모습이자 병원에서 작동하는 규율 권력을 내재화한 결과에 해당한다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">④ ‘나’가 ‘환자들의 움직이는 모습’을 보며 ‘경이’를 느끼는 것은, 일상에 잠재된 견고한 규율 권력에 저항하려는 대상들의 움직임을 본 개인의 반응에 해당하겠군.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — &lt;보기&gt;에 따르면, 규율 권력을 내재화한 개인은 스스로를 통제해 유순한 존재가 되기 때문에 환자들은 병원 규칙과 의료진의 지시에 순응하게 된다. ‘나’가 ‘경이’를 느낀 이유는, 모든 병실 속 환자들이 보육기 속에서 생명을 키워 가는 유아와 같이 행동하는 모습에서 병에 걸린 신체가 병원 규칙에 적응하며 생체 권력에 순응하는 모습을 보았기 때문이다. 따라서 다른 환자들이 견고한 규율 권력에 저항하려는 움직임을 보인다고 볼 수 없다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ ‘나’가 ‘스스로의 청진기를 들고 그들을 진단’하며 ‘임상 실험’의 주체인 것처럼 구는 것은, 관찰의 대상이 관찰의 주체로 변모하여 생체 권력의 관계에서 역전을 시도하는 것에 해당하겠군.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — &lt;보기&gt;에서는 주인공이 관찰 대상에서 관찰의 주체로 변모하여 생체 권력의 관계에서 역전을 시도한다고 했다. ‘나’가 웃음을 잃은 의사들을 진단하며 ‘임상 실험’의 주체처럼 구는 것은, 관찰의 대상이었던 환자의 본분에서 벗어나 관찰의 주체가 되어 생체 권력의 관계에서 역전을 시도하는 것에 대응한다.</div>
+</div>
+<div class="correct-badge">📍 정답 ④ &nbsp;[유형] 외적 준거에 따른 작품 감상</div></div>
+</div>
+<div class="passage-study"><h2>📚 지문 연구 [교사용]</h2><p style="margin:4px 0;"><strong>해제 : 이 작품은 통제적인 병원 시스템하에서 감정이 소거된 채 기계적으로 일하는 의료진들의 모습을 형상화하여 삭막하고 억압적인 사회 시스템을 비판하는 소설이다. 특히 의료진에게 웃음을 되찾아 주기 위한 주인공의 시도가 번번이 실패하는 모습을 통해 억압적인 시스템에 균열을 내려는 개인의 노력이 한계가 있음을 보여 주고, 시스템에 길들어 순응하는 구성원들에 대한 연민을 드러내고 있다.</strong></p><p style="margin:4px 0;"><strong>주제 : 억압적인 병원 시스템에 대한 비판과, 웃음을 잃은 병원 의료진들에 대한 연민</strong></p></div>
+</div></body></html>

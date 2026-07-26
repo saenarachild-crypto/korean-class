@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>수능완성 실전5회 독서1 · 1~3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #4a3a6e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #faf9fd; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 0.3em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text p.stanza-gap { margin-top: 1.2em; }
+        .original-text .underline-phrase {
+            background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label {
+            display: block; color: #7c3aed; font-weight: 800; font-size: 17px; margin: 20px 0 10px 0;
+        }
+        .bracket-tag {
+            display: block; text-align: right; font-size: 12px; font-weight: 700; color: #ffffff;
+            background: #475569; padding: 1px 10px; border-radius: 10px; width: fit-content;
+            margin: 4px 0 14px auto;
+        }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #4a3a6e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #6a4c93;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #4a3a6e; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .compare-flow { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+        .compare-box {
+            flex: 1; min-width: 200px; border-radius: 18px; padding: 14px 16px; font-size: 12.5px;
+        }
+        .compare-box.a { background: #fde9e9; border: 1.5px solid #ef4444; }
+        .compare-box.b { background: #eafbf0; border: 1.5px solid #16a34a; }
+        .compare-box h4 { margin-bottom: 8px; font-size: 14px; }
+        .soljae-box {
+            background: #fff8e6; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin: 10px 0; border: 1px solid #f1c40f;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #6a4c93; padding-left: 20px;
+        }
+        .structure-title span { background: #4a3a6e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #4a3a6e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #6a4c93;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #4a3a6e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #4a3a6e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #4a3a6e; }
+        .passage-study h3 { font-size: 17px; margin: 14px 0 8px 0; color: #4a3a6e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style></head><body>
+<div class="container">
+<div class="header"><h1>📖 수능완성 실전 5회 · 독서1 1~3</h1>
+<p>독서 이론 「추론적 독해 — 복원 추론과 연장 추론」 | 원문 + 구절별 지문 분석 + 어휘 + 판서 + 문항 분석 + 지문 연구</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p>글자를 그대로 해석하는 ‘축자적 의미’는 글을 이해하는 데 기본이 되는 의미로, <span class="underline-phrase">어휘나 문법 지식을 통해 파악된다</span><span class="phrase-label">축자적 의미를 파악하는 방법</span>. 하지만 축자적 의미만으로는 응집성, 즉 글의 내용이 긴밀하게 연결되는 특성을 파악하기 어려우므로 <span class="underline-phrase">독자는 글에 명시된 단서들을 연결하여 의미의 일관성을 부여해야 한다</span><span class="phrase-label">복원 추론의 필요성</span>. <span class="underline-phrase">이러한 추론 과정을 ㉠복원 추론이라 하며</span><span class="phrase-label">복원 추론의 의미</span>, <span class="underline-phrase">지시 표현의 대상을 파악하거나, 생략된 내용이나 연결 관계를 추론하는 활동 등이 이에 포함된다</span><span class="phrase-label">복원 추론의 방법</span>. <span class="para-note">← 글의 응집성 파악을 위한 복원 추론</span></p>
+<p class="stanza-gap"><span class="underline-phrase">복원 추론을 위해서는 글에 명시된 둘 이상의 단서를 적절하게 연결하고 참조하는 것이 필수적이다</span><span class="phrase-label">복원 추론의 수행 조건</span>. 그러나 <span class="underline-phrase">복원 추론은 글이 지니는 본래의 명시적인 의미를 복구하는 것이 목적이므로 독자의 배경지식이 미치는 영향은 그리 크지 않다</span><span class="phrase-label">복원 추론의 특징</span>. 복원 추론에는 <span class="underline-phrase">현재 정보를 바탕으로 이어질 내용을 예측하는 ‘전방 추론’</span><span class="phrase-label">복원 추론의 종류 ①</span>이나, <span class="underline-phrase">현재 정보로부터 이전에 있어야 할 정보를 떠올리는 ‘후방 추론’</span><span class="phrase-label">복원 추론의 종류 ②</span> 등이 포함된다. <span class="underline-phrase">이 과정을 통해 형성된 ‘명시 의미’는 글쓴이가 전달하려는 객관적이고 기본적인 의미가 된다</span><span class="phrase-label">명시 의미의 특징</span>. <span class="para-note">← 복원 추론을 통한 명시 의미의 형성</span></p>
+<p class="stanza-gap">하지만 <span class="underline-phrase">바람직한 독서는 명시 의미를 기반으로 새로운 차원의 의미를 적극적으로 구성하는 데까지 나아가야 한다</span><span class="phrase-label">연장 추론의 필요성</span>. 이러한 의미 확장은 ㉡연장 추론을 통해 이루어진다. <span class="underline-phrase">이 추론은 글의 명시 의미를 하나의 정보로 삼고</span><span class="phrase-label">연장 추론의 출발점 ①</span>, <span class="underline-phrase">여기에 독자가 배경지식 중 하나를 능동적으로 선택하여 연결함으로써 새로운 의미를 만들어 내는 방식이다</span><span class="phrase-label">연장 추론의 출발점 ②</span>. 이때 <span class="underline-phrase">선정된 배경지식은 반드시 글의 전체적인 흐름, 즉 상위 맥락에 적합한 것이어야 연장 추론이 가능하다</span><span class="phrase-label">연장 추론의 조건</span>. <span class="underline-phrase">이렇게 생성된 ‘확장 의미’는 활용한 배경지식에 따라 다양하게 생성될 수 있다</span><span class="phrase-label">확장 의미의 특징</span>. <span class="para-note">← 연장 추론을 통한 확장 의미의 형성</span></p>
+<p class="stanza-gap">그런데 이 과정에서 <span class="underline-phrase">독자가 글의 상위 맥락을 무시하고 자신의 배경지식만을 앞세울 경우, 글의 의미를 왜곡하는 오독의 위험이 따른다</span><span class="phrase-label">연장 추론의 한계</span>. 따라서 타당한 추론을 위해서는 <span class="underline-phrase">자신의 추론이 객관적인 근거를 바탕으로 하는지 점검하는 태도가 요구된다</span><span class="phrase-label">연장 추론 시 필요한 태도</span>. 이런 점들을 염두에 두면, <span class="underline-phrase">숙련된 독자일수록 추론 방법들을 적절히 활용하여 글의 의미를 효과적으로 구성해 낼 수 있다</span><span class="phrase-label">숙련된 독자의 특징</span>. <span class="para-note">← 연장 추론에 필요한 독자의 태도</span></p>
+</div></div><div class="col-right"><div class="analysis-box"><div class="title">📌 1문단 · 복원 추론의 개념</div><div class="content">축자적 의미(어휘·문법으로 파악)만으로는 응집성을 알기 어려움 → 명시된 단서들을 연결해 일관성을 부여하는 ㉠복원 추론 필요(지시 대상 파악, 생략·연결 관계 추론).</div></div>
+<div class="analysis-box"><div class="title">📌 2문단 · 명시 의미의 형성</div><div class="content">복원 추론은 둘 이상의 단서를 연결·참조. 본래의 명시적 의미 복구가 목적 → 배경지식 영향 적음. 전방 추론(이어질 내용 예측)·후방 추론(앞선 정보 떠올림)으로 &#x27;명시 의미&#x27;(객관적·기본적 의미) 형성.</div></div>
+<div class="analysis-box"><div class="title">📌 3문단 · 연장 추론과 확장 의미</div><div class="content">바람직한 독서는 명시 의미를 넘어 새 의미 구성으로 나아감 → ㉡연장 추론. 명시 의미를 정보로 삼아 배경지식을 능동적으로 선택·연결. 단 배경지식은 &#x27;상위 맥락&#x27;에 적합해야 함 → &#x27;확장 의미&#x27;는 다양하게 생성 가능.</div></div>
+<div class="analysis-box"><div class="title">📌 4문단 · 오독 위험과 점검 태도</div><div class="content">상위 맥락을 무시하고 배경지식만 앞세우면 오독 위험 → 객관적 근거에 기반하는지 점검하는 태도 필요. 숙련된 독자일수록 추론 방법을 적절히 활용.</div></div>
+<div class="vocab-box">📖 <strong>어휘</strong><br>• <strong>축자(逐字)</strong>: 글자를 하나하나 따름.<br>• <strong>명시(明示)</strong>: 분명하게 드러내 보임.<br>• <strong>일관(一貫)</strong>: 하나의 방법이나 태도로써 처음부터 끝까지 한결같음.</div>
+<div class="info-box"><h3>🎯 독해 포인트</h3><p style="font-size:13.5px;">두 추론(복원·연장)을 &#x27;배경지식의 영향&#x27;과 &#x27;의미의 층위&#x27;로 대비하는 글. ①복원 추론=단서 연결→명시 의미(배경지식 영향 小), ②연장 추론=배경지식 능동 선택→확장 의미(배경지식 영향 大, 단 상위 맥락 적합해야)라는 대응을 표로 잡아 두어야 한다. 확장 의미는 &#x27;다양하게&#x27; 생성되며, 한 가지로 고정하려는 게 아니라는 점, 오독 방지를 위한 &#x27;점검 태도&#x27;가 결론임에 유의.</p><h3 style="margin-top:16px;">📌 주제</h3><p style="font-size:13.5px;">추론의 유형과 추론적 독해를 통한 글의 의미 구성 방법</p></div></div></div>
+<div class="structure-wrapper" style="background:#0f3324;border-top:3px solid #2b4a38;"><div class="structure-title" style="color:#ffe486;border-left-color:#ffe486;">📝 수업 판서 (칠판) <span style="background:#0b2a1e;color:#ffe486;">1~3</span></div><div style="max-width:1180px;margin:0 auto;"><svg viewBox="0 0 1640 900" xmlns="http://www.w3.org/2000/svg" font-family="'Nanum Pen Script','Gaegu',cursive" style="width:100%;height:auto;display:block;border-radius:14px;"><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#164531"/><stop offset="1" stop-color="#0f3324"/></linearGradient></defs><rect x="0" y="0" width="1640" height="900" rx="18" fill="url(#bg)"/><rect x="10" y="10" width="1620" height="880" rx="12" fill="none" stroke="#3a5a48" stroke-width="8"/><text x="820.0" y="78" fill="#ffe486" font-size="44" text-anchor="middle" font-weight="700" font-style="normal" letter-spacing="0">㉠㉡ 추론적 독해 : 복원 추론 vs 연장 추론</text><line x1="440.0" y1="96" x2="1200.0" y2="96" stroke="#ffe486" stroke-width="3" stroke-linecap="round"/><path d="M420.0,70 Q280.0,150 240.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><path d="M1220.0,70 Q1360.0,150 1400.0,250" fill="none" stroke="#ffe486" stroke-width="2.5" stroke-dasharray="4 10"/><text x="820.0" y="150" fill="#f4f4ec" font-size="29" text-anchor="middle" font-weight="400" font-style="normal" letter-spacing="0">축자적 의미만으론 &#x27;응집성&#x27; 파악 어려움 → 추론 필요</text><rect x="90" y="220" width="700" height="340" rx="20" fill="none" stroke="#9ad8ff" stroke-width="3"/><text x="120" y="275" fill="#9ad8ff" font-size="38" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">㉠ 복원 추론</text><text x="120" y="335" fill="#f4f4ec" font-size="28" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 명시된 단서 연결·참조</text><text x="120" y="388" fill="#ffe486" font-size="28" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 목적 : 본래 의미 &#x27;복구&#x27;</text><text x="120" y="441" fill="#a8e6a1" font-size="28" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 배경지식 영향 → 작음</text><text x="120" y="500" fill="#ffe486" font-size="28" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">→ 명시 의미 (객관·기본)</text><text x="140" y="540" fill="#7fe0c8" font-size="24" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">(전방 추론 / 후방 추론)</text><rect x="850" y="220" width="700" height="340" rx="20" fill="none" stroke="#a8e6a1" stroke-width="3"/><text x="880" y="275" fill="#a8e6a1" font-size="38" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">㉡ 연장 추론</text><text x="880" y="335" fill="#f4f4ec" font-size="28" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 명시 의미 + 배경지식 &#x27;능동 선택&#x27;</text><text x="880" y="388" fill="#ff9db2" font-size="28" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 조건 : 상위 맥락 적합!</text><text x="880" y="441" fill="#ffc078" font-size="28" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">• 배경지식 영향 → 큼</text><text x="880" y="500" fill="#ffe486" font-size="28" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">→ 확장 의미 (다양하게 생성)</text><line x1="790" y1="390" x2="850" y2="390" stroke="#ffe486" stroke-width="4" stroke-linecap="round"/><polyline points="835,396 850,390 835,384" fill="none" stroke="#ffe486" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="300" y="620" width="1040" height="200" rx="20" fill="none" stroke="#ffc078" stroke-width="2.5"/><text x="330" y="672" fill="#ffc078" font-size="32" text-anchor="start" font-weight="700" font-style="normal" letter-spacing="0">⚠ 오독 위험 &amp; 점검 태도</text><text x="360" y="725" fill="#ff9db2" font-size="27" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">상위 맥락 무시 + 배경지식만 앞세움 → 오독!</text><text x="360" y="775" fill="#f4f4ec" font-size="27" text-anchor="start" font-weight="400" font-style="normal" letter-spacing="0">→ 객관적 근거에 기반하는지 &#x27;점검&#x27; → 숙련된 독자</text></svg></div><div style="margin-top:14px;text-align:center;font-size:13px;color:#94a3b8;">※ 손글씨 폰트(Nanum Pen)는 인터넷 연결 시 자동 적용됩니다.</div></div>
+<div class="passage-study" style="background:#fbf7ef;border-top:3px solid #e0c9a6;">
+<h2 style="color:#7c3f1d;">📘 사용설명서 지문 분석 <span style="font-size:14px;color:#9a7b52;">(EBS 수능완성 사용설명서)</span></h2>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">🧩 핵심 개념</h3>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 1 · 복원 추론</div><div class="content">독자가 글에 명시된 단서들을 연결하여 필자가 본래 전달하려 했던 의미를 되살려 내는 추론 활동이다. 축자적 의미만으로는 글의 응집성을 파악하기 어렵기 때문에, 독자는 지시 표현의 대상을 파악하거나 생략된 내용·연결 관계를 추론하는 방식으로 복원 추론을 수행한다. 이 과정에는 현재 정보를 바탕으로 이어질 내용을 예측하는 전방 추론과, 현재 정보로부터 이전에 있어야 할 정보를 떠올리는 후방 추론이 포함된다. 복원 추론의 목적은 글 본래의 명시적 의미를 복구하는 것이므로, 독자의 배경지식이 미치는 영향은 크지 않다는 점이 연장 추론과의 핵심적인 차이다.</div></div>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 2 · 연장 추론</div><div class="content">복원 추론을 통해 형성된 명시 의미를 하나의 정보로 삼고, 여기에 독자가 배경지식을 능동적으로 선택하여 연결함으로써 새로운 확장 의미를 만들어 내는 추론 활동이다. 복원 추론이 글 안의 단서를 근거로 삼는다면, 연장 추론은 독자의 배경지식을 적극적으로 활용한다는 점에서 구별된다. 이때 활용되는 배경지식은 글의 전체적인 흐름인 상위 맥락에 부합해야 하며, 부합하지 않을 경우 독자는 글의 의미를 왜곡하는 오독에 빠질 위험이 있다. 활용하는 배경지식에 따라 확장 의미는 독자마다 다양하게 생성될 수 있다.</div></div>
+<div class="analysis-box" style="border-left-color:#e67e22;background:#fff7ee;"><div class="title">핵심 개념 3 · 명시 의미와 확장 의미</div><div class="content">명시 의미는 복원 추론의 결과로 형성되는, 필자가 전달하려는 표면적이고 기본적인 의미이다. 반면 확장 의미는 연장 추론의 결과로 생성되는, 독자가 배경지식을 연결하여 능동적으로 구성한 새로운 의미이다. 바람직한 독서는 명시 의미를 파악하는 데 그치지 않고 이를 토대로 확장 의미를 적극적으로 구성하는 데까지 나아가야 한다.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">📎 이것만은 꼭 익히자!</h3>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 1 · 복원 추론과 연장 추론의 비교</div><div class="content">목적: 복원=글에 이미 담긴 의미를 복구 / 연장=새로운 의미를 구성. 활용하는 정보: 복원=글에 명시된 둘 이상의 단서 / 연장=글의 명시 의미 + 독자의 배경지식. 배경지식의 영향: 복원=크지 않음(글 안 단서 연결이 중요) / 연장=큼(다만 글의 상위 맥락에 적합해야). 생성되는 의미: 복원=명시 의미 / 연장=확장 의미.</div></div>
+<div class="analysis-box" style="border-left-color:#c026d3;background:#fdf4ff;"><div class="title">포인트 2 · 연장 추론의 수행 구조</div><div class="content">상위 맥락(소크라테스)에 관하여 → 글의 명시 의미(독배를 마신 소크라테스의 일화) + 글 밖의 배경지식(소크라테스의 일화) → 확장 의미(신념을 지키는 것의 의의).</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">✨ 배경지식 더 알아보기</h3>
+<div class="analysis-box" style="border-left-color:#0ea5a0;background:#effefb;"><div class="title">잠재 의미와 간파 추론</div><div class="content">글에는 겉으로 드러난 의미뿐 아니라 그 의미가 성립하기 위해 배경에 깔려 있는 의미도 있다. 이를 잠재 의미라 한다. 잠재 의미는 글에 직접 제시되지는 않지만 필자가 어떤 관점이나 전제를 바탕으로 글을 썼는지를 보여 준다. 이러한 잠재 의미를 찾아내는 추론을 간파 추론이라 한다. 예컨대 &#x27;신발을 신지 않던 사람들도 편리함·안전성을 알리고 신어 볼 기회를 주면 차츰 신발을 받아들일 수 있다.&#x27;라는 판단이 제시되면, 독자는 &#x27;문화는 변화할 수 있다&#x27;, &#x27;그 지역 사람들은 새로운 문물을 받아들일 수 있다&#x27;라는 전제가 깔려 있음을 추론할 수 있다.</div></div>
+<h3 style="color:#7c3f1d;margin:18px 0 10px;">💬 EBS Q&amp;A</h3>
+<div class="qa-box"><div class="q">Q. 두 개의 개념을 비교하는 문항, 어떻게 접근해야 할까요? (문항 02 관련)</div><div>A. ㉠(복원 추론)과 ㉡(연장 추론)의 개념적 차이를 묻는 문제이다. 지문은 두 개념을 &#x27;목적·활용하는 정보·배경지식의 영향&#x27;이라는 기준으로 서술하고 있으므로, 선지를 읽기 전에 먼저 지문에서 두 추론의 차이를 정리하는 것이 접근법이다. 복원 추론은 &#x27;글 내부의 명시된 단서를 연결해 명시 의미를 복구&#x27;, 연장 추론은 &#x27;명시 의미에 글 밖의 배경지식을 능동적으로 연결해 확장 의미를 생성&#x27;하는 것임을 확인한 뒤 선지에 대입하면, 배경지식의 영향 여부가 두 추론을 가르는 결정적 기준임을 파악할 수 있다. 개념 비교 문항은 공통점·차이점을 먼저 정리한 후 선지와 대조하는 순서로 접근하자.</div></div>
+<div class="info-box" style="background:#f0fdf4;border-left-color:#22c55e;"><h3>🔗 엮어 읽기 — 시각 자료가 포함된 글 읽기</h3><p style="font-size:13.5px;">독자는 &#x27;문자 정보&#x27;와 &#x27;이미지 정보&#x27;를 함께 처리하며 두 정보는 상호 보완적으로 기여한다. 시각 자료는 목적에 따라 예시적(내용을 시각화해 보여 줌)·설명적(시각화+글이 다룬 내용 보완)·보충적(글에서 다루지 않은 내용을 추가해 범위 확장)·장식적(흥미 유발·여백)으로 구분된다. 독자는 글과 시각 자료의 관계를 살피고 시각 자료로 강조된 정보를 파악하며, 자료가 대상·개념을 적절히 표현하는지 판단해 능동적으로 읽어야 한다.</p></div>
+</div>
+<div class="questions-section"><h2 style="font-size:26px;margin-bottom:20px;">■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+<div class="question-full"><div class="q-num">01</div>
+<div class="question-stem">윗글의 내용과 일치하지 <u>않는</u> 것은?</div>
+<div class="choice-item"><div class="choice-text">① 내용이 긴밀하게 연결되는 글은 응집성이 높다고 할 수 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 응집성이란 글의 내용이 긴밀하게 연결되는 특성이라 하였으므로, 내용이 긴밀하게 연결되는 글은 응집성이 높다고 할 수 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② 숙련된 독자는 추론 방법들을 적절히 사용하여 글의 의미를 구성할 수 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 4문단에서 숙련된 독자일수록 추론 방법들을 적절히 활용하여 글의 의미를 효과적으로 구성해 낼 수 있다고 하였다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">③ 오독을 줄이려면 객관적인 근거를 바탕으로 글을 이해하려는 노력이 필요하다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 4문단에서 독자가 글의 상위 맥락을 무시하고 자신의 배경지식만을 앞세울 경우 글의 의미를 왜곡하는 오독의 위험이 따르며, 이를 피하기 위해서는 자신의 추론이 객관적인 근거를 바탕으로 하는지 점검하는 태도가 요구된다고 하였다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">④ 글을 잘 이해하려면 확장 의미를 한 가지로 만들기 위해 자신의 추론을 점검하는 태도가 필요하다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 3문단에서 연장 추론을 통해 생성된 확장 의미는 배경지식에 따라 다양하게 생성될 수 있다고 하였다. 또한 4문단에서 연장 추론을 위해서는 자신의 추론이 객관적인 근거를 바탕으로 하는지 점검하는 태도가 요구된다고 하였다. 따라서 확장 의미를 한 가지로 만들기 위해 자신의 추론을 점검하는 태도가 필요하다는 것은 적절하지 않다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ 독자가 명시 의미를 파악하는 것에서 그치지 않고 새로운 의미를 창출할 때 독서의 가치는 더 커진다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에서 바람직한 독서는 명시 의미를 기반으로 새로운 차원의 의미를 적극적으로 구성하는 데까지 나아가야 한다고 하였다.</div>
+</div>
+<div class="correct-badge">📍 정답 ④ &nbsp;[유형] 세부 내용 파악</div></div>
+<div class="question-full"><div class="q-num">02</div>
+<div class="question-stem">㉠, ㉡에 대한 설명으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① ㉠은 상위 맥락과 글의 명시 의미가 결합하는 과정에서 작동되는 추론이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단과 2문단에서 복원 추론은 글에 명시된 단서들을 연결하여 글쓴이가 전달하려는 표면적이고 기본적인 의미인 명시 의미를 형성하는 과정이라고 하였다. 상위 맥락과의 결합은 연장 추론에 해당하므로 적절하지 않다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② ㉡은 글의 명시 의미를 배제하고 독자 자신의 입장에서 글의 의미를 구성하는 추론이다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에서 연장 추론은 글의 명시 의미를 하나의 정보로 삼고, 여기에 독자의 배경지식을 연결하는 방식이라고 하였다. 따라서 글의 명시 의미를 배제한다는 설명은 적절하지 않다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">③ ㉡은 ㉠에 비해 글의 내용과 관련된 독자의 배경지식에 영향을 더 많이 받는 추론이다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 2문단에서 복원 추론은 독자의 배경지식이 미치는 영향이 그리 크지 않다고 하였고, 3문단에서 연장 추론은 독자가 배경지식 중 하나를 능동적으로 선택하여 연결하는 방식이라고 하였다. 따라서 연장 추론이 복원 추론보다 독자의 배경지식에 더 많은 영향을 받는다는 설명은 적절하다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ ㉡ 없이 ㉠만으로는 글쓴이가 드러내려는 객관적이고 기본적인 의미를 파악할 수 없다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 2문단에서 복원 추론을 통해 형성된 명시 의미는 글쓴이가 전달하려는 표면적이고 기본적인 의미라고 하였다. 따라서 연장 추론 없이도 글쓴이가 드러내려는 표면적이고 기본적인 의미를 파악할 수 있다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ ㉠을 잘 수행하기 위해서는 먼저 ㉡이 글의 전체적인 흐름에 어울리도록 이루어져야 한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에서 연장 추론은 복원 추론을 통해 형성된 명시 의미를 기반으로 이루어진다고 하였다. 따라서 연장 추론이 복원 추론보다 먼저 이루어져야 한다는 설명은 순서가 맞지 않으므로 적절하지 않다.</div>
+</div>
+<div class="correct-badge">📍 정답 ③ &nbsp;[유형] 중심 내용 파악</div></div>
+<div class="question-full"><div class="q-num">03</div>
+<div class="question-stem">다음은 학생이 소크라테스에 대한 글을 읽고 작성한 독서 일지이다. 윗글을 바탕으로 학생의 독서 과정을 이해한 것으로 적절하지 <u>않은</u> 것은?</div>
+<div class="view-box"><div class="vb-title">&lt;보기&gt;</div><p>&lt; 보 기 &gt;</p><p>‘소크라테스는 청년을 타락하게 만들었다는 죄목으로 고발당했다. 그 일로 그는 결국 재판정에 세워졌다.’라는 구절을 읽었다. 읽으면서 ⓐ<u>‘그 일’은 고발당한 사건을 가리킨다는 것을 파악했다</u>. 또한 ⓑ<u>‘타락’의 의미를 알기 위해 사전을 찾아보았다</u>.</p><p>다음 페이지에서 ⓒ<u>그가 독배를 마셨다는 내용을 읽고 나니 그 뒤에는 제자들이 큰 슬픔에 빠진 장면이 이어질 것이라 생각했다</u>. ⓓ<u>나는 소크라테스의 일화에서 지동설을 주장하다 종교 재판을 받은 갈릴레이의 모습을 떠올리며</u>, 신념을 지키는 것의 어려움에 대해 생각해 보았다. 그리고 죽음 앞에서도 자신의 신념을 지킨 그의 행동을 보고, ⓔ<u>그것이 후대에 지행합일의 상징으로 여겨지는 이유를 알게 되었다</u>.</p></div>
+<div class="choice-item"><div class="choice-text">① ⓐ의 행위는 지시 표현의 대상을 찾는 것으로 복원 추론에 해당한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 복원 추론에는 지시 표현의 대상을 파악하는 활동이 포함된다고 하였다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">② ⓑ의 행위는 축자적 의미를 이해하려는 것과 관련이 있다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 1문단에서 축자적 의미는 어휘나 문법 지식을 통해 파악된다고 하였으므로, 사전을 찾는 것은 축자적 의미를 이해하려는 것과 관련이 있다.</div>
+</div>
+<div class="choice-item correct"><div class="choice-text">③ ⓒ에서 ‘그가 독배를 마셨다’는 정보를 제자들이 느낄 슬픔과 관련짓는 추론 과정은 후방 추론에 해당한다.</div>
+<div class="choice-analysis">✅ <strong>정답</strong> — 2문단에서 후방 추론은 현재 정보로부터 이전에 있어야 할 정보를 떠올리는 것이고, 전방 추론은 현재 정보를 바탕으로 이어질 내용을 예측하는 것이라고 하였다. ⓒ에서 제자들이 느낄 슬픔을 생각하는 것은, 이어질 내용을 예측하는 것이므로 전방 추론에 해당한다. 따라서 후방 추론이라는 설명은 적절하지 않다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">④ ⓓ에서 ‘소크라테스의 일화’에 갈릴레이의 일화를 연결하여 새로운 의미를 생성하는 것은 연장 추론에 해당한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에서 연장 추론은 글의 명시 의미에 독자의 배경지식을 연결하여 새로운 의미를 만들어 내는 방식이라고 하였다.</div>
+</div>
+<div class="choice-item"><div class="choice-text">⑤ ⓔ는 글에 명시된 소크라테스의 행동을 바탕으로 확장 의미를 생성한 것에 해당한다.</div>
+<div class="choice-analysis">❌ <strong>오답</strong> — 3문단에서 연장 추론을 통해 생성된 의미를 확장 의미라고 하였다. ⓔ는 글에 직접 드러나지 않은 지행합일의 상징이라는 의미를 독자가 배경지식을 활용하여 새롭게 구성한 것이므로 확장 의미를 생성한 것에 해당한다는 설명은 적절하다.</div>
+</div>
+<div class="correct-badge">📍 정답 ③ &nbsp;[유형] 구체적 사례 적용</div></div>
+</div>
+<div class="passage-study"><h2>📚 지문 연구 [교사용]</h2><p style="margin:4px 0;"><strong>해제 : 이 글은 독자가 글을 읽으며 의미를 구성하는 과정을 두 가지 추론 방식으로 나누어 설명하고 있다. 글에 명시된 단서를 연결하여 기본적인 의미를 파악하는 복원 추론과, 이를 바탕으로 독자의 배경지식을 활용해 새로운 의미를 만들어 내는 연장 추론의 개념과 특징을 다룬다. 또한 연장 추론 과정에서 발생할 수 있는 오독의 위험성을 경고하며, 자신의 추론을 점검해 보는 태도를 강조하고 있다.</strong></p><p style="margin:4px 0;"><strong>주제 : 추론의 유형과 추론적 독해를 통한 글의 의미 구성 방법</strong></p><p style="margin:4px 0;"><strong>구성</strong></p><p style="margin:2px 0 2px 18px;color:#334155;">- 1문단: 글의 응집성 파악을 위한 복원 추론</p><p style="margin:2px 0 2px 18px;color:#334155;">- 2문단: 복원 추론을 통한 명시 의미의 형성</p><p style="margin:2px 0 2px 18px;color:#334155;">- 3문단: 연장 추론을 통한 확장 의미의 형성</p><p style="margin:2px 0 2px 18px;color:#334155;">- 4문단: 연장 추론에 필요한 독자의 태도</p></div>
+</div></body></html>
