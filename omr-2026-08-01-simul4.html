@@ -147,9 +147,9 @@
   window.__BAKED_ASGN__ = {
   "version": "1.0",
   "title": "마침내 시뮬 4회",
-  "subTitle": "공통",
+  "subTitle": "공통 (1~34번)",
   "type": "mock",
-  "storageKey": "kr-omr-2026-08-01-simul4-v1",
+  "storageKey": "kr-omr-2026-08-01-simul4-v2",
   "maxAttempts": 3,
   "cooldownMin": 10,
   "problemLink": "https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBjSoL7zlNvR5ab5_1E2cuXAV7v8zX2qiqyU8YWlAhlHoQ?e=zPqaLC",
@@ -168,7 +168,7 @@
     "answers": [
       1,
       4,
-      1,
+      3,
       4,
       1,
       2,
@@ -178,26 +178,26 @@
       4,
       2,
       5,
+      1,
       1,
       3,
       3,
+      5,
+      3,
+      2,
       4,
+      3,
+      2,
+      3,
+      1,
+      4,
+      3,
+      1,
       5,
       3,
       5,
-      4,
-      2,
-      2,
-      5,
       1,
       4,
-      4,
-      1,
-      5,
-      3,
-      5,
-      1,
-      2,
       5,
       3
     ],
@@ -214,50 +214,7 @@
       }
     ]
   },
-  "sectionB": {
-    "label": "선택과목",
-    "shortLabel": "선택",
-    "tabIcon": "📕",
-    "tabLabel": "선택 (35~45번)",
-    "color": "literature",
-    "startNum": 35,
-    "count": 11,
-    "answers": null,
-    "variants": {
-      "hwajak": {
-        "name": "화법과 작문",
-        "answers": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      },
-      "eonmae": {
-        "name": "언어와 매체",
-        "answers": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      }
-    }
-  }
+  "sectionB": null
 };
 </script>
 
@@ -353,7 +310,8 @@
   const MAX_ATTEMPTS = asgn.maxAttempts || 3;
   const COOLDOWN_MIN = (typeof asgn.cooldownMin === 'number') ? asgn.cooldownMin : 10;
   const A = asgn.sectionA;
-  const B = asgn.sectionB;
+  const hasB = !!asgn.sectionB;
+  const B = asgn.sectionB || { label:'', shortLabel:'', tabIcon:'', tabLabel:'', color:'literature', startNum:35, count:0, answers:[], variants:null };
   const hasVariants = !!(B.variants && Object.keys(B.variants).length);
 
   // 메타 정보 초기화
@@ -393,14 +351,21 @@
   // 섹션 라벨 적용
   $('tabBtnA').textContent = (A.tabIcon||'📗') + ' ' + A.tabLabel;
   $('tabBtnA').classList.add(A.color || 'reading');
-  $('tabBtnB').textContent = (B.tabIcon||'📕') + ' ' + B.tabLabel;
-  $('tabBtnB').classList.add(B.color || 'literature');
   $('sectionADiv').classList.add(A.color || 'reading');
   $('sectionAHeader').classList.add(A.color || 'reading');
   $('sectionATitle').textContent = A.label;
-  $('sectionBDiv').classList.add(B.color || 'literature');
-  $('sectionBHeader').classList.add(B.color || 'literature');
-  $('sectionBTitle').textContent = hasVariants ? (B.label + ' (미선택)') : B.label;
+  if(hasB){
+    $('tabBtnB').textContent = (B.tabIcon||'📕') + ' ' + B.tabLabel;
+    $('tabBtnB').classList.add(B.color || 'literature');
+    $('sectionBDiv').classList.add(B.color || 'literature');
+    $('sectionBHeader').classList.add(B.color || 'literature');
+    $('sectionBTitle').textContent = hasVariants ? (B.label + ' (미선택)') : B.label;
+  } else {
+    const tm = document.querySelector('.tab-menu'); if(tm) tm.remove();
+    const bt = $('sectionB-tab'); if(bt) bt.remove();
+    const sc = $('selectSubjectCard'); if(sc) sc.remove();
+    const sn = $('selectNotice'); if(sn) sn.remove();
+  }
 
   // 선택과목 카드 렌더링 (variants 있을 때만)
   if(hasVariants){
@@ -425,10 +390,12 @@
     // 단순 두 섹션
     breakdownHtml += `<div class="score-item ${A.color||'reading'}"><span class="label">${A.shortLabel||A.label}</span><span class="value"><span id="sectionAScore">0</span> / ${A.count}</span></div>`;
   }
-  if(hasVariants){
-    breakdownHtml += `<div class="score-item select"><span class="label" id="selectLabel">선택</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
-  } else {
-    breakdownHtml += `<div class="score-item ${B.color||'literature'}"><span class="label">${B.shortLabel||B.label}</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+  if(hasB){
+    if(hasVariants){
+      breakdownHtml += `<div class="score-item select"><span class="label" id="selectLabel">선택</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+    } else {
+      breakdownHtml += `<div class="score-item ${B.color||'literature'}"><span class="label">${B.shortLabel||B.label}</span><span class="value"><span id="sectionBScore">0</span> / ${B.count}</span></div>`;
+    }
   }
   $('scoreBreakdown').innerHTML = breakdownHtml;
   $('scoreTotal').textContent = A.count + B.count;
@@ -465,7 +432,7 @@
   }
 
   renderSection($('sectionAList'), 'a', A.count, (A.startNum||1) - 1);
-  renderSection($('sectionBList'), 'b', B.count, (B.startNum||1) - 1);
+  if(hasB) renderSection($('sectionBList'), 'b', B.count, (B.startNum||1) - 1);
 
   function getCurrentSelectAnswers(){
     if(hasVariants){
@@ -551,7 +518,7 @@
     let aDone = state.aAnswers.filter(v=>v>0).length;
     let bDone = state.bAnswers.filter(v=>v>0).length;
     $('sectionAProgress').textContent = `${aDone} / ${A.count}`;
-    $('sectionBProgress').textContent = `${bDone} / ${B.count}`;
+    const bp = $('sectionBProgress'); if(bp) bp.textContent = `${bDone} / ${B.count}`;
   }
   function saveState(){
     let data = { v:1, aAnswers:state.aAnswers, aConfidence:state.aConfidence, bAnswers:state.bAnswers, bConfidence:state.bConfidence, selectedSubject:state.selectedSubject, submitted:state.submitted, score:state.score, student:{ name:$('studentName').value, academy:$('studentAcademy').value }, solutionRevealed:state.solutionRevealed, attemptCount:state.attemptCount, cooldownUntil:state.cooldownUntil };
@@ -638,7 +605,7 @@
     } else {
       const aEl = $('sectionAScore'); if(aEl) aEl.textContent = score.sectionA.correct;
     }
-    $('sectionBScore').textContent = score.sectionB.correct;
+    const bScoreEl = $('sectionBScore'); if(bScoreEl) bScoreEl.textContent = score.sectionB.correct;
     if(hasVariants && score.sectionB.subject) $('selectLabel').textContent = score.sectionB.subject;
     $('scoreText').textContent = '정답률 ' + (score.totalCorrect / score.total * 100).toFixed(1) + '%';
     if(state.attemptCount >= MAX_ATTEMPTS) showCorrectAnswers();
@@ -783,7 +750,7 @@
       lines.push((A.shortLabel || A.label) + ' : ' + s.sectionA.correct + '/' + s.sectionA.total);
     }
     const bLabel = hasVariants && s.sectionB.subject ? s.sectionB.subject : (B.shortLabel || B.label);
-    lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total);
+    if(hasB) lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total);
     lines.push('');
 
     if(s.subSectionScores && s.subSectionScores.length){
@@ -799,9 +766,11 @@
       lines.push('');
     }
 
-    lines.push('[' + bLabel + ' 오답]');
-    lines.push(joinOrNone(bItems.map(item => item.text)));
-    lines.push('');
+    if(hasB){
+      lines.push('[' + bLabel + ' 오답]');
+      lines.push(joinOrNone(bItems.map(item => item.text)));
+      lines.push('');
+    }
 
     lines.push('[위험 문항]');
     lines.push('');
@@ -872,14 +841,16 @@
 
   $('sectionAList').addEventListener('click', onChoiceClick);
   $('sectionAList').addEventListener('click', onConfClick);
-  $('sectionBList').addEventListener('click', onChoiceClick);
-  $('sectionBList').addEventListener('click', onConfClick);
+  if(hasB && $('sectionBList')){
+    $('sectionBList').addEventListener('click', onChoiceClick);
+    $('sectionBList').addEventListener('click', onConfClick);
+  }
   document.querySelectorAll('.tab-btn').forEach(btn=>{
     btn.onclick=()=>{
       document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-      $(btn.dataset.tab).classList.add('active');
+      const tgt = $(btn.dataset.tab); if(tgt) tgt.classList.add('active');
     };
   });
 
