@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>마침내 & 약논 독서 단기 암기 훈련</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#faf6f3;padding:16px;max-width:620px;margin:0 auto;color:#2c1518;-webkit-text-size-adjust:100%}
+  
+  .header{background:linear-gradient(135deg,#7c2c3e,#5a1f2c);color:#fff;padding:18px 16px;border-radius:20px;text-align:center;margin-bottom:20px;box-shadow:0 4px 12px rgba(124,44,62,0.15)}
+  .header h2{font-size:19px;font-weight:800;letter-spacing:-0.5px}
+  .header .sub{font-size:12px;margin-top:6px;color:#f0d8dd;letter-spacing:-0.2px}
+  
+  .info-card,.section,.time-box{background:#fff;border-radius:20px;padding:18px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,.04);border:1px solid #f0e6e8}
+  label.lb{font-weight:700;color:#7c2c3e;display:block;margin-bottom:6px;font-size:14px;letter-spacing:-0.3px}
+  input[type=text],select{width:100%;padding:13px 14px;border:1.5px solid #d8c8cc;border-radius:14px;font-size:15px;background:#fff;color:#2c1518;font-weight:500}
+  input:focus,select:focus{outline:none;border-color:#7c2c3e;box-shadow:0 0 0 3px rgba(124,44,62,0.1)}
+  
+  .mt{margin-top:14px}
+  .btn{width:100%;padding:14px;border:none;border-radius:40px;font-weight:700;font-size:15.5px;margin-top:12px;cursor:pointer;transition:all 0.15s ease}
+  .btn:active{transform:scale(0.98)}
+  .btn-primary{background:#7c2c3e;color:#fff;box-shadow:0 3px 8px rgba(124,44,62,0.25)}
+  .btn-primary:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+  .btn-kakao{background:#fee500;color:#3c1e1e;font-weight:800}
+  .btn-warning{background:#ff9f4a;color:#2c1518;font-weight:700}
+  .btn-ghost{background:#fff;border:1.5px solid #d8c8cc;color:#7c2c3e}
+  
+  .row{display:flex;gap:8px}.row>.btn{flex:1}
+  .hidden{display:none}
+  .muted{color:#8c7673;font-size:13px;line-height:1.5;letter-spacing:-0.2px}
+  
+  .steps{display:flex;gap:6px;margin-bottom:16px}
+  .steps .s{flex:1;text-align:center;font-size:11.5px;color:#a68e92;padding:8px 2px;border-radius:30px;background:#f4e9eb;font-weight:700}
+  .steps .s.on{background:#7c2c3e;color:#fff;box-shadow:0 2px 6px rgba(124,44,62,0.2)}
+  
+  /* 타이머 및 프로그래스 바 */
+  .timer{font-size:36px;font-weight:800;text-align:center;color:#7c2c3e;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+  .timer.low{color:#d04141;animation:pulse 1s infinite alternate}
+  @keyframes pulse{from{opacity:1}to{opacity:0.6}}
+  .tbar{height:7px;background:#f0e2e5;border-radius:6px;overflow:hidden;margin:10px 0 14px}
+  .tbar>i{display:block;height:100%;background:#7c2c3e;width:100%;transition:width 1s linear;border-radius:6px}
+  
+  /* 지문 가독성 정밀 커스텀 스타일 */
+  .passage{background:#ffffff;border:1.5px solid #e8dcde;border-radius:18px;padding:22px 20px;font-size:15px;color:#221113;max-height:60vh;overflow-y:auto;box-shadow:inset 0 1px 3px rgba(0,0,0,.02)}
+  .passage .ptitle{font-weight:800;color:#7c2c3e;font-size:15px;margin-bottom:14px;padding-bottom:10px;border-bottom:1.5px solid #f0e2e5;letter-spacing:-0.3px}
+  .passage .psrc{font-weight:600;color:#9e878b;font-size:12.5px;float:right;margin-top:2px}
+  
+  /* 단락(문단) 스타일링 */
+  .passage p.para{
+    margin-bottom: 1.25rem;
+    line-height: 2.0;
+    text-align: justify;
+    text-justify: inter-character;
+    text-indent: 0.9em;
+    word-break: keep-all;
+    letter-spacing: -0.3px;
+    color: #28181a;
+  }
+  .passage p.para:last-child{margin-bottom:0}
+  
+  /* (가), (나) 등 단락 구분 배지 스타일 */
+  .passage .sec-badge{
+    display: inline-block;
+    background: #7c2c3e;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin: 1.2rem 0 0.6rem 0;
+    text-indent: 0;
+    letter-spacing: 0;
+    box-shadow: 0 2px 4px rgba(124,44,62,0.15);
+  }
+  .passage .sec-badge:first-child{margin-top:0}
+
+  .curtain{background:repeating-linear-gradient(45deg,#f8eff1,#f8eff1 14px,#efe2e5 14px,#efe2e5 28px);
+    border:1.5px dashed #cbb2b8;border-radius:18px;padding:48px 16px;text-align:center;color:#8a7075;font-weight:700;font-size:15px;line-height:1.6}
+  
+  /* 퀴즈 문항 */
+  .q{padding:16px 0;border-top:1px solid #f5ecee}.q:first-child{border-top:0}
+  .qt{font-weight:700;margin-bottom:12px;font-size:15px;line-height:1.75;color:#2c1518;word-break:keep-all;letter-spacing:-0.2px}
+  .ox{display:flex;gap:10px}
+  .ox button{flex:1;padding:12px;border:1.5px solid #d8c8cc;border-radius:40px;background:#fff;font-size:16.5px;font-weight:800;cursor:pointer;color:#2c1518;transition:all 0.15s ease}
+  .ox button.sel{background:#7c2c3e;border-color:#7c2c3e;color:#fff;box-shadow:0 3px 8px rgba(124,44,62,0.2)}
+  
+  .cloze input{display:inline-block;width:auto;min-width:100px;max-width:240px;padding:6px 10px;font-size:15px;font-weight:700;border:0;border-bottom:2px solid #7c2c3e;border-radius:0;background:#fdf5f7;margin:0 4px;color:#7c2c3e;text-align:center}
+  .cloze input:focus{outline:none;background:#fcebed}
+  .clz-line{line-height:2.3;font-size:15px;word-break:keep-all;color:#2c1518}
+  
+  /* 점수 및 결과 */
+  .score-banner{background:#fff8f5;border:2px solid #7c2c3e;border-radius:24px;padding:20px;text-align:center;margin-bottom:16px}
+  .score-main{font-size:38px;font-weight:800;letter-spacing:-1px}
+  .score-main.pass{color:#1f8a4c}.score-main.fail{color:#d04141}
+  .attempt-text{font-size:12px;color:#7c2c3e;font-weight:800;margin-bottom:6px;letter-spacing:-0.2px}
+  .wrongline{color:#d04141;margin-top:10px;font-size:13.5px;font-weight:700;line-height:1.5;background:#fdeff0;padding:10px;border-radius:12px}
+  
+  .anskey{background:#f2faf4;border:1.5px solid #bfe6cb;border-radius:16px;padding:16px;margin-top:14px;font-size:14px;line-height:2.0}
+  .anskey b{color:#1f8a4c;font-weight:800}
+  
+  /* 모달 & 토스트 */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.show{display:flex}
+  .modal{background:#fff;border-radius:24px;width:100%;max-width:480px;padding:22px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.15)}
+  #report-text{width:100%;height:220px;margin:16px 0;padding:12px;font-family:monospace;font-size:12.5px;background:#f9f8f8;border:1.5px solid #e5dada;border-radius:14px;line-height:1.6}
+  
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2c1518;color:#fff;padding:11px 22px;border-radius:30px;opacity:0;transition:.2s;pointer-events:none;font-size:13.5px;font-weight:600;z-index:2000;box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>마침내 & 약논 독서 단기 암기 훈련</h2>
+  <div class="sub">독서 지문 완벽 복원 · 100점까지 반복</div>
+</div>
+
+<!-- ① 시작 화면 -->
+<div id="scr-start">
+  <div class="info-card">
+    <label class="lb">📛 학생 이름</label>
+    <input type="text" id="studentName" placeholder="실명 입력" autocomplete="off">
+    <label class="lb mt">📖 훈련할 지문 선택</label>
+    <select id="passageSel"></select>
+    <label class="lb mt">⏱️ 읽기(암기) 시간 선택</label>
+    <select id="readTime">
+      <option value="240">4분 (권장)</option>
+      <option value="180">3분</option>
+      <option value="300">5분 (처음 연습용)</option>
+    </select>
+    <div id="doneNote" class="muted mt hidden"></div>
+    <button class="btn btn-primary mt" id="startBtn">암기 시작 ▶</button>
+  </div>
+
+  <div class="section" id="homeworkCard">
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:6px">📤 과제 제출</div>
+    <div class="muted" id="hwStatus" style="margin-bottom:4px"></div>
+    <button class="btn btn-kakao" id="submitAllBtn">💬 카톡 과제 보고서 제출</button>
+    <button class="btn btn-warning" id="resetBtn">🔄 전체 기록 초기화</button>
+  </div>
+
+  <p class="muted" style="text-align:center">원문을 정해진 시간 안에 완벽히 읽고 → 가린 뒤 문제를 풉니다.<br><b>100점을 맞을 때까지 반복</b>하며, 100점이 되면 정답이 공개됩니다.</p>
+</div>
+
+<!-- ② 읽기 화면 -->
+<div id="scr-read" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s on">① 원문 암기</div><div class="s">② 내용 확인</div><div class="s">③ 빈칸 복원</div></div>
+    <div class="attempt-text" id="readAttempt"></div>
+    <div class="timer" id="timer">04:00</div>
+    <div class="tbar"><i id="tbarFill"></i></div>
+    <div id="readArea">
+      <div class="passage" id="passageBox"></div>
+      <button class="btn btn-ghost" id="hideBtn">다 외웠어요 · 가리고 문제 풀기</button>
+    </div>
+    <div id="curtainArea" class="hidden">
+      <div class="curtain">원문을 가렸습니다.<br>기억을 떠올리며 문제를 풀어 보세요.</div>
+      <button class="btn btn-primary" id="toQuizBtn">문제 풀기 ▶</button>
+      <button class="btn btn-ghost" id="peekBtn">⏱ 20초만 다시 보기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ③ OX 퀴즈 화면 -->
+<div id="scr-ox" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s">① 원문 암기</div><div class="s on">② 내용 확인</div><div class="s">③ 빈칸 복원</div></div>
+    <div class="section-header" style="font-weight:bold;color:#7c2c3e;margin-bottom:8px">내용 확인 (O / X)</div>
+    <div id="oxList"></div>
+    <button class="btn btn-primary" id="oxNext" disabled>다음 (빈칸 복원) ▶</button>
+  </div>
+</div>
+
+<!-- ④ 빈칸 복원 화면 -->
+<div id="scr-cloze" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s">① 원문 암기</div><div class="s">② 내용 확인</div><div class="s on">③ 빈칸 복원</div></div>
+    <div class="section-header" style="font-weight:bold;color:#7c2c3e;margin-bottom:4px">핵심 개념 빈칸 복원</div>
+    <p class="muted" style="margin-bottom:8px">기억으로 빈칸을 채우세요. (띄어쓰기는 채점에 반영하지 않음)</p>
+    <div id="clozeList"></div>
+    <button class="btn btn-primary" id="clozeGrade">채점하기 ✅</button>
+  </div>
+</div>
+
+<!-- ⑤ 결과 화면 -->
+<div id="scr-result" class="hidden">
+  <div class="score-banner">
+    <div class="attempt-text" id="resAttempt"></div>
+    <div class="score-main" id="scoreMain">--</div>
+    <div id="scoreDetail" style="font-size:13px;margin-top:6px;color:#554345"></div>
+    <div class="wrongline hidden" id="wrongLine"></div>
+  </div>
+
+  <div id="failWrap" class="hidden">
+    <div class="section" style="text-align:center">
+      <p style="font-weight:800;color:#d04141;margin-bottom:6px">아직 100점이 아닙니다.</p>
+      <p class="muted">정답은 <b>100점을 맞아야</b> 공개됩니다.<br>원문을 다시 정독하고 재도전하세요!</p>
+      <button class="btn btn-primary" id="retryBtn">원문 다시 읽고 도전 🔁</button>
+    </div>
+  </div>
+
+  <div id="passWrap" class="hidden">
+    <div class="section">
+      <div style="text-align:center;font-size:17.5px;font-weight:800;color:#1f8a4c;margin-bottom:6px">🎉 100점! 완벽 암기 완료</div>
+      <div id="nextNote" class="muted hidden" style="text-align:center;background:#f2faf4;border:1.5px solid #bfe6cb;border-radius:14px;padding:12px;margin-bottom:6px"></div>
+      <div class="anskey" id="ansKey"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="btn btn-kakao" id="submitAllBtn2">💬 카톡 과제 보고서 제출</button>
+    <div class="row">
+      <button class="btn btn-ghost" id="reviewBtn">원문 다시 보기</button>
+      <button class="btn btn-warning" id="homeBtn">다른 지문</button>
+    </div>
+  </div>
+  <div class="passage hidden" id="reviewPassage" style="margin-bottom:20px"></div>
+</div>
+
+<!-- 보고서 모달 -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3 style="color:#7c2c3e">📋 카톡 보고서</h3>
+    <textarea id="report-text" readonly></textarea>
+    <button class="btn btn-primary" id="copyReportBtn">📋 클립보드 복사</button>
+    <button class="btn btn-warning" id="closeModalBtn" style="margin-top:8px">닫기</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s);};
+
+  function normAns(s){return (s||"").replace(/\s+/g,"").replace(/[·.,]/g,"").toLowerCase();}
+
+  /* 문단을 아름답고 일관성 있게 렌더링하는 함수 */
+  function renderPassageText(text) {
+    if(!text) return "";
+    var paragraphs = text.split(/\n\s*\n/);
+    var html = "";
+    
+    paragraphs.forEach(function(pRaw) {
+      var p = pRaw.trim();
+      if(!p) return;
+      
+      // (가), (나) 등 섹션 구분 표시 처리
+      if (/^\(([가-힣A-Za-z0-9]+)\)$/.test(p)) {
+        html += '<div class="sec-badge">' + esc(p) + '</div>';
+      } else if (p.indexOf('(가)') === 0 || p.indexOf('(나)') === 0) {
+        var badge = p.substring(0, 3);
+        var rest = p.substring(3).trim();
+        html += '<div class="sec-badge">' + esc(badge) + '</div>';
+        if (rest) {
+          html += '<p class="para">' + esc(rest) + '</p>';
+        }
+      } else {
+        html += '<p class="para">' + esc(p) + '</p>';
+      }
+    });
+    return html;
+  }
+
+  /* 100% 원문 그대로 유지한 5개 지문 데이터베이스 */
+  var PASSAGES = [
+    {
+      pid: "Y1D02",
+      title: "도선의 열 발생: 전류 밀도와 표피 효과",
+      src: "2027 수능특강 독서 01강",
+      text: `전류란 전하를 띤 입자들이 일정한 방향으로 이동하는 현상이다. 전류의 세기는 일정한 시간 동안 도선이나 회로의 단면을 통과한 전하의 양으로 측정되며, 단위는 암페어(A)이다. 그런데 도선이나 회로 안에서 전류가 흐를 때 전자와 원자 간의 충돌로 열이 발생한다. 전자는 도선이나 회로 안에서 자유롭게 이동하지만, 완전히 자유롭게는 흐르지 않는다. 도선이나 회로 안의 원자들과 충돌을 반복하면서 전자의 운동 에너지는 열에너지로 변환되고 전류의 세기가 커지면 열에너지가 더욱 많이 발생한다. 이때 같은 전류라도 도선의 단면적이 좁으면 단위 면적을 통과하는 전류의 양인 전류 밀도는 높아지고, 넓으면 전류 밀도는 낮아진다. 따라서 전류 밀도가 높을수록 단위 부피당 열 발생량이 증가한다. 이러한 열 발생은 불필요한 전력 손실을 야기할 뿐만 아니라, 과도한 열로 인해 기기의 성능이 저하되거나 회로가 손상될 수 있으므로 설계 시 이에 대한 주의가 필수적이다.
+
+전류 밀도처럼 도선의 열 발생에 영향을 미치는 것으로 표피 효과가 있다. 교류 전류의 경우, 세기와 방향은 시간에 따라 변하는데, 이에 따라 전류 주변의 자기장도 함께 변한다. 이 변화하는 자기장은 도선 내부에 유도 전기장을 발생시키며, 이 전기장이 도선 안에서 전자를 회전하는 형태로 움직이게 하는데, 이렇게 생긴 소용돌이 모양의 전류가 유도 와전류이다. 도선의 경우 유도 와전류가 흐르면 내부 전류 분포를 변화시켜 중심부 전류 밀도는 감소하고 도선 표면에서는 전류 흐름이 촉진되어, 전류는 도선의 중심부보다는 표면을 따라 집중적으로 흐르게 되는데 이를 표피 효과라고 한다. 표피 효과는 주파수에도 영향을 받는데, 주파수가 높을수록 더 강하게 발생한다. 주파수가 높을수록 자기장의 변화율이 증가하고 유도 와전류도 강해져 중심부의 전류 흐름을 더 많이 밀어내기 때문이다. 표피 효과 때문에 전류가 도선의 표면층만 흐르게 되면, 전류가 흐를 수 있는 유효 단면적이 줄어들어 전류가 흐를 때 저항이 커지게 된다. 이처럼 저항이 증가하면 전류가 흐를 때 더 많은 에너지가 열로 변환되기 때문에 열 발생이 커지게 된다. 고주파 전류를 사용하는 장치의 경우는 특히 표피 효과와 전류 밀도를 고려해 설계해야 한다. 예를 들어 고주파 변전소나 고주파 장치에서는 리츠 와이어라고 불리는 여러 가닥의 얇고 서로 절연된 선을 꼬아 사용하는데, 이는 각각의 가는 선에 흐르는 전류에 의한 자기장의 영향을 상쇄하여 표피 효과를 최소화하고, 전체 단면적에 전류가 더욱 균일하게 흐르도록 유도하기 때문이다. 또 전자가 도선의 표면을 따라 이동하는 특성을 이용해 중심부의 불필요한 금속을 제거하여 자원의 절약하거나, 알루미늄선 표면에 전도성이 높은 구리를 얇게 씌워 열 발생을 줄일 수 있다.`,
+      ox: [
+        ["도선의 단면적이 좁을수록 전류 밀도는 높아진다.", true],
+        ["표피 효과는 주파수가 낮을수록 더 강하게 발생한다.", false],
+        ["유도 와전류가 흐르면 도선 중심부의 전류 밀도가 감소한다.", true],
+        ["표피 효과가 나타나면 유효 단면적이 늘어나 저항이 줄어든다.", false],
+        ["고주파 장치에서 리츠 와이어는 표피 효과를 줄이기 위해 사용된다.", true]
+      ],
+      cloze: [
+        ["단위 면적을 통과하는 전류의 양을 ", "전류밀도", ["전류 밀도"], "라고 한다."],
+        ["변화하는 자기장에 의해 형성되는 소용돌이 모양 전류를 ", "유도와전류", ["유도 와전류"], "라고 한다."],
+        ["전류가 도선 중심부보다 표면으로 집중되어 흐르는 현상은 ", "표피효과", ["표피 효과"], "이다."],
+        ["표피 효과는 주파수가 높을수록 전류가 흐르는 ", "유효단면적", ["유효 단면적"], "을 감소시킨다."],
+        ["표피 효과를 줄이기 위해 얇고 절연된 선을 꼬아 만든 선은 ", "리츠와이어", ["리츠 와이어"], "이다."]
+      ]
+    },
+    {
+      pid: "Y1D03",
+      title: "사회 통제의 세 가지 이론적 관점",
+      src: "2027 수능완성 독서 02부",
+      text: `사회 과학에서 사회 통제는 구성원들을 사회의 규범에 순응하게 만드는 모든 절차와 방법을 지칭한다. 이때 규범이란, 어떤 행동을 할 때 기준이 되는 규칙 혹은 지침을 의미한다. 사회 과학에서는 규범을 두 가지 측면으로 파악하는데, 우선 규범은 하나의 사회를, 다른 규범에 따라 존재하는 사회와 구별함으로써 그 사회를 구성한다. 또한 규범은 개인으로 하여금 자신이 특정한 사회 속에서 살아가며 그 사회에 속한다고 여기도록 한다. 즉 사회화와 문화의 습득 과정도 담당한다. 이렇듯 규범은 사회 및 사회 구성원의 형성과 존속의 토대가 되기 때문에 사회는 규범을 보호하려 한다. 사회 통제란 바로 이러한 규범의 보존을 위해 사회가 행하는 모든 것을 통칭한다고 할 수 있다. 일반적으로 사회 통제의 이론은 사회 질서의 바탕이 되는 규범을 어떻게 인식하느냐에 따라 구분되는데, '합의적 관점', '갈등 이론적 관점', '상호 작용론적 관점'으로 나누어 볼 수 있다.
+
+우선 합의적 관점은 사회의 중요한 문제나 갈등에 대해 구성원들이 합의하여 일정한 규범을 창출하고 이를 통해 화합을 달성하는 것이 가능하다고 본다. 사회 구성원들이 공유하는 규범은 곧 안정적이고 질서 잡힌 사회의 핵심이 되고, 사회 통제가 이를 보장하게 되는 것이다. 이와 같은 관점에서 범죄나 일탈은 사회 전체가 합의한 일반적 규범을 위반하고 사회 구성원이 맡고 있는 기능적 역할을 방기하는 것으로 이해된다. 이때 사회 통제는 강제력을 통해 이러한 일탈을 규율하는 역할을 수행하며, 사회 구성원들의 합의에 근거한 규범을 보호한다는 점에서 정당성을 확보한다. 결국 강제력을 통한 사회적 결속의 회복은 합의적 관점에서 전제하는 사회 통제의 목적을 실현하는 것이며, 결과적으로 사회 체계 유지에 기여하는 것이다.
+
+이에 반해 갈등 이론적 관점은 규범을 사회 구성원들 사이의 자발적인 합의에 의한 것으로 보지 않는다. 갈등 이론적 관점에서 규범은 사회의 다양한 집단 중에서 특권을 누리는 집단이 권력을 가지지 못한 집단을 지배하여 자신들의 이익을 보호하려는 수단일 뿐이다. 따라서 규범은 특정한 이해관계에만 봉사하려는 목적을 띠고 만들어진 것일 뿐이다. 갈등 이론적 관점에서는 규범 유지를 위한 사회 통제는 기득권을 가진 집단이 그렇지 못한 집단을 억압하기 위한 장치에 불과하기 때문에 정당성을 가지기 어렵다. 또한 이 관점에서 범죄와 일탈은 단순히 인성, 도덕성과 같은 개인적 차원의 문제가 아니라 정치적이고 사회적인 함의를 지니게 된다.
+
+상호 작용론적 관점에서는 합의적 관점과 갈등 이론적 관점과 달리 규범의 근본적 성격을 규정하려 하지 않는다. 이 관점에서 규범은 사회의 구성원들이 일상적으로 상호 작용하는 과정에서 자연스럽게 나타나는 그 무엇이다. 따라서 여기서는 규범 자체보다, 한 사람이 그 규범을 어떻게 인식하고 이에 따라 행동하는가를 더 중요하게 여긴다. 객관적 법칙이 존재하는 자연적 현상에서와는 달리 규범을 둘러싼 사회적 현상에는 그러한 법칙이 존재할 수 없기 때문에 개인의 성향과 주관을 더 중요하게 고려하는 것이다. 개인은 자신을 둘러싼 환경을 주관적으로 해석하여 어떤 행위를 하는데, 이에 대한 타인의 반응을 통해 자신의 행위를 반성적으로 평가하여 필요한 경우 교정한다. 상호 작용론적 관점은 이러한 과정 자체를 사회 통제로 파악한다.
+
+사회 통제에 대한 다양한 이론적 관점은 단순히 규범을 유지하는 방식만이 아니라, 사회를 바라보는 근본적인 태도와 인간을 이해하는 방식의 차이를 드러낸다. 규범은 통일성과 질서를 제공하기도 하지만 때로는 갈등과 불평등을 드러내는 기준이 되기도 하며 또 다른 측면에서는 개인이 사회 속에서 자신을 성찰하고 조율하는 계기로 작용하기도 한다. 따라서 사회 통제를 단순한 규율의 문제가 아니라, 사회 구성원 간의 관계 맺음과 의미 형성의 과정으로 이해할 필요가 있다.`,
+      ox: [
+        ["합의적 관점에서 사회 통제는 강제력을 통해 일탈을 규율한다.", true],
+        ["갈등 이론적 관점은 규범을 구성원 전원의 자발적 합의로 본다.", false],
+        ["갈등 이론적 관점에서 범죄는 정치적·사회적 함의를 지닌다.", true],
+        ["상호 작용론적 관점은 규범의 객관적 법칙성을 증명하는 데 집중한다.", false],
+        ["상호 작용론적 관점은 타인의 반응을 통한 행위 교정을 사회 통제로 본다.", true]
+      ],
+      cloze: [
+        ["구성원을 사회 규범에 순응시키는 절차와 방법을 ", "사회통제", ["사회 통제"], "라 한다."],
+        ["사회 통제 이론은 합의적, 갈등 이론적, ", "상호작용론적", ["상호 작용론적"], " 관점으로 나뉜다."],
+        ["합의적 관점은 강제력을 사용한 통제의 ", "정당성", [], "을 구성원 합의에서 찾는다."],
+        ["갈등 이론적 관점에서 규범은 특권 집단의 ", "이익", [], "을 보호하는 수단이다."],
+        ["상호 작용론적 관점은 개인의 주관적 해석과 ", "반성적평가", ["반성적 평가"], "를 중시한다."]
+      ]
+    },
+    {
+      pid: "Y1D04",
+      title: "마리탱과 메스너의 자연법 비교",
+      src: "2027 수능특강 독서 01강",
+      text: `법은 사회 구성원 간의 갈등을 조정하고 질서를 유지하기 위한 제도적 장치로서, 주로 국가에 의해 제정되고 시행되는 실정법을 중심으로 구성된다. 실정법은 입법 기관이 사회의 구체적 상황에 맞추어 만든 규범으로, 강제력과 명확한 절차를 통해 사회 질서를 실현한다. 그러나 실정법만으로는 인간 사회의 근본적 정의와 도덕적 정당성을 충분히 설명하기 어렵다. 이러한 한계를 보완하는 개념이 바로 인간의 본성과 이성에 근거한 보편적 규범인 '자연법'이다. 자연법은 시대나 사회에 따라 변하지 않는 도덕적 원리로, 인간이라면 누구나 인식할 수 있는 옳고 그름의 기준으로 여겨진다. 따라서 자연법은 법 제도의 정당성을 판단하는 궁극적 기준으로 기능하며, 실정법이 정당성을 가지는 것 역시 자연법의 원리에 부합할 때 비로소 가능한 것이다.
+
+자연법의 철학적 기초는 고대 그리스 스토아학파에 의해 체계화되었으나, 그 이전에도 헤라클레이토스나 소피스트, 아리스토텔레스 등은 인간과 자연의 보편적 질서 속에서 법의 근거를 찾으려 했다. 특히 아리스토텔레스는 인간의 목적론적 본성과 공동선의 실현을 통해 자연적 정의를 논의했으며, 이러한 관점은 후대 자연법 사상에 깊은 영향을 주었다. 스토아학파는 이러한 사상을 계승하고 발전시켜, 인간은 자연의 이성적 질서에 순응하며 살아야 하고 그 속에서 선과 정의를 실현해야 한다고 주장하였다. 또한 인간의 이성은 단순한 사고의 도구가 아니라 자연 전체와 조화를 이루며 보편적 도덕 질서를 인식할 수 있는 능력으로 이해되었다. 이 사상은 로마법의 발전 과정에 영향을 주어 자연법이 법적 정당성의 기준으로 자리 잡게 되었고, 중세에는 기독교 신학과 결합하여 신의 창조 질서와 인간 이성의 조화를 중시하는 철학 체계로 발전하였다. 중세의 대표적 철학자 토마스 아퀴나스는 자연법을 영원법의 일부로 보았는데, 그는 영원법을 신이 우주와 인간을 포함한 모든 존재에 부여한 보편적 질서이자 규범으로 보았다. 그러면서 그는 인간이 이성적 존재이기에 선을 추구하고 악을 피하려는 본성 속에서 자연법을 인식할 수 있다고 설명하였다. 따라서 자연법은 단순한 관습이 아니라 세계가 신의 의도에 따라 조화롭게 유지되는 존재 질서에 뿌리를 둔 도덕적 규범이며, 실정법은 이러한 자연법에 부합할 때 비로소 정당성을 가진다고 보았다.
+
+현대에 들어 자크 마리탱은 자연법을 인간 존재의 본질 속에 내재한 내면적 질서로 재해석하였다. 그는 인간이라면 누구나 선을 추구하고 공동체적 삶을 영위하려는 성향을 지니고 있으며, 이성적 추론 이전에 이 성향을 통해 자연법을 직관적으로 인식한다고 보았다. 따라서 자연법은 외부에서 강제로 부과되는 규칙이 아니라, 인간이 인간답게 살아가기 위해 스스로 따르는 삶의 원리이다. 마리탱은 또한 자연법이 단순히 본능처럼 저절로 작동하는 것이 아님을 강조했다. 인간이 자연법을 올바로 이해하려면 지적 성찰과 교육이 필요하며, 문화적·사회적 조건 역시 중요한 역할을 한다는 것인데, 이는 자연법 자체가 시대나 사회에 따라 변한다는 뜻이 아니라, 자연법이 지닌 보편적 원리가 각 사회의 문화적 여건 속에서 구체적으로 인식되고 실현되는 방식이 달라질 수 있음을 의미한다. 그는 이를 '존재하는 자연법과 인식된 자연법의 구별'로 설명하면서, 자연법은 누구에게나 주어져 있지만, 그것이 현실 속에서 구현되기 위해서는 인간의 교육과 도덕적 성숙이 필수적이라고 보았다. 예컨대 인간 존엄이나 자유, 정의와 같은 원리는 누구에게나 내재하지만, 구체적인 제도와 법으로 드러나려면 사회 구성원들의 합의와 도덕적 성찰이 뒤따라야 한다는 것이다. 마리탱에게 자연법은 특정 종교나 문화에 국한되지 않는 보편적 규범이며, 이러한 보편성 때문에 근대 이후 인권 개념의 철학적 기초가 되었다. 그는 인권이 단순한 정치적 선언이 아니라, 인간의 본질적 성향과 이성적 본성에서 도출된 자연법의 표현이라고 주장하였다.
+
+요하네스 메스너는 마리탱의 자연법 이해를 한 단계 확장하여, 자연법의 사회적 실천과 제도적 구현에 초점을 맞추었다. 그는 인간 본성 안에는 생리적·심리적 차원을 넘어 반드시 실현해야 할 '실존적 목적들'이 내재해 있다고 보았다. 여기에는 자기 보존과 완성, 자녀의 출산과 교육, 타인에 대한 배려, 사회적 공익 증진 등이 포함된다. 메스너에 따르면 자연법은 개인의 양심에 머무르는 도덕 원리가 아니라, 이러한 실존적 목적들을 사회 구조와 제도 속에서 실질적으로 구현하는 원리여야 한다. 예를 들어 노동자의 권리 보장이나 사회적 약자를 위한 복지 정책은 단순한 선택이 아니라, 인간의 실존적 목적을 보장하기 위한 자연법의 요청이다. 따라서 그는 자연법이 공동체 전체의 정의와 질서를 뒷받침하는 구체적인 제도적 기반이 되어야 한다고 주장하였다.
+
+마리탱과 메스너의 자연법 논의는 모두 자연법을 인간의 본성과 이성에 근거한 보편적 질서로 이해하며, 그것이 사회 속에서 구현되어야 한다는 점에서 공통점을 가진다. 그러나 마리탱은 자연법의 사회적 실현을 '도덕적 성숙이 확산된 결과'로, 메스너는 그것을 '공동체가 제도적으로 실현해야 할 과제'로 본다는 점에서 차이점을 보인다. 결국 두 관점은 개인의 도덕적 자율성과 사회적 연대의 중요성을 부각하며, 인간 존엄성과 사회 정의를 동시에 고려하도록 이끈다는 의의가 있다.`,
+      ox: [
+        ["자연법은 실정법의 정당성을 판단하는 궁극적 기준이 된다.", true],
+        ["마리탱은 이성적 추론을 먼저 거쳐야 자연법을 직관한다고 보았다.", false],
+        ["마리탱은 존재하는 자연법과 인식된 자연법을 구별하였다.", true],
+        ["메스너는 자연법을 개개인의 개인적 양심 영역에만 국한시켰다.", false],
+        ["메스너는 인간의 실존적 목적을 제도적으로 보장해야 한다고 주장했다.", true]
+      ],
+      cloze: [
+        ["인간의 본성과 이성에 근거한 보편적 규범을 ", "자연법", [], "이라 한다."],
+        ["마리탱은 존재하는 자연법과 ", "인식된자연법", ["인식된 자연법"], "을 구분하였다."],
+        ["마리탱에 따르면 자연법의 보편적 원리 실현에는 도덕적 ", "성숙", ["성숙과 교육"], "이 필수적이다."],
+        ["메스너는 인간 본성 안에 반드시 이뤄야 할 ", "실존적목적", ["실존적 목적"], "이 내재한다고 보았다."],
+        ["메스너는 자연법이 사회 구조와 ", "제도", [], " 속에서 실현되어야 한다고 보았다."]
+      ]
+    },
+    {
+      pid: "M1D02",
+      title: "계약 해석과 실권 조항",
+      src: "마침내 모의고사 시뮬 1회",
+      text: `(가)
+
+법적 분쟁을 해결하기 위해서는 법 규범의 의미를 구체적 사안에 맞게 확정하는 작용인 법 해석이 이루어져야 한다. 법 규범은 추상적으로 규정되어 있을 뿐 아니라, 개별 규범들이 상충하는 경우도 있기 때문이다. 이러한 한계를 극복하기 위해서는 법 문언의 의미를 확정하는 법관의 개입이 요구되며, 그 과정에서 법 문언의 적용 범위를 넓히는 확장 해석이나 제한하는 축소 해석이 이루어진다.
+
+그런데 개인 간 법적 분쟁에서는 법 규범뿐 아니라, 당사자의 합의로 형성된 계약 내용도 분쟁 해결의 기준이 된다. 개인 간 분쟁에 적용되는 민법에는 그 적용을 배제할 수 없는 강행 규정뿐 아니라 계약으로 배제 가능한 임의 규정도 존재하기 때문이다. 임의 규정은 당사자 간 별도의 합의가 없을 때 보충적으로 적용되며, 합의가 있다면 임의 규정보다 계약 내용이 우선한다. 이에 따라 분쟁을 해결하기 위해서는 계약의 성립 여부와 그 내용에 따라 당사자가 부담하는 권리와 의무를 판단해야 한다. 이처럼 계약의 의미를 확정하는 작용을 계약 해석이라고 한다.
+
+계약 해석은 당사자의 주관적 의사를 확인하여 계약의 의미를 확정하는 자연적 해석에서 출발한다. 이에 따르면 계약 당사자 쌍방의 의사가 일치하는 경우에는 계약서에 명시된 내용과는 관계없이 당사자의 의사대로 계약이 성립한다. 가령 당사자 쌍방이 매매 대금을 10만 원으로 합의하였다면, 계약서에 이를 10만 달러로 기재하였더라도 매매 대금은 10만 원으로 정해진다. 이 원칙은 계약이 당사자들의 자유로운 의사에 기초한다는 점을 충실하게 반영한 것이다. 그러나 자연적 해석은 계약 당사자 쌍방의 주관적 의사가 합치되는 경우에만 적용되므로, 그렇지 않은 경우에는 적용되기 어렵다는 한계가 있다.
+
+주관적 의사가 합치되지 않은 경우에는 규범적 해석이 이루어진다. 규범적 해석은 계약 당사자가 계약서에 명시한 내용의 객관적 의미를 통상적인 기준에 따라 판단하는 합리적인 제3자의 입장에서 확정하는 방식이다. 이때 임의 규정이나 거래 관행을 통상적인 기준으로 삼아 계약의 의미를 확정한다. 계약의 중요 내용에 관하여 객관적 의미를 확정할 수 없다면 계약은 성립하지 않는다. 한편, 계약이 성립하더라도 계약의 법적 효력을 판단하기 위해서는 강행 규정의 의미와 적용 범위를 확정하는 법 해석이 요구된다. 이러한 해석을 거쳐 계약 내용이 강행 규정에 위배된다면 법적 효력은 부인된다.
+
+(나)
+
+채무자가 계약상 의무를 이행하지 않은 경우, 채권자가 계약을 해제하여 처음부터 없던 상태로 되돌리려면 원칙적으로 최고 절차를 거쳐야 한다. 최고란 채무자의 의무 이행을 독촉하는 채권자의 의사 표시로, 이에 관한 규정은 임의 규정에 해당한다. 채권자는 최고 절차 없이도 계약이 자동 해제되도록 하는 특약을 둘 수 있는데, 이를 실권 조항이라 한다.
+
+실권 조항이 자주 사용되는 사례로 부동산 매매 계약을 들 수 있다. 부동산 매매 계약은 매수인이 목적물의 매매 대금을 지급하면 매도인이 소유권을 이전하는 방식으로 이루어진다. 이때 매수인은 매매 대금을 계약금, 중도금, 잔금으로 분할하여 순차적으로 지급할 의무를 부담하고, 매도인은 잔금 지급 시기에 맞추어 목적물의 소유권 이전 등기에 필요한 서류를 제공할 의무를 부담한다. 이처럼 대금이 분할 지급되는 계약 구조에서는 매수인의 지급이 이행되지 않을 경우 매도인이 계약에 장기간 구속될 수 있으므로, 이를 방지하기 위해 실권 조항이 활용된다.
+
+그런데 매수인과 매도인의 의사가 합치되지 않는 경우 규범적 해석을 통해 실권 조항의 효력을 확정해야 한다. 이때 실권 조항의 효력이 발생하는 조건은 그 조항이 중도금과 잔금 중 어느 것과 관련되는지에 따라 달라진다. 잔금을 지급 기일에 지급하지 못한 경우 계약이 즉시 해제된다는 실권 조항은 매도인이 자신의 의무를 이행한 경우에만 그 효력이 발생하는 것으로 해석된다. 이는 매도인의 소유권 이전 의무와 매수인의 대금 지급 의무가 동시에 이행되어야 하며, 일방이 의무를 이행하지 않는 경우 상대방도 이행을 거절할 권리를 가진다는 임의 규정을 고려한 것이다. 따라서 매도인이 등기 서류를 제공하지 않으면 해당 실권 조항의 효력이 발생하지 않는 것으로 해석된다.
+
+한편, 중도금을 지급 기일에 지급하지 못한 경우 계약이 즉시 해제된다는 실권 조항은 매수인이 중도금 지급 의무를 이행하지 않는 즉시 효력이 발생한다. 중도금 지급 의무는 매매 대금 지급 의무의 일부일 뿐이며, 거래 관행상 매도인의 의무보다 먼저 이행되어야 하는 성격을 갖기 때문이다. 이러한 실권 조항에 따라 계약이 해제되면, 설령 매도인이 매수인에게 소유권을 이전하였더라도 그 소유권은 매도인에게 다시 귀속된다.
+
+실권 조항에 따른 계약 해제를 인정하더라도, 그 효력은 일정한 범위로 제한될 수 있다. 민법에는 강행 규정으로서 제3자 보호 규정이 존재하기 때문이다. 이에 따르면 계약이 해제되더라도 해제 전에 그 계약에 기초하여 새로운 계약을 체결한 제3자의 권리는 보호되므로, 제3자에게는 계약 해제의 효력이 미치지 않는다. 이때 제3자의 범위가 확대될수록 매도인이 계약을 해제하더라도 소유권 회복이라는 목적을 달성하기 어려워진다. 이러한 점을 고려하여 제3자의 범위는 소유권 이전 등기를 통해 완전한 권리를 취득한 사람으로 축소 해석되며, 매도인은 이러한 제3자에게 계약 해제를 이유로 반환 청구나 등기 말소 청구 등 소유권에 기초한 권리를 행사할 수 없다.`,
+      ox: [
+        ["자연적 해석은 당사자의 주관적 의사가 일치할 때 적용된다.", true],
+        ["규범적 해석은 당사자의 주관적 의사를 최우선으로 적용한다.", false],
+        ["최고란 채무자에게 의무 이행을 독촉하는 절차이다.", true],
+        ["잔금 지연 실권 조항은 매도인의 의무 이행 없이도 즉시 발동한다.", false],
+        ["중도금은 매도인의 의무보다 먼저 이행되어야 하는 선이행 의무이다.", true]
+      ],
+      cloze: [
+        ["당사자의 주관적 의사를 확인하여 계약 의미를 확정하는 것은 ", "자연적해석", ["자연적 해석"], "이다."],
+        ["제3자 입장에서 객관적 의미를 확정하는 해석은 ", "규범적해석", ["규범적 해석"], "이다."],
+        ["채무자에게 의무 이행을 독촉하는 절차를 ", "최고", [], "라고 한다."],
+        ["최고 없이 계약이 자동 해제되게 하는 특약은 ", "실권조항", ["실권 조항"], "이다."],
+        ["중도금은 거래 관행상 매도인의 의무보다 먼저 이행하는 ", "선이행의무", ["선이행 의무"], "이다."]
+      ]
+    },
+    {
+      pid: "M1D04",
+      title: "지식의 가치와 덕 인식론",
+      src: "마침내 모의고사 시뮬 1회",
+      text: `우리는 어떤 믿음이 참이더라도 그것만으로 지식이 되는 것은 아니며, 단지 참일 뿐인 믿음과 지식 사이에는 우열이 있다고 여긴다. 가령 근거 없이 지구가 둥글다고 믿는다면 그 믿음은 참이어도 지식이 아니지만, 관찰과 추론을 거쳐 그렇게 믿는다면 이는 지식이므로 더 가치 있다고 느낀다. 많은 인식론자는 이러한 가치의 우열은 참인 믿음을 얻기 위해 거친 과정의 가치 차이에서 비롯한다고 본다. 대표적으로 신빙론자들은 지식이란 올바른 관찰이나 추론처럼 참인 믿음을 산출할 확률이 높은 인지 과정을 통해 얻은 믿음이라고 보고, 지식은 이처럼 신빙성 있는 인지 과정이라는 수단을 통해 산출되었기에 참일 뿐인 믿음보다 가치 있다고 말한다. 그러나 이는 인지 과정을 가치 설명의 토대로 규정하기 어렵게 만드는 가치의 일방성 문제에 봉착한다.
+
+가치의 일방성 문제란 어떤 결과물을 산출하기 위한 수단의 가치는 그 수단을 통해 산출된 결과물의 가치를 높여 줄 수 없다는 문제이다. 이는 수단의 가치가 결과물의 가치에서 유래하기 때문에 발생한다. 예컨대 저성능 프린터와 고성능 프린터가 우연히 동등한 수준의 고품질 사진을 출력한 경우, 우리는 프린터의 성능 차이가 두 사진 사이에 우열을 설정할 근거가 될 수 없다고 여긴다. 프린터의 성능 차이는 출력물의 평균 품질에 근거하여 평가되는 수단적 가치의 차이일 뿐이기 때문이다. 인지 과정의 신빙성 유무도 이러한 수단적 가치의 차이일 뿐이므로, 참일 뿐인 믿음과 지식 간의 우열을 설정할 근거가 될 수 없다.
+
+덕 인식론자들은 이 문제를 해결하고자 지식의 개념을 재정의한다. 이들은 '안다'라는 말이 인식 주체의 역량을 평가하는 의미를 내포한다는 점에 주목하고, 지식이란 인식 주체가 인지 역량을 능동적으로 발휘하는 과정을 거쳐 참인 믿음을 달성한 지적 성취라고 규정한다. 이에 따르면, 가령 문항을 이해하고 풀어서 정답을 맞힌 것과 우연히 맞히게 된 것 중 전자만 지식이 될 수 있다. 두 답안의 결과물로서의 가치는 동등함에도 전자만이 성취의 성격을 지니기 때문이다. 이처럼 참인 믿음의 획득은 그것에 인식 주체의 인지 역량이 충분히 기여한 경우에만 단순한 성공을 넘어 성취로 인정받을 수 있다. 이 기준을 적용하면, 관찰이나 추론처럼 인지 역량을 발휘하는 과정은 지식을 산출하기 위한 수단에 불과한 것이 아니라 지식의 본질적인 구성 요소가 된다.
+
+나아가 덕 인식론자들은 참인 믿음의 성취가 모두 동등한 가치를 갖는 것은 아니라고 본다. 이는 성취 방식이 외부 환경의 변화에 취약한 경우도 있다고 여기기 때문이다. 가령 사막에서 실제 오아시스를 보고 '저기 오아시스가 있다.'라는 믿음을 형성한 것은 시각이라는 기초적 인지 능력을 능동적으로 발휘한 것이므로 지식이 되지만, 사막에서는 신기루 현상이 잦으므로 상황이 인식 주체에게 조금 더 불리하게 작용했다면 참인 믿음을 획득하는 데 실패했을 공산이 크다. 이처럼 기초적 인지 능력에만 의존하는 방식의 성취는 운에 기대는 비중이 상당한 경우가 많아서 대체로 불완전한 지식에 그친다. 이는 믿음의 획득 과정에 착각이나 기만의 위험은 없었는가를 점검하는 반성 능력과 같은 인지 역량을 통해 극복될 수 있다. 반성 능력까지 발휘하여 위험 요소를 합리적으로 통제하고 참인 믿음을 획득한다면, 이 성취는 환경이 일정 수준 악화되어도 반복 가능한 방식을 통해 이룰 수 있다는 점에서 운에 기대는 비중이 극히 줄어든 보다 완전한 지식이 된다. 단, 착각이나 기만의 요소가 지나치게 많아 반성 능력으로도 완전히 통제하기 어려운 예외적인 상황이 있을 수 있다. 이 경우 성취한 지식이 불완전한 것은 극단적인 외부 환경의 영향이 크기 때문이다. 따라서 덕 인식론자들은 성취의 불완전함이 반드시 인식 주체의 역량 부족을 뜻하는 것은 아니라고 말한다.`,
+      ox: [
+        ["신빙론자는 인지 과정의 신빙성에서 지식의 가치를 설명하려 한다.", true],
+        ["가치의 일방성 문제는 수단이 결과물의 가치를 더 높여준다는 원리이다.", false],
+        ["덕 인식론자는 지식을 인지 역량을 발휘하여 이룬 지적 성취로 본다.", true],
+        ["기초적 인지 능력만 사용해 얻은 지식이 가장 완전한 지식이다.", false],
+        ["반성 능력은 착각/기만을 통제하여 지식을 더 완전하게 만든다.", true]
+      ],
+      cloze: [
+        ["수단의 가치가 결과의 가치를 결정하지 못하는 현상을 가치의 ", "일방성", ["일방성 문제"], "이라 한다."],
+        ["덕 인식론은 지식을 인지 역량 발휘를 통한 ", "지적성취", ["지적 성취"], "로 규정한다."],
+        ["역량이 충분히 기여했을 때 참인 믿음은 단순 성공을 넘어 ", "성취", [], "가 된다."],
+        ["착각이나 기만의 위험을 점검하고 통제하는 인지 능력은 ", "반성능력", ["반성 능력"], "이다."],
+        ["반성 능력이 발휘된 성취는 운의 비중이 줄어든 ", "완전한지식", ["완전한 지식"], "이 된다."]
+      ]
+    }
+  ];
+
+  var LS = "machimnae_memory_v2";
+  var store = { name: "", prog: {}, attempts: {} };
+
+  function load(){
+    try {
+      var d = JSON.parse(localStorage.getItem(LS));
+      if(d){
+        store = d;
+        if(!store.prog) store.prog = {};
+        if(!store.attempts) store.attempts = {};
+      }
+    } catch(e){}
+  }
+
+  function save(){
+    try {
+      localStorage.setItem(LS, JSON.stringify(store));
+    } catch(e){}
+  }
+
+  function getProg(pid){
+    if(!store.prog[pid]) store.prog[pid] = 0;
+    if(!store.attempts[pid]) store.attempts[pid] = 0;
+    return { done: store.prog[pid] === 100, attempts: store.attempts[pid] };
+  }
+
+  var state = { p: null, readSec: 240, timeLeft: 0, timer: null, peek: 0, readUsed: 0, ox: [] };
+
+  load();
+  var sel = $("#passageSel");
+  PASSAGES.forEach(function(p, i){
+    var o = document.createElement("option");
+    o.value = i;
+    o.textContent = (i + 1) + ". " + p.title;
+    sel.appendChild(o);
+  });
+
+  if(store.name) $("#studentName").value = store.name;
+  sel.onchange = function(){ refreshDoneNote(); };
+
+  function refreshSelect(){
+    PASSAGES.forEach(function(p, i){
+      var pr = getProg(p.pid);
+      var o = sel.options[i];
+      if(pr.done){
+        o.textContent = "✅ " + (i + 1) + ". " + p.title;
+      } else {
+        o.textContent = "▶ " + (i + 1) + ". " + p.title;
+      }
+    });
+    refreshDoneNote();
+  }
+  refreshSelect();
+
+  function refreshDoneNote(){
+    var i = +sel.value, p = PASSAGES[i], pr = getProg(p.pid), n = $("#doneNote");
+    if(pr.done){
+      n.classList.remove("hidden");
+      n.innerHTML = "이 지문은 이미 <b style='color:#1f8a4c'>100점 완료</b>했습니다.";
+    } else if(pr.attempts > 0){
+      n.classList.remove("hidden");
+      n.innerHTML = "지난 시도: <b>" + pr.attempts + "회</b> (미완료)";
+    } else {
+      n.classList.add("hidden");
+    }
+  }
+
+  function show(id){
+    ["start","read","ox","cloze","result"].forEach(function(s){
+      document.getElementById("scr-" + s).classList.toggle("hidden", s !== id);
+    });
+    window.scrollTo(0,0);
+  }
+
+  function esc(s){
+    return (s||"").replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; });
+  }
+
+  $("#startBtn").onclick = function(){
+    var name = $("#studentName").value.trim();
+    if(!name){ showToast("이름을 입력하세요."); return; }
+    store.name = name; save();
+    state.p = PASSAGES[+sel.value];
+    state.readSec = +$("#readTime").value;
+    state.peek = 0;
+    beginRead();
+  };
+
+  function beginRead(){
+    show("read");
+    var pr = getProg(state.p.pid);
+    $("#readAttempt").textContent = "🔁 시도 " + (pr.attempts + 1) + "회차";
+    $("#readArea").classList.remove("hidden");
+    $("#curtainArea").classList.add("hidden");
+    $("#hideBtn").textContent = "다 외웠어요 · 가리고 문제 풀기";
+    
+    var box = $("#passageBox");
+    var headerHtml = '<div class="ptitle"><span class="psrc">' + esc(state.p.src) + '</span>' + esc(state.p.title) + '</div>';
+    box.innerHTML = headerHtml + renderPassageText(state.p.text);
+    box.scrollTop = 0;
+    
+    state.timeLeft = state.readSec;
+    updateTimer();
+    clearInterval(state.timer);
+    state.timer = setInterval(function(){
+      state.timeLeft--;
+      updateTimer();
+      if(state.timeLeft <= 0){
+        clearInterval(state.timer);
+        hidePassage(true);
+      }
+    }, 1000);
+  }
+
+  function updateTimer(){
+    var m = Math.floor(state.timeLeft / 60), s = state.timeLeft % 60;
+    var p = function(n){ return (n < 10 ? "0" : "") + n; };
+    var t = $("#timer");
+    t.textContent = p(m) + ":" + p(s);
+    t.classList.toggle("low", state.timeLeft <= 30);
+    $("#tbarFill").style.width = (state.timeLeft / state.readSec * 100) + "%";
+  }
+
+  $("#hideBtn").onclick = function(){ clearInterval(state.timer); hidePassage(false); };
+
+  function hidePassage(auto){
+    state.readUsed = state.readSec - (auto ? 0 : state.timeLeft);
+    $("#readArea").classList.add("hidden");
+    $("#curtainArea").classList.remove("hidden");
+  }
+
+  $("#peekBtn").onclick = function(){
+    state.peek++;
+    $("#readArea").classList.remove("hidden");
+    $("#curtainArea").classList.add("hidden");
+    $("#hideBtn").textContent = "다시 가리기";
+    clearInterval(state.timer);
+    state.timeLeft = 20;
+    updateTimer();
+    state.timer = setInterval(function(){
+      state.timeLeft--;
+      updateTimer();
+      if(state.timeLeft <= 0){
+        clearInterval(state.timer);
+        hidePassage(true);
+      }
+    }, 1000);
+  };
+
+  $("#toQuizBtn").onclick = buildOX;
+
+  function buildOX(){
+    show("ox");
+    state.ox = new Array(state.p.ox.length).fill(null);
+    var wrap = $("#oxList");
+    wrap.innerHTML = "";
+    state.p.ox.forEach(function(item, i){
+      var q = document.createElement("div");
+      q.className = "q";
+      q.innerHTML = '<div class="qt">' + (i + 1) + '. ' + esc(item[0]) + '</div><div class="ox"><button data-v="O">O</button><button data-v="X">X</button></div>';
+      q.querySelectorAll(".ox button").forEach(function(b){
+        b.onclick = function(){
+          q.querySelectorAll(".ox button").forEach(function(x){ x.classList.remove("sel"); });
+          b.classList.add("sel");
+          state.ox[i] = (b.dataset.v === "O");
+          $("#oxNext").disabled = state.ox.indexOf(null) > -1;
+        };
+      });
+      wrap.appendChild(q);
+    });
+    $("#oxNext").disabled = true;
+  }
+
+  $("#oxNext").onclick = buildCloze;
+
+  function buildCloze(){
+    show("cloze");
+    var wrap = $("#clozeList");
+    wrap.innerHTML = "";
+    state.p.cloze.forEach(function(c, i){
+      var line = document.createElement("div");
+      line.className = "q cloze";
+      line.innerHTML = '<div class="clz-line">' + esc(c[0]) + '<input type="text" data-i="' + i + '" autocomplete="off" spellcheck="false">' + esc(c[3]) + '</div>';
+      wrap.appendChild(line);
+    });
+  }
+
+  $("#clozeGrade").onclick = function(){
+    var oxScore = 0;
+    state.p.ox.forEach(function(item, i){ if(state.ox[i] === item[1]) oxScore++; });
+
+    var inputs = $("#clozeList").querySelectorAll("input");
+    var clzScore = 0, clzResult = [];
+    state.p.cloze.forEach(function(c, i){
+      var val = normAns(inputs[i].value);
+      var accept = [c[1]].concat(c[2] || []).map(normAns);
+      var ok = (val !== "" && accept.indexOf(val) > -1);
+      if(ok) clzScore++;
+      clzResult.push(ok);
+    });
+
+    var total = state.p.ox.length + state.p.cloze.length;
+    var raw = oxScore + clzScore;
+    var pct = Math.round(raw / total * 100);
+
+    state.result = { oxScore: oxScore, clzScore: clzScore, pct: pct, clzResult: clzResult };
+    
+    if(!store.attempts[state.p.pid]) store.attempts[state.p.pid] = 0;
+    store.attempts[state.p.pid]++;
+
+    if(pct >= 100){
+      store.prog[state.p.pid] = 100;
+    }
+    save();
+    showResult();
+  };
+
+  function showResult(){
+    show("result");
+    var r = state.result, pass = (r.pct >= 100);
+    $("#resAttempt").textContent = "🔁 시도 " + store.attempts[state.p.pid] + "회차";
+    var sm = $("#scoreMain");
+    sm.textContent = r.pct + "점";
+    sm.className = "score-main " + (pass ? "pass" : "fail");
+
+    $("#scoreDetail").innerHTML = "OX " + r.oxScore + "/" + state.p.ox.length + " · 빈칸 " + r.clzScore + "/" + state.p.cloze.length + " · 읽기 " + (state.readUsed || state.readSec) + "초";
+
+    var wl = $("#wrongLine");
+    if(!pass){
+      var wrongOx = [], wrongClz = [];
+      state.p.ox.forEach(function(it, i){ if(state.ox[i] !== it[1]) wrongOx.push(i + 1); });
+      r.clzResult.forEach(function(ok, i){ if(!ok) wrongClz.push(i + 1); });
+      var msg = [];
+      if(wrongOx.length) msg.push("OX " + wrongOx.join(","));
+      if(wrongClz.length) msg.push("빈칸 " + wrongClz.join(","));
+      wl.classList.remove("hidden");
+      wl.innerHTML = "❌ 다시 볼 문항: " + msg.join(" / ") + "<br><span style='font-size:12px;font-weight:normal;color:#a03030'>정답은 100점 달성 시 공개됩니다.</span>";
+    } else {
+      wl.classList.add("hidden");
+    }
+
+    $("#failWrap").classList.toggle("hidden", pass);
+    $("#passWrap").classList.toggle("hidden", !pass);
+
+    if(pass){
+      var html = "<b>✅ 정답 및 해설 공개</b><br><br><b>[ OX 정답 ]</b><br>";
+      state.p.ox.forEach(function(o, i){ html += (i + 1) + ". " + (o[1] ? "<b style='color:#1f8a4c'>O</b>" : "<b style='color:#d04141'>X</b>") + " — " + esc(o[0]) + "<br>"; });
+      html += "<br><b>[ 빈칸 정답 ]</b><br>";
+      state.p.cloze.forEach(function(c, i){ html += (i + 1) + ". " + esc(c[0]) + "<b>" + esc(c[1]) + "</b>" + esc(c[3]) + "<br>"; });
+      $("#ansKey").innerHTML = html;
+    }
+    refreshSelect();
+    $("#reviewPassage").classList.add("hidden");
+  }
+
+  $("#retryBtn").onclick = function(){ state.peek = 0; beginRead(); };
+  $("#homeBtn").onclick = function(){ show("start"); refreshSelect(); updateHwStatus(); };
+  
+  $("#reviewBtn").onclick = function(){
+    var rp = $("#reviewPassage");
+    if(!rp.classList.contains("hidden")){ rp.classList.add("hidden"); return; }
+    
+    var headerHtml = '<div class="ptitle"><span class="psrc">' + esc(state.p.src) + '</span>' + esc(state.p.title) + '</div>';
+    rp.innerHTML = headerHtml + renderPassageText(state.p.text);
+    rp.classList.remove("hidden");
+  };
+
+  function copyReport(){
+    var doneKeys = Object.keys(store.prog).filter(function(k){ return store.prog[k] === 100; });
+    if(doneKeys.length === 0) return showToast("완료한 지문이 없습니다. 100점을 달성하세요!");
+
+    var text = "[독서 단기 암기 완료 보고서]\n학생 이름: " + (store.name || '미입력') + "\n\n";
+    doneKeys.forEach(function(pid){
+      var p = PASSAGES.find(function(x){ return x.pid === pid; });
+      if(p){
+        text += "✅ " + p.title + "\n - 시도 횟수: " + store.attempts[pid] + "회\n - 결과: PASS (100점)\n\n";
+      }
+    });
+    text += "누적 완료: " + doneKeys.length + " / " + PASSAGES.length + " 지문 (" + Math.round((doneKeys.length / PASSAGES.length) * 100) + "%)";
+
+    var t = document.createElement('textarea');
+    t.value = text;
+    document.body.appendChild(t);
+    t.select();
+    try {
+      document.execCommand('copy');
+      showToast("보고서가 복사되었습니다! 카톡에 붙여넣으세요.");
+    } catch(e) {
+      showToast("복사에 실패했습니다.");
+    }
+    document.body.removeChild(t);
+  }
+
+  $("#submitAllBtn").onclick = copyReport;
+  $("#submitAllBtn2").onclick = copyReport;
+
+  $("#resetBtn").onclick = function(){
+    store = { name: store.name, prog: {}, attempts: {} };
+    save();
+    refreshSelect();
+    updateHwStatus();
+    showToast("기록이 초기화되었습니다.");
+  };
+
+  function updateHwStatus(){
+    var cnt = 0;
+    PASSAGES.forEach(function(p){ if(store.prog[p.pid] === 100) cnt++; });
+    $("#hwStatus").innerHTML = "완료 <b style='color:#1f8a4c'>" + cnt + "</b> / " + PASSAGES.length + " 지문";
+  }
+  updateHwStatus();
+
+  function showToast(m){
+    var t = $("#toast");
+    t.textContent = m;
+    t.classList.add("show");
+    setTimeout(function(){ t.classList.remove("show"); }, 2200);
+  }
+})();
+</script>
+</body>
+</html>
