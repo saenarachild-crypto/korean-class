@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 4회 - 28~31 (조정의 혼란으로 겪게 되는 시련에 대한 신하들의 심정을 다룬 시조들)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 실전 4회 · 문학 28~31 (고전 시가)</h1>
+        <p>조정의 혼란으로 겪게 되는 시련에 대한 신하들의 심정을 다룬 시조들 (이양원·이항복·구인후) | 원문 + 인라인 분석 + 문제 + 정답/오답 해설 (원본 완전 일치)</p>
+    </div>
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>일반적으로 조선의 사대부들은 관직을 얻어 조정에서 <span class="underline-phrase">나라를 태평하게 하고 백성을 편안하게 만드는 것</span><span class="phrase-label">국태민안(國泰民安)의 정치</span>을 일생의 보람으로 생각했다. 하지만 관직에 임용되어 고위직 관료가 되어도 순탄한 생활을 하기보다는 불안정한 조정의 혼란 속에서 고뇌하거나 임금과의 의견 대립, 당쟁으로 인한 갈등이나 간신들의 모함, 자신의 과오 등으로 <span class="underline-phrase">파직되거나 유배에 처해지는 등 시련을 겪는 일이 많았다</span><span class="phrase-label">강호가도나 유배 문학의 창작 계기</span>. 조선 중기 이후, 이런 상황과 관련해 고위직 관료들의 진솔한 심정을 다룬 시조들이 창작되었다.
+                <span class="para-note">← 조선 중기 이후 조정의 혼란으로 겪게 되는 시련에 대한 심정을 다룬 시조들이 창작됨.</span></p>
+                <p>다음은 선조 때 이양원이 지은 시조이다.</p>
+                <div class="bracket-span"><span class="bracket-badge">A</span>
+                <p><span class="underline-phrase">높으나 높은 나무</span><span class="phrase-label">높은 벼슬자리</span>에 날 권(勸)하여 올려 두고</p>
+                <p>이보오 <span class="underline-phrase">벗님네야</span><span class="phrase-label">화자를 모함하는 무리, 간신배</span> 흔들지나 마십시오</p>
+                <p><span class="underline-phrase">떨어져 죽기는 서럽지 않아</span> ⓐ<span class="underline-phrase">임 못 볼까 하노라</span><span class="phrase-label">임금에 대한 충성을 다하지 못할까 염려함.</span></p>
+                </div>
+                <p>성품이 충성스럽고 박학하며 <span class="underline-phrase">흑백의 논쟁에 치우치지 않은 것</span><span class="phrase-label">합리적이고 공평무사한 성격</span>으로 알려진 이양원은 임진왜란 발생 후 영의정의 자리에 올라 국가의 혼란을 수습하기 위해 애썼다. 그 과정에서 모함을 당하는 자신의 위태로운 처지에 대한 고뇌를 비유적으로 표현하며, 우국의 심정을 드러내고 있다.
+                <span class="para-note">← 자신의 위태로운 처지에 대한 고뇌와 우국의 심정을 드러낸 이양원의 시조</span></p>
+                <p>선조를 이어 왕위에 오른 광해군 때 <span class="underline-phrase">대북파</span><span class="phrase-label">광해군 즉위 이후 집권당으로 부상한 정파로 계축옥사를 일으켜 영창 대군을 죽이고 인목 대비를 폐위시킴.</span>가 당파의 이익을 위해 추진한 <span class="underline-phrase">인목 대비 폐위</span><span class="phrase-label">인목 대비: 조선 선조의 계비(繼妃). 선조 35년(1602) 왕비에 책봉되었으나 광해군이 즉위하자 대북파의 모략으로 폐위되어 서궁(西宮)에 유폐되었다가 인조반정으로 풀려남.</span>에 적극적으로 반대 의사를 표명하다가 유배형에 처해진 이항복은 유배지로 가는 도중에 다음과 같은 시조를 지었다.</p>
+                <div class="bracket-span"><span class="bracket-badge">B</span>
+                <p><span class="underline-phrase">철령(鐵嶺)</span><span class="phrase-label">지명</span> 높은 고개 <span class="underline-phrase">쉬어 넘는 저 구름아</span><span class="phrase-label">돈호법, 의인법</span></p>
+                <p><span class="underline-phrase">고신(孤臣) 원루(冤淚)</span><span class="phrase-label">화자의 원통한 눈물</span>를 <span class="underline-phrase">비 삼아 띄워다가</span><span class="phrase-label">화자의 억울함을 임금에게 전달하는 매개체</span></p>
+                <p>임 계신 <span class="underline-phrase">구중심처(九重深處)</span><span class="phrase-label">임금이 있는 대궐 안</span>에 뿌려 볼까 하노라</p>
+                </div>
+                <p>유배형을 받은 후 이동하며 자신의 억울함을 이야기할 곳이 없었던 작가가 <span class="underline-phrase">험준한 고개</span><span class="phrase-label">철령</span>를 넘으며 자신의 비통함과 임금에 대한 원망을 상징적 소재를 활용하여 토로하는 것이 인상적인 작품이다.</p>
+                <p>이항복은 유배지인 북청에서 인목 대비가 폐위되었다는 소식을 들은 후 당시의 세태를 비판하며 또 다른 시조를 지었다.</p>
+                <div class="bracket-span"><span class="bracket-badge">C</span>
+                <p><span class="underline-phrase">시절(時節)도 저러하니</span><span class="phrase-label">저렇게 어수선하니</span> <span class="underline-phrase">인사(人事)도 이러하다</span><span class="phrase-label">이렇게 어수선하다 · 어수선한 정국 속에서 도의를 지키지 못하는 사람들에 대한 비판</span></p>
+                <p><span class="underline-phrase">이러하거니 어이 저러 아닐쏘냐</span><span class="phrase-label">도의가 무너진 세상에서 인목 대비의 폐위는 당연한 일이라는 반응</span></p>
+                <p>이렇군 저렇군 하니 한숨 겨워 하노라
+                <span class="para-note">← 인목 대비의 폐위와 관련해 반대하다가 유배를 당한 억울함과 세태에 대한 비판을 드러낸 이항복의 시조</span></p>
+                </div>
+                <p>무과에 급제한 후 어영 대장, 병조 판서 등을 지낸 구인후는 시아버지인 인조에 의해 억울하게 죽은 소현 세자빈(世子嬪) 강씨의 <span class="underline-phrase">신원(伸冤)</span><span class="phrase-label">가슴에 맺힌 원한을 풀어 버림.</span>을 상소한 김홍욱을 도우려다가 효종의 분노를 유발해 파직당했다. 인조의 둘째 아들로 형인 소현 세자가 죽어 왕위를 계승한 효종의 입장에서는 인조의 처분이 잘못되었다는 상소는 자신의 왕위 계승과 관련한 민감한 사안이었기 때문이다. 그래서 평소 효종의 신임을 얻었던 구인후도 벌을 받게 된 것이었다. 다음 시조는 그가 조정을 떠나게 된 상황과 그 이후의 처신을 나타내고 있다.</p>
+                <div class="bracket-span"><span class="bracket-badge">D</span>
+                <p><span class="underline-phrase">어전(御前)</span><span class="phrase-label">임금의 앞</span>에 <span class="underline-phrase">실언하고</span><span class="phrase-label">김홍욱을 옹호한 일</span> <span class="underline-phrase">특명(特命)으로 내치시니</span><span class="phrase-label">효종에 의해 파직당한 일</span></p>
+                <p>이 몸 갈 데 없어 <span class="underline-phrase">서호(西湖)를 찾아가니</span><span class="phrase-label">화자가 서호에 머무름.</span></p>
+                <p>밤중만 닻 드는 소리에 <span class="underline-phrase">연군성(戀君誠)</span><span class="phrase-label">임금을 그리워하는 정성스런 마음, 정성</span>이 새로워라</p>
+                </div>
+                <p>구인후는 임금의 노여움을 사서 파직되었지만 <span class="underline-phrase">자신의 잘못을 인정하고 임금을 향한 정성을 새롭게 다짐하는 태도</span><span class="phrase-label">이런 처신으로 인해 복직되어 좌의정까지 지냄.</span>를 보이는데, 이는 임금에 대한 이항복의 태도와는 대비되는 면모가 있다고 볼 수 있다.
+                <span class="para-note">← 자신의 잘못을 인정하고 임금을 향한 정성을 새롭게 다짐하는 태도를 드러낸 구인후의 시조</span></p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="info-box">
+                <h3>🎯 감상 포인트</h3>
+                <p style="font-size: 13.5px;">이 글은 조선 중기 이후 불안정한 조정의 혼란 속에서 고뇌하거나 시련을 겪은 신하들의 심정과 반응을 형상화한 시조들을 소개하고 있다. 조선 시대 조정에서 일하던 고위직 관료들은 임금과의 의견 대립, 당쟁으로 인한 갈등이나 간신들의 모함, 자신의 과오 등으로 파직되거나 유배에 처해지는 경우가 많았다. 선조 때의 이양원은 국가의 혼란을 수습하기 위해 애쓰다가 모함을 당한 심정을, 광해군 때의 이항복은 인목 대비의 폐위와 관련해 반대하다가 유배를 당한 심정을, 효종 때의 구인후는 소현 세자빈의 신원과 관련해 임금의 노여움을 사서 파직당한 심정을 노래하고 있다. 이 중에서 구인후는 작품을 통해 자신의 잘못을 인정하고 임금을 향한 정성을 새롭게 다짐하는 데 반해, 이항복은 자신의 비통함과 임금에 대한 원망, 그리고 잘못된 세태를 비판하는 심정을 드러내고 있다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">조정의 혼란으로 겪게 되는 시련에 대한 신하들의 심정과 반응</p>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 작품별 분석</div>
+                <div class="content">
+                    <strong>[A] 이양원의 시조</strong> — ‘높으나 높은 나무(높은 벼슬자리)’에 오른 화자가 ‘벗님네야(모함하는 무리, 간신배)’에게 흔들지 말라고 말하며, 죽음보다 ‘임(임금)’을 못 볼 것을 염려함. 자신의 위태로운 처지에 대한 고뇌와 우국의 심정.<br>
+                    <strong>[B] 이항복의 시조</strong> — ‘철령’ 고개를 넘는 ‘구름(의인화된 청자)’에게 ‘고신 원루(원통한 눈물)’를 비 삼아 ‘구중심처(임금이 있는 대궐 안)’에 뿌려 달라고 함. 유배의 억울함을 임금에게 전하고 싶은 마음.<br>
+                    <strong>[C] 이항복의 시조</strong> — ‘시절도 저러하니 인사도 이러하다’: 어수선한 정국과 도의를 지키지 못하는 사람들에 대한 비판, 한숨 겨워 하는 탄식.<br>
+                    <strong>[D] 구인후의 시조</strong> — ‘어전에 실언하고(김홍욱을 옹호한 일)’ ‘특명으로 내치시니(효종에 의해 파직당한 일)’ 서호로 물러났지만 ‘연군성(임금을 그리워하는 정성)’이 새로워짐. 잘못을 인정하고 충성을 다짐하는 태도.
+                </div>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">💯 이것만은 꼭 익히자! — 상황에 대한 반응의 차이 <span style="font-size:12px; color:#b45309;">(문항 29, 30 관련)</span></h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>이양원, 구인후</th><th>이항복</th></tr></thead>
+                    <tbody>
+                        <tr><td>다른 신하들에게 모함을 당하거나 임금을 분노하게 해서 파직을 당하는 시련을 겪었지만 끝까지 임금에 대한 충성을 드러내고 있음.</td><td>임금의 결정(인목 대비 폐위)에 반대하다가 유배형을 당한 후 임금에게 원통하고 억울한 심정을 드러내고, 도의가 사라진 세태를 비판함.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>🌏 배경지식 ① 작자 미상, 「개야미 불개야미~」의 이해 <span style="font-size:12px;">(문항 31 관련)</span></h3>
+                <div style="background:#faf9fd; border:1px solid #e2e8f0; border-radius:12px; padding:10px 14px; font-size:12.5px; font-family:'Times New Roman','Noto Serif',serif;">
+                    개야미 불개야미 잔등 부러진 불개야미<br>
+                    앞발에 정종(疔腫) 나고 뒷발에 종기 난 불개야미 광릉(廣陵) 샘재 넘어 들어 가람의 허리를 가로물어 추켜들고 북해(北海)를 건넜단 말이 있습니다<br>
+                    임아 임아 온 놈이 온 말을 하여도 임이 짐작하소서<br>
+                    <span style="font-family:'Segoe UI',sans-serif; font-size:12px;">✱개야미 불개야미: 개미, 불개미. ✱정종: 부스럼. ✱가람: 칡범. 몸에 칡덩굴 같은 어룽어룽한 줄무늬가 있는 범.</span>
+                </div>
+                <p style="font-size: 13px; margin-top: 8px;">『청구영언』에 실린 작자 미상의 사설시조로, 임에게 사람들의 참소를 가려듣기를 호소하는 내용이다. 먼저 도저히 실현 불가능한 허황된 일을 제시한 뒤, 이것을 통해 사람들의 말을 가려들으라고 경계하고 있다. 이 작품은 ‘개미에 대한 소개(과장) → 개미가 벌이는 사건 소개(과장) → 임에게 하는 당부(경계)’의 세 단계로 시상이 전개된다.</p>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>🌏 배경지식 ② 유배지에서 이항복이 지은 또 다른 시조</h3>
+                <div style="background:#faf9fd; border:1px solid #e2e8f0; border-radius:12px; padding:10px 14px; font-size:12.5px; font-family:'Times New Roman','Noto Serif',serif;">
+                    귀먹은 소경이 되어 산중에 들었으니<br>
+                    들은 일 없거든 본 일이 있을쏘냐<br>
+                    입이야 성하다마는 무슨 말을 하리오
+                </div>
+                <p style="font-size: 13px; margin-top: 8px;">이 시조에서 이항복은 자신이 귀먹은 소경이 되어 산중에 있기 때문에 아무 말도 하지 않겠다고 표현하고 있다. 유배 생활을 하면서 조정의 안타까운 소식을 들을 때마다 시절과 세태에 대해 염려하면서도 이를 언급하지 않겠다는 노신(老臣)의 고뇌를 엿볼 수 있다. 이렇게 울분에 찬 생활을 하다가 이항복은 유배지에서 생을 마감하게 된다.</p>
+            </div>
+            <div class="qa-box">
+                <h3>💬 EBS Q&amp;A</h3>
+                <p><strong>Q.</strong> 지문에 삽입된 고전 시가 작품은 어떻게 감상하고, 관련된 문항은 어떻게 풀어야 하나요?</p>
+                <p style="margin-top: 8px;"><strong>A.</strong> 2022학년도 대학수학능력시험 예시 문항이나 2021학년도 9월 모의평가, 2017학년도 대학수학능력시험 등에서 이론 속에 작품이 삽입되거나 이론과 작품을 함께 제시하는 형식의 지문 구성이 있었습니다. 학생들이 문학 이론을 바탕으로 차원 높게 작품을 감상할 수 있는가를 확인하기 위한 출제 방식이므로, 최근 출제가 되지 않았더라도 대비할 필요는 있습니다. 이론 속에 삽입되거나 이론과 함께 제시된 작품은 그 주제나 특성에 대한 설명이 지문에 제시되기 때문에, 먼저 지문을 읽으며 작품 감상과 관련해 필요한 정보를 빨리 파악해야 하고, 이를 문항과 연결해 해결의 실마리를 찾으면 됩니다. 이론 속에 삽입된 작품 감상과 관련된 정보는 주로 해당 작품 앞뒤에 구체적으로 제시되는 경우가 많으니, 이를 고려하여 지문을 읽으면 도움이 될 것입니다.</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 4회 28~31</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 창작 배경</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 조선 중기 이후 조정의 혼란(모함·당쟁·과오)으로 시련을 겪은 고위직 관료들의 시조 창작</p>
+                    <div class="sub-point">✔ 국태민안의 정치 이상 ↔ 파직·유배의 현실</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 이양원 [A]</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">모함</span> 높은 벼슬자리에서 모함을 당한 위태로운 처지 — 임금에 대한 충성 염려</p>
+                    <div class="sub-point">✔ 고뇌와 우국의 심정</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 이항복 [B]·[C]</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">유배</span> [B] 구름에 실어 보내는 원통한 눈물 → [C] 도의가 무너진 세태 비판과 한숨</p>
+                    <div class="sub-point">✔ 억울함·원망·세태 비판</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 구인후 [D]</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">파직</span> 어전 실언으로 내쳐졌지만 서호에서 새로워지는 연군성</p>
+                    <div class="sub-point">✔ 잘못 인정 + 충성의 재다짐 (이항복과 대비)</div>
+                </div>
+            </div>
+        </div>
+        <div class="flow-summary">📍 전체 흐름 : 창작 배경(조정의 혼란과 시련) → [A] 이양원(모함 속 충성) → [B]·[C] 이항복(유배의 억울함과 세태 비판) → [D] 구인후(잘못 인정과 연군의 다짐)</div>
+    </div>
+
+    <div class="questions-section">
+        <h2 style="font-size: 24px; color: #1e466e; margin-bottom: 10px;">🧪 문제 + 해설 [28~31]</h2>
+
+        <div class="question-full">
+            <div class="q-num">28</div><span class="q-type">[유형] 작품의 내용 파악</span>
+            <div class="question-stem">윗글에서 답을 찾을 수 없는 질문은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 이양원이 영의정이 된 후에 시조를 창작한 이유는?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘임진왜란 발생 후 영의정의 자리에 올라 국가의 혼란을 수습하기 위해 애썼다. 그 과정에서 모함을 당하는 자신의 위태로운 처지에 대한 고뇌를 비유적으로 표현하며, 우국의 심정을 드러내고 있다.’를 통해 이양원이 모함을 당하는 자신의 처지에 대한 고뇌와 임진왜란이라는 국난에 대한 염려 등으로 시조를 창작했음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 구인후가 임금의 분노를 유발하여 조정에서 쫓겨난 이유는?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘인조의 둘째 아들로 형인 소현 세자가 죽어 왕위를 계승한 효종의 입장에서는 인조의 처분이 잘못되었다는 상소는 자신의 왕위 계승과 관련한 민감한 사안이었기 때문이다.’를 통해 구인후가 파직당한 이유가 왕위 계승과 관련한 임금의 민감한 부분에 개입했기 때문임을 알 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 유배와 관련한 시조 중 문신들의 작품이 더 많이 전해지는 이유는?</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 이 글에서 이양원과 이항복은 문신, 구인후는 무신으로 볼 수 있다. 그런데 이 글에서 유배와 관련한 시조 중 문신들의 작품이 더 많이 전해진다는 내용과 그 이유는 찾을 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 이항복을 모함하여 유배를 당하게 만든 정파가 이익을 위해 추구한 일은?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘광해군 때 대북파가 당파의 이익을 위해 추진한 인목 대비 폐위에 적극적으로 반대 의사를 표명하다가 유배형에 처해진’을 통해 이항복과 뜻을 달리하는 정파가 이익을 위해 추구한 일이 인목 대비 폐위임을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 조선의 사대부들이 조정에서 관직 생활을 할 때 기본적으로 고려한 목표는?</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘일반적으로 조선의 사대부들은 관직을 얻어 조정에서 나라를 태평하게 하고 백성을 편안하게 만드는 것을 일생의 보람으로 생각했다.’를 통해 조선의 사대부들이 ‘국태민안(國泰民安)’을 기본적으로 고려했음을 알 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 정답. [유형] 작품의 내용 파악</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">29</div><span class="q-type">[유형] 작품의 종합적 이해와 감상</span>
+            <div class="question-stem">[A]~[D]를 이해한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① [A]에서 화자는 자신을 모함하는 대상에게 말을 건네는 방식으로 부탁하고 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [A]에서 화자는 조정에서 자신을 모함하는 무리를 의미하는 ‘벗님네’에게 말을 건네는 방식으로 자신을 나무에 올려 두고 흔들지 말라고 부탁하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② [B]에서 화자는 자연물을 매개로 하여 자신의 억울함과 원통함을 임금에게 알리고 싶어 하는군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [B]에서 화자는 ‘비’라는 자연물을 매개로 하여 자신의 억울함과 원통함을 담은 눈물을 대궐에 뿌리고 싶다는 생각을 드러내고 있는데, 이는 자신의 억울함과 원통함을 임금에게 알리고 싶어 하는 심정과 관련이 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ [C]에서 화자는 인목 대비의 폐위를 주도한 사람을 찾아내어 그의 행동을 한탄하는 방식으로 세태를 비판하고 있군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – [C]에서 화자가 인목 대비의 폐위를 주도한 무리의 행동에 대해 ‘한숨 겨워 하노라’를 통해 한탄하며 세태를 비판하는 것은 맞지만, 인목 대비의 폐위를 주도한 사람을 구체적으로 찾아내어 지목한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ [B]와 [D]에는 모두 조정을 떠난 화자가 현재 지나거나 머무르는 장소가 직접적으로 제시되어 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [B]의 화자는 유배지로 이동하며 ‘철령’을 지나고 있고, [D]의 화자는 ‘서호’에 머무르고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ [A]에서는 염려하는 태도를 통해, [D]에서는 정성을 다짐하는 태도를 통해 임금에 대한 화자의 충성을 나타내고 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – [A]의 ‘임 못 볼까 하노라’에서 임금을 염려하는 화자의 충성심을, [D]의 ‘연군성이 새로워라’에서 임금을 향한 정성을 새롭게 다짐하는 화자의 충성심을 확인할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 정답. [유형] 작품의 종합적 이해와 감상</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">30</div><span class="q-type">[유형] 시어, 시구의 의미와 기능 파악</span>
+            <div class="question-stem">윗글의 시어나 시구에 대한 설명으로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① [A]의 ‘벗님네’와 [B]의 ‘고신’은 모두 임에 대한 원망의 정서를 드러내기 위해 제시한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 유배형을 당해 유배지로 이동하는 화자가 스스로를 가리키는 [B]의 ‘고신’은 이어지는 ‘원루’와 연결할 때 임에 대한 원망의 정서를 담았다고 볼 수 있다. 하지만 [A]의 ‘벗님네’는 조정에서 화자를 모함하는 대상으로, 임에 대한 원망의 정서를 드러내는 것과는 관련이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② [A]의 ‘높으나 높은 나무’와 [D]의 ‘닻 드는 소리’는 화자의 그리움을 자극하는 매개체로 설정한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – [A]의 ‘높으나 높은 나무’는 화자의 위태로운 처지를 빗댄 것으로, 그리움과는 관련이 없다. [D]의 ‘닻 드는 소리’는 이를 통해 ‘연군성이 새로워’지는 것이므로, 임금에 대한 화자의 그리움을 자극하는 매개체로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ [B]의 ‘뿌려 볼까 하노라’와 [C]의 ‘한숨 겨워 하노라’는 현실에 대한 비판 의식을 토로한 것이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – [B]와 [C]는 모두 이항복의 시조로, 인목 대비를 폐위하기 위한 시도나 인목 대비 폐위와 관련된 당대의 현실에 대한 비판 의식과 부정적 인식을 담은 작품으로 볼 수 있다. [B]에서는 화자가 궁궐에 눈물을 뿌리고 싶은 심정을, [C]에서는 화자가 한숨을 이기지 못하는 상황을 제시하여, 현실에 대한 화자의 비판 의식과 부정적 인식을 진솔하게 토로한 것으로 이해할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ [B]의 ‘띄워다가’와 [D]의 ‘찾아가니’는 현실의 고난을 극복하기 위한 화자의 의지를 강조한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – [B]의 ‘띄워다가’는 화자가 자신의 억울함과 원통함을 임금에게 알리고 싶은 심정과, [D]의 ‘찾아가니’는 조정을 떠난 후 화자가 ‘서호’에 머무르는 상황과 연결할 수 있다. 모두 고난을 극복하기 위해 화자의 의지를 강조한 것으로 볼 수는 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ [C]의 ‘이러하다’와 [D]의 ‘새로워라’는 예상하지 못한 상황과 맞닥뜨리게 된 고뇌를 독백의 어조로 드러낸 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – [C]와 [D]는 모두 독백의 어조로 볼 수 있다. [C]의 ‘이러하다’는 ‘시절도 저러하니’라는 앞 구절의 내용과 연결해 볼 때 어느 정도 예상할 수 있는 상황으로 볼 수 있다. [D]의 ‘새로워라’를 예상하지 못한 상황과 맞닥뜨리게 된 것으로 볼 여지는 있으나 그와 관련한 고뇌를 드러낸 것으로 볼 수는 없다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 정답. [유형] 시어, 시구의 의미와 기능 파악</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">31</div><span class="q-type">[유형] 시어 및 시구의 비교와 대조</span>
+            <div class="question-stem">윗글의 ⓐ와 &lt;보기&gt;의 ⓑ에 대한 설명으로 가장 적절한 것은?</div>
+            <div class="view-box">
+                <span class="view-title">보 기</span>
+                개야미 불개야미 잔등 부러진 불개야미<br>
+                앞발에 정종(疔腫) 나고 뒷발에 종기 난 불개야미 광릉(廣陵) 샘재 넘어 들어 가람의 허리를 가로물어 추켜들고 북해(北海)를 건넜단 말이 있습니다<br>
+                ⓑ임아 임아 온 놈이 온 말을 하여도 임이 짐작하소서
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ는 ⓑ와 달리, 잘못된 정치 현실에 지쳐 정계를 떠나려 하는 존재로 볼 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – [A]에서 잘못된 정치 현실에 대한 고뇌를 드러내는 존재는 ⓐ가 아니라 화자이다. &lt;보기&gt;에서도 ⓑ가 잘못된 정치 현실에 지쳐 정계를 떠나려 하는 내용을 찾을 수 없다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② ⓑ는 ⓐ와 달리, 화자의 결백을 주체적으로 판단할 수 있는 존재로 볼 수 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – &lt;보기&gt;는 등이 부러진 불개미에 대한 헛소문을 소재로 삼아 화자가 자신에 대한 모함을 믿지 말아 달라고 당부하는 내용의 사설시조이다. 화자는 ⓑ에게 거짓말이 난무하는 세태 속에서 이성적이고 올바른 판단에 근거하여 자신의 결백을 짐작해 달라고 호소하고 있다. ⓐ는 화자가 충성을 바치는 존재(임금)로, 시적 상황상 화자의 결백에 대해 판단을 내리는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓑ는 ⓐ와 달리, 인격을 부여하여 직접적으로 호소하는 존재로 볼 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓑ는 ⓐ와 달리 화자가 직접적으로 호소하는 존재로 볼 수 있지만, 의인화한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓐ와 ⓑ는 모두 화자가 곤경에 처하도록 배후에서 괴롭히는 존재로 볼 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓐ는 화자가 충성을 바치는 존재이고, ⓑ는 화자가 결백을 호소하는 존재로, 모두 화자를 배후에서 괴롭히는 존재로 볼 수는 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓐ와 ⓑ는 모두 화자가 감정을 이입하여 자신의 처지와 동일시하는 존재로 볼 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓐ와 ⓑ 모두 화자의 감정을 이입한 존재는 아니다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 정답. [유형] 시어 및 시구의 비교와 대조</div>
+            </div>
+    </div>
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <ul>
+            <li><strong>해제</strong>: 이 글은 조선 중기 이후 불안정한 조정의 혼란 속에서 고뇌하거나 시련을 겪은 신하들의 심정과 반응을 형상화한 시조들을 소개하고 있다. 조선 시대 조정에서 일하던 고위직 관료들은 임금과의 의견 대립, 당쟁으로 인한 갈등이나 간신들의 모함, 자신의 과오 등으로 파직되거나 유배에 처해지는 경우가 많았다. 선조 때의 이양원은 국가의 혼란을 수습하기 위해 애쓰다가 모함을 당한 심정을, 광해군 때의 이항복은 인목 대비의 폐위와 관련해 반대하다가 유배를 당한 심정을, 효종 때의 구인후는 소현 세자빈의 신원과 관련해 임금의 노여움을 사서 파직당한 심정을 노래하고 있다. 이 중에서 구인후는 작품을 통해 자신의 잘못을 인정하고 임금을 향한 정성을 새롭게 다짐하는 데 반해, 이항복은 자신의 비통함과 임금에 대한 원망, 그리고 잘못된 세태를 비판하는 심정을 드러내고 있다.</li>
+            <li><strong>주제</strong>: 조정의 혼란으로 겪게 되는 시련에 대한 신하들의 심정과 반응</li>
+            <li><strong>구성</strong>
+                <ul>
+                    <li>일반적으로 조선의 ~ 시조들이 창작되었다.: 조선 중기 이후 조정의 혼란으로 겪게 되는 시련을 다룬 시조들의 창작 배경</li>
+                    <li>다음은 선조 때 ~ 드러내고 있다.: 자신의 위태로운 처지에 대한 고뇌와 우국의 심정을 드러낸 이양원의 시조</li>
+                    <li>선조를 이어 ~ 한숨 겨워 하노라: 인목 대비의 폐위와 관련해 반대하다가 유배를 당한 억울함과 세태에 대한 비판을 드러낸 이항복의 시조</li>
+                    <li>무과에 급제한 후 ~ 볼 수 있다.: 자신의 잘못을 인정하고 임금을 향한 정성을 새롭게 다짐하는 태도를 드러낸 구인후의 시조</li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>

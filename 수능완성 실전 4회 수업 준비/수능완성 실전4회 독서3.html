@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 4회 - 13~17 (스테가노그래피)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 실전 4회 · 독서 13~17 (기술)</h1>
+        <p>스테가노그래피 | 원문 + 인라인 분석 + 어휘 + 문제 + 정답/오답 해설 (원본 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>빅 데이터 산업의 발전으로 인해 데이터의 중요성은 증대되고 있지만, 디지털 데이터는 <span class="underline-phrase">복제와 위변조가 쉽다는 문제</span><span class="phrase-label">디지털 데이터의 단점</span>가 있다. 디지털 데이터의 저작권 보호와 위변조 방지를 위해 흔히 쓰이는 방법은 원본을 표시하는 워터마크를 문서나 이미지의 배경에 넣는 것이다. 그런데 워터마크는 문서나 이미지의 미적 가치를 떨어뜨리거나 정보 인식에 방해가 되며 제거의 가능성도 있다. ‘스테가노그래피’는 비밀 통신을 위해 만들어진 것으로, <span class="underline-phrase">대상에 비밀 데이터를 삽입하여 전달하는 기술</span><span class="phrase-label">스테가노그래피의 의미</span>이다. 이것은 데이터의 내용을 알 수 없도록 하는 암호화 기술과 달리, <span class="underline-phrase">데이터의 존재 자체를 숨기는 것</span><span class="phrase-label">스테가노그래피가 암호화와 다른 점</span>이 핵심이다. 이를 이용하면 <span class="underline-phrase">워터마크가 가진 문제들</span><span class="phrase-label">미적 가치 저하, 정보 인식 방해, 제거 가능성</span>을 해결할 수 있다.
+                <span class="para-note">← 디지털 데이터의 위변조를 막을 수 있는 스테가노그래피</span></p>
+                <p>스테가노그래피의 적용 과정은 보통 데이터를 암호화하는 단계와 ‘커버 오브젝트’라고 불리는 대상에 은닉하는 단계로 이루어진다. 정보를 은닉하는 과정을 ‘임베딩’이라고 하며, 정보를 숨긴 결과물은 ‘스테고 오브젝트’라고 부른다. 암호화 단계는 생략할 수도 있는데, 암호화 과정이 생략된 스테가노그래피는 구현이 쉽지만 보안에 취약하다. 반면 암호화 과정이 있는 스테가노그래피의 경우 보안성은 높지만, 암호화로 <span class="underline-phrase">비밀 데이터의 크기가 증가할 경우 은닉성이 떨어질 수도 있다</span><span class="phrase-label">숨기는 데이터가 많아지면 발각될 가능성이 높아짐.</span>.
+                <span class="para-note">← 스테가노그래피의 적용 과정</span></p>
+                <p>임베딩을 위해서 여러 가지 방식이 개발되었는데, 고전적 방식의 대표적인 것이 <span class="underline-phrase">LSB 방식이다</span><span class="phrase-label">Least Significant Bit. 최하위 비트 삽입 방식</span>. 이 방식은 이미지의 픽셀값을 구성하는 최하위 비트를 바꿔 정보를 숨기는 것이다. 컬러 이미지의 경우 하나의 픽셀은 적색, 녹색, 청색이라는 세 개 채널의 조합으로 나타내는데, 각 채널은 빛의 강도에 따라 0에서 255 사이의 수치를 8자리 이진수로 나타낸다. 예를 들어 적색 채널의 픽셀값이 252이면 11111100으로 나타낼 수 있는데, 여기에 1을 임베딩할 경우 11111101이 된다. LSB 방식은 ㉠<span class="underline-phrase">n-LSB 방식으로 확장될 수 있는데</span><span class="phrase-label">최하위 n개의 비트를 삽입하는 방식</span>, 이는 임베딩 정보의 양에 따라 하위 n개의 비트를 조작하는 방식이다. 최하위 비트 정도의 차이는 육안으로 분별하기 어렵기 때문에 이미지에 큰 왜곡이 발생하지는 않지만, ㉮임베딩 용량을 늘리면 <span class="underline-phrase">스테가노그래피로서의 기능을 잃게</span><span class="phrase-label">정보의 존재가 발각될 수 있음.</span> 될 수도 있다.
+                <span class="para-note">← LSB 방식의 임베딩</span></p>
+                <div style="text-align:center; margin: 0 0 1.2em 0;"><img src="data:image/png;base64,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" alt="차잇값 범위표" style="max-width:220px; width:60%;"></div>
+                <p>LSB 방식의 문제를 해결하기 위해 제안된 것이 <span class="underline-phrase">PVD 방식이다</span><span class="phrase-label">Pixel Value Differencing. 화소값 차이 방식</span>. 이 방식은 특정 색 채널에서 두 픽셀의 차잇값에 따라 데이터의 크기를 달리하는 것이다. 즉 <span class="underline-phrase">픽셀값의 차이가 큰 윤곽선 부근에는 많은 데이터를, 유사한 픽셀값을 갖는 부분에는 적은 데이터를 삽입하는 방식이다</span><span class="phrase-label">화소값 차이에 따라 정보 용량을 조절</span>. 이를 위해 먼저 <span class="underline-phrase">2개의 픽셀을 하나의 블록으로 하여 전체 이미지를 나눈다</span><span class="phrase-label">PVD 방식 적용 과정 ①</span>. 한 블록 안에서 <span class="underline-phrase">특정 색의 차잇값이 나오면 &lt;차잇값 범위표&gt;에서 삽입 가능 비트 수 n을 구한다</span><span class="phrase-label">PVD 방식 적용 과정 ②</span>. 예를 들어 청색 채널에서 두 픽셀값이 150, 180이라면 차이가 30이므로 5개의 비트를 삽입할 수 있다. 여기에는 00000부터 11111까지의 데이터를 삽입할 수 있는데, 데이터를 삽입할 때는 먼저 <span class="underline-phrase">삽입을 하고자 하는 데이터를 10진수로 변환해야 한다</span><span class="phrase-label">PVD 방식 적용 과정 ③</span>. 그런 다음 <span class="underline-phrase">10진수로 변환된 데이터를 &lt;차잇값 범위표&gt;에서 해당 구간의 최솟값에 더하여 새로운 차잇값을 정한다</span><span class="phrase-label">PVD 방식 적용 과정 ④</span>. 11000을 삽입하고자 할 때, 먼저 이를 10진수로 변환하면 24가 된다. 이를 해당 구간의 최솟값 16에 더하면 새로운 차잇값은 40이 된다. 차잇값이 40이 되도록 <span class="underline-phrase">기존의 픽셀값을 조정하면 임베딩이 완료된다</span><span class="phrase-label">PVD 방식 적용 과정 ⑤</span>. 그러나 일반적인 이미지에는 <span class="underline-phrase">유사한 픽셀값을 갖는 부분이 더 많기 때문에</span><span class="phrase-label">PVD 방식으로 데이터를 삽입하기 어려운 이유</span> 히스토그램<span class="vocab-mark">*</span>을 통해 분석할 경우 비밀 데이터의 존재가 ⓐ드러날 수도 있다.
+                <span class="para-note">← PVD 방식의 임베딩</span></p>
+                <p>㉡<span class="underline-phrase">WOW 방식은 데이터의 삽입 용량보다 은닉성에 초점을 둔 임베딩 알고리즘이다</span><span class="phrase-label">Wavelet Obtained Weights. 웨이블릿 기반 가중치 방식</span>. LSB, PVD 방식은 이미지의 각 픽셀 간의 관계를 고려하기보다는 <span class="underline-phrase">모든 픽셀에 대해 순차적으로 임베딩을 수행하기 때문에 이미지의 왜곡으로 인한 탐지 가능성이 높다</span><span class="phrase-label">LSB, PVD 방식의 단점</span>. 반면 WOW 방식은 주변 픽셀들을 고려하여 커버 오브젝트의 데이터와 스테고 오브젝트의 데이터가 유사한 분포를 가지도록 한다. 이를 위해 비밀 데이터를 임베딩할 때, <span class="underline-phrase">방향성을 갖는 필터를 사용하여 각 픽셀의 적합도를 계산</span><span class="phrase-label">은닉에 최적화된 픽셀 탐색</span>한다. 계산 결과에 따라 임베딩할 때 가장 변화가 적은 픽셀을 선정하여 데이터를 삽입하면 왜곡을 최소화할 수 있다.
+                <span class="para-note">← WOW 방식의 임베딩</span></p>
+                <p>최근에는 인공 지능의 발전에 따라 ㉢<span class="underline-phrase">합성곱 신경망[CNN]</span><span class="phrase-label">Convolutional Neural Network</span>을 활용한 방식도 사용되고 있다. 이 방식에서는 스테고 오브젝트를 생성하는 인코더와 정보를 복원하는 디코더를 공동으로 학습시켜, 사람이 인지하기 어려운 미세한 픽셀 변화를 자동으로 설계한다. 여기에 <span class="underline-phrase">생성형 적대적 신경망[GAN]</span><span class="phrase-label">Generative Adversarial Network</span>을 사용하면 <span class="underline-phrase">생성자와 판별자가 서로 경쟁하며 학습하기 때문에</span><span class="phrase-label">인공 지능끼리 경쟁하여 정교하게 은닉함.</span> 매우 정교한 결과를 만들 수 있다. 이처럼 스테가노그래피는 단순한 숨기기 기술을 넘어서, 인공 지능과 결합하며 보안성과 은닉성에서 점점 더 발전하고 있다.
+                <span class="para-note">← 인공 지능 기술을 활용한 임베딩</span></p>
+                <p style="border-top:1px solid #cbd5e1; padding-top:8px; font-size:13px;">✽히스토그램: 비교할 양이나 수치의 분포를 막대 모양의 도형으로 나타낸 그래프.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <p style="font-size: 13.5px;">이 글은 디지털 데이터의 저작권 보호와 위변조 방지를 위한 방법으로 사용되는 기술인 스테가노그래피에 대해 설명하고 있다. 스테가노그래피는 데이터의 내용을 알 수 없도록 하는 암호화 기술과 달리 데이터의 존재 자체를 숨기는 기술이다. 정보를 숨기는 임베딩을 위해 여러 방식이 개발되었는데, LSB 방식은 이미지의 픽셀값을 구성하는 최하위 비트를 바꿔 정보를 숨기는 방식이다. 이를 개량한 PVD 방식은 두 픽셀의 차잇값에 따라 데이터의 크기를 달리하는 방식이다. WOW 방식은 비밀 데이터를 삽입할 경우 왜곡이 덜 생기는 픽셀들을 선택하여 은닉성을 강화한 방식이다. 최근에는 인공 지능 기술을 활용하여 생성자와 판별자가 서로 경쟁하며 학습하는 방식을 통해 보다 정교한 결과를 만들어 내고 있다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">스테가노그래피 기술의 특성과 구현 방법</p>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 문단별 분석</div>
+                <div class="content">
+                    <strong>1문단</strong> 디지털 데이터의 위변조를 막을 수 있는 스테가노그래피 — 워터마크의 한계와 대비되는, 존재 자체의 은닉.<br>
+                    <strong>2문단</strong> 스테가노그래피의 적용 과정 — 암호화 단계 + 은닉(임베딩) 단계, 보안성과 은닉성의 관계.<br>
+                    <strong>3문단</strong> LSB 방식의 임베딩 — 최하위 비트 조작, ㉠n-LSB 확장과 ㉮의 한계.<br>
+                    <strong>4문단</strong> PVD 방식의 임베딩 — 두 픽셀의 차잇값에 따라 삽입량 조절(과정 ①~⑤), 히스토그램 분석의 위험.<br>
+                    <strong>5문단</strong> ㉡WOW 방식의 임베딩 — 은닉성에 초점, 방향성 필터로 적합도 계산.<br>
+                    <strong>6문단</strong> 인공 지능 기술을 활용한 임베딩 — ㉢CNN(인코더·디코더 공동 학습), GAN(생성자·판별자 경쟁).
+                </div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어휘 (이것만은 꼭 익히자!)</strong><br>
+                • <strong>위변조(僞變造)</strong>: 어떤 물건을 속일 목적으로 꾸며 진짜처럼 만드는 위조와 이미 이루어진 물체 따위를 다른 모양이나 다른 물건으로 바꾸어 만드는 변조를 함께 이르는 말.<br>
+                • <strong>워터마크</strong>: 어떤 파일에 관한 저작권 정보 등을 식별할 수 있도록 디지털 이미지나 오디오 및 비디오 파일에 삽입한 비트 패턴.<br>
+                • <strong>은닉(隱匿)</strong>: 남의 물건이나 범죄인을 감춤.<br>
+                • <strong>육안(肉眼)</strong>: 안경이나 망원경, 현미경 따위를 이용하지 아니하고 직접 보는 눈.<br>
+                • <strong>순차적(順次的)</strong>: 순서를 따라 차례대로 하는 것.
+            </div>
+            <div class="info-box">
+                <h3>✨ 핵심 개념 ① 스테가노그래피의 특성</h3>
+                <p style="font-size: 13px;">스테가노그래피는 비밀 통신을 위해 데이터를 다른 대상 속에 숨겨 전달하는 기술로, 정보의 존재 자체를 감추는 것을 핵심으로 한다. 스테가노그래피를 이용하면 디지털 데이터의 복제와 위변조를 막을 수 있는데, 데이터를 보호하는 방식에서 워터마크나 암호화 기술과 구별되는 특징을 지닌다. 먼저 워터마크는 문서나 이미지 위에 표시를 드러내어 원본을 식별하는 방식이므로 시각적으로 확인이 가능하지만, 미적 가치를 훼손하거나 제거될 위험이 있다. 이와 달리 스테가노그래피는 데이터의 존재 자체를 감추어 외부에서 알아차리기 어렵게 한다. 또 암호화는 데이터를 읽지 못하도록 내용을 변환하는 기술이지만, 데이터가 존재한다는 사실은 그대로 드러난다. 이에 비해 스테가노그래피는 데이터의 내용이 아니라 존재를 숨긴다는 점에서 보안 방식이 근본적으로 다르다. 스테가노그래피를 이용하면 원본 데이터 내부에 보이지 않는 형태로 인증 정보나 식별 정보를 삽입할 수 있기 때문에 데이터의 위변조 여부를 확인할 수 있다. 특히 암호화와 결합할 경우, 숨겨진 정보 자체도 보호되므로 보안성이 더욱 강화된다.</p>
+            </div>
+            <div class="info-box">
+                <h3>✨ 핵심 개념 ② 주요 임베딩 방법</h3>
+                <p style="font-size: 13px;"><strong>1. LSB 방식 (Least Significant Bit)</strong><br>LSB 방식은 이미지 픽셀값을 구성하는 이진수 중 최하위 비트를 변경하여 데이터를 삽입하는 가장 기본적인 방법이다. 예를 들어 픽셀값이 11111100일 때 마지막 비트를 1로 바꾸어 11111101로 만드는 식이다. 최하위 비트의 변화는 사람의 눈으로 거의 구별되지 않기 때문에 이미지 왜곡이 적다는 장점이 있다. 그러나 모든 픽셀에 순차적으로 데이터를 삽입하기 때문에 삽입량이 많아질수록 패턴이 드러나 탐지되기 쉽다는 한계가 있다.</p>
+                <p style="font-size: 13px; margin-top: 8px;"><strong>2. PVD 방식 (Pixel Value Differencing)</strong><br>PVD 방식은 두 픽셀 간의 차잇값을 이용해 데이터 삽입량을 조절하는 방법이다. 픽셀 간 차이가 큰 윤곽선 부분에는 많은 데이터를, 차이가 작은 평탄한 영역에는 적은 데이터를 삽입한다. 이를 통해 이미지의 시각적 왜곡을 줄이면서도 비교적 많은 데이터를 숨길 수 있다. 다만 자연 이미지에서는 유사한 픽셀값을 갖는 영역이 많기 때문에, 히스토그램 분석 등을 통해 데이터 은닉의 흔적이 드러날 가능성이 있다.</p>
+                <p style="font-size: 13px; margin-top: 8px;"><strong>3. WOW 방식 (Wavelet Obtained Weights)</strong><br>WOW 방식은 단순히 픽셀값을 바꾸는 것이 아니라, 주변 픽셀과의 관계를 고려하여 선별적으로 데이터를 삽입하는 알고리즘이다. 각 픽셀의 변화가 이미지 전체에 미치는 영향을 계산한 뒤, 왜곡이 가장 적게 발생하는 위치를 선택해 데이터를 삽입한다. 이로 인해 커버 오브젝트와 스테고 오브젝트의 통계적 특성이 유사하게 유지되어, 기존 방식보다 탐지 가능성이 낮고 은닉성이 높다는 장점이 있다.</p>
+                <p style="font-size: 13px; margin-top: 8px;"><strong>4. 인공 지능 기반 방식 (CNN, GAN 활용)</strong><br>최근에는 합성곱 신경망(Convolutional Neural Network)과 생성형 적대적 신경망(Generative Adversarial Network)을 활용한 스테가노그래피가 등장하였다. 이 방식에서는 데이터를 숨기는 인코더와 이를 복원하는 디코더를 함께 학습시켜, 사람이 인지하기 어려운 미세한 변화로 데이터를 삽입한다. 특히 GAN을 활용하면 생성자와 판별자가 경쟁적으로 학습하면서 탐지에 강한 매우 정교한 은닉 방식을 구현할 수 있다. 이러한 방법은 기존 방식보다 은닉성과 보안성이 뛰어나지만, 구현이 복잡하고 계산 비용이 크다는 특징이 있다.</p>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>🌏 배경지식 더 알아보기 — 생성형 적대적 신경망</h3>
+                <p style="font-size: 13px;">생성형 적대적 신경망[GAN]은 딥러닝 기반의 생성 모델로, 두 개의 신경망(생성자와 판별자)이 경쟁을 통해 데이터를 학습하며 새로운 데이터를 만들어 내는 구조를 갖는다. 2014년 이언 굿펠로가 제안하였으며, 이후 이미지·음성·영상 생성 등 다양한 인공 지능 창작 분야를 혁신적으로 발전시켰다.</p>
+                <p style="font-size: 13px; margin-top: 6px;">GAN은 생성자와 판별자라는 두 구성 요소로 이루어진다. 생성자는 실제와 유사한 가짜 데이터를 만들어 내는 역할을 하며, 판별자는 주어진 데이터가 실제인지 생성자가 만든 가짜인지를 구별하는 역할을 담당한다. 이 신경망의 학습 과정은 두 모델 간의 경쟁을 통해 이루어진다. 먼저 생성자는 임의의 입력을 바탕으로 가짜 데이터를 생성한다. 그러면 판별자는 이 데이터가 실제 데이터인지, 아니면 생성자가 만들어 낸 것인지를 판단한다. 판별자가 올바르게 구별하지 못하면 판별자는 더 정확히 판별할 수 있도록 학습하고, 생성자는 판별자를 속이지 못한 경우 더 정교한 데이터를 생성하도록 학습한다. 이러한 과정이 반복되면서 생성자는 점점 더 실제와 구별하기 어려운 데이터를 만들어 내고, 판별자는 더욱 정교하게 진위를 판단할 수 있게 된다.</p>
+                <p style="font-size: 13px; margin-top: 6px;">이와 같은 구조는 실제와 유사한 데이터를 생성하는 데 효과적으로 활용된다. 예를 들어, 존재하지 않는 사람의 얼굴 이미지를 생성하거나, 흑백 이미지를 컬러 이미지로 변환하는 작업 등에 활용될 수 있다. 또한 의료 분야에서는 데이터가 부족한 상황을 보완하기 위해 인공 데이터를 생성하거나 영상의 품질을 개선하는 데에도 사용된다. 그러나 생성형 적대적 신경망은 학습 과정이 불안정하다는 한계를 지닌다. 생성자와 판별자 간의 균형이 무너지면 학습이 제대로 이루어지지 않을 수 있으며, 특정한 형태의 데이터만 반복적으로 생성하는 문제가 발생하기도 한다. 또한 실제와 구별하기 어려운 데이터를 만들어 낼 수 있다는 점에서 악용 가능성도 존재한다.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">💯 선생님의 만점 구조도 ① 워터마크, 암호화 기술, 스테가노그래피 비교 <span style="font-size:12px; color:#b45309;">(문항 13 관련)</span></h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>워터마크</th><th>암호화 기술</th><th>스테가노그래피</th></tr></thead>
+                    <tbody>
+                        <tr><th>사용 분야</th><td><span class="blank-fill">저작권</span> 보호, 원본 표시</td><td>보안, 개인 정보 보호</td><td>비밀 통신, 데이터 <span class="blank-fill">은닉</span>, 디지털 콘텐츠 보호</td></tr>
+                        <tr><th>장점</th><td>– 구현이 간단함.<br>– 위변조 여부 확인 가능</td><td>– 데이터의 내용 보호<br>– 강력한 <span class="blank-fill">보안성</span> 확보</td><td>– <span class="blank-fill">암호화 기술</span>와/과 결합하여 보안성을 강화할 수 있음.<br>– 데이터의 미적 훼손이 없음.</td></tr>
+                        <tr><th>단점</th><td>– 미적 가치 저하<br>– <span class="blank-fill">제거</span>의 가능성이 있음.</td><td>– 데이터의 존재 자체는 노출됨.<br>– 암호화 키 관리가 필요함.</td><td>– <span class="blank-fill">임베딩 용량</span> 증가 시 탐지 가능성이 있음.<br>– 데이터 손상 시 복원이 어려움.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">💯 선생님의 만점 구조도 ② 임베딩의 적용 <span style="font-size:12px; color:#b45309;">(문항 15, 16 관련)</span></h3>
+                <p style="font-size: 12.5px;">커버 오브젝트의 황색 채널 픽셀값의 예. 단 (   ) 안은 10진수를 나타냄.</p>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>ⓐ</th><th>ⓑ</th><th>ⓒ</th><th>ⓓ</th></tr></thead>
+                    <tbody><tr><td>11001000(200)</td><td>10101010(170)</td><td>10100000(160)</td><td>10010110(150)</td></tr></tbody>
+                </table>
+                <p style="font-size: 12.5px;"><strong>〈n–LSB 방식으로 임베딩〉</strong><br>ⓐ~ⓓ에 각각 11(3), 101(5), 1(1), 1001(9)을 임베딩할 경우 – 스테고 오브젝트의 픽셀값은 다음과 같다.</p>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>ⓐ</th><th>ⓑ</th><th>ⓒ</th><th>ⓓ</th></tr></thead>
+                    <tbody><tr><td><span class="blank-fill">11001011</span>(203)</td><td>10101111(175)</td><td>10100001(161)</td><td>10011111(159)</td></tr></tbody>
+                </table>
+                <p style="font-size: 12.5px;">– 가장 많은 수의 비트가 바뀌는 픽셀은 <span class="blank-fill">ⓓ</span>이다.</p>
+                <p style="font-size: 12.5px; margin-top: 8px;"><strong>〈PVD 방식으로 임베딩〉</strong><br>– 차잇값 범위표를 통해 ⓐ와 ⓑ의 차잇값은 30이므로 이 블록에는 <span class="blank-fill">5</span>개, ⓒ와 ⓓ의 차잇값은 10이므로 이 블록에는 <span class="blank-fill">4</span>개의 비트를 삽입할 수 있다.<br>– ⓒ와 ⓓ가 있는 블록에 0110(6)을 임베딩하면 새로운 차잇값은 <span class="blank-fill">14</span>이/가 된다.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">💯 선생님의 만점 구조도 ③ 스테가노그래피의 원형 기술 <span style="font-size:12px; color:#b45309;">(문항 17 관련)</span></h3>
+                <p style="font-size: 12.5px;">스테가노그래피는 현대의 디지털 기술이 등장하기 훨씬 이전부터 존재해 온 비밀 정보 은닉 기술에서 비롯된 것으로, 다음과 같은 예에서 그 원형을 확인할 수 있다.</p>
+                <p style="font-size: 12.5px; margin-top: 6px;"><strong>〈사례 1〉</strong><br>고대 그리스의 히스티아이오스는 하인의 머리를 밀고 두피에 메시지를 새긴 뒤 머리카락이 자라도록 하여 내용을 감추었다. 하인을 보내 머리를 밀게 함으로써 비로소 메시지가 드러나도록 하였다. 하인의 머리는 <span class="blank-fill">커버 오브젝트</span>, 메시지를 새기고 머리를 기르게 한 것은 <span class="blank-fill">스테고 오브젝트</span>에 대응된다. 이 방법은 <span class="blank-fill">메시지의 존재 자체를 은닉</span>했다는 점에서 스테가노그래피의 핵심 원리를 잘 보여 준다.</p>
+                <p style="font-size: 12.5px; margin-top: 6px;"><strong>〈사례 2〉</strong><br>제1차 세계 대전 당시 독일군 스파이들은 레몬즙 잉크를 사용하여 암호 메시지를 전달했다. 레몬즙으로 작성된 글자는 평상시에는 보이지 않지만 열을 가하면 드러나기 때문에, 겉으로는 아무 내용도 없는 종이처럼 보이게 할 수 있었다. 이러한 방법은 데이터의 <span class="blank-fill">암호화</span> 단계와 <span class="blank-fill">임베딩</span> 단계를 모두 거친 스테가노그래피 기술과 대응이 된다.</p>
+            </div>
+            <div class="qa-box">
+                <h3>💬 EBS Q&amp;A <span style="font-size:12px; color:#6d28d9;">(문항 16 관련)</span></h3>
+                <p><strong>Q.</strong> 지문에 선지와 관련된 직접적인 정보가 없는 경우 어떻게 판단해야 할까요?</p>
+                <p style="margin-top: 8px;"><strong>A.</strong> 문항 16은 지문의 내용을 적용하는 문제이기 때문에 기본적으로 난도가 있는 문항이지만, 이 문항에서 특히 학생들이 판단에 어려움을 겪는 선지는 ④, ⑤번 선지라고 할 수 있습니다. ④번 선지는 차잇값이 줄어든다/늘어난다와 관련된 직접적인 정보가 없기 때문에 어려움을 겪을 수 있습니다. 그런데 ‘줄어들 수도 있다’라는 말이 틀린 선지가 되려면 임베딩을 했을 때 차잇값이 줄어드는 경우가 절대로 없어야 합니다. 반대로 하나라도 줄어드는 경우가 있다면 맞는 선지가 됩니다. 여기에서는 제일 작은 값을 넣어 보면 쉽게 판별이 가능합니다. 만약 절대로 줄어드는 일이 없는 강력한 원칙이라면 지문에 명시적으로 표현을 할 가능성이 높습니다.</p>
+                <p style="margin-top: 8px;">⑤번 선지는 약간의 계산을 필요로 하기 때문에 어렵다고 생각할 수도 있지만 실제로 계산을 하는 것은 160 – 150과 162 – 148과 같은 간단한 뺄셈밖에 없습니다. 그럼에도 불구하고 이 선지의 판단에 어려움을 느끼는 이유는 지문과 연결을 못 시켰거나, 연결을 시키는 동안 놓쳐 버린 부분이 있기 때문입니다. 이 문제의 ‘10진수로 변환된 데이터를 〈차잇값 범위표〉에서 해당 구간의 최솟값에 더하여 새로운 차잇값을 정한다.’라는 정보를 놓치면 162 – 148이 새로운 차잇값이라고 오해를 하게 됩니다. 그러므로 지문의 예시에서 말한 과정을 차근차근 따라가면서 읽는 것이 중요합니다.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 4회 13~17</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 개념 제시</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">1문단</span> 워터마크의 한계 → 존재 자체를 숨기는 스테가노그래피</p>
+                    <div class="sub-point">✔ 암호화(내용 은폐)와의 차이: 존재 자체의 은닉</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 적용 과정</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">2문단</span> 암호화 단계 + 은닉(임베딩) 단계 → 스테고 오브젝트</p>
+                    <div class="sub-point">✔ 보안성 ↔ 은닉성의 상충 관계</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 고전적 방식</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">3문단</span> LSB: 최하위 비트 조작 (㉠n-LSB 확장, ㉮ 한계)</p>
+                    <p><span class="flow-badge">4문단</span> PVD: 차잇값에 따라 삽입량 조절 (과정 ①~⑤)</p>
+                    <div class="sub-point">✔ 히스토그램 분석에 의한 탐지 위험</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 발전된 방식</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">5문단</span> ㉡WOW: 방향성 필터로 적합도 계산 → 은닉성 강화</p>
+                    <p><span class="flow-badge">6문단</span> ㉢CNN·GAN: 인공 지능 결합, 정교한 임베딩</p>
+                    <div class="sub-point">✔ 보안성과 은닉성의 지속적 발전</div>
+                </div>
+            </div>
+        </div>
+        <div class="flow-summary">📍 전체 흐름 : 스테가노그래피의 개념(존재 자체의 은닉) → 적용 과정(암호화+임베딩) → LSB 방식 → PVD 방식 → WOW 방식 → 인공 지능(CNN·GAN) 활용 방식으로의 발전</div>
+    </div>
+
+
+    <!-- ========== 문제 + 해설 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 24px; color: #1e466e; margin-bottom: 10px;">🧪 문제 + 해설 [13~17]</h2>
+
+        <div class="question-full">
+            <div class="q-num">13</div><span class="q-type">[유형] 세부 내용 파악</span>
+            <div class="question-stem">윗글을 읽고 이해한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 암호화된 데이터의 존재를 알고 있더라도 그 내용을 알기는 어렵다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단에서 암호화 기술은 정보의 내용을 알 수 없도록 숨기는 기술이라고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 임베딩 과정에서 암호화되지 않은 비밀 데이터를 삽입하는 경우도 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 스테가노그래피의 적용 과정은 정보를 암호화하는 과정과 암호화된 정보를 몰래 숨기는 과정으로 이루어지는데, 일반 스테가노그래피에서는 암호화하는 과정이 생략될 수 있다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 스테가노그래피는 워터마크가 정보 인식에 방해되는 문제를 해결할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단에 따르면 워터마크는 문서나 이미지의 미적 가치를 떨어뜨리거나 정보 인식에 방해가 되며 제거의 가능성도 있다. 스테가노그래피는 데이터의 존재 자체를 숨기는 기술이므로 워터마크의 문제점을 해결할 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 인공 지능 기술이 발전할수록 임베딩된 비밀 데이터를 찾아내는 것이 쉬워진다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 6문단에 따르면 인공 지능 기술을 통해 사람이 인지하기 어려운 미세한 픽셀 변화를 자동으로 설계하고, 생성형 적대적 신경망[GAN]을 사용하면 생성자와 판별자가 서로 경쟁하며 학습하기 때문에 매우 정교한 결과를 만들 수 있다. 그 결과로 스테가노그래피는 인공 지능과 결합하며 보안성과 은닉성에서 점점 더 발전하고 있다. 은닉성이 발전한다는 것은 임베딩된 비밀 데이터를 찾아내는 것이 어려워지는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 워터마크나 암호화 기술과 달리 스테가노그래피는 삽입 데이터의 존재를 숨기는 기술이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단에 따르면 스테가노그래피는 암호화 기술과 달리 삽입하는 비밀 데이터의 존재 자체를 숨기는 기술이다. 워터마크는 문서나 이미지의 배경에 넣는 방법이기 때문에 스테가노그래피와 달리 정보의 존재가 드러난다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 정답. [유형] 세부 내용 파악</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">14</div><span class="q-type">[유형] 세부 내용 파악</span>
+            <div class="question-stem">㉠~㉢에 대한 설명으로 적절하지 <strong>않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠은 ㉡과 달리, 모든 픽셀에 대해 순차적으로 임베딩을 수행한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 5문단에 따르면 ㉠은 모든 픽셀에 대해 순차적으로 임베딩을 수행하기 때문에 이미지의 왜곡으로 인한 탐지 가능성이 높다. 반면 ㉡은 데이터를 삽입했을 때 주변 픽셀들과 어울릴 수 있는 픽셀을 선정한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉡에는 ㉠과 달리, 비밀 데이터를 삽입할 픽셀을 선택하는 과정이 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉡은 데이터를 삽입했을 때 왜곡이 덜 생기는 픽셀을 선택하는 과정이 있지만, ㉠에는 그러한 과정이 없다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ ㉡은 ㉠과 달리, 방향성을 갖는 필터를 사용하기 때문에 더 많은 데이터를 삽입할 수 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ㉡은 데이터의 삽입 용량보다 은닉성에 초점을 둔 임베딩 알고리즘이다. ㉡이 방향성을 갖는 필터를 사용하는 이유는 은닉에 적합한 픽셀을 선정하기 위한 것이지, 더 많은 데이터를 삽입하기 위한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉢은 ㉡과 달리, 학습을 통해 보다 정교한 결과를 만들어 낼 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉢은 스테고 오브젝트를 생성하는 인코더와 정보를 복원하는 디코더를 공동으로 학습시켜 정교한 결과를 만들어 내지만 ㉡에는 그러한 학습의 과정이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉢은 ㉠에 비해 이미지의 왜곡이 적어 은닉성 측면에서 성능이 우수하다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉢은 인공 지능 학습을 통해 사람이 인지하기 어려운 미세한 픽셀 변화를 자동으로 설계하여 고전적 방식인 ㉠보다 보안성과 은닉성을 높이고 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 정답. [유형] 세부 내용 파악</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">15</div><span class="q-type">[유형] 생략된 내용 추론</span>
+            <div class="question-stem">㉮의 이유로 가장 적절한 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 임베딩하는 데이터가 늘어날수록 채널 간의 차잇값이 커지기 때문에</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 컬러 이미지의 경우 하나의 픽셀은 세 개 채널의 조합으로 나타낸다. n-LSB 방식에서 임베딩은 각각의 채널에서 이루어지므로 채널 간의 차잇값은 ㉮와 관련이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 이미지에 삽입되는 데이터의 양이 늘어나면 그만큼 새로운 픽셀이 늘어나기 때문에</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 이미지는 픽셀에 있는 각 채널의 조합을 통해 나타나는 것이다. 임베딩 정보가 늘어난다고 해서 픽셀의 수가 늘어나는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 정보가 암호화되면서 임베딩 데이터가 늘어나면 해독에 많은 시간이 소요되기 때문에</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 스테가노그래피로서의 기능을 잃는다는 것은 데이터의 은닉성이 떨어지는 것을 말한다. 이는 암호 해독에 시간이 소요되는 것과는 상관이 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 원래의 이미지와 비교할 때 임베딩된 이미지는 모든 픽셀에서 픽셀값이 증가하기 때문에</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 00을 임베딩할 경우 픽셀값에 변화가 없는 것처럼 임베딩 정보가 삽입된다고 해서, 이미지의 픽셀값이 모두 증가하는 것은 아니다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 임베딩 데이터의 양이 늘어나면 변경되는 하위 비트 수가 늘어나 데이터의 존재가 드러날 수 있기 때문에</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – n-LSB 방식에서는 하위 n개의 비트를 조작해야 하는데, 비밀 데이터의 양이 늘어나면 조작해야 하는 비트가 많아지게 된다. 조작하는 비트가 많아지면 이미지에 큰 왜곡이 발생하기 때문에 존재가 드러날 수 있다. 데이터의 존재가 드러난다는 것이 바로 스테가노그래피로서의 기능을 잃게 되는 것이라고 할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 정답. [유형] 생략된 내용 추론</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">16</div><span class="q-type">[유형] 구체적 사례 적용</span>
+            <div class="question-stem">&lt;보기&gt;의 픽셀에 ‘PVD 방식’으로 임베딩할 때에 대한 설명으로 적절하지 <strong>않은</strong> 것은?</div>
+            <div class="view-box">
+                <span class="view-title">보 기</span>
+                <div style="text-align:center; margin: 10px 0;"><img src="data:image/png;base64,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" alt="픽셀 블록 A~D" style="max-width:340px; width:80%;"></div><br>A∼D는 블록 표시이고, 각 숫자는 적색 채널의 픽셀값이다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① A에는 00000부터 11111까지의 데이터를 삽입할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – A의 차잇값은 30이므로 5개의 비트를 삽입할 수 있다. 그러므로 00000에서 11111까지의 데이터를 삽입할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② A에는 B나 D보다 더 많은 양의 데이터를 삽입할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;차잇값 범위표&gt;를 보면 차잇값이 30인 A에는 5개의 비트를 삽입할 수 있는 반면, 차잇값이 10인 B에는 4개, 차잇값이 5인 D에는 3개의 비트를 삽입할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 여섯 자리 비밀 데이터 110000을 삽입할 수 있는 블록은 C밖에 없다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – C의 차잇값이 40이기 때문에 &lt;차잇값 범위표&gt;를 보면 6개의 비트를 삽입할 수 있다. A에는 5개, B에는 4개, D에는 3개의 비트를 삽입할 수 있으므로 여섯 개의 비트로 이루어진 110000을 삽입할 수 있는 블록은 C밖에 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 비밀 데이터를 삽입하여 스테고 오브젝트를 만들 때 D의 차잇값이 줄어들 수도 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 새로운 차잇값은 &lt;차잇값 범위표&gt;의 해당 구간 최솟값에 삽입하고자 하는 데이터를 10진수로 바꾼 값을 더한 것이다. D의 차잇값이 5이기 때문에 해당 구간의 최솟값은 1이다. 그러므로 0∼3까지의 데이터를 삽입할 때는 차잇값이 줄어들 수 있다. 실례로 D에 000을 삽입한다면 새로운 차잇값은 1이 되므로 차잇값이 줄어들 수 있음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 스테고 오브젝트에서 B의 픽셀값이 각각 162, 148이라면 삽입 데이터를 10진수로 변환한 값은 4이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – </div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 정답. [유형] 구체적 사례 적용</div>
+            </div>
+
+        <div class="question-full">
+            <div class="q-num">17</div><span class="q-type">[유형] 구체적 사례 적용</span>
+            <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;의 사례에 대해 이해한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+            <div class="view-box">
+                <span class="view-title">보 기</span>
+                &lt;사례 1&gt;<br>
+                고대 그리스의 히스티아이오스는 하인의 머리를 밀어 메시지를 두피에 새긴 다음, 머리카락이 다시 자라게 하였다. 이후 ‘밀레투스에 가면 아리스타고라스에게 머리를 밀게 하고 그 위에 있는 것을 보라고 말하라’는 지시와 함께 하인을 보냈다.<br>
+                &lt;사례 2&gt;<br>
+                제1차 세계 대전에서 독일군 스파이들은 레몬즙으로 만든 잉크를 사용하여 암호화된 메시지를 주고받았는데, 레몬즙은 육안으로는 보이지 않으나 가열을 하면 발색이 되는 특징이 있다.
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">① &lt;사례 1&gt;에서 머리를 밀고 두피에 새긴 메시지는 다른 사람들이 정보의 존재를 알 수 없다는 점에서 커버 오브젝트에 대응되겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – &lt;사례 1&gt;의 과정을 스테가노그래피와 대응시켜 본다면 머리를 밀고 두피에 새긴 메시지는 삽입하고자 하는 비밀 데이터에 해당한다. 커버 오브젝트는 정보를 숨기는 대상이므로 메시지를 새기기 전의 하인의 머리가 이에 대응된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② &lt;사례 1&gt;에서 두피에 메시지가 숨어 있다는 것과 숨긴 방법을 알면 메시지의 내용을 알 수 있다는 점에서 암호화를 하지 않고 임베딩을 한 것과 같겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;사례 1&gt;에서 숨겨진 메시지를 찾아내면 메시지의 내용을 알 수 있다. 이는 스테가노그래피에서 데이터를 암호화하지 않고 임베딩하는 방법과 원리가 같다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ &lt;사례 2&gt;에서 레몬즙으로 만든 잉크를 사용한 것은 메시지의 존재 자체를 숨기기 위한 것이라는 점에서 스테가노그래피와 같은 원리가 적용된 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;사례 2&gt;에서 레몬즙으로 만든 잉크를 사용한 이유는 메시지의 존재 자체를 숨기기 위한 방법이다. 이는 스테가노그래피의 원리와 같은 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ &lt;사례 2&gt;에서 가열을 하면 발색이 되는 특징을 이용하여 육안으로 보이지 않는 메시지를 찾아내는 것은 히스토그램 분석을 통해 비밀 데이터를 찾아내는 것에 대응되겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 히스토그램을 통해 분석하면 비밀 데이터의 존재가 드러날 수도 있다고 하였다. 히스토그램은 숨겨진 비밀 데이터를 찾는 방법이므로 &lt;사례 2&gt;에서 가열을 하여 메시지의 존재를 찾는 것과 대응된다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ &lt;사례 2&gt;에 사용된 방법은 메시지의 존재를 찾는다 하더라도 메시지의 내용을 알기는 힘들다는 점에서는 &lt;사례 1&gt;에 사용된 방법보다 보안성이 높은 방법이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;사례 2&gt;에서는 메시지의 존재 자체가 드러나더라도 내용을 알 수 없도록 암호화했기 때문에, 메시지의 존재가 드러나면 내용도 드러나는 의 방법보다 보안성이 높다고 할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ①번이 정답. [유형] 구체적 사례 적용</div>
+            </div>
+    </div>
+
+    <!-- ========== 지문 연구 ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <ul>
+            <li><strong>해제</strong>: 글은 디지털 데이터의 저작권 보호와 위변조 방지를 위한 방법으로 사용되는 기술인 스테가노그래피에 대해 설명하고 있다. 스테가노그래피는 데이터의 내용을 알 수 없도록 하는 암호화 기술과 달리 데이터의 존재 자체를 숨기는 기술이다. 정보를 숨기는 임베딩을 위해 여러 방식이 개발되었는데, LSB 방식은 이미지의 픽셀값을 구성하는 최하위 비트를 바꿔 정보를 숨기는 방식이다. 이를 개량한 PVD 방식은 두 픽셀의 차잇값에 따라 데이터의 크기를 달리하는 방식이다. WOW 방식은 비밀 데이터를 삽입할 경우 왜곡이 덜 생기는 픽셀들을 선택하여 은닉성을 강화한 방식이다. 최근에는 인공 지능 기술을 활용하여생성자와 판별자가 서로 경쟁하며 학습하는 방식을 통해 보다 정교한 결과를 만들어 내고 있다.</li>
+            <li><strong>주제</strong>: 스테가노그래피 기술의 특성과 구현 방법</li>
+            <li><strong>구성</strong>
+                <ul>
+                    <li>1문단: 디지털 데이터의 위변조를 막을 수 있는 스테가노그래피</li>
+                    <li>2문단: 스테가노그래피의 적용 과정</li>
+                    <li>3문단: LSB 방식의 임베딩</li>
+                    <li>4문단: PVD 방식의 임베딩</li>
+                    <li>5문단: WOW 방식의 임베딩</li>
+                    <li>6문단: 인공 지능 기술을 활용한 임베딩</li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>
