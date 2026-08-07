@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>김현석 국어 · 약술 논술 4회</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김현석 국어 · 약술 논술 4회">
+  <meta property="og:description" content="약술 논술 4회 통합본 · 18문항 · 답안지">
+  <meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/logo.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:url" content="">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif;
+      background: #faf6f3;
+      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      -webkit-text-size-adjust: 100%;
+    }
+    .header {
+      background: linear-gradient(135deg, #7c2c3e, #5a1f2c);
+      color: white;
+      padding: 16px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h2 { font-size: 20px; }
+    .info-card, .time-box {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .info-card label { font-weight: 600; color: #7c2c3e; display: block; margin-bottom: 6px; }
+    .info-card input, .time-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 14px;
+      font-size: 16px;
+    }
+    .section {
+      background: white;
+      border-radius: 24px;
+      padding: 12px 12px 4px;
+      margin-bottom: 20px;
+    }
+    .section-header {
+      font-size: 17px;
+      font-weight: bold;
+      color: #7c2c3e;
+      padding: 8px 4px;
+      border-bottom: 2px solid #f0e2e5;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-header span { font-size: 13px; color: #a5808a; }
+    .q-card {
+      border-bottom: 1px solid #f5ecee;
+      padding: 12px 4px 14px;
+    }
+    .q-card:last-child { border-bottom: none; }
+    .q-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .q-num {
+      font-weight: 800;
+      color: #7c2c3e;
+      font-size: 16px;
+      min-width: 36px;
+    }
+    .q-tag {
+      font-size: 11px;
+      background: #f5ecee;
+      color: #7c2c3e;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    .q-src { font-size: 11px; color: #9b8188; flex: 1 1 100%; }
+    .mark-buttons { display: flex; gap: 5px; margin-left: auto; }
+    .mark-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1.5px solid #d8c8cc;
+      background: white;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #7c2c3e;
+    }
+    .mark-btn.active { background: #7c2c3e; color: white; border-color: #7c2c3e; }
+    .blank-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 7px;
+    }
+    .blank-label {
+      width: 74px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #5a1f2c;
+      flex-shrink: 0;
+    }
+    .blank-row input {
+      flex: 1;
+      padding: 11px 12px;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 14px;
+      font-size: 16px;
+      background: #fffdfd;
+      min-width: 0;
+    }
+    .blank-row input:focus { outline: none; border-color: #7c2c3e; background: #fff; }
+    .blank-row input:disabled { background: #f4f0f1; color: #6b5b5f; }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-primary { background: #7c2c3e; color: white; }
+    .btn-kakao { background: #fee500; color: #3c1e1e; }
+    .btn-warning { background: #ff9f4a; color: #2c1518; }
+    .score-banner {
+      background: #fff8f5;
+      border: 2px solid #7c2c3e;
+      border-radius: 24px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .score-banner.show { display: block; }
+    .attempt-text { font-size: 12px; color: #7c2c3e; font-weight: 700; margin-bottom: 5px; }
+    .timer-text { font-size: 13px; font-weight: bold; color: #d04141; margin-top: 8px; }
+    .toast {
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      background: #333; color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      opacity: 0;
+      transition: 0.2s;
+      pointer-events: none;
+      font-size: 13px;
+      z-index: 2000;
+      max-width: 90%;
+      text-align: center;
+    }
+    .toast.show { opacity: 1; }
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      padding: 20px;
+      text-align: center;
+    }
+    #report-text {
+      width: 100%; height: 240px;
+      margin: 15px 0; padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+    .hidden { display: none; }
+    .link-box a {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1.5px solid #7c2c3e;
+      border-radius: 30px;
+      text-decoration: none;
+      color: #7c2c3e;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 4px;
+    }
+    .notice {
+      font-size: 12px;
+      color: #8b7378;
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h2>김현석 약술 논술 4회 통합본</h2>
+  <div style="font-size: 12px; margin-top:4px;">서술형 18문항(44칸) · 시험 시간 60분 · 최대 3회 채점 · 채점 간 5분 대기</div>
+</div>
+
+<div class="score-banner" id="scoreBanner">
+  <div class="attempt-text" id="attemptDisplay">📌 남은 채점 횟수: 3회</div>
+  <div style="font-size: 32px; font-weight:800;"><span id="scoreCorrect">0</span>/44</div>
+  <div id="scoreText">정답률 0%</div>
+  <div id="wrongList" style="color:#d04141; margin-top:6px; font-size:13px;"></div>
+  <div id="partialList" style="color:#c47b1a; margin-top:4px; font-size:13px;"></div>
+  <div id="cooldownTimer" class="timer-text hidden"></div>
+</div>
+
+<div class="info-card">
+  <label>📛 학생 이름</label>
+  <input type="text" id="studentName" placeholder="실명 입력">
+</div>
+
+<div class="notice">
+  ✏️ <b>답안 작성 안내</b><br>
+  · 띄어쓰기, 대괄호 [ ], 마침표·물음표 차이는 채점에 반영되지 않습니다.<br>
+  · <b>‘첫 어절’·‘마지막 어절’은 띄어쓰기 단위 한 개</b>입니다. 두 어절 이상 쓰면 오답입니다.<br>
+  · 글자 수 조건(예: 5자)은 <b>띄어쓰기를 제외한</b> 글자 수입니다.<br>
+  · 6번은 발음만 적으면 됩니다. (예: 부어클)
+</div>
+
+<div class="time-box">
+  <label style="font-weight:700; color:#7c2c3e; display:block; margin-bottom:8px;">⏱️ 총 소요 시간 기록 (선택)</label>
+  <input type="text" id="totalTime" placeholder="예: 25분">
+</div>
+
+<div class="section">
+  <div class="section-header">서술형 문항 (1~18 · 화작→문법→독서→문학) <span id="progressText">0/44</span></div>
+  <div id="quizList"></div>
+</div>
+
+<button id="submitBtn" class="btn btn-primary">✅ 채점하기</button>
+<button id="kakaoBtn" class="btn btn-kakao">💬 카톡 공유 (보고서)</button>
+<button id="resetBtn" class="btn btn-warning">🔄 ★ 새로 시작하기 (초기화) ★</button>
+
+<div class="link-box" style="text-align:center; margin-top:14px;">
+  <a id="paperLink" href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQA1lcMnzdudTbvnNBQIasdkAQznYbmNXamPe0tN92FM70E?e=d0Gdts" target="_blank" rel="noopener">📄 문제지 보기</a>
+  <a id="solutionLink" href="https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQDsTrnJgapVS6tSsmYQG0DhAbI2dHNd07PqUcs5aoiOkm4?e=65nK8r" target="_blank" rel="noopener" style="display:none;">📑 해설지 보기</a>
+</div>
+
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3>📋 결과 리포트</h3>
+    <textarea id="report-text" readonly></textarea>
+    <button id="copyReportBtn" class="btn btn-primary" style="margin-top:10px;">📋 클립보드 복사</button>
+    <button id="closeModalBtn" class="btn btn-warning" style="margin-top:10px;">닫기</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function(){
+  const $ = sel => document.querySelector(sel);
+
+  /* ===== 김현석 약술 논술 4회 통합본 정답표 (18문항 / 44칸) ===== */
+  const ITEMS = [
+    { n:1, area:'화작', src:'박제가의 소비론에 대한 대담', blanks:[
+      { label:'①첫 어절', hint:'', accept:['구체적인'] },
+      { label:'①마지막', hint:'', accept:['있을까요'] },
+      { label:'②첫 어절', hint:'', accept:['아'] },
+      { label:'②마지막', hint:'', accept:['말씀이군요'], partial:['크고'] } ] },
+    { n:2, area:'화작', src:'수면과 학업 성취 조사 보고서', blanks:[
+      { label:'①', hint:'숫자', accept:['80','80%'], partial:['20'] },
+      { label:'②', hint:'숫자', accept:['30','30%'], partial:['50','25'] } ] },
+    { n:3, area:'화작', src:'「레 미제라블」 비평문', blanks:[
+      { label:'①첫 어절', hint:'', accept:['영화','영화레미제라블'] },
+      { label:'①마지막', hint:'한 어절', accept:['된다'], partial:['깨닫게된다'] },
+      { label:'②첫 어절', hint:'', accept:['그는'] },
+      { label:'②마지막', hint:'', accept:['말한다'] } ] },
+    { n:4, area:'화작', src:'밈 문화에 대한 비평문', blanks:[
+      { label:'①첫 어절', hint:'', accept:['하지만'] },
+      { label:'①마지막', hint:'', accept:['있다'] },
+      { label:'②첫 어절', hint:'', accept:['그러므로'] },
+      { label:'②마지막', hint:'', accept:['필요하다'] } ] },
+    { n:5, area:'화작', src:'빗물 재활용 협상과 기사문', blanks:[
+      { label:'①첫 어절', hint:'', accept:['2학년에'] },
+      { label:'①마지막', hint:'', accept:['드러냈다'], partial:['강조했다'] },
+      { label:'②첫 어절', hint:'', accept:['우리'], partial:['△△'] },
+      { label:'②마지막', hint:'한 어절', accept:['예정이다'], partial:['중이다','운영중이다'] } ] },
+    { n:6, area:'문법', src:'음절의 끝소리 규칙과 연음', blanks:[
+      { label:'①', hint:'발음', accept:['부어클'], partial:['부어글'] },
+      { label:'②', hint:'발음', accept:['부어간'], partial:['부어칸'] } ] },
+    { n:7, area:'독서', src:'미끄러운 비탈길 논증과 대머리 논증', blanks:[
+      { label:'①', hint:'', accept:['미끄러운비탈길논증'], partial:['미끄러운비탈길'] },
+      { label:'②', hint:'', accept:['대머리논증'], partial:['대머리'] } ] },
+    { n:8, area:'독서', src:'IS-LM 모형과 IS-MP 모형', blanks:[
+      { label:'①', hint:'', accept:['lm곡선'], partial:['lm','lm모형'] },
+      { label:'②', hint:'', accept:['mp곡선'], partial:['mp','mp모형'] } ] },
+    { n:9, area:'독서', src:'초전도 현상과 초유체', blanks:[
+      { label:'①', hint:'5자', accept:['초전도현상'], partial:['초전도'] },
+      { label:'②', hint:'3자', accept:['초유체'] } ] },
+    { n:10, area:'독서', src:'프란체스코회의 청빈 논쟁', blanks:[
+      { label:'①', hint:'', accept:['단순한사실상의사용','단순한사용'], partial:['사실상의사용'] },
+      { label:'②', hint:'', accept:['규범질서'], partial:['규범'] } ] },
+    { n:11, area:'독서', src:'정보 비대칭과 신호 발송·선별', blanks:[
+      { label:'①', hint:'', accept:['신호발송'], partial:['신호발송균형','신호'] },
+      { label:'②', hint:'', accept:['선별'] } ] },
+    { n:12, area:'독서', src:'법인세의 성격', blanks:[
+      { label:'①', hint:'10자', accept:['경제적이윤에관한과세','경제적이윤에대한과세'], partial:['경제적이윤'] },
+      { label:'②', hint:'7자', accept:['경제적감가상각'], partial:['감가상각'] } ] },
+    { n:13, area:'문학', src:'이육사 「꽃」 / 이성부 「누룩」', blanks:[
+      { label:'①', hint:'1자', accept:['꽃'] },
+      { label:'②', hint:'2자', accept:['누룩'] } ] },
+    { n:14, area:'문학', src:'「베틀 노래」 / 「빈녀음」', blanks:[
+      { label:'①', hint:'2자', accept:['부모'], partial:['아버님','어머님'] },
+      { label:'②', hint:'1자', accept:['남'], partial:['남들'] } ] },
+    { n:15, area:'문학', src:'「상춘곡」 / 「침류대기」', blanks:[
+      { label:'첫 어절', hint:'', accept:['깊숙이'] },
+      { label:'마지막', hint:'', accept:['바라겠네'], partial:['일일세','같네'] } ] },
+    { n:16, area:'문학', src:'작자 미상 「장풍운전」', blanks:[
+      { label:'첫 어절', hint:'', accept:['그대가'], partial:['만일'] },
+      { label:'마지막', hint:'', accept:['것이외다'], partial:['것이옵니다'] } ] },
+    { n:17, area:'문학', src:'최인호 「견습 환자」', blanks:[
+      { label:'첫 어절', hint:'', accept:['도대체가'], partial:['도대체'] },
+      { label:'마지막', hint:'', accept:['것이다'], partial:['것이었다'] } ] },
+    { n:18, area:'문학', src:'최인호 「견습 환자」', blanks:[
+      { label:'①', hint:'3자', accept:['금붕어'], partial:['붕어'] },
+      { label:'②', hint:'3자', accept:['백혈구'] } ] }
+  ];
+
+  const SLOTS = [];
+  ITEMS.forEach(it => it.blanks.forEach((b, bi) => SLOTS.push({ q: it.n, bi, label: b.label, def: b })));
+  const TOTAL = SLOTS.length; // 44
+
+  const MAX_ATTEMPTS = 3;
+  const COOLDOWN_MIN = 5;
+  const STORAGE_KEY = 'kimhs_yaksul_nonsul_4_uni18_omr';
+
+  let state = {
+    answers: new Array(TOTAL).fill(''),
+    attemptCount: 0,
+    cooldownUntil: 0,
+    name: '',
+    lastResult: null,
+    marks: new Array(ITEMS.length).fill(''),
+    totalTime: ''
+  };
+  let timerInterval = null;
+
+  /* ===== 정규화: 공백·괄호·문장부호 무시, 하이픈 통일 ===== */
+  function normalize(str, keepHyphen) {
+    let s = (str || '').toString().trim().toLowerCase();
+    s = s.replace(/[‐-―－・·‧/]/g, '-'); // 각종 하이픈·가운뎃점·슬래시 → -
+    s = s.replace(/\s+/g, '');
+    s = s.replace(/[\[\]\(\)\{\}<>《》「」『』.,'"“”‘’:;!?~…·]/g, '');
+    if (!keepHyphen) s = s.replace(/-/g, '');
+    return s;
+  }
+  function matches(list, val, keepHyphen) {
+    if (!list) return false;
+    const v = normalize(val, keepHyphen);
+    if (!v) return false;
+    return list.some(a => normalize(a, keepHyphen) === v);
+  }
+
+  function buildQuestions() {
+    let html = '';
+    let slot = 0;
+    ITEMS.forEach((it, qi) => {
+      html += '<div class="q-card">';
+      html += '<div class="q-top">';
+      html += '<div class="q-num">' + it.n + '번</div>';
+      html += '<div class="q-tag">' + it.area + '</div>';
+      html += '<div class="mark-buttons">'
+        + '<button class="mark-btn" data-mark="o" data-qi="' + qi + '">○</button>'
+        + '<button class="mark-btn" data-mark="t" data-qi="' + qi + '">△</button>'
+        + '<button class="mark-btn" data-mark="x" data-qi="' + qi + '">✕</button>'
+        + '</div>';
+      html += '<div class="q-src">' + it.src + '</div>';
+      html += '</div>';
+      it.blanks.forEach(b => {
+        html += '<div class="blank-row">'
+          + '<div class="blank-label">' + b.label + '</div>'
+          + '<input type="text" class="ans-input" data-slot="' + slot + '" autocomplete="off" '
+          + 'autocapitalize="off" spellcheck="false" placeholder="답 입력">'
+          + '</div>';
+        slot++;
+      });
+      html += '</div>';
+    });
+    $('#quizList').innerHTML = html;
+  }
+
+  function updateSolutionLink() {
+    const link = $('#solutionLink');
+    if (!link) return;
+    link.style.display = (state.attemptCount >= 2) ? 'inline-block' : 'none';
+  }
+
+  function updateUI() {
+    const isLocked = state.attemptCount > 0;
+    document.querySelectorAll('.ans-input').forEach(inp => {
+      const i = parseInt(inp.dataset.slot);
+      if (document.activeElement !== inp) inp.value = state.answers[i] || '';
+      inp.disabled = isLocked;
+    });
+    document.querySelectorAll('.mark-btn').forEach(btn => {
+      const qi = parseInt(btn.dataset.qi);
+      btn.classList.toggle('active', state.marks[qi] === btn.dataset.mark);
+    });
+    const tt = $('#totalTime');
+    if (document.activeElement !== tt) tt.value = state.totalTime || '';
+    tt.disabled = isLocked;
+
+    const answered = state.answers.filter(v => v && v.trim()).length;
+    $('#progressText').innerText = answered + '/' + TOTAL;
+    updateSolutionLink();
+  }
+
+  function computeScore() {
+    let correct = 0;
+    const wrongs = [], partials = [];
+    SLOTS.forEach((s, i) => {
+      const val = state.answers[i];
+      const kh = !!s.def.keepHyphen;
+      const tag = s.q + '-' + s.label;
+      if (matches(s.def.accept, val, kh)) { correct++; return; }
+      if (matches(s.def.partial, val, kh)) { partials.push(tag); return; }
+      wrongs.push(tag);
+    });
+    return { correct, wrongs, partials, percent: ((correct / TOTAL) * 100).toFixed(1) };
+  }
+
+  function performGrading() {
+    const r = computeScore();
+    state.lastResult = r;
+    renderScore(r);
+  }
+
+  function renderScore(r) {
+    $('#scoreBanner').classList.add('show');
+    $('#scoreCorrect').innerText = r.correct;
+    $('#scoreText').innerHTML = '정답률 ' + r.percent
+      + '%<br><span style="font-size:11px;">※ 정답은 공개되지 않습니다</span>';
+    $('#wrongList').innerHTML = (r.wrongs && r.wrongs.length)
+      ? '❌ 틀린 칸: ' + r.wrongs.join(', ') + ' (' + r.wrongs.length + '칸)'
+      : '✅ 만점! 축하합니다';
+    $('#partialList').innerHTML = (r.partials && r.partials.length)
+      ? '🔶 부분 정답(선생님 확인 필요): ' + r.partials.join(', ')
+      : '';
+  }
+
+  function updateCooldownUI() {
+    const now = Date.now();
+    const submitBtn = $('#submitBtn');
+    const cooldownDiv = $('#cooldownTimer');
+    const remaining = Math.max(0, MAX_ATTEMPTS - state.attemptCount);
+    $('#attemptDisplay').innerHTML = '📌 남은 채점 횟수: ' + remaining + '회';
+
+    if (state.attemptCount >= MAX_ATTEMPTS) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = '채점 횟수 소진';
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+      cooldownDiv.classList.add('hidden');
+      updateUI();
+      return;
+    }
+    if (state.cooldownUntil > now) {
+      const remainSec = Math.floor((state.cooldownUntil - now) / 1000);
+      cooldownDiv.classList.remove('hidden');
+      cooldownDiv.innerHTML = '⏳ 다음 채점까지: ' + Math.floor(remainSec / 60) + '분 ' + (remainSec % 60) + '초';
+      submitBtn.disabled = true;
+      if (!timerInterval) {
+        timerInterval = setInterval(() => {
+          if (Date.now() >= state.cooldownUntil) {
+            clearInterval(timerInterval); timerInterval = null;
+            cooldownDiv.classList.add('hidden');
+            if (state.attemptCount < MAX_ATTEMPTS) submitBtn.disabled = false;
+            updateCooldownUI();
+          } else updateCooldownUI();
+        }, 1000);
+      }
+    } else {
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+      cooldownDiv.classList.add('hidden');
+      submitBtn.disabled = false;
+      submitBtn.innerText = '✅ 채점하기';
+    }
+    updateUI();
+  }
+
+  function getReportText() {
+    const currentName = state.name || '미입력';
+    const attemptNum = state.attemptCount || 1;
+    const line = '━━━━━━━━━━━━━━━━━━━━━━';
+
+    const oList = [], tList = [], xList = [];
+    state.marks.forEach((m, qi) => {
+      const n = ITEMS[qi].n;
+      if (m === 'o') oList.push(n);
+      if (m === 't') tList.push(n);
+      if (m === 'x') xList.push(n);
+    });
+    const markSection = '📌 [문항 분류 기록]\n'
+      + '• ○ (확신): ' + (oList.join(', ') || '없음') + '\n'
+      + '• △ (애매): ' + (tList.join(', ') || '없음') + '\n'
+      + '• ✕ (모름): ' + (xList.join(', ') || '없음');
+
+    const timeSection = state.totalTime
+      ? '\n⏱️ 총 소요 시간: ' + state.totalTime + '\n' + line
+      : '';
+
+    if (!state.lastResult) {
+      return '[김현석 약술 논술 4회 통합본 결과]\n' + line
+        + '\n👤 이름: ' + currentName + '\n⚠️ 아직 채점 전입니다.\n' + line;
+    }
+    const r = state.lastResult;
+    const partialLine = (r.partials && r.partials.length)
+      ? '\n🔶 부분 정답(확인 필요): ' + r.partials.join(', ')
+      : '';
+
+    return '[김현석 약술 논술 4회 통합본 결과]\n' + line
+      + '\n👤 이름: ' + state.name
+      + '\n🔥 채점 회차: ' + attemptNum + '회차'
+      + '\n🎯 총점: ' + r.correct + '/' + TOTAL + '점'
+      + '\n📊 정답률: ' + r.percent + '%'
+      + '\n❌ ' + (r.wrongs.length ? '오답: ' + r.wrongs.join(', ') + ' (' + r.wrongs.length + '칸)' : '만점! 축하합니다 🎉')
+      + partialLine
+      + '\n' + line + timeSection
+      + '\n' + markSection
+      + '\n' + line
+      + '\n※ 정답은 공개되지 않습니다.';
+  }
+
+  function onSubmit() {
+    const nameVal = $('#studentName').value.trim();
+    if (!nameVal) { alert('이름을 입력하세요'); return; }
+    state.name = nameVal;
+    if (state.attemptCount >= MAX_ATTEMPTS) { alert('채점 횟수를 모두 사용했습니다. 초기화 후 다시 시도하세요.'); return; }
+    const now = Date.now();
+    if (state.cooldownUntil > now) { alert('다음 채점까지 ' + Math.ceil((state.cooldownUntil - now) / 60000) + '분 기다려주세요.'); return; }
+    const answered = state.answers.filter(v => v && v.trim()).length;
+    if (answered < TOTAL && !confirm('미입력 칸이 ' + (TOTAL - answered) + '개 있습니다. 그래도 채점할까요?')) return;
+
+    state.attemptCount++;
+    performGrading();
+    state.cooldownUntil = Date.now() + COOLDOWN_MIN * 60 * 1000;
+    $('#studentName').disabled = true;
+    saveToLocal();
+    updateCooldownUI();
+    showToast('채점 완료!');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function resetAll() {
+    if (!confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) return;
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    state = {
+      answers: new Array(TOTAL).fill(''),
+      attemptCount: 0,
+      cooldownUntil: 0,
+      name: '',
+      lastResult: null,
+      marks: new Array(ITEMS.length).fill(''),
+      totalTime: ''
+    };
+    $('#studentName').value = '';
+    $('#studentName').disabled = false;
+    $('#scoreBanner').classList.remove('show');
+    $('#cooldownTimer').classList.add('hidden');
+    $('#submitBtn').disabled = false;
+    $('#submitBtn').innerText = '✅ 채점하기';
+    document.querySelectorAll('.ans-input').forEach(i => i.value = '');
+    $('#totalTime').value = '';
+    updateUI();
+    saveToLocal();
+    showToast('초기화 완료! 답안을 입력하세요.');
+  }
+
+  function showReportModal() {
+    $('#report-text').value = getReportText();
+    $('#reportModal').classList.add('show');
+  }
+  function closeModal() { $('#reportModal').classList.remove('show'); }
+
+  function copyFullReport() { copyToClipboard(getReportText()); }
+
+  function copyToClipboard(text) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => showToast('리포트가 복사되었습니다! 카톡에 붙여넣기 하세요.'))
+          .catch(() => fallbackCopy(text));
+      } else fallbackCopy(text);
+    } catch (e) { fallbackCopy(text); }
+    function fallbackCopy(t) {
+      const ta = document.createElement('textarea');
+      ta.value = t;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showToast('리포트가 복사되었습니다! 카톡에 붙여넣기 하세요.');
+    }
+  }
+
+  function showToast(msg) {
+    const toast = $('#toast');
+    toast.innerText = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function saveToLocal() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function loadFromLocal() {
+    let raw = null;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (!raw) return;
+    try {
+      const d = JSON.parse(raw);
+      state.answers = Array.isArray(d.answers) && d.answers.length === TOTAL ? d.answers : new Array(TOTAL).fill('');
+      state.attemptCount = d.attemptCount || 0;
+      state.cooldownUntil = d.cooldownUntil || 0;
+      state.name = d.name || '';
+      state.lastResult = d.lastResult || null;
+      state.marks = Array.isArray(d.marks) && d.marks.length === ITEMS.length ? d.marks : new Array(ITEMS.length).fill('');
+      state.totalTime = d.totalTime || '';
+
+      $('#studentName').value = state.name;
+      $('#studentName').disabled = state.attemptCount > 0;
+      if (state.lastResult) renderScore(state.lastResult);
+    } catch (e) {}
+  }
+
+  function onAnswerInput(e) {
+    const inp = e.target.closest('.ans-input');
+    if (!inp) return;
+    if (state.attemptCount > 0) { inp.value = state.answers[parseInt(inp.dataset.slot)] || ''; return; }
+    state.answers[parseInt(inp.dataset.slot)] = inp.value;
+    const answered = state.answers.filter(v => v && v.trim()).length;
+    $('#progressText').innerText = answered + '/' + TOTAL;
+    saveToLocal();
+  }
+
+  function onMarkClick(e) {
+    const btn = e.target.closest('.mark-btn');
+    if (!btn) return;
+    const qi = parseInt(btn.dataset.qi);
+    state.marks[qi] = (state.marks[qi] === btn.dataset.mark) ? '' : btn.dataset.mark;
+    document.querySelectorAll('.mark-btn[data-qi="' + qi + '"]').forEach(b => b.classList.remove('active'));
+    if (state.marks[qi]) btn.classList.add('active');
+    saveToLocal();
+  }
+
+  function bindEvents() {
+    $('#submitBtn').onclick = onSubmit;
+    $('#resetBtn').onclick = resetAll;
+    $('#kakaoBtn').onclick = showReportModal;
+    $('#copyReportBtn').onclick = copyFullReport;
+    $('#closeModalBtn').onclick = closeModal;
+    $('#quizList').addEventListener('input', onAnswerInput);
+    $('#quizList').addEventListener('click', onMarkClick);
+    $('#quizList').addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      const list = Array.from(document.querySelectorAll('.ans-input'));
+      const i = list.indexOf(e.target);
+      if (i > -1 && list[i + 1]) list[i + 1].focus();
+    });
+    $('#totalTime').addEventListener('input', e => {
+      state.totalTime = e.target.value;
+      saveToLocal();
+    });
+    $('#reportModal').addEventListener('click', e => {
+      if (e.target.id === 'reportModal') closeModal();
+    });
+  }
+
+  function init() {
+    buildQuestions();
+    loadFromLocal();
+    bindEvents();
+    updateUI();
+    updateCooldownUI();
+  }
+  init();
+})();
+</script>
+</body>
+</html>
