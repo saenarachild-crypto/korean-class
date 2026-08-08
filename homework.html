@@ -181,6 +181,21 @@
   }
 
   .loading { text-align: center; padding: 40px; color: #86868b; font-size: 15px; }
+
+  /* 카톡 파싱 결과 */
+  .parsed-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px; border-bottom: 1px solid #f0f0f2;
+  }
+  .parsed-item:last-child { border-bottom: none; }
+  .parsed-name { font-weight: 700; font-size: 15px; }
+  .parsed-asgn { font-size: 13px; color: #0071e3; margin-top: 2px; }
+  .parsed-remove {
+    padding: 4px 10px; background: #fef0f0; color: #e03131;
+    border: 1px solid #fdd; border-radius: 6px; font-size: 12px; cursor: pointer;
+  }
+  .parsed-unknown { background: #fff8e6; border-radius: 8px; padding: 10px 14px;
+    font-size: 13px; color: #e08600; margin-bottom: 8px; }
   .toast {
     position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
     padding: 12px 24px; background: #1d1d1f; color: #fff; border-radius: 10px;
@@ -199,6 +214,7 @@
   <!-- 모드 전환 -->
   <div class="mode-tabs">
     <div class="mode-tab active" data-mode="settings" onclick="switchMode('settings')">📋 과제 등록</div>
+    <div class="mode-tab" data-mode="katalk" onclick="switchMode('katalk')">📱 카톡 등록</div>
     <div class="mode-tab" data-mode="submit" onclick="switchMode('submit')">📝 과제 제출</div>
     <div class="mode-tab" data-mode="status" onclick="switchMode('status')">📊 제출 현황</div>
   </div>
@@ -210,7 +226,11 @@
       <div class="form-row">
         <div class="form-group">
           <span class="form-label">과제 종류</span>
-          <select id="addType"></select>
+          <select id="addType" onchange="toggleCustomType()"></select>
+        </div>
+        <div class="form-group" id="customTypeGroup" style="display:none">
+          <span class="form-label">과제명</span>
+          <input type="text" id="customTypeName" placeholder="예: 보충 과제" style="width:140px">
         </div>
         <div class="form-group">
           <span class="form-label">회차</span>
@@ -230,6 +250,26 @@
     <div class="card">
       <h3 id="asgnListTitle">등록된 과제</h3>
       <div id="asgnList"><div class="loading">불러오는 중...</div></div>
+    </div>
+  </div>
+
+  <!-- ════════ 카톡 등록 ════════ -->
+  <div id="katalkView" style="display:none">
+    <div class="card">
+      <h3>📱 카톡 메시지 붙여넣기</h3>
+      <p style="font-size:13px;color:#86868b;margin-bottom:10px">카톡 대화를 복사해서 붙여넣으면 학생 이름과 과제를 자동으로 인식합니다.</p>
+      <textarea id="katalkInput" rows="8" style="width:100%;padding:12px;border:1.5px solid #d2d2d7;border-radius:10px;font-size:14px;font-family:inherit;resize:vertical;line-height:1.6" placeholder="카톡 메시지를 여기에 붙여넣으세요..."></textarea>
+      <button class="add-btn" style="margin-top:12px;width:100%;height:46px;font-size:16px" onclick="parseKatalk()">🔍 분석하기</button>
+    </div>
+    <div id="katalkResult" style="display:none">
+      <div class="card">
+        <h3 id="katalkResultTitle">인식 결과</h3>
+        <div id="katalkParsed"></div>
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <button class="add-btn" style="flex:1;background:#34c759;height:46px;font-size:16px" onclick="registerKatalk()">✅ 전체 등록</button>
+          <button class="add-btn" style="flex:0 0 auto;background:#ff3b30;height:46px" onclick="clearKatalk()">취소</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -337,6 +377,7 @@ function switchMode(mode) {
     el.className = "mode-tab" + (el.dataset.mode === mode ? " active" : "");
   });
   document.getElementById("settingsView").style.display = mode === "settings" ? "block" : "none";
+  document.getElementById("katalkView").style.display = mode === "katalk" ? "block" : "none";
   document.getElementById("submitView").style.display = mode === "submit" ? "block" : "none";
   document.getElementById("statusView").style.display = mode === "status" ? "block" : "none";
   refresh();
@@ -374,10 +415,35 @@ function updateTypeDropdown() {
     opt.value = a; opt.textContent = ASGN_LABELS[a];
     sel.appendChild(opt);
   });
+  var custom = document.createElement("option");
+  custom.value = "__custom__"; custom.textContent = "➕ 추가 과제 (직접 입력)";
+  sel.appendChild(custom);
+  toggleCustomType();
+}
+
+function toggleCustomType() {
+  var sel = document.getElementById("addType");
+  var group = document.getElementById("customTypeGroup");
+  group.style.display = sel.value === "__custom__" ? "flex" : "none";
+  if (sel.value !== "__custom__") document.getElementById("customTypeName").value = "";
 }
 
 function addAssignment() {
-  var type = document.getElementById("addType").value;
+  var typeVal = document.getElementById("addType").value;
+  var type, typeLabel;
+
+  if (typeVal === "__custom__") {
+    var customName = document.getElementById("customTypeName").value.trim();
+    if (!customName) { showToast("과제명을 입력하세요."); return; }
+    type = customName;
+    typeLabel = customName;
+    // ASGN_LABELS에 동적 추가
+    if (!ASGN_LABELS[type]) ASGN_LABELS[type] = typeLabel;
+  } else {
+    type = typeVal;
+    typeLabel = ASGN_LABELS[type];
+  }
+
   var detail = document.getElementById("addDetail").value.trim();
   var date = document.getElementById("addDate").value;
   var time = document.getElementById("addTime").value;
@@ -422,10 +488,65 @@ function renderAsgnList() {
     var div = document.createElement("div");
     div.className = "asgn-item";
     div.innerHTML =
-      '<div><div class="asgn-name">' + (ASGN_LABELS[s.type] || s.type) + " " + s.detail + '</div>' +
-      '<div class="asgn-deadline' + (overdue ? ' overdue' : '') + '">마감: ' + fmtDL(s.deadline) + (overdue ? ' (기한 지남)' : '') + '</div></div>' +
-      '<button class="del-btn" onclick="delAsgn(\'' + s.type + "','" + s.detail + '\')">삭제</button>';
+      '<div style="flex:1"><div class="asgn-name">' + (ASGN_LABELS[s.type] || s.type) + " " + s.detail + '</div>' +
+      '<div class="asgn-deadline' + (overdue ? ' overdue' : '') + '" id="dl_' + i + '">마감: ' + fmtDL(s.deadline) + (overdue ? ' (기한 지남)' : '') + '</div>' +
+      '<div id="edit_' + i + '" style="display:none;margin-top:6px">' +
+        '<input type="date" id="editDate_' + i + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px">' +
+        '<input type="time" id="editTime_' + i + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px;margin-left:4px">' +
+        '<button style="margin-left:4px;padding:6px 12px;background:#34c759;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer" onclick="saveDeadline(' + i + ')">저장</button>' +
+        '<button style="margin-left:4px;padding:6px 8px;background:#f5f5f7;color:#1d1d1f;border:none;border-radius:6px;font-size:12px;cursor:pointer" onclick="cancelEdit(' + i + ')">취소</button>' +
+      '</div></div>' +
+      '<div style="display:flex;gap:6px">' +
+        '<button class="del-btn" style="background:#f0f5ff;color:#0071e3;border-color:#cde" onclick="editDeadline(' + i + ')">기한 수정</button>' +
+        '<button class="del-btn" onclick="delAsgn(\'' + s.type + "','" + s.detail + '\')">삭제</button>' +
+      '</div>';
     list.appendChild(div);
+  });
+}
+
+function editDeadline(idx) {
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var s = cs[idx];
+  var dl = new Date(s.deadline);
+  var y = dl.getFullYear(), m = ("0"+(dl.getMonth()+1)).slice(-2), d = ("0"+dl.getDate()).slice(-2);
+  var h = ("0"+dl.getHours()).slice(-2), min = ("0"+dl.getMinutes()).slice(-2);
+
+  document.getElementById("editDate_" + idx).value = y + "-" + m + "-" + d;
+  document.getElementById("editTime_" + idx).value = h + ":" + min;
+  document.getElementById("edit_" + idx).style.display = "block";
+}
+
+function cancelEdit(idx) {
+  document.getElementById("edit_" + idx).style.display = "none";
+}
+
+function saveDeadline(idx) {
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var s = cs[idx];
+  var newDate = document.getElementById("editDate_" + idx).value;
+  var newTime = document.getElementById("editTime_" + idx).value;
+  if (!newDate || !newTime) { showToast("날짜와 시각을 입력하세요."); return; }
+
+  var newDeadline = newDate + "T" + newTime + ":00";
+
+  showToast("저장 중...");
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      action: "saveAssignments",
+      items: [{ className: currentClass, type: s.type, detail: s.detail, deadline: newDeadline }]
+    })
+  }).then(function() {
+    // 로컬 데이터 업데이트
+    for (var i = 0; i < allSettings.length; i++) {
+      if (allSettings[i].className === currentClass && allSettings[i].type === s.type && allSettings[i].detail === s.detail) {
+        allSettings[i].deadline = newDeadline;
+        break;
+      }
+    }
+    renderAsgnList();
+    showToast("✅ 기한 변경 완료!");
   });
 }
 
@@ -564,7 +685,7 @@ function renderStatus() {
   }
 
   var submitMap = {};
-  cr.forEach(function(r) { submitMap[r.name + "|" + r.type + "|" + r.detail] = r.timestamp; });
+  cr.forEach(function(r) { submitMap[r.name + "|" + r.type + "|" + r.detail] = { timestamp: r.timestamp, summary: r.summary || "" }; });
 
   var html = '<div class="card"><h3>' + currentClass + ' 제출 현황</h3>';
   html += '<div style="overflow-x:auto"><table class="status-table"><thead><tr><th>이름</th>';
@@ -583,10 +704,13 @@ function renderStatus() {
 
     cs.forEach(function(s) {
       var key = name + "|" + s.type + "|" + s.detail;
-      if (submitMap[key]) {
-        var st = new Date(submitMap[key]);
+      var rec = submitMap[key];
+      if (rec) {
+        var st = new Date(rec.timestamp);
         var dl = new Date(s.deadline);
-        rowHtml += '<td><span class="badge ' + (st > dl ? 'late' : 'done') + '">' + (st > dl ? '지각' : '제출') + '</span></td>';
+        var late = st > dl;
+        rowHtml += '<td><span class="badge ' + (late ? 'late' : 'done') + '">' + (late ? '지각' : '제출') + '</span>' +
+          (rec.summary ? '<div style="font-size:10px;color:#555;margin-top:3px">' + rec.summary + '</div>' : '') + '</td>';
       } else {
         rowHtml += '<td><span class="badge miss">미제출</span></td>';
         var label = (ASGN_LABELS[s.type] || s.type) + " " + s.detail;
@@ -710,6 +834,239 @@ function copyPopup() {
 function closePopup(e) {
   if (e && e.target !== e.currentTarget) return;
   document.getElementById("popupOverlay").classList.remove("show");
+}
+
+// ══════════════════════════════════
+// 카톡 파싱
+// ══════════════════════════════════
+var parsedEntries = [];
+
+// 전체 명단을 하나의 배열로
+function getAllStudents() {
+  var all = [];
+  Object.keys(ROSTER).forEach(function(cls) {
+    ROSTER[cls].forEach(function(name) {
+      if (!all.some(function(a) { return a.name === name && a.cls === cls; })) {
+        all.push({ name: name, cls: cls });
+      }
+    });
+  });
+  return all;
+}
+
+// 과제 키워드 매칭
+function detectAssignment(text) {
+  var results = [];
+
+  // 마침내 모의고사 시뮬
+  var mogoMatch = text.match(/(?:마침내|시뮬|모고|모의고사)\s*[^\d]*?(\d+)/);
+  if (mogoMatch) results.push({ type: "마침내모고", detail: mogoMatch[1] + "회" });
+
+  // 수특완 단기 암기
+  var amgiMatch = text.match(/(?:단기\s*암기|수특완\s*단기)[^\d]*?(\d+)/);
+  if (amgiMatch) results.push({ type: "단기암기", detail: amgiMatch[1] + "회" });
+
+  // 주간 과제 — "8월 1주차 주간 과제" 또는 "주간 과제 ... 8월 1주"
+  var juganMatch = text.match(/(\d+)\s*월\s*(\d+)\s*주\s*(?:차)?\s*주간\s*과제/);
+  if (!juganMatch) juganMatch = text.match(/주간\s*과제[^\d]*?(\d+)\s*월?\s*(\d+)\s*주/);
+  if (juganMatch) results.push({ type: "주간과제", detail: juganMatch[1] + "월 " + juganMatch[2] + "주차" });
+
+  // 약술 논술
+  var yakMatch = text.match(/(?:약술\s*논술|논술)\s*[^\d]*?(\d+)/);
+  if (yakMatch && text.match(/약술|논술/)) results.push({ type: "약술논술", detail: yakMatch[1] + "회" });
+
+  return results;
+}
+
+// 결과 요약 추출 (과제 종류에 따라 다르게)
+function extractSummary(block, asgnType) {
+  var parts = [];
+
+  if (asgnType === "마침내모고" || asgnType === "주간과제") {
+    // 총점
+    var totalMatch = block.match(/총점\s*[:：]\s*(\d+\s*\/\s*\d+)\s*\((\d+%?)\)/);
+    if (totalMatch) parts.push(totalMatch[1].replace(/\s/g,"") + "(" + totalMatch[2] + ")");
+    // 독서/문학 점수
+    var dokMatch = block.match(/독서\s*[:：]\s*(\d+\s*\/\s*\d+)/);
+    var munMatch = block.match(/문학\s*[:：]\s*(\d+\s*\/\s*\d+)/);
+    if (dokMatch) parts.push("독서 " + dokMatch[1].replace(/\s/g,""));
+    if (munMatch) parts.push("문학 " + munMatch[1].replace(/\s/g,""));
+    // 도전회차
+    var tryMatch = block.match(/채점\s*[:：]\s*(\d+)\s*\/\s*(\d+)\s*회/);
+    if (tryMatch) parts.push(tryMatch[1] + "/" + tryMatch[2] + "회차");
+
+  } else if (asgnType === "단기암기") {
+    // 누적 완료: 7 / 7 (100%)
+    var cumMatch = block.match(/누적\s*완료\s*[:：]\s*(\d+)\s*\/\s*(\d+)[^(]*\((\d+%?)\)/);
+    if (cumMatch) parts.push(cumMatch[1] + "/" + cumMatch[2] + "지문(" + cumMatch[3] + ")");
+
+  } else if (asgnType === "약술논술") {
+    // 총점: 30/30점
+    var scoreMatch = block.match(/총점\s*[:：]\s*(\d+\s*\/\s*\d+)/);
+    if (scoreMatch) parts.push(scoreMatch[1].replace(/\s/g,""));
+    // 소요 시간
+    var timeMatch = block.match(/소요\s*시간\s*[:：]\s*(\d+\s*분)/);
+    if (timeMatch) parts.push(timeMatch[1]);
+  }
+
+  return parts.join(" · ");
+}
+
+// 이름 라벨에서 학생 이름 추출: "학생 이름: XXX", "이름: XXX", "학생 : XXX", "👤 이름: XXX"
+function extractNameFromLabel(line) {
+  var match = line.match(/(?:학생\s*이름|학생|이름)\s*[:：]\s*(\S+)/);
+  if (match) return match[1].replace(/[()（）]/g, "").trim();
+  return null;
+}
+
+// 명단에서 이름 매칭
+function findStudentInRoster(name) {
+  var allStudents = getAllStudents();
+  var found = null;
+  allStudents.forEach(function(s) {
+    if (s.name === name) found = s;
+  });
+  return found;
+}
+
+function parseKatalk() {
+  var text = document.getElementById("katalkInput").value.trim();
+  if (!text) { showToast("카톡 메시지를 붙여넣으세요."); return; }
+
+  parsedEntries = [];
+
+  // 보고서 블록 단위로 분리 (━━━ 또는 빈 줄 2개 이상으로 구분)
+  var blocks = text.split(/(?:━{3,}[\s\S]*?━{3,}|={3,}|\n\s*\n\s*\n)/);
+  // 전체 텍스트도 하나의 블록으로 다시 시도하기 위해 보관
+  var fullBlocks = [text];
+
+  // 더 정밀한 분리: 헤더 패턴으로 블록 나누기
+  // [수특완 단기 암기...], [김현석 약술 논술...], 김현석 국어 · ... 주간 과제
+  var headerPattern = /(?=\[수특완|\[김현석|김현석\s*국어)/g;
+  var smartBlocks = text.split(headerPattern).filter(function(b) { return b.trim().length > 0; });
+
+  if (smartBlocks.length > 1) {
+    blocks = smartBlocks;
+  }
+
+  blocks.forEach(function(block) {
+    block = block.trim();
+    if (!block) return;
+
+    // 1) 과제 종류 인식 (블록 전체에서)
+    var asgns = detectAssignment(block);
+
+    // 2) 학생 이름 인식
+    var studentName = null;
+    var studentInfo = null;
+    var lines = block.split("\n");
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      // "학생 이름:", "이름:", "학생 :" 패턴
+      var labelName = extractNameFromLabel(line);
+      if (labelName) {
+        studentInfo = findStudentInRoster(labelName);
+        if (studentInfo) { studentName = studentInfo.name; break; }
+      }
+    }
+
+    // 라벨에서 못 찾으면 블록 전체에서 명단 이름 검색
+    if (!studentName) {
+      var allStudents = getAllStudents();
+      // 긴 이름 먼저 매칭 (3자 > 2자)
+      allStudents.sort(function(a, b) { return b.name.length - a.name.length; });
+      for (var j = 0; j < allStudents.length; j++) {
+        if (block.indexOf(allStudents[j].name) !== -1) {
+          // "김현석"(선생님 이름)이 헤더에만 있고 학생이 아닌 경우 제외
+          // 학생 명단에 있는 이름만 매칭
+          studentName = allStudents[j].name;
+          studentInfo = allStudents[j];
+          break;
+        }
+      }
+    }
+
+    if (!studentName || !studentInfo || asgns.length === 0) return;
+
+    asgns.forEach(function(a) {
+      if ((CLASS_ASGN[studentInfo.cls] || []).indexOf(a.type) !== -1) {
+        var summary = extractSummary(block, a.type);
+        parsedEntries.push({ name: studentName, className: studentInfo.cls, type: a.type, detail: a.detail, summary: summary });
+      }
+    });
+  });
+
+  // 중복 제거
+  var unique = [];
+  var seen = {};
+  parsedEntries.forEach(function(e) {
+    var key = e.className + "|" + e.name + "|" + e.type + "|" + e.detail;
+    if (!seen[key]) { seen[key] = true; unique.push(e); }
+  });
+  parsedEntries = unique;
+
+  renderKatalkResult();
+}
+
+function renderKatalkResult() {
+  var resultDiv = document.getElementById("katalkResult");
+  var parsed = document.getElementById("katalkParsed");
+
+  if (parsedEntries.length === 0) {
+    resultDiv.style.display = "block";
+    parsed.innerHTML = '<div class="parsed-unknown">인식된 제출 내역이 없습니다. 학생 이름과 과제명(단기 암기, 시뮬, 주간 과제 등)이 포함되어 있는지 확인해 주세요.</div>';
+    return;
+  }
+
+  resultDiv.style.display = "block";
+  document.getElementById("katalkResultTitle").textContent = "인식 결과 (" + parsedEntries.length + "건)";
+  parsed.innerHTML = "";
+
+  parsedEntries.forEach(function(e, i) {
+    var div = document.createElement("div");
+    div.className = "parsed-item";
+    div.innerHTML =
+      '<div><div class="parsed-name">' + e.name + ' <span style="font-size:12px;color:#86868b;font-weight:400">' + e.className + '</span></div>' +
+      '<div class="parsed-asgn">' + (ASGN_LABELS[e.type] || e.type) + ' ' + e.detail +
+      (e.summary ? ' <span style="color:#1d1d1f;font-weight:600">· ' + e.summary + '</span>' : '') + '</div></div>' +
+      '<button class="parsed-remove" onclick="removeParsed(' + i + ')">제외</button>';
+    parsed.appendChild(div);
+  });
+}
+
+function removeParsed(idx) {
+  parsedEntries.splice(idx, 1);
+  renderKatalkResult();
+}
+
+function registerKatalk() {
+  if (parsedEntries.length === 0) return;
+
+  showToast("등록 중...");
+  var pending = parsedEntries.length;
+  var done = 0;
+
+  parsedEntries.forEach(function(e) {
+    fetch(GAS_URL, {
+      method: "POST", mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({ className: e.className, name: e.name, type: e.type, detail: e.detail, summary: e.summary || "" })
+    }).then(function() {
+      allRecords.push({ className: e.className, name: e.name, type: e.type, detail: e.detail, timestamp: new Date().toISOString(), status: "제출완료", summary: e.summary || "" });
+      done++;
+      if (done >= pending) {
+        showToast("✅ " + done + "건 등록 완료!");
+        clearKatalk();
+      }
+    });
+  });
+}
+
+function clearKatalk() {
+  parsedEntries = [];
+  document.getElementById("katalkInput").value = "";
+  document.getElementById("katalkResult").style.display = "none";
 }
 
 // ── 유틸 ──
