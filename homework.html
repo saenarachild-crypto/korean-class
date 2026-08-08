@@ -251,6 +251,17 @@
       <h3 id="asgnListTitle">등록된 과제</h3>
       <div id="asgnList"><div class="loading">불러오는 중...</div></div>
     </div>
+    <div class="card">
+      <h3>👤 학생 관리</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <span class="form-label">이름</span>
+          <input type="text" id="newStudentName" placeholder="학생 이름" style="width:120px">
+        </div>
+        <button class="add-btn" onclick="addStudentUI()">추가</button>
+      </div>
+      <div id="studentList" style="margin-top:12px"></div>
+    </div>
   </div>
 
   <!-- ════════ 카톡 등록 ════════ -->
@@ -329,7 +340,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-var GAS_URL = "https://script.google.com/macros/s/AKfycbz3TbP8SBaTOj91Qaxqg5JKFBVzhWdgQVNt90FPJIpsxv3x83vXMNZTLi25f0IOwgoT/exec";
+var GAS_URL = "https://script.google.com/macros/s/AKfycbwFfDiqqJTdF3NOwXR-XX3wxVrHHZGoPsAhWrTjDw7QDL-j8284ADiaXwQ-s9ANDD-O/exec";
 
 var ROSTER = {
   "1618수능국어반": ["김가인","김은진","민서후","박규원","백민준","소형호","염혜수","권율","이서준","이시현","이우현","이윤호","이한솔","임소율","정해연","김주현","최준영","한준빈","홍의서"],
@@ -387,21 +398,93 @@ function switchMode(mode) {
 function loadAll() {
   Promise.all([
     fetch(GAS_URL + "?action=settings").then(function(r) { return r.json(); }),
-    fetch(GAS_URL + "?action=records").then(function(r) { return r.json(); })
+    fetch(GAS_URL + "?action=records").then(function(r) { return r.json(); }),
+    fetch(GAS_URL + "?action=roster").then(function(r) { return r.json(); })
   ]).then(function(res) {
     allSettings = res[0] || [];
     allRecords = res[1] || [];
+    // 명단 동기화
+    if (res[2] && res[2].roster) {
+      var serverRoster = res[2].roster;
+      Object.keys(serverRoster).forEach(function(cls) {
+        ROSTER[cls] = serverRoster[cls];
+      });
+    }
+    renderTabs();
     refresh();
   }).catch(function() {
     showToast("데이터 불러오기 실패. 새로고침해 주세요.");
+    refresh();
   });
 }
 
 function refresh() {
   updateTypeDropdown();
   renderAsgnList();
+  renderStudentList();
   if (currentMode === "submit") renderSubmitForm();
   if (currentMode === "status") renderStatus();
+}
+
+// ══════════════════════════════════
+// 학생 관리
+// ══════════════════════════════════
+function renderStudentList() {
+  var list = document.getElementById("studentList");
+  var students = ROSTER[currentClass] || [];
+  list.innerHTML = "";
+
+  students.forEach(function(name) {
+    var div = document.createElement("div");
+    div.style.cssText = "display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f2";
+    div.innerHTML =
+      '<span style="font-weight:600;font-size:14px">' + name + '</span>' +
+      '<button class="del-btn" onclick="deleteStudentUI(\'' + name.replace(/'/g, "\\'") + '\')">삭제</button>';
+    list.appendChild(div);
+  });
+
+  if (students.length === 0) {
+    list.innerHTML = '<div style="text-align:center;color:#86868b;padding:12px">등록된 학생이 없습니다.</div>';
+  }
+}
+
+function addStudentUI() {
+  var name = document.getElementById("newStudentName").value.trim();
+  if (!name) { showToast("이름을 입력하세요."); return; }
+
+  if ((ROSTER[currentClass] || []).indexOf(name) !== -1) {
+    showToast("이미 등록된 학생입니다.");
+    return;
+  }
+
+  showToast("저장 중...");
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ action: "addStudent", className: currentClass, name: name })
+  }).then(function() {
+    if (!ROSTER[currentClass]) ROSTER[currentClass] = [];
+    ROSTER[currentClass].push(name);
+    renderTabs();
+    renderStudentList();
+    document.getElementById("newStudentName").value = "";
+    showToast("✅ " + name + " 추가 완료!");
+  });
+}
+
+function deleteStudentUI(name) {
+  if (!confirm(name + " 학생을 삭제하시겠습니까?")) return;
+
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ action: "deleteStudent", className: currentClass, name: name })
+  }).then(function() {
+    ROSTER[currentClass] = (ROSTER[currentClass] || []).filter(function(n) { return n !== name; });
+    renderTabs();
+    renderStudentList();
+    showToast(name + " 삭제되었습니다.");
+  });
 }
 
 // ══════════════════════════════════
@@ -935,19 +1018,13 @@ function parseKatalk() {
 
   parsedEntries = [];
 
-  // 보고서 블록 단위로 분리 (━━━ 또는 빈 줄 2개 이상으로 구분)
-  var blocks = text.split(/(?:━{3,}[\s\S]*?━{3,}|={3,}|\n\s*\n\s*\n)/);
-  // 전체 텍스트도 하나의 블록으로 다시 시도하기 위해 보관
-  var fullBlocks = [text];
+  // 헤더 패턴으로 보고서 블록 분리
+  // 각 보고서는 헤더로 시작: [수특완..], [김현석 약술..], 김현석 국어 ·.., ━━━ 김현석 국어 등
+  var headerRegex = /(?=\[수특완[^\]]*\]|\[김현석[^\]]*\]|(?:^|\n)━*\s*김현석\s*국어|(?:^|\n)김현석\s*국어)/gm;
+  var blocks = text.split(headerRegex).filter(function(b) { return b.trim().length > 0; });
 
-  // 더 정밀한 분리: 헤더 패턴으로 블록 나누기
-  // [수특완 단기 암기...], [김현석 약술 논술...], 김현석 국어 · ... 주간 과제
-  var headerPattern = /(?=\[수특완|\[김현석|김현석\s*국어)/g;
-  var smartBlocks = text.split(headerPattern).filter(function(b) { return b.trim().length > 0; });
-
-  if (smartBlocks.length > 1) {
-    blocks = smartBlocks;
-  }
+  // 헤더로 안 나눠지면 전체를 하나의 블록으로
+  if (blocks.length === 0) blocks = [text];
 
   blocks.forEach(function(block) {
     block = block.trim();
@@ -956,14 +1033,13 @@ function parseKatalk() {
     // 1) 과제 종류 인식 (블록 전체에서)
     var asgns = detectAssignment(block);
 
-    // 2) 학생 이름 인식
+    // 2) 학생 이름 인식 — 라벨 패턴 먼저
     var studentName = null;
     var studentInfo = null;
     var lines = block.split("\n");
 
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
-      // "학생 이름:", "이름:", "학생 :" 패턴
       var labelName = extractNameFromLabel(line);
       if (labelName) {
         studentInfo = findStudentInRoster(labelName);
@@ -974,12 +1050,9 @@ function parseKatalk() {
     // 라벨에서 못 찾으면 블록 전체에서 명단 이름 검색
     if (!studentName) {
       var allStudents = getAllStudents();
-      // 긴 이름 먼저 매칭 (3자 > 2자)
       allStudents.sort(function(a, b) { return b.name.length - a.name.length; });
       for (var j = 0; j < allStudents.length; j++) {
         if (block.indexOf(allStudents[j].name) !== -1) {
-          // "김현석"(선생님 이름)이 헤더에만 있고 학생이 아닌 경우 제외
-          // 학생 명단에 있는 이름만 매칭
           studentName = allStudents[j].name;
           studentInfo = allStudents[j];
           break;
@@ -1087,6 +1160,7 @@ function showToast(msg) {
 
 // 초기화
 renderTabs();
+refresh();
 loadAll();
 
 // 독촉 문구 템플릿 — 저장/복원/미리보기
