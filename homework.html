@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>과제 관리</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Apple SD Gothic Neo", sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    padding: 24px 16px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 26px; font-weight: 700; text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #86868b; font-size: 14px; margin-bottom: 24px; }
+
+  /* 반 탭 */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; }
+  .tab {
+    padding: 10px 18px; background: #fff; border: 1.5px solid #d2d2d7;
+    border-radius: 10px; font-size: 14px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; transition: all 0.2s;
+  }
+  .tab.active { background: #0071e3; color: #fff; border-color: #0071e3; }
+
+  /* 모드 전환 */
+  .mode-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
+  .mode-tab {
+    flex: 1; padding: 12px; text-align: center; background: #fff;
+    border: 1.5px solid #d2d2d7; border-radius: 10px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .mode-tab.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+
+  /* 카드 */
+  .card {
+    background: #fff; border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    padding: 20px; margin-bottom: 16px;
+  }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+
+  /* 폼 요소 공통 */
+  select, input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+    padding: 10px 12px; border: 1.5px solid #d2d2d7; border-radius: 8px;
+    font-size: 15px; color: #1d1d1f; background: #fff;
+    appearance: none; -webkit-appearance: none;
+  }
+  select {
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2386868b' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;
+    padding-right: 32px;
+  }
+  select:focus, input:focus { outline: none; border-color: #0071e3; }
+  .form-label { display: block; font-size: 12px; font-weight: 600; color: #86868b; margin-bottom: 5px; }
+
+  /* ── 과제 등록 ── */
+  .form-row { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; align-items: flex-end; }
+  .form-group { display: flex; flex-direction: column; }
+  .add-btn {
+    padding: 10px 22px; background: #0071e3; color: #fff; border: none;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; height: 42px;
+  }
+  .add-btn:hover { background: #0077ed; }
+
+  .asgn-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px; border-bottom: 1px solid #f0f0f2;
+  }
+  .asgn-item:last-child { border-bottom: none; }
+  .asgn-name { font-weight: 600; font-size: 14px; }
+  .asgn-deadline { font-size: 12px; color: #86868b; margin-top: 2px; }
+  .asgn-deadline.overdue { color: #e03131; }
+  .del-btn {
+    padding: 5px 12px; background: #fef0f0; color: #e03131;
+    border: 1px solid #fdd; border-radius: 6px; font-size: 12px; cursor: pointer;
+  }
+  .del-btn:hover { background: #fdd; }
+
+  /* ── 과제 제출 ── */
+  .submit-card {
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    max-width: 440px; margin: 0 auto; padding: 32px 24px;
+  }
+  .submit-card h3 { text-align: center; font-size: 20px; margin-bottom: 24px; }
+  .submit-card .form-label { margin-top: 16px; }
+  .submit-card .form-label:first-of-type { margin-top: 0; }
+  .submit-card select { width: 100%; padding: 12px 14px; font-size: 16px; border-radius: 10px; }
+  .deadline-info {
+    margin-top: 8px; padding: 10px 14px; background: #f0f5ff;
+    border-radius: 8px; font-size: 13px; color: #0071e3;
+  }
+  .deadline-info.overdue { background: #fef0f0; color: #e03131; }
+  .submit-btn {
+    width: 100%; margin-top: 24px; padding: 14px; background: #0071e3; color: #fff;
+    border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer;
+  }
+  .submit-btn:hover { background: #0077ed; }
+  .submit-btn:disabled { background: #d2d2d7; cursor: not-allowed; }
+  .submit-msg { text-align: center; margin-top: 14px; font-size: 14px; min-height: 20px; }
+  .submit-msg.success { color: #34c759; }
+  .submit-msg.error { color: #ff3b30; }
+
+  /* ── 제출 현황 ── */
+  .status-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .status-table th {
+    text-align: left; padding: 8px 10px; background: #f5f5f7;
+    font-weight: 600; font-size: 13px; color: #86868b; border-bottom: 1px solid #e5e5e7;
+  }
+  .status-table td { padding: 10px; border-bottom: 1px solid #f0f0f2; }
+  .name-cell {
+    font-weight: 600; cursor: pointer; color: #0071e3;
+    transition: background 0.15s; border-radius: 4px; padding: 2px 4px;
+  }
+  .name-cell:hover { background: #f0f5ff; }
+  .name-cell.no-missing { color: #1d1d1f; cursor: default; }
+  .name-cell.no-missing:hover { background: transparent; }
+  .popup-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); display: none; z-index: 900;
+    justify-content: center; align-items: center;
+  }
+  .popup-overlay.show { display: flex; }
+  .popup {
+    background: #fff; border-radius: 16px; padding: 24px;
+    max-width: 420px; width: 90%; box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+  .popup h4 { font-size: 17px; margin-bottom: 14px; }
+  .popup-msg {
+    background: #f5f5f7; border-radius: 10px; padding: 14px;
+    font-size: 14px; line-height: 1.8; white-space: pre-wrap; margin-bottom: 16px;
+    max-height: 300px; overflow-y: auto;
+  }
+  .popup-btns { display: flex; gap: 10px; }
+  .popup-copy {
+    flex: 1; padding: 12px; background: #0071e3; color: #fff; border: none;
+    border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .popup-copy:hover { background: #0077ed; }
+  .popup-close {
+    padding: 12px 20px; background: #f5f5f7; color: #1d1d1f; border: none;
+    border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .popup-close:hover { background: #e8e8ed; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .badge.done { background: #e8f8ee; color: #1b8a3e; }
+  .badge.miss { background: #fef0f0; color: #e03131; }
+  .badge.late { background: #fff8e6; color: #e08600; }
+
+  /* ── 미제출자 ── */
+  .missing-section { margin-top: 24px; }
+  .missing-section h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #e03131; }
+  .missing-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px; background: #fff; border-radius: 10px;
+    margin-bottom: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .missing-item .name { font-weight: 600; }
+  .missing-item .asgn { font-size: 13px; color: #86868b; }
+  .copy-btn {
+    padding: 6px 12px; background: #ff9500; color: #fff; border: none;
+    border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .copy-btn:hover { background: #e08600; }
+  .bulk-area { margin-top: 20px; }
+  .bulk-btn {
+    width: 100%; padding: 14px; background: #ff3b30; color: #fff; border: none;
+    border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;
+  }
+  .bulk-btn:hover { background: #e0342b; }
+  .bulk-result {
+    margin-top: 12px; padding: 14px; background: #fafafa; border-radius: 10px;
+    font-size: 13px; white-space: pre-wrap; line-height: 1.8; display: none;
+  }
+  .copy-all-btn {
+    margin-top: 8px; padding: 10px 20px; background: #34c759; color: #fff;
+    border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; display: none;
+  }
+
+  .loading { text-align: center; padding: 40px; color: #86868b; font-size: 15px; }
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    padding: 12px 24px; background: #1d1d1f; color: #fff; border-radius: 10px;
+    font-size: 14px; font-weight: 600; display: none; z-index: 999;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📊 과제 관리</h1>
+  <p class="subtitle">과제 등록 · 과제 제출 · 제출 현황</p>
+
+  <!-- 반 탭 -->
+  <div class="tabs" id="tabs"></div>
+
+  <!-- 모드 전환 -->
+  <div class="mode-tabs">
+    <div class="mode-tab active" data-mode="settings" onclick="switchMode('settings')">📋 과제 등록</div>
+    <div class="mode-tab" data-mode="submit" onclick="switchMode('submit')">📝 과제 제출</div>
+    <div class="mode-tab" data-mode="status" onclick="switchMode('status')">📊 제출 현황</div>
+  </div>
+
+  <!-- ════════ 과제 등록 ════════ -->
+  <div id="settingsView">
+    <div class="card">
+      <h3>과제 추가</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <span class="form-label">과제 종류</span>
+          <select id="addType"></select>
+        </div>
+        <div class="form-group">
+          <span class="form-label">회차</span>
+          <input type="text" id="addDetail" placeholder="예: 3회" style="width:120px">
+        </div>
+        <div class="form-group">
+          <span class="form-label">마감 날짜</span>
+          <input type="date" id="addDate">
+        </div>
+        <div class="form-group">
+          <span class="form-label">마감 시각</span>
+          <input type="time" id="addTime" value="23:00">
+        </div>
+        <button class="add-btn" onclick="addAssignment()">추가</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="asgnListTitle">등록된 과제</h3>
+      <div id="asgnList"><div class="loading">불러오는 중...</div></div>
+    </div>
+  </div>
+
+  <!-- ════════ 과제 제출 ════════ -->
+  <div id="submitView" style="display:none">
+    <div class="submit-card">
+      <h3>📝 과제 제출</h3>
+
+      <span class="form-label">이름</span>
+      <select id="selName">
+        <option value="">이름을 선택하세요</option>
+      </select>
+
+      <span class="form-label" style="margin-top:16px">과제</span>
+      <select id="selAsgn">
+        <option value="">과제를 선택하세요</option>
+      </select>
+      <div id="deadlineInfo"></div>
+
+      <button class="submit-btn" id="btnSubmit" disabled onclick="submitAssignment()">제출 완료</button>
+      <div class="submit-msg" id="submitMsg"></div>
+    </div>
+  </div>
+
+  <!-- ════════ 제출 현황 ════════ -->
+  <div id="statusView" style="display:none">
+    <div class="card">
+      <h3>💬 독촉 문구 설정</h3>
+      <p style="font-size:13px;color:#86868b;margin-bottom:10px">(이름)과 (과목명)이 자동으로 채워집니다.</p>
+      <textarea id="msgTemplate" rows="2" style="width:100%;padding:12px;border:1.5px solid #d2d2d7;border-radius:10px;font-size:15px;font-family:inherit;resize:vertical" placeholder="예: (이름)야. 숙제 내라. (과목명) 밀렸다. 안 그럼 화낸다."></textarea>
+      <div style="margin-top:8px;font-size:12px;color:#86868b">미리보기: <span id="templatePreview" style="color:#1d1d1f"></span></div>
+    </div>
+    <div id="statusContent"><div class="loading">데이터 불러오는 중...</div></div>
+    <div class="missing-section" id="missingSection" style="display:none">
+      <h2>⚠️ 미제출자</h2>
+      <div id="missingList"></div>
+      <div class="bulk-area">
+        <button class="bulk-btn" onclick="generateBulkMessage()">📋 전체 독촉 메시지 생성</button>
+        <div class="bulk-result" id="bulkResult"></div>
+        <button class="copy-all-btn" id="copyAllBtn" onclick="copyBulk()">전체 복사</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+  <div class="popup">
+    <h4 id="popupTitle"></h4>
+    <div class="popup-msg" id="popupMsg"></div>
+    <div class="popup-btns">
+      <button class="popup-copy" onclick="copyPopup()">📋 복사하기</button>
+      <button class="popup-close" onclick="closePopup()">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var GAS_URL = "https://script.google.com/macros/s/AKfycbz3TbP8SBaTOj91Qaxqg5JKFBVzhWdgQVNt90FPJIpsxv3x83vXMNZTLi25f0IOwgoT/exec";
+
+var ROSTER = {
+  "1618수능국어반": ["김가인","김은진","민서후","박규원","백민준","소형호","염혜수","권율","이서준","이시현","이우현","이윤호","이한솔","임소율","정해연","김주현","최준영","한준빈","홍의서"],
+  "2027러셀분당": ["강민지","박현우","최윤서","임민규","원준우","정서진"],
+  "2026네스국어": ["김나윤","김서윤","남소은","심지호","이나연","이정훈","임홍석","정민"],
+  "약논반": ["박준영","백시연","유라언","진성현","이가은","임홍석","이배움"]
+};
+
+var CLASS_ASGN = {
+  "1618수능국어반": ["마침내모고","주간과제","단기암기"],
+  "2027러셀분당": ["마침내모고","주간과제","단기암기"],
+  "2026네스국어": ["마침내모고","주간과제","단기암기"],
+  "약논반": ["단기암기","약술논술"]
+};
+
+var ASGN_LABELS = {
+  "마침내모고": "마침내 모의고사 시뮬",
+  "주간과제": "주간 과제",
+  "단기암기": "수특완 단기 암기",
+  "약술논술": "약술 논술"
+};
+
+var allSettings = [];
+var allRecords = [];
+var currentClass = "1618수능국어반";
+var currentMode = "settings";
+
+// ── 탭 ──
+function renderTabs() {
+  var tabs = document.getElementById("tabs");
+  tabs.innerHTML = "";
+  Object.keys(ROSTER).forEach(function(cls) {
+    var tab = document.createElement("div");
+    tab.className = "tab" + (cls === currentClass ? " active" : "");
+    tab.textContent = cls + " (" + ROSTER[cls].length + ")";
+    tab.onclick = function() { currentClass = cls; renderTabs(); refresh(); };
+    tabs.appendChild(tab);
+  });
+}
+
+// ── 모드 ──
+function switchMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll(".mode-tab").forEach(function(el) {
+    el.className = "mode-tab" + (el.dataset.mode === mode ? " active" : "");
+  });
+  document.getElementById("settingsView").style.display = mode === "settings" ? "block" : "none";
+  document.getElementById("submitView").style.display = mode === "submit" ? "block" : "none";
+  document.getElementById("statusView").style.display = mode === "status" ? "block" : "none";
+  refresh();
+}
+
+// ── 데이터 ──
+function loadAll() {
+  Promise.all([
+    fetch(GAS_URL + "?action=settings").then(function(r) { return r.json(); }),
+    fetch(GAS_URL + "?action=records").then(function(r) { return r.json(); })
+  ]).then(function(res) {
+    allSettings = res[0] || [];
+    allRecords = res[1] || [];
+    refresh();
+  }).catch(function() {
+    showToast("데이터 불러오기 실패. 새로고침해 주세요.");
+  });
+}
+
+function refresh() {
+  updateTypeDropdown();
+  renderAsgnList();
+  if (currentMode === "submit") renderSubmitForm();
+  if (currentMode === "status") renderStatus();
+}
+
+// ══════════════════════════════════
+// 과제 등록
+// ══════════════════════════════════
+function updateTypeDropdown() {
+  var sel = document.getElementById("addType");
+  sel.innerHTML = "";
+  (CLASS_ASGN[currentClass] || []).forEach(function(a) {
+    var opt = document.createElement("option");
+    opt.value = a; opt.textContent = ASGN_LABELS[a];
+    sel.appendChild(opt);
+  });
+}
+
+function addAssignment() {
+  var type = document.getElementById("addType").value;
+  var detail = document.getElementById("addDetail").value.trim();
+  var date = document.getElementById("addDate").value;
+  var time = document.getElementById("addTime").value;
+  if (!type || !detail || !date || !time) { showToast("모든 항목을 입력하세요."); return; }
+
+  var deadline = date + "T" + time + ":00";
+  var dup = allSettings.some(function(s) {
+    return s.className === currentClass && s.type === type && s.detail === detail;
+  });
+  if (dup) { showToast("이미 등록된 과제입니다."); return; }
+
+  showToast("저장 중...");
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      action: "saveAssignments",
+      items: [{ className: currentClass, type: type, detail: detail, deadline: deadline }]
+    })
+  }).then(function() {
+    allSettings.push({ className: currentClass, type: type, detail: detail, deadline: deadline });
+    renderAsgnList();
+    document.getElementById("addDetail").value = "";
+    showToast("✅ 과제 등록 완료!");
+  });
+}
+
+function renderAsgnList() {
+  var list = document.getElementById("asgnList");
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  document.getElementById("asgnListTitle").textContent = currentClass + " 등록된 과제 (" + cs.length + ")";
+
+  if (cs.length === 0) {
+    list.innerHTML = '<div style="text-align:center;color:#86868b;padding:16px">등록된 과제가 없습니다.</div>';
+    return;
+  }
+  list.innerHTML = "";
+  cs.forEach(function(s) {
+    var now = new Date();
+    var dl = new Date(s.deadline);
+    var overdue = now > dl;
+    var div = document.createElement("div");
+    div.className = "asgn-item";
+    div.innerHTML =
+      '<div><div class="asgn-name">' + (ASGN_LABELS[s.type] || s.type) + " " + s.detail + '</div>' +
+      '<div class="asgn-deadline' + (overdue ? ' overdue' : '') + '">마감: ' + fmtDL(s.deadline) + (overdue ? ' (기한 지남)' : '') + '</div></div>' +
+      '<button class="del-btn" onclick="delAsgn(\'' + s.type + "','" + s.detail + '\')">삭제</button>';
+    list.appendChild(div);
+  });
+}
+
+function delAsgn(type, detail) {
+  if (!confirm((ASGN_LABELS[type] || type) + " " + detail + " 삭제하시겠습니까?")) return;
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ action: "deleteAssignment", className: currentClass, type: type, detail: detail })
+  }).then(function() {
+    allSettings = allSettings.filter(function(s) {
+      return !(s.className === currentClass && s.type === type && s.detail === detail);
+    });
+    renderAsgnList();
+    showToast("삭제되었습니다.");
+  });
+}
+
+// ══════════════════════════════════
+// 과제 제출
+// ══════════════════════════════════
+function renderSubmitForm() {
+  // 이름 목록
+  var selName = document.getElementById("selName");
+  var prevName = selName.value;
+  selName.innerHTML = '<option value="">이름을 선택하세요</option>';
+  ROSTER[currentClass].forEach(function(n) {
+    var opt = document.createElement("option");
+    opt.value = n; opt.textContent = n;
+    selName.appendChild(opt);
+  });
+  // 저장된 이름 복원
+  var savedClass = localStorage.getItem("hw_class");
+  var savedName = localStorage.getItem("hw_name");
+  if (savedClass === currentClass && savedName) selName.value = savedName;
+  else if (prevName) selName.value = prevName;
+
+  renderAsgnDropdown();
+}
+
+function renderAsgnDropdown() {
+  var selAsgn = document.getElementById("selAsgn");
+  selAsgn.innerHTML = '<option value="">과제를 선택하세요</option>';
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+
+  if (cs.length === 0) {
+    selAsgn.innerHTML = '<option value="">등록된 과제가 없습니다</option>';
+    document.getElementById("btnSubmit").disabled = true;
+    document.getElementById("deadlineInfo").innerHTML = "";
+    return;
+  }
+
+  cs.forEach(function(s, i) {
+    var label = (ASGN_LABELS[s.type] || s.type) + " " + s.detail;
+    var dl = fmtDL(s.deadline);
+    var opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = label + " (마감: " + dl + ")";
+    selAsgn.appendChild(opt);
+  });
+}
+
+document.getElementById("selAsgn").addEventListener("change", function() {
+  var idx = this.value;
+  var info = document.getElementById("deadlineInfo");
+  var btn = document.getElementById("btnSubmit");
+  document.getElementById("submitMsg").textContent = "";
+
+  if (idx === "" || idx === undefined) { info.innerHTML = ""; btn.disabled = true; return; }
+
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var s = cs[parseInt(idx)];
+  var now = new Date();
+  var dl = new Date(s.deadline);
+  var overdue = now > dl;
+
+  info.innerHTML = '<div class="deadline-info' + (overdue ? ' overdue' : '') + '">' +
+    (overdue ? '⚠️ 마감 기한이 지났습니다 (' + fmtDL(s.deadline) + ')' :
+     '⏰ 마감: ' + fmtDL(s.deadline)) + '</div>';
+  btn.disabled = false;
+});
+
+function submitAssignment() {
+  var name = document.getElementById("selName").value;
+  var asgnSel = document.getElementById("selAsgn");
+  if (!name) { showSubmitMsg("이름을 선택하세요.", "error"); return; }
+  if (!asgnSel || asgnSel.value === "") { showSubmitMsg("과제를 선택하세요.", "error"); return; }
+
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var s = cs[parseInt(asgnSel.value)];
+
+  var btn = document.getElementById("btnSubmit");
+  btn.disabled = true;
+  btn.textContent = "전송 중...";
+
+  localStorage.setItem("hw_class", currentClass);
+  localStorage.setItem("hw_name", name);
+
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ className: currentClass, name: name, type: s.type, detail: s.detail })
+  }).then(function() {
+    var label = (ASGN_LABELS[s.type] || s.type) + " " + s.detail;
+    showSubmitMsg("✅ " + name + " — " + label + " 제출 완료!", "success");
+    // 제출 기록에 추가 (새로고침 없이 현황 반영)
+    allRecords.push({ className: currentClass, name: name, type: s.type, detail: s.detail, timestamp: new Date().toISOString(), status: "제출완료" });
+    btn.textContent = "제출 완료";
+    btn.disabled = false;
+  }).catch(function() {
+    showSubmitMsg("전송 실패. 다시 시도해 주세요.", "error");
+    btn.textContent = "제출 완료";
+    btn.disabled = false;
+  });
+}
+
+function showSubmitMsg(text, type) {
+  var el = document.getElementById("submitMsg");
+  el.textContent = text;
+  el.className = "submit-msg " + type;
+}
+
+// ══════════════════════════════════
+// 제출 현황
+// ══════════════════════════════════
+function renderStatus() {
+  var students = ROSTER[currentClass];
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var cr = allRecords.filter(function(r) { return r.className === currentClass; });
+  var content = document.getElementById("statusContent");
+
+  if (cs.length === 0) {
+    content.innerHTML = '<div class="card"><p style="text-align:center;color:#86868b;padding:20px">등록된 과제가 없습니다. "과제 등록" 탭에서 먼저 추가하세요.</p></div>';
+    document.getElementById("missingSection").style.display = "none";
+    return;
+  }
+
+  var submitMap = {};
+  cr.forEach(function(r) { submitMap[r.name + "|" + r.type + "|" + r.detail] = r.timestamp; });
+
+  var html = '<div class="card"><h3>' + currentClass + ' 제출 현황</h3>';
+  html += '<div style="overflow-x:auto"><table class="status-table"><thead><tr><th>이름</th>';
+  cs.forEach(function(s) {
+    html += '<th>' + (ASGN_LABELS[s.type] || s.type) + '<br><span style="font-weight:400;font-size:11px">' + s.detail + '</span></th>';
+  });
+  html += '</tr></thead><tbody>';
+
+  var missingList = [];
+  var missingByStudent = {};
+  var now = new Date();
+
+  students.forEach(function(name) {
+    var studentMissing = [];
+    var rowHtml = '<tr>';
+
+    cs.forEach(function(s) {
+      var key = name + "|" + s.type + "|" + s.detail;
+      if (submitMap[key]) {
+        var st = new Date(submitMap[key]);
+        var dl = new Date(s.deadline);
+        rowHtml += '<td><span class="badge ' + (st > dl ? 'late' : 'done') + '">' + (st > dl ? '지각' : '제출') + '</span></td>';
+      } else {
+        rowHtml += '<td><span class="badge miss">미제출</span></td>';
+        var label = (ASGN_LABELS[s.type] || s.type) + " " + s.detail;
+        studentMissing.push(label);
+        missingList.push({ name: name, type: s.type, detail: s.detail, deadline: s.deadline, overdue: now > new Date(s.deadline) });
+      }
+    });
+
+    if (studentMissing.length > 0) {
+      missingByStudent[name] = studentMissing;
+      var msgText = name + " 학생, " + studentMissing.join(", ") + " 미제출입니다. 확인 부탁드립니다.";
+      html += '<tr><td><span class="name-cell" onclick="showNamePopup(\'' + name.replace(/'/g, "\\'") + '\')">' + name + '</span></td>' + rowHtml.replace('<tr>', '');
+    } else {
+      html += '<tr><td><span class="name-cell no-missing">' + name + '</span></td>' + rowHtml.replace('<tr>', '');
+    }
+  });
+  html += '</tbody></table></div></div>';
+  content.innerHTML = html;
+
+  // missingByStudent를 전역에 저장
+  window._missingByStudent = missingByStudent;
+
+  // 미제출자
+  var ms = document.getElementById("missingSection");
+  var ml = document.getElementById("missingList");
+  if (missingList.length > 0) {
+    ms.style.display = "block";
+    ml.innerHTML = "";
+    missingList.forEach(function(m) {
+      var label = (ASGN_LABELS[m.type] || m.type) + " " + m.detail;
+      var dlText = fmtDL(m.deadline);
+      var msgText = m.name + " 학생, " + label + "이 아직 미제출입니다. (마감: " + dlText + ") 확인 부탁드립니다.";
+      var div = document.createElement("div");
+      div.className = "missing-item";
+      div.innerHTML =
+        '<div><span class="name">' + m.name + '</span> <span class="asgn">' + label + (m.overdue ? ' ⚠️기한초과' : '') + '</span></div>' +
+        '<button class="copy-btn" onclick="copyMsg(this)" data-msg="' + msgText.replace(/"/g, '&quot;') + '">복사</button>';
+      ml.appendChild(div);
+    });
+  } else {
+    ms.style.display = "none";
+  }
+
+  document.getElementById("bulkResult").style.display = "none";
+  document.getElementById("copyAllBtn").style.display = "none";
+}
+
+// ── 독촉 ──
+function generateBulkMessage() {
+  var students = ROSTER[currentClass];
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var cr = allRecords.filter(function(r) { return r.className === currentClass; });
+  var submitSet = {};
+  cr.forEach(function(r) { submitSet[r.name + "|" + r.type + "|" + r.detail] = true; });
+
+  var lines = [];
+  students.forEach(function(name) {
+    var missing = [];
+    cs.forEach(function(s) {
+      if (!submitSet[name + "|" + s.type + "|" + s.detail]) {
+        missing.push((ASGN_LABELS[s.type] || s.type) + " " + s.detail);
+      }
+    });
+    if (missing.length > 0) lines.push(buildMsg(name, missing));
+  });
+
+  var r = document.getElementById("bulkResult");
+  var cb = document.getElementById("copyAllBtn");
+  if (lines.length > 0) {
+    r.textContent = lines.join("\n\n");
+    r.style.display = "block";
+    cb.style.display = "block";
+  } else {
+    r.textContent = "미제출자가 없습니다! 🎉";
+    r.style.display = "block";
+    cb.style.display = "none";
+  }
+}
+
+function copyMsg(btn) {
+  navigator.clipboard.writeText(btn.dataset.msg).then(function() { showToast("복사되었습니다!"); });
+}
+
+function copyBulk() {
+  navigator.clipboard.writeText(document.getElementById("bulkResult").textContent)
+    .then(function() { showToast("전체 독촉 메시지 복사 완료!"); });
+}
+
+// ── 이름 클릭 팝업 ──
+function getTemplate() {
+  var t = document.getElementById("msgTemplate").value.trim();
+  if (!t) return "(이름)야. (과목명) 미제출이다. 확인 바람.";
+  return t;
+}
+
+function buildMsg(name, missingArr) {
+  var tpl = getTemplate();
+  var firstName = name.length > 1 ? name.slice(1) : name;
+  return tpl.replace(/\(이름\)/g, firstName).replace(/\(과목명\)/g, missingArr.join(", "));
+}
+
+function showNamePopup(name) {
+  var missing = window._missingByStudent[name];
+  if (!missing || missing.length === 0) return;
+
+  var msg = buildMsg(name, missing);
+
+  document.getElementById("popupTitle").textContent = name + " 독촉 메시지";
+  document.getElementById("popupMsg").textContent = msg;
+  document.getElementById("popupOverlay").classList.add("show");
+}
+
+function copyPopup() {
+  var msg = document.getElementById("popupMsg").textContent;
+  navigator.clipboard.writeText(msg).then(function() {
+    closePopup();
+    showToast("📋 복사 완료! 카톡에 붙여넣기 하세요.");
+  });
+}
+
+function closePopup(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById("popupOverlay").classList.remove("show");
+}
+
+// ── 유틸 ──
+function fmtDL(d) {
+  if (!d) return "";
+  var dt = new Date(d);
+  var m = dt.getMonth() + 1, dd = dt.getDate();
+  var days = ["일","월","화","수","목","금","토"];
+  var h = dt.getHours(), ampm = h < 12 ? "오전" : "오후", h12 = h % 12 || 12;
+  return m + "/" + dd + "(" + days[dt.getDay()] + ") " + ampm + " " + h12 + ":" + ("0" + dt.getMinutes()).slice(-2);
+}
+
+function showToast(msg) {
+  var t = document.getElementById("toast");
+  t.textContent = msg; t.style.display = "block";
+  setTimeout(function() { t.style.display = "none"; }, 2000);
+}
+
+// 초기화
+renderTabs();
+loadAll();
+
+// 독촉 문구 템플릿 — 저장/복원/미리보기
+var tplInput = document.getElementById("msgTemplate");
+var savedTpl = localStorage.getItem("hw_template");
+if (savedTpl) tplInput.value = savedTpl;
+updatePreview();
+
+tplInput.addEventListener("input", function() {
+  localStorage.setItem("hw_template", this.value);
+  updatePreview();
+});
+
+function updatePreview() {
+  var t = getTemplate();
+  var preview = t.replace(/\(이름\)/g, "형호").replace(/\(과목명\)/g, "수특완 단기 암기 3회");
+  document.getElementById("templatePreview").textContent = preview;
+}
+</script>
+</body>
+</html>
