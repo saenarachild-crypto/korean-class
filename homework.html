@@ -309,8 +309,8 @@
   <div id="statusView" style="display:none">
     <div class="card">
       <h3>💬 독촉 문구 설정</h3>
-      <p style="font-size:13px;color:#86868b;margin-bottom:10px">(이름)과 (과목명)이 자동으로 채워집니다.</p>
-      <textarea id="msgTemplate" rows="2" style="width:100%;padding:12px;border:1.5px solid #d2d2d7;border-radius:10px;font-size:15px;font-family:inherit;resize:vertical" placeholder="예: (이름)야. 숙제 내라. (과목명) 밀렸다. 안 그럼 화낸다."></textarea>
+      <p style="font-size:13px;color:#86868b;margin-bottom:10px"><b>(이름)</b>에 학생 이름, <b>(과목명)</b>에 미제출 과제가 자동으로 들어갑니다.</p>
+      <textarea id="msgTemplate" rows="2" style="width:100%;padding:12px;border:1.5px solid #d2d2d7;border-radius:10px;font-size:15px;font-family:inherit;resize:vertical">(이름)야, (과목명) 미제출이다. 얼른 해서 내라. 밀리면 끝이 없다.</textarea>
       <div style="margin-top:8px;font-size:12px;color:#86868b">미리보기: <span id="templatePreview" style="color:#1d1d1f"></span></div>
     </div>
     <div id="statusContent"><div class="loading">데이터 불러오는 중...</div></div>
@@ -340,7 +340,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-var GAS_URL = "https://script.google.com/macros/s/AKfycbwFfDiqqJTdF3NOwXR-XX3wxVrHHZGoPsAhWrTjDw7QDL-j8284ADiaXwQ-s9ANDD-O/exec";
+var GAS_URL = "https://script.google.com/macros/s/AKfycbw2xt2c70qKA3fBl_ENy8OljmKxILt8tCIjOlpe0SXmBPxE4y34sTy4FRbU3u_gwfTp/exec";
 
 var ROSTER = {
   "1618수능국어반": ["김가인","김은진","민서후","박규원","백민준","소형호","염혜수","권율","이서준","이시현","이우현","이윤호","이한솔","임소율","정해연","김주현","최준영","한준빈","홍의서"],
@@ -396,26 +396,35 @@ function switchMode(mode) {
 
 // ── 데이터 ──
 function loadAll() {
-  Promise.all([
-    fetch(GAS_URL + "?action=settings").then(function(r) { return r.json(); }),
-    fetch(GAS_URL + "?action=records").then(function(r) { return r.json(); }),
-    fetch(GAS_URL + "?action=roster").then(function(r) { return r.json(); })
-  ]).then(function(res) {
-    allSettings = res[0] || [];
-    allRecords = res[1] || [];
-    // 명단 동기화
-    if (res[2] && res[2].roster) {
-      var serverRoster = res[2].roster;
-      Object.keys(serverRoster).forEach(function(cls) {
-        ROSTER[cls] = serverRoster[cls];
-      });
-    }
-    renderTabs();
-    refresh();
-  }).catch(function() {
-    showToast("데이터 불러오기 실패. 새로고침해 주세요.");
-    refresh();
-  });
+  var loaded = 0;
+  function checkDone() {
+    loaded++;
+    if (loaded >= 3) { renderTabs(); refresh(); }
+  }
+
+  fetch(GAS_URL + "?action=settings")
+    .then(function(r) { return r.json(); })
+    .then(function(data) { allSettings = data || []; checkDone(); })
+    .catch(function() { checkDone(); });
+
+  fetch(GAS_URL + "?action=records")
+    .then(function(r) { return r.json(); })
+    .then(function(data) { allRecords = data || []; checkDone(); })
+    .catch(function() { checkDone(); });
+
+  fetch(GAS_URL + "?action=roster")
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data && data.roster) {
+        Object.keys(data.roster).forEach(function(cls) {
+          if (data.roster[cls] && data.roster[cls].length > 0) {
+            ROSTER[cls] = data.roster[cls];
+          }
+        });
+      }
+      checkDone();
+    })
+    .catch(function() { checkDone(); });
 }
 
 function refresh() {
@@ -564,7 +573,7 @@ function renderAsgnList() {
     return;
   }
   list.innerHTML = "";
-  cs.forEach(function(s) {
+  cs.forEach(function(s, idx) {
     var now = new Date();
     var dl = new Date(s.deadline);
     var overdue = now > dl;
@@ -572,15 +581,15 @@ function renderAsgnList() {
     div.className = "asgn-item";
     div.innerHTML =
       '<div style="flex:1"><div class="asgn-name">' + (ASGN_LABELS[s.type] || s.type) + " " + s.detail + '</div>' +
-      '<div class="asgn-deadline' + (overdue ? ' overdue' : '') + '" id="dl_' + i + '">마감: ' + fmtDL(s.deadline) + (overdue ? ' (기한 지남)' : '') + '</div>' +
-      '<div id="edit_' + i + '" style="display:none;margin-top:6px">' +
-        '<input type="date" id="editDate_' + i + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px">' +
-        '<input type="time" id="editTime_' + i + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px;margin-left:4px">' +
-        '<button style="margin-left:4px;padding:6px 12px;background:#34c759;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer" onclick="saveDeadline(' + i + ')">저장</button>' +
-        '<button style="margin-left:4px;padding:6px 8px;background:#f5f5f7;color:#1d1d1f;border:none;border-radius:6px;font-size:12px;cursor:pointer" onclick="cancelEdit(' + i + ')">취소</button>' +
+      '<div class="asgn-deadline' + (overdue ? ' overdue' : '') + '" id="dl_' + idx + '">마감: ' + fmtDL(s.deadline) + (overdue ? ' (기한 지남)' : '') + '</div>' +
+      '<div id="edit_' + idx + '" style="display:none;margin-top:6px">' +
+        '<input type="date" id="editDate_' + idx + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px">' +
+        '<input type="time" id="editTime_' + idx + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px;margin-left:4px">' +
+        '<button style="margin-left:4px;padding:6px 12px;background:#34c759;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer" onclick="saveDeadline(' + idx + ')">저장</button>' +
+        '<button style="margin-left:4px;padding:6px 8px;background:#f5f5f7;color:#1d1d1f;border:none;border-radius:6px;font-size:12px;cursor:pointer" onclick="cancelEdit(' + idx + ')">취소</button>' +
       '</div></div>' +
       '<div style="display:flex;gap:6px">' +
-        '<button class="del-btn" style="background:#f0f5ff;color:#0071e3;border-color:#cde" onclick="editDeadline(' + i + ')">기한 수정</button>' +
+        '<button class="del-btn" style="background:#f0f5ff;color:#0071e3;border-color:#cde" onclick="editDeadline(' + idx + ')">기한 수정</button>' +
         '<button class="del-btn" onclick="delAsgn(\'' + s.type + "','" + s.detail + '\')">삭제</button>' +
       '</div>';
     list.appendChild(div);
@@ -756,7 +765,8 @@ function showSubmitMsg(text, type) {
 // 제출 현황
 // ══════════════════════════════════
 function renderStatus() {
-  var students = ROSTER[currentClass];
+  try {
+  var students = ROSTER[currentClass] || [];
   var cs = allSettings.filter(function(s) { return s.className === currentClass; });
   var cr = allRecords.filter(function(r) { return r.className === currentClass; });
   var content = document.getElementById("statusContent");
@@ -816,20 +826,29 @@ function renderStatus() {
   // missingByStudent를 전역에 저장
   window._missingByStudent = missingByStudent;
 
-  // 미제출자
+  // 미제출자 — 학생 단위로 묶기
   var ms = document.getElementById("missingSection");
   var ml = document.getElementById("missingList");
-  if (missingList.length > 0) {
+
+  // 학생별 미제출 과제 모으기
+  var missingByName = {};
+  missingList.forEach(function(m) {
+    if (!missingByName[m.name]) missingByName[m.name] = [];
+    var label = (ASGN_LABELS[m.type] || m.type) + " " + m.detail;
+    if (missingByName[m.name].indexOf(label) === -1) missingByName[m.name].push(label);
+  });
+
+  var missingNames = Object.keys(missingByName);
+  if (missingNames.length > 0) {
     ms.style.display = "block";
     ml.innerHTML = "";
-    missingList.forEach(function(m) {
-      var label = (ASGN_LABELS[m.type] || m.type) + " " + m.detail;
-      var dlText = fmtDL(m.deadline);
-      var msgText = m.name + " 학생, " + label + "이 아직 미제출입니다. (마감: " + dlText + ") 확인 부탁드립니다.";
+    missingNames.forEach(function(name) {
+      var labels = missingByName[name];
+      var msgText = buildMsg(name, labels);
       var div = document.createElement("div");
       div.className = "missing-item";
       div.innerHTML =
-        '<div><span class="name">' + m.name + '</span> <span class="asgn">' + label + (m.overdue ? ' ⚠️기한초과' : '') + '</span></div>' +
+        '<div><span class="name">' + name + '</span> <span class="asgn">' + labels.join(", ") + '</span></div>' +
         '<button class="copy-btn" onclick="copyMsg(this)" data-msg="' + msgText.replace(/"/g, '&quot;') + '">복사</button>';
       ml.appendChild(div);
     });
@@ -839,6 +858,9 @@ function renderStatus() {
 
   document.getElementById("bulkResult").style.display = "none";
   document.getElementById("copyAllBtn").style.display = "none";
+  } catch(err) {
+    document.getElementById("statusContent").innerHTML = '<div class="card"><p style="text-align:center;color:#e03131;padding:20px">로딩 오류. 새로고침해 주세요.</p></div>';
+  }
 }
 
 // ── 독촉 ──
@@ -1093,7 +1115,67 @@ function renderKatalkResult() {
   }
 
   resultDiv.style.display = "block";
+
+  // 미등록 과제 감지
+  var unregistered = [];
+  var unregSeen = {};
+  parsedEntries.forEach(function(e) {
+    var exists = allSettings.some(function(s) {
+      return s.className === e.className && s.type === e.type && s.detail === e.detail;
+    });
+    var key = e.type + "|" + e.detail;
+    if (!exists && !unregSeen[key]) {
+      unregSeen[key] = true;
+      // 이 과제가 가능한 반 목록
+      var possibleClasses = [];
+      Object.keys(CLASS_ASGN).forEach(function(cls) {
+        if (CLASS_ASGN[cls].indexOf(e.type) !== -1) possibleClasses.push(cls);
+      });
+      unregistered.push({ type: e.type, detail: e.detail, classes: possibleClasses });
+    }
+  });
+
+  parsed.innerHTML = "";
+
+  // 미등록 과제 등록 폼
+  if (unregistered.length > 0) {
+    var formHtml = '<div style="background:#fff8e6;border-radius:10px;padding:16px;margin-bottom:16px">' +
+      '<div style="font-weight:700;font-size:15px;margin-bottom:10px">📌 미등록 과제 발견 — 등록이 필요합니다</div>';
+
+    unregistered.forEach(function(u, idx) {
+      var label = (ASGN_LABELS[u.type] || u.type) + " " + u.detail;
+      formHtml += '<div style="background:#fff;border-radius:8px;padding:12px;margin-bottom:10px">' +
+        '<div style="font-weight:600;margin-bottom:8px">' + label + '</div>' +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">' +
+          '<div><span class="form-label">등록할 반</span><div style="display:flex;gap:6px;flex-wrap:wrap">';
+
+      u.classes.forEach(function(cls) {
+        formHtml += '<label style="font-size:13px;display:flex;align-items:center;gap:4px;cursor:pointer">' +
+          '<input type="checkbox" checked data-unreg="' + idx + '" data-cls="' + cls + '"> ' + cls + '</label>';
+      });
+
+      formHtml += '</div></div>' +
+          '<div><span class="form-label">마감 날짜</span>' +
+            '<input type="date" id="unregDate_' + idx + '" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px"></div>' +
+          '<div><span class="form-label">마감 시각</span>' +
+            '<input type="time" id="unregTime_' + idx + '" value="23:00" style="padding:6px 8px;border:1.5px solid #d2d2d7;border-radius:6px;font-size:13px"></div>' +
+        '</div></div>';
+    });
+
+    formHtml += '<button style="width:100%;padding:10px;background:#e08600;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer" onclick="registerUnregistered()">📋 과제 등록 후 제출 처리</button></div>';
+
+    parsed.innerHTML = formHtml;
+    window._unregistered = unregistered;
+    return;
+  }
+
+  // 모든 과제가 등록되어 있으면 제출 인식 결과 표시
+  showParsedList(parsed);
+}
+
+function showParsedList(parsed) {
   document.getElementById("katalkResultTitle").textContent = "인식 결과 (" + parsedEntries.length + "건)";
+  if (!parsed) parsed = document.getElementById("katalkParsed");
   parsed.innerHTML = "";
 
   parsedEntries.forEach(function(e, i) {
@@ -1105,6 +1187,49 @@ function renderKatalkResult() {
       (e.summary ? ' <span style="color:#1d1d1f;font-weight:600">· ' + e.summary + '</span>' : '') + '</div></div>' +
       '<button class="parsed-remove" onclick="removeParsed(' + i + ')">제외</button>';
     parsed.appendChild(div);
+  });
+}
+
+function registerUnregistered() {
+  var unregs = window._unregistered || [];
+  var items = [];
+
+  for (var idx = 0; idx < unregs.length; idx++) {
+    var u = unregs[idx];
+    var date = document.getElementById("unregDate_" + idx).value;
+    var time = document.getElementById("unregTime_" + idx).value;
+
+    if (!date || !time) {
+      showToast("마감 날짜와 시각을 모두 입력하세요.");
+      return;
+    }
+
+    var deadline = date + "T" + time + ":00";
+
+    // 체크된 반 수집
+    var checkboxes = document.querySelectorAll('input[data-unreg="' + idx + '"]:checked');
+    checkboxes.forEach(function(cb) {
+      items.push({ className: cb.dataset.cls, type: u.type, detail: u.detail, deadline: deadline });
+    });
+  }
+
+  if (items.length === 0) { showToast("등록할 반을 선택하세요."); return; }
+
+  showToast("과제 등록 중...");
+
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ action: "saveAssignments", items: items })
+  }).then(function() {
+    // 로컬 데이터에도 추가
+    items.forEach(function(item) {
+      allSettings.push(item);
+    });
+    showToast("✅ 과제 등록 완료!");
+    // 이제 제출 인식 결과 표시
+    var parsed = document.getElementById("katalkParsed");
+    showParsedList(parsed);
   });
 }
 
@@ -1166,7 +1291,7 @@ loadAll();
 // 독촉 문구 템플릿 — 저장/복원/미리보기
 var tplInput = document.getElementById("msgTemplate");
 var savedTpl = localStorage.getItem("hw_template");
-if (savedTpl) tplInput.value = savedTpl;
+if (savedTpl && savedTpl.indexOf("(이름)") !== -1) tplInput.value = savedTpl;
 updatePreview();
 
 tplInput.addEventListener("input", function() {
