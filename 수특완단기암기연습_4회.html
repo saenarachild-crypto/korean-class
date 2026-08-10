@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>수특완 단기 암기 훈련</title>
+<title>김현석 국어 · 수특완 단기 암기 연습 4회</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김현석 국어 · 수특완 단기 암기 연습 4회">
+  <meta property="og:description" content="⏰ 제출 기한: 8월 14일(금) 밤 11시까지 · 전 지문 100점 완등">
+  <meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/logo.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#faf6f3;padding:16px;max-width:620px;margin:0 auto;color:#2c1518;-webkit-text-size-adjust:100%}
@@ -232,7 +238,15 @@
 
   function renderPassageText(text) {
     if(!text) return "";
-    var paragraphs = text.split(/\n\s*\n/);
+    var normalized = (text || '').replace(/([.!?])\s{2,}/g, "$1
+
+").replace(/([^
+])\s{3,}/g, "$1
+
+");
+    var paragraphs = normalized.split(/
+\s*
+/);
     var html = "";
     paragraphs.forEach(function(pRaw) {
       var p = pRaw.trim();
@@ -251,8 +265,7 @@
     return html;
   }
 
-/* ===== 지문 데이터 (회차별 교체 지점) ===== */
-  var PASSAGES = [
+var PASSAGES = [
   {
     pid: "SK1-03-1",
     title: "[독서] 유니버설 디자인과 인클루시브 디자인",
@@ -374,7 +387,7 @@
       ["복잡계 경제학은 경제 주체가 언제나 합리적 선택을 한다는 명제를 진리로 본다.", false],
       ["복잡계 경제학은 현대 경제를 동적으로 변화하는 복잡한 시스템으로 파악한다.", true],
       ["복잡계 경제학에 따르면 경제의 비정형성으로 인해 미래를 확실히 예견하기 어렵다.", true],
-      ["전통 경제학은 완벽한 정형적 모델과 확실성에 기초한 예측을 중시하였다.", true],
+      ["전통 경제학은 완벽한 정형적 모델과 확실성에 기초한 예측을 중시하였다.", True],
       ["현대 경제에서는 불확실성과 변화 가능성에 대응하는 능력이 필수적이다.", true]
     ],
     cloze: [
@@ -432,7 +445,6 @@
     ]
   }
 ];
-/* ===== 지문 데이터 끝 ===== */
 
   var LS = "machimnae_memory_" + ROUND;
   var store = { name: "", prog: {}, attempts: {} };
@@ -689,11 +701,18 @@
     var doneKeys = Object.keys(store.prog).filter(function(k){ return store.prog[k] === 100; });
     if(doneKeys.length === 0) return showToast("완료한 지문이 없습니다. 100점을 달성하세요!");
 
-    var text = "[수특완 단기 암기 훈련 완료 보고서 · " + ROUND + "]\n학생 이름: " + (store.name || '미입력') + "\n\n";
+    var text = "[수특완 단기 암기 훈련 완료 보고서 · " + ROUND + "]
+학생 이름: " + (store.name || '미입력') + "
+
+";
     doneKeys.forEach(function(pid){
       var p = PASSAGES.find(function(x){ return x.pid === pid; });
       if(p){
-        text += "✅ " + p.title + "\n - 시도 횟수: " + store.attempts[pid] + "회\n - 결과: PASS (100점)\n\n";
+        text += "✅ " + p.title + "
+ - 시도 횟수: " + store.attempts[pid] + "회
+ - 결과: PASS (100점)
+
+";
       }
     });
     text += "누적 완료: " + doneKeys.length + " / " + PASSAGES.length + " 지문 (" + Math.round((doneKeys.length / PASSAGES.length) * 100) + "%)";
