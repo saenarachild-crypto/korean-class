@@ -1297,12 +1297,23 @@ function extractNameFromLabel(line) {
   return null;
 }
 
-// 명단에서 이름 매칭 (여러 반 소속 가능)
+// 명단에서 이름 매칭 (여러 반 소속 가능, 유사 이름 매칭 포함)
 function findStudentInRoster(name) {
   var allStudents = getAllStudents();
+  // 1) 정확 매칭
   var results = [];
   allStudents.forEach(function(s) {
     if (s.name === name) results.push(s);
+  });
+  if (results.length > 0) return results;
+
+  // 2) 유사 매칭 — 끝 2글자 같으면 매칭 (빈서후→민서후)
+  allStudents.forEach(function(s) {
+    if (name.length >= 2 && s.name.length >= 2 &&
+        s.name.slice(-2) === name.slice(-2) &&
+        s.name.length === name.length) {
+      results.push(s);
+    }
   });
   return results;
 }
@@ -1312,6 +1323,8 @@ function parseKatalk() {
   if (!text) { showToast("카톡 메시지를 붙여넣으세요."); return; }
 
   parsedEntries = [];
+  parseDiag = [];
+  window._lastKatalkText = text;
 
   // 카톡 타임스탬프 제거
   text = text.replace(/\d{4}년\s*\d{1,2}월\s*\d{1,2}일\s*[오전후]+\s*\d{1,2}:\d{2},?\s*/g, "");
@@ -1358,6 +1371,8 @@ function parseKatalk() {
   renderKatalkResult();
 }
 
+var parseDiag = []; // 진단 정보
+
 function parseBlocks(blocks) {
   blocks.forEach(function(block) {
     block = block.trim();
@@ -1369,12 +1384,14 @@ function parseBlocks(blocks) {
     // 2) 학생 이름 인식 — 라벨 패턴 먼저
     var studentName = null;
     var studentMatches = [];
+    var foundLabel = null;
     var lines = block.split("\n");
 
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
       var labelName = extractNameFromLabel(line);
       if (labelName) {
+        foundLabel = labelName;
         studentMatches = findStudentInRoster(labelName);
         if (studentMatches.length > 0) { studentName = studentMatches[0].name; break; }
       }
@@ -1393,7 +1410,16 @@ function parseBlocks(blocks) {
       }
     }
 
-    if (!studentName || studentMatches.length === 0 || asgns.length === 0) return;
+    // 진단 정보 저장
+    if (!studentName || studentMatches.length === 0 || asgns.length === 0) {
+      parseDiag.push({
+        foundName: foundLabel,
+        foundAsgns: asgns,
+        nameMatched: studentName,
+        reason: !foundLabel ? "이름 없음" : (!studentName ? "명단에 없음 (" + foundLabel + ")" : "과제 인식 실패")
+      });
+      return;
+    }
 
     asgns.forEach(function(a) {
       studentMatches.forEach(function(si) {
@@ -1414,19 +1440,42 @@ function renderKatalkResult() {
     resultDiv.style.display = "block";
     document.getElementById("katalkResultTitle").textContent = "인식 결과 (0건)";
 
-    // 부분 복사 감지
-    var hint = "";
-    if (text.match(/PASS|시도\s*횟수|누적\s*완료/)) {
-      hint = "단기 암기 보고서 내용은 있지만, <b>헤더와 학생 이름이 빠져 있습니다.</b><br>보고서 맨 위 <b>[수특완 단기 암기 훈련 완료 보고서 · ○회]</b> 부분부터 복사해 주세요.";
-    } else if (text.match(/독서\s*오답|문학\s*오답|위험\s*문항|○인데|✕인데|△인데/)) {
-      hint = "시뮬/주간과제 보고서 내용은 있지만, <b>헤더와 학생 이름이 빠져 있습니다.</b><br>보고서 맨 위 <b>━━━ 김현석 국어 · ○○ ━━━</b> 부분부터 복사해 주세요.";
-    } else if (text.match(/총점|정답률|채점\s*회차/)) {
-      hint = "보고서 결과 부분만 있고, <b>헤더와 학생 이름이 빠져 있습니다.</b><br>보고서 맨 위부터 전체를 복사해 주세요.";
+    var html = '';
+
+    // 진단 정보 표시
+    if (parseDiag.length > 0) {
+      parseDiag.forEach(function(d) {
+        if (d.foundName && !d.nameMatched) {
+          html += '<div class="parsed-unknown">⚠️ 이름 <b>"' + d.foundName + '"</b>이 명단에 없습니다. 학생이 이름을 잘못 입력했을 수 있어요. 아래 수동 등록을 이용하세요.</div>';
+        } else if (d.foundAsgns && d.foundAsgns.length === 0) {
+          html += '<div class="parsed-unknown">⚠️ 과제 종류를 인식하지 못했습니다. 보고서 전체를 복사했는지 확인해 주세요.</div>';
+        } else if (!d.foundName) {
+          html += '<div class="parsed-unknown">⚠️ 학생 이름을 찾지 못했습니다. 보고서 맨 위부터 전체를 복사해 주세요.</div>';
+        }
+      });
+
+      // 과제가 감지되었으면 수동 등록 과제 드롭다운 자동 선택
+      var firstDiag = parseDiag[0];
+      if (firstDiag.foundAsgns && firstDiag.foundAsgns.length > 0) {
+        var a = firstDiag.foundAsgns[0];
+        setTimeout(function() {
+          var selAsgn = document.getElementById("manualAsgn");
+          if (selAsgn) {
+            var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+            for (var i = 0; i < cs.length; i++) {
+              if (cs[i].type === a.type && detailMatch(cs[i].detail, a.detail)) {
+                selAsgn.value = i;
+                break;
+              }
+            }
+          }
+        }, 100);
+      }
     } else {
-      hint = "학생 이름과 과제명(단기 암기, 시뮬, 주간 과제 등)이 포함되어 있는지 확인해 주세요.";
+      html = '<div class="parsed-unknown">인식된 제출 내역이 없습니다. 학생 이름과 과제명이 포함되어 있는지 확인하거나 수동 등록을 이용해 주세요.</div>';
     }
 
-    parsed.innerHTML = '<div class="parsed-unknown">' + hint + '</div>';
+    parsed.innerHTML = html;
     return;
   }
 
