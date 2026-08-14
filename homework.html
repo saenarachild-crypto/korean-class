@@ -182,6 +182,15 @@
 
   .loading { text-align: center; padding: 40px; color: #86868b; font-size: 15px; }
 
+  /* 주차 탭 */
+  .week-tab {
+    padding: 8px 14px; background: #fff; border: 1.5px solid #d2d2d7;
+    border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+  }
+  .week-tab.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .week-tab .week-count { font-weight: 400; opacity: 0.7; }
+
   /* 카톡 파싱 결과 */
   .parsed-item {
     display: flex; justify-content: space-between; align-items: center;
@@ -215,7 +224,6 @@
   <div class="mode-tabs">
     <div class="mode-tab active" data-mode="settings" onclick="switchMode('settings')">📋 과제 등록</div>
     <div class="mode-tab" data-mode="katalk" onclick="switchMode('katalk')">📱 카톡 등록</div>
-    <div class="mode-tab" data-mode="submit" onclick="switchMode('submit')">📝 과제 제출</div>
     <div class="mode-tab" data-mode="status" onclick="switchMode('status')">📊 제출 현황</div>
   </div>
 
@@ -290,9 +298,26 @@
         </div>
       </div>
     </div>
+    <div class="card">
+      <h3>✏️ 수동 등록</h3>
+      <p style="font-size:13px;color:#86868b;margin-bottom:12px">카톡 인식이 안 될 때 직접 등록하세요.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <span class="form-label">이름</span>
+          <select id="manualName" style="width:120px">
+            <option value="">선택</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <span class="form-label">과제</span>
+          <select id="manualAsgn" style="width:200px">
+            <option value="">선택</option>
+          </select>
+        </div>
+        <button class="add-btn" onclick="manualRegister()">등록</button>
+      </div>
+    </div>
   </div>
-
-  <!-- ════════ 과제 제출 ════════ -->
   <div id="submitView" style="display:none">
     <div class="submit-card">
       <h3>📝 과제 제출</h3>
@@ -321,6 +346,7 @@
       <textarea id="msgTemplate" rows="2" style="width:100%;padding:12px;border:1.5px solid #d2d2d7;border-radius:10px;font-size:15px;font-family:inherit;resize:vertical">(이름)야, (과목명) 미제출이다. 얼른 해서 내라. 밀리면 끝이 없다.</textarea>
       <div style="margin-top:8px;font-size:12px;color:#86868b">미리보기: <span id="templatePreview" style="color:#1d1d1f"></span></div>
     </div>
+    <div id="weekTabs" style="display:flex;gap:6px;margin-bottom:16px;overflow-x:auto"></div>
     <div id="statusContent"><div class="loading">데이터 불러오는 중...</div></div>
     <div class="missing-section" id="missingSection" style="display:none">
       <h2>⚠️ 미제출자</h2>
@@ -348,7 +374,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-var GAS_URL = "https://script.google.com/macros/s/AKfycbw2xt2c70qKA3fBl_ENy8OljmKxILt8tCIjOlpe0SXmBPxE4y34sTy4FRbU3u_gwfTp/exec";
+var GAS_URL = "https://script.google.com/macros/s/AKfycbw-1cMdDnhuIh9kTOplMi8IcdtFgDdFr5apf92XOK2whPuwgkB284fWaO-uSWDjj_GG/exec";
 
 var ROSTER = {
   "1618수능국어반": ["김가인","김은진","민서후","박규원","백민준","소형호","염혜수","권율","이서준","이시현","이우현","이윤호","이한솔","임소율","정해연","김주현","최준영","한준빈","홍의서"],
@@ -402,22 +428,78 @@ function switchMode(mode) {
   refresh();
 }
 
+// ── 로컬 캐시 ──
+function saveCache() {
+  try {
+    localStorage.setItem("hw_records", JSON.stringify(allRecords));
+    localStorage.setItem("hw_settings", JSON.stringify(allSettings));
+  } catch(e) {}
+}
+
+function loadCache() {
+  try {
+    var r = localStorage.getItem("hw_records");
+    var s = localStorage.getItem("hw_settings");
+    if (r) allRecords = JSON.parse(r);
+    if (s) allSettings = JSON.parse(s);
+  } catch(e) {}
+}
+
+function mergeRecords(serverRecords) {
+  // 서버 기록 + 로컬 기록 합치기 (중복 제거)
+  var merged = serverRecords.slice();
+  var keys = {};
+  merged.forEach(function(r) { keys[r.className + "|" + r.name + "|" + r.type + "|" + r.detail] = true; });
+  allRecords.forEach(function(r) {
+    var k = r.className + "|" + r.name + "|" + r.type + "|" + r.detail;
+    if (!keys[k]) { merged.push(r); keys[k] = true; }
+  });
+  return merged;
+}
+
+function mergeSettings(serverSettings) {
+  var merged = serverSettings.slice();
+  var keys = {};
+  merged.forEach(function(s) { keys[s.className + "|" + s.type + "|" + s.detail] = true; });
+  allSettings.forEach(function(s) {
+    var k = s.className + "|" + s.type + "|" + s.detail;
+    if (!keys[k]) { merged.push(s); keys[k] = true; }
+  });
+  return merged;
+}
+
 // ── 데이터 ──
 function loadAll() {
+  // 먼저 로컬 캐시 로드 (즉시 표시)
+  loadCache();
+  renderTabs();
+  refresh();
+
+  // 서버에서 최신 데이터 가져오기
   var loaded = 0;
   function checkDone() {
     loaded++;
-    if (loaded >= 3) { renderTabs(); refresh(); }
+    if (loaded >= 3) {
+      saveCache();
+      renderTabs();
+      refresh();
+    }
   }
 
   fetch(GAS_URL + "?action=settings")
     .then(function(r) { return r.json(); })
-    .then(function(data) { allSettings = data || []; checkDone(); })
+    .then(function(data) {
+      if (data && data.length > 0) allSettings = mergeSettings(data);
+      checkDone();
+    })
     .catch(function() { checkDone(); });
 
   fetch(GAS_URL + "?action=records")
     .then(function(r) { return r.json(); })
-    .then(function(data) { allRecords = data || []; checkDone(); })
+    .then(function(data) {
+      if (data && data.length > 0) allRecords = mergeRecords(data);
+      checkDone();
+    })
     .catch(function() { checkDone(); });
 
   fetch(GAS_URL + "?action=roster")
@@ -439,8 +521,54 @@ function refresh() {
   updateTypeDropdown();
   renderAsgnList();
   renderStudentList();
+  updateManualForm();
   if (currentMode === "submit") renderSubmitForm();
   if (currentMode === "status") renderStatus();
+}
+
+// ══════════════════════════════════
+// 수동 등록
+// ══════════════════════════════════
+function updateManualForm() {
+  var selName = document.getElementById("manualName");
+  var selAsgn = document.getElementById("manualAsgn");
+  if (!selName || !selAsgn) return;
+
+  selName.innerHTML = '<option value="">이름 선택</option>';
+  (ROSTER[currentClass] || []).forEach(function(n) {
+    var opt = document.createElement("option");
+    opt.value = n; opt.textContent = n;
+    selName.appendChild(opt);
+  });
+
+  selAsgn.innerHTML = '<option value="">과제 선택</option>';
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  cs.forEach(function(s, i) {
+    var opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = (ASGN_LABELS[s.type] || s.type) + " " + s.detail;
+    selAsgn.appendChild(opt);
+  });
+}
+
+function manualRegister() {
+  var name = document.getElementById("manualName").value;
+  var asgnIdx = document.getElementById("manualAsgn").value;
+  if (!name || asgnIdx === "") { showToast("이름과 과제를 선택하세요."); return; }
+
+  var cs = allSettings.filter(function(s) { return s.className === currentClass; });
+  var s = cs[parseInt(asgnIdx)];
+
+  showToast("등록 중...");
+  fetch(GAS_URL, {
+    method: "POST", mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({ className: currentClass, name: name, type: s.type, detail: s.detail })
+  }).then(function() {
+    allRecords.push({ className: currentClass, name: name, type: s.type, detail: s.detail, timestamp: new Date().toISOString(), status: "제출완료", summary: "" });
+    saveCache();
+    showToast("✅ " + name + " — " + (ASGN_LABELS[s.type] || s.type) + " " + s.detail + " 등록 완료!");
+  });
 }
 
 // ══════════════════════════════════
@@ -565,6 +693,7 @@ function addAssignment() {
     })
   }).then(function() {
     allSettings.push({ className: currentClass, type: type, detail: detail, deadline: deadline });
+    saveCache();
     renderAsgnList();
     document.getElementById("addDetail").value = "";
     showToast("✅ 과제 등록 완료!");
@@ -805,6 +934,60 @@ function showSubmitMsg(text, type) {
 // ══════════════════════════════════
 // 제출 현황
 // ══════════════════════════════════
+var currentWeekFilter = "all";
+
+function getWeekLabel(dateStr) {
+  var d = new Date(dateStr);
+  if (isNaN(d.getTime())) return "기타";
+  var month = d.getMonth() + 1;
+  // 해당 월 1일의 요일
+  var firstDay = new Date(d.getFullYear(), d.getMonth(), 1).getDay();
+  // 주차 계산: (날짜 + 1일의요일 - 1) / 7 올림
+  var weekNum = Math.ceil((d.getDate() + firstDay) / 7);
+  return month + "월 " + weekNum + "주차";
+}
+
+function renderWeekTabs(cs) {
+  var weekTabs = document.getElementById("weekTabs");
+  var weeks = {};
+  cs.forEach(function(s) {
+    var w = getWeekLabel(s.deadline);
+    if (!weeks[w]) weeks[w] = 0;
+    weeks[w]++;
+  });
+
+  var weekKeys = Object.keys(weeks);
+
+  // 날짜순 정렬
+  weekKeys.sort(function(a, b) {
+    var ma = a.match(/(\d+)월\s*(\d+)주/);
+    var mb = b.match(/(\d+)월\s*(\d+)주/);
+    if (ma && mb) return (parseInt(ma[1])*10 + parseInt(ma[2])) - (parseInt(mb[1])*10 + parseInt(mb[2]));
+    return 0;
+  });
+
+  weekTabs.innerHTML = "";
+  // 전체 탭 (2주 이상일 때만)
+  if (weekKeys.length >= 2) {
+    var allTab = document.createElement("div");
+    allTab.className = "week-tab" + (currentWeekFilter === "all" ? " active" : "");
+    allTab.textContent = "전체 (" + cs.length + ")";
+    allTab.onclick = function() { currentWeekFilter = "all"; renderStatus(); };
+    weekTabs.appendChild(allTab);
+  } else {
+    // 1주만 있으면 해당 주차로 고정
+    if (weekKeys.length === 1) currentWeekFilter = weekKeys[0];
+  }
+
+  weekKeys.forEach(function(w) {
+    var tab = document.createElement("div");
+    tab.className = "week-tab" + (currentWeekFilter === w ? " active" : "");
+    tab.innerHTML = w + ' <span class="week-count">(' + weeks[w] + ')</span>';
+    tab.onclick = function() { currentWeekFilter = w; renderStatus(); };
+    weekTabs.appendChild(tab);
+  });
+}
+
 function renderStatus() {
   try {
   var students = ROSTER[currentClass] || [];
@@ -812,19 +995,68 @@ function renderStatus() {
   var cr = allRecords.filter(function(r) { return r.className === currentClass; });
   var content = document.getElementById("statusContent");
 
+  // 제출 기록에는 있지만 과제 설정에서 삭제된 과거 과제 복원
+  // detailMatch로 중복 체크 (회차/주차 차이 무시)
+  function csHas(type, detail) {
+    return cs.some(function(s) { return s.type === type && detailMatch(s.detail, detail); });
+  }
+  var pastAsgn = {};
+  cr.forEach(function(r) {
+    var key = r.type + "|" + r.detail;
+    if (!csHas(r.type, r.detail) && !pastAsgn[key]) {
+      pastAsgn[key] = true;
+      cs.push({
+        className: currentClass,
+        type: r.type,
+        detail: r.detail,
+        deadline: r.timestamp,
+        isPast: true
+      });
+    }
+  });
+
+  // 제출 기록 매핑 — detailMatch로 매칭
+  var submitMap = {};
+  cr.forEach(function(r) {
+    // 정확히 일치하는 키
+    submitMap[r.name + "|" + r.type + "|" + r.detail] = { timestamp: r.timestamp, summary: r.summary || "" };
+  });
+
+  function getSubmit(name, type, detail) {
+    // 정확 매칭 먼저
+    var exact = submitMap[name + "|" + type + "|" + detail];
+    if (exact) return exact;
+    // detailMatch 매칭
+    var found = null;
+    cr.forEach(function(r) {
+      if (r.name === name && r.type === type && detailMatch(r.detail, detail)) {
+        found = { timestamp: r.timestamp, summary: r.summary || "" };
+      }
+    });
+    return found;
+  }
+
   if (cs.length === 0) {
     content.innerHTML = '<div class="card"><p style="text-align:center;color:#86868b;padding:20px">등록된 과제가 없습니다. "과제 등록" 탭에서 먼저 추가하세요.</p></div>';
     document.getElementById("missingSection").style.display = "none";
+    document.getElementById("weekTabs").innerHTML = "";
     return;
   }
 
-  var submitMap = {};
-  cr.forEach(function(r) { submitMap[r.name + "|" + r.type + "|" + r.detail] = { timestamp: r.timestamp, summary: r.summary || "" }; });
+  // 주차 탭 렌더
+  renderWeekTabs(cs);
 
-  var html = '<div class="card"><h3>' + currentClass + ' 제출 현황</h3>';
+  // 주차 필터 적용
+  var filtered = cs;
+  if (currentWeekFilter !== "all") {
+    filtered = cs.filter(function(s) { return getWeekLabel(s.deadline) === currentWeekFilter; });
+  }
+
+  var html = '<div class="card"><h3>' + currentClass + ' 제출 현황' + (currentWeekFilter !== "all" ? ' — ' + currentWeekFilter : '') + '</h3>';
   html += '<div style="overflow-x:auto"><table class="status-table"><thead><tr><th>이름</th>';
-  cs.forEach(function(s) {
-    html += '<th>' + (ASGN_LABELS[s.type] || s.type) + '<br><span style="font-weight:400;font-size:11px">' + s.detail + '</span></th>';
+  filtered.forEach(function(s) {
+    var pastLabel = s.isPast ? '<br><span style="font-weight:400;font-size:10px;color:#e08600">지난 과제</span>' : '';
+    html += '<th>' + (ASGN_LABELS[s.type] || s.type) + '<br><span style="font-weight:400;font-size:11px">' + s.detail + '</span>' + pastLabel + '</th>';
   });
   html += '</tr></thead><tbody>';
 
@@ -836,9 +1068,9 @@ function renderStatus() {
     var studentMissing = [];
     var rowHtml = '<tr>';
 
-    cs.forEach(function(s) {
+    filtered.forEach(function(s) {
       var key = name + "|" + s.type + "|" + s.detail;
-      var rec = submitMap[key];
+      var rec = getSubmit(name, s.type, s.detail);
       if (rec) {
         var st = new Date(rec.timestamp);
         var dl = new Date(s.deadline);
@@ -1081,7 +1313,7 @@ function parseKatalk() {
 
   parsedEntries = [];
 
-  // 카톡 타임스탬프 제거 (예: "2026년 8월 7일 오후 7:35, 이름 :")
+  // 카톡 타임스탬프 제거
   text = text.replace(/\d{4}년\s*\d{1,2}월\s*\d{1,2}일\s*[오전후]+\s*\d{1,2}:\d{2},?\s*/g, "");
 
   // 헤더 패턴으로 보고서 블록 분리
@@ -1092,7 +1324,6 @@ function parseKatalk() {
   if (blocks.length <= 1) {
     var nameSplit = text.split(/(?=(?:학생\s*이름|학생|이름)\s*[:：])/);
     if (nameSplit.length > 1) {
-      // 각 이름 블록 앞의 헤더를 붙여서 복원
       var rebuilt = [];
       var header = "";
       nameSplit.forEach(function(part) {
@@ -1108,6 +1339,26 @@ function parseKatalk() {
 
   if (blocks.length === 0) blocks = [text];
 
+  parseBlocks(blocks);
+
+  // ★ 폴백: 블록 파싱 실패 시 전체 텍스트를 한 블록으로 재시도
+  if (parsedEntries.length === 0) {
+    parseBlocks([text]);
+  }
+
+  // 중복 제거
+  var unique = [];
+  var seen = {};
+  parsedEntries.forEach(function(e) {
+    var key = e.className + "|" + e.name + "|" + e.type + "|" + e.detail;
+    if (!seen[key]) { seen[key] = true; unique.push(e); }
+  });
+  parsedEntries = unique;
+
+  renderKatalkResult();
+}
+
+function parseBlocks(blocks) {
   blocks.forEach(function(block) {
     block = block.trim();
     if (!block) return;
@@ -1145,7 +1396,6 @@ function parseKatalk() {
     if (!studentName || studentMatches.length === 0 || asgns.length === 0) return;
 
     asgns.forEach(function(a) {
-      // 모든 소속 반에서 해당 과제가 가능한 반 찾기
       studentMatches.forEach(function(si) {
         if ((CLASS_ASGN[si.cls] || []).indexOf(a.type) !== -1) {
           var summary = extractSummary(block, a.type);
@@ -1154,17 +1404,6 @@ function parseKatalk() {
       });
     });
   });
-
-  // 중복 제거
-  var unique = [];
-  var seen = {};
-  parsedEntries.forEach(function(e) {
-    var key = e.className + "|" + e.name + "|" + e.type + "|" + e.detail;
-    if (!seen[key]) { seen[key] = true; unique.push(e); }
-  });
-  parsedEntries = unique;
-
-  renderKatalkResult();
 }
 
 function renderKatalkResult() {
@@ -1173,7 +1412,21 @@ function renderKatalkResult() {
 
   if (parsedEntries.length === 0) {
     resultDiv.style.display = "block";
-    parsed.innerHTML = '<div class="parsed-unknown">인식된 제출 내역이 없습니다. 학생 이름과 과제명(단기 암기, 시뮬, 주간 과제 등)이 포함되어 있는지 확인해 주세요.</div>';
+    document.getElementById("katalkResultTitle").textContent = "인식 결과 (0건)";
+
+    // 부분 복사 감지
+    var hint = "";
+    if (text.match(/PASS|시도\s*횟수|누적\s*완료/)) {
+      hint = "단기 암기 보고서 내용은 있지만, <b>헤더와 학생 이름이 빠져 있습니다.</b><br>보고서 맨 위 <b>[수특완 단기 암기 훈련 완료 보고서 · ○회]</b> 부분부터 복사해 주세요.";
+    } else if (text.match(/독서\s*오답|문학\s*오답|위험\s*문항|○인데|✕인데|△인데/)) {
+      hint = "시뮬/주간과제 보고서 내용은 있지만, <b>헤더와 학생 이름이 빠져 있습니다.</b><br>보고서 맨 위 <b>━━━ 김현석 국어 · ○○ ━━━</b> 부분부터 복사해 주세요.";
+    } else if (text.match(/총점|정답률|채점\s*회차/)) {
+      hint = "보고서 결과 부분만 있고, <b>헤더와 학생 이름이 빠져 있습니다.</b><br>보고서 맨 위부터 전체를 복사해 주세요.";
+    } else {
+      hint = "학생 이름과 과제명(단기 암기, 시뮬, 주간 과제 등)이 포함되어 있는지 확인해 주세요.";
+    }
+
+    parsed.innerHTML = '<div class="parsed-unknown">' + hint + '</div>';
     return;
   }
 
@@ -1182,14 +1435,6 @@ function renderKatalkResult() {
   // 미등록 과제 감지
   var unregistered = [];
   var unregSeen = {};
-
-  // 상세 비교 — 숫자만 추출해서 비교 (회차/주차/회 차이 무시)
-  function detailMatch(a, b) {
-    if (a === b) return true;
-    var na = a.replace(/[^\d]/g, "");
-    var nb = b.replace(/[^\d]/g, "");
-    return na === nb && na.length > 0;
-  }
 
   parsedEntries.forEach(function(e) {
     var exists = allSettings.some(function(s) {
@@ -1332,6 +1577,7 @@ function registerUnregistered() {
     items.forEach(function(item) {
       allSettings.push(item);
     });
+    saveCache();
     showToast("✅ 과제 등록 완료!");
     // 이제 제출 인식 결과 표시
     var parsed = document.getElementById("katalkParsed");
@@ -1360,6 +1606,7 @@ function registerKatalk() {
       allRecords.push({ className: e.className, name: e.name, type: e.type, detail: e.detail, timestamp: new Date().toISOString(), status: "제출완료", summary: e.summary || "" });
       done++;
       if (done >= pending) {
+        saveCache();
         showToast("✅ " + done + "건 등록 완료!");
         clearKatalk();
       }
@@ -1374,6 +1621,14 @@ function clearKatalk() {
 }
 
 // ── 유틸 ──
+// 상세 비교 — 숫자만 추출해서 비교 (회차/주차/회 차이 무시)
+function detailMatch(a, b) {
+  if (a === b) return true;
+  var na = (a || "").replace(/[^\d]/g, "");
+  var nb = (b || "").replace(/[^\d]/g, "");
+  return na === nb && na.length > 0;
+}
+
 function fmtDL(d) {
   if (!d) return "";
   var dt = new Date(d);
