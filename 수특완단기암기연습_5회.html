@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>수특완 단기 암기 훈련 5회</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#faf6f3;padding:16px;max-width:620px;margin:0 auto;color:#2c1518;-webkit-text-size-adjust:100%}
+  .header{background:linear-gradient(135deg,#7c2c3e,#5a1f2c);color:#fff;padding:18px 16px;border-radius:20px;text-align:center;margin-bottom:20px;box-shadow:0 4px 12px rgba(124,44,62,.15)}
+  .header h2{font-size:19px;font-weight:800;letter-spacing:-.5px}
+  .header .sub{font-size:12px;margin-top:6px;color:#f0d8dd;letter-spacing:-.2px;line-height:1.6}
+  .info-card,.section{background:#fff;border-radius:20px;padding:18px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,.04);border:1px solid #f0e6e8}
+  label.lb{font-weight:700;color:#7c2c3e;display:block;margin-bottom:6px;font-size:14px;letter-spacing:-.3px}
+  input[type=text],select{width:100%;padding:13px 14px;border:1.5px solid #d8c8cc;border-radius:14px;font-size:15px;background:#fff;color:#2c1518;font-weight:500;font-family:inherit}
+  input:focus,select:focus{outline:none;border-color:#7c2c3e;box-shadow:0 0 0 3px rgba(124,44,62,.1)}
+  .mt{margin-top:14px}
+  .btn{width:100%;padding:14px;border:none;border-radius:40px;font-weight:700;font-size:15.5px;margin-top:12px;cursor:pointer;transition:all .15s ease;font-family:inherit}
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:#7c2c3e;color:#fff;box-shadow:0 3px 8px rgba(124,44,62,.25)}
+  .btn-primary:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+  .btn-kakao{background:#fee500;color:#3c1e1e;font-weight:800}
+  .btn-warning{background:#ff9f4a;color:#2c1518;font-weight:700}
+  .btn-ghost{background:#fff;border:1.5px solid #d8c8cc;color:#7c2c3e}
+  .row{display:flex;gap:8px}.row>.btn{flex:1}
+  .hidden{display:none}
+  .muted{color:#8c7673;font-size:13px;line-height:1.5;letter-spacing:-.2px}
+  .subjbar{display:flex;gap:6px;margin-bottom:14px}
+  .subjbar button{flex:1;padding:10px 2px;border:1.5px solid #e4d5d8;background:#fff;border-radius:30px;font-size:13px;font-weight:700;color:#a68e92;cursor:pointer;font-family:inherit}
+  .subjbar button.on{background:#7c2c3e;border-color:#7c2c3e;color:#fff;box-shadow:0 2px 6px rgba(124,44,62,.2)}
+  .subjbar button i{font-style:normal;opacity:.75;font-size:11px;margin-left:3px}
+  .steps{display:flex;gap:6px;margin-bottom:16px}
+  .steps .s{flex:1;text-align:center;font-size:11.5px;color:#a68e92;padding:8px 2px;border-radius:30px;background:#f4e9eb;font-weight:700}
+  .steps .s.on{background:#7c2c3e;color:#fff;box-shadow:0 2px 6px rgba(124,44,62,.2)}
+  .timer{font-size:36px;font-weight:800;text-align:center;color:#7c2c3e;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+  .timer.low{color:#d04141;animation:pulse 1s infinite alternate}
+  @keyframes pulse{from{opacity:1}to{opacity:.6}}
+  .tbar{height:7px;background:#f0e2e5;border-radius:6px;overflow:hidden;margin:10px 0 14px}
+  .tbar>i{display:block;height:100%;background:#7c2c3e;width:100%;transition:width 1s linear;border-radius:6px}
+  .passage{background:#fff;border:1.5px solid #e8dcde;border-radius:18px;padding:22px 20px;font-size:15px;color:#221113;max-height:60vh;overflow-y:auto;box-shadow:inset 0 1px 3px rgba(0,0,0,.02)}
+  .passage .ptitle{font-weight:800;color:#7c2c3e;font-size:15px;margin-bottom:14px;padding-bottom:10px;border-bottom:1.5px solid #f0e2e5;letter-spacing:-.3px;overflow:hidden}
+  .passage .psrc{font-weight:600;color:#9e878b;font-size:12.5px;float:right;margin-top:2px}
+  .passage p.para{margin-bottom:1.25rem;line-height:2.0;text-align:justify;text-justify:inter-character;text-indent:.9em;word-break:keep-all;letter-spacing:-.3px;color:#28181a}
+  .passage p.verse{margin-bottom:1.3rem;line-height:1.95;text-indent:0;word-break:keep-all;letter-spacing:-.2px;color:#28181a;white-space:pre-wrap}
+  .passage p.para:last-child,.passage p.verse:last-child{margin-bottom:0}
+  .passage p.foot{font-size:12.5px;color:#8c7673;line-height:1.7;text-indent:0;margin:.4rem 0 0}
+  .passage p.credit{font-size:13px;color:#7c2c3e;font-weight:700;text-align:right;text-indent:0;margin-top:.7rem}
+  .passage p.stage{font-size:13.5px;color:#6b4a50;background:#faf2f4;border-radius:10px;padding:9px 12px;text-indent:0;margin-bottom:1rem;line-height:1.8}
+  .passage .sec-badge{display:inline-block;background:#7c2c3e;color:#fff;font-size:13px;font-weight:800;padding:3px 10px;border-radius:12px;margin:1.2rem 0 .6rem;text-indent:0;letter-spacing:0;box-shadow:0 2px 4px rgba(124,44,62,.15)}
+  .passage .sec-badge:first-child{margin-top:0}
+  .curtain{background:repeating-linear-gradient(45deg,#f8eff1,#f8eff1 14px,#efe2e5 14px,#efe2e5 28px);border:1.5px dashed #cbb2b8;border-radius:18px;padding:48px 16px;text-align:center;color:#8a7075;font-weight:700;font-size:15px;line-height:1.6}
+  .q{padding:16px 0;border-top:1px solid #f5ecee}.q:first-child{border-top:0}
+  .qt{font-weight:700;margin-bottom:12px;font-size:15px;line-height:1.75;color:#2c1518;word-break:keep-all;letter-spacing:-.2px}
+  .ox{display:flex;gap:10px}
+  .ox button{flex:1;padding:12px;border:1.5px solid #d8c8cc;border-radius:40px;background:#fff;font-size:16.5px;font-weight:800;cursor:pointer;color:#2c1518;transition:all .15s ease;font-family:inherit}
+  .ox button.sel{background:#7c2c3e;border-color:#7c2c3e;color:#fff;box-shadow:0 3px 8px rgba(124,44,62,.2)}
+  .boki{background:#fdf6f7;border-left:3px solid #7c2c3e;border-radius:0 12px 12px 0;padding:12px 14px;margin-bottom:12px;font-size:13.5px;line-height:1.85;color:#3d2226;word-break:keep-all}
+  .boki b{display:block;color:#7c2c3e;font-size:11.5px;margin-bottom:6px;letter-spacing:-.2px;font-weight:800}
+  .mcq{padding:18px 0;border-top:1px solid #f5ecee}.mcq:first-child{border-top:0}
+  .mcq .stem{font-weight:800;font-size:15px;line-height:1.7;color:#2c1518;margin-bottom:12px;word-break:keep-all;letter-spacing:-.2px}
+  .opt{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border:1.5px solid #eadfe1;border-radius:14px;margin-bottom:7px;cursor:pointer;background:#fff;transition:all .12s ease}
+  .opt.sel{border-color:#7c2c3e;background:#fdf5f7}
+  .opt .n{font-weight:800;color:#7c2c3e;flex-shrink:0;font-size:15px}
+  .opt .t{flex:1;font-size:14.5px;line-height:1.65;word-break:keep-all;color:#2c1518}
+  .opt.ok{border-color:#1f8a4c;background:#f2faf4}
+  .opt.no{border-color:#d04141;background:#fdeff0}
+  .cloze input{display:inline-block;width:auto;min-width:96px;max-width:240px;padding:6px 10px;font-size:15px;font-weight:700;border:0;border-bottom:2px solid #7c2c3e;border-radius:0;background:#fdf5f7;margin:0 4px;color:#7c2c3e;text-align:center;font-family:inherit}
+  .cloze input:focus{outline:none;background:#fcebed}
+  .clz-line{line-height:2.3;font-size:15px;word-break:keep-all;color:#2c1518}
+  .clz-tag.vocab{background:#e8f1ec;color:#1f6b46}
+  .clz-tag{display:inline-block;background:#f4e9eb;color:#7c2c3e;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:10px;margin-right:7px;vertical-align:2px}
+  .story-box{line-height:2.6;font-size:15px;word-break:keep-all;color:#2c1518}
+  .score-banner{background:#fff8f5;border:2px solid #7c2c3e;border-radius:24px;padding:20px;text-align:center;margin-bottom:16px}
+  .score-main{font-size:38px;font-weight:800;letter-spacing:-1px}
+  .score-main.pass{color:#1f8a4c}.score-main.fail{color:#d04141}
+  .attempt-text{font-size:12px;color:#7c2c3e;font-weight:800;margin-bottom:6px;letter-spacing:-.2px}
+  .wrongline{color:#d04141;margin-top:10px;font-size:13.5px;font-weight:700;line-height:1.5;background:#fdeff0;padding:10px;border-radius:12px}
+  .anskey{background:#f2faf4;border:1.5px solid #bfe6cb;border-radius:16px;padding:16px;margin-top:14px;font-size:14px;line-height:2.0}
+  .anskey b{color:#1f8a4c;font-weight:800}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.show{display:flex}
+  .modal{background:#fff;border-radius:24px;width:100%;max-width:480px;padding:22px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+  #report-text{width:100%;height:220px;margin:16px 0;padding:12px;font-family:monospace;font-size:12.5px;background:#f9f8f8;border:1.5px solid #e5dada;border-radius:14px;line-height:1.6}
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2c1518;color:#fff;padding:11px 22px;border-radius:30px;opacity:0;transition:.2s;pointer-events:none;font-size:13.5px;font-weight:600;z-index:2000;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>수특완 단기 암기 훈련</h2>
+  <div class="sub">5회 · 8/17 배포 · 독서 6 · 문학 8 · 화작 5 · 언매 5 · 총 24지문<br>원문 완벽 복원 · 100점까지 반복</div>
+</div>
+
+<div id="scr-start">
+  <div class="info-card">
+    <label class="lb">📛 학생 이름</label>
+    <input type="text" id="studentName" placeholder="실명 입력" autocomplete="off">
+    <label class="lb mt">🎯 선택 과목 <span style="font-weight:500;color:#8c7673;font-size:12px">(수능 응시 과목)</span></label>
+    <div class="subjbar" id="electBar">
+      <button data-e="언매">언어와 매체</button>
+      <button data-e="화작">화법과 작문</button>
+    </div>
+    <label class="lb mt">📚 영역</label>
+    <div class="subjbar" id="subjBar"></div>
+    <label class="lb">📖 훈련할 지문 선택</label>
+    <select id="passageSel"></select>
+    <div id="timeWrap">
+    <label class="lb mt">⏱️ 읽기(암기) 시간 선택</label>
+    <select id="readTime">
+      <option value="240">4분 (권장)</option>
+      <option value="180">3분</option>
+      <option value="300">5분 (처음 연습용)</option>
+    </select>
+    </div>
+    <div id="doneNote" class="muted mt hidden"></div>
+    <button class="btn btn-primary mt" id="startBtn">암기 시작 ▶</button>
+  </div>
+  <div class="section">
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:6px">📤 과제 제출</div>
+    <div class="muted" id="hwStatus" style="margin-bottom:4px"></div>
+    <button class="btn btn-kakao" id="submitAllBtn">💬 카톡 과제 보고서 제출</button>
+    <button class="btn btn-warning" id="resetBtn">🔄 전체 기록 초기화</button>
+  </div>
+  <div class="section" id="finalWrap">
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:6px">🔓 이 회차 전체 정답</div>
+    <div class="muted" id="finalStatus" style="margin-bottom:4px"></div>
+    <button class="btn btn-primary" id="finalBtn" disabled>독서 · 문학 · 선택 과목을 모두 끝내면 열립니다</button>
+    <div class="anskey hidden" id="finalKey" style="margin-top:12px"></div>
+  </div>
+
+  <p class="muted" style="text-align:center">원문을 정해진 시간 안에 완벽히 읽고 → 가린 뒤 문제를 풉니다.<br><b>100점을 맞을 때까지 반복</b>하며, 100점이 되면 정답이 공개됩니다.</p>
+</div>
+
+<div id="scr-read" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s on">① 원문 암기</div><div class="s">② 내용 확인</div><div class="s">③ 빈칸·어휘</div></div>
+    <div class="attempt-text" id="readAttempt"></div>
+    <div class="timer" id="timer">04:00</div>
+    <div class="tbar"><i id="tbarFill"></i></div>
+    <div id="readArea">
+      <div class="passage" id="passageBox"></div>
+      <button class="btn btn-ghost" id="hideBtn">다 외웠어요 · 가리고 문제 풀기</button>
+    </div>
+    <div id="curtainArea" class="hidden">
+      <div class="curtain">원문을 가렸습니다.<br>기억을 떠올리며 문제를 풀어 보세요.</div>
+      <button class="btn btn-primary" id="toQuizBtn">문제 풀기 ▶</button>
+      <button class="btn btn-ghost" id="peekBtn">⏱ 20초만 다시 보기</button>
+    </div>
+  </div>
+</div>
+
+<div id="scr-quiz" class="hidden">
+  <div class="section">
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:8px" id="quizHead">객관식 문제</div>
+    <p class="muted" style="margin-bottom:10px">지문을 보면서 풀어도 됩니다. 실제 수능 문항 그대로입니다.</p>
+    <div class="passage" id="quizPassage" style="max-height:44vh;margin-bottom:14px"></div>
+    <div id="mcqList"></div>
+    <button class="btn btn-primary" id="mcqGrade" disabled>채점하기 ✅</button>
+  </div>
+</div>
+
+<div id="scr-ox" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s">① 원문 암기</div><div class="s on">② 내용 확인</div><div class="s">③ 빈칸·어휘</div></div>
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:8px">내용 확인 (O / X)</div>
+    <div id="oxList"></div>
+    <button class="btn btn-primary" id="oxNext" disabled>다음 (빈칸 복원) ▶</button>
+  </div>
+</div>
+
+<div id="scr-cloze" class="hidden">
+  <div class="section">
+    <div class="steps"><div class="s">① 원문 암기</div><div class="s">② 내용 확인</div><div class="s on">③ 빈칸·어휘</div></div>
+    <div style="font-weight:800;color:#7c2c3e;margin-bottom:4px">핵심 표현 복원 · 어휘</div>
+    <p class="muted" style="margin-bottom:8px">기억으로 빈칸을 채우세요. (띄어쓰기는 채점에 반영하지 않음)</p>
+    <div id="clozeList"></div>
+    <button class="btn btn-primary" id="clozeGrade">채점하기 ✅</button>
+  </div>
+</div>
+
+<div id="scr-result" class="hidden">
+  <div class="score-banner">
+    <div class="attempt-text" id="resAttempt"></div>
+    <div class="score-main" id="scoreMain">--</div>
+    <div id="scoreDetail" style="font-size:13px;margin-top:6px;color:#554345"></div>
+    <div class="wrongline hidden" id="wrongLine"></div>
+  </div>
+  <div id="failWrap" class="hidden">
+    <div class="section" style="text-align:center">
+      <p style="font-weight:800;color:#d04141;margin-bottom:6px">아직 100점이 아닙니다.</p>
+      <p class="muted" id="failMsg">정답은 <b>100점을 맞아야</b> 공개됩니다.<br>원문을 다시 정독하고 재도전하세요!</p>
+      <button class="btn btn-primary" id="retryBtn">원문 다시 읽고 도전 🔁</button>
+    </div>
+  </div>
+  <div id="passWrap" class="hidden">
+    <div class="section">
+      <div style="text-align:center;font-size:17.5px;font-weight:800;color:#1f8a4c;margin-bottom:6px">🎉 100점! 완벽 암기 완료</div>
+      <div class="anskey" id="ansKey"></div>
+    </div>
+  </div>
+  <div class="section">
+    <button class="btn btn-kakao" id="submitAllBtn2">💬 카톡 과제 보고서 제출</button>
+    <div class="row">
+      <button class="btn btn-ghost" id="reviewBtn">원문 다시 보기</button>
+      <button class="btn btn-warning" id="homeBtn">다른 지문</button>
+    </div>
+  </div>
+  <div class="passage hidden" id="reviewPassage" style="margin-bottom:20px"></div>
+</div>
+
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3 style="color:#7c2c3e">📋 카톡 보고서</h3>
+    <textarea id="report-text" readonly></textarea>
+    <button class="btn btn-primary" id="copyReportBtn">📋 클립보드 복사</button>
+    <button class="btn btn-warning" id="closeModalBtn" style="margin-top:8px">닫기</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script>
+
+(function(){
+  var $=function(s){return document.querySelector(s);};
+  var ROUND="5회";
+  var ELECTIVES=["언매","화작"];
+  function SUBJECTS(){ return ["독서","문학",store.elect||"언매"]; }
+
+  function normAns(s){return (s||"").replace(/\s+/g,"").replace(/[·.,\u2018\u2019\u201c\u201d]/g,"").toLowerCase();}
+  function esc(s){return (s||"").replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+
+  /* 원문 렌더 — 산문은 문단, 운문은 연 안의 행을 그대로 살린다 */
+  function renderPassageText(text, verse){
+    if(!text) return "";
+    var out="";
+    var blocks = verse ? text.split(/\n\s*\n/) : text.split("\n");
+    blocks.forEach(function(raw){
+      var b=raw.replace(/\s+$/,"");
+      if(!b.trim()) return;
+      var lines=b.split("\n"), buf=[];
+      function flush(){
+        if(!buf.length) return;
+        if(verse) out+='<p class="verse">'+buf.map(esc).join("<br>")+'</p>';
+        else      out+='<p class="para">'+esc(buf.join(" "))+'</p>';
+        buf=[];
+      }
+      lines.forEach(function(l){
+        var t=l.trim();
+        if(!t) return;
+        if(/^[\(\[][가-힣A-Za-z0-9]{1,3}[\)\]]$/.test(t)){ flush(); out+='<div class="sec-badge">'+esc(t)+'</div>'; return; }
+        var m=t.match(/^([\(\[][가-힣][\)\]])\s*(.+)$/);
+        if(m){ flush(); out+='<div class="sec-badge">'+esc(m[1])+'</div>'; buf.push(m[2]); return; }
+        if(/^\[(앞부분|중략|뒷부분|이후|중간)/.test(t)){ flush(); out+='<p class="stage">'+esc(t)+'</p>'; return; }
+        if(/^\*/.test(t)){ flush(); out+='<p class="foot">'+esc(t)+'</p>'; return; }
+        if(/^[-\u2013\u2014]\s/.test(t)){ flush(); out+='<p class="credit">'+esc(t)+'</p>'; return; }
+        buf.push(l);
+      });
+      flush();
+    });
+    return out;
+  }
+
+  var PASSAGES=[{"pid": "SK-독서-01-17", "subject": "독서", "mode": "memory", "title": "[독서] 예술과 표현의 관계", "src": "2027 수능특강 독서 · 01강 인문ㆍ예술", "text": "우리는 일반적으로 마음속 상태를 겉으로 분명하게 드러내거나 나타낼 때 ‘표현’이라는 말을 사용한다. 그러나 표현이라는 말이 단지 자신의 심리적 상태를 드러내는 데에만 쓰이는 것은 아니다. 때로는 자연을 대하는 우리의 태도나 반응에도 표현이라는 말이 적용된다. 예를 들어 축 늘어진 나뭇가지를 보고 “애처롭다.”라고 말하는 경우가 있다. 이는 나뭇가지 자체가 감정을 지닌 것은 아니지만, 우리가 그것을 바라보며 내면의 정서를 투영하고 외부로 드러내는 행위를 통해 표현이라는 말을 사용하게 되는 것이다. 하지만 표현이라는 말이 가장 널리 사용되는 분야는 다름 아닌 예술이며, 예술과 표현의 관계에 대해서는 오래전부터 다양한 견해가 논의되어 왔다.\n첫째로, ㉠표현을 예술가가 창작 과정 속에서 행하는 내적 활동으로 보는 견해가 있다. 이 입장에서 표현은 예술가의 마음속에서 일어나는 정신적 과정, 즉 내적인 작용으로 이해된다. 이러한 입장을 대표하는 사상가가 크로체와 콜링우드이다. 크로체는 예술의 본질을 ‘직관’과 동일시했다. 그의 관점에서 직관되기 이전의 것은 단순히 혼란스럽고 수동적인 인상에 불과하다. 그러나 여기에 우리의 정신이 개입하면 그것은 명료하게 구조화된 이미지로 객관화되며, 이때의 정신 활동이 바로 직관이고 동시에 표현이다. 따라서 그는 예술을 예술가가 직관을 통해 내적 이미지를 자발적으로 형성하는 활동으로 이해했다. 그런데 인간의 일상적 경험 또한 알고 보면 이러한 내적 이미지가 자발적으로 생성됨에 따라 이루어지는 것이다. 이런 관점에서 콜링우드는 ㉮“우리의 일상적 경험과 예술 간에 본질적인 차이가 있는 것이 아니다.”라고 주장했고, 기존의 미학이나 예술학이 일상과 예술 간의 연속성을 간과하고 예술을 일상의 정신적 삶과 유리시켜 특수한 기능이나 귀족적 취향의 산물로만 취급해 온 것을 강하게 비판했다. 물론 예술가는 일반인이 쉽게 도달할 수 없는 풍부하고 복잡한 직관 능력을 지니지만, 표현이 만들어지는 방식 자체는 본질적으로 동일하다는 것이 그의 입장이었다.\n이처럼 크로체와 콜링우드는 표현을 인간 내부의 과정으로 이해했다. 따라서 예술은 예술가가 직관을 얻는 순간 그의 내면에만 존재한다고 여겼다. 특히 크로체는 그림, 조각, 음악과 같은 물리적 매체로 제작된 작품을 표현 그 자체로 보지 않았다. 그것은 단지 예술가의 내적 직관을 기억하고 타인에게 전달하기 위해 외적으로 구현된 수단일 뿐이라는 것이다. 하지만 이러한 견해는 물리적 매체로 제작된 작품이 지니는 의미를 포착하지 못한다는 한계가 있다.\n둘째로, 표현을 예술가가 작품을 통해 자신의 감정을 감상자에게 전달하는 행위로 보는 견해가 있다. 이 관점은 예술의 본질을 ‘소통’에 두며, 톨스토이가 대표적인 인물이다. 톨스토이는 예술가가 과거에 경험한 감정을 다시 불러일으켜, 선·색·소리·움직임·언어와 같은 매체를 통해 전달하여 다른 이들로 하여금 동일한 감정을 느끼게 하는 것이 예술이라고 했다. 이 입장에서 볼 때 예술은 예술가와 관객이 감정을 공유하는 과정이다. 예술가는 자신의 감정을 섬세하고 주도면밀하게 표현해야 하며, 관객은 이를 받아들여 동일한 심리적 경험을 해야 한다. 그러나 이 견해에는 두 가지 의문이 따른다. 첫째, 예술가가 마음속으로 느낀 감정과 관객에게 ⓐ환기된 감정이 실제로 일치하는지 확인할 방법이 없다는 점이다. 둘째, 관객은 예술가와 동일한 감정을 느끼지 않더라도 작품을 깊이 있게 감상할 수 있다는 점이다. 이처럼 예술의 본질을 동일한 감정의 전달로 한정하는 것은 예술에 대한 관객의 주체적이고 다양한 감상 가능성을 ⓑ간과하는 결과를 낳는다.\n셋째로, 표현을 예술 작품 자체의 내재적 성질로 보는 견해가 있다. 이 입장은 예술 작품이 구조적으로 표현성을 지니고 있으며, 관객은 단지 그것을 알아보는 것일 뿐이라고 주장한다. 다시 말해 음악이 슬프게 들리는 것은 우리가 슬픈 기분이어서가 아니라, 음악 자체에 ⓒ각인된 표현적 속성이 있기 때문이라는 것이다.\n그렇다면 작품은 어떻게 표현성을 그 자체의 성질로 가질 수 있을까? 이에 대해 랭어는 예술 작품이 감정을 상징화할 수 있는 능력을 지니고 있다고 설명한다. 그는 어떤 대상이 표현적인 것이 되는 것은 그것이 인간의 감정을 드러내는 정서와 행위에 ⓓ조응하는 형식을 지니기 때문이라고 주장했다. 즉 예술이 상징화하는 것은 감정 그 자체가 아니라 감정의 시간적 흐름에서 나타나는 육체적 변화의 패턴이라는 것이다. 예를 들어 기쁨은 가슴의 두근거림과 에너지의 상승으로, 슬픔은 울컥하는 긴장 뒤 점차 힘이 빠지며 가라앉는 흐름으로 드러난다. 음악은 이러한 감정의 과정을 닮은 형식을 담고 있다. 따라서 즐거운 음악은 단순히 즐겁다는 감정을 직접 전달하는 것이 아니라, 즐거움이 생겨나고 확산되며 사라지는 과정을 리듬과 선율, 강약의 변화로 표현하는 것이다. 그러나 인간의 감정은 단순한 생리적 변화로 환원되기 어려운 복잡성을 지니기 때문에, 랭어의 주장에는 한계가 따른다는 비판도 있다.\n한편, 피터 키비 등의 인물이 있는 유사성 이론 진영에서는 랭어와는 다른 노선에서 예술 작품의 표현성을 설명한다. 이들은 인간의 몸과 행동에서 표현적 성질을 ⓔ탐지하는 우리의 자연적 경향성에 주목한다. 사람의 얼굴 표정, 목소리, 걸음걸이, 몸짓 등은 감정을 직접적으로 드러낸다. 슬픈 표정이나 축 처진 자세, 울먹이는 목소리를 보거나 들으면 우리는 곧장 그 사람이 슬프다는 사실을 알 수 있다. 이처럼 마음의 상태와 행위 사이에는 개념적 연관성이 존재한다. 따라서 슬픔이라는 감정은 슬픔을 드러내는 행위를 통해 표현된다. 이 이론에 따르면 음악이 슬프게 들리는 이유는 음악이 지닌 형식적 특징이 슬픔을 경험하는 사람이 보이는 행동적 표현과 유사하기 때문이다. 그러나 이 이론은 음악을 비롯한 예술 작품이 표현할 수 있는 감정을 특징적인 육체적 표현성을 지닌 것들로만 제한하게 되고, 이에 따라 이 이론이 적용될 수 있는 범위가 상당히 축소되는 한계를 지니고 만다.", "verse": false, "ox": [{"t": "화가 A가 자신이 내적 이미지로 형성한 환희를 적절한 선과 색채를 찾아 그림으로 나타냈을 경우, 크로체는 이를 표현이 아니라 전달을 목적으로 한 외적 구현으로 보겠군.", "a": true, "boki": "• 화가 A는 몰아치는 바람, 흔들리는 나무, 하늘로 솟구치는 나뭇잎 등을 보며 벅차오르는 환희를 내적 이미지로 형성했다. A는 이를 그림으로 나타내기 위해 고민했지만 방법이 잘 떠오르지 않았고, 결국 일반적으로 환희에 찬 사람들이 보여 주는 얼굴 표정, 몸동작 등을 그림으로 나타내었다.\n• 작곡가 B는 가난과 질병 그리고 가정의 파탄이라는 얼룩진 불행의 한가운데서 고통을 받고 있었고, 자신이 느끼는 지속적인 슬픈 감정을 느린 박자로 천천히 진행되는 음악 형식으로 표현했다. 공연장에서 이 곡을 들은 감상자 C는 슬픔과 고통을 알아보았다.", "stem": "윗글을 읽고 <보기>를 이해한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "콜링우드는 화가 A가 몰아치는 바람, 흔들리는 나무, 하늘로 솟구치는 나뭇잎 등을 보며 형성한 내적 이미지를 얼굴 표정, 몸동작 등을 그린 그림으로 나타낸 것을 예술이라고 보겠군.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "작곡가 B가 만든 곡을 들은 감상자 C가 슬픔과 고통을 알아본 것에 대해, 톨스토이는 작곡가 B가 예술가의 역할을 잘 수행했다고 보겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "감상자 C가 작곡가 B가 만든 곡에서 슬픔과 고통을 알아본 것에 대해, 랭어는 곡의 형식이 슬픔과 고통으로 인한 육체적 변화의 패턴과 구조적으로 유사하기 때문이라고 생각하겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "유사성 이론의 관점에서 볼 때, 화가 A가 그린 그림에서 사람들이 환희를 알아본다면 이는 그림에 나타난 사람들의 얼굴 표정, 몸동작 등이 환희에 찬 사람들이 보여 주는 행동적 표현과 유사하기 때문이겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "(㉮의 이유로 가장 적절한 것은?) 예술은 일상의 정신적 삶과 유리된 특수한 기능의 산물이므로", "a": false, "boki": "", "stem": "", "tier": 2}, {"t": "(㉮의 이유로 가장 적절한 것은?) 기존의 미학이나 예술학이 일상과 예술 간의 연속성을 중시했으므로", "a": false, "boki": "", "stem": "", "tier": 2}, {"t": "(㉮의 이유로 가장 적절한 것은?) 예술가가 직관하기 이전의 것은 단순히 혼란스럽고 수동적인 인상에 불과하므로", "a": false, "boki": "", "stem": "", "tier": 2}], "cloze": [{"label": "2문단", "pre": "첫째로, ㉠표현을 예술가가 창작 과정 속에서 행하는 내적 ", "ans": "활동", "alt": [], "post": "으로 보는 견해가 있다."}, {"label": "3문단", "pre": "하지만 이러한 견해는 물리적 ", "ans": "매체", "alt": [], "post": "로 제작된 작품이 지니는 의미를 포착하지 못한다는 한계가 있다."}, {"label": "4문단", "pre": "이 입장에서 볼 때 예술은 예술가와 ", "ans": "관객", "alt": [], "post": "이 감정을 공유하는 과정이다."}, {"label": "5문단", "pre": "셋째로, 표현을 예술 ", "ans": "작품", "alt": [], "post": " 자체의 내재적 성질로 보는 견해가 있다."}, {"label": "6문단", "pre": "즉 예술이 상징화하는 것은 감정 그 자체가 아니라 감정의 시간적 ", "ans": "흐름", "alt": [], "post": "에서 나타나는 육체적 변화의 패턴이라는 것이다."}, {"label": "7문단", "pre": "한편, 피터 키비 등의 인물이 있는 유사성 ", "ans": "이론", "alt": [], "post": " 진영에서는 랭어와는 다른 노선에서 예술 작품의 표현성을 설명한다."}], "story": null, "vocab": [{"kind": "뜻풀이", "pre": "‘불러일으켜진’과 같은 뜻으로 지문에 쓰인 말은? ", "ans": "환기된", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}, {"kind": "뜻풀이", "pre": "‘놓치는’과 같은 뜻으로 지문에 쓰인 말은? ", "ans": "간과하는", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}, {"kind": "뜻풀이", "pre": "‘새겨진’과 같은 뜻으로 지문에 쓰인 말은? ", "ans": "각인된", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}], "mcq": []}, {"pid": "SK-독서-01-18", "subject": "독서", "mode": "memory", "title": "[독서] 아리스토텔레스의 비극론", "src": "2027 수능특강 독서 · 01강 인문ㆍ예술", "text": "그리스 시대부터 현대에 이르기까지 인생의 슬픔과 비참함을 제재로 하는 비극은 사람들에게 사랑받고 있다. 아리스토텔레스는 인간이 무언가를 모방하려는 본성을 갖고 있으며, 문학의 본질 역시 모방이라고 보았다. 그리고 문학의 일종인 비극도 완결된 사건을 모방하여 만들어지는 것이라고 보았다. 그는 적절한 감정을 느낄 수 있는 안정된 성품이 선한 인격과 미덕을 기르는 데 도움이 될 뿐 아니라 진리에 도달하는 바탕이 된다고 보았는데, 비극이 관객에게 느끼게 하는 연민과 공포가 이러한 성품을 ⓐ함양하는 중요한 수단이 된다고 보고 비극이 갖추어야 할 조건을 제시하였다.\n그는 비극의 6가지 요소로 플롯, 인물의 성격, 작품에 담긴 사상, 언어, 음악, 시각적 요소를 제시하고, 그중 행위나 사건의 구성을 뜻하는 플롯이 가장 중요한 요소라고 하였다. 그는 사건이 우연적으로 전개되는 것이 아니라 개연성을 갖춰야 관객들이 작품에 몰입할 수 있고, 공포와 연민을 불러 일으키는 사건은 관객이 예상하지 못한 순간에, 앞선 사건으로부터의 인과적 결과로 일어나야 한다고 보았다. 또한 살인, 폭력 등의 부도덕한 내용도 공포와 연민을 불러일으키기 위한 장치로 사용될 수 있다고 보았다. 그는 이러한 사건 제시와 관련한 플롯의 핵심 요소로 반전과 인지를 제시하였다. 반전은 상황, 즉 사건의 흐름이 앞에서 일어난 것과 정반대로 ⓑ급변하는 것으로서, 인물의 의도와 반대되는 결과가 나타나는 것이다. 인지는 인물이 무언가를 모르다가 아는 상태로 바뀌는 것을 의미한다. 그는 이러한 반전과 인지가 관객에게 연민이나 공포를 불러일으키고, 둘이 동시에 일어날 때 더 효과적이라고 보았다. 그는 반전과 인지를 기준으로 플롯을 구분하였는데, 반전이나 인지를 포함하는 것을 복합 플롯, 포함하지 않는 것을 단순 플롯이라고 구분하고, 복합 플롯이 더 훌륭한 것이라고 주장하였다.\n아리스토텔레스는 관객에게 연민과 공포를 불러일으키기 위해 비극의 인물도 특정한 조건을 갖추어야 한다고 보았다. 그는 희극의 주인공은 보통의 사람보다 모자란 인물로서 우스꽝스러운 모습으로 그려진다고 보았다. 이와 달리 비극의 주인공은 고귀한 신분의 인물로서 인간적인 결함이 있어야 하고, 악행이나 악덕이 아닌 과오나 실수로 불행해져야 한다고 보았다. 주인공은 선하지도 악하지도 않은 존재로서 자신이 저지른 잘못보다 더 큰 고통을 겪어야 한다. 의로운 인물이 불행해지는 것은 사람들에게 반감을 일으키고, 악한 사람이 불행해지는 것은 마땅한 일로 인식될 뿐 연민과 공포를 불러일으키지 못하기 때문이다. 그는 관객이 잘못이나 실수에 비해 주인공이 더 큰 불행을 경험한다고 판단하면 연민을 느끼고, 인간적인 결함을 지녔다는 점에서 자신과 닮은 것처럼 느껴지는 주인공이 불운을 겪는다고 판단하면 자신에게도 그런 일이 발생할 수 있다는 생각에 공포를 느낀다고 보았다.\n아리스토텔레스는 비극의 궁극적인 목적은 관객이 연민과 공포를 느낌으로써 ‘카타르시스’를 이루는 것이라고 보았다. 카타르시스는 후대의 학자들에 의해 다양하게 해석되고 있는데, 대표적 해석으로 다음과 같은 것들이 있다. ㉠윤리학적 해석은 카타르시스를 관객의 감정 중 불균형하거나 ⓒ과잉된 부분을 도덕적으로 정화하는 것으로 본다. 평소 사람들의 마음속에는 연민, 공포 등의 감정이 쌓여 있는데, 이러한 감정 중 부정적인 부분을 정화함으로써 감정을 맑게 만들어 도덕적 성숙을 이룰 수 있다고 본 것이다. 이 해석은 감정을 잘못 사용할 경우 문제가 될 수 있으므로 감정을 정제 및 조절하는 데 초점을 두는 것이다. ㉡정신 분석학적 해석은 카타르시스를 마음속에 억눌려 있는 병적인 감정의 분출로 본다. 이 해석은 부정적 감정을 ⓓ해소하는 데 초점을 두는 것으로서, 울고 나서 마음이 후련해지는 것처럼 억눌려 있던 감정을 비극의 인물에 투사하여 분출함으로써 정서적, 심리적으로 건강해질 수 있다고 보는 것이다. ㉢인지적 해석은 카타르시스를 작품 이해의 형성으로 본다. 이 해석은 모든 인간이 본성적으로 알기를 욕구한다고 보고, 관객이 작품에 재현된 것이 무엇인지를 깨닫는 인식의 획득을 통해 즐거움을 얻는다고 본다. 의미 없이 나열되는 것 같던 플롯들이 어느 순간 연결되면서 관객들은 인지적 즐거움을 얻고 본성적인 욕구를 ⓔ충족하게 된다는 것이다.\n비극에 관한 이론은 이후 많은 변화를 겪었고, 아리스토텔레스의 이론은 후대의 학자들에게 비판을 받기도 하였다. 고귀한 인물을 주인공으로 삼으려 했던 아리스토텔레스와 달리 19세기 말 등장한 자연주의 연극론자들은 하층 계급의 인물을 주인공으로 삼아 그가 겪는 고통을 통해 사회적 문제를 드러내었고, 니체는 아리스토텔레스의 비극론을 비판하며 비극은 관객에게 연민과 공포를 불러일으키는 것이 아니라, 인간의 실존을 인식하고 삶에 대한 의지를 갖게 해야 한다고 주장하기도 하였다. 하지만 이러한 변화와 비판에도 불구하고 아리스토텔레스의 이론은 아직도 많은 예술 분야에서 사용되며 우리에게 많은 영향을 미치고 있다.", "verse": false, "ox": [{"t": "아리스토텔레스는 작품에 담긴 사상과 음악도 비극을 이루는 구성 요소라고 보았다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "아리스토텔레스는 반전 또는 인지의 포함 여부로 플롯을 단순 플롯과 복합 플롯으로 구분하였다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "니체는 비극이 연민과 공포를 불러일으키는 것이 아니라 삶에 대한 의지를 갖게 해야 한다고 보았다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "자연주의 연극론자들은 아리스토텔레스와 달리 연극에서 하층 계급의 인물을 통해 사회적 문제를 드러내고자 하였다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "아리스토텔레스는 비극과 달리 희극은 보통 사람보다 모자란 존재로 인식되는 인물을 주인공으로 삼아 그의 영웅적 모습을 보이는 것이라고 보았다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "㉠은 관객이 카타르시스를 통해 도덕적으로 더 나은 인간이 될 수 있다고 본다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "㉢은 관객이 플롯에 대한 이해를 바탕으로 작품에 무엇이 재현되었는지 깨닫는 것과 카타르시스를 관련지어 이해한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "㉠과 ㉡ 모두 부정적 감정을 없애거나 정화하는 것과 카타르시스를 관련지어 이해한다.", "a": true, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "2문단", "pre": "그는 이러한 사건 제시와 관련한 플롯의 핵심 요소로 ", "ans": "반전", "alt": [], "post": "과 인지를 제시하였다."}, {"label": "3문단", "pre": "", "ans": "주인공", "alt": [], "post": "은 선하지도 악하지도 않은 존재로서 자신이 저지른 잘못보다 더 큰 고통을 겪어야 한다."}, {"label": "4문단", "pre": "㉢인지적 해석은 ", "ans": "카타르시스", "alt": [], "post": "를 작품 이해의 형성으로 본다."}, {"label": "5문단", "pre": "비극에 관한 이론은 이후 많은 변화를 겪었고, ", "ans": "아리스토텔레스", "alt": [], "post": "의 이론은 후대의 학자들에게 비판을 받기도 하였다."}], "story": null, "vocab": [{"kind": "뜻풀이", "pre": "‘기르는’과 같은 뜻으로 지문에 쓰인 말은? ", "ans": "함양하는", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}, {"kind": "뜻풀이", "pre": "‘넘치는’과 같은 뜻으로 지문에 쓰인 말은? ", "ans": "과잉된", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}, {"kind": "뜻풀이", "pre": "‘없애는’과 같은 뜻으로 지문에 쓰인 말은? ", "ans": "해소하는", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}], "mcq": []}, {"pid": "SK-독서-01-19", "subject": "독서", "mode": "memory", "title": "[독서] 동일성 명제 관련 문제에 대한 프레게와 러셀의 이론", "src": "2027 수능특강 독서 · 01강 인문ㆍ예술", "text": "독일의 수학자이자 언어 철학자인 고틀로프 프레게는 ‘샛별’, ‘개밥바라기’, ‘금성’ 등과 같은 이름의 ㉠‘뜻’과 ‘지시체’를 구별하였다. 프레게가 제시한 뜻은 해당 이름이 대상을 제시하는 방법을 말하며, 지시체는 해당 이름이 가리키는 실제 대상을 말한다. 예를 들어 ‘샛별’이라는 이름은 우주에 존재하는 객관적 실체인 행성을 가리키는데 이 지시체를 ‘새벽에 동쪽 하늘에서 반짝이는 행성’으로 제시한다. 그런데 ‘개밥바라기’라는 이름은 ‘샛별’과 지시체가 동일하지만 해당 지시체를 ‘저녁 무렵 서쪽 하늘에 보이는 행성’으로 제시한다. 이처럼 ‘샛별’과 ‘개밥바라기’의 뜻이 다른 것을 바탕으로 프레게는 “만약 a와 b가 가리키는 대상이 똑같다면, 사실상 ‘a는 b와 동일하다.(a=b)’와 ‘a는 a와 동일하다.(a=a)’는 똑같은 말을 하는 것 아닌가?”라는 동일성 명제 관련 문제를 설명했다.\n프레게는 동일성 명제인 ‘a=b’와 ‘a=a’가 제공하는 정보가 구분된다고 보았다. 프레게는 전자가 후자보다 더 많은 정보를 제공한다고 설명했다. 만약 ‘a는 b와 동일하다.’의 정보가 ‘a’의 지시체와 ‘b’의 지시체가 같다는 것뿐이라면 이 정보는 ‘a는 a와 동일하다.’의 정보와 다른 것이 없다. 하지만 ‘a’와 ‘b’가 각각 나타내는 뜻을 고려하면 두 명제의 정보는 구분된다. 예를 들어 ‘샛별은 개밥바라기이다.’와 ‘샛별은 샛별이다.’는 정보가 같지 않다. ‘샛별’과 ‘개밥바라기’의 지시체는 같지만 뜻이 구분되기 때문에 두 동일성 명제 중 전자가 후자보다 더 많은 정보를 제공하는 것이다. 프레게는 이름, 뜻, 지시체를 ‘서울’, ‘세종’ 같은 고유 명사뿐만 아니라, ‘이 방에서 키가 제일 큰 사람’과 같이 특정 대상을 묘사하는 구에도 적용할 수 있다고 보았다.\n프레게는 뜻을 개인에 따라 달라지는 주관적인 관념이 아니라 단어에 붙어 있는 객관적인 존재자로 보았다. 그는 과학자가 망원경을 통해 천체를 관측하는 것에 비유해 뜻의 객관성을 설명했다. 프레게의 설명에 따르면, 과학자에게 관측되는 천체는 객관적 실체이므로 지시체이고, 망원경 렌즈에 맺힌 상은 뜻이며, 관찰자인 과학자의 망막에 비친 천체의 영상은 관념이다. 망원경 렌즈에 맺히는 상은 관찰자가 누구든 상관없이 일정하게 맺히는 것인 반면, 관찰자 개인의 망막에 맺히는 상은 시력, 기분 등에 따라 달라질 수 있는 것이다. 따라서 언어 사용자나 언어가 사용되는 맥락을 고려하지 않아도 지시체와 뜻의 관계를 설명할 수 있다는 것이 프레게의 의미론적 지시 이론이다.\n프레게의 이론에 대해 영국의 철학자인 버트런드 러셀은 비판적 입장을 보였다. 러셀은 프레게가 뜻이라는 불필요한 요소를 가정했다고 보았다. 러셀은 뜻과 지시체가 구분되지 않으며 단어의 의미가 지시체라고 주장했다. 이에 따르면 지시체가 없는 단어는 의미가 없는 단어이다. 예를 들어 ‘둥근 사각형’은 대응하는 지시체가 존재하지 않으므로 의미가 없는 말이다. 그런데 이러한 입장에서는 ‘a=b’와 ‘a=a’의 구분에 관한 동일성 명제 관련 문제를 해결하기 어렵다. 러셀에 따르면, ‘샛별은 개밥바라기이다.’와 ‘샛별은 샛별이다.’는 모두 동어 반복적인 동일한 명제이고 서로 구분되는 정보를 전달하지 않는다.\n이러한 난점을 극복하기 위해 러셀은 논리적 구조의 분석을 중시하는 기술 이론(The Theory of Description)을 제시한다. 기술 이론에서는 ㉡‘진정한 이름’과 ‘위장된 이름’을 구분한다. 진정한 이름이란사용자나 문맥과 관계없이 지시 대상과 직접 관련되며, 대상과의 관련 근거를 그 자체 속에 스스로 가지고 있는 이름이다. 그리고 위장된 이름이란 ‘이 방에서 키가 제일 큰 사람’과 같이 특정 대상을 한정해 기술하는 것처럼 그 자체로는 지시 대상과 직접 관련되지 못하여 의미를 가지지 못하지만 기술 이론에 의해 분석되어 그 의미가 파악되는 이름이다.\n러셀에 따르면, ‘샛별은 개밥바라기이다.’라는 동일성 명제에서 ‘샛별’과 ‘개밥바라기’는 위장된 이름으로 분석된다. ‘샛별’은 ‘새벽에 동쪽 하늘에 보이는 행성’, ‘개밥바라기’는 ‘저녁 무렵 서쪽 하늘에 얼마 동안 보이는 특정한 행성’이라는 한정 기술구를 표현한 것이다. 이렇게 보면 ‘샛별은 개밥바라기이다.’라는 명제는 ‘새벽에 동쪽 하늘에 보이는 그 행성은 저녁 무렵 서쪽 하늘에 얼마 동안 보이는 특정한 행성과 동일한 대상이다.’라는 정보를 제공하는 명제로 분석되기 때문에 ‘샛별은 샛별이다.’라는 명제와 구분된다. 이와 같이 러셀은 뜻과 지시체를 구분하지 않고서도 동일성 명제와 관련된 문제를 해결했다.", "verse": false, "ox": [{"t": "러셀은 프레게가 제시한 ‘뜻’이라는 요소가 불필요하다고 보았다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "프레게는 ‘뜻’을 ‘지시체’와 동일한 것으로 보고 ‘이름’의 정보를 파악했다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "프레게는 고유 명사도 ‘이름’으로서 ‘뜻’과 ‘지시체’를 갖고 있다고 생각했다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "프레게는 과학자가 망원경으로 천체를 관측하는 상황을 통해 ‘뜻’의 객관성을 설명하였다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "러셀은 ‘뜻’과 ‘지시체’를 이분법적으로 구분하지 않고 동일성 명제와 관련된 문제를 해결하였다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘샛별’이나 ‘개밥바라기’는 진정한 이름이 아니라 분석을 통해 숨겨진 의미가 파악되는 이름들이다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘샛별’이라는 이름은 새벽에 동쪽 하늘에 반짝일 때의 특정한 행성이라고 파악될 수 있다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘개밥바라기’라는 이름은 저녁 무렵 서쪽 하늘에서 보이는 특정한 행성이라고 파악될 수 있다.", "a": true, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "1문단", "pre": "프레게가 제시한 뜻은 해당 ", "ans": "이름", "alt": [], "post": "이 대상을 제시하는 방법을 말하며, 지시체는 해당 이름이 가리키는 실제 대상을 말한다."}, {"label": "2문단", "pre": "프레게는 전자가 후자보다 더 많은 ", "ans": "정보", "alt": [], "post": "를 제공한다고 설명했다."}, {"label": "3문단", "pre": "따라서 언어 사용자나 언어가 사용되는 맥락을 고려하지 않아도 ", "ans": "지시체", "alt": [], "post": "와 뜻의 관계를 설명할 수 있다는 것이 프레게의 의미론적 지시 이론이다."}, {"label": "4문단", "pre": "", "ans": "러셀", "alt": [], "post": "은 프레게가 뜻이라는 불필요한 요소를 가정했다고 보았다."}, {"label": "5문단", "pre": "", "ans": "기술", "alt": [], "post": " 이론에서는 ㉡‘진정한 이름’과 ‘위장된 이름’을 구분한다."}, {"label": "6문단", "pre": "이와 같이 러셀은 뜻과 지시체를 구분하지 않고서도 동일성 ", "ans": "명제", "alt": [], "post": "와 관련된 문제를 해결했다."}], "story": null, "vocab": [], "mcq": []}, {"pid": "SK-독서-01-20", "subject": "독서", "mode": "memory", "title": "[독서] 장재, 정이와 주희의 철학", "src": "2027 수능특강 독서 · 01강 인문ㆍ예술", "text": "북송 시대는 실천적 학문이었던 유학이 존재의 본질을 탐구하는 철학으로 거듭난 시기였다. 북송 초기에는 불교와 도교가 형이상학을 ⓐ주도하였는데, 북송 중기에 등장한 유학자들은 유교 고전을 기반으로 형이상학적 기반을 다졌고 그 흐름은 후대에 성리학이라는 이름으로 체계화되었다. 북송 중기의 흐름을 대표하는 학자로는 장재와 정이를 꼽을 수 있다. 이들은 같은 시대를 살았으며 성리학의 뿌리를 각기 다른 내용으로 정립하였는데, 이들의 사상은 이후 주희에 의해 종합되어 성리학의 사상적 토대가 되었다.\n장재는 ‘기(氣)’를 중심으로 존재를 설명한 실재론자였다. 그에 따르면 ‘기’는 단순히 물질적 요소가 아니라 우주의 근원이자 존재의 근원이며 ‘이(理)’는 ‘기’와 분리된 독립적 실체가 아니라 ‘기’ 안에 내재하며 그 작용 속에서 드러나는 질서의 원리이다. 그는 우주를 단순히 배경이나 공간이 아니라 ‘기’로 충만한 실체라고 보았다. 이 우주는 스스로 끊임없이 변화하고 생성하는 역동적 과정을 통해 만물을 낳고 기르는 작용을 멈추지 않는데, 이러한 자생적 생성과 성장의 운동을 장재는 ‘화육(化育)’이라 칭했다. ‘화’는 변화시키고 생겨나게 하는 작용, ‘육’은 그것을 기르고 성숙하게 하는 작용이다. 장재는 모든 존재는 화육의 산물이며 인간은 이러한 우주의 작용이 최고도로 응축된 결과라고 보았다. 또한 장재는 ‘기’의 작용이 도덕적으로 드러난 것이 ‘인(仁)’이라고 하였다. ‘인’은 존재를 존재하게 하고 살게 하는 근원적 성질로서 ㉠인간은 ‘인’의 본성을 가장 충만하게 타고난 존재이며 이 본성이 도덕의 근간이 된다고 하였다. 장재는 인간을 화육의 정수(精髓)로 보기 때문에 인간의 도덕 실천이 곧 천도의 실현이라는 ‘천인합일(天人合一)’의 관점을 강조하였다. 그는 도덕의 실천을 통해 인간이 우주와 합일할 수 있다고 보았으며 도덕은 인의 발현이자 우주의 질서를 구현하는 길이라고 주장하였다. 인간의 도덕적 행위는 곧 우주의 질서를 완성하는 행위라고 본 것이다. 결국 장재에게 ‘기’는 우주를 이루는 근본이자 인간의 삶과 도덕이 비롯되는 바탕이고 ‘이’는 그 ‘기’의 작용이 질서 있게 드러나도록 하는 내재적 원리이다.\n정이는 ‘이’가 인간을 비롯한 만물의 본질이라고 보았다. 그에 따르면 ‘이’는 모든 존재와 인간 본성에 내재하는 선하고 보편적인 원리로, 만물이 지닌 속성이나 인간의 덕목을 가리키는 것이 아니라 존재의 본질 그 자체이다. 그리고 ‘이’는 본래 선한 성질을 지니므로 인간의 본성 또한 본래 선하다. 정이는 ‘이’가 현실 세계 속에서 구체적으로 실현되는 수단이 ‘기’라고 보았다. ‘기’는 사물의 물질적 형체를 이루는 것으로, 인간의 감정과 욕망도 ‘기’를 통해 나타난다고 설명하였다. ‘이’와 ‘기’는 분리되지 않지만 ‘이’가 ‘기’보다 존재론적으로 우선한다고 보는 입장을 취했던 것이다. 그리고 정이는 인간은 본성 안에 내재한 ‘이’를 보존하고 인간의 감정과 욕망을 유발하는 근원인 ‘기’를 경계하여 사사로운 욕망을 제거하는 데 힘써야 한다는 ‘존천리(存天理) 거인욕(去人欲)’의 수양론을 내세웠다. 이는 성찰적 수양관으로서 수련을 통한 도덕 완성을 강조하는 시각이다.\n성리학의 대표 학자 주희는 ㉡장재의 사상과 정이의 사상을 선별적으로 수용한 다음, 이를 종합하여 ‘이’와 ‘기’를 체계적으로 설명하는 이기론을 확립하였다. 주희는 우주는 ‘이’와 ‘기’가 살아 움직이며 만물을 낳고 기르는 생명적 체계이며 인간의 도덕적 수양이 곧 우주의 도를 실현하고 완성하는 과정이라고 보았다. 또한 그는 ‘이’와 ‘기’ 중에 ‘이’는 만물과 인간 본성의 근원적 본체이며 ‘기’는 ‘이’가 현실 세계에서 구체적으로 실현되고 작용하는 수단이라고 하였다. ‘이’는 항상 선하고 불변하는 절대적 이치이며 ‘기’는 탁하거나 맑은 정도에 따라 현상 세계에서 다양한 차이를 만들어 낸다. 즉 만물은 ‘이’를 본성으로 갖지만 그것이 드러나는 양상은 ‘기’의 상태에 의해 달라진다. 인간도 마찬가지여서 본래의 ‘이’는 선하더라도 ‘기’가 탁하면 성정과 기질에 편차가 생기고 그 결과 감정과 욕망이 치우쳐 도덕적 결함이 발생할 수 있다는 것이다. 이러한 관점에서 주희는 인간이 도덕적 존재로 완성되기 위해서는 무엇보다 마음을 다스려 ‘이’를 밝히는 것이 중요하다고 강조하였다. 그렇다고 해서 주희가 ‘이’만을 보존하고 ‘기’를 배제한 것은 아니다. 그는 ‘이’와‘기’를 모두 인정하되, ‘이’를 본체로 삼고 ‘기’를 그 발현 수단으로 보면서 균형 있게 다루고자 하였다. ‘기’는 우주와 인간의 변화를 실현하는 수단으로서 가치가 있기 때문이다. 결국 주희는 ‘이’와 ‘기’를 구분하되 서로 떨어지지 않는 관계 속에서 위계를 설정한 것이다. 이러한 주희의 관점은 ‘이’의 절대성과 ‘기’의 상대성을 강조하면서도 존재와 인간, 도덕과 우주 모두 설명할 수 있는 종합 철학으로서 유학 전통의 주류로 평가되는데, 여기에는 장재와 정이의 사상이 기여한 바가 크다고 할 수 있다.", "verse": false, "ox": [{"t": "장재는 ‘기’가 존재의 근원이라고 보았다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "정이는 인간의 본성은 본래 선하다고 보았다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "정이는 인간의 감정은 존재의 본질에 해당한다고 보았다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "장재와 정이는 모두 모든 존재에 ‘이’가 있다고 보았다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "장재와 정이는 모두 존재의 본질을 탐구하고자 하였다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "주희는 천인합일을 강조한 장재의 관점은 수용하였다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "주희는 인간 본성의 위험성을 인정한 장재의 관점은 수용하였다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "주희는 우주의 생성 작용에 대한 장재의 관점은 수용하지 않았다.", "a": false, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "1문단", "pre": "", "ans": "북송", "alt": [], "post": " 중기의 흐름을 대표하는 학자로는 장재와 정이를 꼽을 수 있다."}, {"label": "2문단", "pre": "", "ans": "장재", "alt": [], "post": "는 ‘기(氣)’를 중심으로 존재를 설명한 실재론자였다."}, {"label": "3문단", "pre": "정이는 ‘이’가 ", "ans": "인간", "alt": [], "post": "을 비롯한 만물의 본질이라고 보았다."}, {"label": "4문단", "pre": "그렇다고 해서 ", "ans": "주희", "alt": [], "post": "가 ‘이’만을 보존하고 ‘기’를 배제한 것은 아니다."}], "story": null, "vocab": [{"kind": "뜻풀이", "pre": "‘이끌었는데’와 같은 뜻으로 지문에 쓰인 말은? ", "ans": "주도하였는데", "alt": [], "post": "", "src": "원본 어휘 문항 선지"}], "mcq": []}, {"pid": "SK-독서-01-21", "subject": "독서", "mode": "memory", "title": "[독서] 롤랑 바르트의 신화론", "src": "2027 수능특강 독서 · 01강 인문ㆍ예술", "text": "프랑스의 기호학자이자 문예 비평가인 롤랑 바르트는 대중 매체의 이미지와 텍스트가 단순한 오락이나 소비 대상이 아니라 특정 사회·문화적 의미를 담고 있으며, 그 수용 과정에서 특정 이념이 대중에게 자연스럽게 받아들여진다고 보았다. 그는 이러한 현상을 ‘현대의 신화’라고 명명하고, 일상 속 기호에 숨어 있는 이념과 권력의 작동 방식을 분석하고자 하였다.\n바르트는 소쉬르의 이론을 분석 도구로 활용하였다. 소쉬르는 언어를 기호로 보았고, 기호는 음성이나 문자 등 감각적으로 지각 가능한 형태인 ‘기표’와 그것이 가리키는 개념적 내용인 ‘기의’라는 두 가지 요소로 이루어진다고 보았다. 예를 들어 ‘나무’라는 말은, 말소리 혹은 문자 형태로 주어지는 기표와 ‘줄기와 가지를 가진 목질 식물’이라는 기의가 결합한 하나의 기호이다. 소쉬르는 이러한 기호의 구조에서 기표와 기의 사이의 관계가 본질적으로 자의적이라는 점을 강조하였다. 즉 특정 기표가 반드시 특정 기의를 가리켜야 할 필연성은 없으며, 다만 사회적 약속과 관습에 의해 그렇게 기능하고 있을 뿐이라는 것이다.\n바르트는 우리가 일상에서 마주하는 이미지나 텍스트 역시 언어와 마찬가지로 기호로 볼 수 있다고 하였다. 그는 단일한 의미를 전달하는 기호를 ㉠‘1차 기호 체계’라고 하였다. 그리고 1차 기호 체계는 사회적·역사적 맥락과 결합함으로써 또 다른 층위의 의미를 생성한다고 보았다. 기존의 기호가 다시 하나의 기표처럼 작용하고 여기에 새로운 기의가 덧붙여져 새로운 의미를 형성하게 된다는 것이다. 바르트는 이렇게 형성된 ㉡‘2차 기호 체계’를 ‘현대의 신화’라고 하였다. ‘현대의 신화’는 원래의 의미에 사회적·이념적 함의가 덧씌워져 형성된 것이지만, 그것은 사람들에게 마치 자연스러운 사실처럼 받아들여진다는 특징이 있다.\n그는 ‘현대의 신화’가 단순히 허구를 만들어 내는 것이 아니라 일정 부분 현실에 기반하기 때문에 더욱 설득력을 갖는다고 보았다. ‘현대의 신화’는 현실을 특정한 관점에서 선택하고 재구성한 의미를 마치 객관적이고 보편적인 진실인 것처럼 제시한다. 바르트는 이를 ‘자연화’라고 하였는데, 이는 인위적으로 구성된 의미가 그 구성 과정을 감춘 채 스스로를 순수하고 중립적인 것처럼 드러내는 현상이다. 이때 ‘현대의 신화’는 이념을 더욱 공고히 하여 수용자가 그것을 사회적 구성물로 인식하지 못하도록 만든다. 전통적 선전처럼 강제적으로 이념을 주입하는 것이 아니라 일상적 기호를 통해 은밀하면서도 더욱 효과적으로 이념을 전파하는 것이다.\n\n이를 설명하기 위해 바르트는 프랑스의 한 잡지 표지를 예로 들었다. 이 표지에는 프랑스 국기를 향해 거수경례를 하는 흑인 군인의 사진이 실려 있었다. 이 기호 전체가 2차 기호 체계에서는 하나의 기표로 작동하고, 여기에 ‘프랑스는 인종 차별 없는 관대한 국가’라는 기의가 덧붙는다. 이렇게 표지 이미지는 프랑스의 다문화 포용성, 흑인의 국가 충성심, 프랑스의 정의로움 등을 암묵적으로 전달하는 신화가 된다. 정교한 연출과 반복적인 노출을 통해 이미지가 전달하는 사회적·이념적 의미는 독자에게 마치 본래부터 당연한 사실처럼 수용되는 것이다.\n[A]\n\n바르트는 대중 매체를 통해 ‘현대의 신화’가 사람들에게 무비판적으로 수용되는 구조에 주목하였고, 대중 매체나 문화 산업은 중립적이지 않으며 특정 이념을 자연스럽게 재생산하는 장치가 될 수 있음을 강조하였다. 따라서 대중은 어떠한 이미지나 텍스트를 해석할 때 2차 기호 체계가 작동하고 있을 수 있음을 인지하며 이를 비판적으로 바라보는 태도가 필수적이라고 하였다. 일상적으로 접하는 광고, 기사, 영화, 포스터 등 모든 문화 콘텐츠는 1차 의미뿐만 아니라 사회적·이념적 함의를 담고 있기 때문에, 그 배후에 작동하는 사회적 맥락, 역사적 조건, 이념적 작용 등을 파악할 수 있는 능력을 갖추어야 한다는 것이다. 이를 통해 대중 매체 속에 담긴 특정 의도를 무비판적으로 받아들이는 수동적인 수용자에서 벗어나 능동적인 해석자로 나아갈 수 있다고 하였다.", "verse": false, "ox": [{"t": "㉠은 ㉡에서 기존의 의미와는 다른 새로운 기의로 작용하여 다른 층위의 의미를 생성할 수 있다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "㉠과 달리 ㉡을 통해 생성되어 사람들에게 전달되는 의미는 수용 과정이 부자연스럽다는 특징이 있다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "㉠은 사회적·역사적 맥락을 바탕으로 의미를 형성하지만, ㉡은 현재 시점의 필연성을 바탕으로 의미를 형성한다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "㉠은 기표와 기의의 결합이 자의적으로 이루어지고, ㉡은 기표와 기의의 결합이 특정한 목적을 바탕으로 이루어진다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "㉠은 일상적 이미지나 텍스트를 바탕으로 의도가 담긴 새로운 의미를 생성하여 전달하지만, ㉡은 사실을 있는 그대로 전달한다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "아파트 광고 포스터는 이면의 여러 흔적들을 지우고 순수하면서도 중립적인 진실을 드러내고 있다.", "a": false, "boki": "○○ 건설 회사는 최근 분양을 앞둔 고급 아파트 단지 광고 포스터를 대대적으로 배포했다. 포스터에는 잔디가 깔린 널찍한 정원 한가운데서 부모와 아이가 밝게 웃으며 주말 파티를 즐기는 장면이 크게 담겼다. 건물 외벽은 고급스러운 대리석 색조로 빛나고, 뒤편에는 편의 시설인 호텔식 수영장과 운동 시설이 흐릿하게 보이도록 하였다. 또한 “품격 있는 일상과 가족의 웃음을 동시에 누리세요.”라는 광고 문구를 강조하여, 이곳에 입주하기만 하면 곧 ‘성공’과 ‘안락함’을 자연스럽게 보장받는 듯한 인상을 주고 있다. 이를 접한 많은 소비자는 “여기라면 내 생활 수준이 확실히 한단계 올라설 것”이라는 기대감을 갖게 되었다.", "stem": "롤랑 바르트의 관점에서 <보기>를 이해한 내용으로 가장 적절한 것은?", "tier": 1}, {"t": "광고 문구는 ‘성공’과 ‘안락함’이라는 의미를 직접적으로 노출하면서 사람들에게 정보를 주입하고 있다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "아파트의 외형적 조건을 강조한 것은 어떠한 가치관이나 이념적 함의를 배제하여 객관적인 정보를 전달하기 위한 것이다.", "a": false, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "1문단", "pre": "프랑스의 기호학자이자 문예 비평가인 롤랑 바르트는 ", "ans": "대중", "alt": [], "post": " 매체의 이미지와 텍스트가 단순한 오락이나 소비 대상이 아니라 특정 사회·문화적 의미를 담고 있으며, 그 수용 과정에서 특정 이념이 대중에게 자연스럽게 받아들여진다고 보았다."}, {"label": "2문단", "pre": "소쉬르는 이러한 ", "ans": "기호", "alt": [], "post": "의 구조에서 기표와 기의 사이의 관계가 본질적으로 자의적이라는 점을 강조하였다."}, {"label": "3문단", "pre": "그는 단일한 ", "ans": "의미", "alt": [], "post": "를 전달하는 기호를 ㉠‘1차 기호 체계’라고 하였다."}, {"label": "4문단", "pre": "이때 ‘현대의 ", "ans": "신화", "alt": [], "post": "’는 이념을 더욱 공고히 하여 수용자가 그것을 사회적 구성물로 인식하지 못하도록 만든다."}, {"label": "5문단", "pre": "이를 설명하기 위해 바르트는 ", "ans": "프랑스", "alt": [], "post": "의 한 잡지 표지를 예로 들었다."}, {"label": "6문단", "pre": "이를 통해 대중 ", "ans": "매체", "alt": [], "post": " 속에 담긴 특정 의도를 무비판적으로 받아들이는 수동적인 수용자에서 벗어나 능동적인 해석자로 나아갈 수 있다고 하였다."}], "story": null, "vocab": [], "mcq": []}, {"pid": "SK-독서-01-22", "subject": "독서", "mode": "memory", "title": "[독서] 종 차별주의와 종 중첩 논증", "src": "2027 수능특강 독서 · 01강 인문ㆍ예술", "text": "인간은 고기와 가죽을 얻거나 실험에 이용하는 등의 목적으로 동물을 이용한다. 그리고 그런 이용은 일반적으로 동물에게 해악을 끼치는 방식으로 이루어지기에 잘못된 행동으로 인식된다. 동물에게 이렇게 해악을 끼치는 것을 정당화할 방법이 있을까? 한 가지 대답은 동물은 단지 동물이기에 이런 식으로 사용하는 것이 정당하다는 것이다. ㉠‘종(種) 차별주의’는 이렇게 우리가 속한 종의 이익을 다른 종의 이익보다 우선시하는 것을 말한다. 동물은 우리 종에 속하지 않기 때문에 인간에게 절대 하지 않는 방식으로 동물을 대할 수 있다는 것이다.\n종 차별주의를 옹호하는 가장 직관적이고 상식적인 방법은 인간은 인간이라는 종에 속하므로 특별한 대우를 받아도 된다고 주장하는 것이다. 그런데 나와 같은 인간이므로 더 중요하게 대우받아야 한다는 주장이 허용된다면, 나와 같은 성별이기에 더 중요하게 대우받아야 한다는 ‘성차별주의’나, 나와 같은 인종이므로 더 중요하게 대우받아야 한다는 ‘인종 차별주의’도 허용되어야 한다. 따라서 단순히 같은 종에 속한다는 것 말고 도덕적으로 특별한 대우를 받을 만한 특징을 제시해야 한다.\n종 차별주의를 지지하는 이들은 호모 사피엔스라는 생물학적 근거를 그 특징으로 제시하기도 한다. 우리의 ⓐDNA가 특정 방식으로 구성되어 있다는 것이 인간과 동물을 다르게 대우하는 이유가 된다는 것이다. 그러나 DNA가 어떻게 구성되어 있는지는 세포 내 분자의 순서에 관한 사실일 뿐이며 그런 점에서 ⓑ피부색이나 성염색체나 마찬가지로 도덕적으로 의미 있는 특성이 아니다. 피부색이 같으므로 중요하게 대우해야 한다고 주장하는 것이 의미 없는 것처럼, DNA가 같으므로 중요하게 대우해야 한다고 주장하는 것 역시 의미가 없다. 그것은 같은 인간 종에 속하므로 다른 종과 다르게 대우해야 한다는 말이나 다름이 없는 것이다. 한편 이런 종 차별주의에 따르면 DNA가 매우 특이한 구조를 가지고 있는 사람은 동물에게 대하는 방식대로 대해도 된다는 결론이 나오게 되는 문제도 있다.\n이러한 문제를 해결하기 위해, 인간은 매우 다른 정신 능력을 갖추고 있다는 이유를 들어 종 차별주의를 지지하는 이들도 있다. 인간은 정교한 언어, 복잡한 사고 능력, 도덕적 이상에 따라 살 수 있는 능력을 가지고 있다는 것이다. 어쩌면 이러한 능력은 인간 종을 다른 종보다 우선시하는 것을 정당화할 수도 있다. 인간종에 전형적인 정신적 또는 인지적 능력이 있다는 것은 ㉡‘도덕적으로’ 중요한 특성이기 때문이다. 그러나 인간에게만 있는 정신 능력이 도덕적으로 중요하다고만 주장해서는 안 되고 왜 도덕적으로 의미가 있는지 설명해야 한다. 그렇지 않으면 그런 특성은 ‘인간의’ 것이므로 특별하다고 주장하는 셈이 된다. 이런 식의 주장을 하는 사람들은 우리가 박쥐라면 아마도 위와 같은 특성 대신에 ⓒ반향 위치 측정 능력이 도덕적으로 중요하다고 주장할 것이다. 따라서 인간은 앞서 말한 고차원적 정신 능력을 갖추고 있기에 ⓓ자의식이나 자존감 같은 사고 능력이 있다고 설명해야 한다. 그렇다면 아무리 잘 먹여 주고 고통 없이 기른다고 하더라도 사육을 위해 길러진다면 인간성이 훼손되기에 인간 사육은 옳지 못하다. 반면에 그런 능력이 없는 동물은 가두어 길러진다고 하더라도 도덕적으로 문제가 없다.\n이런 식의 설명은 인간의 배타적 특성이 왜 도덕적으로 의미가 있는지 설명할 수 있다. 그러나 이 설명은 ‘종 중첩 논증’에 취약하다. 예를 들어 아기와 심각하고 회복 불가능한 뇌 손상 환자는 위에 나열된 고차원적 정신 능력을 갖추고 있기 어렵다. 다시 말해서 생물학적으로 인간이지만 고차원적 정신 능력으로 분류할 때는 동물과 중첩되는 인간들이 있다. 하지만 그런 인간들에게는 절대 해서는 안 된다고 생각하는 사육이나 실험과 같은 행동을 동물에게는 한다. 또 침팬지와 같은 영장류 동물 중에는 위와 같은 정신 능력을 적어도 아기와 심각하고 회복 불가능한 뇌 손상 환자보다 훨씬 더 많이 가진 개체도 있을 수 있다. 그러나 그런 동물이라고 해서 인간과 똑같이 대우하지는 않는 것이 우리의 현실이다. 성차별이나 인종 차별이 만연했던 과거 사회와 달리 지금은 그런 차별이 비난받는 것처럼, 종 중첩 논증이 해결되지 않으면 종에 따른 차별도 언젠가는 비난받게 될 것이다. ㉢종 차별주의를 옹호하기 위해서는 종 중첩 논증은 어떻게든 해결되어야 한다.", "verse": false, "ox": [{"t": "고차원적 정신 능력은 오직 인간만이 그리고 모든 인간이 갖는 특성이다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "동물과 중첩되는 인간들은 DNA가 매우 특이한 구조를 가지고 있는 사람이다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "같은 성별이나 인종에 속하기 때문에 더 중요하게 대우받아야 한다는 주장은 허용될 수 있다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "도덕적으로 특별한 대우를 받을 만한 특징이 제시될 수 있다면 종에 따른 다른 대우는 차별이 아니다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "잘 먹여 주고 고통 없이 기르면서 사육하는 것을 인간에게 허용하지 않으면서 동물에게는 허용하는 것은 종에 따른 차별이다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "A: 아기는 지금은 고차원적 정신 능력이 없지만 자라면서 곧 생긴다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "A: 동물과 중첩된다고 생각되는 인간이 정말로 고차원적 정신 능력이 없는지 딱 잘라 말하기 어렵다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "A: 동물과 중첩되는 인간을 동물을 대하는 방식대로 대하면 가족을 비롯한 주변 사람들이 슬퍼하므로 옳지 못하다.", "a": true, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "1문단", "pre": "그리고 그런 이용은 일반적으로 동물에게 ", "ans": "해악", "alt": [], "post": "을 끼치는 방식으로 이루어지기에 잘못된 행동으로 인식된다."}, {"label": "2문단", "pre": "종 차별주의를 옹호하는 가장 직관적이고 상식적인 방법은 ", "ans": "인간", "alt": [], "post": "은 인간이라는 종에 속하므로 특별한 대우를 받아도 된다고 주장하는 것이다."}, {"label": "3문단", "pre": "우리의 ⓐ", "ans": "DNA", "alt": [], "post": "가 특정 방식으로 구성되어 있다는 것이 인간과 동물을 다르게 대우하는 이유가 된다는 것이다."}, {"label": "4문단", "pre": "어쩌면 이러한 ", "ans": "능력", "alt": [], "post": "은 인간 종을 다른 종보다 우선시하는 것을 정당화할 수도 있다."}, {"label": "5문단", "pre": "그러나 이 설명은 ‘종 ", "ans": "중첩", "alt": [], "post": " 논증’에 취약하다."}], "story": null, "vocab": [], "mcq": []}, {"pid": "SK-문학-01-01", "subject": "문학", "mode": "memory", "title": "[문학] 김소월, 「길」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "어제도 하룻밤\n나그네 집에\n가마귀 가왁가왁 울며 새었소.\n\n오늘은\n또 몇 십 리\n어디로 갈까.\n\n산으로 올라갈까\n들로 갈까\n오라는 곳이 없어 나는 못 가오.\n\n말 마소 내 집도\n정주(定州) 곽산(郭山)\n차(車) 가고 배 가는 곳이라오.\n\n여보소 공중에\n저 기러기\n공중엔 길 있어서 잘 가는가?\n\n여보소 공중에\n저 기러기\n열 십자(十字) 복판에 내가 섰소.\n\n갈래갈래 갈린 길\n길이라도\n내게 바이* 갈 길은 하나 없소.\n- 김소월, 「길」\n*바이: 전혀.", "verse": true, "ox": [{"t": "‘어제도∨하룻밤∨나그네 집에’로 호흡을 조절하는 율격을 통해 시의 리듬감을 형성하고 있군.", "a": true, "boki": "시적 표현은 리듬감을 다양하게 형상화하는 방식으로 드러난다. 특히 시행의 배치와 연 구분 등의 요소를 통해 리듬감을 형성하고 이를 활용하여 시의 주제나 화자의 정서를 표현하면서 시 전체의 형태를 구성하게 된다. 외적 규율이 전제되어 있는 고전 시가와 달리, 현대시의 리듬은 반복이나 다양한 변주 등을 통해 내적 규범을 창출한다. 이 작품은 호흡의 속도와 길이 등을 조절하는 율격을 기반으로 하고 종결 표현을 다양화하는 등의 요소를 통해 리듬감을 형성하고 있다. 또한 동일한 단어를 중첩하는 방식으로 음성 상징어를 사용하여 표현 대상을 감각적으로 형상화하는 방식도 찾아볼 수 있다.", "stem": "<보기>를 참고하여 윗글을 이해한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "시행의 길이를 각 연마다 다양하게 변주한 것은 내적 규범을 통해 리듬감을 형성하는 현대시의 특징이라고 볼 수 있겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘-오’와 ‘-소’ 등의 종결 어미를 반복적으로 사용하여 청자에게 말하는 방식을 드러낸 것은 전체적인 리듬감 형성에 기여하는 것이겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘공중엔 길 있어서 잘 가는가?’에서 의문형 종결 방식을 사용한 것은 화자의 정서를 부각하는 동시에 시 전체의 율격의 통일성을 고려한 것이겠군.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "‘가왁가왁’과 ‘갈래갈래’ 등 동일한 단어를 중첩한 음성 상징어를 사용한 것은, 시적 대상을 감각적으로 형상화하여 시적 의미를 드러내기 위한 의도로 볼 수 있겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘어제도’ ‘가마귀 가왁가왁’ 우는 소리를 들으며 밤을 지새운 화자의 처지를 통해, 끝없는 여정에 처한 불안한 심리를 짐작할 수 있겠어.", "a": true, "boki": "‘길’은 보통 우리가 평상시에 걸어 다니는 보도를 의미하기도 하지만, 비유적으로 인생이나 운명의 행로를 의미하기도 한다. 혹은 인간의 도리나 종교적 진리를 뜻하는 관념적인 단어로도 쓰인다. 이 작품에서 ‘길’은 끝없이 이어지는 나그네의 여정으로서, 일제 강점기의 고단하고 불안한 현실을 살아가며 고향에는 가지 못하는 유랑민의 삶의 행로를 표상한다.", "stem": "<보기>를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "‘오늘은 /또 몇 십리 / 어디로 갈까’에서 화자는 관념 속에서 인생의 길을 탐색하며, 종교적 진리를 향한 갈망을 드러낸 것으로 볼 수 있겠어.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "‘산으로 올라갈까/들로 갈까’ 하는 화자의 방황은 뚜렷한 목적지가 없는 나그네의 처지와 유사한 것으로 이해할 수 있어.", "a": true, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "시어", "pre": "가마귀 ", "ans": "가왁가왁", "alt": [], "post": " 울며 새었소."}, {"label": "시어", "pre": "", "ans": "갈래갈래", "alt": [], "post": " 갈린 길"}, {"label": "시어", "pre": "", "ans": "어제도", "alt": [], "post": " 하룻밤"}, {"label": "시어", "pre": "말 마소 ", "ans": "내 집", "alt": [], "post": "도"}, {"label": "시어", "pre": "", "ans": "어디로", "alt": [], "post": " 갈까."}, {"label": "표현법", "pre": "전통적인 3음보 율격을 변주하여 방황하는 화자의 비애를 표현하고 있으며, 대화하듯 건네는 말투, 방향성을 상실한 ‘길’이라는 공간적 배경, ", "ans": "감정 이입", "alt": [], "post": "이 가능한 소재의 사용 등을 통해 삶의 뿌리를 잃은 화자의 절망과 허무를 드러내고 있다."}, {"label": "표현법", "pre": "특히 갈림길 한가운데에서 어디로도 나아가지 못한 채 서 있는 화자의 모습은, 일제 강점기 고난 속에서 주체적 삶의 길을 잃었던 우리 민족의 비애와 좌절을 ", "ans": "상징", "alt": [], "post": "적으로 형상화한 것이라 할 수 있다."}], "story": null, "vocab": [], "mcq": []}, {"pid": "SK-문학-01-02", "subject": "문학", "mode": "memory", "title": "[문학] [가] 안민영, 「고울사 저 꽃이여 ~」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "[가]\n고울사 저 꽃이여 반(半)만 여윈 저 꽃이여\n더도 덜도 말고 매양 그만하여 있어\n춘풍에 향기 좇는 나비를 웃고 맞이하노라\n- 안민영\n\n[나]\n꾀꼴꾀꼴 우는 소리에 낮잠 깨어 일어나 보니\n작은 아들 글을 읽고 며늘아기 베 짜는데 어린 손자는 꽃놀이한다\n때마침 지어미 술 거르며 맛보라고 하더라\n- 오경화\n\n[다]\n비 맞으며 논바닥에 엎드려 김매니               帶雨鋤禾伏畝中\n흙투성이 험한 꼴이 어찌 사람 모습이랴만        形容醜黑豈人容\n왕손 공자들아 더 이상 얕보지 마오              王孫公子休輕侮\n그대들의 부귀 호사 우리 농부로부터 나오나니    富貴豪奢出自儂\n\n햇곡식은 푸릇푸릇 논밭에서 자라는데            新穀靑靑猶在畝\n아전들은 벌써부터 조세 거둔다고 성화로세       縣胥官吏已徵租\n힘써서 경작하여 나라 부유케 한건우리들이거늘   力耕富國關吾輩\n어찌 이리도 극성스레 침탈하는가                何苦相侵剝及膚\n- 이규보, 「농부를 대신하여 읊다」", "verse": true, "ox": [{"t": "(가)에서 ‘반만 여윈’ 꽃은 작품 외적 정보인 ‘완전히 시든 꽃’과 비교될 수 있는데, 모든 꽃은 결국 시든다는 점에서 예찬의 어조 이면에 안타까움의 정서가 엿보이고 있군.", "a": true, "boki": "한 작품에서 각각의 시어들은 다양한 의미 관계를 맺으며 하나의 맥락 속에서 통합된다. 이때 현실 세계에서 상호 연관되는 소재를 가리키는 시어들이 사전적인 의미를 바탕으로 특정한 관계를 맺기도 하고, 사전적 의미로는 서로 다른 범주에 있는 말들이 시적 맥락 속에서 단일한 의미로 수렴될 수도 있다. 또한 어떤 시어는 작품 외적 정보에 해당하는 다른 단어와 비교 혹은 대조되면서 의미의 관계망을 형성함으로써 시적 상황과 화자의 정서를 구체적으로 형상화하는 역할을 한다.", "stem": "<보기>를 참고하여 (가)~(다)를 감상한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "(가)에서 ‘저 꽃’과 ‘나비’는 생태적으로 서로 인접해 있는데, 시적 맥락 속에서 서로 조화를 이루는 자연물이라는 의미 관계를 맺으면서 화자의 만족감을 드러내고 있군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "(나)에서 ‘낮잠’과 ‘술’은 사전적 의미로는 서로 다른 범주에 있지만, 시적 맥락 속에서는 화자의 평화롭고 한가로운 일상이라는 단일한 의미로 수렴되고 있군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "(다)에서 ‘흙투성이 험한 꼴’과 ‘부귀 호사’는 현실 세계에서 상반된 의미를 지니는데, 시적 맥락 속에서도 하층민과 지배층의 삶을 각각 표상하면서 대립적인 의미 관계를 맺고 있군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "(다)에서 ‘햇곡식’과 ‘조세’는 제도적으로 인접해 있는 관계인데, 이를 바탕으로 시적 맥락 속에서 농민들이 느끼는 노동의 보람이라는 단일한 의미로 수렴되고 있군.", "a": false, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "시어", "pre": "고울사 ", "ans": "저 꽃", "alt": [], "post": "이여 반(半)만 여윈 저 꽃이여"}, {"label": "시어", "pre": "춘풍에 향기 좇는 ", "ans": "나비", "alt": [], "post": "를 웃고 맞이하노라"}, {"label": "시어", "pre": "꾀꼴꾀꼴 우는 소리에 ", "ans": "낮잠", "alt": [], "post": " 깨어 일어나 보니"}, {"label": "시어", "pre": "", "ans": "흙투성이 험한 꼴", "alt": [], "post": "이 어찌 사람 모습이랴만        形容醜黑豈人容"}, {"label": "시어", "pre": "그대들의 ", "ans": "부귀 호사", "alt": [], "post": " 우리 농부로부터 나오나니    富貴豪奢出自儂"}], "story": null, "vocab": [], "mcq": []}, {"pid": "SK-문학-01-03", "subject": "문학", "mode": "memory", "title": "[문학] 문순태, 「징 소리」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "아내를 찾아다니느라고 시골에서 벌어 온 돈마저 모두 깨 먹어 버리고, 얼마 안 남은 산동네 사글셋방값마저 찾아 쓴 칠복이는, 방울재에서 나올 때 나눠 가진 굿물인 징 하나만 들고 거렁뱅이 신세가 되어 떠돌았다.\n칠복이는 거렁뱅이 신세가 되어 떠돌면서도 방울재에서 가지고 나온 징을 마치 그의 딸아이만큼이나 애지중지했으며, 밤에 잠을 잘 때는 그 징을 꼭 베고 잤다. 그런데 그 징을 베고 잘 때마다 이상하게 그 징에서 마치 방울재 할미산 너덜겅이 와르르 허물어지는 것 같은 소리가 들려오기도 하고, 또 어찌 들으면 방울재 사람들 한 사람 한 사람이 흐느껴 우는 소리가 아슴하게 들려오곤 했다.\n\n그때마다 방울재에 살던 시절이 눈에 선하게 떠올랐다.\n칠복이는 징에서 고향 사람들이 그를 오라고 부르는 소리를 들었다. 그 소리를 들은 뒤 딸아이를 업고 꼬박 하루를 걸어 방울재에 닿았다.\n[A]\n\n[중략 부분 줄거리] 칠복은 수몰된 방울재 사람들이 모여 사는 댐 인근으로 와서 징 울리는 행위를 반복하고 낚시꾼들의 불만을 산다. 이에 낚시꾼들을 상대로 매운탕을 팔며 살아가게 된 방울재 사람들이 그를 쫓아내기로 한다.\n\n“강촌 영감님, 부탁입니다유. 지발 쫓아내지만 마셔유. 다시는 훼방 치지 않겠구먼유. 이렇게 빌께유.”\n칠복이는 우르르 강촌 영감에게로 달라붙어 어깻죽지며 팔을 붙들고 애원을 하다가, 그대로 무릎을 꿇고비대발괄* 빌었다.\n이 모습을 본 봉구와 덕칠이, 강촌 영감까지도 목울대에 모닥불이 타오르면서 시울이 시큰시큰했다.\n“안 가겠다면 덕석몰이를 혀서라도 내쫓을 꺼여!”\n강촌 영감은 담배 연기를 허공에 토해 내며 결연히 말했다.\n“봉구, 덕칠이, 팔만이 나를 내쫓지 말어. 고향에서 내쫓기면 워디로 갈 것인감. 이보게덜 내 사정좀봐줘!”\n칠복이는 무릎을 꿇은 채 친구들의 아랫도리를 두 팔로 덥석 껴안으며 통사정을 했으나, 방울재 친구들은 도시 말이 없었다.\n칠복이는 소리 내어 울고 싶었으나 이를 응등물고 참아 냈다. 강촌 영감의 말마따나 고향이 없어져 버린 판국에 고향 사람인들 남아 있을 리 없지 않겠느냐는 생각이 들었다.\n그런데 이상한 일이었다. 칠복이 자신이 참알수없는 일은 때때로 그의 눈에 방울재와 방울재의 옛사람들이 너무도 선명하게 보이면서, 그가 영락없이 방울재 사람들과 한데 어울려 살고 있는 환각 에 정신을 가늠할 수 없게 된 거였다. 방울재를 삼킨 호수의 물도 거대한 댐도 보이지 않고 낯익은 하늘, 반갑게 맞아 주는 마을 사람들만이 눈에 가득 들어오고, 그럴 때는 정월 대보름날 밤 매귀굿을 할 때처럼 어깨가 들썩거리면서 겅중겅중 춤을 추고 싶어져 징을 찾아 들고 나서는 거였다.\n그러다가 온몸이 흠뻑 땀에 젖은 채 정신을 차리고 보면, 방울재와 낯익은 사람들은 온데간데 없고 호수의 물만이 그를 삼킬 듯 넘실거리고 댐은 더욱 하늘 닿게 높아지는 듯싶었다.\n“자네 정신 말짱허니께 허는 소리네만 좋은 얼굴로 헤어지세. 지발 부탁이니 지금 떠나도록 히여.”\n강촌 영감이 볼멘소리로, 그러나 약간은 사정 조로 말하고 나서 칠복의 겨드랑이에 손을 넣어 일으키려고 했다.\n“낼 아침 떠나라 허고 싶네만. 정은 단칼에 자르는 거이 좋은겨.”\n칠복이는 아이를 업고 천천히 일어서서 희끄무레한 램프 불빛에 비춰 보이는 침울하게 가라앉은 마을 사람들의 얼굴들을 하나하나 가슴속 깊이깊이 새기며 찬찬히 뜯어보았다. 그의 눈에서는 금방 눈물이 소나기처럼 주르륵 쏟아질 것만 같았다.\n“핑 서둘러 나가면 광주 나가는 버스를 탈 꺼여!”\n강촌 영감이 앞서 술청을 나가며 하는 말이다. 강촌 영감을 따라 칠복이가 고개를 떨구고 나갔고, 뒤이어 봉구와 덕칠이, 팔만이가 차례로 몸을 움직였다.\n봉구네 주막에서 나온 그들은 칠복이를 앞세우고 미루나무가 두 줄로 가지런히 비를 맞고 늘어서 있는 자갈길 구신작로를 향해 어둠 속을 걸었다. 그들은 아무도 입을 열지 않았다. 칠복이의 등에 업힌 그의 딸아이가 캘록캘록 기침을 하자, 바짝 뒤를 따르던 봉구가 잠바를 벗어 덮어씌워 주었다.\n빗방울은 점점 굵어졌고 호수를 훑고 온 물에 젖은 가을바람에 으스스 몸이 떨렸다.\n이따금씩 고속 도로에서 자동차들이 헤드라이트로 눅눅한 어둠의 이 구석저구석을 쿡쿡 쑤셔 대며 바람처럼 내달았다. 자동차의 불빛이 길게 어둠을 가를 때마다 칠복이를 앞세우고 걷는 방울재 사람들의 가슴이 마치 총을 맞는 것만큼이나 섬찟섬찟했다.\n신작로에 당도해서 조금 기다리자 읍으로 들어가는 헌털뱅이 버스가 왔으며, 그들은 서둘러 차를 세우고칠복이를 밀어 넣었다.\n“징헌 고향 다시는 오지 말어.”\n봉구가 천 원짜리 두 장을 칠복이의 호주머니에 푹 쑤셔 넣어 주며 울먹울먹한 목소리로 말했다.\n칠복이가 무슨 말인가 하는 것 같았으나 부르릉 버스가 굴러가는 바람에 알아들을 수가 없었다.\n그들은 버스가 어둠 속에 묻히고 자동차 불빛이 보이지 않게 되어서야 말없이 돌아섰다.\n한사코 가기 싫다는 칠복이 부녀를 억지로 버스에 태워 쫓아 보낸 그날 밤, 방울재 사람들은 잠을 이룰 수가 없었다. 후드득후드득 빗방울이 굵어지고 땅껍질 벗겨 가는 소리가 드세어질 무렵, 봉구는 잠결에 어슴푸레하게 들려오는 징 소리에 퍼뜩 놀라 일어나 앉았다.\n\n“아니, 이 밤중에 무신 징 소리당가?”\n그는 마른기침을 토해 내고 삐그덕 방문을 열어, 송곳 하나 박을 틈도 없이 꽉 들어찬 어둠의 여기저기를 쑤석여 보았다. 어둠 속 어디선가 딸을 업은 칠복이가 휘주근하게 비에 젖은 채 바보처럼 벌쭉벌쭉 웃으면서 불쑥 나타날 것만 같았다.\n그는 문을 안으로 걸어 잠그고 자리에 들어 아내의 툽상스러운 허리를 꼭 껴안고 잠을 청하려고 했으나, 땅껍질을 두드리는 빗방울 소리 사이사이로, 징 소리가 쉬지 않고 큰 황소울음처럼 사납고도 구슬프게 들려왔기 때문에 잠시도 눈을 붙일 수가 없었다. 어쩌면 바람 소리와도 같은 그 징소리는 바로 뒤란의 아카시아 숲께에서 가깝게 들린 것 같다가도 다시 댐 쪽으로 어슴푸레 멀어져 가곤 했다.\n“바람 소린지, 징 소린지.”\n[B]\n\n- 문순태, 「징 소리」", "verse": false, "ox": [{"t": "칠복이 징을 들고 춤을 추게 되는 이유이다.", "a": true, "boki": "", "stem": "", "tier": 2}, {"t": "타향을 떠돌던 칠복이 고향에 돌아오면서 겪게 된 현상이다.", "a": true, "boki": "", "stem": "", "tier": 2}, {"t": "방울재 사람들과의 유대에 대한 칠복의 그리움이 투영되어 있다.", "a": true, "boki": "", "stem": "", "tier": 2}, {"t": "방울재 사람들이 칠복을 마을에서 쫓아내기 위해 내세우는 구실이다.", "a": false, "boki": "", "stem": "", "tier": 2}, {"t": "방울재의 모습을 현재 상태와 다르게 지각하는 칠복의 정신 상태를 보여 준다.", "a": true, "boki": "", "stem": "", "tier": 2}], "cloze": [], "story": {"text": "( 1 )은 ( 6 )들을 방해하며 징을 울리다 종종 매를 맞곤 한다. 마을 사람들은 댐 건설로 ( 5 )에 잠겨 버린 ( 3 )를 떠나 매운탕 장사로 생계를 이어 가고 있으며, 칠복을 동정하면서도 그를 내쫓으려 한다. 원래 칠복은 일찍 부모를 잃고 외가에서 머슴처럼 살다가, 도시에서 온 순덕과 결혼했다. 순덕은 곧 도시 생활을 원했고, 결국 부부는 광주의 사글셋방에서 어렵게 살아간다. 칠복은 농사 품팔이로 번 돈을 들고 집에 돌아왔다가, ( 2 )가 다른 남자와 함께 있는 장면을 목격한다. 이후 징을 들고 방황하던 그는 다시 마을로 돌아오지만, 그의 행동으로 인해 피해를 입게 된 마을 사람들은 결국 칠복을 ( 4 )에 태워 쫓아낸다.", "ans": ["칠복", "아내", "방울재", "버스", "호수", "낚시꾼"], "label": "상세 줄거리"}, "vocab": [], "mcq": []}, {"pid": "SK-문학-01-04", "subject": "문학", "mode": "memory", "title": "[문학] 작자 미상, 「임진록」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "이원익 왈, / “도적이 마음이 교만하여 우리를 업수이여기면 반드시 성공하리라.”\n하고, 이일을 선봉으로 삼아 고각을 울리며 나아가니, 왜장 평행장이 부장(副將) 종일로 하여금 먼저 싸우라 하니, 종일이 병사를 이끌어 내달아 십여 합을 싸우더니 이일이 패하여 달아나니, 종일이 따라 미치지 못하고 이원익의 진을 치거늘 원익이 대패하여 도망하더니, 문득 한 도사가 원익의 위태함을 보고 소매 안에서 복성화차*를 내어 두르며, 또 백옥 호리병을 공중에서 기울여 피 같은 물을 내어 적진에 뿌리니, 곧바로 도적이 손을 놀리지 못하고 발이 땅에 붙는지라. 이로 인하여 종일이 군사를 다 죽이고 황망히 성안에 들어가 굳이 지키고 나지 아니하는지라. 원익이 패군을 거두어 진을 치고 여러 장수더러 왈,\n“종일의 적수를 얻어야 종일을 잡으리라.”\n하더니 문득 한 군사가 왈,\n“소인의 동리에 한 양반이 있으니 성명은 김응서라. 용맹이 남다르더니, 일일은 큰 범이 담을 넘어와 개를 물고 도로 넘어가거늘, 응서가 몸을 솟아 범의 꼬리를 잡고 덜미를 잡아 땅에 부딪쳐 죽이니, 이는 세상에 드문 장사이더이다.”\n하니, 원익이 크게 기뻐 왈,\n“네 동리가 어디뇨?” / 대답하여 왈,\n“용강(龍岡)이라.”\n하거늘, 원익이 즉시 용강에 이르러 김응서를 찾아보고, 종일의 용맹을 이르며 가기를 청하니 응서 왈,\n“내 재주도 없을 뿐 아니라 이제 부친 상중(喪中)에 있으니 어찌하리오.” / 원익 왈,\n“비록 상중이나 방금 국세 위태하니 백성 된 자가 어찌 사사로운 정을 돌아보리오.”\n하며 가기를 간청하니, 응서 할 수 없이 영전(靈前)에 통곡하고 평복을 갈아입고 원익을 좇아 진에 이르니, 원익이 사랑하며 보검을 주어 연습하라 하더니, 하루는 응서 왈,\n“소장이 오늘 밤에 평양성을 넘어 들어가 종일을 베어 오리니 장군은 일지병*을 성외에 매복하였다가 소장의 형세를 보아 접응하소서.”\n하고 비수를 끼고 성을 넘어 들어가니 순라군이 졸거늘, 응서 자취 없이 군막을 지나 관문에 다다르니, 수문군 십여 인이 큰 칼을 좌우에 세우고 잠이 들었는지라, 응서 칼을 빼어 차례로 베고 문을 넘어가니 관중(關中)에 등촉이 휘황하고 인적이 고요한지라, 정히 주저하더니 마침 수청하던 기생이 소피보러 나오다가 응서를 보고 놀라 왈,\n“어떤 사람이관대 위태한 곳에 들어왔느뇨?” / 응서 왈,\n“나는 이원익의 부장(副將)이러니 이제 적장을 죽이고자 하나니, 너도 조선 사람이라, 나라를 위하여 적장의 동정을 자세히 이르라.” / 그 기생 왈,\n“종일이 관중에 거처하되 사면에 비단 휘장을 드리워 장의 귀마다 방울을 달아 조금 요동하면 방울 소리가 요란한지라. 이로써 불우지변을 방비하며, 삼경 전에는 귀로 자며 눈으로 보고 삼경 후는 눈으로 자며 귀로 듣고 사경이 되면 귀와 눈을 모두 자고 보지 아니하나니, 이제 천비 먼저 들어가 저의 잠듦을 탐지하여 방울을 솜으로 막고 나오거든 장군이 들어가소서.”\n하고 들어가더니 이윽고 나오는지라. 응서 즉시 들어가 보니 종일이 술에 취하고 장창 보검을 좌우 손에 잡고 상에 누워 자거늘, 응서 급히 칼을 들어 종일의 머리를 한 번 찍고 몸을 날려 들보 위에 앉으니, 종일의 머리 떨어지며 분기를 발하여 일어서며 잡았던 보검으로 들보를 치니, 응서의 군복 자락이 맞아 떨어지며 종일의 머리와 몸이 상 아래 거꾸러지는지라. 응서 내려와 종일의 머리를 들고 나올새, 그 기생이 울며 왈,\n“장군이 소첩을 사지(死地)에 두고 가려 하느뇨?”\n하며 따라오거늘, 응서 불쌍히 여겨 데리고 나오더니, 장중이 자연 시끄러워 순라군이 일시에 불을 들고 창검을 두르며 고함하니, 응서 기생을 보고 왈,\n“네 손을 죽도록 놓지 말라.”\n하고 칼을 두르며 나오더니, 성 밑에 다다라서는 왜장 평의지가 칼을 들고 크게 꾸짖으며 왈,\n“네 간계(奸計)로 우리 장수를 죽이고 감히 나가고자 하느냐.”\n하며 달려들거늘, 응서 힘을 다하여 싸우다가 응서의 칼이 있는 곳에 도적의 머리 추풍낙엽 같으니, 평의지당하지 못하여 물러가거늘, 응서 바야흐로 성을 넘으려 할새, 비록 용맹하나 기생을 업고 무수한 도적을 대적하매 기력이 기진한지라. 즉시 전대로 기생의 허리를 매어 성을 넘어가고자 하더니, 평수맹이 달려들어 한칼로 기생을 베고 바로 응서를 취하거늘, 응서 대로하여 평수맹을 일 합에 베니 적병이 사방으로 흩어지며 달아나는지라. 응서 도적 수십을 베고 성을 넘어 나오니, 부장 안일봉이 군을 거느려 매복하였다가 응서를 접응하여 진중으로 돌아와 전말을 고하니, 원익이 크게 기뻐하여 응서의 공을 치하하고 종일의 머리를 기에 달아 호령하더라.\n- 작자 미상, 「임진록」\n*복성화차: 길한 별이 그려진 꽃 비녀.\n*일지병: 한 무리의 병사.", "verse": false, "ox": [{"t": "왜적에 패하여 도망가는 이원익을 ‘문득 한 도사’가 등장하여 도와주는 장면은, 설화적 상상력을 바탕으로 당대 독자들을 정신적으로 위안하는 효과를 낳겠군.", "a": true, "boki": "「임진록」은 한편으로는 역사적 사실에 기대면서도 한편으로는 설화적 상상력에 기반한 초현실적인 장면을 설정하여 임진왜란이 초래한 우리 민족의 비극을 그려 낸 작품이다. 비범한 영웅적 인물의 활약상을 형상화하는 한편, 계층을 초월한 민족적 연대 의식을 바탕으로 왜적에 대항하는 민중의 활약을 비장하게 그려 낸다. 이를 통해 전란에 대응하는 지배층의 무능과 왜적의 무자비한 행태에 대한 반감을 드러내고, 인적·물적 피해에 대한 정신적 위안을 도모하는 한편 무고하게 희생된 민중들을 애도하고자 하는 의식을 보여 준다.", "stem": "<보기>를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "김응서가 ‘사사로운 정’ 때문에 전란의 와중에 은거하고 있다는 설정을 통해, 국가의 안위보다 가문의 법도를 우선시하는 지배층의 무능한 행태를 드러내고 있군.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "기생이 일부러 ‘방울을 솜으로 막고 나’오겠다고 하며 김응서가 종일의 방으로 들어가는 것을 돕는 데서, 왜적에 대항하는 민중 계층의 활약을 보여 주고 있군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "종일이 ‘머리 떨어지며 분기를 발하여 일어서’는 초현실적인 장면을 설정함으로써, 비범한 인물을 홀로 처단하는 김응서의 영웅적 활약을 부각하고 있군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "김응서가 탈출하는 과정에서 적군이 ‘한칼로 기생을 베’는 장면을 설정하여, 무고하게 희생된 민중들을 애도하고자 하는 의식을 엿볼 수 있군.", "a": true, "boki": "", "stem": "", "tier": 1}], "cloze": [{"label": "5문단", "pre": "“소장이 오늘 밤에 ", "ans": "평양성", "alt": [], "post": "을 넘어 들어가 종일을 베어 오리니 장군은 일지병*을 성외에 매복하였다가 소장의 형세를 보아 접응하소서.”"}], "story": null, "vocab": [{"kind": "뜻풀이", "pre": "‘길한 별이 그려진 꽃 비녀’를 뜻하는 지문 속 말은? ", "ans": "복성화차", "alt": [], "post": "", "src": "지문 각주"}, {"kind": "뜻풀이", "pre": "‘한 무리의 병사’를 뜻하는 지문 속 말은? ", "ans": "일지병", "alt": [], "post": "", "src": "지문 각주"}], "mcq": []}, {"pid": "SK-문학-01-05", "subject": "문학", "mode": "memory", "title": "[문학] 김민정, 「길삼봉뎐」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "[앞부분 줄거리] 동인인 정여립이 역모죄로 죽게 되자, 선조는 정여립과 함께 거론된 반란의 주모자 길삼봉을 잡기 위해 서인인 정철에게 수사와 재판을 맡긴다. 무수한 동인의 선비들이 죄 없이 죽임을 당하나 길삼봉은 잡히지 않고, 심지어 그가 누구인지, 실존하는지조차 불확실하다. 그러던 중 정철은 처사 최영경을 길삼봉으로 의심해 체포한다.\n\n국청*.\n최영경이 자리해 있다. 코러스*들이 최영경을 둘러싼다. ㉠술병을 손에 쥔 정철, 잔뜩 취해 있다.\n\n정철: 길삼봉 상장군의 몰골이 형편없이 상했구려. 역시 그대의 역당은 그 뿌리가 깊소이다. 무고(無辜)*를 주청하는 상소가 끝이 없으니 말이오.\n최영경: ㉡(호탕히 웃으며) 하하하. 없는 죄를 엮는 일이 여간 쉽지는 않으리다.\n정철: 생사 앞에서 그리 담대한 것은 그대의 성품이오 기질이오?\n최영경: (읊조리듯) 생사를 잊은 지 이미 수십 년이라.\n정철: ㉢(비웃음) 과연 죽림총에 은거하는 현자라는 소릴 들을 만하구려. 이황종의 서찰에 줄줄이 시국에 대한 비분강개의 글이 난무하던데. 그대 또한 그와 뜻을 같이하는가? (서찰을 내보인다.)\n최영경: (타령을 읊듯 태평하게) 혹은 옳고 혹은 아니 옳고. 그대들의 쓸개 빠진 당파 싸움에 비분강개하는 마음은 그의 것이 나의 것이나, 벼슬을 물린 것은 나의 도량이 그에 미치지 못함이오.\n정철: 죽림에 묻혀 현실 정치가 붕당의 패싸움입네 더러운 오물이네 하고 말하기는 쉬운 법이오.\n최영경: ㉣(정색하며) 허면 화려한 복색으로 궐을 출입하며, 사탕발림으로 임금의 귀를 어둡게 하고 당쟁만 일삼는 그대들은 들판의 곡식을 일구는 농부의 땀을 알며, 배곯아 죽어 가는 아이, 병들어도 약 한 번 써 보지 못하는 노복의 처지를 아는가? 아니, 밤마다 피를 토하며 세상 끝날 날을 노래하며 뒹구는 백성의 울부짖음에는 왜 대답이 없는가? 두 귀가 멀쩡한데 왜 귀를 처막고 있는가?\n정철: 뜻만 있으면 무엇 하오? 행함이 없으면 다 헛것인 것을.\n최영경: 그대가 헛것을 논하다니 허허. 헛것을 핑계 삼아 선비의 목을 치는 그대가.\n(중략)\n선조: (화를 내며) 대체 길삼봉이 어떤 자이길래 최영경의 목숨까지 앗아 간단 말이오!\n정철: 송구하옵니다. 최영경이 길삼봉이라고 하기엔 너무도 미력한 인물이온데, 옥사(獄死)에까지 이르렀으니 신을 벌하시옵소서. 다만, 수많은 고변*을 밝히고자 그리한 충정은 헤아려 주시옵소서.\n이산해: 최영경을 길삼봉이라 무고(誣告)한* 이들이 모두 정철 대감의 수하임을 눈여겨보소서. 이 모든 것이 정철의 계략이옵니다.\n정철: 천부당하옵니다. 신, 충심으로 ⓐ옥사(獄事)를 진행하였을 뿐, 죄 없는 자를 무고한 바 없사옵니다.\n이산해: 충심을 다한다는 위관이 어찌 술에 취해 공초를 진행하였겠사옵니까? 정철을 당장 파직하옵소서.\n정철: 전하, 신의 사사로운 허물을 들추어 어의를 흐리고자 하는 간계이옵니다.\n이산해: 이 ⓑ서찰 앞에서도 그런 무례한 말을 한단 말이오?\n\n이산해, 선조에게 서찰을 건넨다. 선조, 펼쳐 들고 보다 안색이 묘연해진다.\n\n이산해: 최영경이 즉 길삼봉이라고 상소하면 벼슬 걱정은 하지 않아도 될 것이다, 송강의 필체가 분명 그렇게 말하고 있사옵니다.\n정철: 아니옵니다, 전하. 모함이옵니다.\n이산해: 어릴 적 문우였던 제가 어찌 송강의 필체를 모르겠나이까?\n정철: 필체를 도색하는 것은 일도 아니옵니다. 일찍이 이산해는 정여립의 서간.\n\n㉤정철과 이산해의 눈이 불꽃이 튈 듯 부딪친다.\n\n선조: 위관, 그런데 정여립은 동인인가 서인인가?\n정철: (머뭇대다) 전 우의정 정언신의 혈족이니 동인이라 할 만하옵니다.\n선조: 최영경은 어떠하오?\n정철: (사이) 초야에 은거하는 이가 동서의 구분을 알겠습니까?\n선조: 그대를 동인 백정이라 하던데 어찌 생각하오?\n정철: 천부당만부당하옵니다. 역모를 막고자 한 소인의 충정을 헤아려 주옵소서.\n\n사이,\n\n선조: 이산해 대감, 그대가 위관을 맡게. (지엄하게) 정철의 관직을 폐하고, 사가에서 위리안치*하게 하라. 또한 최영경을 무고한 이들을 반좌율*로 다스리라.\n이산해: 어지를 받들겠나이다.\n정철: 전하, 이는 모함이옵니다. 전하, 전하!\n\n선조, 이산해에게 웃음을 보인다. 이산해, 기쁨에 함께 웃는다.\n\n선조: (갑자기 웃음을 거두며) 위관은 무얼 하는가? 길삼봉이 날뛰고 있지 않은가! 해가림*이 얼마 남지 않았으니, 어서 길삼봉을 잡아들여라!\n이산해: (놀라) 횃불을 밝혀라. 인두를 달구고, 고변된 자들을 끌고 와 형틀에 묶어라. 길삼봉을 잡으라는 어명이시다.\n\n선조, 여유롭게 웃는다.\n- 김민정, 「길삼봉뎐」\n*국청: 조선 시대에, 역적 등의 중죄인을 신문하기 위해 설치하던 임시 관아.\n*코러스: 연극에서 극 중 특수한 기능과 효과를 담당하는 역할을 이르는 말.\n*무고: 아무런 잘못이나 허물이 없음.\n*고변: 반역 행위를 고발함.\n*무고한: 사실이 아닌 일을 거짓으로 꾸미어 해당 기관에 고소하거나 고발한.\n*위리안치: 유배된 죄인이 거처하는 집 둘레에 가시로 울타리를 치고 그 안에 가두어 두던 일.\n*반좌율: 없는 사실을 거짓으로 꾸며 고발한 사람에게 고발당한 사람이 받은 처벌과 같은 형벌을 가하던 제도.\n*해가림: 여기서는 ‘일식’을 뜻함.", "verse": false, "ox": [{"t": "최영경은 정철이 ⓐ를 진행한 이유를 당쟁에서 찾는다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "정철은 나라를 위한 충정에서 ⓐ를 진행하였다고 주장한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "이산해는 자신과 정철이 문우였던 사실을 내세워 ⓑ에 관한 자기주장의 신빙성을 뒷받침한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "선조는 ⓑ를 본 후 길삼봉과 관련해 진행되어 온 ⓐ를 멈추게 한다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "이산해는 ⓑ를 근거로 하여 ⓐ의 진행 과정에서 정철이 계략을 꾸몄다고 주장한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "㉠: 등장인물의 행동을 나타내는 지시문으로, 지시문에 제시된 행동은 위관으로서 정철이 수행한 공적 업무가 훗날 비판받는 원인이 된다.", "a": true, "boki": "", "stem": "", "tier": 2}, {"t": "㉡: 지시문은 최영경의 성격과 심리를, ‘없는 죄를 엮는 일’이라는 대사는 정철의 행위에 대한 최영경의 부정적 인식을 드러내고 있다.", "a": true, "boki": "", "stem": "", "tier": 2}, {"t": "㉢: 지시문을 고려할 때, 상대방을 ‘현자라는 소릴 들을 만’한 인물이라고 한 정철의 대사가 반어적 표현임을 짐작할 수 있다.", "a": true, "boki": "", "stem": "", "tier": 2}], "cloze": [], "story": {"text": "조선 전역에서 괴이한 일들이 벌어지고 하늘에서는 변란을 예고하는 천문 현상이 일어나 민심이 흉흉하다. 한양에서는 백성들이 밤낮없이 남산골에 모여 「둥둥곡」이라는 노래를 부르며 해괴한 짓을 서슴지 않는다. 서인과 ( 5 )이 극심한 정쟁을 벌이는 가운데 동인의 ( 7 ) ( 8 )이 역모를 꾀했다는 혐의로 죽게 된다. ( 6 )이란 인물은 정여립과 함께 거론된 반란의 우두머리인데, 그가 누구인지 아니면 그가 실재하는 인물인지도 불분명하지만 ( 3 )는 ( 1 )을 시켜 길삼봉을 찾게 하고, 그 과정에서 정여립과 관련이 있는 수많은 동인의 선비들이 길삼봉으로 의심받아 죽임을 당한다. 서인인 정철은 ( 9 )(재판장)이 되어 길삼봉을 색출하는 데 혈안이 되어 동인의 선비들을 잔인하게 처형하고, 급기야 재야의 덕망 있는 선비인 ( 4 )마저 붙잡아 신문을 한다. 동인인 ( 2 )는 교활하고 냉혹한 인물로 최영경을 돕는 척하면서 몰래 그에게 독주를 먹여 죽음에 이르게 한다. 그런 후 정치적 야욕 때문에 죄없는 선비를 죽였다는 죄목으로 정철을 고발한다. 이에 선조는 정철을 쫓아내고 이산해에게 위관의 자리를 맡기지만, 정체불명의 길삼봉을 잡아들이라는 어명을 더욱 매섭게 내림으로써 역모를 구실로 자행되어 온 공포 정치를 계속 이어 간다. 겉으로는 권력의축이 정철의 서인에서 이산해의 동인으로 옮겨 간 것처럼 보이지만, 실질적인 승자는 실체 없는 길삼봉을 내세워 신하들 간의 갈등을 부추겨서 왕권을 강화한 선조인 것이다.", "ans": ["정철", "이산해", "선조", "최영경", "동인", "길삼봉", "선비", "정여립", "위관"], "label": "상세 줄거리"}, "vocab": [{"kind": "뜻풀이", "pre": "‘조선 시대에, 역적 등의 중죄인을 신문하기 위해 설치하던 임시 관아’를 뜻하는 지문 속 말은? ", "ans": "국청", "alt": [], "post": "", "src": "지문 각주"}, {"kind": "뜻풀이", "pre": "‘연극에서 극 중 특수한 기능과 효과를 담당하는 역할을 이르는 말’을 뜻하는 지문 속 말은? ", "ans": "코러스", "alt": [], "post": "", "src": "지문 각주"}, {"kind": "뜻풀이", "pre": "‘아무런 잘못이나 허물이 없음’을 뜻하는 지문 속 말은? ", "ans": "무고", "alt": [], "post": "", "src": "지문 각주"}], "mcq": []}, {"pid": "SK-문학-01-06", "subject": "문학", "mode": "memory", "title": "[문학] 백문보, 「율정설」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "윤 상군(尹相君)*이 일찍이 곤강(坤岡) 남쪽에 집터를 마련하였다. 집터 동서쪽에 밤나무 숲이 울창하여 그곳에 집을 짓고 ‘밤나무 정자’라는 뜻으로 ‘율정(栗亭)’이라는 이름을 붙였다. 지금 또 조금 서쪽으로 가서 새로 집을 샀는데 밤나무 숲이 더욱 무성하였다. 성안에 있는 주택에는 밤나무를 심는 사람이 드문데, 윤 공은 집을 사기만 하면 밤나무가 있는 곳을 선택하였다.\n그가 일찍이 나에게 말했다.\n\n“봄이면 성근 가지가 꽃과 서로 어른거리고, 여름이면 잎이 우거져서 그 그늘에서 쉴 수 있으며, 가을이면 밤이 맛이 들어 내 입에 가득 채울 만하며, 겨울이면 껍질을 모아 내 아궁이에 불을 땐다. 나는 이 때문에 밤나무를 선택한다.”\n[A]\n\n내가 말했다.\n“불이 마른 것으로 나아가고 물이 축축한 곳으로 흐르는 것은 같은 기운끼리 서로 찾아가는 것으로, 이치상 진실로 필연적인 것이다. 대개 그 숭상하는 바에 있어서 사물과 나 사이에 차이가 없는 것은 어쩔 수 없는 일이다. 왜 그러한가? 하늘과 땅 사이에 풀이나 나무가 나는 것은 모두 한 기운이기 때문이다. 그런데 그 뿌리와 싹과 꽃과 열매가 나고 자라고 피고 맺히는 데 ㉠어려움과 쉬움, 빠름과 느림이 제각각 다르다. 유독 밤은 만물 중에서 가장 늦게 난다. 나무를 심기가 매우 어렵고 오랜 시간이 걸리지만 자라기만 하면 쉽게 성장하며, 잎이 매우 늦게 피지만 피기만 하면 쉽게 녹음을 이루며, 꽃이 매우 늦게 맺히지만 맺히기만 하면 쉽게 풍성해지며, 열매가 매우 늦게 열리지만 열리기만 하면 쉽게 거둘 수 있으니, 대개 사물이 이지러지고 채워지며 빠지고 더해지는 이치를 보여 주고 있는 것이다.”\n윤 공은 나와 같은 해에 과거에 합격했는데, 그때 나이 이미 서른이 넘었다. 그러다가 마흔이 넘어서야 처음으로 벼슬에 나아갔으므로, 사람들은 모두 늦었다고 하였으나 윤 공은 벼슬에 나아가 더욱 충실히 하였다. 그러다가 선대 임금께서 먼저 공을 알아보셨는데 크게 쓰이게 되어서는 하루 동안에 아홉 번 승진하여 높은 지위에 올라 중책을 담당하게 되었으니, 이것은 별로 손질을 하지 않았는데도 무성하게 뻗어 나간 나무와 같은 것이다. 그 기틀을 세우는 것이 처음에는 어려웠으나 그 성취하는 것이 뒤에는 쉽게 된 것이니, 대개 이 밤나무의 꽃과 열매와 같은 점이 있다.\n나는 이치로 설명하려 한다. 풀과 나무의 뿌리가 흙에 묻혀 있을 때에 그 싹이 깊으면 그 갈라져 올라오는 것이 늦고, 갈라져 올라오면 싹이 트고, 싹이 트면 가지가 생겨서 반드시 줄기를 이룬다. 샘물이 웅덩이에 가득 차면 그 물이 조금씩 흘러나오다가 그 흐르는 것이 고이게 되고 고이게 되면 물이 돌아 흐르고, 돌아 흐르면 못이 되어 반드시 바다에까지 도달하게 된다. 그러므로 그 느린 것은 반드시 빨라지고 멈춘 것은 반드시 먼 곳에 도달하는 것이다. 그러니 이지러지면 가득 차게 되고 빠지면 더해지는 것과 또한 무엇이 다르겠는가. 한 가지 사물에 나아가 보더라도 이것을 실증할 수 있는 것이다.\n또한 사람이 숭상하는 바를 관찰하건대, 곧 불이 마른 것으로 나아가고 물이 축축한 곳으로 흐르듯이 사물과 나 사이에 차이가 없는 것은 어쩔 수 없는 일이다. 그렇다면 윤 공의 영달은 곧 밤의 생장(生長)이고 밤을 거두어 간직함은 곧 윤 공이 은퇴하는 것이니, 그 생장함에는 세상을 돕는 도가 있으며 그 간직함에는 삶을 수양하는 작용이 있다. 나는 이 정자에 대하여 그 이치를 들어 설(說)을 짓는다.\n- 백문보, 「율정설」\n*윤 상군: 글쓴이의 지인인 윤택을 가리킴. ‘상군’은 재상을 높여 부르는 말.", "verse": false, "ox": [{"t": "(문맥에 비추어 볼 때, [A]에 대한 글쓴이의 반응으로 가장 적절한 것은?) 당신은 밤나무의 장점을 중시하지만 정작 밤나무의 단점은 모르고 있소.", "a": false, "boki": "", "stem": "", "tier": 3}, {"t": "(문맥에 비추어 볼 때, [A]에 대한 글쓴이의 반응으로 가장 적절한 것은?) 당신은 밤나무의 외양에 주목하는데 더 중요한 건 밤나무가 주는 혜택이라오.", "a": false, "boki": "", "stem": "", "tier": 3}, {"t": "(문맥에 비추어 볼 때, [A]에 대한 글쓴이의 반응으로 가장 적절한 것은?) 당신은 밤나무의 쓰임새에 주목하는데 사실은 당신과 밤나무는 닮은 점이 있소.", "a": true, "boki": "", "stem": "", "tier": 3}, {"t": "(문맥에 비추어 볼 때, [A]에 대한 글쓴이의 반응으로 가장 적절한 것은?) 당신은 밤나무에 대한 옛사람들의 예찬을 중시하지만 그게 지금은 무슨 소용이 있겠소.", "a": false, "boki": "", "stem": "", "tier": 3}, {"t": "(문맥에 비추어 볼 때, [A]에 대한 글쓴이의 반응으로 가장 적절한 것은?) 당신은 밤나무에 얽힌 타인과의 인연을 중시하지만 그 사람은 그걸 하찮게 여길지도 모르오.", "a": false, "boki": "", "stem": "", "tier": 3}, {"t": "어려움과 느림이 있더라도 꾸준히 목표를 추구하다 보면 나중에 쉽고 빠르게 성취할 수있다.", "a": true, "boki": "", "stem": "", "tier": 3}, {"t": "어려움과 느림은 사람의 삶을 수양하는 주요한 계기이므로 일부러라도 추구해야 할 미덕이다.", "a": false, "boki": "", "stem": "", "tier": 3}, {"t": "어려움과 쉬움은 목표에 대한 태도에 의해 결정되고, 느림과 빠름은 타고난 천성에 의해 결정된다.", "a": false, "boki": "", "stem": "", "tier": 3}], "cloze": [], "story": {"text": "이 작품은 ( 1 )이와 같은 해에 과거에 합격한 ( 3 )(尹澤)이 자신이 지은 ( 4 )의 이름을 ‘( 5 )’이라 하자, 이에 대해 글쓴이가 써 준 한문 수필이다. 늦은 나이에 급제하고 그보다 더 늦은 나이에 벼슬길에 나아간 윤택의 삶이 가진 가치를 ( 2 )의 생태적 속성을 바탕으로 칭송하고 있다. 설(說) 갈래에 속하는 글의 일반적인 구조와 약간 다르지만, 밤나무가 가진 속성과 윤택의 삶을 유추적으로 연결하고 있다는 점에서 설 갈래의 특성을 살리고 있다고 할 수 있다.", "ans": ["글쓴", "밤나무", "윤택", "정자", "율정"], "label": "작품 정리"}, "vocab": [{"kind": "뜻풀이", "pre": "‘글쓴이의 지인인 윤택을 가리킴. ‘상군’은 재상을 높여 부르는 말’을 뜻하는 지문 속 말은? ", "ans": "윤 상군", "alt": [], "post": "", "src": "지문 각주"}], "mcq": []}, {"pid": "SK-문학-01-07", "subject": "문학", "mode": "memory", "title": "[문학] 이용악, 「하나씩의 별」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "무엇을 실었느냐 화물 열차의\n검은 문들은 탄탄히 잠겨졌다\n바람 속을 달리는 화물 열차의 지붕 우에\n우리 제각기 드러누워\n한결같이 쳐다보는 하나씩의 별\n\n두만강 저쪽에서 온다는 사람들과\n쟈무스*에서 온다는 사람들과\n험한 땅에서 험한 변 치르고\n눈보라 치기 전에 고향으로 돌아간다는\n남도 사람들과\n북어 쪼가리 초담배 밀가루떡이랑\n나눠서 요기하며 내사 서울이 그리워\n고향과는 딴 방향으로 흔들려 간다\n\n푸르른 바다와 거리 거리를\n설움 많은 이민 열차의 흐린 창으로\n그저 서러이 내다보던 골짝 골짝을\n갈 때와 마찬가지로\n헐벗은 채 돌아오는 이 사람들과\n마찬가지로 헐벗은 나요\n나라에 기쁜 일 많아\n울지를 못하는 함경도 사내\n\n총을 안고 뽈가*의 노래를 부르던\n슬라브의 늙은 병정은 잠이 들었나\n바람 속을 달리는 화물 열차의 지붕 우에\n우리 제각기 드러누워\n한결같이 쳐다보는 하나씩의 별\n- 이용악, 「하나씩의 별」\n*쟈무스[佳木斯]: 중국의 쑹화강 상류에 있는, 러시아와의 국경 가까이에 있는 도시.\n*뽈가: 폴카(polka). 보헤미아 지방의 경쾌한 무곡(舞曲).", "verse": true, "ox": [{"t": "‘화물 열차’의 ‘검은 문들은 탄탄히 잠겨졌다’로 시상을 여는 것은, 고향으로 돌아오는 유랑민의 미래가 결코 순탄치 않을 것임에 대한 화자의 인식과 관련이 있다고 볼 수 있겠군.", "a": true, "boki": "1930년대에 등단한 이용악은 자신의 가난한 현실을 바탕으로, 일제 강점기의 우리 민족, 특히 간도 유랑민들이 겪었던 비참한 실상에 주목하여 절박한 시대적 상황을 형상화한 시인이다. 이후 그의 해방기 시들은 해방을 맞아 고향으로 돌아오는 유랑민의 소회와 감격을 그리며 한반도의 운명에 대한 고뇌를 담고 있다. 이 작품은 객지에서 고단한 삶을 살다가 고향으로 돌아가는 유랑민과, 변환기의 현실 속에서 이향을 결행해야 하는 화자가 공존하는 시적 상황을 통해 화자의 복합적인 정서를 드러내고 있다. 특히 해방의 감격 이후에 잠시나마 지나간 고난의 세월을 잊고 서로 동지애를 나누며 민족의 앞날에 대해 제각기 희망을 품어 보는 장면을 포착하고 있다.", "stem": "<보기>를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "‘험한 땅에서 험한 변 치르고’ ‘고향으로 돌아간다’는 사람들의 모습은 당대 유랑민들이 고향을 떠나서 겪었을 고단한 삶을 떠올리게 하는군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘함경도 사내’인 ‘나’가 ‘고향과는 딴 방향으로 흔들려’ 가는 것은, 다른 ‘사람들’이 고향으로 돌아가는 것과는 달리 이향을 하고 있는 화자의 처지를 의미한다고 볼 수 있겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "‘푸르른 바다와 거리 거리’는 귀향하는 사람들과 화자가 열차에서 바라보는 조국의 풍경을 의미하는 것으로, 해방된 조국으로 돌아오며 감격한 사람들의 미래에 대한 희망을 드러낸 것이겠군.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "‘헐벗은 채 돌아오는 이 사람들과 / 마찬가지로 헐벗은 나’에 대한 화자의 인식은, 혼란스러운 시국에 같은 열차를 타고 함께 귀국하고 있는 사람들에 대한 동지애를 드러내고 있는 것이겠군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "동일한 시구를 반복하여 시의 주제를 부각하고 있다.", "a": true, "boki": "", "stem": "", "tier": 2}, {"t": "청각적 이미지를 활용하여 시의 분위기를 반전시키고 있다.", "a": false, "boki": "", "stem": "", "tier": 2}, {"t": "가상의 청자에게 말을 건네는 방식으로 화자의 심정을 드러내고 있다.", "a": false, "boki": "", "stem": "", "tier": 2}], "cloze": [{"label": "시어", "pre": "무엇을 실었느냐 ", "ans": "화물 열차", "alt": [], "post": "의"}, {"label": "시어", "pre": "눈보라 치기 전에 ", "ans": "고향으로 돌아간다", "alt": [], "post": "는"}, {"label": "시어", "pre": "울지를 못하는 ", "ans": "함경도 사내", "alt": [], "post": ""}, {"label": "시어", "pre": "두만강 저쪽에서 온다는 ", "ans": "사람들", "alt": [], "post": "과"}, {"label": "시어", "pre": "바람 속을 달리는 화물 ", "ans": "열차", "alt": [], "post": "의 지붕 우에"}, {"label": "표현법", "pre": "•1연: 귀국하는 화물 열차 지붕 위에서 하늘을 바라보는 유랑민 •2연: 서로 다른 사연을 지니고 귀국하는 유랑민의 모습 •3연: 광복의 기쁨과 동시에 느끼는 우리 민족의 미래에 대한 불안 •4연: 희망을 품고 바라보는 저마다의 별 동일한 시구를 ", "ans": "반복", "alt": [], "post": "하여 시의 주제를 부각하고 있다."}], "story": null, "vocab": [{"kind": "뜻풀이", "pre": "‘폴카(polka). 보헤미아 지방의 경쾌한 무곡(舞曲)’을 뜻하는 지문 속 말은? ", "ans": "뽈가", "alt": [], "post": "", "src": "지문 각주"}], "mcq": []}, {"pid": "SK-문학-01-08", "subject": "문학", "mode": "memory", "title": "[문학] 황순원 원작·이상현 각색, 「카인의 후예」", "src": "2027 수능특강 문학 · 01강 교과서 개념학습", "text": "S#32. 훈의 방 안\n남폿불에 불이 댕겨진다.\n드러나는 사방탁자와 문갑, 그리고 서가에 가득한 책들.\n문이 열리며 오작녀가 밥상을 들고 들어온다. 엉거주춤 일어나 상을 받는 훈-.\n그의 손이 실수로 오작녀의 손과 겹쳐진다. 놀란 듯 바라보는 오작녀.\n훈, 어색하니 상을 받아 놓는다. 그 바람에 그릇의 숭늉이 흔들린다.\n나가는 오작녀를 보고.\n\n훈: 저…… 거기 좀 앉으오.\n오작녀: ?\n\n조심스레 앉는다.\n\n훈: …… 인제 오작녀도 자기 일을 좀 생각해야 할게요.\n오작녀: …….\n훈: 남편도 돌아오고.\n\n겨우 말을 내뱉고 시선을 둘 데 없어 남폿불을 멍하니 바라본다. / 오작녀도 그쪽을 본다.\n찍찍 소리를 내며 타오르는 남폿불. / 오작녀의 눈에 왠지 모를 물기가 부풀어 오른다.\n\n오작녀: …… 제 일은 걱정 마시라우요. 제 일은 제가 알아서 하갓시요.\n훈: …… 아무래도 난 여기를 떠나야 될 것 같소…… 그렇다고 당장 여기를 떠난다는 건 아니오. 무어 농토에 애착이 있어서가 아니라 왠지 지금 떠나고 말면 영원히 고향을 버리는 것 같애서…… 아무튼 그 사람들이 내쫓지 않는 이상 여길 떠나고 싶진 않소…… 처음 오작녀가 여기 와서 살림을 돌봐 줄 때부터 나는 내가 지주요 오작녀는 소작인의 딸이란 걸 생각해 본 적은 없소…… 조금도 의리 관계 같은 것에 얽매여 행동을 자유롭게 못 한다거나 그럴 필요는 없소.\n오작녀: 저두 처음부터 선생님이 우리 집 지주라고 해서 와 있는 게 아니야요. …… 그리구 버릇없는 말 같지만 앞으로 선생님이 여기 계시는 동안만이라도 저더러 나가라는 말씀만은 말아 달라우요.\n훈: 아무래도 오작녀를 위해서 좋지 않을게요. 그리구 또 오작녀가 여기 있고 싶어 한대도 오작녀를 데려갈려는…….\n오작녀: (똑바로 보며) 선생님 아무 말씀 마시라우요…… 선생님이 나가라는 말씀만 않으신다믄…… 나 가라는 말씀만…….\n\n말을 못 맺고 격정에 못 이겨 튕겨나듯 밖으로 뛰어간다.\n\n훈: (눈을 감는)\n\nS#33. 과수원\n과목 사이로 허둥지둥 달려오는 오작녀. / 어느 나무 기둥에 이마를 부비며 흐느낀다. / 먼 뻐꾸기 소리.\n오작녀, 눈을 들어 집 쪽을 본다. / 불이 밝은 훈의 방, 봉창. / 먼 뻐꾸기 소리…….\nF.O.\n\n[A]\n\n[중략 부분 줄거리] 농민 대회가 열리고 토지 개혁을 단행하기로 결정되어 농민들은 지주들의 집을 차례로 찾아가 재산을 몰수하고, 결국 훈의 집에도 재산 몰수를 위해 찾아온다.\n\nS#101. 마당\n훈, 눈을 감는다.\n\n개털: (다시) 우리 민주 혁명에 불평을 품고 매일같이 술로써 소일하는 한편 순진한 청년들을 유혹하여 학당을 발판으로 반동 결사를 조직해 가지구 우리 면 농민 위원당 동무를 살해하게 한 사실 그리고 지주의 권력으로 소작인의 딸이자 남의 유부녀인 여성 동무를 유린한 사실 이런 사실을 보아…….\n\n“여보!” 새된 소리에 모두 놀라 그쪽을 본다. / 오작녀다.\n머리는 헝클어지고 얼굴은 열에 뜬 오작녀가 곧 쓰러질 듯이 하여 방문을 잡고 나서 있다.\n\n오작녀: 누가 그런 허튼소릴 적었소?\n개털: (분노의) 여성 동무 말을 삼가오. 이것은 농민 대회의 결정이오. 우리는 시방 여성 동무를 해방시키러 왔소!\n오작녀: 해방이구 뭐구 다 일없소. 돌아들 가시오.\n도섭: 아니 데 에미나이가 열병을 앓고 나더니. (개털에게) 동무 용서하시우. 데 에미나이가 앓구 나더니 속이 허해데서 데렙네다. (오작녀에게) 썩 들어가디 못하간!\n오작녀: 난 벌써 아버지의 딸이 아니야요.\n도섭: 칵!\n\n달려들려는 도섭 영감을 제지하는.\n\n개털: 진정하오! 가사 싸움을 할 때가 앙이요. 자 그러믄 다시 계속해서…… 이러한 모든 사실로 보아 우리 농민 대회는 지주 박훈을 악질 반동 지주로 규정하는 동시에 그의 모든 사유 재산을 몰수하는 데 이의가 없음.\n\n그러고는 훈에게.\n\n개털: 이 집 열쇠를 이리 내오.\n\n훈, 오작녀를 본다.\n\n훈: 오작녀가 맡아 있소.\n오작녀: (한 발 나서며) 안 돼요! 남의 집 열쇠는 왜 달래는 거야요?\n개털: 동무! 이 이상 우리 공작을 방해했다간 어떤 처벌을 당한다는 걸 알고 있소?\n오작녀: 이 집은 내 집이야요. 내가 살아 있는 동안은 누구 하나 이 집에 손을 못 대요.\n개털: (짐작이 간다는) 내 동무가 이 집에서 여러 해 고된 종살이를 했다는 걸 아오. 그런 사실은 중앙에 보고하겠소. 오늘 이 공작은 우리에게 맡기오. 다 알아서 처리할께니…….\n오작녀: 당신네는 아무것도 몰라요!\n개털: 모르다니? 뭘 모른단 말이오?\n오작녀: 당신네는 아무것도 몰라요!\n개털: 아니 도대테…….\n오작녀: 우리는 부부가 되시요!\n\n말하고 그녀는 온몸의 맥이 빠지는 듯 눈을 감는다.\n\n훈: (놀라는)\n\n개털 오바를 비롯한 모든 사람이 아연해서 웅성거린다.\n- 황순원 원작·이상현 각색, 「카인의 후예」", "verse": false, "ox": [{"t": "훈은 위기 상황에 놓여 있다가 예상치 못했던 오작녀의 발언에 당황한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "훈은 오작녀의 남편이 돌아왔다는 사실을 오작녀에게 언급하여 오작녀를 떠나게 하려고 한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "훈은 자신에게 어려운 상황이 닥칠 것이라고 예상하고 오작녀에게 그 영향이 미칠까 걱정한다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "오작녀는 훈과 부부임을 인정받는 것으로 지금까지 그를 돌본 것을 보상받기 위해 개털에게 저항한다.", "a": false, "boki": "", "stem": "", "tier": 1}, {"t": "오작녀는 훈의 집에서 나와야 하는 상황도, 훈이 재산을 빼앗기는 상황도 모두 일어나지 않기를 바란다.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "[A]는 <보기>와 같이 인물의 심리를 표현하기 위해 청각적 이미지를 활용하고 있군.", "a": true, "boki": "“전 아무래두 돟와요. 선생님께서만 나가라는 말씀 않으신다믄…….”\n이것은 오작녀가 벌써부터 별러 오던 말이었다. 이 말을 훈에게 할 일만 생각해도 절로 가슴이 두근거려지곤 했다. 그것을 이제 훈에게 다 말해 버린 오작녀는 앞이 환히 트이는 느낌이었다.\n뻐꾸기 소리가 들려왔다.\n오작녀가 고개를 들었다. 큰아기바윗골 쪽이었다. 그러자 오작녀는 가슴속이 무엇으로 가득해짐을 느꼈다. 큰아기바위의 슬픈 전설보다 자기가 너무 지나치게 행복한 것 같았다.\n오작녀는 갑자기 등골이 으스스 떨렸다.", "stem": "[A]는 <보기>를 각색한 것이다. <보기>와 비교하여 [A]를 이해한 내용으로 적절하지 않은 것은?", "tier": 1}, {"t": "[A]는 <보기>와 같이 인물이 자신의 의사를 표현함으로써 상대방에 대한 감정을 암시하고 있군.", "a": true, "boki": "", "stem": "", "tier": 1}, {"t": "[A]는 <보기>와 달리 내적 갈등이 강조되는 갈래로, 인물의 격정과 슬픔을 극적으로 표현하도록 지시하고 있군.", "a": false, "boki": "", "stem": "", "tier": 1}], "cloze": [], "story": {"text": "고향 마을 양지골에서 마을 학당을 열고 젊은이들을 가르치며 소박하게 살아가고 있는 ( 2 )은 마을 지주의 아들로, 광복 후 들어선 공산 정권의 타도 대상이다. 지주의 ( 5 )을 몰수하여 무산(無産) 계급에게 나눠 주고 ( 6 ) 지주는 숙청하기까지 하는 토지 개혁이 각 마을에서 실제로 진행되기 시작하자 그는 모든 것을 포기하고 마을을 떠날 마음을 먹고 있다. 박훈 아버지를 지주로 모시고 헌신하던 마름 ( 3 ) ( 4 )은 박훈이 홀로 있는 처지를 돌봐야 한다며 딸 ( 1 )를 박훈 집에 기거하게 하기도 하였었지만 이제는 박훈을 적대적으로 대하고 오작녀에게도 그와의 관계를 끊기를 종용한다. 오작녀는 비록 다른 이와 결혼한 후 소박을 맞아 마을로 돌아온 신세지만, 어린 시절부터 연모해 온 박훈의 곁에서 그를 돌보는 일에 헌신하고자 한다. 인민 재판이 진행되고 박훈의 집으로 재산을 몰수하기 위해 찾아간 사람들 앞에서 오작녀는 무산계급인 자신이 박훈과 부부가 되었음을 말하여 박훈을 구한다. 한편 박훈의 사촌 혁은 도섭 영감이 갈수록 지나친 행동을 하는 것에 화가 나 그를 죽여 응징하려 하는데, 이것을 알게 된 박훈은 자신이 그 일을 하는 것이 사촌과 도섭 영감을 모두 위하는 길이 된다고 생각한다. 도섭 영감과 난투를 벌이지만 그를 죽이지 못한 박훈은 결국 오작녀를 데리고 남쪽으로 떠나기로 한다.", "ans": ["오작녀", "박훈", "도섭", "영감", "재산", "반동"], "label": "상세 줄거리"}, "vocab": [], "mcq": []}, {"pid": "SK-화작-01-02", "subject": "화작", "mode": "quiz", "title": "[화작] 01강 화법과 작문의 본질과 태도", "src": "2027 수능특강 화법과작문 · 01강 화법과 작문의 본질과 태도", "text": "로봇의 지위, 어디까지 인정해 주어야 할까?\n얼마 전 신문에서 실외 배달 로봇과 승용차 간의 접촉 사고를 다룬 기사를 접하게 되었다. 주행 중이던 자동차가 횡단보도에서 무단 횡단을 하는 보행자들을 보내 주기 위해 정차했다가 재출발하는 과정에서 보행자들을 뒤따라 무단 횡단을 하던 자율 주행 로봇과 충돌했다는 것이다. 로봇과 자동차 간의 접촉 사고이니 단순한 물건 간의 접촉 사고로 간주될 것이라는 예상과는 달리, 로봇을 피하지 못한 것에 대한 운전자의 과실이 인정될 수 있다고 한다.\n승용차가 로봇을 친 이 사고가 사람을 친 것과 유사한 사고로 취급되는 이유는, 로봇의 특별한 법적 지위 때문이다. 사고가 난 로봇은 보도 주행을 위한 ‘실외 이동 로봇 운행 안전 인증’을 국내 최초로 취득했다고 한다. 이 인증은 2023년 11월 발효된 ‘지능형 로봇 개발 및 보급 촉진법(지능형로봇법)’에 따른 것으로, 이 법과 도로 교통법에 따르면 자율 주행 로봇에는 법적으로 보행자의 지위가 부여된다. 다만 아직까지 정식사고 사례가 접수된 적이 없어, 사고 시 책임 소재나 보상 규모 등에 대한 논의는 부족한 상황이었다.\n이 사건은 운전자와 로봇 회사 간의 원만한 합의로 종결되었지만, 해당 사고는 앞으로 인간과 로봇 간에 수많은 사고가 발생할 수 있음을 시사한다. 최근 들어 배송 로봇뿐 아니라 집안일을 대행하거나 친구 역할을 하는 등 일상의 영역에 들어오는 서비스용 로봇이 많아지고 있는 상황을 감안하면, 이런 유형의 사건, 사고는 더 빈번해질 것이다. 과연 로봇은 얼마나 인간에 가까워질 수 있을까? 로봇에게 인간의 지위를 부여할 수 있을까? 로봇 기술은 빠른 속도로 발전하고 있는데 관련 법과 제도가 이를 따라가지 못한다는 지적도 있지만, 로봇 기술의 발전만을 중시하여 인간의 권익을 침해하는 일이 있어서는 안 된다고 생각한다. 로봇 산업에 대한 규제가 이제 막 풀리기 시작한 만큼, 로봇의 지위에 관해 공동체 구성원들 간에 합의가 도출될 수 있도록 충분한 시간과 토론의 기회가 보장될 필요가 있다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "윗글의 쓰기 맥락에 대한 이해로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "글의 유형 면에서, 시사적인 현안이나 쟁점을 글의 출발점으로 삼고 있다."}, {"n": "②", "t": "글의 목적 면에서, 자신이 선택한 관점에 따라 의견을 명료하게 드러내고 있다."}, {"n": "③", "t": "글의 주제 면에서, 인간과 로봇의 공존을 위한 사회적 합의가 시급함을 강조하고 있다."}, {"n": "④", "t": "‌쓰기 윤리 면에서, 필자가 인용한 내용을 독자가 확인할 수 있도록 법적 근거를 언급하고 있다."}, {"n": "⑤", "t": "‌예상 독자 면에서, 가능한 대안을 도출할 수 있는 집단의 범위를 공동체의 모든 구성원으로 상정하고 있다."}], "ans": 2}]}, {"pid": "SK-화작-01-07", "subject": "화작", "mode": "quiz", "title": "[화작] 01강 화법 01~08", "src": "2027 수능특강 화법과작문 · 01강 화법 01~08", "text": "“아, 이 냄새 뭐지? 윽!!”, “아, 좋은 냄새 난다. 기분이 좋아지는걸.” 가끔 이런 말을 하는 저 자신과 친구들을 발견하곤 하는데요, 이는 냄새가 사람들을 기분 좋게도 나쁘게도 만든다는 것을 보여 줍니다. 오늘 제가 발표할 주제는 바로 이 ‘냄새와 후각’입니다.\n냄새를 맡는 감각인 후각은 액체 또는 공기 중에 떠다니는 화학 분자를 감지하는 감각입니다. 후각은 다른 감각과 다른 독특한 특징을 가지고 있습니다. 첫째, 후각은 대뇌의 감각 피질과 직접 연결되어 있습니다. 시각, 청각 등의 다른 감각의 경우 정보가 들어오면 시상이라고 하는 대뇌 기관에서 정보를 통합한 뒤 감각 피질로 전달되는 반면에, 후각은 정보가 후각 피질로 바로 전달되는 특징이 있습니다. 둘째, 후각은 감정과 기억을 처리하는 뇌의 부위에 직접적인 영향을 줍니다. 이는 후각 피질이 감정과 기억의 중추인 변연계에 인접해 있기 때문인데요, 변연계는 감정 조절에 관여하는 편도체와 기억 저장에 중요한 해마를 포함하고 있습니다. 된장찌개 냄새를 맡으면 어렸을 적 추억이나 애틋한 감정이 갑자기 소환되는 것을 사례로 들 수 있습니다. 셋째, 후각은 동일한 냄새에 지속적으로 노출되는 경우 감도가 감소하는 현상인 후각 적응 현상을 보입니다. 어떤 향수 냄새를 처음 맡게 되면 강하게 느끼지만, 그 냄새에 계속 노출되면 익숙해져 거의 느끼지 못하게 되는 현상을 예로 들 수 있습니다. 이는 후각 수용체가 자극에 계속 노출되면 신경 신호의 전달이 감소하고, 결국 냄새를 인식하는 능력이 감소하기 때문입니다. 그런데 이러한 후각 적응은 생존에 유리한 측면이 있습니다. 지속적인 자극에 대한 반응을 줄임으로써 다른 새로운 자극에 더 민감하게 반응할 수 있게 되기 때문입니다.\n한편 냄새는 사람에 따라, 냄새 분자의 구조나 농도에 따라, 경험이나 문화에 따라 다르게 감각되기도 합니다. 예를 들어 땀에 포함된 냄새 분자는 사람에 따라 단 냄새, 사향 냄새, 오줌 냄새 등으로 서로 다르게 느끼기도 하고, 아예 그 냄새를 인식하지 못하기도 한다고 해요. 그뿐만 아니라 같은 냄새라도 그 세기를 다르게 느끼는 경우도 있다고 합니다. 이는 특정 자극에 반응하는 후각 수용체의 발현 패턴이 사람마다 다르고 냄새 물질에 대한 민감성도 제각각이기 때문인데요, 이와 관련하여 후각의 유전적 변이가 냄새 지각의 개인차를 반영한다는 사실이 최근에 확인되었습니다. 또한 분자식이 같더라도 삼차원 구조가 다른 입체 이성질체의 냄새 분자의 경우 서로 다른 냄새가 나기도 합니다. 예를 들면 어떤 이성질체의 냄새 분자는 한쪽은 라일락 향이 나지만 다른 쪽은 타르와 비슷한 역한 냄새가 납니다. 같은 냄새도 농도에 따라 냄새가 달라질 수 있다고 합니다. 어떤 냄새 분자의 경우 옅은 농도에서는 장미꽃 냄새가 나지만 농도가 짙어지면 좋지 않은 냄새가 난다고 하네요. 한편 개인의 경험에 따라서도 냄새를 다르게 느낄 수 있는데, 예를 들어 배고플 때 맡는 라면 냄새와 한 달 동안 라면만 먹은 사람이 맡는 라면 냄새는 많이 다를 것입니다. 문화적 배경도 냄새를 어떻게 느끼는지에 영향을 줍니다. 일부 문화에서 선호하는 특정 향신료나 음식의 냄새를 다른 문화권에서는 부정적으로 받아들일 수도 있습니다.\n지금까지 말씀드린 내용을 정리하자면, 냄새는 분자 구조나 농도 등에 따라 다르게 감각되는 물리적이고 객관적인 자극이면서, 동시에 냄새를 맡는 주체의 경험이나 상황에 따라 달라지기도 하는 심리적이고 주관적인 자극이라고 할 수 있을 것 같습니다. 이제 발표를 마무리하면서 여러분께 작은 선물을 드릴까 합니다. (분무기로 액체를 뿌리고, 잠시 기다린 후) 어떤 향기가 나나요? 시원하면서도 달콤한 이 향기가 여러분에게는 어떻게 다가올까요? 이 향기가 좋은 느낌으로 기억되기를 바라며 여러분의 남은 하루를 응원합니다. 이상 발표를 마치겠습니다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "위 발표자의 말하기 방식으로 가장 적절한 것은?", "boki": "", "opts": [{"n": "①", "t": "비언어적 표현을 활용하여 전달 내용의 설득력을 강화하고 있다."}, {"n": "②", "t": "발표 내용과 관련된 사례를 제시함으로써 청중의 이해를 돕고 있다."}, {"n": "③", "t": "청중과 공유하고 있는 배경지식을 언급함으로써 청중이 제기한 의문을 해소하고 있다."}, {"n": "④", "t": "발표 내용에 대한 청중의 이해 여부를 점검하는 질문을 하면서 청중과 의사소통하고 있다."}, {"n": "⑤", "t": "‌발표 처음 부분에서 내용의 순서를 밝힘으로써 청중이 발표 내용을 예측하며 들을 수 있도록 하고 있다."}], "ans": 1}, {"stem": "다음은 발표를 준비하며 참고한 내용이다. ㉠~㉢을 구체화한 발표 계획 중 발표에 반영되지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "㉠: 발표 내용과 관련하여 일상에서 흔히 하는 발화를 인용함으로써 청중의 관심을 환기해야겠어."}, {"n": "②", "t": "㉡: 후각의 개념을 먼저 제시하고, 후각의 특징을 항목화하여 전달해야겠어."}, {"n": "③", "t": "㉡: 후각 정보의 감각 피질로의 전달 과정을 다른 감각들과 대조하여 설명해야겠어."}, {"n": "④", "t": "㉡: 냄새 분자를 화학적으로 분석한 자료를 활용하여 사람이 냄새를 지각하는 원리를 인과의 방법으로 설명해야겠어."}, {"n": "⑤", "t": "㉢: 냄새 및 후각에 대한 앞의 발표 내용을 요약하면서 냄새가 객관적이면서도 주관적인 자극임을 강조해야겠어."}], "ans": 3}, {"stem": "발표 내용을 바탕으로 할 때, <보기>에 나타난 학생들의 반응에 대한 이해로 적절하지 않은 것은?", "boki": "학생 1: 냄새가 기억을 소환하는 경험을 자주 하곤 했는데, 발표를 통해 그 이유를 알 수 있어서 좋았어. 그런데 후각이 페로몬을 감지하여 의사소통한다고도 들은 적이 있거든. 후각의 다양한 기능이 궁금해지는걸. 인터넷으로 찾아봐야겠어.\n학생 2: 땀 냄새를 사람마다 다르게 느낄 수 있다는 정보를 얻을 수 있어서 의미 있었어. 땀 냄새 외에 사람마다 다르게 느끼는 냄새가 또 있는지 자료를 검색해 봐야겠어.\n학생 3: 화학 시간에 이성질체에 대해 공부한 내용이 떠오르네. 분자식은 같더라도 원자들이 어떤 방식으로 배치되느냐에 따라 그 성질이 달라질 수 있다고 배웠는데, 그에 따라 냄새도 달라질 수 있구나. 발표를 통해 배운 게 많네.", "opts": [{"n": "①", "t": "‘학생 1’은 발표에서 언급되지 않은 정보에 대해 궁금증을 드러내고 있다."}, {"n": "②", "t": "‘학생 2’는 발표에서 제시한 내용을 신뢰할 수 있는지에 대해 의문을 제기하고 있다."}, {"n": "③", "t": "‘학생 3’은 발표 내용과 관련하여 자신의 배경지식을 떠올리고 있다."}, {"n": "④", "t": "‘학생 1’과 ‘학생 2’는 발표 내용과 관련하여 추가적인 정보를 탐색하려 하고 있다."}, {"n": "⑤", "t": "‘학생 1’, ‘학생 2’, ‘학생 3’은 모두, 발표를 통해 그동안 알지 못했던 정보를 알게 된 것에 대해 긍정적으로 평가하고 있다."}], "ans": 1}]}, {"pid": "SK-화작-01-08", "subject": "화작", "mode": "quiz", "title": "[화작] 01강 화법 01~08", "src": "2027 수능특강 화법과작문 · 01강 화법 01~08", "text": "사회자: 최근 인간 고유의 영역이라 믿었던 문화 예술 분야에서 AI에 의한 창작 사례가 급증하고 있습니다. 고흐나 렘브란트 화풍을 그대로 따라 하는 AI 미술가가 등장하고 비틀스 스타일로 작곡하는 AI도 등장했습니다. 어떤 AI 화가가 그린 29점의 작품이 미술 경매에서 총 9만 7,000달러에 판매되기도 하였으며, AI에게 13만여 점의 근현대 미술 작품을 학습시켜 만든 영상 설치 작품이 뉴욕 현대 미술관에 전시됐다는 소식도 들려오고 있습니다. 이처럼 창의력과 상상력을 필요로 하는 분야에서 AI가 두각을 나타내고 있는데요. 그래서 오늘은 ‘AI도 예술가로 인정해야 한다.’라는 논제로 토론을 하겠습니다. 먼저 찬성 측이 입론해 주십시오.\n\n[A]\n\n찬성 1: 예술의 어원을 보면 ‘예’와 ‘술’에는 과제를 능숙하게 해결할 수 있는 실행 방도로서의 기술이라는 의미가 들어 있습니다. 또한 예술에 해당하는 고대 그리스어 테크네[tĕchnē], 라틴어 아르스(ars), 영어 아트(art), 독일어 쿤스트(Kunst), 프랑스어 아르(art) 등도 일반적으로 일정한 과제를 해결해 낼 수 있는 숙련된 능력 또는 활동으로서의 ‘기술’을 의미하였던 말로, ‘수공(手工)’ 또는 ‘효용적 기술’의 의미를 포괄한 말이었습니다. 예술을 이렇게 본다면 숙련된 기술을 구사할 수 있는 존재로 AI만 한 존재는 없습니다.\n또한 인공 신경망 구조를 지닌 어떤 AI는 1,119명의 화가가 그린 8만 1,449개 작품을 학습한 후, 자신이 필요하다고 느낀 방식을 사용해 다른 어떤 유파에도 속하지 않은 그림을 그려 낸다고 합니다. 이 AI는 다른 작품이 사용한 기법, 스타일 등을 똑같이 모방하지 않도록 프로그래밍되어 있기 때문에 기존에 존재하는 그림들과 각 그림의 스타일 분류 정보를 학습 데이터로 사용하여, 새로운 예술 스타일을 창조해 냅니다. 그야말로 독창적인 작품이 되는 것입니다.\n한편 한 논문에 따르면 그림을 구별하는 실험에서 참가자들이, 사람이 그린 그림과 인공 지능이 생성한 그림을 구별하지 못했던 경우가 있었다고 합니다. 또 뉴욕 크리스티 경매에서는 AI가 창작한 그림이 최초로 경매에 나와, 고가에 낙찰되는 일도 있었습니다. 이 작품은 프랑스의 연구자들이 개발한 AI 화가 ‘오비어스’가 그린 것으로, 그림의 오른쪽 아래에는 화가의 서명 대신 작품 생성 알고리즘이 적혀 있습니다. 오비어스는 14세기부터 20세기까지의 서양화 1만 5,000여 작품을 데이터베이스로 하여 이미지를 분석하고 초상화의 구성 요소를 학습한 뒤 창작을 해냈다고 합니다.\n이처럼 AI가 만든 작품이 지닌 기술의 숙련도, 독창성, 인간이 창작한 것과 구별이 안 될 정도로 뛰어난 작품성 등을 볼 때 AI도 예술가로 인정해야 합니다.\n사회자: 이어서 반대 측에서 반대 신문해 주십시오.\n반대 2: AI가 그림을 그리기 전에 학습하는 데이터들은 인간이 제공하는 것 아닌가요? 그렇다면 AI는 창작의 보조 도구일 뿐이고 창작자, 즉 예술가는 인간 아닐까요?\n찬성 1: 인간 화가들도 다른 작가의 작품을 다양한 경로로 보고 배우면서 자신만의 독특한 스타일을 만드는데, AI 역시 이와 다르지 않습니다.\n반대 2: 한 논문에 따르면 실험 참가자들이 사람이 그린 그림과 AI가 창작한 그림을 구분하지 못했던 경우가 있다고 했는데, 구체적으로 어떤 논문일까요? 실험에 참가한 사람들의 수와 특성은 대표성이 있다고 할 수 있을까요?\n찬성 1: ○○ AI 연구팀의 논문입니다. 실험 참가자의 대표성은 확인하지 못했습니다.\n사회자: 이번에는 반대 측 입론해 주십시오.\n반대 1: 예술은 인간이 미적으로 가치 있는 것을 만들어 내고자 하는 의도를 가지고, 소재를 가공하여 결과물을 만드는 활동입니다. 한 철학가는 예술미는 인간의 정신에 의해서 창조된 미이며, 자연의 언어와 달리 예술의 언어는 인간에게 의미 있게 말을 거는 요구가 많은 언어이면서도 인간의 마음을 구속하지 않고 오히려 인식 능력들의 놀이를 위해 자유의 놀이 공간을 열어 놓는다고 말하기도 했습니다. 이처럼 예술은 미적으로 가치 있는 것을 만들기 위한 인간의 의도가 반영된 것이며, 그러하기에 예술은 인간의 인식을 고양시켜 사람들에게 감동을 주는 활동입니다. 이러한 예술의 정의로 볼 때, AI가 딥러닝을 통해 아직까지 존재하지 않았던 작품을 만들어 낸다 해도 이는 계산과 학습에 의한 것으로, 미적으로 가치 있는 결과물을 만들고자 하는 주체의 의도가 없기에 AI를 예술가로 인정할 수 없습니다.\nAI는 도구이지 예술가가 아닙니다. 과학 기술의 발전은 예술의 새로운 길을 열어 준 것이 분명합니다. 원근법의 발명은 2차원의 평면에 공간감과 깊이감을 부여했으며, 카메라의 발명은 회화만이 할 수 있는 또 다른 새로운 길을 찾게 만들었습니다. 다시 말하자면, 과학 기술의 발전은 예술의 국면, 영역을 확장시키거나 변화시키는 역할을 하는 것이지 그 자체가 예술인 것은 아닙니다. AI가 만든 작품들은 인간의 명령과 학습 시스템에 의해 생성된 것으로, 이때 AI는 작품의 기술적 완성도를 높여 주는 역할을 합니다. 즉 AI는 인간이 예술미를 추구하는 과정에서 사용할 수 있는 도구의 하나입니다.\n또한 인간의 예술은 창작자가 겪은 경험과 이를 통해 발생한 감정, 사회적 맥락을 반영하는 활동입니다. 하지만 AI는 인간적인 경험을 겪지 않으며 감정을 느낄 수 없기에, 자기 고유의 힘과 개성에 입각하여 새로운 것을 만들어 내는 독창성·창의성을 가질 수 없습니다. 따라서 AI가 만든 작품은 본질적으로 인간 예술과 다를 수밖에 없기 때문에, AI를 예술가로 인정할 수 없습니다.\n사회자: 이어서 찬성 측에서 반대 신문해 주십시오.\n찬성 1: 인간 예술가들도 예술적 성취를 위해서 다른 예술 작품들을 학습합니다. 그렇다면 AI가 학습을 통해 작품을 창작한다고 하더라도 예술가가 될 수 있지 않을까요?\n반대 1: AI가 스스로의 의도를 가지고 작품을 창작하는 것은 아니기 때문에 예술가로 보기 어렵습니다.\n찬성 1: 유발 하라리는 ‘창의력은 어떤 아이디어를 이루는 패턴을 파악한 뒤 작은 단위로 분해해 새롭게 조합하는 능력인데, 이는 AI가 가장 잘하는 방식’이라고 언급했습니다. 이에 따르면 예술의 조건으로서의 독창성·창의성은 AI가 잘하는 영역 아닐까요?\n반대 1: 예술의 가치는 창작자의 내면적 고뇌가 창의적으로 표현된 작품을 통해 감상자를 감동시키는 데 있다고 할 수 있습니다. AI는 구체적이고 직접적인 경험이 불가능하여 경험에서 발생하는 감정을 이해할 수 없습니다. 그저 데이터를 분석하고 생성하는 알고리즘에 의해 결과물을 산출하는 것뿐입니다. 따라서 AI가 생성한 작품은 자기 고유의 힘과 개성에 입각하여 새로운 것을 만들어 내는 독창성·창의성이 없으며, 창작자의 고뇌와 성찰이 드러나지 않기에 감상자의 내면을 심화·확장하여 감동을 주기 어렵습니다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "[A]에 대한 설명으로 가장 적절한 것은?", "boki": "", "opts": [{"n": "①", "t": "전문가의 견해를 인용하여 논제를 뒷받침하고 있다."}, {"n": "②", "t": "개념을 정의하는 방식으로 논제와 관련된 용어를 소개하고 있다."}, {"n": "③", "t": "뉴스 기사들을 찬반 입장으로 나누어 분석하며 논제를 소개하고 있다."}, {"n": "④", "t": "출처가 분명한 통계 자료를 제시하여 근거의 신뢰성을 확보하고 있다."}, {"n": "⑤", "t": "논제와 관련된 다양한 사례들을 제시하여 논의의 필요성을 부각하고 있다."}], "ans": 4}, {"stem": "다음은 토론 시작 전에 청중에게 안내한 토론의 쟁점이다. 이를 참고하여 위 토론을 이해한 내용으로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "‘찬성 1’은 [쟁점 1]과 관련하여, 예술의 어원을 설명하면서 숙련된 기술을 구사할 수 있는 존재로서 AI가 예술 활동을 할 수 있다고 보고 있군."}, {"n": "②", "t": "‘반대 1’은 [쟁점 1]과 관련하여, 예술은 미적으로 가치 있는 것을 만들어 내고자 하는 주체의 의도가 개입하는 활동임을 강조하고 있군."}, {"n": "③", "t": "‘반대 2’는 [쟁점 2]와 관련하여, 인간의 작품과 AI의 작품 구별 실험을 사례로 들어 결국 AI가 만든 작품은 예술의 독창성·창의성을 지니지 못한다고 보고 있군."}, {"n": "④", "t": "‘반대 1’은 [쟁점 2]와 관련하여, 예술에서의 독창성·창의성은 창작자가 겪은 경험을 바탕으로 자기 고유의 힘과 개성에 입각하여 새로운 것을 만들어 내는 것이라고 말하고 있군."}, {"n": "⑤", "t": "‘반대 1’은 [쟁점 3]과 관련하여, AI는 작품의 기술적 완성도를 높여 줄 수 있지만 경험에서 발생하는 감정을 이해할 수 없기 때문에, 감상자에게 감동을 주는 예술의 가치를 기대하기는 어렵다고 보고 있군."}], "ans": 2}, {"stem": "<보기>를 근거로 ‘반대 신문’과 이에 대한 답변을 평가한 내용으로 가장 적절한 것은?", "boki": "반대 신문은 상대방의 논증 구성에 나타나는 공정성, 신뢰성, 타당성을 살피면서 여러 측면의 질문을 통해 입론에 대해 반박하는 것이다. 상대 주장의 실현 가능성에 대해 문제점을 지적할 수 있고, 근거로 제시한 자료가 신뢰할 만한 것인지 출처를 물을 수 있다. 한편 반대 신문에 답할 때는 적절한 근거를 제시하여 자신이 밝힌 내용을 옹호해야 한다.", "opts": [{"n": "①", "t": "‘반대 2’는 반대 신문 단계에서, ‘찬성 1’이 입론에서 언급한 AI가 창작한 작품이 독창적이라는 견해가 지닌 공정성에 대해 의문을 제기하고 있군."}, {"n": "②", "t": "‘찬성 1’은 ‘반대 2’의 반대 신문에 대해 답변하는 과정에서, ‘반대 2’의 문제 제기에 대해 특정 관점을 옹호하는 견해라며 비판하고 있군."}, {"n": "③", "t": "‘찬성 1’은 반대 신문 단계에서, ‘창의성’에 대한 전문가의 견해를 제시하면서 ‘반대 1’이 제기한 입론의 타당성에 대해 의문을 제기하고 있군."}, {"n": "④", "t": "‘찬성 1’은 반대 신문 단계에서, ‘반대 1’이 입론에서 언급한 내용의 근거 자료와 출처가 제시되지 않았다는 점을 밝혀 상대방의 입론이 지닌 신뢰성에 대해 의문을 제기하고 있군."}, {"n": "⑤", "t": "‘반대 1’은 ‘찬성 1’의 반대 신문에 대해 답변하는 과정에서, 예시를 통해 적절한 근거를 들어 반박하고 있군."}], "ans": 2}]}, {"pid": "SK-화작-03-05", "subject": "화작", "mode": "quiz", "title": "[화작] 03강 작문의 원리", "src": "2027 수능특강 화법과작문 · 03강 작문의 원리", "text": "[작문 계획]\n• 예상 독자: 우리 학교 학생들\n• 작문 목적: 아파트 재건축으로 인해 아파트 숲이 줄어들고 있는 문제 상황에 대한 정보를 전달하고 대안을 모색함.\n• 글의 개요\n\n[학생의 초고]\n곳곳에서 낡은 아파트를 허물고 새 아파트를 짓는 재건축이 한창인 가운데, 오랜 기간 자리를 지켜 온 아파트 단지 내 녹지, 일명 ‘아파트 숲’이 설 자리를 잃고 있다. 이미 도시 생태계의 일부분으로 자리 잡은 기존 나무들을 비용 효율성을 이유로 베어 내는 과정에서 수십 년간 유지되어 온 생태계에 혼란이 일어나고 있다.\n서울에는 2.89㎢의 공동 주택 단지 녹지가 형성되어 있다. 대규모 산림에 비하면 작은 규모이지만, 주거 공간과 밀접하다는 점에서 도시의 주요 기반 시설 중 하나로 간주된다. 1991년 지하 주차장 개발이 본격화되기 전에 만들어진 아파트의 경우 자연 지반을 토대로 건설됐기 때문에, 주위 환경에 맞게 진짜 숲이 형성되어 있다. 이러한 도심 녹지는 도시 생물들의 서식지이다. 서울의 아파트 단지 30곳을 대상으로 한 연구에 따르면, 아파트 단지 녹지는 총 188종(63과 143속)의 식물상을 보유하고 있는 것으로 나타났다. 도심 녹지는 해당 지역 조류의 서식지이기도 하다. 아파트 단지 내 숲이 사라질 경우, 해당 지역 조류의 다양성이 감소한다는 연구 결과는 일관되게 보고되고 있다. 조류가 줄어드는 현상은 곧 곤충·작은 포유류 등 연관된 생태계 전체의 붕괴로 이어질 가능성이 크다.\n문제는 재건축이 활성화되면서 아파트 숲이 빠른 속도로 사라지고 있다는 것이다. 노후한 건물을 철거하고 새롭게 지반을 다지는 과정에서 숲의 대부분이 훼손된다. 수십 년간 자란 나무들은 그대로 베어지는 경우가 많다. 나무 보전을 위해서는 충분한 시간과 적절한 절차를 거쳐 수목 이식이 진행되어야 하지만, 효율성을 중시하는 재건축 과정에서는 이러한 절차가 지켜지기 어렵기 때문이다. 또한 환경 영향 평가법에 따라 수목 이식이 결정되기도 하지만, 위반하더라도 처벌 수위가 높지 않기 때문에 실제로 이행되지 않는 경우도 적지 않다.\n이러한 문제를 해결하기 위해서는 우선 재건축 과정에서 수목 이식이 관련 법에 따라 진행되어야 한다. 또한 오래된 아파트 단지의 나무들을 지켜야 한다는 점에서 ‘나무 나눔’ 제도도 활성화할 필요가 있다. 서울시는 시민들이 자발적으로 수목을 기증하고, 분양받는 시스템을 운영하고 있다. 이미 관련 조례를 개정해서 재개발·재건축 시 나무 나눔을 의무화하는 방안도 검토되었다. 서울환경연합 관계자는 ‘서울시 나무 나눔 정책상 분양 비용은 수요자 부담을 원칙으로 하고 있는데, 나무를 옮겨 심는 비용보다 새로 심는 비용이 저렴할 수 있다는 의견이 많아 제대로 활용되지 못하고 있다.’라며, 나무 분양에 따른 예산과 관리를 지원하는 방향으로 조례를 개정해야 한다고 말했다.\n생물종 서식지로서의 가치에 더해 녹지가 현대인에게 주는 심리적 안정과 위안을 감안할 때, 아파트 숲은 우리에게 중요한 의미를 가진다. 신속하게 새로 지은 공간에서 누리는 편의도 좋지만, 삭막한 도시에서 인간과 자연환경이 공존하며 살아가기 위해서는 작은 면적의 녹지라도 확보하기 위한 시간과 노력이 필요한 때이다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "‘글의 구성’을 참고할 때, ‘학생의 초고’에 활용된 내용 조직 방법으로 가장 적절한 것은?", "boki": "", "opts": [{"n": "①", "t": "‌순서 구조로 조직하여 문제 상황의 심각성이 현재의 상태에 이르기까지의 과정을 이해하게 한다."}, {"n": "②", "t": "‌원인-결과의 구조로 조직하여 문제 해결의 가능성을 부정적으로 전망하는 이유를 탐색하게 한다."}, {"n": "③", "t": "‌나열 구조로 조직하여 다양한 사회적 계층에서 제시한 해결 방안에 대한 정보를 습득할 수 있게 한다."}, {"n": "④", "t": "‌비교·대조의 구조로 조직하여 도시 공간이 당면한 위기 상황을 해결할 대안들이 지닌 장단점을 파악하게 한다."}, {"n": "⑤", "t": "‌문제-해결의 구조로 조직하여 시사 현안에 대한 관심을 불러일으키고 문제 해결 방안에 대한 정보를 파악하게 한다."}], "ans": 4}]}, {"pid": "SK-화작-03-06", "subject": "화작", "mode": "quiz", "title": "[화작] 03강 작문의 원리", "src": "2027 수능특강 화법과작문 · 03강 작문의 원리", "text": "[작문 과제]\n공동체의 문제를 발견하고 그 해결을 건의하는 글 작성하기\n\n[학생의 초고]\n□□ 구청장님, 안녕하세요? 저는 □□ 고등학교에 재학 중인 △△△입니다. 큰 연못을 품고 있는 중앙공원은 구민의 휴식처인 동시에 두꺼비들의 산란 장소이기도 합니다. 그런데 두꺼비들이 연못 주변을 자주 오가는 산란기나 새끼 두꺼비가 도로로 나오는 5~6월에는, 두꺼비들이 경계석에 가로막혀 오가지 못하거나 자전거 도로를 건너다 밟혀 죽는 일이 자주 발생한다는 것을 알고 안타까운 마음에 건의드리게 되었습니다.\n공원을 관리하시는 분들께서 경계석을 넘지 못하는 두꺼비들을 일일이 손으로 연못 안에 넣어 주시기도 하고, 도로 주변에 망을 쳐 놓고 오가는 두꺼비들을 한꺼번에 모아서 이동시켜 주기도 하지만, 아무래도 여러 가지로 번거로움이 따르게 됩니다. 경계석을 철거하면 두꺼비들의 이동이 좀 더 편해질 것 같아 공원을 관리하시는 분들께 여쭈어보았더니, 경계석이 필요한 이유가 있고, 굳이 철거하려면 추가적인 비용이 많이 들어 당장 철거하는 것은 어렵다고 하셨습니다.\n어떻게 하면 좋을지 방법을 고민하던 차에 신문에서 다른 지역의 사례를 접하게 되었습니다. 같은 문제로 고민하던 ○○시에서는 해결책으로 두꺼비들을 위한 나무 계단을 제작했다고 합니다. 산란기인 2월 중순부터, 연못에서 올챙이 시절을 거친 새끼 두꺼비가 연못에서 나와 산으로 올라가는 5~6월까지 한시적으로 나무 계단을 설치하는 것입니다. 이 계단은 100여m 둘레의 연못 주변에 20m 간격으로 놓아져 있다고 하네요. 새끼 두꺼비들의 사고를 방지하고자 5~6월에는 새끼 두꺼비가 이동하는 시기임을 알리는 표지판도 설치한다고 합니다.\n이동을 위한 나무 계단을 설치하면, 산란기 두꺼비와 연못에서 산으로 이동하는 새끼 두꺼비에게 매우 유익할 것입니다. 국립생태원의 설명에 따르면 이는 ‘두꺼비에게 크기와 재질 모두 적당한 생태 이동 시설을 제공하는 것’으로 ‘나무 계단 설치와 함께 주변의 덤불도 정리해 주면 더 좋을 것’이라고 합니다. 또한 이러한 조치는 두꺼비뿐만 아니라 사람에게도 유익합니다. 앞서 언급한 ○○시에서 연못 둘레에 나무 계단을 설치하자, 생태 환경에 대한 아이들의 관심이 증가했다고 합니다. 두꺼비를 위한 나무 계단은 사람과 동물이 따뜻하게 공존하며 살아가는 모습을 아이들에게 보여 줌으로써 그 자체가 생태 체험이자 교육의 좋은 수단이 될 것입니다.\n두꺼비는 봄이 됐을 때 가장 먼저 알을 낳는 기후 변화 지표종으로, 해충을 잡아먹고 꿀벌 같은 익충은 먹지 않기 때문에 생태계 중간자 역할을 하는 이로운 동물입니다. 간단한 조치로 두꺼비를 보호하는 것이 인간도 함께 잘 살 수 있는 방법임을 감안하셔서, 제 건의에 관심을 기울여 주시면 좋겠습니다. 감사합니다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "다음은 건의문을 평가하는 기준에 대한 선생님의 안내이다. 이에 따라 윗글을 이해한 내용으로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "두꺼비들이 공원에서 이동하면서 겪게 되는 피해를 구체적으로 제시했다는 점에서 ⓐ를 충족하고 있어."}, {"n": "②", "t": "두꺼비의 이동이 활발한 시기에 나무 계단을 설치하자고 제안했다는 점에서 ⓑ를 충족하고 있어."}, {"n": "③", "t": "경계석을 철거하게 될 경우 들게 될 비용을 우려했다는 점에서 ⓒ를 충족하고 있어."}, {"n": "④", "t": "나무 계단을 설치하는 것이 생태 체험이자 교육의 좋은 수단이 될 것이라고 언급했다는 점에서 ⓓ를 충족하고 있어."}, {"n": "⑤", "t": "‌ 건의 내용의 시행이 인간에게 유익한 방법이라고 설명했다는 점에서 ⓔ를 충족하고 있어."}], "ans": 2}]}, {"pid": "SK-언매-01-03", "subject": "언매", "mode": "quiz", "title": "[언매] 01강 언어 01~15", "src": "2027 수능특강 언어와매체 · 01강 언어 01~15", "text": "‘보조사’는 체언, 부사, 어미, 조사 등에 붙어서 특별한 의미를 더해 주는 조사라는 점에서, 앞에 오는 체언이 문장 안에서 일정한 자격을 가지도록 하는 격 조사와 차이가 있다. 예를 들어 ‘나는 경기에서 이겨서 흥분이 가라앉지를 않았다.’라는 문장에서 ‘를’은 어미 뒤에 붙어서 ‘강조’의 뜻을 더해 주므로 보조사로 분류한다.\n\n• 오늘부터 버스의 모든 승객은 반드시 안전띠를 착용해야 합니다. 택시의 뒷자리 승객도 고속 도로나 자동차 전용 도로에서는 안전띠를 착용해야 합니다.\n\n보조사는 담화를 구성하는 문장들이 형식적으로 긴밀하게 연결되는 속성인 ‘응집성’에 기여하기도 하는데, 위 예문에서 보조사 ‘도’가 그러한 역할을 한다. ‘도’는 이미 어떤 것이 포함되고 그 위에 더함의 뜻을 나타내는데, 여기서 ‘도’는 ‘도’가 결합한 ‘택시 뒷자리의 승객’이 ㉠이미 포함된 다른 요소인 ‘버스의 모든 승객’처럼 안전띠를 착용해야 하는 대상에 함께 포함된다는 것을 표현함으로써 앞 문장과 뒤 문장을 긴밀하게 연결하고 있다. ‘도’처럼 ‘포함’의 의미를 지니는 ‘까지, 마저, 조차’와 같은 보조사들은 모두 응집성을 실현하는 형식적 장치로 기능할 수 있다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "<보기>는 윗글을 읽은 후 진행된 수업 내용의 일부이다. ‘선생님’의 물음에 대한 답으로 적절한 것은?", "boki": "선생님: 우리가 읽은 글의 ‘도’의 사례에서와 같은 방식으로 [자료]의 ‘까지’가 응집성을 실현하고 있다고 할 때, [자료]에서 ㉠에 해당하는 것은 무엇일까요?\n여러 어려움이 내수 기업을 덮치고 있다. 먼저 올해 수입 물가가 상승한 것이 많은 기업들을 어렵게 만들고 있다. 거기에 최근 중앙은행의 금리 인상까지 겹치면서 여러 기업들의 경제적 부담이 커지고 있다.", "opts": [{"n": "①", "t": "‘여러 어려움’입니다."}, {"n": "②", "t": "‘내수 기업’입니다."}, {"n": "③", "t": "‘수입 물가가 상승한 것’입니다."}, {"n": "④", "t": "‘중앙은행의 금리 인상’입니다."}, {"n": "⑤", "t": "‘여러 기업들의 경제적 부담’입니다."}], "ans": 2}, {"stem": "<보기 1>을 바탕으로 <보기 2>를 탐구한 내용으로 적절하지 않은 것은?", "boki": "〈보기1〉\n선어말 어미 ‘－더－’는 과거 사건을 회상할 때 쓰이지만, 현재나 미래의 사건에도 쓰일 때가 있다. 이것은 현대 국어의 ‘－더－’가 표현하는 과거가 ‘사건’의 시간적 위치가 아니라, ‘인식’의 시간적 위치이기 때문에 가능하다. ‘－더－’는 평서문에서는 화자가, 의문문에서는 청자가 직접 지각하여 새로 알게 된 사실에 쓰인다. 따라서 ‘－더－’가 쓰인 평서문에서는 1인칭 주어를, 의문문에서는 2인칭 주어를 취하지 않는 것이 일반적이다. 예를 들어 ‘*내가 학교에 가더라.’라는 문장이 자연스럽지 않은 이유는 화자가 자신에 관한 일을 새롭게 알게 되는 상황이 일반적이지 않기 때문이다. 하지만 ‘－더－’와 달리 ‘－던’은 ‘과거에 새로 알게 된’의 의미가 아니라, 사건이 과거에 발생한 것임을 나타내는 과거 시제의 의미를 지닌다.\n(‘*’은 비문법적임을 뜻함.)\n\n〈보기2〉\n㉠ 어제 민수가 열심히 공부하더냐?         ㉡ 영희는 내일 미국으로 떠나더라.\n㉢ 이게 내가 아까 보던 책이다.", "opts": [{"n": "①", "t": "㉠에서 ‘－더－’는 민수와 관련된 사건을 청자가 지각하는 시점이 과거임을 표현한다."}, {"n": "②", "t": "㉠에서 ‘민수가’ 대신 ‘네가’가 오기 어려운 이유는 청자가 자신과 관련된 일을 새로 알게 되기 어렵기 때문이다."}, {"n": "③", "t": "㉡에서 ‘－더－’는 ‘영희’가 ‘내일 미국으로 떠난다’는 것을 화자가 알게 된 시점이 과거임을 표현한다."}, {"n": "④", "t": "㉡에서 주어로 ‘영희는’ 대신 ‘나는’이 오기 어려운 이유는 ‘떠나’는 것이 미래의 사건이기 때문이다."}, {"n": "⑤", "t": "㉢에서 ‘－던’은 책을 보는 사건의 시간적 위치가 과거임을 나타내므로 1인칭 주어와 함께 쓰였다."}], "ans": 3}, {"stem": "<보기>의 ㉠~㉢에 모두 해당하는 사례로 적절한 것은?", "boki": "근대 국어 시기를 거치면서 구개음화가 일어나는데, 이렇게 역사적으로 일어난 구개음화는 현대 국어의 구개음화와 여러 면에서 차이를 보였다. 먼저 ㉠한 형태소 내부에서 일어나는 구개음화가 있었다. ‘옮기디＞옮기지’와 같은 사례가 이에 해당한다. 또한 모음 ‘ㅣ’가 아니라 ㉡반모음 ‘j’ 앞에서 일어나는 구개음화가 활발하게 일어나기도 했다. 마지막으로 ㉢‘ㄱ－구개음화’도 일어났다. ‘ㄱ－구개음화’는 구개음화가 일어나는 자음이 ‘ㄱ, ㅋ, ㄲ’인 경우로, ‘기름＞지름’과 같은 사례가 이에 해당한다.", "opts": [{"n": "①", "t": "구디＞구지 (굳이)"}, {"n": "②", "t": "기픈＞집픈 (깊은)"}, {"n": "③", "t": "둏다＞좋다 (좋다)"}, {"n": "④", "t": "디하＞지하 (지하)"}, {"n": "⑤", "t": "겨으레＞져으레 (겨울에)"}], "ans": 4}]}, {"pid": "SK-언매-01-04", "subject": "언매", "mode": "quiz", "title": "[언매] 01강 언어 01~15", "src": "2027 수능특강 언어와매체 · 01강 언어 01~15", "text": "15세기 국어의 7개의 단모음(‘ㆍ, ㅡ, ㅣ, ㅗ, ㅏ, ㅜ, ㅓ’) 체계가 현대 국어의 10개의 단모음(‘ㅏ, ㅐ, ㅓ, ㅔ, ㅗ, ㅚ, ㅜ, ㅟ, ㅡ, ㅣ’) 체계로 바뀌는 과정에는 크게 두 가지 변화가 작용하였다. 첫째는 기존 단모음의 소멸이고 둘째는 새로운 단모음의 생성이다.\n첫째로, 15세기 국어의 단모음 체계에는 있었으나 현대 국어의 단모음 체계에는 없는 단모음은 ‘ㆍ’이다. 현대 국어 ‘하물며’의 옛말인 ‘며’의 변천을 예로 들어 보자. 16세기에는 ‘믈며’ 형태가 나타났는데, 이는 둘째 음절 이하에 놓인 ‘ㆍ’가 ‘ㅡ’로 바뀐 변화에 따른 것이다. 근대 국어 시기에 양순음 아래에서 ‘ㅡ’가 ‘ㅜ’로 바뀌는 원순 모음화가 일어남에 따라 ‘물며’가 등장하였고, 18세기 무렵 첫음절의 ‘ㆍ’가 주로 ‘ㅏ’로 바뀐 변화에 따라 ‘하물며’로 쓰이게 되었다. 이처럼 ㉠두 단계를 거쳐 일어난 ‘ㆍ’의 소실은 모음 조화에도 영향을 미쳤다. ‘ㆍ’의 지위가 공고하던 시기에는 ‘ㆍ, ㅏ, ㅗ, …’ 등의 양성 모음과 ‘ㅡ, ㅓ, ㅜ, …’ 등의 음성 모음이 규칙적으로 대립하여 형태소의 결합뿐 아니라 한 단어나 형태소 내부에서도 모음 조화가 비교적 잘 지켜졌으나, ‘ㆍ’가 단계적으로 소멸함에 따라 양성 모음과 음성 모음의 대립이 유지되기 어려워지면서 ㉡모음 조화가 약화되는 결과가 초래되었다.\n둘째로, 15세기 국어의 단모음 체계에는 없었다가 현대 국어의 단모음 체계에 새로 생겨난 단모음은 ‘ㅐ,ㅔ, ㅚ, ㅟ’이다. 현대 국어와는 달리 15세기 국어의 ‘ㅐ, ㅔ, ㅚ, ㅟ’는 이중 모음이었던 것으로 보이는데, ‘ㅐ, ㅔ, ㅚ, ㅟ’로 끝나는 체언과 결합하는 조사의 형태에서 그 근거를 찾을 수 있다. 예를 들어, 현대 국어의 서술격 조사 ‘이다’에 대응하는 중세 국어의 조사는 앞선 체언의 끝음절 모음이 단모음 ‘ㅣ’나 반모음 ‘j’인 경우 ‘∅라’의 형태로 결합하였다. 그리고 현대 국어의 부사격 조사 ‘에’에 대응하는 중세 국어의 조사는 앞선 체언의 끝음절 모음이 양성 모음이면 ‘애’, 음성 모음이면 ‘에’가 결합했지만, 단모음 ‘ㅣ’나 반모음 ‘j’로 끝나면 ‘예’가 결합하였다. 이러한 조사 결합 양상은 ‘ㅐ, ㅔ, ㅚ, ㅟ’가 반모음 ‘j’로 끝나는 이중 모음이었음을 의미한다. 그 외에도 15세기의 ‘ㆎ, ㅢ’ 역시 각각 단모음 ‘ㆍ’와 ‘ㅡ’에 반모음 ‘j’가 결합한 이중 모음이었으므로, 15세기 국어에는 반모음 ‘j’로 끝나는 이중 모음으로 ‘ㅐ, ㅔ, ㅚ, ㅟ, ㆎ, ㅢ’가 있었다고 할 수 있다. 그런데 이들 중 ‘ㆎ’는 ‘ㆍ’가 소실되면서 부분적으로 ‘ㅐ’ 또는 ‘ㅔ’로 변화하였고, ‘ㅐ, ㅔ, ㅚ, ㅟ’도 18세기 무렵부터 점차 단모음으로 변화하기 시작하여 20세기 전반을 전후해서는 전설 모음 계열의 단모음으로 확립된다. 이에 따라 현대 국어에서 반모음으로 끝나는 이중 모음은 ‘ㅢ’ 하나만 남기에 이르렀는데, ㉢현대 국어의 ‘ㅢ’도 이중 모음으로서 지위가 불안정하여 [의]가 아닌 다른 음가로 발음되는 경우가 많다.\n이러한 변화를 거쳐 형성된 10개의 단모음 체계는 현재 다시 큰 변화를 겪고 있다. 전설 모음 중 원순 모음에 속하는 ㉣‘ㅚ, ㅟ’가 주로 이중 모음으로 발음되는 상황이며, ㉤‘ㅐ’와 ‘ㅔ’의 변별도 일부 노년층을 제외하면 대부분의 세대에서 이루어지지 않고 있다. 이러한 변화들은 주로 전설 모음 계열에서 일어나, 현재 안정적인 지위를 지닌 전설 모음은 사실상 두 개만 남음으로써 전설 모음과 후설 모음의 대립이 유지되기 어려운 상황을 맞고 있다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "윗글의 ㉠~㉤에 대한 설명으로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "㉠: ‘치다’가 ‘가르치다’로 변할 때 ‘＞가’의 변화보다 ‘＞르’의 변화가 먼저 일어났을 것이다."}, {"n": "②", "t": "㉡: ‘프르다’가 ‘푸르다’로 변한 것은 모음 조화가 약화된 결과이다."}, {"n": "③", "t": "㉢: ‘주의’를 [주이]로 발음하는 것을 예로 들 수 있다."}, {"n": "④", "t": "㉣: ‘회수’를 [훼수]로 발음하는 것을 예로 들 수 있다."}, {"n": "⑤", "t": "㉤: ‘개’와 ‘게’가 발음만으로는 잘 구별되지 않는 것을 예로 들 수 있다."}], "ans": 1}, {"stem": "<보기>의 ㉠의 예로 적절하지 않은 것은?", "boki": "언어 내적인 요소가 의미 변화의 원인이 되는 경우가 있다. ‘생략’은 둘 이상의 요소가 결합하여 사용되던 말이 한 요소가 생략되어 사용되어도 같은 의미를 지니는 현상이다. 예를 들어 “아침밥 먹었니?”라고 말할 것을 ‘밥’을 생략하여 “아침 먹었니?”라고 한다면, 이때 ‘끼니’의 의미까지 포함하게 된 ‘아침’을 ㉠‘생략에 의한 의미 변화’의 사례라고 할 수 있다. 이는 언어생활의 편의를 위해 발화에 드는 노력을 절감하려는 것으로 볼 수 있다.", "opts": [{"n": "①", "t": "나는 머리를 짧게 잘랐다."}, {"n": "②", "t": "아기가 코를 계속 훌쩍거렸다."}, {"n": "③", "t": "이 의자는 다리가 하나 부러졌다."}, {"n": "④", "t": "그는 그녀의 손에 반지를 끼워 주었다."}, {"n": "⑤", "t": "감기에 걸렸는지 아까부터 목이 컬컬하다."}], "ans": 2}, {"stem": "<보기 1>을 참고하여 <보기 2>의 ㉠~㉤을 이해한 내용으로 적절하지 않은 것은?", "boki": "〈보기1〉\n부정어(否定語)란 부정하는 뜻을 가진 말을 가리킨다. 국어에는 긍정, 부정의 서술에 모두 쓰일 수 있는 어구도 있지만, 부정어와는 잘 쓰이지 않거나 반대로 항상 부정어와 함께 쓰이는 어구도 있다. 가령 ‘별로’는 ‘그 말은 별로 옳지 않다.’와 같이 부정어와 함께 쓰이고 ‘*그 말은 별로 옳다.’와 같이 쓰이지 않는다. ‘별로’처럼 부정을 뜻하는 말과 항상 함께 쓰여 부정의 정도와 관련되는 표현을 ‘부정 극어’라고 한다. 부정 극어가 사용된 문장과 부정 극어를 빼 버린 문장을 비교해 보면 부정의 정도가 강화되거나 약화되는 것을 확인할 수 있다. 부정 극어는 그 부정 극어의 출현을 가능하게 하는 부정어와 같은 절에 위치해야 자연스러운 문장을 이룰 수 있으며, 하나의 부정어에 두 개 이상의 부정 극어가 쓰일 수 있다.\n\n〈보기2〉\n㉠ 그 말은 절대로 {옳다./옳지 않다.}\n㉡ 나는 커피를 조금도 {*마신다./못 마신다.}\n㉢ 나는 그 일과 하나도 관계가 없다./나는 그 일과 관계가 없다.\n㉣ *나는 아무도 이 문제를 푼다고 생각하지 못했다./나는 아무도 이 문제를 못 푼다고 생각하지 못했다.\n㉤ 나는 그 일이 그다지 문제가 되지 않는다고 결코 생각하지 않는다.\n(‘*’은 비문법적임을 뜻함.)", "opts": [{"n": "①", "t": "㉠을 보니, ‘절대로’는 ‘별로’와 달리 긍정, 부정의 서술에 모두 쓰이는군."}, {"n": "②", "t": "㉡을 보니, ‘조금도’는 부정어와 함께 쓰이는군."}, {"n": "③", "t": "㉢을 보니, ‘하나도’가 쓰임으로써 부정의 정도가 강화되고 있군."}, {"n": "④", "t": "㉣을 보니, ‘아무도’가 쓰인 절이 부정어가 속한 절과 다르면 어색한 문장이 되는군."}, {"n": "⑤", "t": "㉤을 보니, ‘생각하지 않는다’라는 하나의 부정어에 여러 개의 부정 극어가 쓰이고 있군."}], "ans": 4}, {"stem": "<보기>의 ㉠~㉩에 대한 설명으로 적절한 것은?", "boki": "수연: 엄마, 우리 오늘 공원에 갈까요? 독서실 가 있는 동생도 가고 싶대요.\n엄마: 그래. 그런데 ㉠너희 둘 숙제는 다 했니?\n수연: 아직 다 못 했는데, ㉡정오까지는 끝낼 수 있어요.\n엄마: 믿어 본다. 그러면 엄마는 ㉢그때까지 김밥 준비할게. 숙제 빨리 끝나면 ㉣너도 좀 도와주고.\n수연: 우아, 신난다. ㉤우리 셋이 다 같이 집에서 출발하게 ㉥수지도 ㉦여기로 ㉧오라 할까요?\n엄마: 수지 독서실에 있다며. ㉨거기서 바로 ㉩가라 하지 뭐.", "opts": [{"n": "①", "t": "㉠은 ㉤과 달리 담화에 참여한 모든 사람을 가리킨다."}, {"n": "②", "t": "㉡과 ㉢은 가리키는 시간이 서로 다르다."}, {"n": "③", "t": "㉣은 ㉥과 달리 담화 참여자에 따라 지시 대상이 달라진다."}, {"n": "④", "t": "㉦과 ㉨은 가리키는 장소가 동일하다."}, {"n": "⑤", "t": "㉧과 ㉩은 이동의 도착 장소가 동일하다."}], "ans": 2}]}, {"pid": "SK-언매-01-05", "subject": "언매", "mode": "quiz", "title": "[언매] 01강 언어 01~15", "src": "2027 수능특강 언어와매체 · 01강 언어 01~15", "text": "중세 국어에서 명사 ‘곶’, ‘’과 용언의 어간 ‘－’, ‘－’, ‘－’, ‘－’ 등은 특정한 음운 조건에서 각각 ‘곳’, ‘’, ‘낫－’, ‘곱－’, ‘닷－’, ‘맛－’으로 형태가 교체되었다. 특정한 음운 조건이란 바로 자음으로 시작되는 조사나 어미 앞을 말한다. 이처럼 음운론적 조건에 의해 두 개 이상의 이형태가 서로 교체되고, 그 교체가 그 언어의 음운 규칙에 의해 이루어지는 것일 경우에 그 형태소의 교체를 ⓐ자동적 교체라고 한다.\n중세 국어의 명사 ‘나모’(나무)와 동사의 어간 ‘듣－’도 음운론적 조건에 따른 교체를 하였다. ‘나모’는 홀로 쓰이거나 조사와 결합할 때 ‘나모, 나모와, 남기, 남, 남로, 남’와 같은 형태를 보였다. ‘나모’는 휴지(休止)나 자음으로 시작하는 조사, 조사 ‘와’ 앞에서는 ‘나모’로, ‘와’를 제외한 모음으로 시작되는 조사 앞에서는 ‘’으로 교체되었다. 중세 국어의 ‘구무’(구멍), ‘녀느’(여느), ‘불무’(풀무) 등도 ‘나모’와 마찬가지로 동일한 환경에서 다른 형태로 교체되는 음운론적 조건에 따른 교체를 하였다.\n그러나 이러한 교체는 음운 규칙에 의해 이루어지는 교체가 아니었다. 가령 중세 국어의 ‘듣－’, ‘닛－’이 모음 앞에서 ‘들－’, ‘－’으로 교체되는 것이 그 당시의 음운 규칙이라면 동사의 어간 ‘얻－’, ‘솟－’도 모음 앞에서 ‘얼－’, ‘－’으로 교체되어야 하는데 그렇게 교체되지 않았다. ‘아모’(아무)도 ‘나모’와는 달리 규칙적인 교체를 보였다. 이처럼 일정한 규칙에 따라 교체가 일어나기는 하지만, 그 규칙이 예외 없이 적용되는 자동적인 것이 아닌, ‘나모’나 ‘듣－’과 같은 교체를 ⓑ비자동적 교체라고 한다. ‘짓－’이나 ‘내－’과 같은 용언의 어간도 비자동적 교체를 하는 모습을 보인다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "현대 국어에서의 ⓐ와 ⓑ의 사례로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "ⓐ: ‘밭’에서 받침 ‘ㅌ’은 [ㄷ]으로 발음된다."}, {"n": "②", "t": "ⓐ: ‘국물’에서 받침 ‘ㄱ’은 비음 ‘ㅁ’ 앞에서 [ㅇ]으로 발음된다."}, {"n": "③", "t": "ⓑ: ‘넋도’에서 ‘넋’은 [넉]으로 발음된다."}, {"n": "④", "t": "ⓑ: ‘젓다’의 어간 ‘젓－’은 모음으로 시작하는 어미 ‘－어’와 결합할 때 ‘ㅅ’이 발음되지 않는다."}, {"n": "⑤", "t": "ⓑ: ‘걷다’의 어간 ‘걷－’은 모음으로 시작하는 어미 ‘－어’와 결합할 때 어간의 형태가 ‘걸－’로 교체된다."}], "ans": 2}, {"stem": "<보기>에 주어진 문장의 구조를 분석한 내용으로 적절하지 않은 것은?", "boki": "㉠ 나는 시원한 가을이 오기를 기다린다.\n㉡ 우리는 재미있는 이야기를 밤이 새도록 나누었다.\n㉢ 고기는 남이 구운 쇠고기가 맛있다.", "opts": [{"n": "①", "t": "㉠~㉢은 모두 문장 성분이 생략된 관형사절을 안고 있다."}, {"n": "②", "t": "㉠에서는 명사절이 조사와 결합하여 문장의 목적어 역할을 하고 있다."}, {"n": "③", "t": "㉠과 ㉡에는 안긴절 안에 또 다른 절이 안겨 있다."}, {"n": "④", "t": "㉡에는 부사형 어미 ‘－도록’이 결합한 부사절이 안겨 있다."}, {"n": "⑤", "t": "㉢에는 서술어의 역할을 하는 절이 안겨 있다."}], "ans": 2}, {"stem": "<보기>의 [A]에 들어갈 말로 적절하지 않은 것은?", "boki": "선생님: 상대적 관계에 있으면서 의미상 대칭을 이루는 두 단어를 관계 반의어라고 하는데요. 관계 반의어 중에는 ‘x는 y의 ㉮이다. ＝ y는 x의 ㉯이다.’라는 관계가 성립하는 것들이 있습니다. 예를 들면, ‘남편 － 아내’가 그러한 사례에 해당하지요. ㉮와 ㉯ 자리에 ‘남편’과 ‘아내’를 각각 넣어 보면 이러한 관계가 성립합니다. 이와 같은 관계가 성립하는 예들을 더 찾아볼까요?\n학생:                [A]\n선생님: 네, 잘 찾았습니다.", "opts": [{"n": "①", "t": "‘참 － 거짓’이 있습니다."}, {"n": "②", "t": "‘형 － 동생’이 있습니다."}, {"n": "③", "t": "‘의사 － 환자’가 있습니다."}, {"n": "④", "t": "‘상관 － 부하’가 있습니다."}, {"n": "⑤", "t": "‘할아버지 － 손자’가 있습니다."}], "ans": 0}]}, {"pid": "SK-언매-01-07", "subject": "언매", "mode": "quiz", "title": "[언매] 01강 언어 01~15", "src": "2027 수능특강 언어와매체 · 01강 언어 01~15", "text": "국어의 형태소 중에는 겹받침을 가지는 것들이 있다. 이들 뒤에 모음으로 시작하는 형식 형태소가 오면 연음이 되어 겹받침 중 앞선 자음은 앞 음절의 종성에 그대로 있고, 뒤에 오는 자음만 뒤 음절의 초성으로 이동한다. 현실 발음에서는 이러한 연음이 제대로 일어나지 않고 ‘닭을[다글]’과 같이 발음하는 경우가 적지 않은데, 표준 발음에는 부합하지 않는다. ‘값이[갑씨]’에서 보듯이, ‘ㅅ’으로 끝나는 겹받침의 경우 연음이 될 때 ‘ㅅ’이 [ㅆ]으로 발음된다. 또한 ‘ㅎ’으로 끝나는 겹받침은 뒤에 모음으로 시작하는 형식 형태소가 올 때 ‘ㅎ’이 탈락한다. ‘ㅎ’이 탈락하고 나면 여전히 뒤 음절의 초성 자리는 비어 있어 결국 겹받침의 앞선 자음이 뒤 음절의 초성으로 넘어가는데, ‘많아[마ː나]’ 등에서 이를 확인할 수 있다.\n\n앞서 살펴본 것과 같이 뒤에 모음으로 시작하는 형식 형태소가 오는 경우를 제외하면, 겹받침을 가진 형태소는 어말, 자음 앞에서, 그리고 모음으로 시작하는 실질 형태소 앞에서 항상 자음군 단순화의 적용을 받는다. 그런데 자음군 단순화가 적용될 때 겹받침 중 어떤 자음이 탈락하는지는 겹받침의 구성 자음이나 그 밖의 변수에 따라 유동적이다. 표준 발음법의 규정을 바탕으로, 어느 한 자음이 일관되게 탈락하는 양상을 보여 주는 겹받침을 먼저 살펴보자. 우선 장애음*들로 구성된 겹받침인 ‘ㄳ’과 ‘ㅄ’은 항상 뒤에 오는 자음이 탈락하여 각각 [ㄱ], [ㅂ]으로 발음한다. 다음으로 비음이 포함된 겹받침의 경우에는 항상 비음이 아닌 자음이 탈락하여 ‘ㄵ’, ‘ㄶ’은 [ㄴ]으로, ‘ㄻ’은 [ㅁ]으로 발음한다. 그리고 조음 위치가 같은 자음들로 구성된 겹받침인 ‘ㄽ’, ‘ㄾ’은 항상 뒤에 오는 자음이 탈락하여 둘 다 [ㄹ]로 발음한다.\n[A]\n\n반면 ‘ㄺ, ㄼ, ㄿ’은 어느 한 자음이 일관되게 탈락하지 않으며, 동일한 겹받침이라도 단어에 따라, 또는 지역이나 화자 등 다양한 변수에 따라 탈락하는 자음이 달라질 수 있다. ‘ㄺ’, ‘ㄿ’은 겹받침 중 앞선 자음인 ‘ㄹ’이 탈락하여 ‘ㄺ’은 [ㄱ]으로, ‘ㄿ’은 ‘ㄹ’이 탈락하고 남은 ‘ㅍ’에 음절의 끝소리 규칙이 적용되므로 [ㅂ]으로 발음한다. 그러나 용언 어간의 겹받침 ‘ㄺ’은 ‘ㄱ’ 앞에서 ‘ㄹ’이 아닌 ‘ㄱ’이 탈락하여, [ㄹ]로 발음한다. 이는 용언의 활용형뿐만 아니라 ‘밝기[발끼]’와 같은 복합어에도 그대로 적용된다. ‘ㄼ’은 원칙적으로는 뒤에 오는 ‘ㅂ’이 탈락하여 [ㄹ]로 발음하나, ‘밟－’ 뒤에 자음으로 시작하는 어미가 올 때와 ‘넓－’이 포함된 복합어 중 ‘넓죽하다’와 ‘넓둥글다’ 등에서는 [ㅂ]으로 발음한다.\n\n*장애음: 자음 중에서도 기류의 흐름이 방해를 많이 받는 부류로, 파열음, 마찰음, 파찰음이 여기에 속함.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "윗글을 이해한 내용으로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "‘짧다’의 ‘ㄼ’과 ‘밟다’의 ‘ㄼ’은 종성에서 다른 소리로 발음된다."}, {"n": "②", "t": "‘읊다’의 ‘ㄿ’과 ‘넓죽하다’의 ‘ㄼ’은 종성에서 같은 소리로 발음된다."}, {"n": "③", "t": "‘닭을[다글]’은 자음군 단순화를 적용해야 하는데 연음을 적용한 것이다."}, {"n": "④", "t": "‘많아[마ː나]’는 겹받침 중 뒤에 오는 자음이 연음되지 않고 탈락한 것이다."}, {"n": "⑤", "t": "‘밝－’의 ‘ㄺ’은 ‘－다’와 결합하는 경우는 [ㄱ]으로, ‘－고’와 결합하는 경우는 [ㄹ]로 발음한다."}], "ans": 2}, {"stem": "다음은 학생이 ‘자음군 단순화’를 중심으로 [A]를 정리한 것이다. ㉠~㉢에 대해 이해한 내용으로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "‘몫이[목씨]’는 ‘값있는[가빈는]’과 달리 ㉠의 사례로 들 수 있군."}, {"n": "②", "t": "‘앉는[안는]’은 ‘않은[아는]’과 달리 ㉡의 사례로 들 수 있군."}, {"n": "③", "t": "‘외곬[외골]’, ‘훑는[훌른]’은 모두 ㉢의 사례로 들 수 있군."}, {"n": "④", "t": "㉠과 ㉢은 자음군 단순화가 적용되면 겹받침 중 뒤에 오는 자음이 탈락한다는 공통점이 있군."}, {"n": "⑤", "t": "㉡을 보니 비음이 포함된 겹받침에 자음군 단순화가 적용되면 비음이 아닌 자음이 탈락하는군."}], "ans": 0}, {"stem": "다음 밑줄 친 말 중 ㉠의 예로 적절한 것은?", "boki": "", "opts": [{"n": "①", "t": "학교에서 집까지 걸어왔더니 힘들다."}, {"n": "②", "t": "오늘따라 유난히 하늘에 별이 빛났다."}, {"n": "③", "t": "밥 위에 불고기를 얹어 덮밥으로 먹었다."}, {"n": "④", "t": "지금의 남편은 대학 시절 나의 첫사랑이었다."}, {"n": "⑤", "t": "그는 처음 보는 사람인데도 전혀 낯설지 않았다."}], "ans": 0}, {"stem": "㉠~㉣의 문장 성분과 문장 구조에 대한 설명으로 적절한 것은?", "boki": "", "opts": [{"n": "①", "t": "㉠에는 주어가 생략된 안긴절이 있고, ㉡에는 필수적 부사어가 생략된 안긴절이 있다."}, {"n": "②", "t": "㉠과 ㉡에는 모두, 조사와 결합하여 주어 기능을 하는 명사절이 있다."}, {"n": "③", "t": "㉢과 ㉣에는 모두, 부사어가 들어 있는 안긴절이 있다."}, {"n": "④", "t": "㉢에는 보어 기능을 하는 안긴절이 있고, ㉣에는 부사어 기능을 하는 안긴절이 있다."}, {"n": "⑤", "t": "㉢과 ㉣에는 모두, 목적어가 생략된 관형사절이 있다."}], "ans": 2}, {"stem": "<보기>의 ㉠~㉧에 대한 설명으로 적절하지 않은 것은?", "boki": "주원 아빠: 처제 어서 와.\n보람: 형부, 그동안 잘 지내셨죠? ㉠주원아, 검도 심사는 통과했어?\n주원: 네! 높은 성적으로 통과했어요.\n보람: (주원에게) 오, ㉡엄마가 좋아하셨겠다. (주원 아빠에게) ㉢언니는요?\n주원 아빠: (보람에게) 잠깐만, ㉣언니 불러 줄게. (주원에게) ㉤엄마 나오시라고 해라.\n주원: ㉥엄마, 이모 오셨어요.\n주원 엄마: ㉦이모 벌써 오셨니? (나와서 보람을 향해) ㉧보람아, 점심 먹었어?", "opts": [{"n": "①", "t": "㉠과 ㉧을 보면, 화자가 자신보다 아랫사람을 호칭하는 경우 인물의 이름을 그대로 부르기도 한다."}, {"n": "②", "t": "㉡과 ㉢은 모두, 화자가 자신과 지칭 대상과의 관계에 따라 인물을 지칭한 것이다."}, {"n": "③", "t": "㉣과 ㉤은 청자와 지칭 대상과의 관계에 따라 화자가 인물을 달리 지칭한 것이다."}, {"n": "④", "t": "㉤과 ㉥을 보면, 지칭어와 호칭어로 같은 말이 쓰이기도 한다."}, {"n": "⑤", "t": "㉦이 지칭하는 인물과 ㉧이 호칭하는 인물은 동일인이다."}], "ans": 1}]}, {"pid": "SK-언매-02-09", "subject": "언매", "mode": "quiz", "title": "[언매] 02강 매체 01~12", "src": "2027 수능특강 언어와매체 · 02강 매체 01~12", "text": "오늘은 사계절 온화한 기후, 수백 년의 역사가 들려주는 풍성한 이야기가 있는 곳. 낭만의 나라, 포르투갈로 떠나 봅니다.\n\n포르투갈 최남단, 유럽의 대표적인 휴양지인 알가르브에서 여행을 시작합니다. 붉은 기암절벽과 해식 동굴이 있는 해안 지형인 알가르 세쿠는 자연이 오랜 세월 공들여 빚은 예술 작품입니다. 기암 절벽 사이사이 숨어 있는 해식 동굴을 탐험하며, 대서양의 파도 소리를 듣고 맑은 겨울 햇빛을 받아 반짝이는 윤슬을 바라봅니다.\n\n알가르브를 뒤로하고, 서쪽으로 향합니다. 과거 포르투갈 왕족들의 휴가지였던 카스카이스. 지금도 휴양지로 사랑받는 도시로, 해변에는 여유와 즐거움이 넘칩니다. 하지만, 이곳의 명물은 따로 있다는데요. 해변을 뒤로하고 향한 곳은 거친 바다! 파도로 들썩이는 배 위에서 어부들이 웬 항아리를 건져 올립니다. 전통 문어잡이 항아리인 알카투르즈로, 항아리를 집으로 생각하는 문어의 습성을 활용해 문어를 잡는 도구입니다. 크고 통통한 문어가 줄줄이 올라옵니다. 그 덕에 오늘의 식사는 문어 파티! 문어 밥과 문어 감자 요리 준비에 한창인데, 어딘가에서 전통 가요인 파두 선율이 들려옵니다. 잠시 함께 감상하실까요? (파두 연주를 잠시 들은 후) 겨울 대서양의 낭만이 오감으로 전해지는 저녁입니다.\n\n이번엔 포르투갈이라는 이름의 기원이 된 곳이자 역사적인 항구도시, 포르투로 갑니다. 유네스코 세계 유산으로 지정된 포르투의 구시가지를 걷다 보면, 독특한 타일 장식이 눈길을 사로잡습니다. 타일들을 따라 도착한 곳은 상 벤투 기차역. 역의 내부는 타일 장식으로 가득한 미술관 같습니다. 주석과 유약을 칠해 구운 아줄레주라고 하는 전통 도자기 타일이 벽을 가득 장식합니다. 단 한 명의 작가가 포르투갈의 역사와 일상의 풍경을 담은 2만 장의 타일을 그리고 붙여, 12년 만에 완성했다는 아줄레주 작품 속으로 짧은 여행을 떠나 봅니다.\n\n포르투 시가지를 가로지르는 도루강입니다. 자전거를 타고 강변 따라 달리며 바람을 맞아 봅니다. 강을 건너니 새로운 풍경과 향기가 여행자를 맞이합니다. 실려 온 맛있는 냄새의 정체는 포르투갈의 전통 음식 프란세지냐입니다. 빵과 치즈, 고기 등 재료는 간단하지만 다채로운 맛의 조화가 느껴지는 음식. 식당마다, 요리사마다 프란세지냐 위에 뿌리는 소스 맛이 천차만별이라고 합니다. 포르투의 자랑이자, 그리운 고향의 맛이라는 프란세지냐를 통해 포르투의 맛을 느껴 봅니다.\n\n포르투갈의 베네치아로 불리는 아름다운 운하 도시 아베이루. 운하 위를 유유히 흐르는, 전통 배 몰리세이루가 낭만적인 풍경에 운치를 더합니다. 과거 소금과 수초를 도시 곳곳으로 날랐다는 몰리세이루를 타고 도시를 돌며 도시의 옛 모습을 상상해 봅니다. 몰리세이루가 데려다준, 도시의 어느 골목. 오랜 세월이 느껴지는 건물들 사이에서 특별한 디저트를 발견합니다. 수도원에서 탄생한 아베이루의 간식, 오부스 몰레스입니다. 수도원에서 신부의 옷을 다릴 때 달걀흰자를 사용한 후, 남은 노른자를 활용할 방법을 찾다 고안한 간식이라고 합니다. 맛은 어떨까요?\n\n유럽의 끝, 대서양이 시작되는 곳 리스본. 골목 사이사이로 낭만을 실어 나르는 트램을 타고 대항해 시대의 흔적이 남은 벨렝 탑으로 향합니다. 아프리카와 아시아의 신기한 동물들을 새긴 외벽, 정치범을 수용했던 악명 높은 지하 감옥, 먼바다로 떠나는 이들과 다시 돌아오는 이들을 배웅하고 맞이했던 장소까지. 벨렝 탑에는 해양탐험의 선두 주자로서 대항해 시대를 열었던 포르투갈의 역사가 압축되어 있습니다.\n\n여행의 끝을 장식할 곳은 해안 절벽 위 어촌 마을, 아제냐스 두 마르. 흰 벽과 주황 지붕이 독특한 분위기를 자아냅니다. 코발트블루의 대서양의 바다가 파도를 만들며 절벽을 때리는 가운데, 어느덧 해 질 녘, 저물어 가는 태양이 대서양을 물들이는 황홀한 시간이 펼쳐집니다. 엷은 빛으로 시작해 온 바다를 물들이는 석양을 닮은, 낭만의 시간을 되새기며 여정을 마무리합니다.", "verse": false, "ox": [], "cloze": [], "story": null, "vocab": [], "mcq": [{"stem": "㉠~㉤에 대한 이해로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "㉠: 소개 대상의 모습과 발화자의 모습이 하나의 장면에 담기게 촬영하여 제시하고 있다."}, {"n": "②", "t": "㉡: 발화자가 언급한 내용 중 일부를 의문문 형식의 자막으로 제시하여 시청자의 궁금증을 유발하고 있다."}, {"n": "③", "t": "㉢: 공연 영상을 삽입하여 발화자가 언급한 내용을 구체적으로 제시함으로써 생생한 느낌을 주고 있다."}, {"n": "④", "t": "㉣: 분할 화면을 통해 발화자가 언급한 대상의 유래에 대해 보여 줌으로써 관련 내용을 보완하고 있다."}, {"n": "⑤", "t": "㉤: 자막을 통해 발화자가 방송에서 언급한 전체 내용을 압축하는 어구를 제시하고 있다."}], "ans": 3}, {"stem": "다음은 위 방송 프로그램의 ‘시청자 게시판’ 내용이다. 시청자의 수용 양상에 대한 이해로 가장 적절한 것은?", "boki": "", "opts": [{"n": "①", "t": "‘시청자 1’, ‘시청자 2’는 방송을 통해 알게 된 정보를 바탕으로 추후 탐색 과제에 대해 제시하고 있다."}, {"n": "②", "t": "‘시청자 2’, ‘시청자 3’은 방송에서 제시한 시각 자료에 대해 아쉬움을 느끼면서 좀 더 다양한 자료 제시의 필요성을 제기하고 있다."}, {"n": "③", "t": "‘시청자 3’, ‘시청자 4’는 방송에서 미처 언급하지 않았던 정보를 탐색하여 자신의 감상 내용을 확장하고 있다."}, {"n": "④", "t": "‘시청자 1’, ‘시청자 2’, ‘시청자 3’은 방송에서 다룬 내용을 우리나라의 것과 비교하면서 언급하고 있다."}, {"n": "⑤", "t": "‘시청자 1’, ‘시청자 3’, ‘시청자 4’는 방송 내용과 자신의 배경지식을 비교하면서 기존에 자신이 지녔던 지식의 오류에 대해 점검하고 있다."}], "ans": 3}, {"stem": "다음은 위 방송 프로그램을 참고하여 제작한 여행사의 온라인 동영상 콘텐츠 화면이다. 이를 이해한 내용으로 적절하지 않은 것은?", "boki": "", "opts": [{"n": "①", "t": "수용자가 영상을 시청하면서 링크를 통해 여행사 누리집으로 들어갈 수 있게 한 것이겠군."}, {"n": "②", "t": "휴대 전화에서도 보기 편한 세로형 화면을 통해 수용자들이 영상을 보는 것이 쉬워지겠군."}, {"n": "③", "t": "공유 기능을 통해 누리 소통망〔SNS〕 내에서 해당 영상을 다른 사람에게 전달하기가 용이하겠군."}, {"n": "④", "t": "댓글 기능을 활용하여 영상 내용에 대해 다른 수용자들과 소통할 수 있어서 여행 관련 정보를 얻을 수 있겠군."}, {"n": "⑤", "t": "영상 내용에 대해 보완할 점이나 오류 수정을 요청할 수 있는 공감 기능을 활용하여 잠재적 소비자와 소통할 수 있겠군."}], "ans": 4}]}];
+  var LS="machimnae_memory_"+ROUND;
+  var store={name:"",elect:"언매",prog:{},attempts:{}};
+  function load(){try{var d=JSON.parse(localStorage.getItem(LS));if(d){store=d;store.prog=store.prog||{};store.attempts=store.attempts||{};store.elect=store.elect||"언매";}}catch(e){}}
+  function save(){try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){}}
+  function getProg(pid){if(!store.prog[pid])store.prog[pid]=0;if(!store.attempts[pid])store.attempts[pid]=0;
+    return {done:store.prog[pid]===100,attempts:store.attempts[pid]};}
+
+  var state={p:null,readSec:240,timeLeft:0,timer:null,readUsed:0,ox:[],subject:"독서"};
+  load();
+  var sel=$("#passageSel");
+  function listFor(s){return PASSAGES.filter(function(p){return p.subject===s;});}
+
+  function buildElectBar(){
+    var bs=$("#electBar").querySelectorAll("button");
+    Array.prototype.forEach.call(bs,function(b){
+      var e=b.getAttribute("data-e");
+      b.className=(e===store.elect)?"on":"";
+      b.onclick=function(){
+        if(store.elect===e) return;
+        store.elect=e; save();
+        if(SUBJECTS().indexOf(state.subject)<0) state.subject="독서";
+        buildElectBar(); buildSubjBar(); refreshSelect(); updateHw(); updateFinal();
+      };
+    });
+  }
+
+  function buildSubjBar(){
+    var bar=$("#subjBar");bar.innerHTML="";
+    SUBJECTS().forEach(function(sub){
+      var arr=listFor(sub); if(!arr.length) return;
+      var done=arr.filter(function(p){return store.prog[p.pid]===100;}).length;
+      var b=document.createElement("button");
+      b.innerHTML=sub+'<i>'+done+'/'+arr.length+'</i>';
+      if(sub===state.subject) b.className="on";
+      b.onclick=function(){state.subject=sub;buildSubjBar();refreshSelect();};
+      bar.appendChild(b);
+    });
+  }
+  function refreshSelect(){
+    sel.innerHTML="";
+    listFor(state.subject).forEach(function(p,i){
+      var pr=getProg(p.pid),o=document.createElement("option");
+      o.value=p.pid;
+      o.textContent=(pr.done?"✅ ":"▶ ")+(i+1)+". "+p.title.replace(/^\[[^\]]+\]\s*/,"");
+      sel.appendChild(o);
+    });
+    refreshDoneNote();
+    if(typeof refreshMode==="function") refreshMode();
+  }
+  function cur(){return PASSAGES.filter(function(p){return p.pid===sel.value;})[0];}
+  function refreshDoneNote(){
+    var p=cur(),n=$("#doneNote"); if(!p){n.classList.add("hidden");return;}
+    var pr=getProg(p.pid);
+    if(pr.done){n.classList.remove("hidden");n.innerHTML="이 지문은 이미 <b style='color:#1f8a4c'>100점 완료</b>했습니다.";}
+    else if(pr.attempts>0){n.classList.remove("hidden");n.innerHTML="지난 시도: <b>"+pr.attempts+"회</b> (미완료)";}
+    else n.classList.add("hidden");
+  }
+  function refreshMode(){
+    var p=cur(), quiz=(p&&p.mode==="quiz");
+    $("#timeWrap").classList.toggle("hidden", quiz);
+    $("#startBtn").textContent = quiz ? "문제 풀기 ▶" : "암기 시작 ▶";
+  }
+  sel.onchange=function(){refreshDoneNote();refreshMode();};
+  if(store.name)$("#studentName").value=store.name;
+  buildElectBar();buildSubjBar();refreshSelect();
+
+  function show(id){["start","read","quiz","ox","cloze","result"].forEach(function(s){
+    document.getElementById("scr-"+s).classList.toggle("hidden",s!==id);});window.scrollTo(0,0);}
+
+  function paint(box){
+    box.innerHTML='<div class="ptitle">'+esc(state.p.title)+'<span class="psrc">'+esc(state.p.src)+'</span></div>'
+      +renderPassageText(state.p.text,state.p.verse);
+  }
+  $("#startBtn").onclick=function(){
+    var n=$("#studentName").value.trim();
+    if(!n){toast("이름을 입력하세요.");return;}
+    store.name=n;save();
+    state.p=cur(); if(!state.p){toast("지문을 선택하세요.");return;}
+    state.readSec=+$("#readTime").value;
+    if(state.p.mode==="quiz") beginQuiz(); else beginRead();
+  };
+  function beginRead(){
+    show("read");
+    $("#readAttempt").textContent="🔁 시도 "+(getProg(state.p.pid).attempts+1)+"회차";
+    $("#readArea").classList.remove("hidden");$("#curtainArea").classList.add("hidden");
+    paint($("#passageBox"));
+    state.timeLeft=state.readSec;state.readUsed=0;
+    clearInterval(state.timer);updateTimer();
+    state.timer=setInterval(function(){state.timeLeft--;state.readUsed++;
+      if(state.timeLeft<=0){clearInterval(state.timer);hidePassage(true);}updateTimer();},1000);
+  }
+  function updateTimer(){
+    var t=Math.max(state.timeLeft,0),m=Math.floor(t/60),s=t%60,el=$("#timer");
+    el.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+    el.classList.toggle("low",t<=30);
+    $("#tbarFill").style.width=(t/state.readSec*100)+"%";
+  }
+  function hidePassage(auto){
+    clearInterval(state.timer);
+    $("#readArea").classList.add("hidden");$("#curtainArea").classList.remove("hidden");
+    if(auto)toast("시간이 끝났습니다.");
+  }
+  $("#hideBtn").onclick=function(){hidePassage(false);};
+  $("#peekBtn").onclick=function(){
+    $("#readArea").classList.remove("hidden");$("#curtainArea").classList.add("hidden");
+    state.timeLeft=20;updateTimer();clearInterval(state.timer);
+    state.timer=setInterval(function(){state.timeLeft--;state.readUsed++;
+      if(state.timeLeft<=0){clearInterval(state.timer);hidePassage(true);}updateTimer();},1000);
+  };
+  $("#toQuizBtn").onclick=buildOX;
+
+  function beginQuiz(){
+    show("quiz");
+    clearInterval(state.timer);
+    var p=state.p;
+    $("#quizHead").textContent=p.title.replace(/^\[[^\]]+\]\s*/,"")+" — 객관식 "+p.mcq.length+"문항";
+    $("#quizPassage").innerHTML='<div class="ptitle">'+esc(p.title)+'<span class="psrc">'+esc(p.src)+'</span></div>'
+      +renderPassageText(p.text,false);
+    state.mcq=new Array(p.mcq.length).fill(null);
+    var wrap=$("#mcqList");wrap.innerHTML="";
+    p.mcq.forEach(function(q,i){
+      var d=document.createElement("div");d.className="mcq";
+      var bk=q.boki?'<div class="boki"><b>&lt;보기&gt;</b>'+esc(q.boki).replace(/\n/g,"<br>")+'</div>':"";
+      var opts=q.opts.map(function(o,j){
+        return '<div class="opt" data-j="'+j+'"><span class="n">'+esc(o.n)+'</span><span class="t">'+esc(o.t)+'</span></div>';
+      }).join("");
+      d.innerHTML='<div class="stem">'+(i+1)+'. '+esc(q.stem)+'</div>'+bk+opts;
+      var os=d.querySelectorAll(".opt");
+      Array.prototype.forEach.call(os,function(o){
+        o.onclick=function(){
+          Array.prototype.forEach.call(os,function(x){x.classList.remove("sel");});
+          o.classList.add("sel");state.mcq[i]=+o.getAttribute("data-j");
+          $("#mcqGrade").disabled=state.mcq.indexOf(null)>-1;
+        };
+      });
+      wrap.appendChild(d);
+    });
+    $("#mcqGrade").disabled=true;
+    state.readUsed=0;
+    state.timer=setInterval(function(){state.readUsed++;},1000);
+  }
+
+  $("#mcqGrade").onclick=function(){
+    clearInterval(state.timer);
+    var p=state.p,got=0,wrong=[];
+    var blocks=$("#mcqList").querySelectorAll(".mcq");
+    p.mcq.forEach(function(q,i){
+      var os=blocks[i].querySelectorAll(".opt");
+      Array.prototype.forEach.call(os,function(o,j){
+        o.classList.remove("sel");
+        if(j===q.ans)o.classList.add("ok");
+        else if(j===state.mcq[i])o.classList.add("no");
+      });
+      if(state.mcq[i]===q.ans)got++; else wrong.push(i+1);
+    });
+    var pct=Math.round(got/p.mcq.length*100);
+    state.result={oxScore:got,clzScore:0,pct:pct,clzResult:[],total:p.mcq.length,wrong:wrong};
+    store.attempts[p.pid]=(store.attempts[p.pid]||0)+1;
+    if(pct>=100)store.prog[p.pid]=100;
+    save();showResult();
+  };
+
+  function buildOX(){
+    show("ox");
+    var list=state.p.ox;
+    if(!list.length){buildCloze();return;}
+    state.ox=new Array(list.length).fill(null);
+    var wrap=$("#oxList");wrap.innerHTML="";
+    list.forEach(function(item,i){
+      var q=document.createElement("div");q.className="q";
+      var bk=item.boki?'<div class="boki"><b>&lt;보기&gt; '+esc(item.stem)+'</b>'+esc(item.boki).replace(/\n/g,"<br>")+'</div>':"";
+      q.innerHTML=bk+'<div class="qt">'+(i+1)+'. '+esc(item.t)+'</div>'
+        +'<div class="ox"><button data-v="O">O</button><button data-v="X">X</button></div>';
+      var btns=q.querySelectorAll(".ox button");
+      Array.prototype.forEach.call(btns,function(b){
+        b.onclick=function(){
+          Array.prototype.forEach.call(btns,function(x){x.classList.remove("sel");});
+          b.classList.add("sel");state.ox[i]=(b.getAttribute("data-v")==="O");
+          $("#oxNext").disabled=state.ox.indexOf(null)>-1;
+        };
+      });
+      wrap.appendChild(q);
+    });
+    $("#oxNext").disabled=true;
+  }
+  $("#oxNext").onclick=buildCloze;
+
+  function buildCloze(){
+    show("cloze");
+    var wrap=$("#clozeList");wrap.innerHTML="";
+    var p=state.p;
+    if(p.story){
+      var box=document.createElement("div");box.className="q cloze";
+      var st=esc(p.story.text).replace(/\(\s*(\d+)\s*\)/g,function(_,num){
+        return '<input type="text" data-i="'+(num-1)+'" autocomplete="off" spellcheck="false" style="min-width:78px">';});
+      box.innerHTML='<div class="qt">'+esc(p.story.label||"상세 줄거리")+' — 인물 이름·주요 소재 복원</div><div class="story-box">'+st+'</div>';
+      wrap.appendChild(box);
+    }
+    (p.cloze||[]).forEach(function(c,i){
+      var line=document.createElement("div");line.className="q cloze";
+      var tag=c.label?'<span class="clz-tag">'+esc(c.label)+'</span>':"";
+      line.innerHTML='<div class="clz-line">'+tag+esc(c.pre)
+        +'<input type="text" data-c="'+i+'" autocomplete="off" spellcheck="false">'+esc(c.post)+'</div>';
+      wrap.appendChild(line);
+    });
+    (p.vocab||[]).forEach(function(v,i){
+      var line=document.createElement("div");line.className="q cloze";
+      line.innerHTML='<div class="clz-line"><span class="clz-tag vocab">어휘</span>'+esc(v.pre)
+        +'<input type="text" data-v="'+i+'" autocomplete="off" spellcheck="false"></div>'
+        +'<div class="muted" style="margin-top:4px">근거 · '+esc(v.src)+'</div>';
+      wrap.appendChild(line);
+    });
+    if(!p.story&&!(p.cloze||[]).length&&!(p.vocab||[]).length)
+      wrap.innerHTML='<p class="muted">이 지문은 O·X 문항만 있습니다. 바로 채점하세요.</p>';
+  }
+
+  $("#clozeGrade").onclick=function(){
+    var p=state.p,oxScore=0;
+    p.ox.forEach(function(it,i){if(state.ox[i]===it.a)oxScore++;});
+    var clzScore=0,clzResult=[],total=p.ox.length;
+    if(p.story){
+      var si=$("#clozeList").querySelectorAll('input[data-i]');
+      p.story.ans.forEach(function(a,i){
+        var ok=!!(si[i]&&normAns(si[i].value)!==""&&normAns(si[i].value)===normAns(a));
+        if(ok)clzScore++;clzResult.push(ok);total++;
+      });
+    }
+    var ci=$("#clozeList").querySelectorAll('input[data-c]');
+    (p.cloze||[]).forEach(function(c,i){
+      var v=normAns(ci[i].value),acc=[c.ans].concat(c.alt||[]).map(normAns);
+      var ok=(v!==""&&acc.indexOf(v)>-1);
+      if(ok)clzScore++;clzResult.push(ok);total++;
+    });
+    var vi=$("#clozeList").querySelectorAll('input[data-v]');
+    var vocScore=0;
+    (p.vocab||[]).forEach(function(v,i){
+      var val=normAns(vi[i]?vi[i].value:""),acc=[v.ans].concat(v.alt||[]).map(normAns);
+      var ok=(val!==""&&acc.indexOf(val)>-1);
+      if(ok)vocScore++;clzResult.push(ok);total++;
+    });
+    clzScore+=vocScore;
+    var pct=total?Math.round((oxScore+clzScore)/total*100):0;
+    state.result={oxScore:oxScore,clzScore:clzScore,pct:pct,clzResult:clzResult,total:total};
+    store.attempts[p.pid]=(store.attempts[p.pid]||0)+1;
+    if(pct>=100)store.prog[p.pid]=100;
+    save();showResult();
+  };
+
+  function allAnswers(p){
+    var a=[];
+    if(p.mode==="quiz"){
+      (p.mcq||[]).forEach(function(q,i){a.push([(i+1)+"번", q.opts[q.ans].n]);});
+      return a;
+    }
+    if(p.story)p.story.ans.forEach(function(x,i){a.push(["("+(i+1)+")",x]);});
+    (p.cloze||[]).forEach(function(c,i){a.push([c.label||("빈칸 "+(i+1)),c.ans]);});
+    (p.vocab||[]).forEach(function(v){a.push(["어휘",v.ans]);});
+    return a;
+  }
+  function showResult(){
+    show("result");
+    var p=state.p,r=state.result,pass=(r.pct>=100);
+    $("#resAttempt").textContent="🔁 시도 "+store.attempts[p.pid]+"회차";
+    var sm=$("#scoreMain");sm.textContent=r.pct+"점";
+    sm.className="score-main "+(pass?"pass":"fail");
+    $("#scoreDetail").innerHTML="OX "+r.oxScore+"/"+p.ox.length+" · 빈칸 "+r.clzScore+"/"+(r.total-p.ox.length)+" · 읽기 "+state.readUsed+"초";
+    var wl=$("#wrongLine"),wo=[],wc=[];
+    p.ox.forEach(function(it,i){if(state.ox[i]!==it.a)wo.push(i+1);});
+    r.clzResult.forEach(function(ok,i){if(!ok)wc.push(i+1);});
+    if(!pass){
+      var msg=[];
+      if(wo.length)msg.push("OX "+wo.join(", ")+"번");
+      if(wc.length)msg.push("빈칸 "+wc.join(", ")+"번");
+      wl.textContent="틀린 문항 · "+msg.join(" / ");wl.classList.remove("hidden");
+    }else wl.classList.add("hidden");
+    if(p.mode==="quiz"){
+      $("#failMsg").innerHTML="정답은 <b>100점을 맞아야</b> 공개됩니다.<br>지문을 다시 읽고 틀린 문항을 풀어 보세요!";
+      $("#retryBtn").textContent="다시 풀기 🔁";
+    }else{
+      $("#failMsg").innerHTML="정답은 <b>100점을 맞아야</b> 공개됩니다.<br>원문을 다시 정독하고 재도전하세요!";
+      $("#retryBtn").textContent="원문 다시 읽고 도전 🔁";
+    }
+    $("#failWrap").classList.toggle("hidden",pass);
+    $("#passWrap").classList.toggle("hidden",!pass);
+    if(pass){
+      var a=allAnswers(p);
+      $("#ansKey").innerHTML=a.length?a.map(function(x,i){return (i+1)+". "+esc(x[0])+" → <b>"+esc(x[1])+"</b>";}).join("<br>"):"빈칸 없음";
+    }
+    $("#reviewPassage").classList.add("hidden");
+    buildSubjBar();updateHw();updateFinal();
+  }
+  $("#retryBtn").onclick=function(){
+    if(state.p.mode==="quiz") beginQuiz(); else beginRead();
+  };
+  $("#homeBtn").onclick=function(){show("start");buildSubjBar();refreshSelect();};
+  $("#reviewBtn").onclick=function(){
+    var b=$("#reviewPassage");b.classList.toggle("hidden");
+    if(!b.classList.contains("hidden"))paint(b);
+  };
+
+  function report(){
+    var L=["📚 수특완 단기 암기 훈련 "+ROUND,"이름: "+(store.name||"-"),"선택 과목: "+store.elect,""],done=0;
+    SUBJECTS().forEach(function(sub){
+      var arr=listFor(sub);if(!arr.length)return;
+      var d=arr.filter(function(x){return store.prog[x.pid]===100;});done+=d.length;
+      L.push("["+sub+"] "+d.length+" / "+arr.length);
+      arr.forEach(function(x){
+        var pr=getProg(x.pid);
+        L.push("  "+(pr.done?"✅":"⬜")+" "+x.title.replace(/^\[[^\]]+\]\s*/,"")+(pr.attempts?" ("+pr.attempts+"회)":""));
+      });
+      L.push("");
+    });
+    var tot=myPassages().length;
+    L.push("누적 완료: "+done+" / "+tot+" 지문 ("+Math.round(done/tot*100)+"%)");
+    return L.join("\n");
+  }
+  function openReport(){$("#report-text").value=report();$("#reportModal").classList.add("show");}
+  $("#submitAllBtn").onclick=openReport;$("#submitAllBtn2").onclick=openReport;
+  $("#closeModalBtn").onclick=function(){$("#reportModal").classList.remove("show");};
+  $("#copyReportBtn").onclick=function(){
+    var t=$("#report-text");t.select();t.setSelectionRange(0,99999);
+    try{document.execCommand("copy");toast("복사했습니다. 카톡에 붙여 넣으세요.");}
+    catch(e){toast("길게 눌러 직접 복사해 주세요.");}
+  };
+  $("#resetBtn").onclick=function(){
+    if(!confirm("이 회차의 모든 기록을 지웁니다. 계속할까요?"))return;
+    store={name:store.name,prog:{},attempts:{}};save();
+    buildElectBar();buildSubjBar();refreshSelect();updateHw();toast("초기화했습니다.");
+  };
+  var tt;
+  function toast(m){var e=$("#toast");e.textContent=m;e.classList.add("show");
+    clearTimeout(tt);tt=setTimeout(function(){e.classList.remove("show");},1800);}
+  function myPassages(){
+    var S=SUBJECTS();
+    return PASSAGES.filter(function(p){return S.indexOf(p.subject)>-1;});
+  }
+  function updateHw(){
+    var mine=myPassages();
+    var c=mine.filter(function(p){return store.prog[p.pid]===100;}).length;
+    $("#hwStatus").innerHTML="완료 <b style='color:#1f8a4c'>"+c+"</b> / "+mine.length+" 지문 ("+store.elect+" 기준)";
+    updateFinal();
+  }
+
+  function updateFinal(){
+    var mine=myPassages();
+    var done=mine.filter(function(p){return store.prog[p.pid]===100;});
+    var rest=mine.length-done.length;
+    var btn=$("#finalBtn"), st=$("#finalStatus"), key=$("#finalKey");
+    st.textContent="독서 · 문학 · "+store.elect+" 총 "+mine.length+"지문 중 "+done.length+"지문 완료";
+    if(rest>0){
+      btn.disabled=true; btn.textContent=rest+"지문 더 끝내면 전체 정답이 열립니다";
+      key.classList.add("hidden"); key.innerHTML="";
+    }else{
+      btn.disabled=false; btn.textContent="🔓 전체 정답 보기";
+    }
+  }
+  $("#finalBtn").onclick=function(){
+    var key=$("#finalKey");
+    if(!key.classList.contains("hidden")){ key.classList.add("hidden"); return; }
+    var out=[];
+    SUBJECTS().forEach(function(sub){
+      var arr=PASSAGES.filter(function(p){return p.subject===sub;});
+      if(!arr.length) return;
+      out.push("<div style='font-weight:800;color:#7c2c3e;margin:10px 0 4px'>["+sub+"]</div>");
+      arr.forEach(function(p){
+        var a=allAnswers(p);
+        out.push("<div style='margin-bottom:6px'><b style='color:#2c1518'>"
+          +esc(p.title.replace(/^\[[^\]]+\]\s*/,""))+"</b><br>"
+          +(a.length? a.map(function(x,i){return (i+1)+". "+esc(x[0])+" → <b>"+esc(x[1])+"</b>";}).join(" · ") : "빈칸 없음")
+          +"</div>");
+      });
+    });
+    key.innerHTML=out.join("");
+    key.classList.remove("hidden");
+  };
+  updateHw();
+})();
+
+</script>
+</body>
+</html>
