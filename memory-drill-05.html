@@ -103,6 +103,10 @@
   #report-text{width:100%;height:220px;margin:16px 0;padding:12px;font-family:monospace;font-size:12.5px;background:#f9f8f8;border:1.5px solid #e5dada;border-radius:14px;line-height:1.6}
   .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2c1518;color:#fff;padding:11px 22px;border-radius:30px;opacity:0;transition:.2s;pointer-events:none;font-size:13.5px;font-weight:600;z-index:2000;box-shadow:0 4px 12px rgba(0,0,0,.2)}
   .toast.show{opacity:1}
+  .refbox{background:#fff7ec;border:1.5px solid #f0d3a8;border-radius:14px;padding:12px 13px;margin:8px 0 10px;font-size:13px;line-height:1.65;color:#7a4a12;letter-spacing:-.2px}
+  .refbox b{color:#b25e00}
+  .mcq.refonly .opt{opacity:.55}
+  .pill-ref{display:inline-block;background:#ffefd8;color:#b25e00;border-radius:20px;padding:2px 9px;font-size:11.5px;font-weight:800;margin-left:6px}
 </style>
 </head>
 <body>
@@ -149,7 +153,8 @@
     <div class="anskey hidden" id="finalKey" style="margin-top:12px"></div>
   </div>
 
-  <p class="muted" style="text-align:center">원문을 정해진 시간 안에 완벽히 읽고 → 가린 뒤 문제를 풉니다.<br><b>100점을 맞을 때까지 반복</b>하며, 100점이 되면 정답이 공개됩니다.</p>
+  <p class="muted" style="text-align:center">원문을 정해진 시간 안에 완벽히 읽고 → 가린 뒤 문제를 풉니다.<br><b>80점을 넘길 때까지 반복</b>하며, <b>80점 이상</b>이면 해설(정답)이 열립니다.</p>
+  <div class="refbox" style="text-align:left">📕 <b>화작 · 언매 안내</b><br>화작·언매 문항 중 일부는 교재에 <b>표·그림</b>으로 실린 자료(㉠~㉢, [쟁점 1]~[쟁점 3], ⓐ~ⓔ, 방송 화면 등)를 봐야 풀 수 있습니다.<br>그런 문항에는 <b>‘채점 제외’</b> 표시를 붙여 두었으니, 점수 걱정 없이 교재를 펴고 풀어 보세요.</div>
 </div>
 
 <div id="scr-read" class="hidden">
@@ -208,14 +213,14 @@
   </div>
   <div id="failWrap" class="hidden">
     <div class="section" style="text-align:center">
-      <p style="font-weight:800;color:#d04141;margin-bottom:6px">아직 100점이 아닙니다.</p>
-      <p class="muted" id="failMsg">정답은 <b>100점을 맞아야</b> 공개됩니다.<br>원문을 다시 정독하고 재도전하세요!</p>
+      <p style="font-weight:800;color:#d04141;margin-bottom:6px" id="failTitle">아직 80점에 못 미칩니다.</p>
+      <p class="muted" id="failMsg">해설(정답)은 <b>80점 이상</b>이면 열립니다.<br>원문을 다시 정독하고 재도전하세요!</p>
       <button class="btn btn-primary" id="retryBtn">원문 다시 읽고 도전 🔁</button>
     </div>
   </div>
   <div id="passWrap" class="hidden">
     <div class="section">
-      <div style="text-align:center;font-size:17.5px;font-weight:800;color:#1f8a4c;margin-bottom:6px">🎉 100점! 완벽 암기 완료</div>
+      <div style="text-align:center;font-size:17.5px;font-weight:800;color:#1f8a4c;margin-bottom:6px" id="passTitle">🎉 해설 열림</div>
       <div class="anskey" id="ansKey"></div>
     </div>
   </div>
@@ -245,6 +250,26 @@
   var $=function(s){return document.querySelector(s);};
   var ROUND="5회";
   var ELECTIVES=["언매","화작"];
+
+  /* ── 합격 기준: 80점 이상이면 해설(정답) 공개 ── */
+  var PASS=80;
+
+  /* ── 교재의 표·그림 자료가 있어야 풀 수 있는 문항 (채점 제외) ──
+     pid : { 문항번호(1부터) : true }  */
+  var REFONLY={
+    "SK-화작-01-07":{2:"발표를 준비하며 참고한 자료(㉠~㉢ 발표 계획표)"},
+    "SK-화작-01-08":{2:"토론 시작 전 안내된 [쟁점 1]~[쟁점 3] 자료"},
+    "SK-화작-03-06":{1:"건의문 평가 기준 ⓐ~ⓔ 안내 자료"},
+    "SK-언매-01-07":{2:"[A]를 정리한 ㉠~㉢ 표",3:"㉠이 제시된 앞 문항의 자료",4:"㉠~㉣ 예문 자료"},
+    "SK-언매-02-09":{1:"방송 화면 ㉠~㉤",2:"‘시청자 게시판’ 화면",3:"여행사 온라인 동영상 콘텐츠 화면"}
+  };
+  function refInfo(pid,i){ var m=REFONLY[pid]; return (m&&m[i])||null; }
+  function gradableCount(p){
+    if(p.mode!=="quiz") return 1;
+    var c=0; (p.mcq||[]).forEach(function(q,i){ if(!refInfo(p.pid,i+1)) c++; });
+    return c;
+  }
+  function isRefOnlyPassage(p){ return p.mode==="quiz" && gradableCount(p)===0; }
   function SUBJECTS(){ return ["독서","문학",store.elect||"언매"]; }
 
   function normAns(s){return (s||"").replace(/\s+/g,"").replace(/[·.,\u2018\u2019\u201c\u201d]/g,"").toLowerCase();}
@@ -287,7 +312,8 @@
   function load(){try{var d=JSON.parse(localStorage.getItem(LS));if(d){store=d;store.prog=store.prog||{};store.attempts=store.attempts||{};store.elect=store.elect||"언매";}}catch(e){}}
   function save(){try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){}}
   function getProg(pid){if(!store.prog[pid])store.prog[pid]=0;if(!store.attempts[pid])store.attempts[pid]=0;
-    return {done:store.prog[pid]===100,attempts:store.attempts[pid]};}
+    return {done:store.prog[pid]>=PASS,best:store.prog[pid],attempts:store.attempts[pid]};}
+  function isDone(pid){ return (store.prog[pid]||0)>=PASS; }
 
   var state={p:null,readSec:240,timeLeft:0,timer:null,readUsed:0,ox:[],subject:"독서"};
   load();
@@ -312,7 +338,7 @@
     var bar=$("#subjBar");bar.innerHTML="";
     SUBJECTS().forEach(function(sub){
       var arr=listFor(sub); if(!arr.length) return;
-      var done=arr.filter(function(p){return store.prog[p.pid]===100;}).length;
+      var done=arr.filter(function(p){return isDone(p.pid);}).length;
       var b=document.createElement("button");
       b.innerHTML=sub+'<i>'+done+'/'+arr.length+'</i>';
       if(sub===state.subject) b.className="on";
@@ -325,7 +351,9 @@
     listFor(state.subject).forEach(function(p,i){
       var pr=getProg(p.pid),o=document.createElement("option");
       o.value=p.pid;
-      o.textContent=(pr.done?"✅ ":"▶ ")+(i+1)+". "+p.title.replace(/^\[[^\]]+\]\s*/,"");
+      var mark = pr.done ? "✅ " : (isRefOnlyPassage(p) ? "📕 " : "▶ ");
+      o.textContent=mark+(i+1)+". "+p.title.replace(/^\[[^\]]+\]\s*/,"")
+        +(isRefOnlyPassage(p)?" (교재 필요)":"");
       sel.appendChild(o);
     });
     refreshDoneNote();
@@ -335,8 +363,9 @@
   function refreshDoneNote(){
     var p=cur(),n=$("#doneNote"); if(!p){n.classList.add("hidden");return;}
     var pr=getProg(p.pid);
-    if(pr.done){n.classList.remove("hidden");n.innerHTML="이 지문은 이미 <b style='color:#1f8a4c'>100점 완료</b>했습니다.";}
-    else if(pr.attempts>0){n.classList.remove("hidden");n.innerHTML="지난 시도: <b>"+pr.attempts+"회</b> (미완료)";}
+    if(pr.done){n.classList.remove("hidden");n.innerHTML="이 지문은 <b style='color:#1f8a4c'>완료</b>했습니다. (최고 "+pr.best+"점 · 해설 열림)";}
+    else if(isRefOnlyPassage(p)){n.classList.remove("hidden");n.innerHTML="📕 <b style='color:#b25e00'>이 지문의 문항은 교재의 화면·표 자료가 있어야 풀 수 있습니다.</b><br>교재를 펴 놓고 확인만 하면 완료 처리됩니다.";}
+    else if(pr.attempts>0){n.classList.remove("hidden");n.innerHTML="지난 시도: <b>"+pr.attempts+"회</b> (최고 "+pr.best+"점)";}
     else n.classList.add("hidden");
   }
   function refreshMode(){
@@ -397,50 +426,62 @@
     show("quiz");
     clearInterval(state.timer);
     var p=state.p;
-    $("#quizHead").textContent=p.title.replace(/^\[[^\]]+\]\s*/,"")+" — 객관식 "+p.mcq.length+"문항";
+    var gc=gradableCount(p);
+    $("#quizHead").textContent=p.title.replace(/^\[[^\]]+\]\s*/,"")+" — 객관식 "+p.mcq.length+"문항"
+      +(gc<p.mcq.length?" (채점 "+gc+"문항)":"");
     $("#quizPassage").innerHTML='<div class="ptitle">'+esc(p.title)+'<span class="psrc">'+esc(p.src)+'</span></div>'
       +renderPassageText(p.text,false);
     state.mcq=new Array(p.mcq.length).fill(null);
     var wrap=$("#mcqList");wrap.innerHTML="";
     p.mcq.forEach(function(q,i){
-      var d=document.createElement("div");d.className="mcq";
+      var ref=refInfo(p.pid,i+1);
+      var d=document.createElement("div");d.className="mcq"+(ref?" refonly":"");
       var bk=q.boki?'<div class="boki"><b>&lt;보기&gt;</b>'+esc(q.boki).replace(/\n/g,"<br>")+'</div>':"";
+      var note=ref?'<div class="refbox">📕 <b>교재를 함께 보고 풀어야 하는 문항입니다.</b><br>'
+        +'이 문항이 가리키는 <b>'+esc(ref)+'</b>는 교재에 표·그림으로 실려 있어 이 페이지에 옮기지 못했습니다.<br>'
+        +'<b>채점에서는 제외</b>되니 점수 걱정 없이 교재로 풀어 보세요.</div>':"";
       var opts=q.opts.map(function(o,j){
         return '<div class="opt" data-j="'+j+'"><span class="n">'+esc(o.n)+'</span><span class="t">'+esc(o.t)+'</span></div>';
       }).join("");
-      d.innerHTML='<div class="stem">'+(i+1)+'. '+esc(q.stem)+'</div>'+bk+opts;
+      d.innerHTML='<div class="stem">'+(i+1)+'. '+esc(q.stem)+(ref?'<span class="pill-ref">채점 제외</span>':'')+'</div>'+note+bk+opts;
+      if(ref){ state.mcq[i]="ref"; }
       var os=d.querySelectorAll(".opt");
       Array.prototype.forEach.call(os,function(o){
         o.onclick=function(){
           Array.prototype.forEach.call(os,function(x){x.classList.remove("sel");});
-          o.classList.add("sel");state.mcq[i]=+o.getAttribute("data-j");
+          o.classList.add("sel");
+          if(!ref) state.mcq[i]=+o.getAttribute("data-j");
           $("#mcqGrade").disabled=state.mcq.indexOf(null)>-1;
         };
       });
       wrap.appendChild(d);
     });
-    $("#mcqGrade").disabled=true;
+    $("#mcqGrade").disabled=state.mcq.indexOf(null)>-1;
+    $("#mcqGrade").textContent=(gc===0)?"확인 완료 ✅":"채점하기 ✅";
     state.readUsed=0;
     state.timer=setInterval(function(){state.readUsed++;},1000);
   }
 
   $("#mcqGrade").onclick=function(){
     clearInterval(state.timer);
-    var p=state.p,got=0,wrong=[];
+    var p=state.p,got=0,wrong=[],tot=0;
     var blocks=$("#mcqList").querySelectorAll(".mcq");
     p.mcq.forEach(function(q,i){
+      var ref=refInfo(p.pid,i+1);
       var os=blocks[i].querySelectorAll(".opt");
       Array.prototype.forEach.call(os,function(o,j){
         o.classList.remove("sel");
         if(j===q.ans)o.classList.add("ok");
-        else if(j===state.mcq[i])o.classList.add("no");
+        else if(!ref&&j===state.mcq[i])o.classList.add("no");
       });
+      if(ref) return;
+      tot++;
       if(state.mcq[i]===q.ans)got++; else wrong.push(i+1);
     });
-    var pct=Math.round(got/p.mcq.length*100);
-    state.result={oxScore:got,clzScore:0,pct:pct,clzResult:[],total:p.mcq.length,wrong:wrong};
+    var pct=tot?Math.round(got/tot*100):100;
+    state.result={oxScore:got,clzScore:0,pct:pct,clzResult:[],total:tot,wrong:wrong,refonly:(tot===0)};
     store.attempts[p.pid]=(store.attempts[p.pid]||0)+1;
-    if(pct>=100)store.prog[p.pid]=100;
+    store.prog[p.pid]=Math.max(store.prog[p.pid]||0,pct);
     save();showResult();
   };
 
@@ -526,7 +567,7 @@
     var pct=total?Math.round((oxScore+clzScore)/total*100):0;
     state.result={oxScore:oxScore,clzScore:clzScore,pct:pct,clzResult:clzResult,total:total};
     store.attempts[p.pid]=(store.attempts[p.pid]||0)+1;
-    if(pct>=100)store.prog[p.pid]=100;
+    store.prog[p.pid]=Math.max(store.prog[p.pid]||0,pct);
     save();showResult();
   };
 
@@ -543,32 +584,44 @@
   }
   function showResult(){
     show("result");
-    var p=state.p,r=state.result,pass=(r.pct>=100);
+    var p=state.p,r=state.result,pass=(r.pct>=PASS);
     $("#resAttempt").textContent="🔁 시도 "+store.attempts[p.pid]+"회차";
-    var sm=$("#scoreMain");sm.textContent=r.pct+"점";
+    var sm=$("#scoreMain");sm.textContent=r.refonly?"확인 완료":(r.pct+"점");
     sm.className="score-main "+(pass?"pass":"fail");
-    $("#scoreDetail").innerHTML="OX "+r.oxScore+"/"+p.ox.length+" · 빈칸 "+r.clzScore+"/"+(r.total-p.ox.length)+" · 읽기 "+state.readUsed+"초";
+    if(p.mode==="quiz"){
+      $("#scoreDetail").innerHTML = r.refonly
+        ? "이 지문은 교재 자료가 필요한 문항만 있어 확인 완료 처리됩니다."
+        : ("객관식 "+r.oxScore+"/"+r.total+"문항 정답 · 푼 시간 "+state.readUsed+"초");
+    } else {
+      $("#scoreDetail").innerHTML="OX "+r.oxScore+"/"+p.ox.length+" · 빈칸 "+r.clzScore+"/"+(r.total-p.ox.length)+" · 읽기 "+state.readUsed+"초";
+    }
     var wl=$("#wrongLine"),wo=[],wc=[];
-    p.ox.forEach(function(it,i){if(state.ox[i]!==it.a)wo.push(i+1);});
-    r.clzResult.forEach(function(ok,i){if(!ok)wc.push(i+1);});
+    if(p.mode==="quiz"){ wo=(r.wrong||[]).slice(); }
+    else {
+      p.ox.forEach(function(it,i){if(state.ox[i]!==it.a)wo.push(i+1);});
+      r.clzResult.forEach(function(ok,i){if(!ok)wc.push(i+1);});
+    }
     if(!pass){
       var msg=[];
-      if(wo.length)msg.push("OX "+wo.join(", ")+"번");
+      if(wo.length)msg.push((p.mode==="quiz"?"객관식 ":"OX ")+wo.join(", ")+"번");
       if(wc.length)msg.push("빈칸 "+wc.join(", ")+"번");
       wl.textContent="틀린 문항 · "+msg.join(" / ");wl.classList.remove("hidden");
     }else wl.classList.add("hidden");
+    $("#failTitle").textContent="아직 "+PASS+"점에 못 미칩니다. (현재 "+r.pct+"점)";
     if(p.mode==="quiz"){
-      $("#failMsg").innerHTML="정답은 <b>100점을 맞아야</b> 공개됩니다.<br>지문을 다시 읽고 틀린 문항을 풀어 보세요!";
+      $("#failMsg").innerHTML="해설(정답)은 <b>"+PASS+"점 이상</b>이면 열립니다.<br>지문을 다시 읽고 틀린 문항을 풀어 보세요!";
       $("#retryBtn").textContent="다시 풀기 🔁";
     }else{
-      $("#failMsg").innerHTML="정답은 <b>100점을 맞아야</b> 공개됩니다.<br>원문을 다시 정독하고 재도전하세요!";
+      $("#failMsg").innerHTML="해설(정답)은 <b>"+PASS+"점 이상</b>이면 열립니다.<br>원문을 다시 정독하고 재도전하세요!";
       $("#retryBtn").textContent="원문 다시 읽고 도전 🔁";
     }
+    $("#passTitle").textContent = r.refonly ? "📕 확인 완료" : (r.pct>=100 ? "🎉 100점! 완벽 암기 · 해설 열림" : "✅ "+r.pct+"점 · 해설이 열렸습니다");
     $("#failWrap").classList.toggle("hidden",pass);
     $("#passWrap").classList.toggle("hidden",!pass);
     if(pass){
       var a=allAnswers(p);
       $("#ansKey").innerHTML=a.length?a.map(function(x,i){return (i+1)+". "+esc(x[0])+" → <b>"+esc(x[1])+"</b>";}).join("<br>"):"빈칸 없음";
+      if(r.pct<100&&!r.refonly) $("#ansKey").innerHTML+="<div style='margin-top:10px;font-size:12.5px;color:#8c7673;line-height:1.6'>아직 만점은 아닙니다. 틀린 문항은 해설로 확인한 뒤 <b>한 번 더</b> 풀어 보세요.</div>";
     }
     $("#reviewPassage").classList.add("hidden");
     buildSubjBar();updateHw();updateFinal();
@@ -586,7 +639,7 @@
     var L=["📚 수특완 단기 암기 훈련 "+ROUND,"이름: "+(store.name||"-"),"선택 과목: "+store.elect,""],done=0;
     SUBJECTS().forEach(function(sub){
       var arr=listFor(sub);if(!arr.length)return;
-      var d=arr.filter(function(x){return store.prog[x.pid]===100;});done+=d.length;
+      var d=arr.filter(function(x){return isDone(x.pid);});done+=d.length;
       L.push("["+sub+"] "+d.length+" / "+arr.length);
       arr.forEach(function(x){
         var pr=getProg(x.pid);
@@ -608,7 +661,7 @@
   };
   $("#resetBtn").onclick=function(){
     if(!confirm("이 회차의 모든 기록을 지웁니다. 계속할까요?"))return;
-    store={name:store.name,prog:{},attempts:{}};save();
+    store={name:store.name,elect:store.elect,prog:{},attempts:{}};save();
     buildElectBar();buildSubjBar();refreshSelect();updateHw();toast("초기화했습니다.");
   };
   var tt;
@@ -620,14 +673,14 @@
   }
   function updateHw(){
     var mine=myPassages();
-    var c=mine.filter(function(p){return store.prog[p.pid]===100;}).length;
+    var c=mine.filter(function(p){return isDone(p.pid);}).length;
     $("#hwStatus").innerHTML="완료 <b style='color:#1f8a4c'>"+c+"</b> / "+mine.length+" 지문 ("+store.elect+" 기준)";
     updateFinal();
   }
 
   function updateFinal(){
     var mine=myPassages();
-    var done=mine.filter(function(p){return store.prog[p.pid]===100;});
+    var done=mine.filter(function(p){return isDone(p.pid);});
     var rest=mine.length-done.length;
     var btn=$("#finalBtn"), st=$("#finalStatus"), key=$("#finalKey");
     st.textContent="독서 · 문학 · "+store.elect+" 총 "+mine.length+"지문 중 "+done.length+"지문 완료";
@@ -635,7 +688,7 @@
       btn.disabled=true; btn.textContent=rest+"지문 더 끝내면 전체 정답이 열립니다";
       key.classList.add("hidden"); key.innerHTML="";
     }else{
-      btn.disabled=false; btn.textContent="🔓 전체 정답 보기";
+      btn.disabled=false; btn.textContent="🔓 전체 해설(정답) 보기";
     }
   }
   $("#finalBtn").onclick=function(){
