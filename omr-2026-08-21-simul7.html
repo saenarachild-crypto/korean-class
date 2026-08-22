@@ -693,13 +693,6 @@
     const percentage = Math.round((s.totalCorrect / s.total) * 100);
     const bAnswers = getCurrentSelectAnswers();
 
-    const confSymbol = (c) => c === 'sure' ? '○' : (c === 'maybe' ? '△' : (c === 'guess' ? '✕' : ''));
-    const fmt = (num, conf) => {
-      const sym = confSymbol(conf);
-      return sym ? (num + '(' + sym + ')') : String(num);
-    };
-    const joinOrNone = (arr) => arr.length ? arr.join(', ') : '없음';
-
     const aItems = [];
     const bItems = [];
     const riskSureWrong = [];
@@ -712,7 +705,7 @@
       const key = A.answers[i];
       const conf = state.aConfidence[i];
       const correct = ans > 0 && ans === key;
-      if(ans === 0 || ans !== key) aItems.push({ num: displayNum, conf, text: fmt(displayNum, conf) });
+      if(ans === 0 || ans !== key) aItems.push({ num: displayNum, conf });
       if(ans > 0 && conf === 'sure' && !correct) riskSureWrong.push(displayNum);
       if(correct && conf === 'guess') riskGuessCorrect.push(displayNum);
       if(correct && conf === 'maybe') riskMaybeCorrect.push(displayNum);
@@ -725,7 +718,7 @@
         const key = bAnswers[i];
         const conf = state.bConfidence[i];
         const correct = ans > 0 && ans === key;
-        if(ans === 0 || ans !== key) bItems.push({ num: displayNum, conf, text: fmt(displayNum, conf) });
+        if(ans === 0 || ans !== key) bItems.push({ num: displayNum, conf });
         if(ans > 0 && conf === 'sure' && !correct) riskSureWrong.push(displayNum);
         if(correct && conf === 'guess') riskGuessCorrect.push(displayNum);
         if(correct && conf === 'maybe') riskMaybeCorrect.push(displayNum);
@@ -755,28 +748,9 @@
 
     if(s.subSectionScores && s.subSectionScores.length){
       s.subSectionScores.forEach(sub => {
-        const list = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).map(item => item.text);
+        const count = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).length;
         lines.push('[' + sub.name + ' 오답]');
-        lines.push(list.length + '개');
-        lines.push('');
-      });
-    } else {
-      lines.push('[' + (A.shortLabel || A.label) + ' 오답]');
-      lines.push(aItems.length + '개');
-      lines.push('');
-    }
-
-    if(hasB){
-      lines.push('[' + bLabel + ' 오답]');
-      lines.push(bItems.length + '개');
-      lines.push('');
-    }
-
-    if(s.subSectionScores && s.subSectionScores.length){
-      s.subSectionScores.forEach(sub => {
-        const list = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).map(item => item.text);
-        lines.push('[' + sub.name + ' 오답]');
-        lines.push(list.length + '개');
+        lines.push(count + '개');
         lines.push('');
       });
     } else {
@@ -793,18 +767,16 @@
 
     lines.push('[위험 문항]');
     lines.push('');
-    lines.push('○인데 틀림');
-    lines.push(joinOrNone(riskSureWrong));
+    lines.push('○인데 틀림 : ' + riskSureWrong.length + '개');
     lines.push('');
-    lines.push('✕인데 맞음');
-    lines.push(joinOrNone(riskGuessCorrect));
+    lines.push('✕인데 맞음 : ' + riskGuessCorrect.length + '개');
     lines.push('');
-    lines.push('△인데 맞음');
-    lines.push(joinOrNone(riskMaybeCorrect));
+    lines.push('△인데 맞음 : ' + riskMaybeCorrect.length + '개');
     lines.push('');
     lines.push('채점 : ' + state.attemptCount + ' / ' + MAX_ATTEMPTS + '회');
     lines.push('━━━━━━━━━━━━━━━━━━');
-    return lines.join('\n');
+    return lines.join('
+');
   }
 
   $('submitBtn').onclick = ()=>{
