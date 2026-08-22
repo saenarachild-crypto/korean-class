@@ -150,8 +150,8 @@
   "subTitle": "공통 (1~34번)",
   "type": "mock",
   "storageKey": "kr-omr-2026-08-21-simul7-v1",
-  "maxAttempts": 3,
-  "cooldownMin": 10,
+  "maxAttempts": 10,
+  "cooldownMin": 3,
   "problemLink": "https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQBRTCvtW_H7QYivMk942x4pAb6oWXSUWz0xtHYGdA3Q0_8?e=TMdHUC",
   "problemLinkLabel": "모의고사 문제지 보기",
   "solutionLink": "https://goe2427-my.sharepoint.com/:b:/g/personal/pure173_jeonghyeonh_goe_go_kr/IQAED01SCdKbS5IoU4sPE1YiAebZP0NmCuUaWHQNCbsgVg8?e=YWKbyC",
@@ -757,18 +757,18 @@
       s.subSectionScores.forEach(sub => {
         const list = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).map(item => item.text);
         lines.push('[' + sub.name + ' 오답]');
-        lines.push(joinOrNone(list));
+        lines.push(list.length + '개');
         lines.push('');
       });
     } else {
       lines.push('[' + (A.shortLabel || A.label) + ' 오답]');
-      lines.push(joinOrNone(aItems.map(item => item.text)));
+      lines.push(aItems.length + '개');
       lines.push('');
     }
 
     if(hasB){
       lines.push('[' + bLabel + ' 오답]');
-      lines.push(joinOrNone(bItems.map(item => item.text)));
+      lines.push(bItems.length + '개');
       lines.push('');
     }
 
@@ -776,18 +776,18 @@
       s.subSectionScores.forEach(sub => {
         const list = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).map(item => item.text);
         lines.push('[' + sub.name + ' 오답]');
-        lines.push(joinOrNone(list));
+        lines.push(list.length + '개');
         lines.push('');
       });
     } else {
       lines.push('[' + (A.shortLabel || A.label) + ' 오답]');
-      lines.push(joinOrNone(aItems.map(item => item.text)));
+      lines.push(aItems.length + '개');
       lines.push('');
     }
 
     if(hasB){
       lines.push('[' + bLabel + ' 오답]');
-      lines.push(joinOrNone(bItems.map(item => item.text)));
+      lines.push(bItems.length + '개');
       lines.push('');
     }
 
