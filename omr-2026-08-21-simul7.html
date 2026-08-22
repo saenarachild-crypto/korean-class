@@ -289,7 +289,8 @@
 
   <div style="text-align:center; font-size:11.5px; color:#7c2c3e; margin-top:14px; font-weight:600;">⚠️ 채점은 최대 <span id="maxAttemptsLabel3">3</span>회, 채점 사이 <span id="cooldownLabel2">10</span>분 대기</div>
   <div class="btn-row"><button class="btn btn-secondary" id="resetBtn">초기화</button><button class="btn btn-primary" id="submitBtn">채점하기</button></div>
-  <button class="btn btn-kakao" id="kakaoBtn" disabled>💬 카톡 보고서 만들기 (채점 후)</button>
+  <button class="btn btn-kakao" id="kakaoBtn" disabled>💬 학생용 카톡 보고서 (채점 후)</button>
+  <button class="btn btn-secondary" id="teacherReportBtn" disabled style="width:100%; margin-top:8px; background:#5a1f2c; color:#fff; border:none;">🔒 교사용 상세 보고서 (번호 포함)</button>
 
   <div class="link-box" id="problemLinkBox"><a href="#" class="link-btn" id="problemLinkBtn" target="_blank">📄 문제지 보기</a></div>
   <div id="solutionLinkArea" class="link-box hidden"><a href="#" class="link-btn" id="solutionLink" target="_blank">📖 해설지 보기</a></div>
@@ -298,6 +299,7 @@
 </div>
 
 <div class="modal-overlay" id="kakaoModal"><div class="modal"><div class="modal-head"><h3>📋 카톡 보고서</h3><button class="modal-close" id="modalCloseBtn">✕</button></div><div class="modal-body"><textarea id="kakao-report-text" readonly></textarea></div><div class="modal-foot"><button class="btn btn-secondary" id="copyReportBtn">📋 복사</button><button class="btn btn-primary" id="closeAfterCopyBtn">완료</button></div></div></div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -547,6 +549,7 @@
           state.score = data.score;
           applyGradingUI(data.score);
           $('kakaoBtn').disabled = false;
+          $('teacherReportBtn').disabled = false;
         }
       }catch(e){}
     }
@@ -580,20 +583,7 @@
 
   function applyGradingUI(score){
     if(!score) return;
-    const bAnswers = getCurrentSelectAnswers();
-    if(hasVariants && !bAnswers) return;
-    for(let i=1;i<=A.count;i++){
-      let row=$('row-a-'+i), ans=state.aAnswers[i-1], key=A.answers[i-1];
-      if(ans===0) row.classList.add('unanswered');
-      else if(ans===key) row.classList.add('correct');
-      else row.classList.add('wrong');
-    }
-    for(let i=1;i<=B.count;i++){
-      let row=$('row-b-'+i), ans=state.bAnswers[i-1], key=bAnswers[i-1];
-      if(ans===0) row.classList.add('unanswered');
-      else if(ans===key) row.classList.add('correct');
-      else row.classList.add('wrong');
-    }
+    // 학생에게 맞은/틀린 문항을 절대 표시하지 않음 (점수만 표시)
     document.body.classList.add('submitted');
     $('scoreBanner').classList.add('show');
     $('scoreCorrect').textContent = score.totalCorrect;
@@ -608,41 +598,16 @@
     const bScoreEl = $('sectionBScore'); if(bScoreEl) bScoreEl.textContent = score.sectionB.correct;
     if(hasVariants && score.sectionB.subject) $('selectLabel').textContent = score.sectionB.subject;
     $('scoreText').textContent = '정답률 ' + (score.totalCorrect / score.total * 100).toFixed(1) + '%';
-    if(state.attemptCount >= MAX_ATTEMPTS) showCorrectAnswers();
-  }
-
-  function showCorrectAnswers(){
-    if(!state.score) return;
-    const bAnswers = getCurrentSelectAnswers();
-    if(hasVariants && !bAnswers) return;
-    for(let i=1;i<=A.count;i++){
-      let row=$('row-a-'+i), ans=state.aAnswers[i-1], key=A.answers[i-1];
-      if(ans !== key){
-        const ab = row.querySelector(`.choice[data-choice="${key}"]`);
-        if(ab) ab.classList.add('answer');
-      }
-    }
-    for(let i=1;i<=B.count;i++){
-      let row=$('row-b-'+i), ans=state.bAnswers[i-1], key=bAnswers[i-1];
-      if(ans !== key){
-        const ab = row.querySelector(`.choice[data-choice="${key}"]`);
-        if(ab) ab.classList.add('answer');
-      }
-    }
   }
 
   function unlockAnswers(){
     document.body.classList.remove('submitted');
-    document.querySelectorAll('.question-row').forEach(row => {
-      row.classList.remove('correct','wrong','unanswered');
-      row.querySelectorAll('.choice.answer').forEach(c => c.classList.remove('answer'));
-    });
   }
 
   function revealSolution(){
     state.solutionRevealed = true;
     $('solutionLinkArea').classList.remove('hidden');
-    showCorrectAnswers();
+    // 정답 번호/표시는 학생에게 절대 공개하지 않음
   }
 
   function updateCooldownUI(){
@@ -686,13 +651,13 @@
 
   function showToast(msg){ let t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
 
-  function buildKakaoReport(){
-    const s = state.score;
-    const name = $('studentName').value.trim() || '이름없음';
-    const academy = $('studentAcademy').value.trim();
-    const percentage = Math.round((s.totalCorrect / s.total) * 100);
+  function collectWrongData(){
     const bAnswers = getCurrentSelectAnswers();
-
+    const confSymbol = (c) => c === 'sure' ? '○' : (c === 'maybe' ? '△' : (c === 'guess' ? '✕' : ''));
+    const fmt = (num, conf) => {
+      const sym = confSymbol(conf);
+      return sym ? (num + '(' + sym + ')') : String(num);
+    };
     const aItems = [];
     const bItems = [];
     const riskSureWrong = [];
@@ -705,12 +670,11 @@
       const key = A.answers[i];
       const conf = state.aConfidence[i];
       const correct = ans > 0 && ans === key;
-      if(ans === 0 || ans !== key) aItems.push({ num: displayNum, conf });
+      if(ans === 0 || ans !== key) aItems.push({ num: displayNum, conf, text: fmt(displayNum, conf) });
       if(ans > 0 && conf === 'sure' && !correct) riskSureWrong.push(displayNum);
       if(correct && conf === 'guess') riskGuessCorrect.push(displayNum);
       if(correct && conf === 'maybe') riskMaybeCorrect.push(displayNum);
     }
-
     if(bAnswers){
       for(let i=0; i<B.count; i++){
         const displayNum = i + (B.startNum || 1);
@@ -718,12 +682,24 @@
         const key = bAnswers[i];
         const conf = state.bConfidence[i];
         const correct = ans > 0 && ans === key;
-        if(ans === 0 || ans !== key) bItems.push({ num: displayNum, conf });
+        if(ans === 0 || ans !== key) bItems.push({ num: displayNum, conf, text: fmt(displayNum, conf) });
         if(ans > 0 && conf === 'sure' && !correct) riskSureWrong.push(displayNum);
         if(correct && conf === 'guess') riskGuessCorrect.push(displayNum);
         if(correct && conf === 'maybe') riskMaybeCorrect.push(displayNum);
       }
     }
+    return { aItems, bItems, riskSureWrong, riskGuessCorrect, riskMaybeCorrect };
+  }
+
+  // 학생용 보고서: 점수 + 오답 개수만 (번호 절대 노출 금지)
+  function buildKakaoReport(){
+    const s = state.score;
+    if(!s) return '';
+    const name = $('studentName').value.trim() || '이름없음';
+    const academy = $('studentAcademy').value.trim();
+    const percentage = Math.round((s.totalCorrect / s.total) * 100);
+    const { aItems, bItems } = collectWrongData();
+    const bLabel = hasVariants && s.sectionB.subject ? s.sectionB.subject : (B.shortLabel || B.label);
 
     const lines = [];
     lines.push('━━━━━━━━━━━━━━━━━━');
@@ -742,41 +718,87 @@
     } else {
       lines.push((A.shortLabel || A.label) + ' : ' + s.sectionA.correct + '/' + s.sectionA.total);
     }
-    const bLabel = hasVariants && s.sectionB.subject ? s.sectionB.subject : (B.shortLabel || B.label);
     if(hasB) lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total);
     lines.push('');
 
     if(s.subSectionScores && s.subSectionScores.length){
       s.subSectionScores.forEach(sub => {
-        const count = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).length;
+        const cnt = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).length;
+        lines.push('[' + sub.name + ' 오답] ' + cnt + '개');
+      });
+    } else {
+      lines.push('[' + (A.shortLabel || A.label) + ' 오답] ' + aItems.length + '개');
+    }
+    if(hasB) lines.push('[' + bLabel + ' 오답] ' + bItems.length + '개');
+    lines.push('');
+    lines.push('채점 : ' + state.attemptCount + ' / ' + MAX_ATTEMPTS + '회');
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    return lines.join('\n');
+  }
+
+  // 교사용 상세 보고서: 틀린 번호 + 확신 표시 + 위험 문항 전부 포함
+  function buildTeacherKakaoReport(){
+    const s = state.score;
+    if(!s) return '';
+    const name = $('studentName').value.trim() || '이름없음';
+    const academy = $('studentAcademy').value.trim();
+    const percentage = Math.round((s.totalCorrect / s.total) * 100);
+    const { aItems, bItems, riskSureWrong, riskGuessCorrect, riskMaybeCorrect } = collectWrongData();
+    const joinOrNone = (arr) => arr.length ? arr.join(', ') : '없음';
+    const bLabel = hasVariants && s.sectionB.subject ? s.sectionB.subject : (B.shortLabel || B.label);
+
+    const lines = [];
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('[교사용] 김현석 국어 · ' + asgn.title);
+    lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('');
+    lines.push('학생 : ' + name + (academy ? ' (' + academy + ')' : ''));
+    lines.push('');
+    lines.push('총점 : ' + s.totalCorrect + '/' + s.total + ' (' + percentage + '%)');
+    lines.push('');
+
+    if(s.subSectionScores && s.subSectionScores.length){
+      s.subSectionScores.forEach(sub => {
+        lines.push(sub.name + ' : ' + sub.correct + '/' + sub.total);
+      });
+    } else {
+      lines.push((A.shortLabel || A.label) + ' : ' + s.sectionA.correct + '/' + s.sectionA.total);
+    }
+    if(hasB) lines.push(bLabel + ' : ' + s.sectionB.correct + '/' + s.sectionB.total);
+    lines.push('');
+
+    if(s.subSectionScores && s.subSectionScores.length){
+      s.subSectionScores.forEach(sub => {
+        const list = aItems.filter(item => item.num >= sub.startNum && item.num <= sub.endNum).map(item => item.text);
         lines.push('[' + sub.name + ' 오답]');
-        lines.push(count + '개');
+        lines.push(list.length ? list.join(', ') : '없음');
         lines.push('');
       });
     } else {
       lines.push('[' + (A.shortLabel || A.label) + ' 오답]');
-      lines.push(aItems.length + '개');
+      lines.push(aItems.length ? aItems.map(item => item.text).join(', ') : '없음');
       lines.push('');
     }
-
     if(hasB){
       lines.push('[' + bLabel + ' 오답]');
-      lines.push(bItems.length + '개');
+      lines.push(bItems.length ? bItems.map(item => item.text).join(', ') : '없음');
       lines.push('');
     }
 
     lines.push('[위험 문항]');
     lines.push('');
-    lines.push('○인데 틀림 : ' + riskSureWrong.length + '개');
+    lines.push('○인데 틀림');
+    lines.push(joinOrNone(riskSureWrong));
     lines.push('');
-    lines.push('✕인데 맞음 : ' + riskGuessCorrect.length + '개');
+    lines.push('✕인데 맞음');
+    lines.push(joinOrNone(riskGuessCorrect));
     lines.push('');
-    lines.push('△인데 맞음 : ' + riskMaybeCorrect.length + '개');
+    lines.push('△인데 맞음');
+    lines.push(joinOrNone(riskMaybeCorrect));
     lines.push('');
     lines.push('채점 : ' + state.attemptCount + ' / ' + MAX_ATTEMPTS + '회');
     lines.push('━━━━━━━━━━━━━━━━━━');
-    return lines.join('
-');
+    return lines.join('\n');
   }
 
   $('submitBtn').onclick = ()=>{
@@ -795,6 +817,7 @@
     state.attemptCount++;
     applyGradingUI(score);
     $('kakaoBtn').disabled = false;
+    $('teacherReportBtn').disabled = false;
     if(state.attemptCount < MAX_ATTEMPTS) state.cooldownUntil = Date.now() + COOLDOWN_MIN*60*1000;
     saveState();
     updateCooldownUI();
@@ -808,7 +831,18 @@
   };
 
   $('kakaoBtn').onclick = ()=>{
+    document.querySelector('#kakaoModal .modal-head h3').textContent = '📋 학생용 카톡 보고서';
     $('kakao-report-text').value = buildKakaoReport();
+    $('kakaoModal').classList.add('show');
+  };
+  $('teacherReportBtn').onclick = ()=>{
+    const pw = prompt('교사 비밀번호를 입력하세요');
+    if(pw !== '김현석'){
+      if(pw !== null) showToast('비밀번호가 틀렸습니다');
+      return;
+    }
+    document.querySelector('#kakaoModal .modal-head h3').textContent = '🔒 교사용 상세 보고서';
+    $('kakao-report-text').value = buildTeacherKakaoReport();
     $('kakaoModal').classList.add('show');
   };
   $('modalCloseBtn').onclick = () => $('kakaoModal').classList.remove('show');
