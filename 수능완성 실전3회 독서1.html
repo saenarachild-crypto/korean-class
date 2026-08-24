@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 01~03 (읽기에 영향을 미치는 텍스트 복잡도 요인)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block;
+            text-align: center;
+            color: #2563eb;
+            font-size: 12.5px;
+            font-weight: 700;
+            margin: 2px 0 10px 0;
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block;
+            text-align: right;
+            color: #16a34a;
+            font-size: 13px;
+            font-weight: 700;
+            margin: -4px 0 18px 0;
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark {
+            color: #dc2626;
+            font-weight: 800;
+            font-size: 11px;
+            vertical-align: super;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .qa-box {
+            background: #f5f3ff;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-left: 5px solid #7c3aed;
+            font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-item.correct {
+            border: 1px solid #10b981;
+            background: #f0fdf9;
+        }
+        .choice-item.wrong {
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .view-box {
+            background: #eef2ff;
+            padding: 18px 24px;
+            border-radius: 28px;
+            margin: 15px 0;
+            font-size: 14.5px;
+        }
+        .view-box .vb-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .passage-study {
+            padding: 26px 40px 40px 40px;
+            background: #ffffff;
+            border-top: 2px solid #e2e8f0;
+        }
+        .passage-study h2 {
+            font-size: 22px;
+            margin-bottom: 14px;
+            color: #1e466e;
+        }
+        .passage-study ul {
+            margin-left: 20px;
+            font-size: 14.5px;
+        }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section, .passage-study {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 3회 · 독서 01~03</h1>
+        <p>읽기에 영향을 미치는 텍스트 복잡도 요인 | 원문 + 문단별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>독자의 읽기 과정에 영향을 미치는 요소는 다양하며, 그중 텍스트 복잡도는 독자의 읽기 속도와 이해도를 좌우하는 핵심 요소이다.
+                <span class="underline-phrase">텍스트 복잡도란 어휘, 문장 구조, 내용 전개 등의 복잡한 정도가 독자에게 얼마나</span> <span class="phrase-label">텍스트 복잡도의 개념</span>많은 주의력과 인지적 노력을 요구하는지를 나타내는 정도를 의미한다.
+                <span class="underline-phrase">텍스트 복잡도가 높을수록 독자는 텍스트의 의미를 해석하고 구조를 파악하는 데 더 많은 주의력과 기억력 등의 인지적 자원<span class="vocab-mark">*</span>을 사용하게 되며, 이</span><span class="phrase-label">텍스트 복잡도가 읽기 과정에 미치는 영향: 인지적 자원 사용의 증가 및 읽기 효율 감소</span>는 읽기 속도의 저하와 이해도의 감소로 이어진다.
+                <span class="para-note">← 텍스트 복잡도의 개념과 복잡도가 읽기 과정에 미치는 영향</span></p>
+                <p><span class="underline-phrase">텍스트 복잡도는 단일 요인<span class="vocab-mark">*</span>으로 결정되지 않고, 양적 요인, 질적 요인, 독자 및 과제 요인 등이 상호 작용하</span><span class="phrase-label">텍스트 복잡도의 형성 방식</span><span class="underline-phrase">여 형성된다. 양적 요인은 수치로 측정할 수 있는 텍스트의 언어적·구조적 특성을 의미한다. 어휘의 사용 빈</span><span class="phrase-label">텍스트 복잡도의 양적 요인의 의미</span>도, 문장의 길이, <span class="underline-phrase">텍스트의 응집성<span class="vocab-mark">*</span></span>, 문장 구조의 복잡성 등이 대표적이다. 가령 드물게 쓰이는 전문 용어가 다수 포함되거나, 문장 간 연결 관계가 분명하지 않은 표현이 많거나, 문장 안에 또 다른 문장이 여러 번 들어간 구조는 복잡도를 높인다.
+                <span class="underline-phrase">질적 요인은 주제의 추상성, 의미의 복합성<span class="vocab-mark">*</span></span><span class="phrase-label">텍스트 복잡도의 질적 요인의 의미</span>, 비유 같은 간접 표현, 구성·전개 방식의 복잡성 등을 가리킨다. 단순한 구성과 전개는 독자의 이해를 돕지만, 다층적 의미와 복잡한 전개는 이해의 부담을 높인다.
+                <span class="underline-phrase">독자 및 과제 요인은 텍스트 외부의 요인으로 독자의 배경지식, 읽기 능력, 흥미, 읽기 목적</span><span class="phrase-label">텍스트 복잡도의 독자 및 과제 요인의 의미</span> 등을 포함한다. 동일한 텍스트라 하더라도 주제에 친숙한 사람은 이해하기 쉽지만, 그 주제에 대해 잘 모르는 사람은 이해하기 어렵다. 또한 읽기 활동의 목적이 정보 추론보다 단순 정보 습득일 경우가 텍스트에 대한 이해가 상대적으로 쉽다.
+                <span class="para-note">← 텍스트 복잡도를 형성하는 요인</span></p>
+                <p><span class="underline-phrase">㉠복잡도가 높은 텍스트를 이해하기 위해서는 요인별 특성에 맞춘 읽기 전략이 필요하다.</span>
+                <span class="underline-phrase">모르는 단어는 문맥과 전후 문장을 활용해 의미를 추론하고, 필요하면 사전이나 참고 자료를 통해 확인해야 한다. 문장이 길고 구조가 복잡할 경우, 주어, 서술어, 목적어를 구분하고 문장을 여러 구절로 나누어 이해하는 방법이 유효하다.</span><span class="phrase-label">텍스트 복잡도의 양적 요인의 대응을 위한 읽기 전략</span>
+                <span class="underline-phrase">또한 주제가 추상적이거나 의미가 복합적일 때는 구체적인 사례를 떠올리거나 텍스트의 내용을 자신만의 언어로 다시 정리하며 읽도록 한다. 글의 전개 구조를 파악하기 위해 중심 문장과 연결어를 표시하고 문단별로 핵심 내용을 정리하여 전체 주제를 이해해야 한다.</span><span class="phrase-label">텍스트 복잡도의 질적 요인의 대응을 위한 읽기 전략</span>
+                <span class="underline-phrase">텍스트의 주제가 생소하다면 읽기 전이나 읽는 과정에서 관련 배경지식을 보완하는 것도 도움이 된다. 아울러 자신의 읽기 목적을 명확히 하여 읽기 속도와 깊이를 조절하며 필요한 정보에 집중하는 전략적 태도 역시 중요하다.</span><span class="phrase-label">텍스트 복잡도의 독자 및 과제 요인의 대응을 위한 읽기 전략</span>
+                <span class="para-note">← 복잡도가 높은 텍스트를 이해하기 위한 읽기 전략</span></p>
+                <p><span class="underline-phrase">텍스트 복잡도는 독자의 읽기 과정과 학습 성취에 직접적으로 영향을 미치는 개념이다. 이는 단순한 난이도의 문제가 아니라 독자가 텍스트의 의미를 파악하고 이해를 확장하는 과정을 좌우하는 요인으로 작용한다.</span><span class="phrase-label">텍스트 복잡도의 본질: 독자의 텍스트 이해 과정의 핵심 요인</span> 따라서 텍스트 복잡도를 구성하는 요인을 분석하고 적합한 읽기 전략을 적용한다면 독자는 복잡한 텍스트도 효율적이고 심층적으로 이해할 수 있을 것이다.
+                <span class="para-note">← 읽기 과정에서 텍스트 복잡도가 갖는 의미</span></p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 분석 – 텍스트 복잡도의 개념과 읽기 과정에 미치는 영향</div>
+                <div class="content">텍스트 복잡도란 어휘·문장 구조·내용 전개 등의 복잡한 정도가 독자에게 요구하는 주의력·인지적 노력의 정도. 복잡도가 높을수록 인지적 자원(주의력·기억력) 사용이 늘고, 읽기 속도 저하 및 이해도 감소로 이어짐.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 분석 – 텍스트 복잡도를 형성하는 요인</div>
+                <div class="content">텍스트 복잡도는 <strong>양적 요인</strong>(수치로 측정 가능: 어휘 사용 빈도, 문장 길이, 응집성, 문장 구조의 복잡성), <strong>질적 요인</strong>(주제의 추상성, 의미의 복합성, 비유적 간접 표현, 구성·전개 방식의 복잡성), <strong>독자 및 과제 요인</strong>(배경지식, 읽기 능력, 흥미, 읽기 목적)이 상호 작용하여 형성됨.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>인지적 자원(認知的 資源)</strong>: 독자가 읽기에 투입하는 주의력, 기억력, 사고력 등의 정신적 능력 전반.<br>
+                • <strong>요인(要因)</strong>: 사물이나 사건이 성립되는 까닭, 또는 조건이 되는 요소.<br>
+                • <strong>응집성(凝集性)</strong>: 문장과 문장, 문단과 문단이 언어적 표지에 의해 유기적으로 연결될 때 확보되는 글의 특성.<br>
+                • <strong>복합성(複合性)</strong>: 여러 요소가 결합되어 단순하지 않은 성질.
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 분석 – 복잡도가 높은 텍스트를 이해하기 위한 읽기 전략 (㉠)</div>
+                <div class="content"><strong>양적 요인 대응</strong>: 모르는 단어는 문맥으로 의미 추론, 필요시 사전 확인 / 문장이 길고 복잡하면 주어·서술어·목적어 구분 후 구절 단위로 분석.<br><strong>질적 요인 대응</strong>: 추상적이거나 복합적인 주제는 구체적 사례 떠올리기, 자신의 언어로 재정리 / 전개 구조 파악을 위해 중심 문장·연결어 표시, 문단별 핵심 정리.<br><strong>독자 및 과제 요인 대응</strong>: 배경지식 보완, 읽기 목적을 명확히 하여 속도·깊이 조절.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 분석 – 읽기 과정에서 텍스트 복잡도가 갖는 의미</div>
+                <div class="content">텍스트 복잡도는 단순한 난이도의 문제가 아니라, 독자가 텍스트의 의미를 파악하고 이해를 확장하는 과정을 좌우하는 핵심 요인. 복잡도 형성 요인을 분석하고 적합한 전략을 적용하면 복잡한 텍스트도 효율적·심층적으로 이해 가능.</div>
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <p style="font-size: 13.5px;">이 글은 독자의 읽기 과정에 영향을 미치는 텍스트 복잡도의 개념과 그 요인을 설명하고 있다. 텍스트 복잡도는 독자가 텍스트를 이해하는 데 요구되는 인지적 노력의 정도를 의미하며, 양적 요인·질적 요인·독자 및 과제 요인이 상호 작용하여 형성된다. 복잡도가 높은 텍스트를 효율적으로 이해하기 위해서는 모르는 단어의 의미를 추론하거나 문장을 구절 단위로 나누어 분석하고, 글의 전개 구조를 파악하며, 배경지식의 보완과 읽기 목적의 점검 등의 읽기 전략이 필요하다. 이를 통해 독자는 읽기 효율을 높이고 심층적 이해에 이를 수 있다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">텍스트 복잡도를 결정하는 요인과 효과적인 읽기 전략</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 선생님의 만점 구조도 – 텍스트 복잡도 요인을 고려한 읽기 전략 (문항 02, 03 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>복잡도 요인</th><th>읽기 전략</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>양적 요인<br>(어휘 난이도·문장의 길이·텍스트의 응집성·<strong>문장 구조</strong>의 복잡성)</td>
+                            <td>문맥을 활용해 의미를 <strong>추론</strong>하여 어휘 의미 파악, 문장 성분 구분 + 문장을 구절 단위로 분석</td>
+                        </tr>
+                        <tr>
+                            <td>질적 요인<br>(주제의 추상성·의미의 복합성·<strong>비유 같은 간접 표현</strong>·구성·전개 방식의 복잡성)</td>
+                            <td><strong>구체적인 사례</strong> 떠올리기, 자신의 언어로 재정리, 중심 문장과 연결어 표시, 문단별로 핵심 내용을 정리하여 전체 주제 이해</td>
+                        </tr>
+                        <tr>
+                            <td>독자 및 과제 요인<br>(배경지식·읽기 능력·흥미·읽기 목적)</td>
+                            <td>읽기 전·중 배경지식 보완, 읽기 목적 명확히 하기 → 읽기 <strong>속도</strong>와/과 깊이 조절</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 배경지식 더 알아보기</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>텍스트 복잡도 측정 도구 – Flesch-Kincaid 가독성 공식</strong><br>텍스트 복잡도를 수치로 측정하려는 시도는 20세기 초부터 있었다. 가장 널리 알려진 것이 Flesch-Kincaid 가독성 공식이다. 이 공식은 평균 문장 길이(단어 수)와 평균 단어 길이(음절 수)를 결합하여 텍스트의 읽기 난이도를 0~100점 사이의 수치로 나타낸다. 점수가 높을수록 읽기 쉬운 텍스트이다. 일반적으로 초등학교 교과서 수준은 Flesch-Kincaid 점수가 80~90점대를 보이고, 고등 교육 기관 이상에서 발표하는 학술 논문은 Flesch-Kincaid 점수가 30점 이하인 경우가 많다. 이 공식은 지문의 '양적 요인'만을 반영하며, 주제의 추상성이나 독자의 배경지식 같은 질적 요인, 독자 및 과제 요인은 측정하지 못한다는 한계가 있다.</p>
+                <p style="font-size: 13px;"><strong>'어려운 글'과 '복잡한 글'은 다른가?</strong><br>복잡한 글(complex text)은 텍스트 자체의 속성이다. 어휘 수준, 통사 구조, 응집성, 정보 밀도 등 글을 구성하는 요소들이 얼마나 정교하게 얽혀 있는가를 가리킨다. 독자와 무관하게 측정할 수 있는 객관적 속성에 가깝다. 어려운 글(difficult text)은 독자와의 관계에서 발생하는 속성이다. 아무리 복잡한 글이라도 충분한 배경지식과 독해 전략을 갖춘 독자에게는 어렵지 않을 수 있고, 반대로 구조적으로 단순한 글도 배경지식이 전혀 없는 독자에게는 몹시 어렵게 느껴질 수 있다. 즉 복잡성은 텍스트의 속성이고 난이도는 독자와 텍스트 관계의 속성이다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 문항 03 접근법</div>
+                Q. 구체적 사례에 지문 내용을 적용하는 문항은 어떻게 접근해야 할까요?<br><br>
+                A. 문항 03은 학생들의 대화라는 구체적 사례에 지문의 개념(텍스트 복잡도 요인)을 적용하는 문항이다. 이런 유형은 사례 속 표현을 지문의 개념어와 대응하여 읽는 것이 중요하다. 예를 들어 '경제 관련 전문 용어가 너무 많다'는 말은 양적 요인 중 어휘의 사용 빈도와 전문 용어 사용에 해당하고, '문장이 길고 구조가 복잡하다'는 말은 양적 요인 중 문장의 길이와 문장 구조의 복잡성에 해당한다. 즉 사례에 제시된 표현을 지문의 개념어로 정확히 대응시켜야 한다. 또한 사례에서 드러난 어려움이 어떤 요인에서 비롯된 것인지 분류해야 한다. 그다음 그 학생이 사용한 해결 방식이 지문에서 제시한 읽기 전략과 맞는지를 확인해야 한다. 예를 들어 배경지식을 활용해 이해를 돕는 것은 독자 및 과제 요인을 활용한 전략이고, 문장을 끊어 읽는 것은 양적 요인에 대한 대응 전략이다. 따라서 사례 문제에서는 '학생이 무엇을 어려워했는가'와 '그 어려움에 어떻게 대응했는가'를 분리해서 보는 것이 중요하다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 3회 01~03</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 텍스트 복잡도의 개념과 영향</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">개념</span> 어휘·문장 구조·내용 전개의 복잡한 정도 = 독자에게 요구되는 주의력·인지적 노력</p>
+                    <p><span class="flow-badge">영향</span> 복잡도 ↑ → 인지적 자원 사용 ↑ → 읽기 속도 저하·이해도 감소</p>
+                    <div class="sub-point">✔ 1문단: 텍스트 복잡도의 개념과 읽기 과정에 미치는 영향</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 텍스트 복잡도의 형성 요인</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">양적 요인</span> 어휘 빈도·문장 길이·응집성·문장 구조 복잡성</p>
+                    <p><span class="flow-badge">질적 요인</span> 주제의 추상성·의미의 복합성·비유적 표현·구성 복잡성</p>
+                    <p><span class="flow-badge">독자·과제 요인</span> 배경지식·읽기 능력·흥미·읽기 목적</p>
+                    <div class="sub-point">🔎 2문단: 세 요인의 상호 작용으로 복잡도 형성</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 복잡도 대응 읽기 전략 (㉠)</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">양적 대응</span> 문맥으로 의미 추론, 문장 성분 구분·구절 단위 분석</p>
+                    <p><span class="flow-badge">질적 대응</span> 구체적 사례 떠올리기, 자신의 언어로 재정리, 문단별 핵심 정리</p>
+                    <p><span class="flow-badge">독자·과제 대응</span> 배경지식 보완, 읽기 목적 명확화 → 속도·깊이 조절</p>
+                    <div class="sub-point">💬 3문단: 요인별 특성에 맞춘 읽기 전략 제시</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 읽기 과정에서 갖는 의미</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">본질</span> 단순 난이도 문제가 아니라 이해 확장 과정을 좌우하는 요인</p>
+                    <p><span class="flow-badge">결론</span> 요인 분석 + 적합한 전략 적용 → 효율적·심층적 이해 가능</p>
+                    <div class="sub-point">📍 4문단: 읽기 과정에서 텍스트 복잡도가 갖는 의미</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 텍스트 복잡도의 개념·영향 → 복잡도의 형성 요인(양적·질적·독자 및 과제) → 요인별 읽기 전략(㉠) → 읽기 과정에서 텍스트 복잡도가 갖는 의미
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 1번 -->
+        <div class="question-full">
+            <div class="q-num">01</div>
+            <div class="question-stem">윗글을 이해한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 정보 추론을 위한 읽기보다 단순 정보 습득을 위한 읽기에서 독자의 인지적 노력이 덜 요구된다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 동일한 텍스트라 하더라도 주제에 대한 친숙도가 높거나 읽기 활동의 목적이 정보 추론보다 단순 정보 습득일 경우가 텍스트에 대한 이해가 상대적으로 쉽다고 하였다. 이를 고려할 때, 정보 추론을 위한 읽기보다 단순 정보 습득을 위한 읽기에서 독자의 인지적 노력이 덜 요구됨을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 텍스트 복잡도의 양적 요인은 어휘의 사용 빈도, 문장의 길이 등을 수치로 측정하여 확인할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 양적 요인은 수치로 측정할 수 있는 텍스트의 언어적·구조적 특성을 의미한다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 텍스트의 주제와 관련된 독자의 배경지식 부족은 텍스트 복잡도를 높이는 원인으로 작용할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 독자 및 과제 요인은 텍스트 외부의 요인으로 독자의 배경지식, 읽기 능력, 흥미, 읽기 목적 등을 포함한다고 하였다. 또한 동일한 텍스트라 하더라도 주제에 친숙한 사람은 이해하기 쉽지만, 그 주제에 대해 잘 모르는 사람은 이해하기 어렵다고 하였다. 이로 보아 텍스트의 주제와 관련된 독자의 배경지식이 텍스트 복잡도 형성에 영향을 미침을 알 수 있다. 배경지식이 부족하면 텍스트를 이해하는 데 어려움을 겪을 수 있으므로 텍스트 복잡도가 높아지게 되는 원인이 될 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 텍스트 복잡도를 형성하는 요인 중 질적 요인은 텍스트의 양적 요인보다 독자가 느끼는 인지적 부담이 크다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 1문단에서 텍스트 복잡도란 어휘, 문장 구조, 내용 전개 등의 복잡한 정도가 독자에게 얼마나 많은 주의력과 인지적 노력을 요구하는지를 나타내는 정도를 의미한다고 하였고, 2문단에서 텍스트 복잡도는 단일 요인으로 결정되지 않고, 양적 요인, 질적 요인, 독자 및 과제 요인 등이 상호 작용하여 형성된다고 하였다. 각 요인의 상호 작용에 의해 독자가 느끼는 인지적 부담이 결정되는 것이지, 한 요인이 다른 요인보다 독자의 인지적 부담을 크게 한다고 보는 것은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 어휘, 문장 구조, 내용 전개 등에서 나타나는 텍스트 복잡도가 높을수록 독자는 더 많은 인지적 자원을 사용한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단에서 텍스트 복잡도란 어휘, 문장 구조, 내용 전개 등의 복잡한 정도가 독자에게 얼마나 많은 주의력과 인지적 노력을 요구하는지를 나타내는 정도를 의미한다고 하였고, 텍스트 복잡도가 높을수록 독자는 텍스트의 의미를 해석하고 구조를 파악하는 데 더 많은 주의력과 기억력 등의 인지적 자원을 사용하게 된다고 하였다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 적절하지 않은 설명(정답). [유형] 세부 내용 파악</div>
+        </div>
+
+        <!-- 문제 2번 -->
+        <div class="question-full">
+            <div class="q-num">02</div>
+            <div class="question-stem"><span class="underline-phrase">㉠</span>에 대한 이해로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 어려운 단어가 많이 포함된 텍스트일 경우, 문맥을 통해 단어의 의미를 추론하며 읽는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 어려운 단어가 많이 포함된 경우 텍스트 복잡도를 높인다고 하였다. 3문단에서 모르는 단어는 문맥과 전후 문장을 활용해 의미를 추론하라고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 글의 전개 구조가 복잡할 경우, 중심 문장과 연결어를 표시하여 문단별 핵심 내용을 파악한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 단순한 구성과 전개는 독자의 이해를 돕지만, 다층적 의미와 복잡한 전개는 이해의 부담을 높인다고 하였다. 3문단에서 요인별 특성에 맞춘 읽기 전략을 제시하며, 글의 전개 구조를 파악하기 위해 중심 문장과 연결어를 표시하고 문단별로 핵심 내용을 정리하여 전체 주제를 이해해야 한다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 글의 주제가 추상적이고 의미가 복합성을 지닌 경우, 구체적인 사례와 연결하고 자신의 언어로 내용을 정리하며 읽는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 다층적 의미와 복잡한 전개는 이해의 부담을 높인다고 하였다. 3문단에서 주제가 추상적이거나 의미가 복합적일 때는 구체적인 사례를 떠올리거나 텍스트의 내용을 자신만의 언어로 다시 정리하며 읽도록 한다고 하였다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 텍스트 주제에 대한 친숙도가 낮을 경우, 관련 배경지식을 보완하기보다 텍스트의 세부적인 정보를 빠르게 훑어보며 읽는다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 2문단에서 동일한 텍스트라 하더라도 주제에 친숙한 사람은 이해하기 쉽지만, 그 주제에 대해 잘 모르는 사람은 이해하기 어렵다고 하였다. 텍스트 주제에 대한 친숙도가 낮다면 텍스트 복잡도가 높아져 읽기 속도나 이해도에 영향을 받게 된다. 3문단에서 이와 같이 텍스트 주제가 생소하다면, 읽기 전이나 읽는 과정에서 관련 배경지식을 보완하거나, 자신의 읽기 목적을 명확히 하여 읽기 속도와 깊이를 조절하며 필요한 정보에 집중하는 전략적 태도가 중요하다고 제시하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 문장 안에 또 다른 문장이 여러 번 들어간 구조의 문장이 많을 경우, 주어, 서술어, 목적어를 구분하고 문장을 여러 구절로 나누어 정리하며 이해한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 문장 안에 또 다른 문장이 여러 번 들어간 구조는 복잡도를 높인다고 하였다. 3문단에서 문장이 길고 구조가 복잡할 경우, 주어, 서술어, 목적어를 구분하고 문장을 여러 구절로 나누어 이해하는 방법이 유효하다고 하였다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 적절하지 않은 이해(정답). [유형] 중심 내용 파악</div>
+        </div>
+
+        <!-- 문제 3번 -->
+        <div class="question-full">
+            <div class="q-num">03</div>
+            <div class="question-stem">다음은 독서 수업 중에 기사문을 읽고 학생들이 나눈 대화의 일부이다. 윗글을 바탕으로 학생의 대화를 이해한 것으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                학생 1: 나는 기사문에 경제 관련 전문 용어가 너무 많아서 읽기가 힘들었어.<br>
+                학생 2: 맞아, 나도 그랬어. 모르는 단어의 의미를 일일이 사전에서 찾다가, 수업 시간 안에 기사문을 다 읽지 못했어.<br>
+                학생 3: 나는 경제 동아리 활동에서 다루어 본 주제라 내용은 친숙했지만, 문장이 길고 구조가 복잡해서 의미를 파악하기가 힘들었어.<br>
+                학생 2: 선생님께서 그럴 땐 문장을 끊어서 읽고, 구절 단위로 내용을 정리하는 게 도움이 될 것이라고 하셨어.<br>
+                학생 1: 응, 그리고 기사문에 비유적인 표현도 많아서 내용을 명확하게 정리하기가 힘들었어. 실제 사례나 사회 시간에 배운 경제 개념을 떠올리며 이해하려고 노력했어.<br>
+                학생 3: 나도 경제 동아리 활동에서 조사했던 개념과 연결하며 이해하니까 내용 정리에 도움이 되었어.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ‘학생 1’에게 기사문은 양적 요인에서 복잡도가 높은 텍스트이지만, 질적 요인으로 인한 텍스트 복잡도는 높지 않다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘학생 1’은 기사문 읽기의 어려움의 원인으로 ‘경제 관련 전문 용어가 너무 많아서’, ‘비유적인 표현도 많아서’라고 언급하였다. 2문단에서 양적 요인은 수치로 측정할 수 있는 텍스트의 언어적·구조적 특성을 의미한다고 하였고, 질적 요인은 주제의 추상성, 의미의 복합성, 비유 같은 간접 표현, 구성·전개 방식의 복잡성 등을 가리킨다고 하였다. 따라서 ‘학생 1’이 겪은 어려움은 기사문의 텍스트 복잡도가 양적 요인과 질적 요인 모두에서 기인한 것임을 알 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② ‘학생 2’에게 기사문은 양적 요인으로 인한 텍스트 복잡도가 높아 읽기 속도 면에서 어려움을 초래하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ‘학생 2’는 ‘모르는 단어의 의미를 일일이 사전에서 찾다가, 수업 시간 안에 기사문을 다 읽지 못했어.’라고 하였다. 2문단에 따르면, 드물게 쓰이는 전문 용어가 많으면 텍스트 복잡도가 높아진다. 이를 통해 기사문이 양적 요인에서 복잡도가 높아 ‘학생 2’에게 읽기 속도 면에서 어려움을 초래하였음을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ‘학생 3’에게 기사문은 질적 요인과 독자 및 과제 요인이 복합적으로 작용하여 높은 텍스트 복잡도를 보인다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘학생 3’은 ‘문장이 길고 구조가 복잡해서 의미를 파악하기가 힘들었어.’라고 하였다. 2문단에서 양적 요인은 어휘의 사용 빈도, 문장의 길이, 텍스트의 응집성, 문장 구조의 복잡성 등이 대표적이라고 하였으므로 ‘학생 3’은 양적 요인으로 인해 기사문의 복잡도가 높아진 것이라고 할 수 있다. 또한 ‘학생 3’은 ‘경제 동아리 활동에서 조사했던 개념과 연결하며 이해하니까 내용 정리에 도움이 되었’다고 하였다. 이는 독자 및 과제 요인을 고려한 읽기 전략을 활용했음을 보여 주는 것이다. ‘학생 3’의 발화에서 질적 요인으로 인한 기사문의 복잡도가 높아진다는 내용은 이끌어 낼 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ‘학생 2’와 달리 ‘학생 3’은 주제에 대한 배경지식을 통해 질적 요인으로 인한 기사문의 복잡도를 완화하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘학생 2’가 ‘모르는 단어의 의미를 일일이 사전에서 찾다가, 수업 시간 안에 기사문을 다 읽지 못했어.’라고 한 것에서 양적 요인으로 인한 기사문의 텍스트 복잡도가 높아진 것임을 알 수 있다. ‘학생 3’ 역시 첫 번째 발화에서 ‘문장이 길고 구조가 복잡해서 의미를 파악하기가 힘들었어.’라고 하였으므로 ‘학생 3’에게 기사문이 높은 텍스트 복잡도를 가지는 요인은 양적 요인임을 알 수 있다. ‘학생 3’은 경제 동아리 활동을 통해 형성된 배경지식을 바탕으로 양적 요인으로 인한 기사문의 복잡도를 완화하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ‘학생 2’와 ‘학생 3’은 모두 복잡도가 높은 기사문을 이해하기 위해 자신의 읽기 목적을 점검하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘학생 2’와 ‘학생 3’은 어휘, 문장 구조의 복잡성으로 인해 기사문 읽기에 어려움이 있었음을 이야기하고 있다. 그리고 문장 구조가 복잡한 경우의 읽기 전략과 배경지식을 보완하는 방법의 읽기 전략을 이야기하고 있다. 하지만 ‘학생 2’와 ‘학생 3’ 모두 자신의 읽기 목적을 점검하고 있지는 않다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절한 이해(정답). [유형] 구체적 사례 적용</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <ul>
+            <li><strong>해제</strong>: 이 글은 독자의 읽기 과정에 영향을 미치는 텍스트 복잡도의 개념과 그 요인을 설명하고 있다. 텍스트 복잡도는 독자가 텍스트를 이해하는 데 요구되는 인지적 노력의 정도를 의미하며, 양적 요인·질적 요인·독자 및 과제 요인이 상호 작용하여 형성된다. 복잡도가 높은 텍스트를 효율적으로 이해하기 위해서는 모르는 단어의 의미를 추론하거나 문장을 구절 단위로 나누어 분석하고, 글의 전개 구조를 파악하며, 배경지식의 보완과 읽기 목적의 점검 등의 읽기 전략이 필요하다. 이를 통해 독자는 읽기 효율을 높이고 심층적 이해에 이를 수 있다.</li>
+            <li><strong>주제</strong>: 텍스트 복잡도를 결정하는 요인과 효과적인 읽기 전략</li>
+            <li><strong>구성</strong>
+                <ul style="margin-top:6px;">
+                    <li>1문단: 텍스트 복잡도의 개념과 복잡도가 읽기 과정에 미치는 영향</li>
+                    <li>2문단: 텍스트 복잡도를 형성하는 요인</li>
+                    <li>3문단: 복잡도가 높은 텍스트를 이해하기 위한 읽기 전략</li>
+                    <li>4문단: 읽기 과정에서 텍스트 복잡도가 갖는 의미</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

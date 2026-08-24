@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 14~17 (미라쿨린과 맛 인지의 맥락 의존성)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #0f5c4a; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #fbfdf8; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #e4f5e9; border-bottom: 2px solid #16a34a; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 10px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -4px 0 18px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #0f5c4a; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #16a34a;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #0f5c4a; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .flow-diagram { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 15px 0; }
+        .flow-box {
+            background: #ffffff; border: 1.5px solid #16a34a; border-radius: 16px; padding: 10px 12px;
+            font-size: 12px; text-align: center; flex: 1; min-width: 90px;
+        }
+        .flow-arrow { font-size: 18px; color: #94a3b8; }
+        .fill-blank {
+            display: inline-block; background: #fff7d6; border: 1px dashed #d4a017; border-radius: 6px;
+            padding: 1px 8px; font-weight: 700; color: #b45309;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #16a34a; padding-left: 20px;
+        }
+        .structure-title span { background: #0f5c4a; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #0f5c4a; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #16a34a;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #0f5c4a; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #0f5c4a; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #0f5c4a; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🧪 수능완성 사용설명서 실전 3회 · 과학 14~17</h1>
+        <p>미라쿨린과 맛 인지의 맥락 의존성 | 원문 + 문단별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p><span class="underline-phrase">사람이 맛을 느끼는 과정은 음식 속 물질의 분자가 혀 표면의 미각 수용체<span class="vocab-mark">*</span>에 결합하는 데서 시작된다.</span> 미각 수용체가 자극을 받으면 전기적·화학적 신호가 생성되어 뇌로 전달되며, 뇌는 이 신호를 해석하여 단맛이나 신맛 등으로 인식한다. 그런데
+                <span class="underline-phrase">일부 물질은 미각 수용체의 작동 방식을 바꾸어 같은 자극에도 수용체의 반응과 활성화<span class="vocab-mark">*</span>의 정도를 달라지게 해 다른 맛을 느끼게 한다.</span> <span class="phrase-label">맛 변화 물질의 의미</span>이러한 물질을 ‘맛 변화 물질’이라고 부른다. 아프리카 서부에서 자생하는 미라클베리의 열매에 포함된 미라쿨린이라는 단백질이 대표적인 예이다.
+                <span class="underline-phrase">㉠미라클베리 열매는 그 자체로는 단맛이 느껴지지 않지만, 이 열매를 섭취한 후 신맛이 있는 음식을 먹으면 달게 느껴지는 현상이 ⓐ발생한다.</span> <span class="phrase-label">미라클베리 열매의 특징</span>
+                <span class="para-note">← 미각 수용체의 작동 방식과 맛 변화 물질의 개념</span></p>
+                <p><span class="underline-phrase">㉡레몬처럼 신맛이 나는 음식에는 보통 구연산<span class="vocab-mark">*</span>과 같은 산 성분이 ⓑ포함되어 있다.</span> 이러한 산이 물에 녹으면 수소 이온을 방출하여 용액 속 수소 이온 농도가 높아진다.
+                <span class="underline-phrase">용액 속 수소 이온 농도를 나타내는 지표를 pH<span class="vocab-mark">*</span>로 나타내는데, 수소 이온 농도가 높을수록 pH가 낮다.</span> <span class="phrase-label">pH의 의미</span>
+                <span class="underline-phrase">신맛이 강한 음식을 섭취하면 입안의 pH가 일시적으로 낮아져 산성 환경이 ⓒ형성된다.</span> <span class="phrase-label">미라쿨린이 단맛 수용체를 활성화하게 하는 조건</span>
+                <span class="para-note">← 산 성분과 수소 이온 농도와의 관계</span></p>
+                <p><span class="underline-phrase">혀의 단맛 수용체의 바깥쪽에는 조개껍질 모양의 구조가 있는데, 여기에 특정 분자가 결합해 조개껍질 모양의 구조가 닫히면 수용체는 활성화 상태가 된다.</span> <span class="phrase-label">단맛 수용체의 활성화 조건</span>미라쿨린은 혀의 단맛 수용체에 결합하는데 입안의 환경이 중성 pH일 때 미라쿨린은 단맛 수용체를 활성화하지 않을 뿐 아니라, 단맛 물질에 대한 단맛 수용체의 반응을 억제하기도 한다. 그러나 입안의 환경이 산성 환경이 되면,
+                <span class="underline-phrase">단맛 수용체의 표면에 결합된 미라쿨린의 전하<span class="vocab-mark">*</span> 분포가 달라진다.</span> <span class="phrase-label">산성 환경에서의 미라쿨린의 변화</span>이러한 변화가 단맛 수용체의 바깥쪽 조개껍질 모양의 구조를 닫히게 만들어 수용체가 강하게 활성화된다.
+                <span class="para-note">← 산성 환경에서의 미라쿨린의 전하 분포 변화와 단맛 수용체의 활성화</span></p>
+                <p>미라클베리 열매를 섭취한 후 신맛이 강한 음식을 먹으면 단맛 수용체가 활발하게 신호를 생성하게 되고, 이 신호가 뇌로 전달되어 단맛을 느끼게 되는 것이다.
+                <span class="underline-phrase">이 현상은 신맛을 감지하는 수용체가 단맛 수용체로 바뀌기 때문에 일어나는 것이 아니다.</span> <span class="phrase-label">맛 변화 현상의 본질</span>실제로 변하는 것은 단맛 수용체의 민감도와 반응도이다.
+                <span class="underline-phrase">여기서 민감도는 수용체가 자극에 의해 얼마나 쉽게 활성화되는지를 나타내는 성질이다.</span> <span class="phrase-label">민감도의 의미</span>즉 자극 물질의 농도가 낮거나 자극의 강도가 작아도 수용체가 활성화된다면, 그 수용체는 민감도가 높은 것이다. 반응도는 한 번 활성화된 뒤 신호의 크기가 얼마나 강하고 지속이 얼마나 오래 유지되는지를 ⓓ지칭한다.
+                <span class="underline-phrase">미라쿨린은 입안이 산성 환경과 같은 특정 조건에 놓였을 때 같은 자극에도 단맛 수용체가 더 쉽게, 더 크게 반응하도록 만든다.</span> <span class="phrase-label">반응도의 의미</span>
+                <span class="para-note">← 산성 환경에서의 미라쿨린의 작용 원리</span></p>
+                <p><span class="underline-phrase">미라클베리의 효과는 맛 인지가 자극 자체만으로 결정되지 않고 주변 조건에 좌우된다는 맥락 의존성을 잘 보여 준다.</span> <span class="phrase-label">미라쿨린의 효과</span>같은 분자라 하더라도 수용체 상태와 화학적 환경이 어떻게 변했는지에 따라 미각 수용체의 반응은 달라질 수 있다.
+                <span class="underline-phrase">이러한 맛 인지의 맥락 의존성은 단순히 흥미로운 자연 현상을 넘어 다양한 실용적 응용 가능성을 가진다.</span> <span class="phrase-label">맛 인지의 핵심 특성</span>예를 들어 미라쿨린은 신맛이 나는 식품과 함께 섭취하면 설탕 없이도 단맛을 느끼게 하여 당뇨병이나 비만 환자를 위한 대체 감미제<span class="vocab-mark">*</span> 개발에 활용될 수 있고, 항암 치료 과정에서 신맛 과민으로 고통받는 환자의 상황을 개선하는 데에도 ⓔ기여할 수 있다.
+                <span class="para-note">← 맛 인지의 맥락 의존성과 응용 가능성</span></p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 분석 – 미각 수용체의 작동 방식과 맛 변화 물질의 개념</div>
+                <div class="content">맛 인지는 물질 분자가 미각 수용체에 결합 → 전기·화학 신호 생성 → 뇌 전달·해석 순으로 일어난다. ‘맛 변화 물질’은 수용체의 작동 방식을 바꿔 다른 맛을 느끼게 하는 물질(예: 미라쿨린). 미라클베리 열매 자체는 단맛이 없지만 섭취 후 신맛 음식을 먹으면 달게 느껴진다(㉠).</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 분석 – 산 성분과 수소 이온 농도와의 관계</div>
+                <div class="content">신맛 음식(㉡)의 산 성분이 물에 녹아 수소 이온 방출 → 수소 이온 농도 ↑ → pH ↓(산성화). 신맛 음식 섭취 시 입안이 일시적으로 산성 환경이 됨.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 분석 – 산성 환경에서의 미라쿨린 전하 변화와 활성화</div>
+                <div class="content">단맛 수용체는 조개껍질 구조가 닫히면 활성화됨. 미라쿨린은 중성 pH에서는 결합만 하고 활성화·억제 상태이지만, 산성 환경에서는 전하 분포가 변해 구조가 닫히며 강하게 활성화됨.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 분석 – 산성 환경에서의 미라쿨린의 작용 원리</div>
+                <div class="content">단맛 현상은 신맛 수용체가 단맛 수용체로 바뀌는 게 아니라, 단맛 수용체의 민감도(쉽게 활성화되는 정도)와 반응도(신호 크기·지속시간)가 변화하는 것. 미라쿨린은 산성 조건에서 단맛 수용체를 더 쉽고 강하게 반응하도록 만듦.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 분석 – 맛 인지의 맥락 의존성과 응용 가능성</div>
+                <div class="content">맛 인지는 자극 자체가 아니라 주변 조건(맥락)에 좌우됨 → 맥락 의존성. 응용: 설탕 없이 단맛을 내는 대체 감미제 개발(당뇨·비만 환자), 항암 치료 중 신맛 과민 환자의 상황 개선.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>수용체(受容體)</strong>: 세포막이나 세포 내에 존재하며 호르몬이나 항원, 빛 따위의 외부 인자와 반응하여 세포 기능에 변화를 일으키는 물질.<br>
+                • <strong>활성화(活性化)</strong>: 생체나 생체 물질이 그 기능을 발휘함. 또는 그런 일.<br>
+                • <strong>구연산(枸櫞酸)</strong>: 하이드록시트라이카복실산의 하나. 무색무취의 고체로, 물과 알코올에 잘 녹고 신맛이 있다.<br>
+                • <strong>pH</strong>: 수용액의 수소 이온 농도를 나타내는 지표. 중성의 수용액의 pH는 7이고, 산성 용액의 pH는 7보다 작고, 염기성 용액의 pH는 7보다 크다.<br>
+                • <strong>전하(電荷)</strong>: 물체가 띠고 있는 정전기의 양.<br>
+                • <strong>감미제(甘味劑)</strong>: 단맛을 내는 약. 약의 맛이 나쁠 때 그 맛을 좋게 하기 위하여 쓰는데 주로 사탕, 사카린 따위가 쓰인다.
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <p style="font-size: 13.5px;">이 글은 인간이 맛을 느끼는 과정과 특정 물질이 미각 수용체의 작동 방식을 변화시켜 맛 인식에 영향을 주는 현상을 설명하고 있다. 미라클베리의 열매에 들어 있는 단백질 미라쿨린은 중성 pH에서는 단맛 수용체를 활성화하지 않지만, 산성 환경에서는 단맛 수용체의 표면에 결합된 미라쿨린의 전하 분포가 변하여 단맛 수용체를 강하게 활성화한다. 그 결과 레몬이나 식초처럼 신맛이 강한 음식도 단맛으로 인식된다. 이는 신맛 수용체가 변하는 것이 아니라 단맛 수용체의 민감도와 반응도가 달라지는 데에 따른 현상이다. 이러한 사례는 맛 인지가 상대적이고 맥락에 의존한다는 사실을 보여 주며, 설탕 대체 감미료나 미각 이상 치료와 같은 실용적 활용 가능성을 제시한다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">맛 인지의 맥락 의존성</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 선생님의 만점 구조도 포인트 1 – 미라쿨린의 작동 원리</h3>
+                <div class="flow-diagram">
+                    <div class="flow-box">신맛 음식 섭취</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">입안 pH <span class="fill-blank">산성화</span></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">미라쿨린 <span class="fill-blank">전하</span> 분포 변화</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">단맛 수용체의 바깥쪽 조개껍질 구조 닫힘</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box"><span class="fill-blank">단맛</span> 수용체 강하게 활성화</div>
+                </div>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 선생님의 만점 구조도 포인트 2 – 레몬류 음식 vs 미라클베리 열매 (문항 15 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>레몬 등 신맛 음식</th><th>미라클베리 열매</th></tr></thead>
+                    <tbody>
+                        <tr><td>역할</td><td>수소 이온 방출 → <strong>산성</strong> 환경 형성</td><td>단맛 수용체에 결합 → 단맛 수용체 강하게 활성화</td></tr>
+                        <tr><td>단맛 미각 수용체와의 관계</td><td>단맛 수용체와 직접 결합하지 않음.</td><td>단맛 수용체와 직접 결합</td></tr>
+                        <tr><td><strong>중성</strong> pH에서의 작용</td><td>신맛 수용체를 자극 → 신맛 인식(단맛 수용체 무관)</td><td>단맛 수용체와 결합은 유지하지만 활성화하지 않음.</td></tr>
+                        <tr><td>산성 환경에서의 작용</td><td>미라쿨린 등 맛 변화 물질이 작동할 산성 환경 제공</td><td>단맛 수용체 강하게 활성화</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 배경지식 더 알아보기</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>미라클베리(Synsepalum dulcificum)와 미라쿨린</strong><br>미라클베리는 서아프리카(가나, 나이지리아 등)가 원산지인 상록 관목의 열매다. 현지에서는 수백 년 전부터 신맛 나는 음식을 먹기 전에 이 열매를 씹어 단맛을 내는 데 사용해 왔다. 유럽에 처음 알려진 것은 18세기 탐험가 데 마르샤이(des Marchais)의 기록이며, 미라쿨린 단백질의 구조는 1968년 일본의 구리하라 기요시(栗原喜好) 연구 팀이 처음 규명했다. 미라쿨린은 191개의 아미노산으로 구성된 당단백질(glycoprotein)이다. 분자량은 약 24,600돌턴으로, 혀의 단맛 수용체(T1R2-T1R3 이종 이합체)에 결합하여 산성 환경에서 특이적으로 수용체를 활성화한다. 중요한 것은 미라쿨린 자체는 단맛이 없고, 산성 환경이라는 특정 조건하에서만 단맛 수용체를 자극한다는 점이다.</p>
+                <p style="font-size: 13px;"><strong>단맛 수용체 T1R2-T1R3의 구조</strong><br>단맛 수용체는 식물 파리지옥처럼 두 부분이 열렸다 닫히는 구조를 가지고 있어 ‘비너스 플라이트랩 도메인(Venus Flytrap Domain)’이라는 이름이 붙었다. 단맛 물질(설탕, 인공 감미료, 미라쿨린 등)이 이 도메인에 결합하면 두 부분이 닫히면서 수용체가 활성화된다. 미라쿨린은 중성 pH에서는 단맛 수용체에 결합해 있지만 닫힘을 유도하지 못하고, 산성 환경(pH 하락)에서 전하 분포가 변하면서 비로소 단맛 수용체를 닫히게 만들어 수용체를 활성화한다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 지문의 내용을 바탕으로 그래프나 표 등의 자료를 해석하는 문항은 어떻게 해결해야 하나요? (문항 16 관련)</div>
+                문항 16은 지문에 나온 과학적 원리를 그래프에 적용하는 문제입니다. 이런 유형은 먼저 그래프의 대상이 무엇인지부터 분명히 해야 합니다. 이 문제에서는 일반 단맛 수용체와 미라쿨린이 결합된 단맛 수용체를 비교하고 있으므로, ‘어느 쪽이 어떤 조건에서 활성화되는가’를 해석해야 합니다. 즉 그래프를 먼저 해석하고 지문을 찾는 것이 아니라, 지문에서 원리를 먼저 정리한 뒤 그래프를 해석하는 것이 실수를 줄일 수 있는 방법입니다. 이 문제에서는 특히 산성 환경에서 미라쿨린의 전하 분포가 달라지고, 그 결과 단맛 수용체가 강하게 활성화된다는 설명이 핵심입니다. 따라서 pH가 낮아질수록 활성화 정도가 커지는 곡선이 있다면, 그것은 단순히 단맛 물질 자체 때문이 아니라 미라쿨린이 결합된 상태에서의 구조 변화와 연결해서 봐야 합니다. 반대로 일반 단맛 수용체의 변화를 볼 때는 미라쿨린 효과를 섞어 생각하면 안 됩니다. 자료 해석 문제는 이런 식으로 원인을 정확히 대응시키는 훈련이 중요합니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 지문 구조도 (글 전개 흐름) <span>실전 3회 14~17</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 맛 변화 물질의 개념</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">과정</span> 물질 분자 → 미각 수용체 결합 → 신호 → 뇌 해석</p>
+                    <p><span class="flow-badge">사례</span> 미라클베리 열매의 미라쿨린 (㉠)</p>
+                    <div class="sub-point">✔ 1문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 산 성분과 pH</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">원리</span> 산(㉡) → 수소 이온 방출 → pH ↓</p>
+                    <p><span class="flow-badge">결과</span> 신맛 음식 섭취 시 입안 산성화</p>
+                    <div class="sub-point">✔ 2문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 산성 환경과 수용체 활성화</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">조건</span> 산성 환경 → 미라쿨린 전하 분포 변화</p>
+                    <p><span class="flow-badge">결과</span> 조개껍질 구조 닫힘 → 강한 활성화</p>
+                    <div class="sub-point">✔ 3문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 민감도와 반응도</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">본질</span> 신맛 수용체 → 단맛 수용체 전환 아님</p>
+                    <p><span class="flow-badge">변화</span> 단맛 수용체의 민감도·반응도가 변화</p>
+                    <div class="sub-point">✔ 4문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>⑤</span> 맥락 의존성과 응용</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">특성</span> 맛 인지는 주변 조건에 좌우(맥락 의존성)</p>
+                    <p><span class="flow-badge">응용</span> 대체 감미제, 항암 치료 환자 지원</p>
+                    <div class="sub-point">✔ 5문단</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 맛 변화 물질의 개념 → 산 성분과 pH의 관계 → 산성 환경에서의 수용체 활성화 → 민감도·반응도의 변화 → 맥락 의존성과 응용 가능성
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 14번 -->
+        <div class="question-full">
+            <div class="q-num">14</div>
+            <div class="question-stem">윗글의 내용과 <strong>일치하지 않는</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 미라쿨린을 대체 감미제로 활용하기 위해서는 신맛이 나는 음식을 함께 섭취해야 한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 5문단에서 미라쿨린은 신맛이 나는 식품과 함께 섭취하면 설탕 없이도 단맛을 느끼게 하여 당뇨병이나 비만 환자를 위한 대체 감미제 개발에 활용될 수 있다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 미각 수용체에서 발생한 전기적·화학적 신호가 뇌에 도달하지 못하면 특정 맛을 인식할 수 없다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 1문단에서 미각 수용체가 자극을 받으면 전기적·화학적 신호가 생성되어 뇌로 전달되며, 뇌는 이 신호를 해석하여 단맛이나 신맛 등으로 인식한다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 맛 인지 과정은 미각 수용체를 자극하는 음식 속 물질의 분자가 미각 수용체에 결합할 때 시작된다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 1문단에서 사람이 맛을 느끼는 과정은 음식 속 물질의 분자가 혀 표면의 미각 수용체에 결합하는 데서 시작된다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 항암 치료 과정에서 미각 이상을 겪는 환자의 상황을 개선하는 데 맛 변화 물질이 도움을 줄 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (일치함)</strong> – 5문단에서 미라쿨린은 항암 치료 과정에서 신맛 과민으로 고통받는 환자의 상황을 개선하는 데에도 기여할 수 있다고 하였다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 미각 수용체의 작동 방식을 바꾸는 물질은 뇌의 신호를 미각 수용체로 전달하여 수용체의 반응을 달라지게 한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 1문단에서 미각 수용체가 자극을 받으면 전기적·화학적 신호가 생성되어 뇌로 전달되며, 뇌는 이 신호를 해석하여 단맛이나 신맛 등으로 인식한다고 하였다. 또한 일부 물질은 미각 수용체의 작동 방식을 바꾸어 같은 자극에도 수용체의 반응과 활성화의 정도를 달라지게 해 다른 맛을 느끼게 한다고 하였다. 미각 수용체의 작동 방식을 바꾸는 물질이 미각 수용체의 달라진 반응과 활성화의 정도를 뇌로 전달하게 하는 것이지, 뇌의 신호를 미각 수용체로 전달하게 하는 것은 아니다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 일치하지 않음(정답). [유형] 세부 내용 파악</div>
+        </div>
+
+        <!-- 문제 15번 -->
+        <div class="question-full">
+            <div class="q-num">15</div>
+            <div class="question-stem"><span class="underline-phrase">㉠</span>, <span class="underline-phrase">㉡</span>에 대한 설명으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠은 신맛을 감지하는 미각 수용체의 작용을 억제한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 4문단에 따르면, 미라클베리 열매는 단맛 수용체의 민감도와 반응도를 변화시킨다. 즉 ㉠이 신맛 수용체의 작용을 억제하는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉠은 입안의 pH 환경을 급속하게 낮춘다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 레몬처럼 신맛이 나는 음식에는 보통 구연산과 같은 산 성분이 포함되어 있다고 하였고, 이러한 산이 물에 녹으면 수소 이온을 방출하여 산성 환경이 형성된다고 하였다. ㉠이 입안의 pH 환경을 급속하게 낮추는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉡은 단맛 수용체의 분포 범위를 확대한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에 따르면, ㉡은 구연산과 같은 산 성분을 포함하여 산성 환경을 형성할 뿐이며, 단맛 수용체의 분포 범위를 확대하지는 않는다. 또한 4문단에서 미라쿨린으로 인한 맛 변화 현상은 신맛을 감지하는 수용체가 단맛 수용체로 바뀌기 때문에 일어나는 것이 아니라고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉡은 단맛 수용체와 결합하여 수용체의 구조를 변화시킨다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 4문단에 따르면, 혀의 단맛 수용체에 결합하여 단맛 수용체의 구조를 변화시키는 것은 미라클베리 열매 속 미라쿨린의 작용이다. ㉡은 입안의 환경을 산성 환경으로 만들어 미라쿨린의 전하 분포를 달라지게 한다. 이로 인한 미라쿨린의 변화로 단맛 수용체의 구조가 바뀌게 되는 것이다. ㉡이 단맛 수용체와 결합하는 것은 아니다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ㉠은 ㉡을 섭취할 때 단맛 수용체가 강하게 활성화되도록 한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 1문단에서 미라클베리 열매는 그 자체로는 단맛이 느껴지지 않지만, 이 열매를 섭취한 후 신맛이 있는 음식을 먹으면 달게 느껴지는 현상이 발생한다고 하였다. 미라클베리 열매에 포함된 미라쿨린은 입안의 환경이 중성 pH일 때 단맛 수용체를 활성화하지 않는다. 하지만 레몬처럼 신맛이 강한 음식을 섭취하면 입안의 pH가 일시적으로 낮아져 산성 환경이 형성되고, 산성 환경에서 미라쿨린은 전하 분포가 달라진다. 이러한 미라쿨린의 변화가 단맛 수용체의 바깥쪽 조개껍질 모양의 구조를 닫히게 만들어 수용체가 강하게 활성화된다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 적절함(정답). [유형] 세부 내용 파악</div>
+        </div>
+
+        <!-- 문제 16번 -->
+        <div class="question-full">
+            <div class="q-num">16</div>
+            <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;를 이해한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                다음의 그래프는 단맛 물질을 일정량 투입한 후, 일반 단맛 수용체와 미라쿨린이 결합된 단맛 수용체의 pH에 따른 활성화 정도를 비교한 것이다. (단, pH 변화 이외의 다른 환경 요인은 고려하지 않는다.)
+                <svg viewBox="0 0 480 300" style="width:100%; max-width:460px; display:block; margin: 14px auto 0 auto; background:#fff; border:1px solid #cbd5e1; border-radius:12px;">
+                    <!-- axes -->
+                    <line x1="60" y1="20" x2="60" y2="250" stroke="#334155" stroke-width="1.5"/>
+                    <line x1="60" y1="250" x2="440" y2="250" stroke="#334155" stroke-width="1.5"/>
+                    <!-- y labels -->
+                    <text x="20" y="30" font-size="11" fill="#334155">100</text>
+                    <text x="28" y="76" font-size="11" fill="#334155">80</text>
+                    <text x="28" y="122" font-size="11" fill="#334155">60</text>
+                    <text x="28" y="168" font-size="11" fill="#334155">40</text>
+                    <text x="28" y="214" font-size="11" fill="#334155">20</text>
+                    <text x="34" y="254" font-size="11" fill="#334155">0</text>
+                    <text x="10" y="140" font-size="11" fill="#334155" transform="rotate(-90 10 140)">단맛수용체 활성화(%)</text>
+                    <!-- x labels -->
+                    <text x="90" y="266" font-size="11" fill="#334155">5.0</text>
+                    <text x="150" y="266" font-size="11" fill="#334155">5.5</text>
+                    <text x="210" y="266" font-size="11" fill="#334155">6.0</text>
+                    <text x="270" y="266" font-size="11" fill="#334155">6.5</text>
+                    <text x="330" y="266" font-size="11" fill="#334155">7.0</text>
+                    <text x="390" y="266" font-size="11" fill="#334155">7.5</text>
+                    <text x="380" y="284" font-size="11" fill="#334155">pH</text>
+                    <!-- A: 일반 단맛 수용체 (solid, high->low) -->
+                    <polyline points="90,32 150,38 210,120 270,192 330,214 390,222" fill="none" stroke="#1e293b" stroke-width="2.5"/>
+                    <text x="94" y="24" font-size="12" fill="#1e293b" font-weight="700">A</text>
+                    <!-- B: 미라쿨린 결합 단맛 수용체 (dashed, low->high) -->
+                    <polyline points="90,90 150,100 210,80 270,68 330,58 390,50" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="6,4"/>
+                    <text x="94" y="82" font-size="12" fill="#16a34a" font-weight="700">B</text>
+                    <text x="330" y="240" font-size="10.5" fill="#1e293b">A: 일반 단맛 수용체</text>
+                    <text x="330" y="252" font-size="10.5" fill="#16a34a">B: 미라쿨린이 결합된 단맛 수용체</text>
+                </svg>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① A와 달리 B는 수소 이온 농도가 증가할수록 반응도가 높아지겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 신맛이 강한 음식이 입안에 들어오면 입안의 pH가 내려가 산성 환경이 된다고 하였고, 산은 물에 녹으면 수소 이온을 방출하고, 이로 인해 수소 이온 농도가 높아져 산성 환경이 형성된다고 하였다. &lt;보기&gt;의 그래프에서 pH가 낮아질수록 B의 활성화 정도는 증가하고, A의 활성화 정도는 감소한다. 3문단에서 입안의 환경이 산성 환경이 되면 미라쿨린의 전하 분포가 달라지고, 이러한 변화가 단맛 수용체의 바깥쪽 조개껍질 모양의 구조를 닫히게 만들어 수용체가 강하게 활성화된다고 하였다. 이로 보아 수소 이온 농도가 증가할수록 미라쿨린이 결합된 단맛 수용체의 반응도가 높아진다는 것을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② A의 활성화 정도가 가장 큰 환경에서 B는 단맛 물질에 대한 반응이 억제되겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;보기&gt;에서 A의 활성화 정도가 가장 클 때는 pH가 약 7.5일 때이다. 이때 B의 활성화 정도는 20(%)보다 낮다. 3문단에서 입안의 환경이 중성 pH일 때 미라쿨린은 단맛 수용체를 활성화하지 않는다고 하였다. 이로 보아 A의 활성화 정도가 가장 큰 환경에서 B는 단맛 물질에 대한 반응이 억제된다는 것을 알 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ B는 pH가 낮아질수록 수용체의 바깥쪽 조개껍질 모양의 구조가 닫히게 되겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 혀의 단맛 수용체의 바깥쪽에는 조개껍질 모양의 구조가 있는데, 여기에 특정 분자가 결합해 조개껍질 모양의 구조가 닫히면 수용체는 활성화 상태가 된다고 하였다. &lt;보기&gt;의 그래프에서 B는 pH가 낮아질수록 활성화 정도가 증가하므로, 이는 pH가 낮은 산성 환경에서 B의 바깥쪽 조개껍질 모양의 구조가 닫히게 되는 것으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ pH가 낮을 때 B의 활성화 정도가 큰 것은 단맛 물질에 대한 B의 반응도가 커지기 때문이겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 3문단에서 입안의 환경이 산성 환경이 되면 미라쿨린의 전하 분포가 달라진다고 하였고, 이러한 변화가 단맛 수용체의 바깥쪽 조개껍질 모양의 구조를 닫히게 만들어 수용체가 강하게 활성화된다고 하였다. &lt;보기&gt;에서 B의 활성화 정도가 큰 것은 입안 환경이 pH가 낮은 산성 환경이 되어, 미라쿨린의 전하 분포의 변화로 단맛 수용체의 구조가 바뀌었기 때문이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ pH 변화에 따라 B의 활성화 정도가 달라지는 것은 B에 결합한 미라쿨린의 전하 분포의 변화와 관련이 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 산성 환경에서는 미라쿨린의 전하 분포가 달라진다고 하였다. 즉 pH가 낮아져 산성으로 변화하는 과정에서 미라쿨린의 전하 분포가 달라진다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 적절하지 않음(정답). [유형] 구체적 사례 적용</div>
+        </div>
+
+        <!-- 문제 17번 -->
+        <div class="question-full">
+            <div class="q-num">17</div>
+            <div class="question-stem">문맥상 <span class="underline-phrase">ⓐ~ⓔ</span>와 바꿔 쓰기에 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ: 일어난다</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘발생하다’는 ‘어떤 일이나 사물이 생겨나다.’의 뜻으로, ‘어떤 일이 생기다.’의 뜻인 ‘일어나다’로 바꿔 쓰는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② ⓑ: 딸려</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ‘포함되다’는 ‘어떤 사물이나 현상 가운데 함께 들어가거나 함께 넣어지다.’의 뜻으로, ‘어떤 것에 매이거나 붙어 있다.’ 또는 ‘어떤 부서나 종류에 속하다.’의 뜻인 ‘딸리다’로 바꿔 쓰는 것은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓒ: 만들어진다</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘형성되다’는 ‘어떤 형상이 이루어지다.’의 뜻으로, ‘재료나 소재 따위에 노력이나 기술이 들여져 이루어지다.’의 뜻인 ‘만들어지다’로 바꿔 쓰는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓓ: 일컫는다</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘지칭하다’는 ‘어떤 대상을 가리켜 이르다.’의 뜻으로, ‘가리켜 말하다.’의 뜻인 ‘일컫다’로 바꿔 쓰는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓔ: 이바지할</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘기여하다’는 ‘도움이 되도록 이바지하다.’의 뜻으로, ‘도움이 되게 하다.’의 뜻인 ‘이바지하다’로 바꿔 쓰는 것은 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 적절하지 않음(정답). [유형] 단어의 의미 파악</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <ul>
+            <li><strong>해제</strong>: 이 글은 인간이 맛을 느끼는 과정과 특정 물질이 미각 수용체의 작동 방식을 변화시켜 맛 인식에 영향을 주는 현상을 설명하고 있다. 미라클베리의 열매에 들어 있는 단백질 미라쿨린은 중성 pH에서는 단맛 수용체를 활성화하지 않지만, 산성 환경에서는 단맛 수용체의 표면에 결합된 미라쿨린의 전하 분포가 변하여 단맛 수용체를 강하게 활성화한다. 그 결과 레몬이나 식초처럼 신맛이 강한 음식도 단맛으로 인식된다. 이는 신맛 수용체가 변하는 것이 아니라 단맛 수용체의 민감도와 반응도가 달라지는 데에 따른 현상이다. 이러한 사례는 맛 인지가 상대적이고 맥락에 의존한다는 사실을 보여 주며, 설탕 대체 감미료나 미각 이상 치료와 같은 실용적 활용 가능성을 제시한다.</li>
+            <li><strong>주제</strong>: 맛 인지의 맥락 의존성</li>
+            <li><strong>구성</strong>
+                <ul style="margin-top:6px;">
+                    <li>1문단: 미각 수용체의 작동 방식과 맛 변화 물질의 개념</li>
+                    <li>2문단: 산 성분과 수소 이온 농도와의 관계</li>
+                    <li>3문단: 산성 환경에서의 미라쿨린의 전하 분포 변화와 단맛 수용체의 활성화</li>
+                    <li>4문단: 산성 환경에서의 미라쿨린의 작용 원리</li>
+                    <li>5문단: 맛 인지의 맥락 의존성과 응용 가능성</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

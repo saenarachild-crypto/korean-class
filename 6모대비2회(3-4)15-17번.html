@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[수업용 완전판] 과학·기술 지문 (14~17번) - GPU, 뱅크, 뱅크 충돌, 메모리 패딩 | 원문+어구풀이+문제+선지+보기+오답분석</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Arial', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            padding: 35px 45px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 7px solid #c0392b;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: #0f2b3d;
+        }
+        h2 {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            margin: 45px 0 20px 0;
+            font-size: 24px;
+            border-radius: 18px;
+            border-left: 5px solid #e67e22;
+            color: #1e466e;
+        }
+        .text-block {
+            background: #fefaf0;
+            border-left: 6px solid #f1c40f;
+            padding: 22px 28px;
+            margin: 25px 0;
+            border-radius: 28px;
+            font-size: 16px;
+            line-height: 1.9;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .sentence-wrapper {
+            margin-bottom: 18px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 12px;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 6px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .question-full {
+            background: #f8fafc;
+            border-radius: 26px;
+            padding: 18px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 2px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 10px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        hr {
+            margin: 32px 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 13px;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+        .info-badge {
+            background: #eef2ff;
+            border-left: 6px solid #3b82f6;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📖 과학·기술 지문 (14~17번)<br>✓ GPU, 스레드, 워프, 뱅크, 뱅크 충돌, 메모리 패딩 - 원문 + 어구풀이 + 문제 + 선택지 + 오답 분석</h1>
+
+    <!-- ============= 지문 전문 ============= -->
+    <h2>■ 지문 전문 (문장별 분석 + 어구 풀이)</h2>
+    <div class="text-block">
+        <!-- 1문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">그래픽처리장치(GPU)는 원래 화면을 이루는 수많은 점들의 값들을 한꺼번에 연산하는 장치로, 근래에는 인공 지능의 학습에도 활용되고 있다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – GPU의 원래 용도(그래픽 연산)와 현대적 활용(AI 학습).</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>GPU(Graphics Processing Unit)</strong>: 그래픽 처리를 위한 병렬 연산 장치.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">GPU는 수천 개의 데이터에 대해 같은 연산을 동시에, 즉 병렬로 처리할 수 있다. 이는 칩 안에 수많은 연산 장치들을 두고, 같은 명령어를 여러 데이터에 동시에 적용할 수 있도록 GPU가 설계되어 있기 때문에 가능하다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – GPU의 핵심 특징: 병렬 처리.</div>
+        </div>
+
+        <!-- 2문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">GPU에서 연산을 수행하는 최소 단위를 ‘스레드’라 하며, 스레드들을 관리 가능한 만큼 ⓐ 묶은 것을 스레드 블록이라 한다. 스레드 블록 내에서 스레드들은 하나 이상의 워프로 묶여 실행된다. 워프 크기가 32라면 32개의 스레드가 동시에 같은 연산을 수행하는 것이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 스레드(최소 단위) → 스레드 블록 → 워프(동시 연산 단위).</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>스레드(thread)</strong>: 연산 수행 최소 단위. <strong>워프(warp)</strong>: 동시에 같은 연산을 수행하는 스레드 묶음.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">이 작업이 효율적으로 이루어지려면 같은 워프 내의 스레드들은 연산을 수행할 데이터를 기억 장치에서 동시에 ⓑ 가져올 수 있어야 한다. GPU에는 대용량 기억 장치인 전역 메모리가 있는데, 이 메모리는 칩 바깥에 위치하고 있어 접근 속도가 느리고 동시에 많은 요청을 처리하지도 못한다. 그래서 연산 시에는 먼저, 같은 스레드 블록의 스레드들이 공유하는 메모리인 공유 메모리로 데이터들을 옮겨 둔다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 전역 메모리의 한계(느림) → 공유 메모리 활용.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>전역 메모리</strong>: 대용량 but 칩 외부 → 접근 느림. <strong>공유 메모리</strong>: 칩 내부 → 접근 빠름.</div>
+        </div>
+
+        <!-- 3문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">공유 메모리는 용량이 작지만 칩 내에 있어서 접근 속도가 빠르며, 병렬 처리를 위해 하나의 워프를 ⓒ 이루는 스레드들이 동시 접근할 수 있도록 워프 크기와 같은 개수의 뱅크를 지닌다. 뱅크란 메모리를 같은 크기의 공간들로 구획했을 때 각각의 공간으로, 하나의 뱅크에는 여러 데이터가 담길 수 있다. 데이터가 어느 뱅크의 몇 번째 위치에 저장될지는 데이터에 할당되는 주소에 의해 정해진다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 뱅크의 개념과 역할(병렬 접근 가능).</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>뱅크(bank)</strong>: 공유 메모리를 같은 크기로 구획한 공간. 워프 크기만큼의 뱅크가 있음.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">뱅크 0부터 뱅크 2까지 뱅크 개수가 3개이며, 저장될 데이터의 주소가 20이라 하자. 컴퓨터가 한 번에 읽을 수 있는 정보량이 4바이트*라는 사실에 기초한 변환 규칙에 따라, 먼저 주소인 20을 4로 나눈 값인 5를 얻는다. 이 5를 뱅크 개수인 3으로 나눴을 때 그 나머지인 2가 뱅크 번호이며, 그 몫인 1이 0부터 시작하는 순서에서의 뱅크 내 저장 위치이다. 즉, 이 데이터는 뱅크 2의 두 번째 위치에 저장된다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 주소 → 뱅크 번호와 저장 위치 계산 방법.</div>
+        </div>
+
+        <!-- 4문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">이후 연산을 위해 공유 메모리에서 데이터들을 불러올 때마다, 워프를 이루는 스레드들이 각기 다른 뱅크에서 동시에 데이터를 가져와야 효율적이다. 그런데 인공 지능 학습에서는 주소를 앞번호부터 일정한 간격으로 불러오는 경우가 많아 여러 스레드가 같은 뱅크의 데이터를 동시에 호출하는 ‘뱅크 충돌’이 나타날 수 있다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 뱅크 충돌의 개념: 여러 스레드가 같은 뱅크에 동시 접근.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>뱅크 충돌(bank conflict)</strong>: 여러 스레드가 같은 뱅크의 데이터를 동시에 호출하는 현상. 병렬 처리 효율 저하.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">예컨대, 세 개의 뱅크만 있고 데이터인 알파벳 대문자들을 뱅크들에 순차적으로 저장해서, 뱅크 0에는 A, D의 순으로, 뱅크 1에는 B, E의 순으로, 뱅크 2에는 C, F의 순으로 저장되어 있다고 하자. 그런데 알파벳을 세 개씩 A, D, G와 같은 간격으로 불러와 연산해야만 하는 상황이라면, 첫 호출부터 뱅크 0에서 뱅크 충돌이 ⓓ 일어난다. 이를 방지할 방법으로 ‘메모리 패딩’이 있다. 이는 데이터를 저장할 때 C와 D의 사이, F와 G의 사이 등처럼 일정한 간격마다 반복해서, 실제로는 사용되지 않는 임의의 데이터인 ‘패딩’을 ⓔ 넣을 주소를 할당하는 것이다. 이렇게 하면 D는 뱅크 1에, G는 뱅크 2에 저장되어 있을 것이므로, 위의 상황에서 뱅크 충돌은 나타나지 않는다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 메모리 패딩의 원리: 일정 간격마다 패딩(더미 데이터)을 넣어 데이터의 뱅크 분산.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>메모리 패딩(memory padding)</strong>: 뱅크 충돌을 방지하기 위해 일정 간격으로 더미 데이터를 삽입하는 기법.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">*바이트: 데이터의 양을 나타내는 단위.</span></div>
+        </div>
+    </div>
+
+    <!-- ================= 문제 14번 ================= -->
+    <h2>■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+    <div class="question-full">
+        <div class="q-num">14번</div>
+        <div class="question-stem">윗글을 읽고 이해한 내용으로 적절하지 않은 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① GPU의 공유 메모리에서 뱅크들은 각기 다른 크기를 가질 수 있다.</div>
+            <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 3문단: "뱅크란 메모리를 같은 크기의 공간들로 구획했을 때 각각의 공간"이다. 따라서 뱅크들은 모두 같은 크기이다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② GPU의 칩 안에는 수많은 연산 장치들은 물론, 공유 메모리도 존재한다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단(연산 장치), 3문단(공유 메모리는 칩 내) 참고.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ GPU에서 전역 메모리는 대용량이지만 많은 요청을 동시에 처리하지 못하는 한계를 지닌다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단: "전역 메모리 ... 동시에 많은 요청을 처리하지도 못한다."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ GPU의 병렬 처리에는 공유 메모리에서의 뱅크 개수가 워프의 크기와 같다는 점이 기여한다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단: "병렬 처리를 위해 ... 워프 크기와 같은 개수의 뱅크를 지닌다."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ GPU는 화면을 이루는 점들의 값들을 연산하는 데에 이용될 뿐 아니라 인공 지능의 학습에도 활용될 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단: "원래 화면을 이루는 ... 연산하는 장치로, 근래에는 인공 지능의 학습에도 활용되고 있다."</div>
+        </div>
+        <div class="wrong-badge">📍 ①번이 적절하지 않은 설명(정답).</div>
+    </div>
+
+    <!-- 문제 15번 -->
+    <div class="question-full">
+        <div class="q-num">15번</div>
+        <div class="question-stem">GPU의 ‘스레드’에 대한 설명으로 가장 적절한 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① 같은 스레드 블록에 있으면 동시에 같은 연산을 수행한다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 2문단: 동시 연산 단위는 워프이다. 같은 스레드 블록 내에서도 다른 워프에 속하면 동시에 연산하지 않을 수 있다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② 같은 스레드 블록에 있으면 동일한 공유 메모리에 접근한다.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – 2문단: "같은 스레드 블록의 스레드들이 공유하는 메모리인 공유 메모리".</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ 여러 데이터들에 대해 동시에 연산을 수행하는 최소 단위이다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 2문단: "연산을 수행하는 최소 단위를 ‘스레드’"라고 하였으며, 스레드는 하나의 데이터를 담당한다. 여러 데이터에 대한 동시 연산은 워프 차원.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ 워프 크기에 해당하는 만큼이 하나의 스레드 블록으로 묶인다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 2문단: 스레드 블록 내에는 하나 이상의 워프가 존재한다. 워프 크기만큼이 스레드 블록 전체는 아니다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ 공유 메모리보다 전역 메모리에 더 빠른 속도로 접근할 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 2문단: 전역 메모리는 칩 바깥에 있어 접근 속도 느림. 3문단: 공유 메모리는 칩 내에 있어 접근 속도 빠름.</div>
+        </div>
+        <div class="correct-badge">📍 ②번이 가장 적절한 설명(정답).</div>
+    </div>
+
+    <!-- 문제 16번 -->
+    <div class="question-full">
+        <div class="q-num">16번 [3점]</div>
+        <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;를 이해한 내용으로 가장 적절한 것은? [3점]</div>
+
+        <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+            <strong>📖 &lt;보 기&gt;</strong><br>
+            GPU의 한 공유 메모리에는 뱅크 0에서 뱅크 3까지 4개의 뱅크가 있다. 숫자와 ‘번’이 결합된 형태의 데이터들, 즉 ‘0번’, ‘1번’, ‘2번’ 등을 순서대로 전역 메모리에서 불러온 뒤 그 순서대로 저장되도록 주소를 할당한다고 하자. 그런데 이후 인공 지능의 학습을 위해 일정한 간격에 따라 데이터들이 계속 호출되며, 그 첫 번째로 ‘0번’, ‘4번’, ‘8번’, ‘12번’이 호출된다는 점을 감안해야 한다. 메모리 패딩은 뱅크 개수만큼의 데이터마다 패딩을 하나씩 넣는 방식을 사용한다. 예를 들어, 첫 번째 패딩은 ‘3번’과 ‘4번’ 사이에 저장된다.
+        </div>
+
+        <div class="choice-item">
+            <div class="choice-text">① 메모리 패딩을 적용하지 않는다면, 두 번째 호출부터 뱅크 충돌이 나타나겠군.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 패딩 미적용 시, ‘0번’, ‘4번’, ‘8번’, ‘12번’은 모두 뱅크 0에 저장되므로 <strong>첫 호출부터</strong> 뱅크 충돌 발생.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② 메모리 패딩을 적용하지 않는다면, 공유 메모리에 저장할 때 ‘12번’에는 12가 주소로 할당되겠군.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 3문단: 주소는 변환 규칙(4로 나눔)을 거친다. ‘12번’의 실제 주소는 48이다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ 메모리 패딩을 적용하면, ‘8번’은 뱅크 2의 세 번째 위치에 저장되겠군.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – 패딩 적용 시 ‘8번’은 뱅크 2의 위치 2(세 번째 위치)에 저장된다. (해설 표 참고)</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ 메모리 패딩을 적용하면, 뱅크 2의 네 번째 위치는 데이터가 저장되어 있지 않고 비어 있겠군.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 패딩은 주소를 할당받아 저장되므로, 비어 있지 않다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ 메모리 패딩을 적용하면, ‘2번’, ‘6번’, ‘10번’, ‘13번’이 뱅크 충돌 없이 동시에 호출될 수 있겠군.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 패딩 적용 시 ‘2번’(뱅크 2), ‘6번’(뱅크 3), ‘10번’(뱅크 0), ‘13번’(뱅크 0). 뱅크 0에서 충돌 발생.</div>
+        </div>
+        <div class="correct-badge">📍 ③번이 가장 적절한 설명(정답).</div>
+
+        <div class="info-badge" style="margin-top: 16px;">
+            📌 <strong>&lt;보기&gt; 패딩 적용 전·후 저장 위치 비교</strong><br>
+            <strong>패딩 미적용:</strong><br>
+            뱅크0: 0번, 4번, 8번, 12번 / 뱅크1: 1번, 5번, 9번, 13번 / 뱅크2: 2번, 6번, 10번, 14번 / 뱅크3: 3번, 7번, 11번, 15번<br>
+            <strong>패딩 적용(뱅크 개수=4, 데이터 4개마다 패딩 삽입):</strong><br>
+            뱅크0: 0번, (패딩), 7번, 10번, 13번 / 뱅크1: 1번, 4번, (패딩), 11번, 14번 / 뱅크2: 2번, 5번, 8번, (패딩), 15번 / 뱅크3: 3번, 6번, 9번, 12번, (패딩)
+        </div>
+    </div>
+
+    <!-- 문제 17번 -->
+    <div class="question-full">
+        <div class="q-num">17번</div>
+        <div class="question-stem">문맥상 ⓐ~ⓔ의 단어와 가장 가까운 의미로 쓰인 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① ⓐ : 쓰다 남은 줄은 잘 <u>묶어</u>서 보관하는 것이 좋다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ⓐ ‘묶다’는 ‘여럿을 한군데로 모으거나 합하다’의 의미. ①은 ‘끈으로 매듭짓다’의 의미.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② ⓑ : 기계의 발전은 인류의 삶에 큰 변화를 <u>가져왔다</u>.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ⓑ ‘가져오다’는 ‘데이터를 기억 장치에서 옮겨 오다’의 의미. ②는 ‘어떤 결과를 생기게 하다’의 의미.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ ⓒ : 사람들이 심은 나무들이 울창한 숲을 <u>이루었다</u>.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – ⓒ ‘이루다’는 ‘스레드들이 워프를 구성하다’의 의미. ③은 ‘나무들이 숲을 구성하다’의 의미로 유사.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ ⓓ : 일찍 자고 일찍 일어나는 습관을 <u>들이는</u> 것이 좋다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ⓓ ‘일어나다’는 ‘뱅크 충돌이 발생하다’의 의미. ④는 ‘잠에서 깨어나다’의 의미.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ ⓔ : 회사에 이력서를 <u>넣고</u> 연락이 오기를 기다렸다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ⓔ ‘넣다’는 ‘패딩을 삽입하다’의 의미. ⑤는 ‘서류를 제출하다’의 의미.</div>
+        </div>
+        <div class="correct-badge">📍 ③번이 가장 가까운 의미(정답).</div>
+    </div>
+
+    <!-- ================= 지문 개관 ================= -->
+    <h2>■ 지문 개관</h2>
+    <div style="background:#eef2fa; border-radius: 28px; padding: 20px 28px;">
+        <ul style="margin-left: 20px;">
+            <li><strong>핵심 개념</strong> : GPU, 병렬 처리, 스레드, 스레드 블록, 워프, 전역 메모리, 공유 메모리, 뱅크, 뱅크 충돌, 메모리 패딩</li>
+            <li><strong>1문단</strong> : GPU의 정의와 병렬 처리 능력</li>
+            <li><strong>2문단</strong> : 스레드, 스레드 블록, 워프 개념 및 전역 메모리·공유 메모리의 역할</li>
+            <li><strong>3문단</strong> : 뱅크 개념과 주소에 따른 뱅크·위치 결정 방식</li>
+            <li><strong>4문단</strong> : 뱅크 충돌 문제와 메모리 패딩을 통한 해결</li>
+        </ul>
+    </div>
+
+    <h2>■ 수업용 한 장 요약 (정답+오답 핵심)</h2>
+    <div style="background:#eef2fa; border-radius: 28px; padding: 20px 28px; margin-top: 20px;">
+        <ul style="margin-left: 20px;">
+            <li><strong>14번 정답 ①</strong> – 뱅크는 모두 같은 크기이다.</li>
+            <li><strong>15번 정답 ②</strong> – 같은 스레드 블록의 스레드는 공유 메모리를 공유한다.</li>
+            <li><strong>16번 정답 ③</strong> – 패딩 적용 시 ‘8번’은 뱅크 2의 세 번째 위치에 저장된다.</li>
+            <li><strong>17번 정답 ③</strong> – ⓒ ‘이루다’는 ‘구성하다’의 의미로, ③과 유사하다.</li>
+        </ul>
+    </div>
+
+    <footer>
+        ※ 각 선택지별 오답 이유를 상세히 추가하였습니다.
+    </footer>
+</div>
+</body>
+</html>

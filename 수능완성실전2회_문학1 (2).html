@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 2회 - 18~23 (문학 통합)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .poem-line {
+            margin-bottom: 0.4em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .line-analysis .highlight {
+            color: #c0392b;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .poem-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin: 1.2em 0 0.8em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .analysis-box .exam-tip {
+            display: block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 2회 · 문학 18~23</h1>
+        <p>정한모 「나비의 여행」 · 박남수 「새 1」 · 윤오영 「까치」 | 시구별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="poem-title">(가) 정한모, 「나비의 여행」</div>
+                <div class="poem-line">
+                    <span class="line-text">아가는 밤마다 길을 떠난다</span>
+                    <div class="line-analysis">← <span class="highlight">반복</span> – 밤마다 반복되는 꿈속 여행</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">하늘하늘 밤의 어둠을 흔들면서</span>
+                    <div class="line-analysis">← <span class="highlight">시각적 이미지</span> – 어둠을 흔드는 나비의 날갯짓</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">수면의 강을 건너</span>
+                    <div class="line-analysis">← 잠과 현실의 경계</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">빛 뿌리는 기억의 들판을</span>
+                    <div class="line-analysis">← 과거의 기억이 빛으로 형상화</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">출렁이는 내일의 바다를 나르다가</span>
+                    <div class="line-analysis">← 미래에 대한 불안정한 기대</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">깜깜한 절벽</span>
+                    <div class="line-analysis">← <span class="highlight">대비</span> – 빛/출렁임 vs 깜깜함</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">헤어날 수 없는 미로에 부딪치곤</span>
+                    <div class="line-analysis">← 좌절과 절망</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">까무라쳐 돌아온다</span>
+                    <div class="line-analysis">← 기진맥진한 귀환</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">한 장 검은 표지(表紙)를 열고 들어서면</span>
+                    <div class="line-analysis">← <span class="highlight">상징</span> – 검은 표지 = 전쟁·공포의 세계</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">아비규환하는 화약 냄새 소용돌이</span>
+                    <div class="line-analysis">← <span class="highlight">후각적 이미지</span> – 전쟁의 참혹함</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">전쟁은 언제나 거기서 그냥 타고</span>
+                    <div class="line-analysis">← 전쟁의 지속성</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">연자색 안개의 베일 속</span>
+                    <div class="line-analysis">← <span class="highlight">시각적 이미지</span> – 폐쇄적·몽환적 분위기</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">파란 공포의 강물은 발길을 끊어 버리고</span>
+                    <div class="line-analysis">← <span class="highlight">시각적 이미지</span> – 공포의 색채(파랑)</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">사랑은 날아가는 파랑새</span>
+                    <div class="line-analysis">← 사랑의 덧없음</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">해후는 언제나 엇갈리는 초조</span>
+                    <div class="line-analysis">← 만남의 좌절</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그리움은 꿈에서도 잡히지 않는다</span>
+                    <div class="line-analysis">← 꿈에서조차 실현되지 않는 그리움</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">꿈길에서 지금 막 돌아와</span>
+                    <div class="line-analysis">← 여행에서 귀환한 현재</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">꿈의 이슬에 촉촉이 젖은 나래를</span>
+                    <div class="line-analysis">← <span class="highlight">촉각적 이미지</span> – 나비 날개의 촉촉함</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">내 팔 안에서 기진맥진 접는</span>
+                    <div class="line-analysis">← 피로감과 위로의 대상</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">아가야</span>
+                    <div class="line-analysis">← <span class="highlight">호명</span> – 시적 대상에 대한 부름</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">오늘은 어느 사나운 골짜기에서</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">공포의 <span class="underline-phrase">⑧독수리</span>를 만나</span>
+                    <div class="line-analysis">← <span class="highlight">위협적 존재</span> – 독수리 = 공포의 상징</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">소스라처 돌아왔느냐.</span>
+                    <div class="line-analysis">← 위로와 연민의 질문</div>
+                </div>
+
+                <div class="poem-title" style="margin-top: 2em;">(나) 박남수, 「새 1」</div>
+                <div class="poem-line">
+                    <span class="line-text">1</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">하늘에 깔아 논</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">바람의 여울터에서</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나속삭이듯 서걱이는</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나무의 그늘에서나, 새는</span>
+                    <div class="line-analysis">← 자연 속 순수한 존재로서의 새</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">[A] 노래한다. 그것이 노래인 줄도 모르면서</span>
+                    <div class="line-analysis">← <span class="highlight">무의식적 순수성</span> – 자신의 행위를 의식하지 못함</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">새는 그것이 사랑인 줄도 모르면서</span>
+                    <div class="line-analysis">← 사랑의 본능적·무의식적 수행</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">두 놈이 부리를</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">서로의 쪽지에 파문고</span>
+                    <div class="line-analysis">← <span class="highlight">생생한 동작 묘사</span> – 새의 애정 행위</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">다스한 체온(體溫)을 나누어 가진다.</span>
+                    <div class="line-analysis">← 체온 나눔 = 사랑의 물리적·정신적 교감</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">2</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">새는 울어</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">뜻을 만들지 않고,</span>
+                    <div class="line-analysis">← <span class="highlight">의도성 부재</span> – 목적 없이 순수하게 우는 새</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">지어서 교태로</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">사랑을 가식(假飾)하지 않는다.</span>
+                    <div class="line-analysis">← <span class="highlight">진정성</span> – 가식 없는 순수한 사랑</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">[B]</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">3</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">― <span class="underline-phrase">ⓑ포수</span>는 한 덩이 납으로</span>
+                    <div class="line-analysis">← <span class="highlight">대비</span> – 순수한 새 vs 폭력적 포수</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그 순수(純粹)를 겨냥하지만,</span>
+                    <div class="line-analysis">← 순수성에 대한 위협</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">매양 쏘는 것은</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">피에 젖은 한 마리 상(傷)한 새에 지나지 않는다.</span>
+                    <div class="line-analysis">← <span class="highlight">인간 문명의 파괴성</span> – 순수성을 파괴하는 인간</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">[C]</span>
+                    <div class="line-analysis"></div>
+                </div>
+
+                <div class="poem-title" style="margin-top: 2em;">(다) 윤오영, 「까치」</div>
+                <div class="poem-line">
+                    <span class="line-text">까치 소리는 반갑다. <span class="underline-phrase">㉠아름답게 굴린다거나 구슬프게 노래한다거나 그런 것이 아니고 기교 없이 가볍고 솔직하게 짖는 단 두 음절 '깍깍'.</span> 첫 '깍'은 높고 둘째 '깍'은 얕게 계속되는 단순하고 간단한 그 음정(音程)이 그저 반갑다. 나는 어려서부터 까치 소리를 좋아했다. 지금도 아침에 문을 나설 때 까치 소리를 들으면 그날은 기분이 좋다.</span>
+                    <div class="line-analysis">← <span class="highlight">소리에 대한 직접적 묘사</span> – 까치 소리의 단순함과 반가움</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">반포지은(反哺之恩)을 안다고 해서 효조(孝鳥)라 일러 왔지만 나는 그런 것과는 상관없이 좋다. 사랑 앞마당 밤나무 위에 까치가 와서 집을 짓더니 그것이 길조(吉兆)라서 그해에 안변 부사(安邊府使)로 영전(榮轉)이 되었다던가, 서재(書齋) 남창 앞 높은 나뭇가지에 까치가 와서 집을 짓더니 글재주가 크게 늘어서 문명(文名)을 날렸다던가 하는 옛이야기도 있지만, 그런 것과 상관없이 까치 소리는 반갑고 기쁘다.</span>
+                    <div class="line-analysis">← 전통적 상징(효조·길조)과 무관한 <span class="highlight">순수한 반가움</span></div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">아침 까치가 짖으면 반가운 편지가 온다고 한다. 이 말이 가장 그럴싸하게 느껴진다. 왜냐하면 그 소리가 어딘가 모르게 반가운 소식의 예고같이 희망적으로 들리기 때문이다.</span>
+                    <div class="line-analysis">← 까치 소리 = 희망적 소식의 예고</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 까치뿐이 아니라 까치집을 또 좋아한다. 높은 나무 위에 마른 나뭇가지를 모아다가 엉성하게 얽어 논 것이, 나무에 그대로 어울려서 덧붙여 논 것 같지가 않고 나무 삭정이가 그대로 떨어져서 쌓인 것 같다. 그러면서도 소쇄한 맛이 난다. <span class="underline-phrase">㉡엉성하게 얽어 논 그 어리가 용하게도 비가 아니 샌다.</span> 오직 달빛과 바람을 받을 뿐이다.</span>
+                    <div class="line-analysis">← <span class="highlight">까치집의 소쇄한 미</span> – 엉성하지만 실용적이고 시적</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 항상 이담에 내 사랑채를 짓는다면 꼭 저 까치집같이 소쇄한 맛이 나도록 짓고 싶었다. 내가 완자창이나 아자창을 취하지 않고 간소한 용자창을 좋아하는 이유도 그런 정서에서다. 제비집같이 아늑한 집이 아니면 까치집같이 소쇄한 집이라야 한다. <span class="underline-phrase">㉢제비집은 얌전하고 단아한 가정부인이 매만져 나가는 살림집이요, 까치집은 쇄락하고 풍류스러운 시인이 거처하는 집이다.</span></span>
+                    <div class="line-analysis">← <span class="highlight">대비</span> – 제비집(단아·가정적) vs 까치집(소쇄·풍류적)</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">비둘기장은 아무리 색스럽게 꾸며도 장(場)이지 집이 아니다. 다른 새집은 새 보금자리, 새 둥지, 이런 말을 쓰면서 오직 제비집, 까치집만 집이라 하는 것을 보면, 한국 사람의 집에 대한 관념이나 정서를 알 수가 있다. 한국 건축의 정서를 알려는 건축가들은 한번 생각해 봄 직한 문제인 듯하다. 요새 고층 건물, 특히 <span class="underline-phrase">㉣아파트</span> 같은 건물들을 보면 아무리 고급으로 지었다 해도 그것은 '사람장'이지 '집'은 아니다.</span>
+                    <div class="line-analysis">← <span class="highlight">현대 건축 비판</span> – 아파트 = '사람장' (집이 아님)</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">지금은 아침 여덟 시, 나는 정릉 안 숲속에 자리 잡고 앉아 있다. 오래간만에 까치 소리를 들었다. 나뭇잎들은 아침 햇빛을 받아 유난히 곱게 푸르다. 나뭇잎 사이사이로 파란 하늘이 차갑게 맑다. 그간 비가 많이 왔던 관계로 물소리도 제법 크게 들려온다. 나는 어느 날 이른 새벽에 여길 와 본 적이 있었다. 보건 운동을 하러 온 사람, 약물을 먹으러 온 사람들로 붐비어 다시 오고 싶은 생각이 없었다. 그런데 지금 와 보니 사람은 아무도 없고 그윽한 숲속이 한없이 고요하다. 지금이 제일 고요한 시간이다. 까치들이 내 앞에 와서 깡충깡충 뛰어다닌다. 이른바 까치걸음이다. 손으로 만져도 가만히 있을 것만 같다. 그렇게 사람이 옆에 앉아 있다는 데는 아무 관심이나 의구심도 없이 내 옆에서 깡충깡충 뛰놀고 있다.</span>
+                    <div class="line-analysis">← 현재의 고요한 숲속 풍경과 까치와의 교감</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">나는 일찍이 어디선가 본 적이 있는 민화(民畫) 하나를 생각한다. 한 노웅(老翁)이 나무 밑에서 허연 배를 내놓고 낮잠을 자는데, 그 배 위에 까치 한 마리가 우뚝 서 있었다. <span class="underline-phrase">㉤나는 신기한 그 상상화에 기쁨을 느꼈다.</span> 민화란 어린아이와 자유화(自由畫) 같이 천진하고 기발한 데가 있어서 저런 재미있는 그림도 그려진다고 생각했다. 그러나 지금 저 까치들을 보고 그것은 기발(奇拔)한 상상이 아니요, 사실 이었다는 것을 깨달았다.</span>
+                    <div class="line-analysis">← <span class="highlight">깨달음</span> – 상상이 아닌 현실의 사실임을 인식</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">예전에 이지봉(李芝峯)이 정호음(鄭湖陰)의 "산과 물이 바람에 소리치며, 강물은 거세게 울먹이는데, 달은 외로이 비쳐 있다."는 시를 보고 '강물이 거세게 이는데 달이 외롭게'라는 건 실경(實景)에 맞지 않는다고 뮌(貶)했었다. 그도 그릴 것이 달이 고요히 밝은 밤중에는 물결이 잔잔한 것이 보통이다. 그러나 김백곡(金柏谷)이 황강역(黃江驛)에서 자다가 여울 소리가 하도 거세기에 문을 열고 보니 달이 외롭게 걸려 있었다. 그래서 비로소 그 구가 실경을 그린 명구(名句)인 것을 알았다는 시화(詩話)가 있다. 나도 그 민화가 실경인 것은 모르고 기상(奇想)*으로만 여겼던 것이다.</span>
+                    <div class="line-analysis">← <span class="highlight">고사 인용</span> – 실경인 줄 모르고 기상으로만 여긴 자신의 과거를 반성</div>
+                </div>
+                <div class="poem-line">
+                    <span class="line-text">그 태고연(太古然)*한 풍경의 민화 한 폭이 다시금 눈앞에 뚜렷이 떠오른다. 나무 밑에서 허연 배를 내놓고 누워서 잠자는 노웅(老翁), 그 배 위에 서 있는 까치 한 마리.</span>
+                    <div class="line-analysis">← <span class="highlight">회상</span> – 민화 속 풍경의 재현</div>
+                </div>
+                <div style="font-size: 13px; color: #5b6e8c; margin-top: 12px;">
+                    *기상: 종치림 집착할 수 없는 별난 생각.<br>
+                    *태고연한: 아득한 옛 모습 그대로인 듯한.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <!-- ===== (가) 분석 ===== -->
+            <div class="analysis-box">
+                <div class="title">📌 (가) 「나비의 여행」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 정한모<br>
+                    <strong>▶ 화자:</strong> '아가'를 위로하는 존재 (나비와 동일시)<br>
+                    <strong>▶ 핵심 상징:</strong> <span class="highlight">나비(아가)</span> – 순수하고 연약한 존재 / <span class="highlight">독수리</span> – 공포·폭력의 상징<br>
+                    <strong>▶ 표현 기법:</strong> 반복·대비·감각적 이미지(시각·촉각·후각)·상징<br>
+                    <strong>▶ 시상 전개:</strong> 나비의 꿈속 여행(좌절) → 전쟁·공포의 세계 → 기진맥진한 귀환 → 위로의 질문<br>
+                    <strong>▶ 주제:</strong> 전쟁과 폭력 속에서 순수한 생명이 겪는 공포와 고통, 그리고 이에 대한 연민과 위로<br>
+                    <strong>▶ 수능 포인트:</strong> <span class="highlight">'나비'의 상징성</span>(순수·연약), <span class="highlight">'독수리'의 대비적 의미</span>, 감각적 이미지의 기능
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '아가'는 나비이자 아이로, 가장 순수하고 연약한 생명을 상징합니다. 전쟁이 이 순수한 영역까지 침투하는 현실을 보여 줍니다.</div>
+            </div>
+
+            <!-- ===== (나) 분석 ===== -->
+            <div class="analysis-box">
+                <div class="title">📌 (나) 「새 1」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 박남수<br>
+                    <strong>▶ 화자:</strong> 새의 순수성을 관조하는 자<br>
+                    <strong>▶ 핵심 상징:</strong> <span class="highlight">새</span> – 순수성·자연성·무의식적 사랑 / <span class="highlight">포수</span> – 인간 문명의 폭력성·파괴성<br>
+                    <strong>▶ 표현 기법:</strong> 대비·상징·반복(∼줄도 모르면서)<br>
+                    <strong>▶ 시상 전개:</strong> 새의 순수한 노래와 사랑(1~2연) → 포수의 위협과 파괴(3연)<br>
+                    <strong>▶ 주제:</strong> 인간 문명의 폭력성에 맞서는 순수한 삶의 가치와 그 파괴에 대한 비판<br>
+                    <strong>▶ 수능 포인트:</strong> <span class="highlight">[A][B][C]</span>의 기능, <span class="highlight">포수</span>의 상징적 의미, '∼줄도 모르면서'의 반복 효과
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '새'는 자신의 행위를 의식하지 못할 정도로 순수합니다. '포수'는 이 순수성을 파괴하는 인간 문명의 폭력성을 상징합니다.</div>
+            </div>
+
+            <!-- ===== (다) 분석 ===== -->
+            <div class="analysis-box">
+                <div class="title">📌 (다) 「까치」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 윤오영<br>
+                    <strong>▶ 화자:</strong> 까치와 까치집을 사랑하는 '나'<br>
+                    <strong>▶ 핵심 대상:</strong> <span class="highlight">까치</span> – 반가움·희망의 상징 / <span class="highlight">까치집</span> – 소쇄·풍류적 삶의 상징<br>
+                    <strong>▶ 표현 기법:</strong> 대비(제비집 vs 까치집), 고사 인용, 일상적 묘사<br>
+                    <strong>▶ 시상 전개:</strong> 까치 소리에 대한 반가움 → 까치집의 미적 감상 → 까치집과 제비집의 대비 → 민화와의 연결을 통한 깨달음<br>
+                    <strong>▶ 주제:</strong> 까치와 까치집을 통해 드러나는 한국적 미의식과 풍류적 삶의 추구, 그리고 현대 건축에 대한 비판<br>
+                    <strong>▶ 수능 포인트:</strong> <span class="highlight">㉠~㉤</span>의 의미와 기능, 제비집 vs 까치집의 대비적 의미, 고사 인용의 효과
+                </div>
+                <div class="exam-tip">💡 수능 TIP: 까치집은 '엉성하지만 비가 새지 않는' 실용성과 '소쇄한 맛'이라는 미적 특성을 동시에 지닙니다. 이는 한국 건축의 정서를 대표합니다.</div>
+            </div>
+
+            <!-- ===== 비교 표 ===== -->
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 세 작품 비교 – 수능형 분석</h3>
+                <table style="font-size: 12px;">
+                    <thead><tr><th>구분</th><th>(가) 「나비의 여행」</th><th>(나) 「새 1」</th><th>(다) 「까치」</th></tr></thead>
+                    <tbody>
+                        <tr><td style="background:#f1f5f9;">작가</td>
+                        <td>정한모</td>
+                        <td>박남수</td>
+                        <td>윤오영</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">핵심 대상</td>
+                        <td>나비(아가)</td>
+                        <td>새</td>
+                        <td>까치·까치집</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">대상의 성격</td>
+                        <td>순수·연약</td>
+                        <td>순수·무의식적</td>
+                        <td>반가움·소쇄함</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">대립 요소</td>
+                        <td>독수리(공포·폭력)</td>
+                        <td>포수(인간 문명의 폭력)</td>
+                        <td>아파트(현대 건축)</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">화자의 태도</td>
+                        <td>연민·위로</td>
+                        <td>관조·비판</td>
+                        <td>애정·예찬</td>
+                    </tr>
+                    <tr><td style="background:#f1f5f9;">주제</td>
+                        <td>전쟁 속 순수 생명의 고통과 위로</td>
+                        <td>인간 문명의 폭력성 비판</td>
+                        <td>한국적 미의식과 풍류적 삶의 추구</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ===== 수능 필수 체크 ===== -->
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>(가)의 상징 구조</strong>: 나비(순수·연약) vs 독수리(공포·폭력) → 전쟁의 참혹함과 그에 대한 위로</li>
+                    <li><strong>(나)의 대립 구조</strong>: 새(순수·자연) vs 포수(인간 문명·폭력) → 문명 비판</li>
+                    <li><strong>(다)의 대비 구조</strong>: 까치집(소쇄·풍류) vs 제비집(단아·가정) vs 아파트(사람장) → 한국적 미의식</li>
+                    <li><strong>공통점</strong>: 세 작품 모두 <span class="highlight">자연물(나비·새·까치)을 통해 인간의 본질적 가치나 사회 문제</span>를 성찰</li>
+                    <li><strong>시적 화자의 태도</strong>: (가) 연민과 위로, (나) 비판적 관조, (다) 애정과 예찬</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 2회 18~23</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>(가)</span> 「나비의 여행」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">1연</span> 나비의 꿈속 여행(출발→좌절→귀환)</p>
+                    <p><span class="flow-badge">2연</span> 전쟁·공포의 세계 (화약·안개·공포의 강)</p>
+                    <p><span class="flow-badge">3~4연</span> 기진맥진한 귀환과 위로의 질문</p>
+                    <div class="sub-point">✔ 순수한 존재의 공포 체험과 연민</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(나)</span> 「새 1」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">1~2연</span> 새의 순수한 노래와 사랑</p>
+                    <p><span class="flow-badge">[A]</span> 자신이 노래하는 줄도 모르는 무의식적 순수성</p>
+                    <p><span class="flow-badge">[B]</span> 가식 없는 사랑</p>
+                    <p><span class="flow-badge">3연 [C]</span> 포수의 위협과 순수성의 파괴</p>
+                    <div class="sub-point">🔎 순수성 vs 문명의 폭력성 대립</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(다)</span> 「까치」</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">도입</span> 까치 소리에 대한 반가움</p>
+                    <p><span class="flow-badge">전개</span> 까치집의 소쇄한 미</p>
+                    <p><span class="flow-badge">대비</span> 제비집 vs 까치집 vs 아파트</p>
+                    <p><span class="flow-badge">결말</span> 민화를 통한 깨달음 (상상이 아닌 사실)</p>
+                    <div class="sub-point">💬 한국적 미의식과 삶의 방향성 제시</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : (가) 전쟁 속 순수 생명의 고통과 위로 → (나) 순수성과 문명 폭력의 대립 → (다) 한국적 미의식과 풍류적 삶의 추구
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (018~023번, PDF 원문 완전 일치) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 018번 문제 -->
+        <div class="question-full">
+            <div class="q-num">18</div>
+            <div class="question-stem">(가)에 대한 설명으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0123</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 1연에서는 '아가'가 체험하는 꿈의 전반적인 과정이 요약적으로 드러난다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1연에서 출발·좌절·귀환이 요약적으로 제시되므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 1연에서는 '아가'가 떠나는 꿈의 여행이 지속적으로 반복되고 있음이 드러난다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '밤마다'를 통해 반복적 여행이 드러나므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 2연에서는 '아가'가 부정적인 상황에서 벗어날 수 있는 길이 제시된다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 2연에서는 '화약 냄새', '전쟁', '안개', '공포의 강물' 등 부정적 요소만 나열되고, '해후는 언제나 엇갈리'고 '그리움은 꿈에서도 잡히지 않는다'고 하여 벗어날 길이 제시되지 않았다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 3연에서는 2연에서 경험한 상황으로 인한 '아가'의 피로감이 드러난다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '기진맥진'을 통해 피로감이 드러나므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 4연에서는 '아가'의 꿈속 여행에서 겪은 어려움에 대해 물으며 시상을 마무리하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '소스라처 돌아왔느냐'라는 질문으로 마무리하므로 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ③번</div>
+        </div>
+
+        <!-- 019번 문제 -->
+        <div class="question-full">
+            <div class="q-num">19</div>
+            <div class="question-stem"><span class="underline-phrase">⑧독수리</span>와 <span class="underline-phrase">ⓑ포수</span>의 공통점으로 가장 적절한 것은? <span class="ref-num">26052-0124</span></div>
+            <div class="choice-item correct">
+                <div class="choice-text">① 연약한 시적 대상을 위협하는 존재이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: (가)의 독수리는 '아가'를 공포에 빠뜨리는 위협적 존재, (나)의 포수는 '새'를 겨냥하는 폭력적 존재로, 둘 다 연약한 시적 대상을 위협한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 이상과 현실의 간극을 조정하는 존재이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두 존재 모두 이상과 현실의 간극을 조정하지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 시적 대상에 대한 위로의 정서를 환기하는 존재이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 위로의 정서를 환기하기보다 공포나 위협을 준다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 좌절한 시적 대상의 내적 성장을 유도하는 존재이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 내적 성장을 유도하지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 시적 대상이 내적 불안을 자각하는 계기가 되는 존재이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나)의 포수는 새에게 내적 불안을 자각하게 하는 존재로 보기 어렵다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ①번</div>
+        </div>
+
+        <!-- 020번 문제 -->
+        <div class="question-full">
+            <div class="q-num">20</div>
+            <div class="question-stem">(가)와 (나)에 대한 설명으로 가장 적절한 것은? <span class="ref-num">26052-0125</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① (가)에서는 전쟁과 같은 비극적 상황이 시적 대상의 좌절을 심화시키지만, (나)에서는 그런 상황이 오히려 시적 대상의 순수성을 강화하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나)에서 포수의 위협은 순수성을 강화하기보다 파괴하려 한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② (가)에서는 시적 대상이 겪는 고통에 대한 공감이 드러나지만, (나)에서는 시적 대상과 화자 간의 거리감이 나타난다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 위로와 연민, (나)는 관조적 태도이나 '거리감'으로 보기는 어렵다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ (가)에서는 시적 대상의 내면이 주관적 정서로 드러나지만, (나)에서는 시적 대상이 화자와 대립적 관계를 형성하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나)에서 화자와 새는 대립적 관계가 아니다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ (가)에서는 시적 대상의 연약함이 부각되는 반면, (나)에서는 시적 대상의 순수성이 강조된다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: (가)의 '아가'는 연약하고 기진맥진한 존재로, (나)의 '새'는 자신의 행위를 의식하지 못하는 순수한 존재로 형상화된다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ (가)와 (나) 모두 시적 대상에 대한 화자의 위로와 보호 의지가 드러난다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나)에서는 화자가 새를 위로하거나 보호하려는 태도를 보이지 않는다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 021번 문제 -->
+        <div class="question-full">
+            <div class="q-num">21</div>
+            <div class="question-stem">㉠~㉤에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0126</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ㉠은 까치 소리의 기교 없고 솔직한 특성에 대한 반가움을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '기교 없이 가볍고 솔직하게'라는 표현에서 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② ㉡은 엉성한 겉모습과 달리 집으로서의 기능을 잘하는 까치집에 대한 긍정적 인식을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '용하게도 비가 아니 샌다'에서 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ㉢은 제비집과 까치집에 대해 화자가 주관적으로 판단한 집의 분위기를 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '가정부인'과 '시인'의 비유에서 화자의 주관적 판단이 드러난다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ ㉣은 사람들이 거주하는 현대 주거 형태에 대한 화자의 비판적 인식을 드러내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '사람장'이라는 표현에서 비판적 인식이 드러난다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ㉤은 민화 속 까치의 모습이 사실과 그대로 맞닿아 있음을 깨달은 데서 느낀 기쁨을 드러내고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: ㉤은 민화를 보고 '천진하고 기발한' 상상에 기쁨을 느꼈던 것을 드러낸 구절이다. 이후 까치를 직접 보고 그것이 사실임을 깨달았지만, ㉤ 자체는 '사실과 맞닿아 있음을 깨달은 데서 느낀 기쁨'이 아니라 '기발한 상상력에 기반한 재미'에 대한 기쁨이다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+
+        <!-- 022번 문제 -->
+        <div class="question-full">
+            <div class="q-num">22</div>
+            <div class="question-stem">(다)에 대한 설명으로 가장 적절한 것은? <span class="ref-num">26052-0127</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 화자는 까치 소리가 전통적 상징으로서의 의미를 지니기에 반가움을 느낀다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 화자는 전통적 상징(효조·길조)과 무관하게 순수하게 반가움을 느낀다고 했다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 화자는 까치집의 엉성한 외관 때문에 오히려 실용성이 떨어진다고 생각한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '용하게도 비가 아니 샌다'며 실용성을 인정하고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 화자는 까치집의 소쇄한 미를 자신이 추구하는 삶의 이상과 연결하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – '내 사랑채를 짓는다면 꼭 저 까치집같이 소쇄한 맛이 나도록 짓고 싶었다'에서 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 화자는 민화 속 까치의 모습을 보고 그것이 기발한 상상임을 깨닫고 감탄한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 화자는 그것이 상상이 아닌 사실임을 깨달았다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 화자는 현대의 아파트를 '사람장'으로 비유하며 그 편리함을 긍정적으로 평가한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '사람장'은 비판적 표현으로, 편리함을 긍정하지 않는다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ③번</div>
+        </div>
+
+        <!-- 023번 문제 -->
+        <div class="question-full">
+            <div class="q-num">23</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 (가)~(다)를 감상한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0128</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                문학에서 날개를 지닌 존재들은 종종 이상적인 순수성이나 이상적인 삶을 상징하면서도, 이와 관련한 현실 인식이나 태도에는 차이점이 나타난다. (가)에서는 순수한 존재의 날갯짓이 극한 현실로 연결되는 모습을 통해 현실의 공포를 보여 주며, 이는 순수한 존재가 느끼는 좌절과 이에 대한 위로로 연결된다. (나)에서는 날개를 가진 존재가 지닌 이상적인 순수성을 강조하면서 그러한 순수를 파괴하는 인간의 차갑고 폭력적인 면모를 드러내는 비판적 인식이 나타난다. (다)에서는 날개를 가진 존재에 대한 긍정적 태도를 보인다. 더불어 그 대상이 지닌 속성을 글쓴이의 이상으로 연결지으며 삶의 방향성을 제시하는 모습이 드러나기도 한다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① (가)에서 순수한 존재인 '아가'가 꿈에서 나비가 되어 '내일의 바다'를 날다가 '깜깜한 절벽'이라는 현실을 만나는 모습은 현실의 공포를 드러낸 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② (나)에서 '그것이 사랑인 줄도 모르면서' 사랑을 나누는 '새'의 모습은 이상적인 순수성을 드러낸 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ (다)에서 글쓴이가 자신의 사랑채를 '까치집같이 소쇄한 맛이 나도록 짓고 싶었다'고 표현한 것은 대상이 지닌 속성이 글쓴이가 추구하고자 하는 삶의 방향성과 일치하는 것을 보여 주는 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ (가)에서는 '나래'를 '기진맥진 접는' 모습을 통해 순수한 존재가 느끼는 좌절감을 드러낸다면, (다)에서는 '노웅'의 '배 위에 까치 한 마리가 우뚝 서 있'는 모습을 통해 대상에 대한 글쓴이의 경외감이 드러나는군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: (가)에서 좌절감을 드러내는 것은 맞으나, (다)에서 까치의 모습에 대해 글쓴이는 '경외감'이 아닌 '기쁨'과 이후 '친근감'을 느끼고 있다. 경외감은 공경하면서 두려워하는 감정으로, 본문에 드러나지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ (나)의 '피에 젖은' '새'는 인간의 폭력성을 비판적으로 드러내는 것과 달리, (다)의 '아침에 문을 나설 때 까치 소리를 들'은 것에 대한 글쓴이의 진술에서는 '까치'에 대한 글쓴이의 긍정적인 태도가 드러나는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #5b6e8c;"></footer>
+</div>
+</body>
+</html>

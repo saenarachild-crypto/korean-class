@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 32~34 (권섭 「황강구곡가」)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #4a3a6e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #faf9fd; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 0.3em; font-size: 15px; line-height: 1.9; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text p.stanza-gap { margin-top: 1.2em; }
+        .original-text .stanza-num {
+            display: block; text-align: right; color: #94a3b8; font-size: 12px; font-weight: 700; margin-top: 2px;
+        }
+        .original-text .underline-phrase {
+            background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label {
+            display: block; color: #7c3aed; font-weight: 800; font-size: 17px; margin: 20px 0 10px 0;
+        }
+        .footnote-box { font-size: 12px; color: #64748b; margin-top: 6px; margin-bottom: 20px; line-height: 1.6; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #4a3a6e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #6a4c93;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #4a3a6e; }
+        .translation-box {
+            background: #fff7ed; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #f59e0b;
+            font-size: 13px; line-height: 1.8;
+        }
+        .translation-box h3 { font-size: 16px; margin-bottom: 10px; color: #92400e; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .soljae-box {
+            background: #fff8e6; border-radius: 16px; padding: 12px 16px; font-size: 12.5px; margin: 10px 0; border: 1px solid #f1c40f;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #6a4c93; padding-left: 20px;
+        }
+        .structure-title span { background: #4a3a6e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 170px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #4a3a6e; color: white; padding: 14px 18px; font-weight: 700; font-size: 16px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 16px 16px; font-size: 13px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #6a4c93;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 22px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 24px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #4a3a6e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #4a3a6e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #4a3a6e; }
+        .passage-study h3 { font-size: 17px; margin: 14px 0 8px 0; color: #4a3a6e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>⛰ 수능완성 사용설명서 실전 3회 · 고전 시가 32~34</h1>
+        <p>권섭, 「황강구곡가」 | 원문 + 문단별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p><span class="underline-phrase">하늘이 이 산을 열어 지계(地界)도 밝으시고</span> <span class="phrase-label">황강구곡을 하늘이 열어 낸 영험한 기운이 서린 곳이라 인식함.</span></p>
+                <p><span class="underline-phrase">ⓐ천추(千秋) 수월(水月)이 분(分) 밖에 맑았어라</span> <span class="phrase-label">오랜 세월이 흐르는 동안의 자연 / 분수</span></p>
+                <p><span class="underline-phrase">아마도 석담 파곡을 다시 볼 듯하여라</span> <span class="phrase-label">이이와 송시열의 도학을 이어받는 장소임을 강조하려는 의식</span>
+                <span class="para-note">← 황강의 아름다움을 예찬하고 석담 파곡을 떠올림.</span>
+                <span class="stanza-num">&lt;제1수&gt;</span></p>
+
+                <p class="stanza-gap"><span class="underline-phrase">㉠일곡(一曲)은 어디매오 화암(花岩)이 기이하네</span> <span class="phrase-label">스스로 묻고 답하는 방식으로 시상을 전개함. 각 수의 초장에서 반복됨.</span></p>
+                <p><span class="underline-phrase">선원(仙源)의 깊은 물이 십 리의 호수로다</span> <span class="phrase-label">선경의 이미지와 현실 공간인 호수의 형상을 자연스럽게 연결함.</span></p>
+                <p><span class="underline-phrase">엇더타 일진(一陣) 범풍(帆風)*이 갈 데 알아 가나니</span> <span class="phrase-label">배를 타고 황강구곡을 둘러보는 화자의 상상</span>
+                <span class="para-note">← 대암에서 느끼는 선경의 아름다움</span>
+                <span class="stanza-num">&lt;제2수&gt;</span></p>
+
+                <p class="stanza-gap">이곡(二曲)은 어디매오 화암도 좋을시고</p>
+                <p><span class="underline-phrase">㉡천봉(千峯)이 합쳐진 데 한없는 연화로다*</span> <span class="phrase-label">산세가 중첩되어 있음, 작중 공간의 입체화</span></p>
+                <p>어디서 견폐(犬吠) 계명(鷄鳴)*이 골골이 들리나니
+                <span class="para-note">← 화암의 산세와 골짜기에 들리는 개와 닭의 소리</span>
+                <span class="stanza-num">&lt;제3수&gt;</span></p>
+
+                <p class="stanza-gap">삼곡(三曲)은 어디매오 황강(黃江)이 여기로다</p>
+                <p><span class="underline-phrase">양양(洋洋) 현송(絃誦)*이 구재(舊齋)를 이었으니</span> <span class="phrase-label">권상하의 강학 장소, 한수재</span></p>
+                <p><span class="underline-phrase">ⓑ지금의 추월(秋月) 정강(亭江)이 어제론 듯하여라</span> <span class="phrase-label">황강이 과거의 유산을 계승한 장소라는 인식</span>
+                <span class="para-note">← 황강에서 권상하의 자취를 현재와 연결함.</span>
+                <span class="stanza-num">&lt;제4수&gt;</span></p>
+
+                <p class="stanza-gap"><span class="underline-phrase">사곡(四曲)은 어디매오 이름도 혼란하네</span> <span class="phrase-label">&lt;제5수&gt;의 제재인 ‘황공탄’의 ‘황공’은 황망함과 두려움의 의미가 내포되어 있어 이렇게 표현함.</span></p>
+                <p>㉢탄성(灘聲)과 악위(岳危)*가 계곡을 흔드는데</p>
+                <p><span class="underline-phrase">그 아래 깊이 자는 용이 도가성(櫂歌聲)*에 깨도다</span> <span class="phrase-label">① 황공탄의 아름다운 경치의 진면목 ② 황공탄에 서린 신령한 기운</span>
+                <span class="para-note">← 황공탄의 세찬 물결에 감탄함.</span>
+                <span class="stanza-num">&lt;제5수&gt;</span></p>
+
+                <p class="stanza-gap"><span class="underline-phrase">육곡(六曲)은 어디매오 병산(屛山)이 금수(錦繡)로다</span> <span class="phrase-label">수를 놓은 비단</span></p>
+                <p><span class="underline-phrase">ⓒ백운 명월이 옥경(玉京)*이 여기로다</span> <span class="phrase-label">흰 구름과 밝은 달이 떠오르자 병산이 옥황상제의 거처처럼 느껴짐.</span></p>
+                <p><span class="underline-phrase">㉣저 위에 태수(太守) 신선(神仙)이 네 뉘신 줄 몰라라</span> <span class="phrase-label">병산의 절벽 위에 있는 사람을 신선에 빗댐. / 화자가 탄 배와 병산 사이의 거리가 멀어 개개인을 모름.</span>
+                <span class="para-note">← 금병(병산)을 신선의 거처로 인식함.</span>
+                <span class="stanza-num">&lt;제7수&gt;</span></p>
+
+                <p class="stanza-gap"><span class="underline-phrase">칠곡(七曲)은 어디매오 부용벽(芙蓉壁)이 기절(奇絶)하네</span> <span class="phrase-label">신기하고 기이하네</span></p>
+                <p>백 척 천제(天梯)에 학려(鶴唳)*를 듣자올 듯</p>
+                <p><span class="underline-phrase">㉤석양의 범범고주(泛泛孤舟)*로 오락가락하는구나</span> <span class="phrase-label">석양 무렵 배를 타고 물 위에서 유유하게 즐기는 모습</span>
+                <span class="para-note">← 부용벽에서 석양 무렵 배를 타고 노니는 정경</span>
+                <span class="stanza-num">&lt;제8수&gt;</span></p>
+
+                <p class="stanza-gap"><span class="underline-phrase">팔곡(八曲)은 어디매오 능강동(陵江洞)이 맑고 깊어</span> <span class="phrase-label">권섭이 만년을 보내며 편히 쉴 곳으로 생각한 장소, 권섭이 지은 거연재와 만풍각이 위치한 곳</span></p>
+                <p><span class="underline-phrase">ⓓ금서(琴書) 사십 년에 네 어인 손이러니</span> <span class="phrase-label">화자가 황강의 자연 속에서 거문고, 책과 더불어 지낸 기간</span></p>
+                <p>아마도 일실 쌍정*의 못내 즐겨 하노라
+                <span class="para-note">← 능강(능강동)의 거처에서 즐기고 싶은 마음</span>
+                <span class="stanza-num">&lt;제9수&gt;</span></p>
+                <p style="text-align:right; font-weight:600;">- 권섭, 「황강구곡가」</p>
+
+                <div class="footnote-box">
+                    ✽ 석담 파곡: ‘석담’은 이이가 강학하던, ‘파곡’은 송시열이 강학하던 곳.<br>
+                    ✽ 일진 범풍: 돛을 달고 배를 움직일 정도로 부는 바람.<br>
+                    ✽ 한없는 연화로다: 끝이 없는 안개로구나.<br>
+                    ✽ 견폐 계명: 개 짖는 소리와 닭의 울음소리.<br>
+                    ✽ 양양 현송: 울려 퍼지는 거문고 소리.<br>
+                    ✽ 탄성과 악위: 여울 소리와 높게 솟은 산.<br>
+                    ✽ 도가성: 노 젓는 소리.<br>
+                    ✽ 옥경: 옥황상제가 산다고 하는 장소.<br>
+                    ✽ 학려: 학의 울음소리.<br>
+                    ✽ 범범고주: 띄워 놓은 배.<br>
+                    ✽ 일실 쌍정: 작가가 직접 조성한 거연재와 만풍각을 가리킴.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 황강구곡의 아름다움 예찬과 도학 계승 의식(제1수)</div>
+                <div class="content">황강구곡을 하늘이 열어 낸 영험한 기운이 서린 곳으로 인식하며, 이이와 송시열이 강학하던 석담·파곡을 다시 볼 듯하다고 함으로써 도학을 이어받는 장소임을 강조한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 대암에서 느끼는 선경의 아름다움(제2수)</div>
+                <div class="content">자문자답 방식으로 화암의 기이함을 감탄하고, 선경의 이미지와 현실 공간인 호수를 자연스럽게 연결하며 배를 타고 구곡을 둘러보는 상상을 드러낸다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 화암의 산세와 골짜기 소리(제3수)</div>
+                <div class="content">중첩된 산봉우리들이 만든 안개(연화)를 통해 공간을 입체적으로 그려 내고, 골짜기마다 들리는 개와 닭의 소리로 생동감을 더한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 황강에서 권상하의 자취를 현재와 연결함(제4수)</div>
+                <div class="content">권상하가 강학하던 한수재의 거문고 소리가 지금도 이어지고 있다고 하며, 황강이 과거의 유산을 계승한 장소라는 인식을 드러낸다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 황공탄의 세찬 물결에 대한 감탄(제5수)</div>
+                <div class="content">여울 소리와 높이 솟은 산이 계곡을 흔든다는 과장적 표현으로 황공탄의 형세를 부각하고, 깊이 잠든 용이 노 젓는 소리에 깨어난다는 표현으로 신령한 기운을 드러낸다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 금병(병산)을 신선의 거처로 인식함(제7수)</div>
+                <div class="content">비단을 두른 듯한 병산에 흰 구름과 밝은 달이 비추자 이를 옥황상제의 거처인 옥경에 빗대고, 절벽 위의 사람을 신선으로 여기며 감탄한다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 부용벽에서 석양 무렵 배를 타고 노니는 정경(제8수)</div>
+                <div class="content">기이하고 신기한 부용벽의 절경과 학의 울음소리를 연상하며, 석양 무렵 작은 배를 타고 유유자적하게 오가는 화자의 모습을 그린다.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 능강(능강동)의 거처에서 즐기고 싶은 마음(제9수)</div>
+                <div class="content">맑고 깊은 능강동에서 거문고와 책을 벗 삼아 지낸 사십 년의 세월을 언급하며, 자신이 조성한 거연재와 만풍각에서 지내는 즐거움을 드러낸다.</div>
+            </div>
+            <div class="info-box" style="background: #eef4ff;">
+                <h3 style="font-size: 14px;">📎 참고 – ‘대암’과 ‘화암’</h3>
+                <p style="font-size: 12.5px;">원전에서 &lt;제2수&gt;를 대암(對嵓)이라 표현했는데, 이것은 ‘화암’과 마주 향하여 있는 장소를 의미함. ‘대암’은 강의 입구에 있는 석대(石臺)로 화자는 이곳에서 ‘화암’을 바라보며 화암의 경치가 기이하다고 느끼고 있는 것임.</p>
+            </div>
+            <div class="info-box">
+                <h3>🎯 감상 포인트</h3>
+                <p style="font-size: 13.5px;">이 작품은 작가가 자신의 큰아버지인 권상하를 회고하며 그가 강학하던 남한강 상류 제천의 황강을 배경으로 지은 구곡가 계열의 연시조이다. 총 10수로 서사의 역할을 하는 &lt;제1수&gt;는 이이와 송시열이 강학하던 장소를 떠올리는 것으로 시작하며, &lt;제2수&gt;부터 &lt;제10수&gt;까지 각 수마다 특정한 장소(소재)의 아름다움을 언급하며 시상을 전개하고 있다. 이 작품이 수록된 『옥소장계』에는 주자의 「무이구곡가」를 필두로 이이의 ‘고산구곡’과 송시열의 ‘화양구곡’에 관한 시문들이 차례로 배치되어 있는데, 이를 통해 작가가 주자, 이이, 송시열, 권상하로 이어지는 도학자의 계통을 정립하려는 창작 의도가 있음을 알 수 있다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">황강의 경치 예찬과 선인의 도학을 계승하겠다는 의지</p>
+            </div>
+            <div class="translation-box">
+                <h3>📝 현대어 풀이</h3>
+                <p><strong>&lt;제1수&gt;</strong> 하늘이 이 산을 열어 땅 경계도 밝으시고 / 천추(오랜 세월)의 물과 달이 (내) 분수에 넘치게 맑았구나 / 아마도 석담 파곡을 다시 볼 듯하여라</p>
+                <p><strong>&lt;제2수&gt;</strong> 일곡은 어디인가 화암이 기이하네 / 선계의 깊은 물이 십 리의 넓은 호수로다 / 엇더타 일진 범풍이 갈 곳 알아 가나니</p>
+                <p><strong>&lt;제3수&gt;</strong> 이곡은 어디인가 화암도 좋을시고 / 천봉(많은 봉우리)이 합쳐진 데 한없는 안개로다 / 어디서 개와 닭 소리가 골짜기마다 들리나니</p>
+                <p><strong>&lt;제4수&gt;</strong> 삼곡은 어디인가 황강이 여기로다 / 거문고를 타며 시를 읊는 소리가 옛집을 이었으니 / 지금의 가을 달 정자 강가 어제인 듯하여라</p>
+                <p><strong>&lt;제5수&gt;</strong> 사곡은 어디인가 이름도 혼란스럽네 / 여울 소리와 높이 솟은 산이 계곡을 흔드는데 / 그 아래 깊이 자는 용이 배 젓는 소리에 깨도다</p>
+                <p><strong>&lt;제7수&gt;</strong> 육곡은 어디인가 병산이 비단 같구나 / 흰 구름 밝은 달이 옥경이 여기로다 / 저 위에 태수 신선이 네 누구신 줄 몰라라</p>
+                <p><strong>&lt;제8수&gt;</strong> 칠곡은 어디인가 부용벽이 빼어나네 / 백 척 하늘 사다리에 학 울음 들을 듯 / 석양에 흔들거리는 작은 배로 오락가락하는구나</p>
+                <p><strong>&lt;제9수&gt;</strong> 팔곡은 어디인가 능강동이 맑고 깊어 / 거문고 책 사십 년에 네 어느 손님이러니 / 아마도 집 한 채 두 정자에 못내 즐겨 하노라</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 이것만은 꼭 익히자! 포인트 1 – 다양한 표현 방식 (문항 32, 33 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>표현 방식</th><th>구절</th><th>특징</th></tr></thead>
+                    <tbody>
+                        <tr><td>자문자답</td><td>&lt;제2수&gt;부터 &lt;제9수&gt;까지 각 수의 초장</td><td>시상 전개에 통일성을 부여함.</td></tr>
+                        <tr><td rowspan="3">비유적 표현</td><td>&lt;제5수&gt; 그 아래 깊이 자는 용</td><td>황공탄의 아름다운 경치와 신령한 기운을 부각함.</td></tr>
+                        <tr><td>&lt;제7수&gt; 병산이 금수로다</td><td>병산의 아름다운 풍경을 강조함.</td></tr>
+                        <tr><td>&lt;제7수&gt; 저 위에 태수 신선</td><td>병산의 절벽 위에 있는 사람을 옥경의 신선에 빗댐.</td></tr>
+                        <tr><td>시각적 이미지</td><td>&lt;제3수&gt; 천봉이 합쳐진 데 한없는 연화로다</td><td>많은 봉우리가 겹친 곳에 안개가 낀 모습을 시각적으로 묘사함.</td></tr>
+                        <tr><td>청각적 이미지</td><td>&lt;제3수&gt; 어디서 견폐 계명이 골골이 들리나니</td><td>골짜기마다 들리는 닭과 개의 소리를 통해 생동감을 조성함.</td></tr>
+                        <tr><td>과장적 표현</td><td>&lt;제5수&gt; 탄성과 악위가 계곡을 흔드는데</td><td>황공탄의 형세와 거센 물소리를 부각함.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 포인트 2 – &lt;제5수&gt;에서 &lt;제7수&gt;까지 나타나는 수직적 방향성 (문항 33 관련)</h3>
+                <div class="soljae-box">
+                    「황강구곡가」의 &lt;제2수&gt;부터 &lt;제4수&gt;까지는 ‘갈 데’와 ‘견폐 계명’의 근원인 황강(한수재)을 향해 수평적으로 나아가는 경로를 보여 주었다면, &lt;제5수&gt;부터 &lt;제7수&gt;까지는 아래에서부터 위까지 수직적으로 상승하는 방향성이 일관되게 나타난다. &lt;제5수&gt;의 ‘그 아래’, &lt;제6수(제7수로 표기된 육곡)&gt;의 ‘이 중(中)의’, &lt;제7수&gt;의 ‘저 위에’에서 이러한 방향성을 확인할 수 있는데, 이처럼 시선을 아래에서 가운데로, 다시 그 위로 이동시키는 표지들을 연달아 배치함으로써, &lt;제5수&gt;의 황공탄, &lt;제7수&gt;(육곡)의 권호, &lt;제7수&gt;의 금병의 모습은 개별적으로 존재하는 장소가 아니라 작가가 마주한 하나의 세계로서 총체적으로 인식된다.
+                </div>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 배경지식 더 알아보기 – 수록되지 않은 부분</h3>
+                <p style="font-size: 12.5px; margin-bottom: 8px;"><strong>&lt;제6수&gt;</strong> 오곡(五曲)은 어디매오 이 어인 권(權)소런가 / 이름이 우연한가 화옹이 기다린가 / 이 중(中)의 좌우 촌락의 살아 볼가 하노라<br>
+                (현대어 풀이: 오곡은 어디인가 이 어인 권소(웅덩이 이름)런가 / 이름이 우연한가 조물주가 기다렸나 / 이 중에 좌우 촌락에 살아 볼까 하노라)</p>
+                <p style="font-size: 12.5px; margin-bottom: 10px;"><strong>&lt;제10수&gt;</strong> 구곡(九曲)은 어디매오 일각(一閣)이 그 뉘런가 / 조대(釣臺) 단필(丹筆)이 고금의 풍치로다 / 저기 저 별유동천(別有洞天)이 천만세(千萬世)ㄴ가 하노라<br>
+                (현대어 풀이: 구곡은 어디인가 일각이 그 누구의 것인가 / 낚대 붉은 글씨 고금의 풍치로다 / 저기 저 별천지 천만세인가 하노라)</p>
+                <p style="font-size: 13px;"><strong>주자의 「무이구곡가」</strong><br>「황강구곡가」가 실려 있는 『옥소장계』를 보면 권섭은 주자의 「무이구곡가」를 필두로 이이의 「고산구곡가」, 송시열의 한역 시 등을 나열한 후 「황강구곡가」를 수록함으로써 도학의 계보를 분명히 하려는 의도를 드러내고 있다. 주자의 「무이구곡가」는 서사를 비롯해 &lt;제1곡&gt;부터 &lt;제9곡&gt;까지 총 10편으로 구성된 연작 한시이다. 성리학의 권위자인 주자를 배우고 따르기를 염원했던 조선의 성리학자들은 「무이구곡가」의 공간적 배경인 무이구곡을 정신적 이상향으로 삼아 성리학의 이상을 추구하였다. 권섭의 큰아버지인 권상하가 한수재를 지어 강학과 수양을 하며 학문과 정신적 경지를 높였던 것과, 권섭이 권상하를 존경하며 황강에서 그의 계보를 이어받으려 하는 것은 모두 주자의 행적을 염두에 둔 것으로 볼 수 있다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 지문 구조도 (시상 전개 흐름) <span>실전 3회 32~34</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 서사</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">제1수</span> 황강의 아름다움 예찬, 도학 계승 의식</p>
+                    <div class="sub-point">✔ 이이·송시열의 자취를 떠올림</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 수평적 유람</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">제2~4수</span> 화암, 화암의 산세, 황강(한수재)</p>
+                    <div class="sub-point">✔ 권상하의 자취를 현재와 연결</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 수직적 상승 ①</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">제5수</span> 황공탄의 세찬 물결에 감탄</p>
+                    <div class="sub-point">✔ ‘그 아래’ — 아래에서 시작</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 수직적 상승 ②</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">제7수</span> 병산(금병)을 신선의 거처로 인식</p>
+                    <div class="sub-point">✔ ‘저 위에’ — 위로 시선 이동</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>⑤</span> 은거의 즐거움</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">제8~9수</span> 부용벽의 정경, 능강동에서의 만족감</p>
+                    <div class="sub-point">✔ 유유자적하는 삶에 대한 만족</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 도학 계승 의식(제1수) → 수평적 유람(제2~4수) → 수직적 상승(제5·7수) → 은거의 즐거움(제8~9수)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 32번 -->
+        <div class="question-full">
+            <div class="q-num">32</div>
+            <div class="question-stem"><span class="underline-phrase">㉠~㉤</span>에 대한 설명으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠: 스스로 묻고 답하는 방식을 사용하여 시상을 전개하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 이 작품은 서사인 &lt;제1수&gt;를 제외하고 각 수에서 화자가 ‘~은 어디매오’라고 물은 후, 장소에 대해 답하는 자문자답의 방식으로 시상을 전개하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉡: 시각적 이미지를 활용하여 중첩된 산세의 아름다움을 부각하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉡은 수많은 봉우리가 겹친 곳에 안개가 낀 모습을 시각적으로 묘사한 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉢: 과장적 표현을 사용하여 산과 물이 어우러진 자연의 형세를 나타내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘탄성’은 개울의 물소리, ‘악위’는 높게 솟은 산을 의미한다. ‘탄성’과 ‘악위’가 계곡을 흔든다는 과장적 표현을 사용하여 자연의 형세를 나타내고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ ㉣: 비유적 표현을 사용하여 특정한 인물에 대한 부정적 인식을 드러내고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ㉣은 화자가 병산 위에 있는 사람들이 누구인지 모르겠다고 말하는 것이다. 화자는 백운과 명월을 배경으로 하는 병산을 옥황상제의 거처인 ‘옥경’ 같다고 여기며 병산 위의 사람들을 신선에 빗대고 있는 것이지, 특정한 인물에 대한 부정적 인식을 드러내는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉤: 시간적 배경을 제시하며 자연 속에서 노니는 화자의 모습을 나타내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘석양’이라는 시간적 배경을 제시한 후 배를 타고 노니는 화자의 모습을 나타내고 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 적절하지 않음(정답). [유형] 표현상의 특징 파악</div>
+        </div>
+
+        <!-- 문제 33번 -->
+        <div class="question-full">
+            <div class="q-num">33</div>
+            <div class="question-stem">&lt;보기&gt;를 바탕으로 윗글을 감상한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                권섭은 자신이 존경하는 큰아버지 권상하가 강학하던 황강에 정착하여 수십 년간 살았다. 「황강구곡가」는 권섭이 82세 때 창작한 작품으로, 권상하를 회고하며 황강 일대의 풍경을 배를 타고 둘러보는 상황을 제시한 연시조이다. 이 작품은 서사인 &lt;제1수&gt;를 빼면 세 부분으로 나눌 수 있는데, &lt;제2수&gt;에서 &lt;제4수&gt;까지는 권상하의 자취가 남아 있는 장소를 형상화하면서 과거로부터 이어진 도학의 계통을 계승하려는 의식을 드러내고 있다. 다음으로 &lt;제5수&gt;에서 &lt;제7수&gt;까지는 아래에서 위까지 수직적으로 상승하는 방향성을 바탕으로 황강의 비경을 발견해 나가는 모습과 아름다운 풍경에 대한 감탄을 드러내며 자연과 특별한 관계를 형성하는 일체감을 표현하고 있다. 끝으로 &lt;제8수&gt;에서 &lt;제10수&gt;까지는 황강 일대에서 은거하며 유유자적하는 만족감과 공간의 영속성을 강조하고 있다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① &lt;제1수&gt;의 ‘다시 볼 듯하여라’는 화자가 권상하가 강학하던 장소를 둘러보며 유명한 도학자의 강학 장소와 관련지어 공간의 의미를 부각하는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 화자는 황강구곡(황강 일대의 풍경)을 둘러보며 이이와 송시열의 도학의 계통을 다시 볼 수 있다고 여기고 있다. 이곳이 권상하가 강학하던 장소임을 고려하면 유명한 도학자의 강학 장소와 관련지어 공간의 의미를 부각하는 것으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② &lt;제4수&gt;의 ‘황강이 여기로다’는 작품의 중심 공간을 부각하는 것으로, ‘어제론 듯하여라’는 권상하의 자취를 떠올리며 과거와 현재를 연결하는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘황강이 여기로다’는 화자가 ‘황강’에 초점을 맞춰 작품의 중심 공간을 부각한 표현으로 볼 수 있다. 그리고 ‘어제론 듯하여라’는 울려 퍼지는 거문고 소리가 과거 권상하가 생존했을 때(‘구재’)부터 현재(‘지금’)까지 이어진다는 발상으로, 과거와 현재를 연결하는 표현으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ &lt;제5수&gt;의 ‘그 아래 깊이 자는 용’은 화자가 황강의 비경을 둘러보기 위해 타고 이동하는 배의 모양을 인상적으로 묘사하는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – &lt;제5수&gt;의 종장은 화자가 탄 배가 거센 물결을 가로지르며 나아갈 때 자연의 신령한 기운이 깨어났다는 것을 의미한다. 이는 자연과 인간이 특별한 관계를 형성하는 순간을 그려 내는 동시에, 세찬 물살과 우뚝한 산(바위들)으로 인해 아무도 알지 못했던 자연의 진면목을 화자가 발견했다는 자부심을 드러낸 것이다. 단순히 이동하는 배의 모양을 묘사한 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ &lt;제7수&gt;의 ‘병산이 금수로다’, ‘옥경이 여기로다’는 황강 일대의 아름다운 풍경에 대한 감탄을 나타내는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘병산이 금수로다’는 ‘병산’이 비단을 두른 것 같다는 의미로, 화자가 황강 일대의 아름다운 풍경에 대해 감탄하는 것으로 볼 수 있다. ‘옥경이 여기로다’도 화자가 황강 일대의 아름다운 풍경을 옥황상제가 사는 이상향과 같다고 생각하면서 감탄하는 것으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ &lt;제9수&gt;의 ‘맑고 깊어’는 은거하며 유유자적하는 공간의 특성을, ‘못내 즐겨 하노라’는 화자가 자신이 만든 장소에 대한 만족감을 드러내는 것으로 볼 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘맑고 깊어’는 &lt;제9수&gt;에서 다루는 공간인 ‘능강동’의 공간적 특성을 압축적으로 제시한 것으로 볼 수 있다. ‘못내 즐겨 하노라’는 화자가 자신이 조성한 ‘일실 쌍정(거연재와 만풍각)’에서 즐겁게 지내는 만족감을 드러낸 것으로 볼 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 적절하지 않음(정답). [유형] 외적 준거에 따른 작품 감상</div>
+        </div>
+
+        <!-- 문제 34번 -->
+        <div class="question-full">
+            <div class="q-num">34</div>
+            <div class="question-stem"><span class="underline-phrase">ⓐ~ⓓ</span>에 대한 이해로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ와 ⓑ는 둘 다 특정한 계절적 배경을 알려 주는 소재이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓑ의 ‘추월’은 강가의 정자를 비추는 가을 달로, 가을이라는 계절적 배경을 알려 주는 소재로 볼 수 있으나, ⓐ의 ‘천추’는 오래고 긴 세월을 의미하는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⓐ는 화자가 하늘에서 확인할 수 있는, ⓒ는 화자가 수면에서 확인할 수 있는 소재이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓒ는 ‘흰 구름과 밝은 달’을 가리키는 것으로 화자가 하늘을 바라보며 확인할 수 있는 소재로 볼 수 있으나, ⓐ의 ‘수월’은 자연을 상징하는 것이다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ ⓐ는 화자가 황강 일대 자연의 유구함을 나타낸 것이고, ⓓ는 화자가 황강의 자연 속에서 지낸 기간을 구체화한 것이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ⓐ의 ‘천추’는 오래고 긴 세월을 의미하고, ‘수월’은 물과 달을 아울러 이르는 말로 자연을 상징한다. 즉 ‘천추 수월’은 오랜 세월이 흐르는 동안의 자연을 의미하는 것으로, 황강 일대의 자연이 오래전부터 내려온 것임을 나타낸 것으로 볼 수 있다. ⓓ의 ‘금서’는 거문고와 책을 아울러 이르는 말이고, ‘사십 년’은 화자가 황강의 자연 속에서 지낸 기간을 나타낸 것이다. 그러므로 ‘금서 사십 년’은 화자가 황강의 자연 속에서 거문고, 책과 더불어 지낸 기간을 구체화한 것으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓑ는 화자가 현재 친밀감을 느끼는 대상을 제시한 것이고, ⓒ는 화자가 과거에 친밀감을 느꼈던 대상을 회상한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓑ와 ⓒ 모두 화자가 현재 즐기며 친밀감을 느끼는 자연을 상징하는 소재이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⓒ는 화자가 상상 속에서 떠올린 자연물이고, ⓓ는 화자가 현실 속에서 사물을 접한 햇수이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⓓ는 화자가 현실 생활 속에서 거문고와 책을 접한 햇수로 볼 수 있으나, ⓒ는 상상 속의 자연물이 아니라 화자가 직접 보며 즐기는 자연물이다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절함(정답). [유형] 시어 및 시구의 비교와 대조</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <h3>※ 권섭, 「황강구곡가」</h3>
+        <ul>
+            <li><strong>해제</strong>: 이 작품은 작가가 자신의 큰아버지인 권상하를 회고하며 그가 강학하던 남한강 상류 제천의 황강을 배경으로 지은 구곡가 계열의 연시조이다. 총 10수로 서사의 역할을 하는 &lt;제1수&gt;는 이이와 송시열이 강학하던 장소를 떠올리는 것으로 시작하며, &lt;제2수&gt;부터 &lt;제10수&gt;까지 각 수마다 특정한 장소(소재)의 아름다움을 언급하며 시상을 전개하고 있다. 이 작품이 수록된 『옥소장계』에는 주자의 「무이구곡가」를 필두로 이이의 ‘고산구곡’과 송시열의 ‘화양구곡’에 관한 시문들이 차례로 배치되어 있는데, 이를 통해 작가가 주자, 이이, 송시열, 권상하로 이어지는 도학자의 계통을 정립하려는 창작 의도가 있음을 알 수 있다.</li>
+            <li><strong>주제</strong>: 황강의 경치 예찬과 선인의 도학을 계승하겠다는 의지</li>
+            <li><strong>구성</strong>
+                <ul>
+                    <li>제1수: 황강의 아름다움을 예찬하고 석담 파곡을 떠올림.</li>
+                    <li>제2수: 대암에서 느끼는 선경의 아름다움</li>
+                    <li>제3수: 화암의 산세와 골짜기에 들리는 개와 닭의 소리</li>
+                    <li>제4수: 황강에서 권상하의 자취를 현재와 연결함.</li>
+                    <li>제5수: 황공탄의 세찬 물결에 감탄함.</li>
+                    <li>제7수: 금병(병산)을 신선의 거처로 인식함.</li>
+                    <li>제8수: 부용벽에서 석양 무렵 배를 타고 노니는 정경</li>
+                    <li>제9수: 능강(능강동)의 거처에서 즐기고 싶은 마음</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

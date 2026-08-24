@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 2회 - 28~31 (운영전)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .story-line {
+            margin-bottom: 0.3em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .line-analysis .highlight {
+            color: #c0392b;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin: 1em 0 0.5em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .analysis-box .exam-tip {
+            display: block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 2회 · 문학 28~31</h1>
+        <p>작자 미상 「운영전」 | 문장/대사별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="section-title">[앞부분 줄거리]</div>
+                <div class="story-line">
+                    <span class="line-text">안평 대군의 옛집인 수성궁에서 잠든 유영은 꿈속에서 궁녀 운영과 안평 대군이 총애했던 문인 김 진사를 만나 과거의 이야기를 듣게 된다. 우연히 마주친 후 서로를 깊이 연모하게 된 운영과 김 진사는 편지로 그 마음을 확인하고, 운영과 함께 서궁에 머무는 궁녀 자란은 운영이 김 진사에게 편지를 전할 수 있도록 계책을 세운다.</span>
+                    <div class="line-analysis">← 서사 시작: 유영의 꿈, 운영과 김 진사의 만남, 자란의 계책</div>
+                </div>
+
+                <div class="story-line" style="margin-top: 1.2em;">
+                    <span class="line-text">어느 밤 자란이 제게 몰래 이런 말을 했습니다.</span>
+                    <div class="line-analysis">← <span class="highlight">1인칭 시점(운영)</span> – 운영의 회상으로 서술</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"궁중 사람들이 해마다 추석이면 탕춘대 아래 시냇가에서 빨래하며 술자리를 벌인단다. 올해는 그리로 가지 말고 소격서동에서 놀자고 해서 오가는 사이에 그 무당을 찾아가 보는 게 제일 좋은 계책일 거야."</span>
+                    <div class="line-analysis">← 자란의 계책: 소격서동으로 장소를 바꾸고 무당을 통해 편지 전달</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">저도 그렇게 여기고 추석이 오기만을 고대하니 하루가 3년처럼 느껴졌어요. 비취가 자란의 말을 얼핏 듣고도 겉으로는 모르는 체하며 제게 이런 말을 했습니다.</span>
+                    <div class="line-analysis">← 비취가 운영의 비밀을 눈치챔</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"네가 처음 궁궐에 왔을 때는 얼굴빛이 배꽃과 같아 화장하지 않아도 천연 그대로의 아리따운 모습이 있었지. 그래서 궁중 사람들이 너를 <span class="underline-phrase">㉮꼭국 부인</span>이라고 불렀잖니. 그런데 요사이엔 얼굴이 예전만 못해 점점 처음 모습을 잃어만 가니 무슨 까닭이니?"</span>
+                    <div class="line-analysis">← 비취의 간접적 질책 – 운영의 변화를 눈치채고 있음</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">저는 이렇게 대답했습니다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"타고난 체질이 허약해서 늘상 더운 철만 되면 더위 먹는 병이 있다가 오동잎이 떨어지고 서늘한 바람이 부는 시절이 되면 저절로 조금씩 낫는다."</span>
+                    <div class="line-analysis">← 운영의 변명 – 더위 먹는 병으로 둘러댐</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">비취가 시 한 편을 장난스레 지어 주었습니다. 온통 저를 희롱하는 뜻을 절묘하게 담았더군요. 저는 비취의 재주가 대단하다 여기면서도 저를 조롱한 데에는 부끄러움을 느꼈습니다.</span>
+                    <div class="line-analysis">← 비취가 운영의 마음을 알고 조롱함 – <span class="highlight">운영의 부끄러움</span></div>
+                </div>
+                <div class="story-line" style="margin-top: 0.8em;">
+                    <span class="line-text">몇 달이 지나 청명한 가을이 왔습니다. 밤이면 서늘한 바람이 일고 가녀린 국화가 노란빛을 토해 내며, 풀벌레들은 소리를 가다듬고 하얀 달은 빛을 흘려보냈습니다. 저는 내심 기뻤지만 마음을 드러내지 않도록 조심했습니다. 은섬이 말했습니다.</span>
+                    <div class="line-analysis">← <span class="highlight">감각적 계절 묘사</span> – 운영의 기대감과 긴장감이 교차</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"<span class="underline-phrase">④편지에서 말하던 아름다운 기약</span>이 오늘 밤으로 다가왔구나. 인간 세계의 즐거움이 어찌 천상과 다르겠니?"</span>
+                    <div class="line-analysis">← 은섬이 운영과 김 진사의 만남을 암시</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">저는 서궁 사람들에게 이미 숨길 수 없음을 깨닫고 이실직고한 뒤 이렇게 말했습니다.</span>
+                    <div class="line-analysis">← 운영이 서궁 궁녀들에게 사실을 털어놓음</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"제발 남궁 사람들에게는 알리지 말아 줘."</span>
+                    <div class="line-analysis">← <span class="highlight">비밀 유지</span> – 남궁에 알려질까 두려워함</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">이때 기러기는 남쪽으로 날고 옥 같은 이슬이 방울져, 맑은 시내에서 빨래할 그 시기가 찾아왔습니다. 여러 궁인들과 날짜를 잡았으나 <span class="underline-phrase">①장소를 어디로 할지</span>에 대해서는 의견이 분분했지요. 남궁 사람들은 이렇게 말했습니다.</span>
+                    <div class="line-analysis">← 장소를 두고 남궁과 서궁의 의견 충돌</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"맑은 시내와 깨끗한 돌로 치자면 탕춘대 아래보다 좋은 곳이 없어."</span>
+                    <div class="line-analysis">← 남궁: 탕춘대 아래 주장</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">반면 서궁 사람들은 이렇게 말했습니다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"소격서동의 산수도 성문 밖 경치에 못지않은데, 가까운 곳을 놓아두고 하필 먼 곳에서 찾을 이유가 무어람?"</span>
+                    <div class="line-analysis">← 서궁: 소격서동 주장 (자란의 계책 실현을 위해)</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">남궁 사람들이 <span class="underline-phrase">⑤고집을 부리며</span> 우리 말을 듣지 않아 결정을 내리지 못한 채 헤어지고 말았습니다. 그날 밤에 자란이 말했습니다.</span>
+                    <div class="line-analysis">← 남궁의 고집으로 결정 지연</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"남궁 다섯 사람 중에 소옥이 의견을 주도하고 있다구나. 내가 기묘한 꾀로 그 마음을 돌릴 수 있을 것 같아."</span>
+                    <div class="line-analysis">← 자란이 소옥을 설득할 계책을 세움</div>
+                </div>
+
+                <div class="section-title" style="margin-top: 1.5em;">[중략]</div>
+
+                <div class="story-line" style="margin-top: 0.8em;">
+                    <span class="line-text">금련이 말했습니다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"오늘 밤의 <span class="underline-phrase">⑥의논</span>이 결국 하나로 귀결되지 못하고 있으니 내가 점을 한번 쳐 볼게." 즉시 『주역』을 펴고 점을 쳐서 점패를 얻더니 이렇게 풀이하는 것이었습니다.</span>
+                    <div class="line-analysis">← 금련이 점을 쳐서 상황을 예측함</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"내일 운영이 필시 장부를 만나겠구나. 운영은 용모와 자태가 인간 세계 사람이 아닌 듯해서 주군이 마음을 쏟은 지 이미 오래지. 그렇건만 운영이 죽기로 거절한 이유는 다른 게 아니라 부인의 은혜를 차마 저버릴 수 없었기 때문이야. 주군은 비록 지엄하시나 운영이 몸을 상할까 저어하여 함부로 가까이하지 않으셨어. 이제 이 적막한 곳을 놓아두고 저 변화한 곳으로 가고자 하는데, 할패 소년들이 저 자색을 본다면 그중에 분명 넋을 잃고 미치광이처럼 될 자가 있을 것이요, 비록 가까이 다가오진 못한다 하더라도 손가락질하며 눈길을 보낼 터이니 이 또한 욕을 당하는 것이야. 일전에 주군이 명령을 내리시기를, '궁녀가 궁궐 문을 나서거나 외간 사람이 이름을 알게 되면 그 죄는 모두 사죄(死罪)에 해당한다'고 하셨지. 나도 이번 <span class="underline-phrase">④나들이</span>에 참여하지 않겠어."</span>
+                    <div class="line-analysis">← 금련의 점괘: 운영이 장부(김 진사)를 만날 것을 예언, 위험성 경고하며 나들이 불참 선언</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">자란은 일이 틀렸음을 알고 풀이 죽어 시무룩한 얼굴로 인사하고 물러가려 했습니다. 그때 비경이 올며 비단 허리띠를 잡고 만류하더니 앵무배에 운유주를 따라 권하기에 모두들 함께 마셨습니다. 이옥고 금련이 말했습니다.</span>
+                    <div class="line-analysis">← 비경이 자란을 만류하며 술을 권함</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"오늘 밤 만남은 일이 잘되도록 주선해 보려는 것이었는데 비경이 우는 걸 보니 내 마음이 참으로 답답하구나."</span>
+                    <div class="line-analysis">← 금련의 답답함</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">비경이 말했습니다.</span>
+                    <div class="line-analysis"></div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">"내가 처음 남궁에 있던 때에는 운영과 매우 친하게 지내며 생사와 영욕을 함께하자고 약속했었지. 지금 비록 사는 곳이 다르다고 하나 어찌 차마 잊을 수 있겠어? 일전에 주군께 문안 드릴 때 대청마루 앞에서 운영을 보니 가느다란 허리가 더욱 야위었고 얼굴은 초췌하며 목소리는 실날처럼 힘이 없어 입 밖으로 나오지 못하는 듯했어. 일어나 절하다가 힘이 없어 땅에 엎어지기에 내가 부축해서 일으키고 다정한 말로 위로해 주었더니 이렇게 말하더군. '불행히도 병에 걸려 조만간 죽을 것 같아. 내 미천한 목숨이야 끊어진들 아까울 게 없지. 다만 나머지 아홉 사람의 문장과 재주가 날로 발전해 훗날 아름다운 시편들이 온 세상을 흔들 텐데 나는 그 모습을 볼 수 없을 테니, 이 때문에 슬픔을 금하지 못하겠어.' 그 말이 너무도 서글프고 절절해서 나는 눈물을 흘렀단다. 지금 생각해 보니 그 병은 그리워하는 사람이 있어 시작된 거였어. 아아! 자란은 운영의 벗이라 다 죽어 가는 사람을 태을사로 데려가 천상으로 인도하려 하거늘, 만일 오늘의 계획이 혹 이루어지지 않는다면 운영은 죽어서도 눈을 감지 못할 것이요 그 원망은 남궁으로 돌아올 테지? 『서경』에 이르기를 '선을 행하면 백 가지 상서로움을 내려 주고, 악을 행하면 백 가지 재앙을 내려 준다'고 했는데, 지금 우리가 벌인 의논은 선일까, 악일까? 소옥이 이미 찬성했으니 이제 세 사람의 뜻이 찬성으로 모였는데 어찌 중도에서 그만둘 수 있겠어? 설사 일이 탄로 난다 해도 그 죄는 운영 혼자 입을 것이요, 다른 사람들이야 무슨 상관이 있겠어?"</span>
+                    <div class="line-analysis">← 비경의 긴 회상: 운영의 지친 모습, 운영의 슬픈 말, 『서경』 인용을 통한 계획의 정당성 주장, 소옥·자란·비경 세 사람의 찬성 확인</div>
+                </div>
+                <div style="font-size: 13px; color: #5b6e8c; margin-top: 12px;">
+                    *꼭국 부인: 운영의 별칭.<br>
+                    *태을사: 도교에서, 인간을 천상으로 인도하는 곳.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <!-- 작품 개관 -->
+            <div class="analysis-box">
+                <div class="title">📌 「운영전」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 작자 미상<br>
+                    <strong>▶ 장르:</strong> 고전 소설 (애정 전기 소설)<br>
+                    <strong>▶ 성격:</strong> 비극적, 애정 지향적, 전기적<br>
+                    <strong>▶ 배경:</strong> 조선 세종 시대, 안평 대군의 수성궁<br>
+                    <strong>▶ 중심인물:</strong> <span class="highlight">운영</span> – 궁녀, 김 진사를 연모 / <span class="highlight">김 진사</span> – 안평 대군의 문인<br>
+                    <strong>▶ 핵심 공간:</strong> <span class="highlight">수성궁</span> – 폐쇄적 공간, 신분 질서와 욕망이 충돌하는 장소<br>
+                    <strong>▶ 표현 기법:</strong> 1인칭 회상 서술, 상징(계절·달·기러기), 대화를 통한 갈등 전개<br>
+                    <strong>▶ 서술 방식:</strong> <span class="highlight">1인칭 주인공 시점(운영)</span> – 운영의 내면과 심리 생생히 전달<br>
+                    <strong>▶ 핵심 주제:</strong> 신분 제약을 초월한 남녀 간의 비극적 사랑과, 폐쇄적 공간에서 갈등하는 인간의 욕망<br>
+                    <strong>▶ 수능 포인트:</strong> 1인칭 서술의 효과, 공간(수성궁)의 폐쇄성과 상징성, 대화를 통한 갈등과 인물 관계, <span class="highlight">점(占)</span>의 서사적 기능
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '수성궁'은 외부와 단절된 폐쇄적 공간으로, 신분 질서와 개인의 욕망이 충돌하는 장소입니다. 이 공간의 특성이 비극적 결말의 원인이 됩니다.</div>
+            </div>
+
+            <!-- 인물 관계 -->
+            <div class="analysis-box">
+                <div class="title">📌 인물 관계와 갈등 구도</div>
+                <div class="content">
+                    <strong>▶ 운영</strong>: 궁녀, 김 진사를 연모. 자신의 감정을 숨기고 갈등함.<br>
+                    <strong>▶ 김 진사</strong>: 안평 대군의 문인, 운영과 연모 관계.<br>
+                    <strong>▶ 자란</strong>: 서궁 궁녀, 운영의 편지를 전달하기 위해 계책을 세움.<br>
+                    <strong>▶ 비취</strong>: 운영의 변화를 눈치채고 조롱함.<br>
+                    <strong>▶ 비경</strong>: 남궁 출신, 운영과 친하게 지냈으며, 운영의 고통을 이해하고 계획을 지지함.<br>
+                    <strong>▶ 금련</strong>: 점을 쳐서 상황을 예측하고 나들이 불참을 선언함.<br>
+                    <strong>▶ 소옥</strong>: 남궁 궁녀, 의견을 주도하며 자란의 설득 대상이 됨.<br>
+                    <strong>▶ 갈등 구조</strong>: 서궁(운영·자란·비경) vs 남궁(소옥 등) – 장소 선정 갈등 / 운영의 내면 갈등(사랑 vs 신분·금기)
+                </div>
+            </div>
+
+            <!-- 구절별 분석 -->
+            <div class="analysis-box">
+                <div class="title">📌 1인칭 서술의 효과</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 운영의 시점으로 사건을 서술.<br>
+                    <strong>▶ 기능:</strong> 운영의 <span class="highlight">내면 심리</span>(두려움·기대·부끄러움)를 생생히 전달. 독자가 운영의 감정에 공감하게 함.<br>
+                    <strong>▶ 수능 포인트:</strong> 1인칭 서술을 통해 <span class="highlight">주인공의 내면 갈등</span>이 극대화됨.
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 계절과 달의 상징</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 청명한 가을, 서늘한 바람, 국화, 하얀 달 등 계절·자연물 묘사.<br>
+                    <strong>▶ 기능:</strong> 운영의 <span class="highlight">기대감과 긴장감</span>을 고조. 아름다운 자연과 대비되는 내면의 불안.<br>
+                    <strong>▶ 수능 포인트:</strong> 감각적 계절 묘사가 <span class="highlight">인물의 심리 상태</span>와 연결됨.
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 점(占)의 서사적 기능</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 금련이 『주역』으로 점을 쳐서 운영의 미래를 예언.<br>
+                    <strong>▶ 기능:</strong> <span class="highlight">비극적 결말</span>을 암시하고 긴장감을 조성. 점괘는 운영의 운명을 예고하며, 서사의 방향을 제시.<br>
+                    <strong>▶ 수능 포인트:</strong> 점은 <span class="highlight">복선</span>이자 <span class="highlight">운명론적 장치</span>로 기능.
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>꼭국 부인</strong>: 운영의 별칭 (아름다움을 뜻함)<br>
+                • <strong>태을사</strong>: 도교에서 인간을 천상으로 인도하는 곳<br>
+                • <strong>이실직고</strong>: 사실을 그대로 말함<br>
+                • <strong>사죄</strong>: 사형에 해당하는 죄<br>
+                • <strong>『서경』</strong>: 유교 경전 중 하나
+            </div>
+
+            <!-- 독해 포인트 -->
+            <div class="info-box">
+                <h3>🎯 수능 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>1인칭 주인공 시점</strong>: 운영의 내면(두려움·기대·부끄러움)을 생생히 전달.</li>
+                    <li><strong>수성궁의 폐쇄성</strong>: 외부와 단절된 공간으로, 신분 질서와 개인의 욕망이 충돌하는 <span class="highlight">갈등의 장</span>.</li>
+                    <li><strong>대화를 통한 갈등 전개</strong>: 남궁 vs 서궁의 장소 선정 갈등, 비취의 조롱, 자란과 비경의 논쟁 등.</li>
+                    <li><strong>점(占)의 기능</strong>: 금련의 점괘는 <span class="highlight">비극적 결말을 암시</span>하고, 서사에 운명론적 긴장감을 부여.</li>
+                    <li><strong>계절·자연물 상징</strong>: 가을·달·기러기 등이 운영의 <span class="highlight">심리 상태</span>와 연결됨.</li>
+                    <li><strong>비경의 『서경』 인용</strong>: 선악의 기준을 제시하며 계획의 정당성을 주장하는 <span class="highlight">논리적 설득</span> 장치.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">신분 제약을 초월한 남녀 간의 비극적 사랑과, 폐쇄적 공간(수성궁)에서 개인의 욕망이 신분 질서와 충돌하며 빚어지는 갈등과 희생.</p>
+            </div>
+
+            <!-- 수능 필수 체크 -->
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>1인칭 서술</strong>: 운영의 내면 심리를 생생히 전달 – <span class="highlight">공감과 긴장감</span> 유도</li>
+                    <li><strong>수성궁</strong>: 폐쇄적 공간 – <span class="highlight">신분 질서와 욕망의 충돌</span></li>
+                    <li><strong>장소 갈등</strong>: 탕춘대(남궁) vs 소격서동(서궁) – <span class="highlight">이념·이해관계 대립</span></li>
+                    <li><strong>점(占)</strong>: 금련의 점괘 – <span class="highlight">비극적 결말 암시</span> 및 운명론적 긴장감</li>
+                    <li><strong>비경의 『서경』 인용</strong>: 계획의 정당성 주장 – <span class="highlight">선악의 기준과 논리적 설득</span></li>
+                    <li><strong>대비</strong>: 비취(조롱) vs 비경(연민·지지) – <span class="highlight">인물 간 대립적 태도</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 2회 28~31</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 자란의 계책과 비취의 조롱</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">자란</span> 소격서동으로 장소 변경 제안</p>
+                    <p><span class="flow-badge">비취</span> 운영의 변화를 눈치채고 조롱</p>
+                    <p><span class="flow-badge">운영</span> 부끄러움과 두려움</p>
+                    <div class="sub-point">✔ 비밀 연애의 시작과 내적 갈등</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 장소 선정 갈등</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">남궁</span> 탕춘대 아래 주장</p>
+                    <p><span class="flow-badge">서궁</span> 소격서동 주장</p>
+                    <p><span class="flow-badge">자란</span> 소옥 설득 계획</p>
+                    <div class="sub-point">🔎 서궁 vs 남궁의 대립과 자란의 중재 시도</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 금련의 점과 비경의 회상</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">금련</span> 점을 쳐서 미래 예언, 나들이 불참 선언</p>
+                    <p><span class="flow-badge">비경</span> 운영의 지친 모습 회상, 계획 지지</p>
+                    <p><span class="flow-badge">『서경』</span> 인용으로 정당성 주장</p>
+                    <div class="sub-point">💬 비극적 결말 암시와 계획의 정당성 확보</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 자란의 계책(비밀 연애 시작) → 장소 선정 갈등(남궁 vs 서궁) → 금련의 점과 비경의 회상(비극적 결말 암시와 계획 정당화)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (028~031번, PDF 원문 완전 일치) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 028번 문제 -->
+        <div class="question-full">
+            <div class="q-num">28</div>
+            <div class="question-stem">㉮~㉱에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0133</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                <table style="font-size:13px;">
+                    <thead><tr><th>㉮</th><th>㉯</th><th>㉰</th><th>㉱</th></tr></thead>
+                    <tbody>
+                        <tr><td>자란</td><td>자란을 제외한 서궁 궁녀들</td><td>남궁 궁녀들</td><td>안평 대군</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ④는 ㉮에게만 제한되어 있던 정보에 ㉯가 접근할 수 있도록 운영이 활용한 도구라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ④(편지)는 김 진사와 운영 사이의 비밀 연애를 증명하는 도구로, 자란(㉮)이 아닌 서궁 궁녀들(㉯)에게 정보가 확산되는 계기가 되었다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② ⑤는 ㉮~㉰에게 제한되어 있는 정보가 ㉱에게 확산될 것을 우려한 ㉰의 태도라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⑤(고집)는 남궁 궁녀들(㉰)이 자신들의 의견(탕춘대)을 고집하며 서궁의 제안을 거부하는 태도로, 정보 확산 우려보다는 장소 선정 갈등을 보여 준다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ⑥는 ㉱만이 제한된 정보에 접근하지 못했다는 문제로 인해 마련된 ㉮와 ㉰의 의사소통 과정이라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⑥(의논)은 서궁(㉮)과 남궁(㉰)의 장소 선정 논의로, 안평 대군(㉱)의 정보 접근 문제와 직접적 관련은 없다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ ⑧는 제한된 정보에 접근한 ㉮와 ㉯가 자신들의 뜻에 동조하도록 ㉰를 설득하여 추진하려는 일이라고 할 수 있습니다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: ⑧(계획)은 운영의 비밀을 아는 자란(㉮)과 서궁 궁녀들(㉯)이 남궁 궁녀들(㉰)을 설득하여 소격서동으로 나들이 장소를 정하려는 시도이다. '제발 남궁 사람들에게는 알리지 말아 줘'에서 정보가 제한적임을 알 수 있다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ ⑩는 ㉱가 제한된 정보에 접근하게 될 상황을 예상하여 ㉮가 ㉰를 위해 제안한 방법이라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⑩(나들이)는 금련이 위험을 예견하고 불참을 선언한 것으로, 자란(㉮)이 남궁(㉰)을 위해 제안한 방법이 아니다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 029번 문제 -->
+        <div class="question-full">
+            <div class="q-num">29</div>
+            <div class="question-stem">&lt;보기&gt;의 ⓐ~ⓔ에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0134</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                선생님: 「운영전」은 '운영과 김 진사의 사랑'이라는 제한된 정보가 주변 인물들에게 확산되면서 비극적인 결말을 맞는 작품입니다. ⓐ는 자란, ⓑ는 자란을 제외한 서궁 궁녀들, ⓒ는 남궁 궁녀들, ⓓ는 안평 대군이라고 할 때, 윗글의 ①~⑤에 대해 이해한 내용을 말해 볼까요?
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ①은 ⓐ에게만 제한되어 있던 정보에 ⓑ가 접근할 수 있도록 운영이 활용한 도구라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ①(장소)은 남궁과 서궁의 의견 충돌로, 정보 확산의 도구라기보다 갈등의 대상이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② ②는 ⓐ~ⓒ에게 제한되어 있는 정보가 ⓓ에게 확산될 것을 우려한 ⓒ의 태도라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ②(고집)는 남궁 궁녀들(ⓒ)의 태도로, 정보 확산 우려보다는 장소 선정에 대한 고집이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ③은 ⓓ만이 제한된 정보에 접근하지 못했다는 문제로 인해 마련된 ⓐ와 ⓒ의 의사소통 과정이라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ③(의논)은 서궁과 남궁의 논의로, 안평 대군(ⓓ)의 정보 접근 문제와 직접적 관련은 없다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ ④는 제한된 정보에 접근한 ⓐ와 ⓑ가 자신들의 뜻에 동조하도록 ⓒ를 설득하여 추진하려는 일이라고 할 수 있습니다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: ④(계획)은 운영의 비밀을 아는 자란(ⓐ)과 서궁 궁녀들(ⓑ)이 남궁 궁녀들(ⓒ)을 설득하여 나들이 계획을 추진하려는 것이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ ⑤는 ⓓ가 제한된 정보에 접근하게 될 상황을 예상하여 ⓐ가 ⓒ를 위해 제안한 방법이라고 할 수 있습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ⑤(나들이)는 금련이 위험을 예견하고 불참을 선언한 것으로, 자란(ⓐ)이 남궁(ⓒ)을 위해 제안한 방법이 아니다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 030번 문제 -->
+        <div class="question-full">
+            <div class="q-num">30</div>
+            <div class="question-stem">[A]에 나타난 말하기 방식으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0135</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 비유적인 표현을 활용하여 병색이 완연했던 운영의 모습을 묘사하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '목소리는 실날처럼'이라는 비유로 운영의 병색을 묘사하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 운영의 말을 인용하여 운영을 만났을 때 느꼈던 자신의 심정을 전달하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 비경이 운영의 말(인용)을 통해 자신의 심정(눈물을 흘렀다)을 전달하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 설의적인 표현을 활용하여 운영과 나눈 약속을 지키고자 하는 태도를 강조하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '어찌 차마 잊을 수 있겠어?'라는 설의적 표현으로 약속을 지키려는 태도를 강조하므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 경전의 내용을 인용하여 공정하지 않은 보상과 처벌은 선과 악의 경계를 모호하게 할 수 있음을 경고하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 비경은 『서경』을 인용하여 '선을 행하면 상서로움, 악을 행하면 재앙'이라는 일반적 원칙을 제시하며, 현재 계획이 선인지 악인지 묻는 것이다. 공정하지 않은 보상·처벌이나 선악 경계 모호성에 대한 경고가 아니다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 부정적인 상황을 가정하여 현재의 결정으로 생길 수 있는 일의 책임은 전적으로 운영에게 있을 것임을 강조하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '설사 일이 탄로 난다 해도 그 죄는 운영 혼자 입을 것'이라는 부정적 가정을 통해 책임이 운영에게 있음을 강조하므로 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 031번 문제 -->
+        <div class="question-full">
+            <div class="q-num">31</div>
+            <div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0136</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                「운영전」의 공간인 '수성궁'은 안평 대군과 궁녀들의 수직적 관계와 궁녀들 간의 수평적 관계가 공존하는 공간이다. 외부와 단절된 수성궁은 다양한 갈등이 발생하는 핵심 공간으로, 궁녀들은 협조하고 화합하면서도 경쟁 구도에 놓여 있어서 항상 협력적인 관계를 유지하지는 않는다. 서궁과 남궁으로 분리된 궁녀들 사이의 갈등, 궁녀로서의 금기를 위반하는 상황에서 생겨나는 갈등 등은 모두 수성궁의 폐쇄성에 기인한다. 궁녀들은 개인적 욕망을 억누른 채 엄격한 규율에 복종해야 하는데, 애정을 성취하고자 하는 운영과 김 진사의 욕망은 신분 제도라는 장애물을 넘어서지 못한다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① '추석이 오기만을 고대하'던 운영이 '청명한 가을이' 오자 '내심 기'뻐한 것은, 신분 제도라는 장애물 앞에서도 김 진사와의 애정을 성취하고자 하는 욕망이 드러난 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 운영은 추석(자란의 계책 실행 시기)을 기다리며 가을이 오자 기뻐했고, 이는 신분 제도에도 불구하고 사랑을 성취하려는 욕망으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 자란이 남궁 궁녀들의 '의견을 주도하고 있'는 소옥의 '마음을 돌'리려 하는 것은, 수평적 관계 내에서 발생한 갈등을 해소함으로써 서궁과 남궁의 궁녀들이 협력적인 관계를 유지하길 바라는 마음 때문이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 자란은 소옥을 설득하여 장소 갈등을 해소하고, 협력적 관계를 유지하려 한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 금련이 '궁녀가 궁궐 문을 나서거나 외간 사람이 이름을 알게 되면' '사죄에 해당한다'는 안평 대군의 명령을 언급하는 것은, 서궁에서 주선하려는 일은 궁녀로서의 금기를 위반하는 위험한 상황일 수 있음을 상기하는 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 금련은 나들이가 금기 위반이며 사죄에 해당할 수 있음을 경고하며 불참을 선언한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 운영에게 '그리워하는 사람이 있'음을 눈치챘으면서도 비경이 자란의 뜻을 존중하는 것은, 규율에 복종하기 위해 개인적인 욕망을 억눌러야 하는 운영의 심정을 이해하고 협조하려는 것이라고 할 수 있겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 비경은 운영의 그리움을 알고도 자란의 계획을 지지하며 운영을 돕고자 한다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 자란이 '다시 각자의 뜻을 탐지'하며 설득하자 남궁 궁녀들이 '모두들 일제히 찬성하'는 것은, 수성궁의 폐쇄성이 와해되어야만 수직적 관계 내에서 발생한 갈등이 해소될 수 있다고 믿기 때문이겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 자란의 설득으로 남궁 궁녀들이 찬성한 것은 수평적 관계의 화합을 보여 주지만, 이것이 '수성궁의 폐쇄성이 와해'되어야 갈등이 해소된다는 믿음과 연결되지는 않는다. 오히려 폐쇄적 공간 내에서의 일시적 합의일 뿐, 근본적 갈등 해소는 아니다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #5b6e8c;"></footer>
+</div>
+</body>
+</html>

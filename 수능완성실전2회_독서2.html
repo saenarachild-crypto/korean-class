@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 2회 - 06~11 (회피된 배출)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 2회 · 독서 06~11</h1>
+        <p>회피된 배출 (스코프 · 기준선 배출량 · 과대 계산 · 이중 계산) | 원문 + 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>기업들은 기후 위기에 대응하기 위해 자사의 활동에서 발생하는 온실가스 배출량을 측정하고 관리하는 것이 중요해졌다. 이때 기업은 온실가스 배출량을 국제적으로 통용되는 온실가스 배출량의 구분 체계인 <span class="underline-phrase">스코프</span>에 따라 구분하여 산정한다. 스코프 1은 기업이 소유하거나 통제하는 직접적인 배출원에서 발생하는 배출량으로, 기업이 화석 연료를 연소하거나 공정 과정에서 배출하는 온실가스를 포함한다. 스코프 2는 외부에서 구매한 전기나 열 등의 에너지를 사용함으로써 간접적으로 발생하는 배출량이다. 스코프 3은 기업의 가치 사슬에서 발생하는 그 외의 모든 간접 배출량으로, 원자재를 공급받을 때, 임직원이 출장을 갈 때, 소비자가 제품을 사용할 때 등 기업의 통제 범위 밖에서 발생하는 배출량을 포함한다. 기존의 스코프들은 기업 활동의 부정적 측면인 배출에만 초점을 맞춘 것으로, 환경에 남기는 흔적이라는 의미의 <span class="underline-phrase">탄소발자국</span>으로 비유되어 왔다.</p>
+
+                <p>그런데 기업이 자사의 혁신 기술을 통해 사회 전체의 탄소 감축에 기여한 정도를 보여 줄 수 있다면, 이는 기업의 긍정적 기여를 측정하는 지표로 활용될 수 있다. 이에 등장한 것이 <span class="underline-phrase">회피된 배출</span> 개념이다. 회피된 배출은 친환경 제품을 사용함으로써 기존의 일반적인 제품을 사용할 때와 비교하여 온실가스 배출을 얼마나 저감했는지를 나타내는 지표로서, 기업이 환경을 돕는다는 의미로 <span class="underline-phrase">탄소 손자국</span>에 비유되기도 한다.</p>
+
+                <p>회피된 배출량을 산정할 때는 공급된 친환경 제품의 수량만큼 기존의 일반 제품이 사용되었다고 가정할 때 발생하는 온실가스 배출량인 <span class="underline-phrase">기준선 배출량</span>을 먼저 구한다. 그리고 기준선 배출량 산정에 활용된 수량만큼의 친환경 제품에서 실제로 발생한 온실가스 배출량인 <span class="underline-phrase">실제 배출량</span>을 구한다. 이때 기준선 배출량에서 실제 배출량을 뺀 값이 회피된 배출량이 된다. 기준선 배출량을 산정할 때는 제품의 사용 단계뿐만 아니라 원자재 채취, 생산, 운송, 폐기 등 제품의 전 과정을 고려해야 한다. 또한 기준선으로 삼을 일반 제품과의 비교가 타당하도록 설정했던 가정을 <span class="underline-phrase">기준선 시나리오</span>라고 한다.</p>
+
+                <p>기업들은 자사의 이미지 <span class="underline-phrase">④제고</span>를 위해 회피된 배출량을 자발적으로 공개하고 있을 뿐, 공시의 법적 의무는 부과되지 않는다. 회피된 배출이 온실가스 감축 성과로서 높은 타당성을 인정받기에는, 산정 과정에서 해결해야 할 과제가 남아 있기 때문이다. 첫째는 ‘과대 계산’의 위험이다. 이는 기준선 시나리오를 자의적으로 설정할 때 발생한다. 예컨대 <span class="underline-phrase">⑤신형 냉장고</span>에 의한 탄소 배출의 감축 성과를 홍보하려는 기업이, 비교 대상을 현재 판매되는 ‘시장 평균 제품’이 아니라 에너지 효율이 현저히 낮은 10년 전의 ‘구형 모델’로 설정하는 경우에는 홍보 효과를 위해 타당성이 낮은 기준선 시나리오를 설정한 것이다.</p>
+
+                <p>둘째는 이중 계산의 문제이다. 이는 하나의 감축 성과를 여러 주체가 각자의 것으로 중복 산정하는 상황이다. 가령 고효율 부품을 납품하는 공급자와, 그 부품으로 에너지 효율이 높은 완제품을 만든 생산자가 각각 감축량 전부를 자신의 회피된 배출량으로 <span class="underline-phrase">⑥계상</span>하면, 동일한 감축 성과가 여러 단계에서 중복 합산됨으로써 전체 감축 실적의 객관성이 결여된다. 따라서 이 문제를 피하기 위해서는 공급망 참여자들이 배출 감축에 대한 각자의 기여분을 명확히 구분하여 배분해야 한다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 – 스코프(Scope)의 개념</div>
+                <div class="content">스코프 1(직접 배출), 스코프 2(에너지 간접 배출), 스코프 3(기타 간접 배출)로 구분. 기존 스코프는 부정적 측면(탄소발자국)에 초점.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 – 회피된 배출(탄소 손자국)</div>
+                <div class="content">기업의 긍정적 기여(탄소 감축)를 측정하는 지표. 친환경 제품 사용 시 기존 제품 대비 저감량.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 – 회피된 배출량 산정 방식</div>
+                <div class="content"><strong>기준선 배출량</strong> – 기존 일반 제품 가정 시 배출량. <strong>실제 배출량</strong> – 친환경 제품 실제 배출량. 회피된 배출량 = 기준선 − 실제. <strong>기준선 시나리오</strong> – 비교 가정.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 – 과대 계산의 위험</div>
+                <div class="content">기준선 시나리오를 자의적으로 설정(예: 구형 모델 vs 시장 평균). 타당성 낮은 기준선 설정으로 회피량 과대 계산.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 – 이중 계산의 문제</div>
+                <div class="content">하나의 감축 성과를 여러 주체가 중복 산정. 공급자와 생산자가 각각 전부를 계상하면 객관성 결여. 기여분 명확히 구분·배분 필요.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>스코프(Scope)</strong>: 온실가스 배출량 구분 체계<br>
+                • <strong>탄소발자국</strong>: 기업 활동의 부정적 측면(배출) 비유<br>
+                • <strong>회피된 배출</strong>: 친환경 제품 사용으로 저감된 배출량<br>
+                • <strong>탄소 손자국</strong>: 기업의 긍정적 기여(감축) 비유<br>
+                • <strong>기준선 배출량</strong>: 일반 제품 사용 가정 시 배출량<br>
+                • <strong>기준선 시나리오</strong>: 비교를 위한 가정 설정
+            </div>
+            <div class="info-box">
+                <h3>🎯 핵심 논리 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>스코프 1·2·3</strong>: 직접 배출 → 에너지 간접 → 기타 간접 (통제 범위 확장)</li>
+                    <li><strong>회피된 배출</strong>: 기준선 − 실제 = 저감량 (탄소 손자국)</li>
+                    <li><strong>과대 계산</strong>: 기준선 시나리오 자의적 설정 → 회피량 부풀리기</li>
+                    <li><strong>이중 계산</strong>: 동일 감축 성과를 여러 주체가 중복 산정 → 객관성 상실</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">기업의 온실가스 배출량 평가 체계(스코프)와 긍정적 기여 지표(회피된 배출)의 개념, 산정 방식, 그리고 과대 계산과 이중 계산이라는 해결 과제를 설명.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 스코프 비교</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>내용</th><th>예시</th></tr></thead>
+                    <tbody>
+                        <tr><td>스코프 1</td><td>직접 배출</td><td>화석 연료 연소, 공정 배출</td></tr>
+                        <tr><td>스코프 2</td><td>에너지 간접</td><td>구매한 전기·열 사용</td></tr>
+                        <tr><td>스코프 3</td><td>기타 간접</td><td>원자재, 출장, 제품 사용</td></tr>
+                        <tr><td>회피된 배출</td><td>긍정적 기여</td><td>친환경 제품 저감량 (탄소 손자국)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>스코프 1·2·3</strong>: 직접 → 에너지 간접 → 기타 간접 (통제 범위 확장)</li>
+                    <li><strong>회피된 배출</strong>: 기준선 배출량 − 실제 배출량</li>
+                    <li><strong>과대 계산</strong>: 기준선 시나리오 자의적 설정 → 회피량 부풀리기</li>
+                    <li><strong>이중 계산</strong>: 동일 감축 성과를 여러 주체가 중복 산정</li>
+                    <li><strong>탄소발자국</strong>: 부정적 측면 / <strong>탄소 손자국</strong>: 긍정적 측면</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 2회 06~11</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 스코프 개념</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">스코프 1</span> 직접 배출</p>
+                    <p><span class="flow-badge">스코프 2</span> 에너지 간접</p>
+                    <p><span class="flow-badge">스코프 3</span> 기타 간접</p>
+                    <p><span class="flow-badge">탄소발자국</span> 부정적 측면</p>
+                    <div class="sub-point">✔ 1문단: 배출량 구분 체계 소개</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 회피된 배출</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">탄소 손자국</span> 긍정적 기여</p>
+                    <p><span class="flow-badge">기준선 배출량</span> 일반 제품 가정</p>
+                    <p><span class="flow-badge">실제 배출량</span> 친환경 제품</p>
+                    <p><span class="flow-badge">회피량</span> 기준선 − 실제</p>
+                    <div class="sub-point">🔎 2~3문단: 회피된 배출 개념과 산정 방식</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 과대 계산 &amp; 이중 계산</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">과대 계산</span> 기준선 시나리오 자의적 설정</p>
+                    <p><span class="flow-badge">예시</span> 구형 모델 vs 시장 평균</p>
+                    <p><span class="flow-badge">이중 계산</span> 중복 산정</p>
+                    <p><span class="flow-badge">해결</span> 기여분 명확히 구분·배분</p>
+                    <div class="sub-point">💬 4~5문단: 회피된 배출의 해결 과제</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 스코프 개념(배출 구분) → 회피된 배출(긍정적 기여 지표) → 과대 계산·이중 계산(해결 과제)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (006~011번, PDF 원문 완전 일치) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 006번 문제 -->
+        <div class="question-full">
+            <div class="q-num">06</div>
+            <div class="question-stem">원글의 내용과 일치하지 않는 것은? <span class="ref-num">26052-0111</span></div>
+            <div class="choice-item correct">
+                <div class="choice-text">① 기업은 회피된 배출량에 대해서 공시해야 할 법적 의무는 없다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 4문단에서 "기업들은 회피된 배출량을 자발적으로 공개하고 있을 뿐, 공시의 법적 의무는 부과되지 않는다"고 하였으므로 일치하지 않는다는 설명은 적절하지 않다. → 문제는 "일치하지 않는 것"을 묻고 있으므로, 이 선지는 <strong>내용과 일치하므로 오답</strong>이다. (PDF 정답은 ②번)</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 실제 배출량을 구할 때 설정한 가정을 기준선 시나리오라고 한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 3문단에서 기준선 시나리오는 "기준선으로 삼을 일반 제품과의 비교가 타당하도록 설정했던 가정"으로, <strong>실제 배출량을 구할 때의 가정이 아니다</strong>. 따라서 일치하지 않는 내용이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 탄소 발자국은 기업 활동에서 발생하는 온실가스 배출이라는 부정적 측면을 부각한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 "기존의 스코프들은 기업 활동의 부정적 측면인 배출에만 초점을 맞춘 것으로, 환경에 남기는 흔적이라는 의미의 탄소발자국으로 비유"되었다고 하였으므로 일치한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 스코프란 기업 활동 과정에서 발생하는 온실가스 배출량을 국제적인 기준에 따라 구분한 체계이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 "국제적으로 통용되는 온실가스 배출량의 구분 체계인 스코프"라고 하였으므로 일치한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 회피된 배출은 탄소 감축에 대한 기업의 긍정적인 기여를 측정하는 지표로 사용되며 탄소 손자국에 비유되고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 "회피된 배출은 ... 기업이 환경을 돕는다는 의미로 탄소 손자국에 비유"된다고 하였으므로 일치한다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ②번</div>
+        </div>
+
+        <!-- 007번 문제 -->
+        <div class="question-full">
+            <div class="q-num">07</div>
+            <div class="question-stem">이중 계산의 문제가 발생하는 이유로 가장 적절한 것은? <span class="ref-num">26052-0112</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 공급자나 생산자는 감축 성과에 대한 자신의 기여분을 명확히 알 수가 없기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단에서 이중 계산 문제를 피하기 위해서는 기여분을 명확히 구분해야 한다고 했을 뿐, 기여분을 알 수 없기 때문이라는 설명은 적절하지 않다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 회피된 배출이 시장 참여자들에게는 온실가스 감축 성과로 인정되지 않고 있기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 회피된 배출이 감축 성과로 인정되지 않는다는 내용은 글에 없다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 공급자와 생산자가 산정한 회피된 배출량의 총합이 기준선 배출량을 초과하여 객관성이 결여되기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 총합이 기준선 배출량을 초과한다는 내용은 글에 없다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 감축 성과는 공급자와 생산자의 활동이 결합되어 나타나는 것인데, 그 성과를 각자 자신의 것으로 산정하기 때문이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 5문단에서 "하나의 감축 성과를 여러 주체가 각자의 것으로 중복 산정하는 상황"이며, "공급자와 생산자가 각각 감축량 전부를 자신의 회피된 배출량으로 계상"할 때 발생한다고 하였다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 공급자와 생산자가 감축 성과에 대한 자신의 기여분 전부가 아닌, 일부만을 회피된 배출량으로 각각 산정하기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 5문단에서 공급자와 생산자가 각각 <strong>감축량 전부</strong>를 자신의 회피된 배출량으로 계상할 때 이중 계산이 발생한다고 하였으므로, 일부만 산정한다는 설명은 적절하지 않다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 008번 문제 -->
+        <div class="question-full">
+            <div class="q-num">08</div>
+            <div class="question-stem">다음은 '과대 계산'을 ㉠에 적용할 경우에 나타날 결과를 추론한 것이다. A와 B에 들어갈 말을 바르게 짝지은 것은? <span class="ref-num">26052-0113</span></div>
+            <div style="background: #f8fafc; padding: 12px 16px; border-radius: 16px; margin-bottom: 14px;">
+                비교 대상을 효율이 낮은 '구형 모델'로 설정할 경우, 그 제품이 배출했을 것으로 가정되는 '기준선 배출량'은 시장 평균 제품을 기준으로 했을 때보다 (A) 것이다. 그러므로 이때의 '회피된 배출량'은, 타당한 기준인 '시장 평균 제품'을 이용하여 평가할 때보다 (B) 것이다.
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">① A – 많을, B – 많을</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 구형 모델은 효율이 낮아 배출량이 많으므로 기준선 배출량이 더 많아지고, 회피된 배출량(기준선-실제)도 더 많아진다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② A – 많을, B – 적을</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 기준선이 많아지면 회피량도 많아지므로 B는 적을 수 없다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ A – 같을, B – 많을</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 구형 모델과 시장 평균은 효율이 다르므로 기준선이 같을 수 없다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ A – 적을, B – 많을</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 구형 모델은 효율이 낮아 기준선 배출량이 적을 수 없다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ A – 적을, B – 적을</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 기준선이 적어지려면 비교 대상이 더 효율적이어야 하는데, 구형 모델은 그 반대이다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ①번</div>
+        </div>
+
+        <!-- 009번 문제 -->
+        <div class="question-full">
+            <div class="q-num">09</div>
+            <div class="question-stem">'스코프'를 바탕으로 &lt;보기&gt;의 사례를 이해한 내용으로 가장 적절한 것은? <span class="ref-num">26052-0114</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                K사는 철강을 가공하여 자동차를 생산하는 기업이다. 다음은 K사의 활동 과정에서 발생하는 온실가스 배출 사례들이다.<br>
+                ㉮ 재료인 철강을 직접 확보하기 위해 K사 직원이 다른 회사의 비행기를 타고 출장을 갈 때 발생하는 배출량<br>
+                ㉯ K사 소유의 화물차를 이용하여 가공된 재료를 공장으로 옮길 때 발생하는 배출량<br>
+                ㉰ K사가 전력 회사로부터 전력을 구매하여 공장을 가동할 때, 전력이 생산되는 과정에서 발생하는 배출량<br>
+                ㉱ K사가 소유한 용접 기계를 작동하기 위해 천연가스를 직접 연소시킬 때 발생하는 배출량<br>
+                ㉲ K사가 제조하여 판매한 내연 자동차를 소비자가 도로에서 주행할 때 발생하는 배출량
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ㉮는 K사가 재료를 직접 확보하는 과정에서 배출한 것이므로 '스코프 1'에 해당한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1문단에서 임직원의 출장은 '스코프 3'에 해당한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② ㉯에 해당하는 스코프는, 기업의 통제 범위 밖의 활동에서 발생하는 배출량과 관련이 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – K사 소유 차량 운행은 '스코프 1'(직접 배출)이며, 통제 범위 밖은 '스코프 3'이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ㉰는 ㉯에 비해 배출 상황을 즉각적으로 통제하기가 쉬운 스코프에 해당한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉰는 스코프 2(간접 배출), ㉯는 스코프 1(직접 배출). 직접 배출인 ㉯가 통제하기 더 쉽다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ ㉱에 해당하는 스코프와 ㉲에 해당하는 스코프는, 모두 기업의 활동과 연관된 간접 배출량과 관련이 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉱는 스코프 1(직접 배출), ㉲는 스코프 3(간접 배출)이다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ㉲는 ㉱에 비해 측정과 관리가 더 어려운 스코프에 해당한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: ㉲는 소비자의 제품 사용 과정(스코프 3)으로, 직접 배출인 ㉱(스코프 1)보다 측정·관리가 더 어렵다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+
+        <!-- 010번 문제 -->
+        <div class="question-full">
+            <div class="q-num">10</div>
+            <div class="question-stem">'회피된 배출'과 관련하여 &lt;보기&gt;를 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0115</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                어떤 국가에서는 시장이 하나만 있고, 시장에서는 매년 4대의 에어컨만 팔린다고 가정하자. 일반적인 에어컨만을 생산하던 P사가 있다. 2023년에 P사는 대당 10kg의 CO₂를 배출하는 에어컨 4대를 판매하였다.<br>
+                2024년, 신생 기업인 Q사는 대당 2kg의 CO₂를 배출하는 혁신적인 친환경 에어컨을 출시했다. 소비자들은 P사의 에어컨을 구매하려던 계획을 바꿔 Q사의 친환경 에어컨 3대를 구매했고, P사의 에어컨은 1대만 판매되었다.<br>
+                그 결과 시장 전체의 CO₂ 배출량은, 2023년에는 P사만 CO₂를 배출했고, 2024년에는 P사에 의한 10kg과 Q사에 의한 6kg의 합으로 산출되었다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 2024년 '기준선 배출량'은 2023년 P사의 CO₂ 배출량보다 10kg이 적다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 기준선 배출량은 Q사 제품 3대에 대해 기존 제품(대당 10kg)을 기준으로 하면 30kg. 2023년 P사 배출량(40kg)보다 10kg 적다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 2024년 '실제 배출량'은 같은 해 판매된 Q사 제품 3대에서 발생한 6kg이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 실제 배출량은 친환경 제품에서 실제 발생한 배출량의 총합으로, Q사 제품 3대 × 2kg = 6kg이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ Q사 제품의 판매로 인해서 2024년에 발생한 '회피된 배출량'은 24kg이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 회피된 배출량 = 기준선(30kg) − 실제(6kg) = 24kg이다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ P사는 2023년 대비 2024년의 CO₂ 배출량이 감소했으므로, 이 감소량이 P사의 '스코프 4'에 해당한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: P사의 배출량 감소는 판매량 감소에 따른 것이지, P사의 혁신 기술이나 친환경 제품에 의한 것이 아니므로 '스코프 4'(회피된 배출)로 볼 수 없다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ Q사는 2023년과 달리 2024년에 CO₂를 배출했지만, 사회 전체의 온실가스 감축에 기여한 것으로 평가받을 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: Q사는 기존 제품을 대체하여 시장 전체의 배출량을 줄였으므로 사회 전체의 감축에 기여한 것으로 평가받을 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 011번 문제 -->
+        <div class="question-full">
+            <div class="q-num">11</div>
+            <div class="question-stem">문맥상 <span class="underline-phrase">④~⑥</span>의 의미를 파악한 것으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0116</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ④: 많은 나라에서 '널리 쓰이는'이라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '통용되다'는 '널리 쓰이다'의 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② ⑥: 기업이 탄소 감축에 '도움이 되도록 이바지한'이라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '기여하다'는 '도움이 되도록 이바지하다'의 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ⑧: 온실가스 배출을 얼마나 '줄었는지'라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '저감하다'는 '낮추어 줄이다'의 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ ④: 자사의 이미지 '수준이나 정도를 끌어올리기 위해'라는 의미이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '제고'는 '수준이나 정도를 끌어올림'의 의미로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ⑥: 자신의 회피된 배출량으로 '미리 헤아려 생각하면'이라는 의미이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: '계상하다'는 '계산하여 올리다', '계산하여 셈에 넣다'의 의미이다. '미리 헤아려 생각하면'은 '계획'의 의미로, '계상'과 관련이 없다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #5b6e8c;"></footer>
+</div>
+</body>
+</html>

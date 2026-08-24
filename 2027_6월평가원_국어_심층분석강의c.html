@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 6월 평가원 국어 심층 분석 — 김현석 국어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f1e8;--paper-2:#efe9da;--ink:#23211c;--ink-soft:#4a463c;--line:#d8d0bd;
+  --crimson:#8c2f24;--crimson-soft:#b45a4c;--navy:#1f3a4d;--ochre:#b3852a;--green:#3f6149;
+  --card:#fbf8f1;--shadow:0 1px 0 rgba(0,0,0,.04),0 8px 28px -16px rgba(35,33,28,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans KR',sans-serif;font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(140,47,36,.04) 1px,transparent 1px);background-size:22px 22px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.92);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:10px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-family:'Gowun Batang',serif;font-weight:700;font-size:19px;color:var(--crimson);white-space:nowrap}
+.nav a{color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:500;padding:5px 2px;border-bottom:2px solid transparent;transition:.18s}
+.nav a:hover{color:var(--crimson);border-color:var(--crimson)}
+.nav .spacer{flex:1}
+.btn{font-family:'IBM Plex Sans KR';cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);padding:7px 14px;border-radius:2px;font-size:13.5px;font-weight:600;letter-spacing:.02em;transition:.18s}
+.btn:hover{background:var(--crimson);border-color:var(--crimson)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{color:var(--crimson)}
+
+/* HERO */
+.hero{padding:54px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:14px;letter-spacing:.32em;text-transform:uppercase;color:var(--crimson);font-weight:600;margin-bottom:14px}
+h1{font-family:'Gowun Batang',serif;font-weight:700;font-size:clamp(34px,5.4vw,60px);line-height:1.12;letter-spacing:-.01em}
+h1 .sub{display:block;font-size:clamp(17px,2.2vw,23px);color:var(--ink-soft);font-weight:400;margin-top:14px;font-family:'IBM Plex Sans KR'}
+.hero-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:9px 15px;font-size:14.5px;box-shadow:var(--shadow)}
+.chip b{color:var(--crimson)}
+.overview{margin-top:30px;display:grid;grid-template-columns:1.5fr 1fr;gap:22px}
+@media(max-width:820px){.overview{grid-template-columns:1fr}}
+.summary-card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--crimson);padding:24px 26px;box-shadow:var(--shadow)}
+.summary-card h3{font-family:'Gowun Batang',serif;font-size:21px;margin-bottom:10px}
+.summary-card p{color:var(--ink-soft);font-size:16.5px}
+.summary-card .pull{font-family:'Gowun Batang',serif;font-size:19px;color:var(--crimson);margin:14px 0 4px;line-height:1.4}
+.gauge{background:var(--card);border:1px solid var(--line);padding:22px 24px;box-shadow:var(--shadow)}
+.gauge h4{font-size:14px;letter-spacing:.12em;color:var(--ink-soft);margin-bottom:16px;text-transform:uppercase}
+.grow{margin-bottom:13px}
+.grow .lab{display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:5px}
+.bar{height:9px;background:var(--paper-2);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ochre),var(--crimson));border-radius:9px}
+
+/* FEATURES */
+.features{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.features{grid-template-columns:1fr}}
+.feat{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px 22px;position:relative;overflow:hidden}
+.feat .tag{font-size:12px;letter-spacing:.18em;color:var(--ochre);font-weight:700;text-transform:uppercase}
+.feat h4{font-family:'Gowun Batang',serif;font-size:20px;margin:8px 0 8px;line-height:1.3}
+.feat p{font-size:14.5px;color:var(--ink-soft)}
+.feat::after{content:attr(data-n);position:absolute;right:14px;bottom:2px;font-family:'Gowun Batang',serif;font-size:62px;color:rgba(140,47,36,.07);font-weight:700;line-height:1}
+
+.disc{margin:26px 0 0;background:#fdf6e9;border:1px dashed var(--ochre);padding:14px 18px;font-size:14.5px;color:var(--ink-soft);border-radius:3px}
+.disc b{color:var(--crimson)}
+
+/* SECTIONS */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:30px}
+.sec-num{font-family:'Gowun Batang',serif;font-size:17px;color:var(--crimson);font-weight:700;border:1.5px solid var(--crimson);border-radius:50%;width:40px;height:40px;display:grid;place-items:center;flex:none}
+.sec-head h2{font-family:'Gowun Batang',serif;font-size:clamp(26px,3.6vw,38px);line-height:1.15}
+.sec-head .tag{font-size:14px;color:var(--ink-soft);margin-left:auto;align-self:center}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--ink);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);min-width:640px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:15.5px;vertical-align:top}
+th{background:var(--ink);color:var(--paper);font-weight:600;font-size:14px;letter-spacing:.02em}
+tbody tr:hover{background:#f3eddd}
+td .q{color:var(--ink-soft);font-size:13.5px}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:20px;border:1px solid;white-space:nowrap}
+.b-read{color:var(--navy);border-color:var(--navy);background:#eaf0f3}
+.b-lit{color:var(--green);border-color:var(--green);background:#eaf1ea}
+.b-sel{color:var(--ochre);border-color:var(--ochre);background:#f6efdc}
+.lv{font-weight:600;font-size:13px}.lv1{color:var(--green)}.lv2{color:var(--ochre)}.lv3{color:var(--crimson)}
+
+/* PASSAGE CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:860px){.cards{grid-template-columns:1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:0;overflow:hidden}
+.pcard .top{padding:18px 22px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fbf8f1,#f6f0e2)}
+.pcard .range{font-family:'Gowun Batang',serif;font-size:14px;color:var(--crimson);font-weight:700;letter-spacing:.04em}
+.pcard .ttl{font-family:'Gowun Batang',serif;font-size:22px;margin:6px 0 4px;line-height:1.25}
+.pcard .src{font-size:14px;color:var(--ink-soft)}
+.pcard .body{padding:18px 22px 22px}
+.pcard .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pcard h5{font-size:14px;letter-spacing:.06em;color:var(--crimson);margin:16px 0 6px;text-transform:uppercase;font-weight:600}
+.pcard h5:first-child{margin-top:0}
+.pcard p{font-size:15.5px;color:var(--ink-soft);margin-bottom:8px}
+.pcard ul{margin:0 0 6px;padding-left:20px}
+.pcard li{font-size:15px;color:var(--ink-soft);margin-bottom:6px}
+.pcard .focus{background:#fdf6e9;border-left:3px solid var(--ochre);padding:11px 14px;font-size:14.5px;margin-top:12px}
+.pcard .focus b{color:var(--crimson)}
+.pcard .intent{background:#eef3f5;border-left:3px solid var(--navy);padding:11px 14px;font-size:14.5px;margin-top:12px}
+.pcard .intent b{color:var(--navy)}
+.ebsline{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ochre);background:#f6efdc;border:1px solid var(--ochre);border-radius:20px;padding:2px 10px}
+
+/* TABS */
+.tabs{display:flex;border:1px solid var(--ink);width:fit-content;margin-bottom:24px;box-shadow:var(--shadow)}
+.tab{cursor:pointer;padding:11px 24px;font-weight:600;font-size:15.5px;background:var(--card);border-right:1px solid var(--ink);color:var(--ink-soft);transition:.15s;font-family:'IBM Plex Sans KR'}
+.tab:last-child{border-right:none}
+.tab.on{background:var(--ink);color:var(--paper)}
+.tabpane{display:none}.tabpane.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* EBS */
+.ebs-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:24px}
+@media(max-width:820px){.ebs-grid{grid-template-columns:1fr}}
+.ebs-card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:22px 24px}
+.ebs-card .hd{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ebs-card .hd h4{font-family:'Gowun Batang',serif;font-size:20px}
+.stars{margin-left:auto;color:var(--ochre);font-size:17px;letter-spacing:2px}
+.ebs-card p{font-size:15px;color:var(--ink-soft)}
+.map{display:grid;grid-template-columns:1fr auto 1fr;gap:10px 14px;align-items:center;margin:14px 0 6px;background:var(--paper);border:1px dashed var(--line);padding:14px 16px;border-radius:3px}
+.map .h{font-weight:700;font-size:13px;color:var(--crimson);text-align:center}
+.map .a{font-size:13px;color:var(--ink-soft)}
+.map .arrow{color:var(--ochre);font-weight:700}
+.subhead{font-family:'Gowun Batang',serif;font-size:22px;margin:8px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.subhead small{font-size:14px;color:var(--ink-soft);font-family:'IBM Plex Sans KR';font-weight:400}
+.paths{border:1px solid var(--ink);box-shadow:var(--shadow);margin-bottom:18px;background:var(--card)}
+.path{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:16px 22px;border-bottom:1px solid var(--line)}
+.path:last-child{border-bottom:none}
+.path:hover{background:#f3eddd}
+.path .pn{font-family:'Gowun Batang',serif;font-weight:700;font-size:15px;color:var(--crimson);border:1.5px solid var(--crimson);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;flex:none}
+.path .pt{font-family:'Gowun Batang',serif;font-size:17.5px;margin-bottom:3px}
+.path .pd{font-size:14.5px;color:var(--ink-soft)}
+.path .pex{font-size:13.5px;color:var(--ink-soft);margin-top:5px}
+.path .pex b{color:var(--crimson)}
+.varbox{background:#eef3f5;border:1px solid var(--navy);border-left:4px solid var(--navy);padding:18px 22px;box-shadow:var(--shadow);margin-bottom:26px}
+.varbox h5{font-family:'Gowun Batang',serif;font-size:17px;color:var(--navy);margin-bottom:10px}
+.varbox .vrow{display:flex;gap:12px;align-items:baseline;padding:6px 0;font-size:14.5px;color:var(--ink-soft)}
+.varbox .vrow .vk{font-weight:700;color:var(--navy);white-space:nowrap;min-width:78px}
+.wcard .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.wcard h5{font-size:13px;letter-spacing:.06em;color:var(--crimson);margin:14px 0 5px;text-transform:uppercase;font-weight:600}
+.wcard h5:first-of-type{margin-top:0}
+.wcard p{font-size:14.5px;color:var(--ink-soft);margin-bottom:6px}
+.pathtag{display:inline-block;font-size:12px;font-weight:600;color:var(--navy);background:#eaf0f3;border:1px solid var(--navy);border-radius:20px;padding:2px 9px;margin:2px 4px 2px 0}
+
+/* FORMULA */
+.formula{display:inline-block;font-family:'Gowun Batang',serif;font-size:34px;color:var(--crimson);background:var(--paper);border:1px solid var(--line);padding:10px 26px;border-radius:3px;margin:6px 0 4px}
+.formula .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 4px}
+.formula .frac .n{border-bottom:2px solid var(--crimson);padding:0 6px;font-size:24px}
+.formula .frac .d{padding:2px 6px 0;font-size:24px}
+
+/* HARD */
+.hq{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--crimson);box-shadow:var(--shadow);padding:22px 24px;margin-bottom:18px}
+.hq .hd{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.hq .no{font-family:'Gowun Batang',serif;font-weight:700;font-size:22px;color:var(--crimson)}
+.hq .nm{font-size:16px;font-weight:600}
+.hq .pt{margin-left:auto;font-size:12.5px;background:var(--crimson);color:#fff;padding:3px 9px;border-radius:20px;font-weight:600}
+.hq p{font-size:15.5px;color:var(--ink-soft);margin-bottom:6px}
+.hq .ans{display:inline-block;font-weight:700;color:var(--crimson);margin-top:4px}
+.hq .why{margin-top:8px;font-size:15px}
+.hq .trap{background:#f3eddd;border-radius:3px;padding:9px 13px;font-size:14.5px;margin-top:10px}
+.hq .trap b{color:var(--crimson)}
+
+/* MESSAGE */
+.msg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.msg-grid{grid-template-columns:1fr}}
+.msg{background:var(--ink);color:var(--paper);box-shadow:var(--shadow);padding:24px 24px;position:relative}
+.msg .to{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson-soft);font-weight:700}
+.msg .quote{font-family:'Gowun Batang',serif;font-size:21px;line-height:1.4;margin:14px 0 12px;color:#fff}
+.msg p{font-size:14.5px;color:#c9c3b4}
+.msg::before{content:"“";font-family:'Gowun Batang',serif;position:absolute;top:6px;right:18px;font-size:60px;color:rgba(255,255,255,.08);line-height:1}
+
+/* STRATEGY */
+.strat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.strat{grid-template-columns:1fr}}
+.scard{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:22px 24px}
+.scard .ic{font-family:'Gowun Batang',serif;font-size:30px;color:var(--crimson);line-height:1;margin-bottom:12px;display:block}
+.scard h4{font-family:'Gowun Batang',serif;font-size:19px;margin-bottom:10px}
+.scard ul{padding-left:18px}
+.scard li{font-size:15px;color:var(--ink-soft);margin-bottom:8px}
+.trend{margin-bottom:26px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--navy);padding:20px 24px;box-shadow:var(--shadow)}
+.trend h4{font-family:'Gowun Batang',serif;font-size:20px;margin-bottom:10px;color:var(--navy)}
+.trend ul{padding-left:20px}
+.trend li{font-size:15.5px;color:var(--ink-soft);margin-bottom:8px}
+.trend b{color:var(--ink)}
+
+/* FORECAST */
+.fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:820px){.fc-grid{grid-template-columns:1fr}}
+.fc{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:22px 24px}
+.fc h4{font-family:'Gowun Batang',serif;font-size:20px;margin-bottom:14px}
+.rank{display:flex;align-items:flex-start;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+.rank:last-child{border-bottom:none}
+.rank .n{font-family:'Gowun Batang',serif;font-weight:700;color:var(--crimson);font-size:15px;background:#f6efdc;border:1px solid var(--ochre);border-radius:20px;padding:1px 11px;white-space:nowrap}
+.rank .k{font-size:15.5px;color:var(--ink-soft)}
+.rank .k b{color:var(--ink)}
+.kw{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.kw span{font-size:14.5px;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:6px 13px;color:var(--ink-soft)}
+.conclusion{margin-top:26px;background:linear-gradient(180deg,#fbf8f1,#f3ecdb);border:1px solid var(--ochre);border-left:4px solid var(--crimson);padding:24px 28px;box-shadow:var(--shadow)}
+.conclusion h4{font-family:'Gowun Batang',serif;font-size:22px;color:var(--crimson);margin-bottom:10px}
+.conclusion p{font-size:16px;color:var(--ink-soft)}
+.conclusion .big{font-family:'Gowun Batang',serif;font-size:19px;color:var(--ink);margin-top:12px;line-height:1.5}
+
+/* ANSWERS */
+.ans-toggle{margin-bottom:20px}
+#anstable{display:none}#anstable.show{display:block;animation:fade .3s}
+.akey{font-family:'Gowun Batang',serif;font-weight:700;color:var(--crimson);font-size:17px}
+.atbls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+@media(max-width:900px){.atbls{grid-template-columns:1fr}}
+.atbls h4{font-family:'Gowun Batang',serif;font-size:17px;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.atbls table{min-width:0}.atbls td,.atbls th{padding:7px 10px;font-size:14px}
+
+footer{padding:40px 0 70px;text-align:center;color:var(--ink-soft);font-size:14px}
+footer .line{font-family:'Gowun Batang',serif;font-size:18px;color:var(--ink);margin-bottom:8px}
+
+@media print{
+  .nav{position:static}.btn{display:none}body::before{display:none}
+  .tabpane{display:block!important}.tab{display:none}
+  #anstable{display:block!important}.ans-toggle{display:none}
+  section{break-inside:avoid}.msg{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+  .msg .quote{color:var(--ink)}.msg p{color:var(--ink-soft)}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="brand">김현석 국어 · 심층분석</span>
+    <a href="#map">전체구성</a>
+    <a href="#read">독서</a>
+    <a href="#lit">문학</a>
+    <a href="#sel">선택</a>
+    <a href="#ebs">EBS연계</a>
+    <a href="#hard">고난도</a>
+    <a href="#strategy">전략·메시지</a>
+    <a href="#forecast">수능예측</a>
+    <a href="#answers">정답</a>
+    <span class="spacer"></span>
+    <button class="btn ghost" onclick="window.print()">인쇄 / PDF</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">2027학년도 · 6월 모의평가 · 심층 분석</div>
+    <h1>국어 영역 심층 분석집
+      <span class="sub">EBS 연계 · 출제 의도 · 수능 예측 — 공통 + 화법과 작문 / 언어와 매체</span>
+    </h1>
+
+    <div class="hero-meta">
+      <span class="chip"><b>출제</b> 한국교육과정평가원</span>
+      <span class="chip"><b>공통</b> 독서 4지문 · 문학 4지문 (34문항)</span>
+      <span class="chip"><b>선택</b> 화작 / 언매 각 11문항</span>
+      <span class="chip"><b>전체 난도</b> 중상</span>
+    </div>
+
+    <div class="overview">
+      <div class="summary-card">
+        <h3>들어가며 — 평가원의 메시지</h3>
+        <p>이번 6평은 단순한 독해력 측정이 아니다. 평가원은 분명한 메시지를 보냈다.</p>
+        <div class="pull">"수능 국어는 배경지식 시험이 아니다.<br>정보를 구조화하고 정확하게 처리하는 시험이다."</div>
+        <p>낯선 개념·복잡한 계산·극단적 추론보다 <b>개념의 정확한 이해 · 관점 비교 · 정보 간 관계 파악</b>이 훨씬 중요했다. 특히 EBS 수능특강의 개념과 독서 원리를 적극 활용해 수능의 방향성을 예고했다.</p>
+      </div>
+      <div class="gauge">
+        <h4>영역별 체감 난도</h4>
+        <div class="grow"><div class="lab"><span>독서 — 과학기술</span><span>상</span></div><div class="bar"><i style="width:92%"></i></div></div>
+        <div class="grow"><div class="lab"><span>독서 — 인문·사회</span><span>상</span></div><div class="bar"><i style="width:85%"></i></div></div>
+        <div class="grow"><div class="lab"><span>독서 — 사회(법)</span><span>중상</span></div><div class="bar"><i style="width:74%"></i></div></div>
+        <div class="grow"><div class="lab"><span>문학 전반</span><span>중</span></div><div class="bar"><i style="width:58%"></i></div></div>
+        <div class="grow"><div class="lab"><span>화작 · 언매</span><span>중</span></div><div class="bar"><i style="width:55%"></i></div></div>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feat" data-n="1">
+        <div class="tag">특징 01</div>
+        <h4>킬러 문항의 완전한 부재</h4>
+        <p>"한 문제로 1등급이 갈리는 시험"이 아니라 <b>"실수하면 무너지는 시험"</b>. 변별은 난해함이 아니라 정확성에서 갈렸다.</p>
+      </div>
+      <div class="feat" data-n="2">
+        <div class="tag">특징 02</div>
+        <h4>독서 비중 확대</h4>
+        <p>읽기전략·민권·정보비대칭·표면장력으로 분야는 전혀 다르나, 모든 지문이 <b>동일한 사고 — 구조 파악</b>을 요구했다.</p>
+      </div>
+      <div class="feat" data-n="3">
+        <div class="tag">특징 03</div>
+        <h4>EBS 개념 연계 강화</h4>
+        <p>수능특강 독서 1강 <b>SQ3R</b> → 6평 1~3번 <b>SQ3R</b>. 사실상 직접 연계로, 수능의 학습 방향을 그대로 보여줬다.</p>
+      </div>
+    </div>
+
+    <div class="disc">⚠️ <b>정답 안내</b> — 정답·해설은 지문 분석에 근거한 <b>강의 준비용 풀이</b>입니다. 강의 전 <b>평가원 공식 정답표와 반드시 대조</b>하시고, 선택과목·융합 문항은 교차 확인을 권장합니다.</div>
+  </header>
+
+  <!-- 1. 전체 구성 -->
+  <section id="map">
+    <div class="sec-head"><span class="sec-num">1</span><h2>시험 전체 구성 한눈에</h2><span class="tag">지문 · 제재 · 문항 · 난도</span></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>구분</th><th>문항</th><th>제재 · 지문</th><th>핵심 키워드</th><th>난도</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-read">독서</span></td><td>1~3</td><td>독서론 — 학습을 위한 읽기</td><td class="q">SQ3R · 훑어보기 · 질문하기 · 관점 바꾸기 · 숙고하기</td><td><span class="lv lv1">중</span></td></tr>
+          <tr><td><span class="badge b-read">독서</span></td><td>4~9</td><td>(가)이익의 노비론 · (나)근대 민권론 <em>주제통합</em></td><td class="q">천명/성명/조명 · 유길준 · 박영효 · 김윤식 · 형평운동</td><td><span class="lv lv3">상</span></td></tr>
+          <tr><td><span class="badge b-read">독서</span></td><td>10~13</td><td>사회 — 정보 비대칭과 사상의 자유 시장</td><td class="q">역선택 · 생성형 AI 표시의무 · 자유시장론/비판론 · 실명확인</td><td><span class="lv lv2">중상</span></td></tr>
+          <tr><td><span class="badge b-read">독서</span></td><td>14~17</td><td>과학기술 — 표면장력과 라플라스 식</td><td class="q">구형 · 계면활성제 · 기포 합체 · 오네소르게 수 · 잉크젯</td><td><span class="lv lv3">상</span></td></tr>
+          <tr><td><span class="badge b-lit">문학</span></td><td>18~21</td><td>현대소설 — 하근찬 「나룻배 이야기」</td><td class="q">전쟁·징집 · 국가 폭력 · 뱃사공의 저항 · 묘사+내면</td><td><span class="lv lv2">중상</span></td></tr>
+          <tr><td><span class="badge b-lit">문학</span></td><td>22~27</td><td>현대시·수필 복합 — 「그 나무」·「나무」·「노인과 꽃」</td><td class="q">자연=교감/관찰 · 시간 구조 · 성장·성숙·기다림</td><td><span class="lv lv2">중상</span></td></tr>
+          <tr><td><span class="badge b-lit">문학</span></td><td>28~31</td><td>고전소설 — 「홍길동전」</td><td class="q">속임수담 · 활빈당 · 율도국 정벌 · 이본</td><td><span class="lv lv1">중</span></td></tr>
+          <tr><td><span class="badge b-lit">문학</span></td><td>32~34</td><td>고전시가 — 「만전춘별사」·김수장·이정보</td><td class="q">발상의 형상화 · 주관적 인식 · 사물화 · 빗대기</td><td><span class="lv lv2">중상</span></td></tr>
+          <tr><td><span class="badge b-sel">화작</span></td><td>35~45</td><td>발표(초·등) / 생태 동아리 대화·작문 / 동력분산식 열차</td><td class="q">자료 활용 · 청중 분석 · 대화 점검 · 고쳐쓰기</td><td><span class="lv lv1">중</span></td></tr>
+          <tr><td><span class="badge b-sel">언매</span></td><td>35~45</td><td>음운·교체 / 중세 의문문 / 단어형성 / 라디오·블로그·화상회의</td><td class="q">변이음 · 자동/비자동 교체 · 직접구성요소 · 매체 언어</td><td><span class="lv lv1">중</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 2. 독서 -->
+  <section id="read">
+    <div class="sec-head"><span class="sec-num">2</span><h2>독서 영역 심층 분석</h2><span class="tag">4지문 · 17문항</span></div>
+    <div class="cards">
+
+      <article class="pcard">
+        <div class="top"><div class="range">[1~3]</div><div class="ttl">학습을 위한 읽기 · SQ3R</div><div class="src">독서론 — 읽기 전략 <span class="ebsline">EBS 직접연계 ★★★★★</span></div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-read">독서론</span><span class="lv lv1">난도 중</span></div>
+          <h5>핵심 구조</h5>
+          <p>SQ3R 5단계 → <b>읽기 전 활동(훑어보기·질문하기)</b>의 능동성 효과 → SQ3R에 <b>새 활동(㉠) 추가 전략</b>(관점 바꾸기, 숙고하기)으로 확장.</p>
+          <h5>출제 포인트</h5>
+          <ul>
+            <li>활동 정의 짝짓기('숙고하기=읽은 뒤 배경지식 연결' / '관점 바꾸기=저자 입장 사고')</li>
+            <li>3번 &lt;보기&gt;: A/B·C/D 실험을 본문 효과(적응력·시간단축 / 집중·장기기억)에 대응</li>
+          </ul>
+          <div class="intent"><b>출제 의도</b> — "읽기 전략을 <b>아는가</b>"가 아니라 "<b>실제 상황에 적용할 수 있는가</b>"를 묻는다. EBS 개념 학습의 중요성을 그대로 보여준 문항.</div>
+          <div class="focus"><b>핵심 함정 (3번)</b> — '질문 제공' vs '질문 생성'. 지문은 <b>스스로 만든 질문이면 능동성이 더욱 강화</b>된다고 구분한다. 학생은 "비슷하다"고 보지만 평가원은 "더 강화"로 가른다.</div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="top"><div class="range">[4~9]</div><div class="ttl">노비론(이익) · 민권론 <span style="font-size:14px;color:var(--ink-soft)">(가)(나)</span></div><div class="src">인문·사회 주제통합 <span class="ebsline">간접연계 ★★★★★</span></div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-read">인문·사회</span><span class="lv lv3">난도 상</span></div>
+          <h5>핵심 구조 (흐름도)</h5>
+          <p><b>양반</b>(온정·미안하나 신분질서 불문) → <b>이익</b>(천명·성명=자연 / 조명=능동 변화, 노비도 변화 가능) → <b>개화파</b>(유길준·박영효·김윤식, 민권 필요) → <b>형평운동</b>(1923 진주, 실질적 평등).</p>
+          <h5>출제 포인트</h5>
+          <ul>
+            <li>6번: 이익(㉮)↔유길준(㉯) 상호 비판 — <b>평등(이익) vs 차별적 민관(유길준)</b></li>
+            <li>8번[3점]: &lt;보기&gt; 서양 노예제와 본문 인물 1:1 융합</li>
+          </ul>
+          <div class="intent"><b>출제 의도</b> — 정보량은 많지만 질문은 단순하다. "<b>누가 무엇을 주장했는가</b>". 지문을 읽는 능력이 아니라 <b>정보를 정리하는 능력</b>을 측정한다.</div>
+          <div class="focus"><b>학생 실수</b> — '관점 섞기'. 인물을 <b>'국가 개입 / 인간 평등관 / 법의 역할'</b> 3축 표로 환원하면 6·8번이 한 번에 정리됩니다.</div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="top"><div class="range">[10~13]</div><div class="ttl">정보 비대칭과 사상의 자유 시장</div><div class="src">사회(법·정책) — 올해 최고의 지문 <span class="ebsline">현실 연계 ★★★★★</span></div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-read">사회</span><span class="lv lv2">난도 중상</span></div>
+          <h5>핵심 구조</h5>
+          <p>정보 비대칭·<b>역선택</b> → 정부 개입(생성형 AI <b>생성물 표시 의무</b>) → <b>㉠ 자유시장론</b>(개입 최소) ↔ <b>㉡ 비판론</b>(공동 규제 필요) → 헌재 <b>실명확인 사건</b>(다수=위헌 / 소수=비판론 취지).</p>
+          <h5>출제 포인트</h5>
+          <ul>
+            <li>11번: '허위 광고 의도를 이용자가 쉽게 파악' 류 본문 위배 진술</li>
+            <li>13번[3점]: '갑'·'을' 사례에 ⓐ표시의무·ⓑ실명확인 적용</li>
+          </ul>
+          <div class="intent"><b>출제 의도 · 경향</b> — AI · 데이터 · 알고리즘 · 플랫폼은 <b>평가원이 주목하는 현실 문제</b>. 오답의 원인은 개념 이해가 아니라 <b>관점(자유시장론↔비판론) 구분 실패</b>.</div>
+          <div class="focus"><b>함정</b> — ⓐ 표시의무 대상은 'AI 활용 <b>제품·서비스 사업자</b>'뿐. 정보 제공자·플랫폼은 <b>의무 부과가 아직 주장 단계</b>라 ⓐ로 제재 불가.</div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="top"><div class="range">[14~17]</div><div class="ttl">표면장력 · 라플라스 식 · 오네소르게 수</div><div class="src">과학기술 — 이 시험 최고난도</div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-read">과학기술</span><span class="lv lv3">난도 상</span></div>
+          <h5>핵심 공식 — 라플라스 식</h5>
+          <p style="text-align:center;margin:6px 0">
+            <span class="formula">ΔP = <span class="frac"><span class="n">2γ</span><span class="d">r</span></span></span>
+          </p>
+          <p>내외 압력차 ΔP ∝ 표면장력 γ, <b>반지름 r에 반비례</b>. → 반지름 작음=압력차 큼 / 반지름 큼=압력차 작음.</p>
+          <h5>적용 갈래</h5>
+          <ul>
+            <li>폐포·계면활성제(표면장력↓→확장 쉬움) / 기포 합체(작은→큰 기포로 공기 이동)</li>
+            <li><b>오네소르게 수</b>: 점도↑→Oh↑ / 표면장력·밀도·노즐지름 <b>세 값의 곱</b>↑→Oh↓ / 0.1~1.0 안정</li>
+          </ul>
+          <div class="intent"><b>출제 의도</b> — "공식을 <b>외웠는가</b>"(×)가 아니라 "<b>관계를 이해하는가</b>"(○). 과학 독서에서 수식 활용·변수 관계 이해 능력을 측정한다.</div>
+          <div class="focus"><b>변별</b> — 15번(합쳐진 큰 기포 → 압력차 더 작다), 16번[3점](밀도×2·노즐지름÷2 = 곱 상쇄 → Oh 불변)이 점수를 가른다.</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 3. 문학 -->
+  <section id="lit">
+    <div class="sec-head"><span class="sec-num">3</span><h2>문학 영역 심층 분석</h2><span class="tag">4지문 · 17문항</span></div>
+    <div class="cards">
+
+      <article class="pcard">
+        <div class="top"><div class="range">[18~21]</div><div class="ttl">나룻배 이야기</div><div class="src">하근찬 — 현대소설</div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-lit">현대소설</span><span class="lv lv2">난도 중상</span></div>
+          <h5>주제</h5>
+          <p>전쟁이 남긴 상처 · 민중의 희생 · <b>국가 폭력</b>. 징집으로 청년들이 끌려가고(두칠이 불구, 천달이 전사) 돌아오지 못한다.</p>
+          <h5>삼바우의 심리 3단계</h5>
+          <ul>
+            <li><b>① 분노</b>(또 누굴 데려갈라고) → <b>② 공포</b>(아랫도리가 후들후들) → <b>③ 저항</b>(배로 강 길을 끊음)</li>
+          </ul>
+          <h5>핵심 장면 · 출제 포인트</h5>
+          <p>'강을 건너지 못하게 함' = <b>국가 권력에 대한 저항</b>의 상징. <b>행동 → 심리 → 주제</b>로 읽는 경로.</p>
+          <div class="focus"><b>함정 (21번[3점])</b> — &lt;보기&gt;는 '묘사 진술+내면 목소리'의 인접. ㉢은 <b>반감·분노</b>이지 '호기심'이 아니다. 틀에 감정을 과잉 대입하지 않게 지도.</div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="top"><div class="range">[22~27]</div><div class="ttl">그 나무 · 나무 · 노인과 꽃</div><div class="src">김명인 / 김기택 / 정지용 — 시·수필 복합</div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-lit">현대시·수필</span><span class="lv lv2">난도 중상</span></div>
+          <h5>공통 소재 · 주제</h5>
+          <p>공통 소재 <b>나무</b>, 공통 주제 <b>시간 · 성장 · 성숙 · 기다림</b>.</p>
+          <ul>
+            <li><b>김명인 「그 나무」</b> — 늦게 피는 나무 ↔ <b>방황하는 인간</b>(교감·연민, 긍정적 전망 모색)</li>
+            <li><b>김기택 「나무」</b> — 나이테 ↔ <b>시련의 흔적</b>(관찰→힘의 작용·역동적 시간 지각)</li>
+            <li><b>정지용 「노인과 꽃」</b> — 노인과 꽃 ↔ <b>노년의 성숙</b>(꽃의 아름다움을 진정 보는 경지)</li>
+          </ul>
+          <div class="intent"><b>출제 의도</b> — '정서'보다 <b>시간 구조</b>를 묻는다. 24번[3점]은 &lt;보기&gt;의 '교감(가)/관찰·지각(나)' 구도 적용.</div>
+          <div class="focus"><b>함정</b> — 25번 (다): 꽃 보고 <b>슬퍼할 자는 청춘이지 노년이 아니다</b>. 23번 (나): '독한 향기'는 <b>긍정적 성취</b>(부정적 결과 아님).</div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="top"><div class="range">[28~31]</div><div class="ttl">홍길동전</div><div class="src">고전소설 — 전통적·정석적 출제</div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-lit">고전소설</span><span class="lv lv1">난도 중</span></div>
+          <h5>핵심 내용</h5>
+          <p>해인사 <b>속임수(모래 깨물기→승려 결박, 도주 방향 거짓 정보)</b> → 활빈당 → (중략) → <b>율도국 정벌</b>·격서.</p>
+          <h5>출제 포인트</h5>
+          <ul>
+            <li>인물·사건·시점 중심의 <b>정석적 문제 구성</b></li>
+            <li>30번: '속임수담' 틀(이/의도/방법/결과) 적용 / 31번[3점]: &lt;보기&gt; 이본·욕망의 정당성</li>
+          </ul>
+          <div class="focus"><b>함정</b> — 30번 ④: 거짓 정보는 '<b>도적의 도주 방향</b>'이지 '자신이 산에서 내려가는 것'이 아니다. 31번 ⑤: 문무제신의 '두려움'≠욕망의 정당성 확산.</div>
+        </div>
+      </article>
+
+      <article class="pcard">
+        <div class="top"><div class="range">[32~34]</div><div class="ttl">만전춘별사 · 시조 2수</div><div class="src">작자미상 / 김수장 / 이정보 — 고전시가</div></div>
+        <div class="body">
+          <div class="meta"><span class="badge b-lit">고전시가</span><span class="lv lv2">난도 중상</span></div>
+          <h5>핵심 내용</h5>
+          <ul>
+            <li><b>(가) 만전춘별사</b> — 임과 함께면 얼어죽어도 좋다 / 외로운 잠자리 / 원망</li>
+            <li><b>(나) 김수장</b> — '시름'을 묶어 강물에 띄워 절로 삭게(심적 상태의 사물화)</li>
+            <li><b>(다) 이정보</b> — 나=칡넝쿨, 임=오리나무 → 칭칭 얽혀 떨어지지 않으려는 소망</li>
+          </ul>
+          <div class="intent"><b>출제 의도 (34번[3점])</b> — &lt;보기&gt;: <b>주관적 인식 변화 · 사물화 · 빗대기 + 정보/상황 추가</b>라는 형상화 기법으로 정서를 강화.</div>
+          <div class="focus"><b>함정</b> — 33번 ⑤ '이리저리'는 <b>시름이 떠다니는 모습</b>이지 화자의 우유부단이 아니다. 34번 ④의 '임과 하나 된 현재'는 정황과 어긋남.</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 4. 선택과목 -->
+  <section id="sel">
+    <div class="sec-head"><span class="sec-num">4</span><h2>선택과목 분석</h2><span class="tag">화법과 작문 / 언어와 매체</span></div>
+    <div class="tabs">
+      <div class="tab on" data-t="hw">화법과 작문</div>
+      <div class="tab" data-t="em">언어와 매체</div>
+    </div>
+
+    <div class="tabpane on" id="hw">
+      <div class="cards">
+        <article class="pcard">
+          <div class="top"><div class="range">[35~37]</div><div class="ttl">발표 — 초와 전통 기구</div><div class="src">촛대·불후리 / 조족등 / 청사초롱</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">화법</span><span class="lv lv1">난도 중</span></div>
+            <h5>출제 포인트</h5>
+            <ul><li>35번 말하기 방식 / 36번 시각자료 활용 / 37번 청중 분석↔반영 대응</li><li>관용 표현·준언어적 표현('조''족''등' 또박또박) 활용</li></ul>
+            <div class="focus"><b>강조</b> — 36번은 자료의 '내용'과 '제시 목적'을 분리해 ㉠~㉤ 발화 지점과 1:1로 맞추는 문항.</div>
+          </div>
+        </article>
+        <article class="pcard">
+          <div class="top"><div class="range">[38~42]</div><div class="ttl">생태 동아리 — '의도적 방치'</div><div class="src">대화(가) + 작문(나) + 인터뷰</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">화작 통합</span><span class="lv lv1">난도 중</span></div>
+            <h5>출제 포인트</h5>
+            <ul><li>38번 발화 기능 / 39번 인터뷰 의사소통 / 41번 글쓰기 방식</li><li>40번[3점]: 메모 ⓐ~ⓔ → (나) 반영 / 42번 고쳐쓰기 조언</li></ul>
+            <div class="focus"><b>강조</b> — 40번은 [A]~[D] 발화→메모→초고 문단의 <b>3단 연결</b>. '경제성·실현가능성·필요성·방법'을 문단별로 표시.</div>
+          </div>
+        </article>
+        <article class="pcard">
+          <div class="top"><div class="range">[43~45]</div><div class="ttl">동력분산식 고속열차</div><div class="src">정보 전달 작문</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">작문</span><span class="lv lv1">난도 중</span></div>
+            <h5>출제 포인트</h5>
+            <ul><li>43번 글쓰기 계획 / 44번 [A] 마무리(비유+관심 권유) / 45번[3점] 자료(ㄱ·ㄴ·ㄷ) 활용</li><li>집중식(소음↓·가속↓·선로손상↑) ↔ 분산식(가속↑·선로손상↓·좌석↑)</li></ul>
+            <div class="focus"><b>강조</b> — 45번은 자료가 '어느 문단·어떤 주장'을 뒷받침하는지 매칭. 'ㄷ=축중↔2·3문단' 식으로 연결.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="tabpane" id="em">
+      <div class="cards">
+        <article class="pcard">
+          <div class="top"><div class="range">[35~36]</div><div class="ttl">음운 · 이형태 · 교체</div><div class="src">문법(음운·형태)</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">문법</span><span class="lv lv2">난도 중상</span></div>
+            <h5>핵심 개념</h5>
+            <ul><li><b>변이음</b>(무성[k]↔유성[g], 상보적 분포) / <b>이형태</b>([옷]·[옫]·[온])</li><li>교체: <b>자동적</b>(평파열음화·비음 앞) ↔ <b>비자동적</b>(굽다→구워)</li></ul>
+            <div class="focus"><b>강조</b> — 36번은 유·무성 실현 환경 + 자동/비자동 교체 동시 판별. '먹→멍'(자동) vs '추우'(비자동).</div>
+          </div>
+        </article>
+        <article class="pcard">
+          <div class="top"><div class="range">[37~39]</div><div class="ttl">문장 · 중세 의문문 · 단어 형성</div><div class="src">문법(통사·국어사·형태)</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">문법</span><span class="lv lv2">난도 중상</span></div>
+            <h5>출제 포인트</h5>
+            <ul><li>37번[3점]: 관형사형 시제·필수 부사어·대등 연결어미·진행상 복합</li><li>38번 중세 의문문(설명-'고/-뇨'/판정-'가/-녀'/2인칭'-ㄴ다') / 39번 직접구성요소</li></ul>
+            <div class="focus"><b>강조</b> — 37번은 한 문항에 5개 통사 개념. 판별 기준을 먼저 확정하고 보기에 대입(시간 관리 변수).</div>
+          </div>
+        </article>
+        <article class="pcard">
+          <div class="top"><div class="range">[40~43]</div><div class="ttl">라디오 방송 + 블로그</div><div class="src">매체 — 음성/복합</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">매체</span><span class="lv lv1">난도 중</span></div>
+            <h5>출제 포인트</h5>
+            <ul><li>40번 의사소통 방식 / 41번 청취자 게시판 수용 양상 / 42번 (가)→(나) 매체 전환</li><li>43번 문법 요소(ⓐ'-려'·ⓑ'-지'·ⓒ'-(으)시-'·ⓓ'터'·ⓔ'이')</li></ul>
+            <div class="focus"><b>강조</b> — 42번은 라디오(음성·시간 제약) 한계를 블로그(동영상·하이퍼링크·시각자료)가 보완하는 매체 특성 대조.</div>
+          </div>
+        </article>
+        <article class="pcard">
+          <div class="top"><div class="range">[44~45]</div><div class="ttl">화상 회의 + 영상 제작 계획</div><div class="src">매체 — 실시간 협업</div></div>
+          <div class="body"><div class="meta"><span class="badge b-sel">매체</span><span class="lv lv2">난도 중상</span></div>
+            <h5>출제 포인트</h5>
+            <ul><li>44번 발화(㉠~㉤): 음소거·채팅·화면공유·파일전송 기능과 의도</li><li>45번[3점]: 회의 의견 → 영상 콘티(장면) 반영 적절성</li></ul>
+            <div class="focus"><b>강조</b> — 45번은 '의견↔장면'이 어긋난 짝(훼손 가능성 의견↔역사적 의의 시각화)을 찾는 것이 핵심.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EBS 연계 -->
+  <section id="ebs">
+    <div class="sec-head"><span class="sec-num">5</span><h2>EBS 연계 분석</h2><span class="tag">수능특강 · 출제 사고방식</span></div>
+
+    <div class="ebs-grid">
+      <div class="ebs-card">
+        <div class="hd"><h4>독서 — 직접 연계</h4><span class="stars">★★★★★</span></div>
+        <p>수능특강 독서 1강 <b>SQ3R</b>의 개념을 그대로 활용. 6평 1~3번이 사실상 직접 연계다.</p>
+        <div class="map">
+          <div class="h">수능특강</div><div></div><div class="h">6월 모평 1~3번</div>
+          <div class="a">Survey</div><div class="arrow">→</div><div class="a">훑어보기</div>
+          <div class="a">Question</div><div class="arrow">→</div><div class="a">질문하기</div>
+          <div class="a">Read</div><div class="arrow">→</div><div class="a">읽기</div>
+          <div class="a">Recite</div><div class="arrow">→</div><div class="a">암송하기</div>
+          <div class="a">Review</div><div class="arrow">→</div><div class="a">재검토하기</div>
+        </div>
+      </div>
+      <div class="ebs-card">
+        <div class="hd"><h4>독서 — 간접 연계</h4><span class="stars">★★★★★</span></div>
+        <p>민권 · 정보 비대칭 · 철학 · 과학 지문 모두, 작품·소재의 직접 차용이 아니라 <b>EBS가 강조한 독서 원리(구조 파악·관점 비교)</b>를 공유한다.</p>
+        <p style="margin-top:10px"><b>시사점</b> — 수특을 '지문 암기용'이 아니라 <b>'사고 훈련용'</b>으로 학습해야 한다.</p>
+      </div>
+      <div class="ebs-card">
+        <div class="hd"><h4>문학 — 직접·작품 연계</h4><span class="stars">★★★☆☆</span></div>
+        <p>작품을 그대로 옮긴 '복붙형' 연계는 제한적이다. 다만 <b>고전 대표작(홍길동전·만전춘별사 등)</b>은 직접 수록 또는 부분 연계 가능성이 있고, 현대 작품은 <b>동일 작가·동일 주제로 변주</b>되는 경향이 강하다.</p>
+        <p style="margin-top:8px;font-size:13px"><b>※</b> 정확한 수록 강·페이지는 EBS 교재로 대조 확인 권장.</p>
+      </div>
+      <div class="ebs-card">
+        <div class="hd"><h4>문학 — 원리(읽기 방식) 연계</h4><span class="stars">★★★★★</span></div>
+        <p>매우 높음. 평가원의 방식은 <b>'작품 암기 ×, 읽기 방식 ○'</b>. EBS가 가르친 감상 원리(화자 태도·시간 구조·서술상 특징·형상화 기법)를 <b>&lt;보기&gt;로 제시해 낯선 작품에 그대로 적용</b>시킨다.</p>
+      </div>
+    </div>
+
+    <div class="subhead">EBS는 어떻게 연계되는가 — 연계의 5가지 경로 <small>'직접 수록'만 연계가 아니다</small></div>
+    <div class="paths">
+      <div class="path">
+        <div class="pn">1</div>
+        <div>
+          <div class="pt">작품 직접 수록</div>
+          <div class="pd">동일 작품의 같은 부분(또는 다른 부분)이 EBS에 실린 경우. 가장 강한 연계지만 문학에서는 비중이 크지 않다.</div>
+          <div class="pex">예 — <b>고전 대표작(홍길동전·만전춘별사)</b>처럼 정전(正典)에서 직접 연계 가능.</div>
+        </div>
+      </div>
+      <div class="path">
+        <div class="pn">2</div>
+        <div>
+          <div class="pt">동일 작가 — 다른 작품으로 변주</div>
+          <div class="pd">EBS에 실린 작가의 '다른 작품'을 출제. 작가의 문체·주제 의식을 익혀 두면 낯선 작품도 빠르게 잡힌다.</div>
+          <div class="pex">예 — <b>정지용·하근찬</b>은 EBS·기출 단골 작가. 작가군으로 묶어 학습.</div>
+        </div>
+      </div>
+      <div class="path">
+        <div class="pn">3</div>
+        <div>
+          <div class="pt">동일 갈래·시대</div>
+          <div class="pd">고려가요·시조·고전소설·현대시 등 <b>갈래의 출제 코드</b>를 재사용. 갈래별 빈출 표현·구조를 알면 그대로 적용된다.</div>
+          <div class="pex">예 — 고려가요(만전춘별사)·사설시조(이정보)·영웅군담(홍길동전)의 갈래 코드.</div>
+        </div>
+      </div>
+      <div class="path">
+        <div class="pn">4</div>
+        <div>
+          <div class="pt">동일 주제·제재</div>
+          <div class="pd">자연·시간·성장·공동체·전쟁의 상처 등 <b>주제 키워드</b>를 공유. 같은 주제의 작품끼리 감상 포인트가 반복된다.</div>
+          <div class="pex">예 — '자연·시간·성장'(22~27), '전쟁·민중의 수난'(나룻배 이야기).</div>
+        </div>
+      </div>
+      <div class="path">
+        <div class="pn">5</div>
+        <div>
+          <div class="pt">동일 감상 원리 — &lt;보기&gt; 관점 차용 <span class="pathtag">문학 연계의 핵심</span></div>
+          <div class="pd">EBS가 가르친 '읽는 법'(화자–대상 관계, 시간 구조, 서술상 특징, 형상화 기법)을 <b>&lt;보기&gt;로 제시</b>해 낯선 작품에 적용시키는 방식. 이번 6평 문학 &lt;보기&gt;가 모두 여기에 해당한다.</div>
+          <div class="pex">예 — '교감/관찰 대상'(24번), '묘사+내면 진술'(21번), '발상의 형상화'(34번).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="varbox">
+      <h5>평가원의 변형 3방식 — 같은 자료를 이렇게 비튼다</h5>
+      <div class="vrow"><span class="vk">직접 차용</span><span>개념·작품을 거의 그대로 가져옴. <b>독서 SQ3R(1~3번)</b>이 대표 사례 — 이번 회차 최강 연계.</span></div>
+      <div class="vrow"><span class="vk">변주</span><span>작가·갈래는 유지하되 작품(지문)을 교체. <b>문학의 주된 연계 방식</b>으로, 작가·갈래 학습이 곧 대비.</span></div>
+      <div class="vrow"><span class="vk">원리 차용</span><span>감상 틀만 가져와 <b>낯선 작품에 적용</b>. 문학 &lt;보기&gt;의 핵심이자, 학생이 가장 많이 무너지는 지점.</span></div>
+    </div>
+
+    <div class="subhead">문학 작품별 연계 분석 <small>지문 4개 · 연계 경로와 학습 활용</small></div>
+    <div class="cards">
+
+      <article class="pcard wcard">
+        <div class="top"><div class="range">[18~21]</div><div class="ttl">나룻배 이야기</div><div class="src">하근찬 — 현대소설</div></div>
+        <div class="body">
+          <div class="meta"><span class="pathtag">② 동일 작가</span><span class="pathtag">④ 동일 주제</span><span class="pathtag">⑤ 감상 원리</span></div>
+          <h5>연계 코드</h5>
+          <p>하근찬은 「수난이대」로 익숙한 <b>전후소설 단골 작가</b>. '전쟁·민중의 수난·국가 폭력'이라는 주제군이 반복 출제된다.</p>
+          <h5>감상 원리 (5번 경로)</h5>
+          <p>21번 &lt;보기&gt;의 <b>'인물 묘사 진술 + 내면 목소리의 인접'</b>은 EBS가 강조하는 <b>서술상 특징·서술자 거리</b> 분석 원리 그대로.</p>
+          <h5>학습 활용</h5>
+          <p>전후소설을 <b>'행동 → 심리 → 주제'</b> 경로로 읽고, 서술 방식이 인물 심리를 어떻게 드러내는지 표시하며 정리.</p>
+        </div>
+      </article>
+
+      <article class="pcard wcard">
+        <div class="top"><div class="range">[22~27]</div><div class="ttl">그 나무 · 나무 · 노인과 꽃</div><div class="src">김명인 / 김기택 / 정지용 — 시·수필 복합</div></div>
+        <div class="body">
+          <div class="meta"><span class="pathtag">② 동일 작가</span><span class="pathtag">③ 갈래 복합</span><span class="pathtag">⑤ 감상 원리</span></div>
+          <h5>연계 코드</h5>
+          <p><b>정지용</b>은 현대시·수필의 최빈출 작가. '시+수필 갈래 복합'은 최근 자주 등장하는 출제 코드이며, 주제는 <b>자연·시간·성장·성숙</b>.</p>
+          <h5>감상 원리 (5번 경로)</h5>
+          <p>24번 &lt;보기&gt;의 <b>'자연=교감(가) / 관찰·지각(나)'</b> 틀은 EBS의 <b>'화자–대상 관계 · 화자의 태도 · 시간의 의미'</b> 분석 원리와 동일.</p>
+          <h5>학습 활용</h5>
+          <p>자연·시간 주제의 시를 <b>'화자가 대상을 어떻게 대하는가(교감·연민·관찰·지각)'</b>로 분류하는 훈련.</p>
+        </div>
+      </article>
+
+      <article class="pcard wcard">
+        <div class="top"><div class="range">[28~31]</div><div class="ttl">홍길동전</div><div class="src">작자 미상 — 고전소설</div></div>
+        <div class="body">
+          <div class="meta"><span class="pathtag">① 직접 연계 가능</span><span class="pathtag">③ 동일 갈래</span><span class="pathtag">⑤ 출제 원리</span></div>
+          <h5>연계 코드</h5>
+          <p><b>고전소설 정전·최빈출 작품</b>으로 직접 연계 가능성이 가장 높은 지문. 영웅·군담 서사의 갈래 코드를 공유한다. <span style="font-size:12.5px">(직접 수록 여부는 교재 확인)</span></p>
+          <h5>감상 원리 (5번 경로)</h5>
+          <p>31번 &lt;보기&gt;의 <b>'이본에 따른 욕망 실현 양상'</b>과 30번 <b>'속임수담' 삽화 유형</b>은 고전소설의 <b>이본 비교·서사 단위(삽화)</b> 분석 원리.</p>
+          <h5>학습 활용</h5>
+          <p>영웅소설(유충렬전·조웅전 등)과 묶어 <b>'영웅 일대기 · 이본 · 삽화 유형'</b> 코드로 학습.</p>
+        </div>
+      </article>
+
+      <article class="pcard wcard">
+        <div class="top"><div class="range">[32~34]</div><div class="ttl">만전춘별사 · 시조 2수</div><div class="src">작자미상 / 김수장 / 이정보 — 고전시가</div></div>
+        <div class="body">
+          <div class="meta"><span class="pathtag">① 직접 연계 가능</span><span class="pathtag">③ 동일 갈래</span><span class="pathtag">⑤ 형상화 원리</span></div>
+          <h5>연계 코드</h5>
+          <p><b>만전춘별사는 고려가요 대표작</b>, 사설시조(이정보)·평시조(김수장)는 고전시가 빈출 갈래. 사랑·이별 주제군이 반복된다. <span style="font-size:12.5px">(직접 수록 여부는 교재 확인)</span></p>
+          <h5>감상 원리 (5번 경로)</h5>
+          <p>34번 &lt;보기&gt;의 <b>'참신한 발상의 형상화 — 심적 상태의 사물화 · 유사 속성에 빗대기'</b>는 고전시가 표현법 분석 원리 그대로.</p>
+          <h5>학습 활용</h5>
+          <p>이별·연모 주제의 고려가요·사설시조에서 <b>'추상→구체(사물화)', '관계→빗대기'</b> 표현 코드를 모아 훈련.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="trend" style="border-left-color:var(--ochre)">
+      <h4 style="color:var(--ochre)">한 줄 정리</h4>
+      <ul>
+        <li>이번 6평은 사실상 <b>"EBS 개념을 이해했는가?"</b>를 묻는 시험이었다.</li>
+        <li>핵심은 <b>개념 이해 → 정보 구조화 → 선택지 검증</b>의 3단계 능력.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 고난도 -->
+  <section id="hard">
+    <div class="sec-head"><span class="sec-num">6</span><h2>고난도 [3점] 문항 집중</h2><span class="tag">변별 포인트</span></div>
+
+    <div class="hq">
+      <div class="hd"><span class="no">16</span><span class="nm">오네소르게 수 — 변수 조작 추론</span><span class="pt">3점</span></div>
+      <p>점도↑ → Oh↑(범위 초과 시 노즐서 안 나옴). 표면장력·밀도·노즐지름 <b>세 값의 곱</b>↑ → Oh↓.</p>
+      <p class="ans">분석 정답 ③</p>
+      <div class="why">파란 잉크의 <b>밀도×2, 노즐지름÷2</b> → 곱이 상쇄되어 <b>Oh 수 불변</b>. '곱'의 구조 이해가 관건.</div>
+    </div>
+    <div class="hq">
+      <div class="hd"><span class="no">8</span><span class="nm">서양 노예제 &lt;보기&gt; — 본문 인물 융합</span><span class="pt">3점</span></div>
+      <p>아리스토텔레스·계몽주의·노예해방론·노예 출신 작가를 이익·김윤식·박영효·독립협회와 1:1로 묶는다.</p>
+      <div class="trap"><b>교차 정리법</b> — '능력 차이 인정(아리스토텔레스=김윤식)', '소유주에 따른 매매(노예무역=조선 노비)', '모두에게 자유(노예해방=독립협회)', '능동적 행위의 당위(작가=이익)'로 짝을 고정 후 어긋난 선지 제거.</div>
+    </div>
+    <div class="hq">
+      <div class="hd"><span class="no">13</span><span class="nm">표시의무·실명확인 사례 적용</span><span class="pt">3점</span></div>
+      <p>'갑'(과장·허위 광고) / '을'(실명·익명 반복 게시)에 ⓐ표시의무·ⓑ실명확인을 적용.</p>
+      <div class="trap"><b>핵심 한정</b> — ⓐ 대상은 'AI 활용 제품·서비스 사업자'뿐(정보 제공자·플랫폼은 주장 단계). ⓑ는 다수의견=위헌이 적용 출발점.</div>
+    </div>
+    <div class="hq">
+      <div class="hd"><span class="no">24</span><span class="nm">자연=교감(가)/관찰·지각(나) &lt;보기&gt;</span><span class="pt">3점</span></div>
+      <p>(가) 자연=연민·교감의 대상 / (나) 자연=관찰·지각의 대상(힘의 작용·역동적 시간).</p>
+      <div class="trap"><b>주의</b> — (나)의 '귀기울임' 주체는 <b>나무</b>지 화자의 '기원'이 아니다.</div>
+    </div>
+    <div class="hq">
+      <div class="hd"><span class="no">21</span><span class="nm">나룻배 이야기 — 묘사+내면 진술</span><span class="pt">3점</span></div>
+      <p>&lt;보기&gt;: 인물 <b>묘사 진술 + 내면 목소리</b>의 인접이 감각·복합 상황을 전달.</p>
+      <div class="trap"><b>주의</b> — ㉢은 <b>반감·분노</b>이지 '호기심'이 아니다.</div>
+    </div>
+    <div class="hq">
+      <div class="hd"><span class="no">31</span><span class="nm">홍길동전 — 이본·욕망의 정당성</span><span class="pt">3점</span></div>
+      <p>&lt;보기&gt;: 욕망(율도국 왕)의 이본 차이 + 정당성(공동체 소원·역사 사례·천명).</p>
+      <div class="trap"><b>주의</b> — 문무제신의 '두려움'을 '욕망의 마땅함이 확산'으로 확대 해석하면 안 된다.</div>
+    </div>
+  </section>
+
+  <!-- 7. 전략 + 메시지 -->
+  <section id="strategy">
+    <div class="sec-head"><span class="sec-num">7</span><h2>대비 전략 &amp; 출제자의 메시지</h2><span class="tag">지도용</span></div>
+
+    <div class="trend">
+      <h4>오답의 진짜 원인</h4>
+      <ul>
+        <li>학생들은 "<b>내용은 이해했는데 틀렸다</b>"고 말한다. 그 이유는 이해 부족이 아니라 <b>선택지 검증 실패</b>다.</li>
+        <li>이번 6평은 정확성 시험이다. 변별은 난도가 아니라 <b>'선지를 끝까지 본문에 대조했는가'</b>에서 갈렸다.</li>
+      </ul>
+    </div>
+
+    <div class="strat" style="margin-bottom:30px">
+      <div class="scard"><span class="ic">讀</span><h4>독서 대비</h4>
+        <ul><li>과학기술: <b>관계식을 '분자/분모'로 도식화</b>해 변수 조작에 즉시 대응</li><li>주제통합: 인물·관점을 <b>3~4축 비교표</b>로 환원</li><li>법·정책: <b>'의무 대상의 한정어'</b>에 표시하며 읽기</li></ul></div>
+      <div class="scard"><span class="ic">文</span><h4>문학 대비</h4>
+        <ul><li>&lt;보기&gt;는 <b>'개념어 → 작품 근거' 단방향</b> 적용(역방향 과잉해석 금지)</li><li>복합 지문은 <b>작품별 화자 태도 1줄 요약</b> 후 공통점·차이 진입</li><li>고전: 제시된 <b>틀의 용어 정의</b>를 먼저 본문에 표시</li></ul></div>
+      <div class="scard"><span class="ic">選</span><h4>선택과목 대비</h4>
+        <ul><li>언매 통사 복합: <b>판별 기준 먼저 확정</b> 후 보기 대입</li><li>매체: <b>매체별 특성 대조표</b>로 전환 문항 정리</li><li>화작: '청중↔반영', '메모↔초고' <b>1:1 대응 추적</b></li></ul></div>
+    </div>
+
+    <div class="msg-grid">
+      <div class="msg">
+        <div class="to">To. 학생</div>
+        <div class="quote">수특 문제를 외우지 마라. 왜 이런 선지를 만들었는지 분석하라.</div>
+        <p>정답을 맞히는 연습이 아니라, 출제자가 오답을 어떻게 설계했는지를 추적하는 공부가 필요하다.</p>
+      </div>
+      <div class="msg">
+        <div class="to">To. 학부모</div>
+        <div class="quote">이번 시험은 독서량 시험이 아니라 정확성 시험이다.</div>
+        <p>많이 읽는 것보다, 한 지문·한 선지를 끝까지 정확하게 처리하는 훈련이 점수를 만든다.</p>
+      </div>
+      <div class="msg">
+        <div class="to">To. 교사</div>
+        <div class="quote">"이해했는데 틀렸다"는 곧 선택지 검증 실패다.</div>
+        <p>독해 지도만큼 <b>선지 판별 절차</b>를 명시적으로 가르쳐야 한다. 근거 표시 → 선지 대조 → 한정어 점검.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 수능 예측 -->
+  <section id="forecast">
+    <div class="sec-head"><span class="sec-num">8</span><h2>9월 · 수능 예측</h2><span class="tag">출제 유력 주제</span></div>
+
+    <div class="fc-grid">
+      <div class="fc">
+        <h4>독서 — 출제 유력 분야</h4>
+        <div class="rank"><span class="n">1순위</span><span class="k"><b>AI · 플랫폼 · 데이터</b><div class="kw"><span>생성형 AI</span><span>알고리즘</span><span>플랫폼</span><span>허위정보</span></div></span></div>
+        <div class="rank"><span class="n">2순위</span><span class="k"><b>철학 · 법 · 정치</b><div class="kw"><span>권리·민권</span><span>규제·표현의 자유</span><span>사상사</span></div></span></div>
+        <div class="rank"><span class="n">3순위</span><span class="k"><b>생명과학 · 신기술</b><div class="kw"><span>생명과학</span><span>소재·공학</span><span>관계식 추론</span></div></span></div>
+      </div>
+      <div class="fc">
+        <h4>문학 — 출제 유력 키워드</h4>
+        <div class="kw" style="margin-top:2px">
+          <span>공동체</span><span>기억</span><span>성장</span><span>시간</span>
+        </div>
+        <p style="font-size:15px;color:var(--ink-soft);margin-top:16px">특정 작품의 직접 연계보다 <b>&lt;보기&gt;가 제시하는 감상 틀(주제·시간·관계)</b>을 작품에 적용하는 방식이 유지될 전망. 수특·수완은 <b>읽기 방식 훈련</b>으로 활용.</p>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <h4>최종 결론</h4>
+      <p>2027학년도 6월 모의평가는 <b>"EBS 개념을 이해했는가?"</b>를 묻는 시험이었다. 평가원은 더 이상 암기형 국어를 원하지 않는다. 학생이 ① 개념을 이해하고 ② 정보를 구조화하고 ③ 선택지를 검증할 수 있는지를 확인한다.</p>
+      <div class="big">9월과 수능에서도 가장 중요한 공부는,<br><b>EBS 지문을 읽고 출제자의 사고방식을 분석하는 것</b>이다.</div>
+    </div>
+  </section>
+
+  <!-- 9. 정답 -->
+  <section id="answers">
+    <div class="sec-head"><span class="sec-num">9</span><h2>정답 분석표</h2><span class="tag">공식 정답표 대조 필수</span></div>
+    <div class="disc" style="margin-top:0"><b>주의</b> — 아래는 지문 분석에 근거한 <b>강의 준비용 추정 정답</b>입니다. 강의 전 평가원 공식 정답표와 반드시 대조하세요. (인쇄 시 자동 표시)</div>
+    <div class="ans-toggle"><button class="btn" id="toggleAns">정답표 펼치기 / 접기</button></div>
+
+    <div id="anstable">
+      <div class="atbls">
+        <div>
+          <h4>공통 — 독서</h4>
+          <table><tbody>
+            <tr><td>1</td><td class="akey">①</td><td>5</td><td class="akey">②</td></tr>
+            <tr><td>2</td><td class="akey">⑤</td><td>6</td><td class="akey">①</td></tr>
+            <tr><td>3</td><td class="akey">④</td><td>7</td><td class="akey">②</td></tr>
+            <tr><td>4</td><td class="akey">③</td><td>8</td><td class="akey">②*</td></tr>
+            <tr><td>9</td><td class="akey">④</td><td>10</td><td class="akey">②</td></tr>
+            <tr><td>11</td><td class="akey">③</td><td>12</td><td class="akey">⑤</td></tr>
+            <tr><td>13</td><td class="akey">⑤*</td><td>14</td><td class="akey">⑤</td></tr>
+            <tr><td>15</td><td class="akey">④</td><td>16</td><td class="akey">③</td></tr>
+            <tr><td>17</td><td class="akey">①</td><td></td><td></td></tr>
+          </tbody></table>
+        </div>
+        <div>
+          <h4>공통 — 문학</h4>
+          <table><tbody>
+            <tr><td>18</td><td class="akey">①</td><td>22</td><td class="akey">①*</td></tr>
+            <tr><td>19</td><td class="akey">②</td><td>23</td><td class="akey">③</td></tr>
+            <tr><td>20</td><td class="akey">①</td><td>24</td><td class="akey">⑤*</td></tr>
+            <tr><td>21</td><td class="akey">③</td><td>25</td><td class="akey">④</td></tr>
+            <tr><td>26</td><td class="akey">②</td><td>30</td><td class="akey">④</td></tr>
+            <tr><td>27</td><td class="akey">②</td><td>31</td><td class="akey">⑤</td></tr>
+            <tr><td>28</td><td class="akey">③*</td><td>32</td><td class="akey">⑤</td></tr>
+            <tr><td>29</td><td class="akey">③</td><td>33</td><td class="akey">⑤</td></tr>
+            <tr><td>34</td><td class="akey">④</td><td></td><td></td></tr>
+          </tbody></table>
+        </div>
+        <div>
+          <h4>선택 <span style="font-size:12px;color:var(--crimson)">(대조 권장)</span></h4>
+          <table><tbody>
+            <tr><th>화작</th><th></th><th>언매</th><th></th></tr>
+            <tr><td>35</td><td class="akey">⑤*</td><td>35</td><td class="akey">②</td></tr>
+            <tr><td>36</td><td class="akey">⑤*</td><td>36</td><td class="akey">④*</td></tr>
+            <tr><td>37</td><td class="akey">②*</td><td>37</td><td class="akey">④*</td></tr>
+            <tr><td>38</td><td class="akey">④*</td><td>38</td><td class="akey">③*</td></tr>
+            <tr><td>39</td><td class="akey">③*</td><td>39</td><td class="akey">⑤</td></tr>
+            <tr><td>40</td><td class="akey">③*</td><td>40</td><td class="akey">⑤*</td></tr>
+            <tr><td>41</td><td class="akey">⑤*</td><td>41</td><td class="akey">④*</td></tr>
+            <tr><td>42</td><td class="akey">④*</td><td>42</td><td class="akey">③*</td></tr>
+            <tr><td>43</td><td class="akey">②*</td><td>43</td><td class="akey">③</td></tr>
+            <tr><td>44</td><td class="akey">⑤*</td><td>44</td><td class="akey">⑤*</td></tr>
+            <tr><td>45</td><td class="akey">④*</td><td>45</td><td class="akey">②</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:13.5px;color:var(--ink-soft)"><b>*</b> = 선지가 미세해 <b>공식 정답표 대조를 특히 권장</b>하는 문항.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="line">김현석 국어 — 2027학년도 6월 평가원 국어 심층 분석</div>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+      document.querySelectorAll('.tabpane').forEach(function(x){x.classList.remove('on')});
+      t.classList.add('on');
+      document.getElementById(t.dataset.t).classList.add('on');
+    });
+  });
+  document.getElementById('toggleAns').addEventListener('click',function(){
+    document.getElementById('anstable').classList.toggle('show');
+  });
+</script>
+</body>
+</html>

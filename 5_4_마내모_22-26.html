@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[수업용 완전판] 고전시가·수필 지문 (22~26번) - 풍계육가, 월선헌십육경가, 일회기 | 원문+어구풀이+문제+선지+보기+오답분석</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Arial', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            padding: 35px 45px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 7px solid #c0392b;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: #0f2b3d;
+        }
+        h2 {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            margin: 45px 0 20px 0;
+            font-size: 24px;
+            border-radius: 18px;
+            border-left: 5px solid #e67e22;
+            color: #1e466e;
+        }
+        .text-block {
+            background: #fefaf0;
+            border-left: 6px solid #f1c40f;
+            padding: 22px 28px;
+            margin: 25px 0;
+            border-radius: 28px;
+            font-size: 16px;
+            line-height: 1.9;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .sentence-wrapper {
+            margin-bottom: 18px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 12px;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .poem-line {
+            font-family: 'Malgun Gothic', sans-serif;
+            white-space: pre-wrap;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 6px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .question-full {
+            background: #f8fafc;
+            border-radius: 26px;
+            padding: 18px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 2px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 10px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .info-box {
+            background: #eef2fa;
+            border-radius: 28px;
+            padding: 20px 28px;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 13px;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+        .warning {
+            background: #fee2e2;
+            padding: 12px 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            color: #b91c1c;
+            font-weight: 500;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📖 고전시가·수필 지문 (22~26번)<br>✓ 「풍계육가」 · 「월선헌십육경가」 · 「일회기」 - 원문 + 어구풀이 + 문제 + 선택지 + 오답 분석</h1>
+    <div class="warning">
+        ⚠️ 본 자료는 사용자님이 제공한 <strong>원문 그대로</strong> 지문, 문제, 선택지를 수록하였습니다.<br>
+        각 선택지별 오답 이유를 상세히 추가하였습니다.
+    </div>
+
+    <!-- ============= 지문 (가) ============= -->
+    <h2>■ (가) 「풍계육가」 전문 (문장별 분석 + 어구 풀이)</h2>
+    <div class="text-block">
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">청풍(淸風)을 좋이 여겨 창을 아니 닫았노라 ┐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 맑은 바람을 즐겨 창문을 닫지 않음 → 자연과의 교감.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>청풍(淸風)</strong>: 맑고 깨끗한 바람. / <strong>좋이 여겨</strong>: 좋아하여.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">명월(明月)을 좋이 여겨 잠을 아니 들었노라 │[A]</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 밝은 달을 즐겨 잠들지 않음 → 자연을 벗 삼은 삶.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">옛사람 이 두 가지 두고 어디 혼자 갔노 <제1수> ┘</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 옛사람은 이 두 가지(청풍·명월)를 두고 갔다는 아쉬움.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">내라서 괴로라 하야 작목(爵祿)*을 마음에 둘꼬 ┐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 누가 괴롭다고 해서 벼슬(작록)을 마음에 두겠는가? → 세속적 욕망 부정.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>작목(爵祿)</strong>: 관작과 그에 따른 녹봉. 벼슬.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">조그만 띠집을 시내 위에 이룬바 │[B]</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 시내 위에 작은 띠집을 지음 → 전원 생활의 공간.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">어젯밤 손수 닫은 문을 늦도록 닫겨었소 <제2수> ┘</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 문을 늦도록 닫아 둠 → 세속적 만남 거부.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">산 위에 책을 놓고 산 아래 신을 내어라 ┐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 책은 산 위에, 신발은 산 아래에 → 손님 맞을 준비.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">이과 아이야 날 븐 이 그 뉘고 │[C]</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 아이에게 방문객이 누군지 질문.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">알게라 어제 맞은 부지슾 맛보려 왔나 보다 <제3수> ┘</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 어제 담근 술을 마시러 온 것 같다고 답 → 소박한 교류.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>부지슾</strong>: 직접 담근 술.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">오두미(五斗米)* 위하여 홍진(紅塵)에 나가지 마라 ┐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 적은 봉급을 위해 속세에 나가지 말라 → 세속적 가치 경계.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>오두미(五斗米)</strong>: 다섯 말의 쌀. 관리의 얼마 되지 않는 봉급. / <strong>홍진(紅塵)</strong>: 번거롭고 속된 세상.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">바람 비 어지러워 갈 길이 무서워라 │[D]</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 바람과 비가 어지러워 갈 길이 무서움 → 세상사의 험난함 비유.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">나중에 슬퍼 뉘우친들 기로 다단(岐路多端)*하여라 ┘</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 나중에 후회해도 갈림길이 많아 혼란할 뿐 → 후회해도 소용없음.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>기로 다단(岐路多端)</strong>: 선택해야 할 갈림길이 수없이 이어져 혼란함.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">- 이상, 「풍계육가」 -</span></div>
+        </div>
+    </div>
+
+    <!-- ============= 지문 (나) ============= -->
+    <h2>■ (나) 「월선헌십육경가」 전문 (문장별 분석 + 어구 풀이)</h2>
+    <div class="text-block">
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">오신 서쪽 외로운 마을 이내 토구(兎裘)*로다</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 서쪽 외로운 마을이 나의 은거지임.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>토구(兎裘)</strong>: 관직을 떠나 낙향하여 여생을 보내는 곳.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">돌밭 초가(草家)에서 늙어 가리 기약했더니</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 초가에서 늙어 가리라 기약했지만... (과거의 약속).</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">공명(功名)의 굴레 얽어 있어 십 년을 분주하니</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 공명에 얽매여 10년을 분주하게 보냄.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">천 장 홍진(千丈紅塵)에 검은 머리 다 세었다</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 속세에서 머리가 다 세었음 → 세월의 허무.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">전원(田園)이 거칠거늘 송국(松菊)을 뉘 가꾸며</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 전원이 거칠어졌는데 소나무와 국화를 누가 가꾸겠는가? → 아쉬움.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">구맹(鷗盟)*이 식었거니 학원(鶴怨)*이 없을쏘냐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 갈매기와의 약속이 식었는데 학의 원망이 없겠는가? → 자연과의 약속 저버림에 대한 자책.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>구맹(鷗盟)</strong>: 갈매기와 벗하여 지내겠다는 약속. / <strong>학원(鶴怨)</strong>: 학의 원망.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">여관(旅館) 청등(靑燈)에 장식음(莊舄吟)*을 세 뉘 알리</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 여관 푸른 등불 아래 고향 그리움을 누가 알겠는가? → 고독.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>장식음(莊舄吟)</strong>: 타향에서 벼슬살이하며 고향에 대한 그리움을 읊은 노래.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">벼슬길에 풍랑이 홀연히 일어나니</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 벼슬길에 풍랑(시련)이 갑자기 일어남.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">㉠의심뿐 이내 몸이 죄는 어이 지었던고</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 내 몸이 죄는 무엇을 지었는가? → 억울함과 의문.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">내친 지신 허물 얻어 버려진 몸 되었으니 ┐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 허물을 얻어 버려진 몸이 되었음.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">머뭇거리고 돌아보며 미련 둔들 어이 하리 │[E]</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 미련을 둬도 어찌하겠는가? → 체념과 수용.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">고향 옛집에 필마(匹馬)로 돌아오니 ┘</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 말 한 필로 고향에 돌아옴.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">적막한 향촌(鄕村)에 무너진 초가뿐이로다</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 적막한 시골에 무너진 초가만 남음 → 황폐함.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">㉡어의 이 생애 이리하여 어이 하리</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 이 생애 이렇게 되었으니 어찌 하겠는가? → 탄식과 체념.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">원림(園林) 높은 곳에 소당(小堂)을 지어 내니 ┐</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 높은 곳에 작은 정자를 지음 → 새로운 시작.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">추녀와 창 말끔한데 시야조차 넓을시고 │</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 깔끔한 정자에 시야까지 넓음.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">세 갈래 길에 심은 송죽(松竹) 새 빛을 띠어 있고 │[F]</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 송죽이 새 빛을 띠고 있음 → 생기와 희망.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">십 리 강산이 눈 아래 열렸으니 │</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 넓은 강산이 눈앞에 펼쳐짐.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">달 밝은 밤 난간에 일없이 기대서서 ┘</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 달 밝은 밤 난간에 기대어.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">듣거니 보거니 좋은 흥취 하고많다</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 듣고 보며 좋은 흥취가 많음 → 자연에서의 즐거움.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence poem-line"><span class="underline-phrase">- 신계영, 「월선헌십육경가」 -</span></div>
+        </div>
+    </div>
+
+    <!-- ============= 지문 (다) ============= -->
+    <h2>■ (다) 「일회기」 전문 (문장별 분석 + 어구 풀이)</h2>
+    <div class="text-block">
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">사람이 아끼기로 신체보다 더한 것이 없고, 신체가 바라기로 편안하고 한가로움보다 더한 것이 없다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 인간의 가장 큰 욕망은 편안함과 한가로움.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">맹자가 이르기를 “사지(四肢)가 편안하고 한가로움을 좋아하는 것은 본성이다.”라고 하였으니, 몸가짐을 도모하는 데 공교(工巧)*한 자는 의당 한가하여 수고롭지 않아야 할 것이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 맹자 인용: 편안함과 한가로움은 본성. 공교한 자는 마땅히 한가해야 함.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>공교(工巧)</strong>: 솜씨나 꾀 따위가 재치 있고 교묘함.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">그런데 내가 사람들을 살펴보니, 서툰 자들은 늘 한가롭고 공교한 자들은 늘 수고롭다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 현실의 모순: 서툰 자가 한가롭고 공교한 자가 수고로움.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">혹은 마음을 수고롭게 하고 혹은 힘을 수고롭게 써서, 지쳐 허덕이면서도 그칠 줄 모른다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 수고로움의 양상: 심노(心勞)와 체노(體勞).</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">이는 공교하기 때문에 한가로울 수 없는 것이 아니라, 공교한 자가 되겠다고 취한 몸가짐이 잘못되었기 때문이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 문제의 원인: 공교함 자체가 아니라 처신의 오류.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">무릇 공교하다고 일컬어지는 자는 그 지혜와 재주로 할 수 있는 일이 많으므로 늘 할 일이 많은 곳에 처하기 마련이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 세상 통념: 능력 있는 자(공교한 자)는 바쁘게 살아감.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">장자의 말에 “공교한 자는 수고롭고 서툰 자는 한가롭다.”라고 한 것이 바로 이런 의미이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 장자 인용: 세상 통념과 일치하는 장자의 말.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">사람이 누구인들 한가롭기를 바라지 않겠는가마는, 공교한 자로 처신하는 올바른 방법을 알지 못하면서도 서툰 자로 처신하는 것을 부끄러워하기 때문에 거짓으로 꾸미고 기교를 부리면서 한가로울 수 있기를 구하다가 끝내는 양쪽 모두를 놓치게 되는 것이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 문제의 본질: 타인 평가에 연연하여 진정한 공교함을 놓침.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">세상 사람들이 공교하다 일컫는 자들은 재주로 이름을 얻거나 환직에서 역할을 다하는 것에서 시작하여, 소진, 장의, 관중, 상앙이 경영한 것이나 유방, 항우, 제 환공, 진 문공이 쟁취한 것에 이르면 최고라 하겠다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 세상이 공교하다고 여기는 예시: 역사적 인물들의 성취.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">(중략) 그런데 저들은 모두 심지(心志)를 피곤하게 부리고 근골을 괴롭혔으니, 대단히 공교하다는 자들이 늘을 더욱 수고롭게 한 것이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 공교한 자일수록 더 수고로웠음을 지적.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">아! 이를 두고 진정으로 공교하였다고 할 수 있겠는가.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 반문: 그런 삶이 진정한 공교함인가?</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">이렇게 보면 천하 고금의 공교하다는 자들을 다 모으더라도 요행히 편안할 수 있었던 사람은 아무도 없을 것이다.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 결론: 세상이 공교하다 칭송하는 자들은 결코 편안하지 못함.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">어쩌다 편안하게 처신한 사람이 하나 있으면 대단히 공교한 자라 할 수 있을 터인데, 세상 사람들은 아무도 그를 공교하다고 인정하지 않고 오히려 서툴다고 비웃을 것이니, 이 어찌 지극한 공교함을 안다고 하겠는가.</span></div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 진정한 공교함(편안한 처신)은 세상이 인정하지 않음 → 통념 비판.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">- 서형보, 「일회기」 -</span></div>
+        </div>
+    </div>
+
+    <!-- ================= 문제 22번 ================= -->
+    <h2>■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+    <div class="question-full">
+        <div class="q-num">22번</div>
+        <div class="question-stem">(가)~(다)의 공통점으로 가장 적절한 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① 바람직한 삶이 어떠한 것인지에 대한 생각이 담겨 있다.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – 해설지: "(가)는 '홍진'에서의 삶보다 자연을 즐기는 삶이 바람직함을, (나)는 공명에 얽매인 삶보다 고향의 자연을 즐기는 현재의 삶이 바람직함을, (다)는 '공교한 자'가 되기 위해 수고롭게 사는 것보다 한가롭고 편안하게 사는 것이 바람직함을 드러낸다."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② 자신의 처지를 운명으로 수용하려는 자세가 드러나 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "(가)는 만족감을 드러낼 뿐 운명으로 수용하는 태도 없음. (나)는 미련을 버리며 애썼을 뿐 운명으로 여기는 자세 아님. (다)는 글쓴이의 처지 자체를 제시하지 않음."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ 이상과 현실의 괴리에서 비롯된 회의적 태도가 나타나 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "(다)에는 이상과 현실의 괴리가 있으나, (가)와 (나)에서는 찾을 수 없음."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ 자연물에 대한 인식과 결부하여 주체 의식을 구체화하고 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "(다)에서는 자연물에 대한 인식을 찾아볼 수 없음."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ 개인적 체험에서 얻은 깨달음을 사회적 차원으로 확장하고 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "(나)는 개인적 체험에서 깨달음을 이끌어 내거나 사회적 차원으로 확장하고 있지 않음."</div>
+        </div>
+        <div class="correct-badge">📍 ①번이 가장 적절한 공통점(정답). (해설지 22번 정답 ①)</div>
+    </div>
+
+    <!-- 문제 23번 -->
+    <div class="question-full">
+        <div class="q-num">23번</div>
+        <div class="question-stem">[A]~[F]의 표현상 특징으로 가장 적절한 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① [A]와 달리 [B]는 물음의 방식을 활용하여 화자의 안타까움을 나타낸다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "[A]에도 물음(옛사람~ 어디 혼자 갔노)을 통해 안타까움 표현. [B]는 작목을 마음에 둘꼬라는 물음으로 작목에 욕심 없음을 나타냄."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② [C]와 달리 [D]는 말을 건네는 방식을 활용하여 화자의 망설임을 드러낸다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "[C]와 [D] 모두 말을 건네는 방식을 활용하지만, 양쪽 모두 화자의 망설임을 나타내지 않음."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ [A]는 대구적 표현을 통해 화자가 느끼는 만족감을 강조하고, [C]는 질문과 답을 통해 화자의 생활상을 짐작하게 한다.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – 해설지: "[A] 초장과 중장이 대구를 이루어 만족감 강조. [C] 질문과 스스로 답하는 형식으로 소박한 생활상 짐작 가능."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ [D]는 자연적 현상에 의미를 부여하여, [E]는 사물에 인격을 부여하여 화자의 행동에 내재한 동기를 나타낸다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "[D]의 '바람 비'는 실제 자연 현상이 아니라 세상사의 어지러움을 비유. [E]에는 사물 의인화 없음."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ [E]는 시간과 관련된 표지를 제시하여, [F]는 공간의 형상을 그려 내어 화자의 바람을 드러낸다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "[E]의 '네친 지신'은 시간 표지, [F]는 공간 형상. 그러나 양쪽 모두 화자의 바람을 드러낸다고 할 수 없음."</div>
+        </div>
+        <div class="correct-badge">📍 ③번이 가장 적절한 설명(정답). (해설지 23번 정답 ③)</div>
+    </div>
+
+    <!-- 문제 24번 -->
+    <div class="question-full">
+        <div class="q-num">24번 [3점]</div>
+        <div class="question-stem">&lt;보기&gt;를 참고하여 (가)와 (나)를 감상한 내용으로 적절하지 않은 것은?</div>
+        <div class="info-box">
+            <strong>📖 &lt;보기&gt; 전문 (원문 그대로)</strong><br>
+            유사하거나 대조적인 의미를 지닌 표현은 시가의 구성을 긴밀하게 하고 의미를 부각하는 데 기여한다. 이러한 표현을 바탕으로 (가)는 각 수의 연결성을 강화하여 화자의 지향을 부각하고, (나)는 과거와 현재의 차이를 효과적으로 드러낸다.
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">① (가): &lt;제1수&gt;에서 '청풍'과 '명월'을 좋게 여기는 것과 &lt;제6수&gt;에서 '바람 비' 어지럽다고 한 것은, 대조적 의미의 표현을 통해 화자의 지향을 부각하는 것이겠군.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "자연(청풍·명월)에 대한 긍정과 세상사(바람 비)에 대한 부정의 대조를 통해 자연 지향적 삶을 부각."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② (가): &lt;제2수&gt;에서 '문을 늦도록 닫'은 것과 &lt;제3수&gt;에서 '부지슾 맛보려' 온 이를 맞으려는 것은, 세속적 만남에 대한 거부와 소박한 교류에 대한 바람을 담은 대조적 의미의 진술이겠군.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "세속적 만남 거부(문 닫음) vs 소박한 교류 환영(술 마시러 온 손님 맞음)의 대조적 태도."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ (가): &lt;제2수&gt;에서 '작목을 마음에' 두는 것과 &lt;제6수&gt;에서 '오두미 위하여 홍진에 나가'는 것은, 유사한 의미를 지닌 표현으로서 화자가 경계하려는 삶의 태도를 환기하는군.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "두 표현 모두 세속적 영달(작목, 오두미)을 위한 삶을 의미하며, 화자가 경계하는 태도를 환기."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ (나): '돌밭 초가에서 늙어 가리 기약했더니'와 '천 장 홍진에 검은 머리 다 세었다'는, 유사한 의미를 드러내는 시구로서 과거를 그리워하는 마음을 부각하는군.</div>
+            <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 해설지: "두 시구는 과거(초가에서 늙겠다는 약속)와 현재(홍진에서 머리 세움)의 대조적 의미를 드러내는 것이지, 유사한 의미가 아니다. 또한 '과거를 그리워하는 마음'을 부각한다고 보기 어렵다."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ (나): '여관 청등' 앞에서 떠올렸던 '장식음'과 '소당'의 '달 밝은 밤'에 누리는 '좋은 흥취'가 대조됨으로써, 고향의 자연이 주는 즐거움이 부각되는군.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "타향에서의 외로움(장식음)과 고향에서의 즐거움(좋은 흥취)의 대조를 통해 고향 자연의 즐거움 부각."</div>
+        </div>
+        <div class="wrong-badge">📍 ④번이 적절하지 않은 감상(정답). (해설지 24번 정답 ④)</div>
+    </div>
+
+    <!-- 문제 25번 -->
+    <div class="question-full">
+        <div class="q-num">25번</div>
+        <div class="question-stem">㉠과 ㉡에 대한 설명으로 가장 적절한 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① ㉠과 ㉡은 모두 내면의 불안을 감추려는 태도를 드러낸다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "모두 자신의 상황에 대한 탄식을 표출하고 있으므로 불안을 감추려는 태도와 무관."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② ㉠과 ㉡은 모두 억울함을 하소연하는 태도를 담고 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "㉠은 억울함의 여지가 있으나, ㉡은 억울함을 하소연하는 것과 무관."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ ㉠은 타인의 힘으로 문제를 해결한 데 대한 반응이고, ㉡은 자신의 힘으로 해결할 수 없는 문제에 대한 반응이다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "㉠은 해결된 상황이 아니므로 타인의 힘으로 해결한 반응이라 할 수 없음. ㉡은 문제가 '소당' 건립으로 해결되었으므로 자신의 힘으로 해결할 수 없는 문제에 대한 반응이라 할 수 없음."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ ㉠은 예상했던 상황에서 비롯된 감정을 담고 있고, ㉡은 예상치 못한 상황에서 비롯된 감정을 담고 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – 해설지: "㉠은 '벼슬길에 풍랑이 홀연히 일어나니'에서 예상치 못한 상황. ㉡은 전원 황폐화를 예상했을 가능성이 있으므로 예상치 못한 상황이라 하기 어려움."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ ㉠은 자신의 상황을 돌아보는 모습으로 이어지고, ㉡은 당면한 상황에 대처하는 모습으로 이어진다.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – 해설지: "㉠ 이후 '허물 얻어 버려진 몸'을 돌아보며 미련을 버림. ㉡ 이후 '소당'을 새로 지어 당면한 상황에 대처함."</div>
+        </div>
+        <div class="correct-badge">📍 ⑤번이 가장 적절한 설명(정답). (해설지 25번 정답 ⑤)</div>
+    </div>
+
+    <!-- 문제 26번 -->
+    <div class="question-full">
+        <div class="q-num">26번</div>
+        <div class="question-stem">다음에 제시된 선생님의 안내에 따라 (다)를 이해한 내용으로 적절하지 않은 것은?</div>
+        <div class="info-box">
+            <strong>📖 선생님 안내</strong><br>
+            「일회기」는 은사(隱者)로 처신하던 지인을 위해 써 준 글입니다. 글쓴이는 타인의 말을 인용하거나 통념과는 다른 견해를 개진함으로써, 타인의 평가에 연연하는 주체성 없는 처신이나 성취만을 중시하는 세태를 비판하고 있습니다. 이를 참고하여 작품을 살펴보도록 합시다.
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">① '몸가짐을 도모하는 데 공교한 자는 의당 한가하여 수고롭지 않아야 할 것'이라는 데서, 글쓴이가 생각하는 공교함이 처신과 관련되어 있음을 짐작할 수 있어요.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "글쓴이가 '몸가짐을 도모하는' 것, 즉 처신과 관련하여 공교함에 대해 생각하고 있음을 알게 함."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② '공교하다고 일컬어지는 자는 그 지혜와 재주로 할 수 있는 일이 많으므로' 한가로울 틈이 없다는 진술을 통해, 능력 있는 자를 공교한 자로 여기는 세상의 통념을 엿볼 수 있어요.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "세상으로부터 공교하다는 평가를 받는 자들은 능력을 발휘하느라 바쁘게 살아간다는 세상의 통념을 보여 줌."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ '공교한 자는 수고롭고 서툰 자는 한가롭다.'라고 한 '장자의 말'을 인용한 것은, 다른 인물의 입장을 통해 공교함에 대한 글쓴이 자신의 견해를 개진하기 위한 것이겠어요.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "장자의 말을 인용하여 성취 추구에 대한 비판적 인식을 드러내며 글쓴이의 견해를 개진함."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ '서툰 자로 처신하는 것을 부끄러워하기 때문에 거짓으로 꾸미고 기교를 부리'는 것이라는 진술은, 타인의 평가에 연연하는 사람들의 주체성 없는 처신을 비판하는 것이겠어요.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 해설지: "타인의 평가(서툰 자로 처신하는 것을 부끄러워함)에 연연하는 주체성 없는 처신에 대한 비판."</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ '천하 고금의 공교하다는 자들을 다 모으더라도 요행히 편안할 수 있었던 사람은 아무도 없을 것이다'라는 진술은, 욕심을 버리고 은자로 처신하더라도 진정한 공교함에 이르기는 어렵다는 뜻을 나타내는 것이겠어요.</div>
+            <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 해설지: "이 진술은 세상 사람들이 공교하다 칭송하는 큰 성취를 이룬 자들을 지칭하며, 그들은 편안함을 얻지 못했다는 의미이지, 은자로 처신해도 진정한 공교함에 이르기 어렵다는 뜻이 아니다. 오히려 편안하게 처신한 자가 진정한 공교함을 가졌으나 세상이 인정하지 않음을 비판하고 있다."</div>
+        </div>
+        <div class="wrong-badge">📍 ⑤번이 적절하지 않은 설명(정답). (해설지 26번 정답 ⑤)</div>
+    </div>
+
+    <!-- ================= 작품 개관 ================= -->
+    <h2>■ 작품 개관</h2>
+    <div class="info-box">
+        <ul style="margin-left: 20px;">
+            <li><strong>(가) 「풍계육가」 (이상)</strong> : 전원 생활의 즐거움과 세속적 영달(작록, 오두미)에 대한 경계. 자연을 벗 삼은 소박한 삶 찬양.</li>
+            <li><strong>(나) 「월선헌십육경가」 (신계영)</strong> : 공명에 얽매인 벼슬살이의 허무함과 고향으로 돌아와 자연을 즐기는 현재의 삶의 보람. 과거와 현재의 대비.</li>
+            <li><strong>(다) 「일회기」 (서형보)</strong> : 세상이 '공교하다' 칭송하는 삶(성취·능력 중심)이 실제로는 수고로울 뿐임을 지적하며, 편안하고 한가로운 처신이 진정한 공교함임을 역설.</li>
+        </ul>
+    </div>
+
+    <h2>■ 수업용 한 장 요약 (정답+오답 핵심)</h2>
+    <div class="info-box" style="margin-top: 20px;">
+        <ul style="margin-left: 20px;">
+            <li><strong>22번 정답 ①</strong> – 세 작품 모두 바람직한 삶의 태도에 대한 생각을 담고 있음</li>
+            <li><strong>23번 정답 ③</strong> – [A] 대구적 표현(만족감 강조), [C] 질문과 답(생활상 짐작)</li>
+            <li><strong>24번 정답 ④</strong> – 두 시구는 유사한 의미가 아니라 과거와 현재의 대조</li>
+            <li><strong>25번 정답 ⑤</strong> – ㉠: 상황 돌아봄, ㉡: 상황에 대처함</li>
+            <li><strong>26번 정답 ⑤</strong> – 진술은 세상이 공교하다 칭송하는 자들에 대한 비판이지 은자 처신이 어렵다는 뜻 아님</li>
+        </ul>
+    </div>
+
+    <footer>
+        ※ 본 자료는 사용자님이 제공한 원문을 기준으로 지문, 문제, 선택지를 <strong>원문 그대로</strong> 수록하였으며, 각 선택지별 오답 이유를 상세히 추가하였습니다.<br>
+        해설은 '정답 및 해설.pdf'의 공통 과목 해설(22~26번)을 그대로 반영하였습니다.
+    </footer>
+</div>
+</body>
+</html>

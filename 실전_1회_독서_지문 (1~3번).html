@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[수업용 완전판] 독서 (1~3번) - 독서 공간 | 원문+어구풀이+문제+선지+보기+오답분석</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Arial', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            padding: 35px 45px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 7px solid #c0392b;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: #0f2b3d;
+        }
+        h2 {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            margin: 45px 0 20px 0;
+            font-size: 24px;
+            border-radius: 18px;
+            border-left: 5px solid #e67e22;
+            color: #1e466e;
+        }
+        .text-block {
+            background: #fefaf0;
+            border-left: 6px solid #f1c40f;
+            padding: 22px 28px;
+            margin: 25px 0;
+            border-radius: 28px;
+            font-size: 16px;
+            line-height: 1.9;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .sentence-wrapper {
+            margin-bottom: 18px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 12px;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 6px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .question-full {
+            background: #f8fafc;
+            border-radius: 26px;
+            padding: 18px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 2px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 10px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        hr {
+            margin: 32px 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 13px;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📖 독서 지문 (1~3번)<br>✓ 독서 공간 - 원문 + 어구풀이 + 문제 + 선택지 + 오답 분석</h1>
+
+    <!-- ============= 지문 전문 (밑줄 포함) ============= -->
+    <h2>■ 지문 전문 (문장별 분석 + 어구 풀이)</h2>
+    <div class="text-block">
+        <!-- 1문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence"><span class="underline-phrase">독서 공간</span>이란 책을 읽고 있는 공간, 또는 책을 읽을 수 있는 공간이다. 이러한 공간은 일반적으로 독서행위가 실제로 벌어지는, 구체적인 면적 혹은 부피를 지닌 <span class="underline-phrase">㉠물리적 독서 공간</span>을 의미한다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 독서 공간의 개념 정의와 ‘물리적 독서 공간’ 소개. 독서 공간은 ‘읽고 있는/읽을 수 있는’ 공간이라는 포괄적 정의를 먼저 제시한 뒤, 일반적으로는 물리적 공간을 의미함을 밝힘.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>물리적 독서 공간</strong>: 면적이나 부피를 가진 실제 장소로서의 독서 공간.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence">이런 의미의 공간으로는 우선 서재나 도서관과 같이 본래 독서를 위해 존재하는 <span class="underline-phrase">본원적 독서 공간</span>이 있다. 서재는 자신이 선택한 책들을 편안하게 읽을 수 있는 개인의 독서 공간이고, 도서관은 더 넓은 지식의 세계를 탐험할 수 있는 대중의 독서 공간이다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 물리적 독서 공간의 첫 번째 유형: ‘본원적 독서 공간’(서재·도서관). 본래 목적이 독서인 공간임.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>본원적 독서 공간</strong>: 본래 독서를 위해 존재하는 공간.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence">이와 달리 그 존재 목적은 다른 데 있지만 특정 순간에 책을 읽는 곳으로 활용되는 물리적 공간은 <span class="underline-phrase">㉡전용된 독서 공간</span>이다. 버스나 지하철은 원래 이동을 목적으로 존재하는 공간이지만, 책을 읽고 있는 사람에게 그곳은 하나의 독서 공간으로 전용되는 것이다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 물리적 독서 공간의 두 번째 유형: ‘전용된 독서 공간’(버스·지하철). 본래 목적과 무관하게 독서를 위해 일시적으로 사용되는 공간.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>전용된 독서 공간</strong>: 본래 목적과 다르지만 독서를 위해 사용되는 공간.</div>
+        </div>
+
+        <!-- 2문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence">본원적 독서 공간과 전용된 독서 공간은 이렇게 개념적으로 명확히 구분되지만, 실제 상황에서는 이 둘을 구분하기 어려운 경우도 있다. 하나의 방에서 책도 읽고 잠도 자는 사람에게 그 방은 침실일 뿐만 아니라 서재라는 독서 공간이며, 카페나 서점에 가야 책을 집중해서 읽을 수 있는 사람에게 그곳은 커피를 마시는 곳이나 책을 사는 곳이면서 중요한 독서 공간이 된다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 개념적 구분의 모호함. 같은 공간이라도 사용자에 따라 본원적/전용적 성격이 달라질 수 있음.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence">학생들의 학습 공간인 교실은 어떠한가? 학생들의 학습이 독서를 전제한다고 본다면 이 공간은 본원적 독서 공간에 가깝다. 그러나 이 공간은 누군가에게는 놀이 공간이고, 또 누군가에게는 휴식 공간이다. <span class="underline-phrase">독서를 위한 방이라는 이름의 독서실</span>은 또 어떠한가? 이름만 놓고 보면 독서실은 본원적 독서 공간에 가장 가까운 곳이지만, 현재 많은 학생들이 이용하고 있는 독서실은 처음부터 독서를 위해서가 아니라 학생들의 시험공부를 위해 만들어진 곳이므로 본원적 독서 공간이라고 볼 수 없다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 교실(본원적에 가까움)과 독서실(이름과 달리 본원적 아님)의 예시를 통해 구분의 어려움과 예외를 제시함.</div>
+        </div>
+
+        <!-- 3문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence">독서 공간이 반드시 물리적 공간만을 의미하지는 않는다. 우리는 자신이 책을 읽고 있는 상황, 또는 책을 읽을 수 있게 만들어 주는 상황을 하나의 독서 공간으로 인식하기도 한다. 수업 시간 중에 책을 읽거나 집에 가는 길에 책을 읽는 사람은, 물리적 공간이 아닌 수업 시간이나 집에 가는 길을 하나의 독서 공간으로 인식할 수 있다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 물리적 공간을 넘어선 ‘인식적 독서 공간’ 개념 도입. 시간적·상황적 맥락도 독서 공간이 될 수 있음.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence">그리고 아침 독서 운동에 참여하거나 독서 모임에 가입하여 책을 읽는 사람은 아침 독서 운동이나 독서 모임을 자신의 중요한 독서 공간으로 인식할 수 있다. 이러한 공간은 면적 혹은 부피를 지닌 물리적 공간이 아니라 독자의 의식 속에 형성되는 <span class="underline-phrase">ⓒ인식적 독서 공간</span>이므로 물리적 제약에 구속받지 않는다. 이러한 공간은 개인의 능동적인 선택에 따라서, 그리고 사람들과의 다양한 관계 속에서 얼마든지 새롭게 구성되고 확장될 수 있다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 인식적 독서 공간의 특징: 물리적 제약 없음, 능동적 구성 가능, 관계를 통해 확장 가능.</div>
+            <div class="vocab-note">📖 <strong>어구 풀이</strong> – <strong>인식적 독서 공간</strong>: 독자의 의식 속에 형성되는 독서 공간. 물리적 장소가 아닌 시간적·관계적 맥락을 포함.</div>
+        </div>
+
+        <!-- 4문단 -->
+        <div class="sentence-wrapper">
+            <div class="sentence">지식 정보화 사회에서 자신의 독서 공간을 확장하는 것은 매우 중요해졌다. 그런데 지금 누가 과연 “독서 공간이 부족해요.”라는 말을 할 수 있을까? 본원적 독서 공간이 아니더라도 주체의 선택에 따라 독서 공간으로 전용될 수 있는 공간은 우리 주변에서 얼마든지 찾을 수 있다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 독서 공간 확장의 중요성과 현실적 가능성: 전용 가능한 공간이 풍부함.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence">또한 디지털 기술의 발전으로 우리는 <span class="underline-phrase">가상 공간</span> 속에서 독서 공간을 무한히 확장할 수 있게 되었다. 가상 공간은 물리적 공간과 달리 공간 확보를 위한 비용이나 시간 등 물리적 제약이 거의 존재하지 않는다. 가상 공간은 누구나 제한 없이 도달할 수 있는 공간이며, 이 공간에는 지금 이 순간에도 새로운 지식과 정보가 계속 축적되고 있다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 디지털 기술이 가져온 가상 공간에서의 독서 공간 확장: 물리적 제약 극복, 접근성, 정보 축적.</div>
+        </div>
+        <div class="sentence-wrapper">
+            <div class="sentence">우리는 서재나 도서관을 찾아가지 않아도 화면에 집중할 수만 있으면 언제 어디서든 책을 읽을 수 있고, 독서 모임을 결성할 수 있다. 가상 공간 속의 독서 공간은 읽기만이 아니라 쓰기도 가능한, 다중이 연결되어 그 의미가 지속적으로 재구성되는 글들이 무한히 존재하는 열린 공간이다. 이러한 가상 공간의 출현은 우리에게 독서 공간에 대한 이해와 독서 공간의 확장을 위한 노력이 더욱 중요해졌음을 일깨워 준다.</div>
+            <div class="side-analysis">📌 <strong>분석</strong> – 가상 독서 공간의 특성: 읽기와 쓰기 모두 가능, 다중 연결, 의미의 지속적 재구성, 열린 공간. 결론적으로 독서 공간 이해와 확장 노력의 중요성을 강조.</div>
+        </div>
+        <div class="side-analysis" style="margin-top: 16px;">📌 <strong>작품 개관</strong> – 독서 공간의 개념을 물리적(본원적·전용된) 공간과 인식적 공간으로 구분하고, 디지털 기술 발전으로 인한 가상 공간에서의 독서 공간 확장 가능성을 설명한 글. 정보화 사회에서 독서 공간에 대한 이해와 확장 노력의 중요성을 강조함.</div>
+    </div>
+
+    <!-- ================= 문제 1 ================= -->
+    <h2>■ 문항 분석 (선택지별 오답 해설)</h2>
+
+    <div class="question-full">
+        <div class="q-num">1번</div>
+        <div class="question-stem">윗글의 내용과 일치하지 않는 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① 책을 읽고 있는 공간은 독서 공간이라고 볼 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 지문 1문단: “독서 공간이란 책을 읽고 있는 공간, 또는 책을 읽을 수 있는 공간이다.”</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② 독서 공간에는 물리적인 것도 있고 인식적인 것도 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 지문 1문단(물리적)과 3문단(인식적) 참고.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ 교실과 마찬가지로 <span class="underline-phrase">독서실도 본원적 독서 공간</span>으로 볼 수 있다.</div>
+            <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 지문 2문단: “독서실은 처음부터 독서를 위해서가 아니라 학생들의 시험공부를 위해 만들어진 곳이므로 본원적 독서 공간이라고 볼 수 없다.”</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ 버스나 지하철과 같이 카페도 누군가에게는 독서 공간이 될 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 지문 2문단: “카페나 서점에 가야 책을 집중해서 읽을 수 있는 사람에게 그곳은 … 중요한 독서 공간이 된다.”</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ 디지털 기술의 발전은 우리에게 독서 공간을 확장할 수 있는 가능성을 높여 주었다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 지문 4문단: “디지털 기술의 발전으로 우리는 가상 공간 속에서 독서 공간을 무한히 확장할 수 있게 되었다.”</div>
+        </div>
+        <div class="wrong-badge">📍 ③번이 적절하지 않은 설명(정답).</div>
+    </div>
+
+    <!-- 문제 2 -->
+    <div class="question-full">
+        <div class="q-num">2번</div>
+        <div class="question-stem">㉠~㉢에 대한 설명으로 가장 적절한 것은?</div>
+        <div class="choice-item">
+            <div class="choice-text">① ㉠과 ㉡은 모두 ㉡을 포함하고 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ㉢(인식적 독서 공간)은 물리적 공간인 ㉡을 포함할 수 없다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② ㉠이면서 ㉢인 곳은 ㉠이 될 수 없다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ㉡이면서 ㉢인 곳은 존재하지 않으므로(전용된 독서 공간은 물리적, 인식적은 비물리적) 비교 자체가 성립하지 않는다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ ㉠과 달리, ㉡과 ㉢은 물리적 제약에 구속받지 않는다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ㉡(전용된 독서 공간)은 물리적 독서 공간의 일부이므로 물리적 제약을 받는다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ ㉠ 중에서 ㉡에 해당하는 곳은 ㉢에 따라 달라질 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답</strong> – ㉢(인식적 독서 공간)은 물리적 공간이 아니므로, 물리적 공간인 ㉠ 중 ㉡이 ㉢에 따라 달라진다는 설명은 적절하지 않다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ <span class="underline-phrase">㉡은 ㉠의 일부</span>이고, <span class="underline-phrase">㉡이면서 ㉢인 곳은 존재하지 않는다</span>.</div>
+            <div class="choice-analysis">✅ <strong>정답</strong> – ㉡(전용된 독서 공간)은 ㉠(물리적 독서 공간)의 하위 개념이다. ㉡은 물리적 공간, ㉢은 의식 속 공간이므로 교집합은 존재하지 않는다.</div>
+        </div>
+        <div class="correct-badge">📍 ⑤번이 가장 적절한 설명(정답).</div>
+    </div>
+
+    <!-- 문제 3 -->
+    <div class="question-full">
+        <div class="q-num">3번</div>
+        <div class="question-stem">윗글을 바탕으로 &lt;보기&gt;를 이해한 내용으로 적절하지 않은 것은?</div>
+
+        <div style="background:#eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0;">
+            <strong>📖 &lt;보 기&gt;</strong><br>
+            나의 첫 번째 취미는 독서이다. 버스 안에서, 교실에서, 학교 화장실과 휴게실에서, 학교 도서관에서, 방과 후 독서 모임에서, 그리고 내 방 안에서 나는 꾸준히 독서를 한다. 내 방 안에는 이미 읽었던 책들과 앞으로 읽을 책들이 꽂혀 있고, 내 휴대폰 속 전자 도서관에도 수많은 책들이 소장되어 있다. 나는 휴대폰을 이용하여, 혼자 책을 읽기도 하고 독서 모임 회원들과 접속하여 함께 책을 읽기도 한다. 조선 시대에는 젊은 관료들에게 사가독서(賜暇讀書)라는 독서 휴가를 주어 독서당(讀書堂)에서 책을 읽게 하였다고 한다. 지금 나는 그런 휴가나 독서당은 없지만, 언제 어디서나 책을 읽을 수 있게 해주는 나의 휴대폰이 있다.
+        </div>
+
+        <div class="choice-item">
+            <div class="choice-text">① ‘나’의 독서 공간에는 물리적 공간과 인식적 공간이 모두 포함된다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 버스·교실·화장실 등 물리적 공간과 독서 모임 등 인식적 공간 모두 포함.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">② ‘나’에게 ‘학교 화장실’과 ‘휴게실’은 모두 전용된 독서 공간이라고 볼 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 본래 목적과 다르게 독서를 위해 사용되었으므로 전용된 독서 공간에 해당한다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">③ ‘학교 도서관’이나 조선 시대의 ‘독서당’은 모두 본원적 독서 공간이라고 볼 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 두 공간 모두 본래 독서를 위해 존재하는 본원적 독서 공간이다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">④ <span class="underline-phrase">‘사가독서’를 통해 독서하는 관료에게는 ‘사가독서’가 전용된 독서 공간</span>이 될 수 있다.</div>
+            <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – ‘사가독서’는 독서 휴가(시간적·제도적 맥락)로, 인식적 독서 공간에 해당한다. 전용된 독서 공간은 물리적 공간을 의미하므로 적절하지 않다.</div>
+        </div>
+        <div class="choice-item">
+            <div class="choice-text">⑤ ‘나’는 ‘휴대폰’을 통해 물리적 제약이 거의 존재하지 않는 독서 공간을 갖게 되었다고 할 수 있다.</div>
+            <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 지문 4문단: 디지털 기술(가상 공간)은 물리적 제약이 거의 없음.</div>
+        </div>
+        <div class="wrong-badge">📍 ④번이 적절하지 않은 설명(정답).</div>
+    </div>
+
+    <!-- ================= 지문 개관 ================= -->
+    <h2>■ 지문 개관</h2>
+    <div style="background:#eef2fa; border-radius: 28px; padding: 20px 28px;">
+        <ul style="margin-left: 20px;">
+            <li><strong>핵심 개념</strong> : <span class="underline-phrase">물리적 독서 공간(본원적·전용된), 인식적 독서 공간, 가상 공간, 디지털 기술, 독서 공간 확장</span></li>
+            <li><strong>1문단</strong> : 독서 공간 정의, 물리적 독서 공간의 두 유형(본원적·전용된) 소개</li>
+            <li><strong>2문단</strong> : 개념적 구분의 현실적 모호성(교실·독서실 사례)</li>
+            <li><strong>3문단</strong> : 인식적 독서 공간의 개념과 특징(물리적 제약 없음, 능동적 구성·확장 가능)</li>
+            <li><strong>4문단</strong> : 독서 공간 확장의 중요성, 디지털 기술이 가져온 가상 공간에서의 무한 확장 가능성</li>
+            <li><strong>전개 방식</strong> : 개념 정의 → 유형 구분 → 구분의 한계 제시 → 새로운 개념 도입 → 현대적 확장 가능성 제시</li>
+        </ul>
+    </div>
+
+    <h2>■ 수업용 한 장 요약 (정답+오답 핵심)</h2>
+    <div style="background:#eef2fa; border-radius: 28px; padding: 20px 28px; margin-top: 20px;">
+        <ul style="margin-left: 20px;">
+            <li><strong>1번 정답 ③</strong> – <span class="underline-phrase">독서실은 시험공부를 위해 만들어진 곳</span>이므로 본원적 독서 공간이 아니다.</li>
+            <li><strong>2번 정답 ⑤</strong> – ㉡(전용된 독서 공간)은 ㉠(물리적 독서 공간)의 하위 개념이며, <span class="underline-phrase">물리적 공간과 인식적 공간은 교집합이 없다</span>.</li>
+            <li><strong>3번 정답 ④</strong> – ‘사가독서’는 독서 휴가(인식적 독서 공간)이지 물리적 공간이 아니므로 ‘전용된 독서 공간’으로 볼 수 없다.</li>
+        </ul>
+    </div>
+
+    <footer></footer>
+</div>
+</body>
+</html>

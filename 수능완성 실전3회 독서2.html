@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 04~09 (지각 경험의 내용과 지각적 믿음의 정당화 / 개념주의와 비개념주의)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .sub-label {
+            font-weight: 700; color: #7c3aed; display: block; margin: 6px 0 10px 0; font-size: 15px;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9; border-bottom: 2px solid #e67e22; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 10px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -4px 0 18px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .flow-diagram { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 12px 0; font-size: 13px; }
+        .flow-box { background: #fff; border: 1px solid #f1c40f; border-radius: 14px; padding: 8px 16px; text-align: center; }
+        .flow-arrow { color: #b45309; font-size: 16px; }
+        .flow-branch { display: flex; gap: 16px; width: 100%; justify-content: center; }
+        .flow-branch .flow-box { flex: 1; max-width: 220px; }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px;
+        }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #1e466e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .sentence-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13.5px; }
+        .sentence-table td { border: 1px solid #cbd5e1; padding: 10px 14px; vertical-align: top; }
+        .sentence-table .s-head { background: #f1f5f9; font-weight: 700; }
+        .sentence-table .s-item { margin: 4px 0; }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e466e; }
+        .passage-study h3 { font-size: 17px; margin: 16px 0 8px 0; color: #b45309; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 3회 · 독서 04~09</h1>
+        <p>(가) 지각 경험의 내용과 지각적 믿음의 정당화 / (나) 지각 경험에 대한 개념주의와 비개념주의의 입장 | 원문 + 문단별 분석 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <span class="sub-label">(가)</span>
+                <p>우리는 감각 기관의 자극과 반응을 바탕으로 외부 세계에 대한 정보를 얻고 이를 바탕으로 외부 세계에 대한 판단을 하게 된다. 이러한 과정을 흔히 지각이라 부른다. 하지만 심리 철학에서는 <span class="underline-phrase">㉮지각 경험과 지각적 믿음을 구분할 필요가 있다고 본다.</span>
+                <span class="para-note">← 지각 경험과 지각적 믿음의 구분</span></p>
+                <p><span class="underline-phrase">지각 경험은 주체가 외부 세계의 사물과 사건, 그리고 그것들의 특성을 마주하며 얻게 되는 감각적 표상이다.</span> <span class="phrase-label">지각 경험의 정의</span>이를테면 우리가 눈을 통해 빨간 사과를 보는 것이 지각 경험에 해당한다. 그런데 이러한 지각 경험은 어떤 판단이나 믿음으로 이어지게 된다. 우리는 사과를 보며 ‘저 사물은 빨갛다.’라는 속성 판단을 하거나 ‘저 사물은 사과이다.’와 같은 동일성 판단을 내리기도 한다.
+                <span class="underline-phrase">나아가 이러한 판단을 바탕으로 ‘나는 빨간 사과를 보고 있다.’거나 ‘내 앞에 사과가 놓여 있다.’처럼 지각 경험에 대한 지각적 믿음을 형성한다.</span> <span class="phrase-label">지각적 믿음의 형성 과정</span>이처럼 우리는 지각 경험에서 여러 정보를 얻고 이를 바탕으로 판단을 <span class="underline-phrase">ⓐ내리고</span> 무언가에 대한 믿음을 형성한다. 즉
+                <span class="underline-phrase">지각 경험은 판단이나 믿음을 정당화하는 근거를 제공하는 것으로 여겨진다.</span> <span class="phrase-label">지각 경험의 역할</span>
+                <span class="para-note">← 지각 경험의 판단 및 믿음의 형성 과정</span></p>
+                <p>그런데 어떤 지각 경험이 특정한 믿음의 정당한 근거가 되기 위해서는 ‘지각 경험의 내용’이 적절해야 한다. 여기서 ‘지각 경험의 내용’이란 주체가 감각을 통해 획득하는 정보이며, 그 정보가 실제 세계와 ‘옳음 조건’을 충족하는 방식으로 대응할 때 적절하다.
+                <span class="underline-phrase">옳음 조건은 지각 경험의 내용이 실제 세계와 일치할 때 그 경험이 옳다고 할 수 있는 조건이다.</span> <span class="phrase-label">옳음 조건의 의미</span>
+                <span class="underline-phrase">착각<span class="vocab-mark">*</span>이나 환각<span class="vocab-mark">*</span>처럼 실제 세계와 대응하지 못하는 지각 경험은 옳음 조건을 충족하지 못하는 것으로 여겨지며, 그에 기초한 판단이나 믿음은 정당화되기 어렵다.</span>
+                <span class="para-note">← 옳음 조건을 통한 지각 경험의 정당화 요건</span></p>
+                <p>이러한 관점에서 지각적 믿음의 인식론적 정당성을 중시하는 철학자들은 지각 경험이 지각적 믿음을 정당화하려면 그 내용이 옳음 조건을 충족해야 한다고 본다.
+                <span class="underline-phrase">철학자들은 이 지점에서 지각 경험의 내용이 옳음 조건을 충족하려면 그것이 어떤 성격을 지녀야 하는가라는 물음을 <span class="underline-phrase">ⓑ던졌다.</span></span> <span class="phrase-label">핵심 문제 제기</span>그리고 이 물음은 지각 경험을 지식의 형성과 정당화의 가능 조건으로 개념화할 수 있는지를 둘러싼 철학적 논의에서 오랫동안 핵심 쟁점이 되어 왔다.
+                <span class="para-note">← 지각 경험의 성격과 인식론적 논쟁</span></p>
+
+                <span class="sub-label">(나)</span>
+                <p><span class="underline-phrase">개념주의와 비개념주의에 관한 논의는 심리 철학의 중요한 쟁점 가운데 하나로, 두 입장은 지각 경험이 어떻게 구조화되는지에 대해 서로 다른 관점을 제시한다.</span> <span class="phrase-label">논쟁의 핵심</span>
+                <span class="para-note">← 지각 경험의 성격에 대한 상반된 입장</span></p>
+                <p><span class="underline-phrase">개념주의자들은 지각 경험이 개념으로 표현 가능한 인지적 내용으로 구조화될 때에만 옳음 조건을 충족하고 지각적 믿음의 정당화 근거가 될 수 있다고 주장한다.</span> <span class="phrase-label">개념주의의 핵심 주장</span>우리가 사과를 보며 ‘빨갛다.’라는 속성 판단이나 ‘사과이다.’와 같은 동일성 판단을 내릴 수 있는 것은 지각 경험이 단순한 감각적 표상에 <span class="underline-phrase">ⓒ머무는</span> 것이 아니라, 이미 ‘빨강’, ‘사과’와 같은 개념으로 표현될 수 있는 방식으로 주어지기 때문이라는 것이다.
+                <span class="underline-phrase">그들은 지각 경험이 이미 개념적 내용을 담고 있다고 보며, 지각 경험이 개념적 해석 작용의 일부로 이해되어야 한다고 강조한다.</span> <span class="phrase-label">지각 경험 속의 개념적 구조 강조</span>철학자 데닛은 지각 경험이 판단이나 추론과 같은 개념적 해석과 분리되어 이해되기는 어렵다고 보았다.
+                <span class="underline-phrase">그는 식탁에 놓인 것을 ‘빨간 사과’로 보는 것 자체가 개념적 해석이 작용한 것과 무관하지 않다고 설명했다.</span> <span class="phrase-label">‘빨간 사과’를 지각하는 행위 자체가 이미 ‘빨강’, ‘사과’라는 개념의 작용을 전제로 함.</span>지각 과정에서 일어나는 개념적 해석은 주체가 자각하지 못하는 비의식적 인지 작용일 수 있다고 보았다.
+                <span class="underline-phrase">그는 지각 경험과 지각적 믿음은 뗄 수 없으며, ㉠우리는 알아챈 것만큼만 지각한다고 주장했다.</span> <span class="phrase-label">데닛의 관점: 지각과 개념적 인식의 불가분성</span>결국 판단이나 추론과 같은 개념적 해석이 지각 경험을 관통하여 영향을 미친다고 본다는 점에서 데닛은 개념주의적 성향을 보여 준다.
+                <span class="para-note">← 지각 경험의 성격에 대한 개념주의의 견해</span></p>
+                <p><span class="underline-phrase">반대로 비개념주의자들은 지각 경험이 반드시 개념적 해석을 포함할 필요는 없다고 본다.</span> <span class="phrase-label">개념적 해석의 필수성을 부정한 비개념주의자들의 관점</span>
+                <span class="underline-phrase">이들은 지각 경험이 개념적 해석 이전의 심적 상태로 존재하면서 옳음 조건을 충족할 수 있으며, 그 자체로 지각적 믿음을 정당화할 수 있다고 주장한다.</span> <span class="phrase-label">비개념주의의 핵심 주장</span>
+                <span class="underline-phrase">미국의 철학자 프레드릭 드레츠키는 지각 경험과 인지 과정을 구분하여 지각 경험이 먼저 주어지고 이것에 고차 인지 작용이 작동한다고 보았다.</span> <span class="phrase-label">드레츠키의 관점</span>드레츠키는 지각 경험이 비개념적 정보이며, 이 경험은 추론이나 판단과 같은 고차 인지 작용을 통해 개념적 정보로 변환된다고 보았다.
+                <span class="underline-phrase">그는 지각 경험이 개념적 정보로 변환되는 과정에서 정보의 손실이 필연적으로 발생한다고 생각했다.</span> <span class="phrase-label">개념화 과정에서 필연적으로 손실되는 지각 경험의 정보</span>예를 들어 어떤 그림을 <span class="underline-phrase">ⓓ바라볼</span> 때 우리의 눈은 그 그림의 많은 요소를 지각 경험으로 받아들인다. 하지만 우리의 인지 작용은 그중 특정 대상에 집중하느라 분명히 눈으로 보았음에도 특정 대상 외의 요소들을 개념적으로 파악하지 못하는 경우가 있다. 이 때문에 드레츠키는
+                <span class="underline-phrase">㉡‘우리는 지각 경험에 주어진 모든 것을 알아채는 것은 아니다.’라고 생각했다.</span> <span class="phrase-label">드레츠키의 결론: 지각 경험 전체와 인지된 내용의 불일치</span>그는 인지 작용이 개입하기 이전의 지각 상태를 ‘자각 없는 지각’, ‘단순한 보기’, ‘비인식적 보기’ 등의 표현으로 설명하며, 인지 작용과 지각 경험은 절차적으로 구별된다고 주장했다.
+                <span class="para-note">← 지각 경험의 성격에 대한 비개념주의의 견해</span></p>
+                <p>개념주의와 비개념주의의 대립은 지각 경험이 개념적인가 비개념적인가라는 문제를 <span class="underline-phrase">ⓔ넘어,</span> 지각 경험이 어떠한 성격을 가질 때 옳음 조건을 충족하고 지각적 믿음의 정당화에 기여할 수 있는가라는 인식론적 핵심 쟁점을 드러낸다.
+                <span class="underline-phrase">이 논쟁은 지각 경험을 단순한 감각적 표상이 아니라 지식의 형성과 정당화의 가능 조건으로 이해할 수 있는지를 규명하는 데 중요한 의미를 지닌다.</span> <span class="phrase-label">지각 경험의 성격과 정당화 조건 문제에 관한 논쟁이 지닌 철학적 의미</span>
+                <span class="para-note">← 지각 경험의 성격과 지각적 믿음의 정당화 조건에 대한 철학적 논쟁</span></p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 1문단 – 지각 경험과 지각적 믿음의 구분</div>
+                <div class="content">감각 기관의 자극과 반응을 바탕으로 외부 세계에 대한 정보를 얻고 판단하는 과정 = 지각. 심리 철학에서는 지각 경험과 지각적 믿음을 구분할 필요가 있다고 봄(㉮).</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 2문단 – 지각 경험의 판단 및 믿음의 형성 과정</div>
+                <div class="content">지각 경험(감각적 표상) → 속성 판단·동일성 판단 → 지각적 믿음 형성. 지각 경험은 판단·믿음을 정당화하는 근거를 제공.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 3문단 – 옳음 조건을 통한 지각 경험의 정당화 요건</div>
+                <div class="content">지각 경험의 내용이 실제 세계와 대응(옳음 조건 충족)해야 믿음의 정당한 근거가 됨. 착각·환각은 옳음 조건 미충족 → 정당화 어려움.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 4문단 – 지각 경험의 성격과 인식론적 논쟁</div>
+                <div class="content">지각 경험의 내용이 옳음 조건을 충족하려면 어떤 성격을 지녀야 하는가라는 물음 → 지각 경험을 지식 형성·정당화의 가능 조건으로 볼 수 있는지에 대한 오랜 철학적 쟁점.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>착각(錯覺)</strong>: 어떤 사물이나 사실을 실제와 다르게 지각하거나 생각함.<br>
+                • <strong>환각(幻覺)</strong>: 감각 기관을 자극하는 외부 자극이 없는데도 마치 어떤 사물이 있는 것처럼 지각함. 또는 그런 지각.<br>
+                • <strong>인식론(認識論)</strong>: 인식의 기원과 본질, 인식 과정의 형식과 방법 따위에 관하여 연구하는 철학의 한 부문.<br>
+                • <strong>자각(自覺)</strong>: 현실을 판단하여 자기의 입장이나 능력 따위를 스스로 깨달음.<br>
+                • <strong>성향(性向)</strong>: 성질에 따른 경향.
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 1문단 – 지각 경험의 성격에 대한 상반된 입장</div>
+                <div class="content">개념주의와 비개념주의는 지각 경험이 어떻게 구조화되는지에 대해 서로 다른 관점을 제시.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 2문단 – 개념주의의 견해 (데닛)</div>
+                <div class="content">지각 경험이 개념으로 표현 가능한 인지적 내용으로 구조화될 때에만 옳음 조건 충족·정당화 근거 가능. 데닛: 지각과 개념적 해석은 분리 불가 – “알아챈 것만큼만 지각한다.”</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 3문단 – 비개념주의의 견해 (드레츠키)</div>
+                <div class="content">지각 경험이 개념적 해석 이전의 심적 상태로도 옳음 조건 충족·정당화 가능. 드레츠키: 지각 경험(비개념적) → 고차 인지 작용 → 개념적 정보로 변환(이 과정에서 정보 손실 발생) – “지각 경험에 주어진 모든 것을 알아채는 것은 아니다.”</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 4문단 – 논쟁의 철학적 의미</div>
+                <div class="content">개념주의·비개념주의 대립은 지각 경험이 어떤 성격을 가질 때 옳음 조건을 충족·정당화에 기여하는지를 묻는 인식론적 쟁점. 지각 경험을 지식 형성·정당화의 가능 조건으로 이해할 수 있는지 규명하는 데 중요.</div>
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <p style="font-size: 13px;"><strong>(가)</strong> 지각 경험이 어떻게 지각적 믿음을 형성하고, 그 믿음이 언제 정당화될 수 있는지 설명. 지각 경험은 외부 세계의 사물과 속성을 직접 마주하며 얻는 감각적 표상이며, ‘빨갛다.’, ‘사과이다.’와 같은 판단과 ‘내 앞에 사과가 놓여 있다.’라는 믿음으로 이어진다. 이 믿음이 정당화되려면 지각 경험의 내용이 옳음 조건을 충족해야 하며, 이는 지각 경험을 지식의 형성·정당화 조건으로 이해할 수 있는지에 대한 철학적 논쟁으로 이어져 왔다.</p>
+                <p style="font-size: 13px; margin-top:10px;"><strong>(나)</strong> 지각 경험이 어떤 성격을 지닐 때 지각적 믿음을 정당화할 수 있는지에 대한 개념주의와 비개념주의의 상반된 입장을 설명. 개념주의는 지각 경험이 개념적으로 구조화되어야 옳음 조건을 충족하고 인식적 정당화가 가능하다고 본다. 반대로 비개념주의는 지각 경험이 개념화 이전에도 정당화가 가능하다고 주장한다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">(가) 지각 경험과 지각적 믿음의 구분 및 관계<br>(나) 지각 경험의 개념적·비개념적 성격을 둘러싼 논쟁</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 선생님의 만점 구조도 포인트 1 – 어떤 지각 경험이 지각적 믿음을 정당화하는가</h3>
+                <div class="flow-diagram">
+                    <div class="flow-box">지각 경험의 내용</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box"><strong>옳음 조건</strong><br><strong>실제 세계</strong>와/과의 일치 여부</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-branch">
+                        <div class="flow-box">미충족<br>지각적 믿음의 정당화 불가<br>지각 경험의 내용: 착각, <strong>환각</strong></div>
+                        <div class="flow-box">충족<br>지각적 믿음의 정당화 가능</div>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 선생님의 만점 구조도 포인트 2 – 개념주의 vs 비개념주의 (문항 05 관련)</h3>
+                <table style="font-size: 12px;">
+                    <thead><tr><th>구분</th><th>개념주의</th><th>비개념주의</th></tr></thead>
+                    <tbody>
+                        <tr><td>지각 경험의 성격</td><td>이미 개념적으로 구조화됨</td><td>개념화 이전의 비개념적 정보임</td></tr>
+                        <tr><td>지각 경험과 인지의 관계</td><td>지각과 개념적 해석은 분리 <strong>불가능</strong> (지각=<strong>개념적 해석</strong> 포함)</td><td>지각 경험이 먼저 주어지고 <strong>고차 인지</strong> 작용이 이후에 개입</td></tr>
+                        <tr><td>옳음 조건 충족</td><td>개념적 구조화가 되어야 가능</td><td>비개념적 상태로도 가능</td></tr>
+                        <tr><td>정보 손실</td><td>해당 없음.</td><td>‘지각 → <strong>개념적 정보</strong>’ 변환 시 필연적 손실 발생</td></tr>
+                        <tr><td>감각적 표상</td><td>이미 개념을 포함한 표상</td><td>순수 감각적·비개념적 상태</td></tr>
+                        <tr><td>핵심 명제</td><td>알아챈 것만큼만 지각한다.</td><td>지각 경험의 모든 것을 알아채지는 못한다.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 배경지식 더 알아보기</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>감각–인지 분리 논쟁</strong><br>사람이 눈앞의 대상을 ‘빨간 사과’라고 알아차리는 과정에는 두 가지 문제가 얽혀 있다. 하나는 ‘빨강’이나 ‘사과’와 같은 개념이 감각이 형성되기 전부터 작용하는가 하는 문제이고, 다른 하나는 일차적인 시각 경험이 이루어진 뒤에야 그런 개념이 덧붙는가 하는 문제이다. 이 논쟁은 철학뿐 아니라 신경 과학에서도 중요한 관심사로 다루어진다. 신경 과학의 설명에 따르면 외부 대상에서 온 시각 자극은 먼저 망막에서 받아들여진 뒤 1차 시각 피질을 거쳐 고차 시각 피질과 전두엽으로 전달된다. 이 가운데 1차 시각 피질에서는 색채, 명암, 선과 같은 기초적인 시각 특징이 분석된다. 드레츠키의 입장에서는 이러한 단계가 아직 특정 대상 개념으로 해석되기 전의 지각, 곧 비개념적 지각에 가깝다. 이에 비해 전두엽에서 ‘저것은 사과이다.’라고 판단하는 과정은 감각 자료를 개념적으로 분류하고 의미화하는 작용에 해당한다.</p>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>데닛(Daniel Dennett)의 의식 이론 – 다중 초고 모델</strong><br>대니얼 데닛은 현대 분석 철학과 인지 과학 분야에서 가장 영향력 있는 철학자 중 한 명이다. 그는 의식이 하나의 ‘연극 무대’에서 상영되는 것이 아니라, 뇌의 다양한 부위에서 동시다발적으로 처리되는 ‘다중 초고(Multiple Drafts)’ 모델을 제안했다. 다중 초고 모델에 따르면 의식적 경험이란 단일한 흐름이 아니라, 여러 인지 처리 과정이 경쟁하고 수정되며 만들어지는 결과물이다. 이 관점에서 ‘순수한 감각 경험’이라는 것은 존재하지 않으며, 지각은 언제나 해석의 과정 속에 놓여 있다.</p>
+                <p style="font-size: 13px;"><strong>착각과 환각 – 옳음 조건을 충족하지 못하는 지각 경험</strong><br>착각과 환각이 존재한다는 사실 자체가 지각 경험이 항상 올바른 믿음의 근거가 되는 것은 아님을 가장 잘 보여 주는 예이다. 지각 경험은 지각적 믿음을 형성하고 정당화하는 근거가 되지만, 그 역할을 하려면 지각 경험의 내용이 실제 세계와 맞아떨어져 옳음 조건을 충족해야 한다. 그런데 착각과 환각은 바로 이 지점에서 문제를 드러낸다. 즉, 어떤 경험이 감각적으로는 생생하게 주어지더라도 그것이 실제 세계와 대응하지 못하면, 그 경험에 기초한 판단이나 믿음은 정당화되기 어렵다는 점을 보여 준다. 또한 착각과 환각은 지각 경험과 지각적 믿음을 구분해야 하는 이유도 잘 보여 준다. 우리는 무언가를 본 것처럼 느낄 수 있지만, 그 경험이 곧바로 참인 믿음으로 이어지는 것은 아니다. 다시 말해, ‘무엇이 감각적으로 주어졌는가’와 ‘그것을 무엇이라고 믿게 되었는가’를 나누어 보아야만, 어디에서 오류가 생겼는지를 설명할 수 있다. 이 때문에 착각과 환각은 단순한 예시가 아니라, 지각 경험이 믿음을 정당화하는 근거가 되려면 어떤 조건이 필요한지를 검토하도록 만드는 역할을 한다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 다른 견해를 비교하는 문항은 어떻게 해결해야 하나요? (문항 07 관련)</div>
+                문항 07은 (가)의 핵심 문장을 제시한 뒤, 그것을 (나)의 개념주의와 비개념주의의 관점으로 각각 해석할 수 있는지를 묻는 문제입니다. 이런 유형은 지문 내용을 단순히 기억하는 문제라기보다, 특정 내용이나 정보를 서로 다른 입장에서 어떻게 해석할지를 판단하는 문제입니다. 따라서 먼저 (가)의 핵심을 정확히 파악하고, 다음으로 개념주의와 비개념주의가 그 핵심을 각각 어떻게 해설할지를 대응시켜야 합니다. 이를 위해서는 두 입장의 차이를 간략하게 정리해 두는 것이 효과적입니다. 예를 들어 개념주의는 ‘지각 경험은 이미 개념적으로 구조화되어 있다.’, 비개념주의는 ‘지각 경험은 개념화 이전의 비개념적 상태로 먼저 주어진다.’로 압축할 수 있습니다. 이렇게 정리해 두면, 특정 문장을 보았을 때 그것을 어느 입장이 자연스럽게 설명할 수 있는지를 훨씬 빠르게 판단할 수 있습니다. 다른 견해 비교 문항에서는 선지의 표현이 길더라도 핵심 판단 기준은 많지 않습니다. 결국 ‘이 설명이 개념주의의 관점인가, 비개념주의의 관점인가’, 그리고 ‘해당 문장의 의미를 그 입장이 정말 그렇게 해석할 수 있는가’를 따지면 됩니다. 따라서 문장을 읽고 바로 해설을 보기보다, 하나의 문장을 두 입장이 각각 어떻게 설명할지를 직접 정리해 보는 연습이 큰 도움이 됩니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 (가) ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 (가) 지문 구조도 <span>실전 3회 04~09</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 지각 경험과 지각적 믿음의 구분</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">지각</span> 감각 기관의 자극·반응 → 외부 세계 판단</p>
+                    <p><span class="flow-badge">구분 필요성</span> 지각 경험 ≠ 지각적 믿음 (㉮)</p>
+                    <div class="sub-point">✔ 1문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 판단·믿음의 형성 과정</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">지각 경험</span> 감각적 표상 (예: 빨간 사과를 봄)</p>
+                    <p><span class="flow-badge">판단</span> 속성 판단·동일성 판단</p>
+                    <p><span class="flow-badge">지각적 믿음</span> 판단을 바탕으로 형성 → 정당화 근거 제공</p>
+                    <div class="sub-point">✔ 2문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 옳음 조건과 정당화</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">옳음 조건</span> 지각 경험 내용 = 실제 세계와 일치</p>
+                    <p><span class="flow-badge">미충족 사례</span> 착각·환각 → 정당화 어려움</p>
+                    <div class="sub-point">✔ 3문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 성격과 인식론적 논쟁</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">핵심 물음</span> 지각 경험이 어떤 성격이어야 옳음 조건 충족?</p>
+                    <p><span class="flow-badge">의의</span> 지식 형성·정당화 조건에 대한 오랜 철학적 쟁점</p>
+                    <div class="sub-point">✔ 4문단</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 (가) 전체 흐름 : 지각 경험·지각적 믿음의 구분 → 판단·믿음의 형성 과정 → 옳음 조건을 통한 정당화 요건 → 지각 경험의 성격과 인식론적 논쟁
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 (나) ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 (나) 지문 구조도 <span>실전 3회 04~09</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 상반된 입장 제시</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">쟁점</span> 지각 경험이 어떻게 구조화되는가</p>
+                    <p><span class="flow-badge">두 입장</span> 개념주의 vs 비개념주의</p>
+                    <div class="sub-point">✔ 1문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 개념주의 (데닛)</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">주장</span> 지각 경험은 이미 개념적으로 구조화됨</p>
+                    <p><span class="flow-badge">데닛</span> “알아챈 것만큼만 지각한다” (㉠)</p>
+                    <div class="sub-point">✔ 2문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 비개념주의 (드레츠키)</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">주장</span> 지각 경험은 개념화 이전에도 정당화 가능</p>
+                    <p><span class="flow-badge">드레츠키</span> 지각→고차 인지 작용→개념적 정보 (정보 손실 발생, ㉡)</p>
+                    <div class="sub-point">✔ 3문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 논쟁의 철학적 의미</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">쟁점</span> 어떤 성격일 때 옳음 조건·정당화 기여?</p>
+                    <p><span class="flow-badge">의의</span> 지각 경험 = 지식 형성·정당화의 가능 조건인가</p>
+                    <div class="sub-point">✔ 4문단</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 (나) 전체 흐름 : 상반된 입장 제시 → 개념주의(데닛) → 비개념주의(드레츠키) → 논쟁의 철학적 의미
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 4번 -->
+        <div class="question-full">
+            <div class="q-num">04</div>
+            <div class="question-stem">(가)와 (나)에 대한 설명으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item correct">
+                <div class="choice-text">① (가)는 사례를 제시하여 지각 경험과 관련된 개념을 설명하고, (나)는 대표적인 학자의 견해를 들어 지각 경험의 성격에 대한 상반된 입장을 제시하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)는 2문단에서 빨간 사과를 보는 사례를 통해 지각 경험의 개념을 설명하고, 예시를 통해 지각 경험이 어떻게 지각적 믿음으로 이어지는지를 제시하고 있다. 또한 3문단에서 옳음 조건을 설명하며 지각 경험이 특정한 믿음의 정당한 근거가 되기 위한 요건을 제시하고 있다. (나)는 2문단에서 개념주의의 입장을 소개하고, 데닛의 견해를 통해 이를 뒷받침하고 있다. 그리고 3문단에서 개념주의의 입장과 상반되는 비개념주의의 입장을 소개하고, 드레츠키의 견해를 인용하여 이를 뒷받침하고 있다. 개념주의와 비개념주의의 상반된 입장을 통해 지각 경험이 어떻게 지각적 믿음을 정당화할 수 있는지에 대한 인식론적 쟁점을 제시하고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (가)는 지각 경험과 지각적 믿음의 관계를 일정한 기준에 따라 분류하고, (나)는 지각 경험과 관련된 특정 이론이 사회의 여러 분야에 미치는 영향을 소개하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 지각 경험과 지각적 믿음의 의미와 관계를 설명하고 있을 뿐, 지각 경험과 지각적 믿음의 관계를 분류하고 있지 않다. (나)는 지각 경험이 지각적 믿음을 정당화하는 방식에 대한 개념주의와 비개념주의의 견해를 대비하고 있다. 하지만 지각 경험과 관련된 특정 이론이 사회의 여러 분야에 미치는 영향을 소개하고 있지는 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (가)는 지각적 믿음과 관련된 특정 학자의 입장이 나타나게 된 배경을 밝히고, (나)는 지각 경험의 정당화 가능성에 대한 특정 학자의 입장이 계승된 양상을 규명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 지각 경험의 내용이 어떤 성격이어야 하는가에 대한 철학자들의 물음과 논의가 있다고 제시할 뿐, 지각적 믿음과 관련된 특정 학자의 입장이 나타나게 된 배경을 밝히고 있지 않다. (나)는 지각 경험이 지각적 믿음을 정당화하는 방식에 대한 학자들의 상반된 견해를 제시할 뿐, 지각 경험의 정당화 가능성에 대한 특정 학자의 입장이 계승된 양상을 규명하고 있지 않다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (가)와 달리 (나)는 지각 경험이 지각적 믿음을 정당화하는 방식에 대한 철학적 의의와 평가가 달라진 원인을 분석하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 지각 경험과 지각적 믿음의 관계에 대한 철학적 논의를 설명하고 있으나, 지각 경험이 지각적 믿음을 정당화하는 방식에 대한 철학적 의의와 평가가 달라진 원인을 분석하고 있지 않다. (나)는 4문단에서 지각 경험의 내용이 어떠한 성격을 지녀야 하는가에 대한 개념주의와 비개념주의의 논쟁이 가지는 의의를 제시하고 있지만, 지각 경험이 지각적 믿음을 정당화하는 방식에 대한 철학적 의의와 평가가 달라진 원인을 분석하고 있는 것은 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (나)와 달리 (가)는 지각 경험의 옳음 조건에 대한 관점이 시대에 따라 변화된 과정을 고찰하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)는 지각 경험의 옳음 조건 충족 여부를 설명하고 있을 뿐, 지각 경험의 옳음 조건에 대한 관점의 시대적 변화를 다루고 있지 않다. (나)는 지각 경험의 내용이 어떠한 성격을 지녀야 하는가에 대한 상반된 입장을 소개할 뿐, 지각 경험의 옳음 조건에 대한 관점이 시대에 따라 변화된 과정을 설명하고 있지 않다.</div>
+            </div>
+            <div class="correct-badge">📍 ①번이 가장 적절함(정답). [유형] 글의 구조와 전개 방식</div>
+        </div>
+
+        <!-- 문제 5번 -->
+        <div class="question-full">
+            <div class="q-num">05</div>
+            <div class="question-stem"><span class="underline-phrase">㉠</span>, <span class="underline-phrase">㉡</span>에 대한 설명으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠은 외부 세계에 대한 감각 기관의 자극과 반응이 인지적 작용과 분리되지 않는 것으로 보는 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉠은 (나)의 2문단에서 지각 경험이 판단이나 추론과 같은 개념적 해석(인지적 작용)과 분리되어 이해되기는 어려우며, 판단이나 추론과 같은 개념적 해석이 지각 경험을 관통하여 영향을 미친다고 본 데닛의 주장과 일치한다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② ㉠은 지각 경험이 먼저 주어지고 이 경험에 대한 인지 작용이 지각 경험의 내용에 영향을 미치는 것만큼 지각하게 된다는 것이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ㉠은 지각 경험이 개념적 해석과 분리되지 않으며, 지각 경험은 곧 인지적 해석 작용을 포함한다고 보는 개념주의자들의 입장을 반영한 것이다. 지각 경험이 인지 작용이 작동하기 전에 먼저 주어진다고 주장한 것은 비개념주의자인 드레츠키이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉡은 지각 경험과 인지 작용이 분리되어 있다는 관점이 반영된 결과이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉡은 (나)의 3문단에서 지각 경험과 인지 과정을 구분하여 지각 경험이 먼저 주어지고 이것에 고차 인지 작용이 작동한다고 본 드레츠키의 주장과 일치한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉡은 지각 경험이 개념적 해석 작용에 의해 구체화되기 전에 심적 상태로 존재할 수 있다는 점을 강조한 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉡은 (나)의 3문단에서 지각 경험이 개념적 해석 이전의 심적 상태로 존재하면서 옳음 조건을 충족할 수 있다고 한 비개념주의자들의 입장과 일치한다. 비개념주의자들은 지각 경험이 개념적 해석 이전에도 심적 상태로 존재한다고 여겼다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ㉡은 실제로 인지하는 것보다 더 많은 정보가 지각 경험 속에 비개념적으로 주어져 있다는 것을 의미한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ㉡은 (나)의 3문단에서 지각 경험이 개념적 정보로 변환되는 과정에서 정보의 손실이 필연적으로 발생한다고 생각한 드레츠키의 입장과 일치한다. 개념적 정보로 변환되기 이전의 지각 경험은 더 많은 정보가 비개념적으로 주어져 있다고 할 수 있다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 적절하지 않음(정답). [유형] 중심 내용 파악</div>
+        </div>
+
+        <!-- 문제 6번 -->
+        <div class="question-full">
+            <div class="q-num">06</div>
+            <div class="question-stem"><span class="underline-phrase">㉮</span>의 이유로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 지각 경험은 지각적 믿음과 달리 개념적 해석을 포함하고 있기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)의 2문단에 따르면, 지각 경험은 감각적 표상이고 지각적 믿음은 그 표상에 근거한 판단이다. 지각 경험이 개념적 해석을 포함하고 있다면 지각적 믿음도 개념적 해석을 포함하고 있다고 할 수 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② 지각 경험은 지각적 믿음을 형성하고 정당화하는 근거가 되기 때문이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)에서 인간은 지각 경험에서 여러 정보를 얻고 이를 바탕으로 판단을 내리고 무언가에 대한 믿음을 형성한다고 하였다. 지각 경험은 외부 세계에 대한 감각적 표상으로 주어지고, 지각적 믿음은 이러한 지각 경험을 바탕으로 판단을 거쳐 형성된다. 즉 지각 경험은 지각적 믿음을 형성하고 정당화하는 근거가 되므로 이를 구분할 필요가 있다고 본 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 지각 경험과 지각적 믿음은 모두 동일한 감각 인상에 불과하기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)의 2문단에 따르면, 지각 경험은 감각적 표상이고 지각적 믿음은 지각 경험을 통해 얻은 정보를 바탕으로 형성된 것이다. 지각적 믿음은 지각 경험을 통해 형성되지만, 지각 경험과 동일한 감각적 표상이라고 할 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 지각 경험은 언제나 옳음 조건을 충족하지만, 지각적 믿음은 그렇지 않기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)의 3문단에서 착각이나 환각처럼 실제 세계와 대응하지 못하는 지각 경험은 옳음 조건을 충족하지 못하는 것으로 여겨진다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 지각 경험은 판단을 통해 형성되지만, 지각적 믿음은 판단을 수반하지 않기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)의 2문단에서 지각 경험은 판단이나 믿음을 정당화하는 근거를 제공한다고 하였다. 지각 경험은 판단을 수반하지 않을 수 있지만, 지각적 믿음은 지각 경험에 근거한 판단으로 형성되는 것이다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 가장 적절함(정답). [유형] 생략된 내용 추론</div>
+        </div>
+
+        <!-- 문제 7번 -->
+        <div class="question-full">
+            <div class="q-num">07</div>
+            <div class="question-stem">다음은 학생이 수업 시간에 학습 활동을 수행하기 위해 작성한 활동지의 일부이다. 윗글을 참고할 때, <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                ■ 다음은 (가)를 이해하는 데 핵심이 되는 문장을 정리한 것이다. (나)에 제시된 관점을 적용하여 문장의 의미를 해석해 보자.
+                <table class="sentence-table">
+                    <tr><td colspan="2" class="s-head">[문장 1] 지각 경험은 주체가 외부 세계의 사물과 사건, 그리고 그것들의 특성을 마주하며 얻게 되는 감각적 표상이다.</td></tr>
+                    <tr><td>개념주의에서는 ‘감각적 표상’을 이미 개념적으로 구조화된 표상이라는 의미로 판단할 것이다.</td><td style="text-align:center;">···①</td></tr>
+                    <tr><td>비개념주의에서는 ‘감각적 표상’을 인지 작용이 개입하지 않은 지각 경험의 비개념적 상태로 볼 것이다.</td><td style="text-align:center;">···②</td></tr>
+                    <tr><td colspan="2" class="s-head">[문장 2] 어떤 지각 경험이 특정한 믿음의 정당한 근거가 되기 위해서는 ‘지각 경험의 내용’이 적절해야 한다.</td></tr>
+                    <tr><td>개념주의에서는 지각 경험에 고차 인지 작용이 개입해 비개념적 내용이 제외되어야 지각 경험의 내용이 적절하다고 주장할 것이다.</td><td style="text-align:center;">···③</td></tr>
+                    <tr><td>비개념주의에서도 주체가 감각을 통해 획득하는 정보가 실제 세계와 대응한다면 지각 경험의 내용은 적절하다고 생각할 것이다.</td><td style="text-align:center;">···④</td></tr>
+                    <tr><td colspan="2" class="s-head">[문장 3] 옳음 조건은 지각 경험의 내용이 실제 세계와 일치할 때 그 경험이 옳다고 할 수 있는 조건이다.</td></tr>
+                    <tr><td>개념주의에서는 개념적으로 구조화된 지각 경험의 내용이 실제 세계와 일치하지 않는다면, 옳음 조건을 충족하지 않는다고 설명할 것이다.</td><td></td></tr>
+                    <tr><td>비개념주의에서는 지각 경험이 표현하는 내용이 비개념적 감각 정보이더라도, 그 내용이 실제 세계와 대응한다면 옳음 조건을 충족한다고 볼 것이다.</td><td style="text-align:center;">···⑤</td></tr>
+                </table>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ①번</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나)의 2문단에서 개념주의자들은 지각 경험이 단순한 감각적 표상에 머무는 것이 아니라, 이미 ‘빨강’, ‘사과’와 같은 개념으로 표현될 수 있는 방식으로 주어지는 것이라고 본다고 하였다. 또한 그들은 지각 경험이 이미 개념적 내용을 담고 있다고 본다고 하였다. [문장 1]에 따르면, 감각적 표상이 지각 경험을 가리키므로 감각적 표상은 개념적으로 구조화된 표상이라는 설명은 개념주의의 입장에 부합한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ②번</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나)의 3문단에서 비개념주의자들은 지각 경험이 개념적 해석 이전의 심적 상태로 존재하면서 옳음 조건을 충족할 수 있으며, 그 자체로 지각적 믿음을 정당화할 수 있다고 주장한다고 하였다. 또한 드레츠키는 지각 경험이 먼저 주어지고 이것에 고차 인지 작용이 작동한다고 보았다고 하였다. 이로 보아 지각 경험으로 설명되는 감각적 표상을 인지 작용이 개입하기 이전의 비개념적 상태로 볼 것이라는 설명은 비개념주의의 입장에 부합한다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ ③번</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (나)에 따르면, 개념주의에서는 지각 경험이 애초에 개념적으로 구조화되어 있기 때문에 지각적 믿음의 정당화 근거가 될 수 있다고 본다. 따라서 ‘비개념적 내용이 제외되어야 지각 경험의 내용이 적절하다’는 설명은 개념주의의 관점이 아니다. 오히려 (나)의 3문단에서 드레츠키가 지각 경험이 개념적 정보로 변환되는 과정에서 정보의 손실이 필연적으로 발생한다고 생각했다고 한 내용과 일맥상통한다고 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ④번</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나)의 3문단에서 비개념주의자들은 지각 경험이 개념적 해석 이전의 심적 상태로 존재하면서 옳음 조건을 충족할 수 있으며, 그 자체로 지각적 믿음을 정당화할 수 있다고 주장한다고 하였다. (가)의 3문단에서 옳음 조건은 지각 경험의 내용이 실제 세계와 일치할 때 그 경험이 옳다고 할 수 있는 조건이라고 하였다. 이로 보아 주체가 감각을 통해 획득하는 정보가 실제 세계와 대응한다면 지각적 믿음의 정당화 근거가 될 수 있으므로 지각 경험의 내용은 적절하다고 볼 것이라는 설명은 비개념주의의 입장에 부합한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ⑤번</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나)의 3문단에서 비개념주의자들은 지각 경험이 개념적 해석 이전의 심적 상태로 존재하면서 옳음 조건을 충족할 수 있으며, 그 자체로 지각적 믿음을 정당화할 수 있다고 주장한다고 하였다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 적절하지 않음(정답). [유형] 다른 견해와의 비교</div>
+        </div>
+
+        <!-- 문제 8번 -->
+        <div class="question-full">
+            <div class="q-num">08</div>
+            <div class="question-stem">(가), (나)를 참고하여 &lt;보기&gt;를 이해한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                A는 자동차 사고를 당한 뒤 사고 당시를 회상하며 ‘무엇을 보았는지 명확하게 기억이 나지 않는다.’라고 말했다. 그는 사고 직전의 소음과 눈앞의 흔들림 같은 감각적 경험은 간헐적으로 떠올릴 수 있었으나 사고 당시의 구체적인 장면은 잘 생각이 나지 않는다고 하였다. 하지만 그는 사고 장소가 도로였다는 점은 분명히 기억하고 있었고, 사고가 난 도로 주변에서 파란색 지붕의 건물을 보았다고 하였다. 그런데 경찰 조사 결과 A가 자동차 사고를 당한 도로 주변에 파란색 지붕의 건물은 없었다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 사고가 난 도로 주변에서 파란색 지붕의 건물을 보았다는 A의 인식은 지각 경험에 대한 속성 판단과 동일성 판단을 통해 형성된 지각적 믿음에 해당하겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)의 2문단에 따르면, ‘저 사물은 빨갛다.’라는 속성 판단이나 ‘저 사물은 사과이다.’와 같은 동일성 판단을 바탕으로 지각 경험에 대한 지각적 믿음을 형성한다. &lt;보기&gt;에서 A가 파란색 지붕의 건물을 보았다고 한 것은 ‘저 사물(건물의 지붕)은 파랗다.’, ‘저 사물은 건물의 지붕이다.’와 같은 속성 판단과 동일성 판단을 통해 형성된 지각적 믿음으로 볼 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 경찰 조사 결과에서 파란색 지붕의 건물이 없었다는 점에서 A의 지각 경험은 착각이나 환각처럼 실제 대상과 대응하지 않는 것이겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가)의 3문단에서 착각이나 환각처럼 실제 세계와 대응하지 못하는 지각 경험은 옳음 조건을 충족하지 못하는 것으로 여겨지며, 그에 기초한 판단이나 믿음은 정당화되기 어렵다고 하였다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 자동차 사고에 대해 A가 기억하는 지각 경험은 개념적 판단이 개입하지 않은 비개념적 정보에 머물러 있었기 때문에 실제 사태와 일치하지 않겠군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (나)의 2문단에서 개념주의자들은 지각 경험이 개념으로 표현 가능한 인지적 내용으로 구조화될 때에만 옳음 조건을 충족하고 지각적 믿음의 정당화 근거가 될 수 있다고 주장한다고 하였다. &lt;보기&gt;에서 A는 사고 당시의 구체적인 장면은 잘 떠올리지 못하고 소음과 흔들림 같은 감각적 경험만 간헐적으로 기억한다고 하였으므로, 그의 기억은 개념적 내용을 완전히 복원하지 못한 상태임을 보여 준다. (나)의 3문단에서 드레츠키는 지각 경험이 비개념적 정보이며, 이 경험은 추론이나 판단과 같은 고차 인지 작용을 통해 개념적 정보로 변환된다고 보았다고 하였다. 즉 지각 경험은 고차 인지 작용이 개입하기 전에는 개념화되지 않은 상태이다. 이에 따르면 &lt;보기&gt;에서 A가 ‘사고 장소가 도로였다’거나 ‘파란색 지붕의 건물을 보았다’고 회상한 것은 사후적으로 개념적 해석이 개입한 결과이지, 비개념적 정보에 머물러 있었던 것으로 볼 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 드레츠키의 관점에서는 사고 장소를 ‘도로’로 특정하는 A의 기억은 개념적 판단이지만, 사고 당시의 전체 장면은 비개념적 정보에 의존한 채 불완전하게 남아 있다고 보겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나)의 3문단에 따르면, 드레츠키는 지각 경험은 먼저 비개념적 정보로 주어지고 이후 고차 인지 작용을 통해 개념적 정보로 변환된다고 보았다. 그리고 이 과정에서 정보의 손실이 필연적으로 발생하여 지각 경험에 주어진 모든 것을 알아채는 것은 아니라고 하였다. &lt;보기&gt;의 A는 사고 당시의 전체 상황은 불분명하지만 ‘사고 장소가 도로였다’는 개념적 판단을 하고 있다. 이는 일부 개념적 판단이 포함되었으나, 기억 전반은 비개념적 정보에 의존한 채 불완전하게 남았음을 보여 주는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 드레츠키의 관점에서는 A의 기억 중, 자동차 사고 상황과 관련된 정보가 손실된 이유는 비개념적 내용으로 이루어진 사고 당시의 지각 경험이 후속 인지 과정에서 일부만 개념화되었기 때문이라고 보겠군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – &lt;보기&gt;의 A는 사고 당시의 전체 장면을 재현하지 못하고 일부 단서만 떠올리고 있다. 이는 (나)의 3문단에서 드레츠키가 지각 경험이 개념적 정보로 변환되는 과정에서 정보의 손실이 필연적으로 발생한다고 생각한 내용과 부합한다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 적절하지 않음(정답). [유형] 구체적 사례 적용</div>
+        </div>
+
+        <!-- 문제 9번 -->
+        <div class="question-full">
+            <div class="q-num">09</div>
+            <div class="question-stem">문맥상 ⓐ~ⓔ와 <strong>가장 가까운 의미</strong>로 쓰인 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ⓐ: 기업은 가격을 내리고 생산량을 늘려 가고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘~ 가격을 내리고 ~’의 ‘내리다’는 ‘값이나 수치, 온도, 성적 따위가 이전보다 떨어지거나 낮아지다. 또는 그렇게 하다.’의 뜻이다. 하지만 ⓐ는 ‘판단, 결정을 하거나 결말을 짓다.’의 뜻으로 사용되었다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ⓑ: 친구는 느닷없이 나타나 나에게 불쑥 한마디를 던졌다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘~ 한마디를 던졌다.’의 ‘던지다’는 ‘어떤 행동을 상대편에게 하다.’의 뜻이다. 하지만 ⓑ는 ‘어떤 문제 따위를 제기하다.’의 뜻으로 사용되었다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ⓒ: 여행객은 사찰에 머무는 것이 아니라 체험 후 즉시 하산했다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘~ 사찰에 머무는 것이 ~’의 ‘머물다’는 ‘도중에 멈추거나 일시적으로 어떤 곳에 묵다.’의 뜻이다. 하지만 ⓒ는 ‘더 나아가지 못하고 일정한 수준이나 범위에 그치다.’의 뜻으로 사용되었다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ⓓ: 우리가 현실을 제대로 바라볼 때 미래를 분명히 예측할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ‘~ 현실을 제대로 바라볼 ~’의 ‘바라보다’는 ‘어떤 현상이나 사태를 자신의 시각으로 관찰하다.’의 뜻이다. 하지만 ⓓ는 ‘어떤 대상을 바로 향하여 보다.’의 뜻으로 사용되었다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ⓔ: 그런 말은 빈정거림을 넘어 시비를 거는 것에 가깝다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – ‘~ 빈정거림을 넘어 ~’의 ‘넘다’와 ⓔ는 모두 ‘일정한 기준이나 한계 따위를 벗어나 지나다.’의 뜻으로 사용되었다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 가까움(정답). [유형] 단어의 의미 파악</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <h3>(가) 지각 경험의 내용과 지각적 믿음의 정당화</h3>
+        <ul>
+            <li><strong>해제</strong>: 이 글은 지각 경험이 어떻게 지각적 믿음을 형성하고, 그 믿음이 언제 정당화될 수 있는지를 설명하고 있다. 지각 경험은 외부 세계의 사물과 속성을 직접 마주하며 얻게 되는 감각적 표상이며, 이는 ‘빨갛다.’, ‘사과이다.’와 같은 판단과 ‘내 앞에 사과가 놓여 있다.’라는 믿음으로 이어진다. 그러나 이러한 믿음이 정당화되려면 지각 경험의 내용이 옳음 조건을 충족해야 한다. 지각 경험이 옳음 조건을 충족하기 위해 어떤 성격을 가져야 하는가라는 물음은, 지각 경험을 지식의 형성과 정당화의 조건으로 이해할 수 있는지에 대한 철학적 논쟁으로 이어져 왔다.</li>
+            <li><strong>주제</strong>: 지각 경험과 지각적 믿음의 구분 및 관계</li>
+            <li><strong>구성</strong>
+                <ul style="margin-top:6px;">
+                    <li>1문단: 지각 경험과 지각적 믿음의 구분</li>
+                    <li>2문단: 지각 경험의 판단 및 믿음의 형성 과정</li>
+                    <li>3문단: 옳음 조건을 통한 지각 경험의 정당화 요건</li>
+                    <li>4문단: 지각 경험의 성격과 인식론적 논쟁</li>
+                </ul>
+            </li>
+        </ul>
+        <h3>(나) 지각 경험에 대한 개념주의와 비개념주의의 입장</h3>
+        <ul>
+            <li><strong>해제</strong>: 이 글은 지각 경험이 어떤 성격을 지닐 때 지각적 믿음을 정당화할 수 있는지에 대한 개념주의와 비개념주의의 상반된 입장을 설명하고 있다. 개념주의는 지각 경험이 개념적으로 구조화가 되어야 옳음 조건을 충족하고 인식적 정당화가 가능하다고 본다. 반대로 비개념주의는 지각 경험이 개념화 이전에도 정당화가 가능하다고 주장한다. 두 입장은 지각 경험의 성격과 지각적 믿음의 정당화 조건을 둘러싼 철학적 쟁점을 보여 준다.</li>
+            <li><strong>주제</strong>: 지각 경험의 개념적·비개념적 성격을 둘러싼 논쟁</li>
+            <li><strong>구성</strong>
+                <ul style="margin-top:6px;">
+                    <li>1문단: 지각 경험의 성격에 대한 상반된 입장</li>
+                    <li>2문단: 지각 경험의 성격에 대한 개념주의의 견해</li>
+                    <li>3문단: 지각 경험의 성격에 대한 비개념주의의 견해</li>
+                    <li>4문단: 지각 경험의 성격과 지각적 믿음의 정당화 조건에 대한 철학적 논쟁</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

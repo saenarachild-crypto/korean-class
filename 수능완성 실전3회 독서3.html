@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 3회 - 10~13 (법률의 착오와 법적 책임)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+        }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left {
+            flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px;
+        }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p {
+            margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9; border-bottom: 2px solid #e67e22; font-weight: 600; padding: 0 2px;
+        }
+        .original-text .phrase-label {
+            display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700;
+            margin: 2px 0 10px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .para-note {
+            display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700;
+            margin: -4px 0 18px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+        }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .footnote { font-size: 12px; color: #64748b; margin-top: -10px; margin-bottom: 20px; }
+        .analysis-box {
+            margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px;
+        }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box {
+            background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px;
+            margin-top: 12px; margin-bottom: 20px; font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22;
+        }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .highlight-table {
+            background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f;
+        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 14px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .qa-box {
+            background: #f5f3ff; border-radius: 20px; padding: 16px 20px; margin: 20px 0;
+            border-left: 5px solid #7c3aed; font-size: 13px;
+        }
+        .qa-box .q { font-weight: 700; color: #5b21b6; margin-bottom: 6px; }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+            margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px;
+        }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card {
+            flex: 1; min-width: 200px; background: white; border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; transition: all 0.2s; border: 1px solid #e2edf7;
+        }
+        .struct-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
+        .card-head {
+            background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px;
+            letter-spacing: -0.2px; display: flex; align-items: center; gap: 8px;
+        }
+        .card-body { padding: 18px 18px; font-size: 13.5px; background: #ffffff; }
+        .card-body p { margin-bottom: 10px; line-height: 1.5; }
+        .card-body .sub-point {
+            background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12px;
+            color: #334155; border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center; font-size: 26px; color: #94a3b8; display: flex; align-items: center;
+            justify-content: center; min-width: 30px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        .flow-badge {
+            display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px;
+            font-size: 11.5px; font-weight: 600; color: #1e466e; margin-right: 6px;
+        }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full {
+            background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0;
+            border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px;
+            border-radius: 60px; color: white; margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px;
+            border-radius: 28px; border: 1px solid #bdd4e7;
+        }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 1px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis {
+            font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px;
+        }
+        .view-box { background: #eef2ff; padding: 18px 24px; border-radius: 28px; margin: 15px 0; font-size: 14.5px; }
+        .view-box .vb-title { font-weight: 700; margin-bottom: 8px; }
+        .correct-badge {
+            background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0;
+        }
+        .passage-study { padding: 26px 40px 40px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+        .passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e466e; }
+        .passage-study ul { margin-left: 20px; font-size: 14.5px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section, .passage-study { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 3회 · 사회 10~13</h1>
+        <p>법률의 착오와 법적 책임 | 원문 + 문단별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>현대 사회는 기술 발전, 사회적 가치 변화, 경제 활동의 복잡성 등 다양한 요인으로 법률이 점점 더 복잡해지고 다변화하고 있다. 이러한 변화 속에서 시민들은 법규를 정확히 알지 못하거나 잘못 이해해 자신도 모르게 법을 위반하는 상황에 놓이기도 한다.
+                <span class="underline-phrase">우리 형법<span class="vocab-mark">*</span>은 이러한 문제를 다루기 위해 ‘법률의 착오’라는 개념을 규정<span class="vocab-mark">*</span>하여 행위자의 법적 책임 여부를 공정하게 판단하기 위한 근거를 제공한다.</span> <span class="phrase-label">법률의 착오 규정의 목적</span>
+                <span class="para-note">← 현대 사회의 법률 복잡화로 인한 법률 착오의 가능성</span></p>
+                <p><span class="underline-phrase">법률의 착오는 행위자가 자신이 행한 행위가 법적으로 금지된 것임을 알지 못하거나 잘못 이해한 경우를 말한다.</span> <span class="phrase-label">법률의 착오의 의미</span>형법 제16조는 이러한 착오가 정당한 이유에 기초한 것이라면 벌하지 아니한다고 규정하고 있다.
+                <span class="underline-phrase">법률의 착오는 규범적 의미를 인식하지 못하거나 그 규범을 잘못 해석한 경우를 의미한다는 점에서 사실의 착오와 구별된다.</span> <span class="phrase-label">법률의 착오의 특징</span>
+                <span class="underline-phrase">사실의 착오는 행위자가 객관적 사실을 잘못 인식하거나 알지 못한 경우를 뜻한다.</span> <span class="phrase-label">사실의 착오의 의미</span>예를 들어 남의 물건을 자신의 것이라 착각해 가져간 경우는 사실의 착오이지만, 남의 물건을 가져간 사실을 알면서도 그것이 절도죄에 해당한다는 규범적 금지를 알지 못한 경우는 법률의 착오에 해당한다.
+                <span class="para-note">← 법률의 착오 개념과 사실의 착오와의 구별</span></p>
+                <p><span class="underline-phrase">법률의 착오에 대한 논의는 ‘위법성의 인식’과 ‘정당한 이유’라는 요소를 중심으로 이루어진다.</span> <span class="phrase-label">법률의 착오 논의의 핵심 요소</span>
+                <span class="underline-phrase">위법성의 인식은 자신의 행위가 법적으로 금지된 것임을 인식하는 것을 말한다.</span> <span class="phrase-label">위법성의 인식의 개념</span>이에 대한 해석은 고의설과 책임설의 두 입장으로 나뉘고 있다. ㉠고의설은 위법성의 인식이 고의의 중요한 요소라고 본다. 고의설에 따르면
+                <span class="underline-phrase">행위자가 자신의 행위가 법에 위반된다는 사실을 인식하고 의도적으로 그 행위를 실행했을 때 고의가 성립한다.</span> <span class="phrase-label">‘고의’의 판단 기준</span>이는 범죄 성립의 핵심적인 요소로 간주된다. 반면 ㉡책임설은 위법성의 인식을 고의와 구별하여 위법성의 인식이 결여된 경우에도 정당한 이유가 없다면 법적 책임을 물을 수 있다고 본다.
+                <span class="underline-phrase">위법성의 인식이 결여된 이유가 정당하게 뒷받침될 경우 착오로 인한 법적 책임을 면할 수 있게 된다.</span> <span class="phrase-label">책임설의 법적 책임 면제 조건</span>
+                <span class="para-note">← 위법성의 인식의 의미와 고의설·책임설</span></p>
+                <p><span class="underline-phrase">정당한 이유란 행위자가 법을 알기 위해 통상적<span class="vocab-mark">*</span>으로 요구되는 주의 의무를 다했음에도 불구하고 법규<span class="vocab-mark">*</span>를 인식하기 어려운 사정이 존재하는 경우를 말한다.</span> <span class="phrase-label">정당한 이유의 성립 조건</span>이를 판단하기 위한 기준에는 ‘상당한 이유설’과 ‘회피 가능성설’이 제시된다.
+                <span class="underline-phrase">상당한 이유설은 행위자가 법규를 알지 못한 이유가 사회적 관점에서 충분히 이해될 수 있는지를 기준으로 삼는다.</span> <span class="phrase-label">상당한 이유설의 판단 기준</span>여기에는 법령<span class="vocab-mark">*</span>의 내용이 지나치게 난해하거나, 제·개정이 최근 이루어져 널리 공지되지 않은 경우, 또는 관련 행정 기관의 안내가 미비한 경우 등이 고려될 수 있다.
+                <span class="underline-phrase">회피 가능성설은 행위자가 해당 법규를 알기 위해 필요한 주의 의무를 다했는지 그리고 그러한 부지(不知)<span class="vocab-mark">*</span>를 회피하는 것이 실제로 가능했는지를 판단 기준으로 삼는다.</span> <span class="phrase-label">회피 가능성설의 판단 기준</span>간단한 확인 절차를 거쳤다면 그 법규의 존재를 알 수 있었던 경우와 같이, 법규에 대한 부지를 피할 수 있었던 상황에서는 정당한 이유가 인정되기 어렵다.
+                <span class="para-note">← 정당한 이유의 의미와 기준에 대한 두 이론</span></p>
+                <p><span class="underline-phrase">법률의 착오에 관한 이러한 논의는 법적 책임이 단순히 법규 위반 사실만으로 결정되는 것이 아님을 보여 주며, 행위자의 인식 가능성과 주의 의무 이행 여부를 함께 고려한 책임 판단이 필요함을 시사한다.</span> <span class="phrase-label">법률의 착오에 대한 논의의 의미</span>이와 같은 책임 판단의 방식은 법적 판단의 공정성과 합리성을 제고<span class="vocab-mark">*</span>하는 데 기여한다.
+                <span class="para-note">← 법률의 착오의 중요성과 의의</span></p>
+                <p class="footnote">✽부지: 알지 못함.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단 분석 – 법률 복잡화로 인한 법률 착오의 가능성</div>
+                <div class="content">현대 사회는 기술 발전 등으로 법률이 점점 복잡해져 시민들이 자신도 모르게 법을 위반하는 상황 발생. 형법은 ‘법률의 착오’ 개념을 규정해 법적 책임을 공정하게 판단하는 근거를 제공.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 2문단 분석 – 법률의 착오 개념과 사실의 착오와의 구별</div>
+                <div class="content">법률의 착오 = 행위가 법적으로 금지됨을 알지 못하거나 잘못 이해한 경우(규범적 의미의 오인). 사실의 착오 = 객관적 사실을 잘못 인식·알지 못한 경우. 예: 남의 물건을 내 것으로 착각(사실의 착오) vs 절도죄인 줄 몰랐음(법률의 착오).</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 3문단 분석 – 위법성의 인식과 고의설·책임설</div>
+                <div class="content"><strong>고의설(㉠)</strong>: 위법성의 인식이 고의의 요소 → 인식 없으면 고의 불성립, 범죄 불성립 가능. <strong>책임설(㉡)</strong>: 위법성의 인식을 고의와 구별 → 정당한 이유 없으면 법적 책임 인정, 정당한 이유 있으면 면책.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 4문단 분석 – 정당한 이유의 의미와 두 기준</div>
+                <div class="content"><strong>상당한 이유설</strong>: 법규를 알지 못한 이유가 사회적 관점에서 이해 가능한지(난해한 법령·불충분한 공지·행정기관 안내 미비 등). <strong>회피 가능성설</strong>: 주의 의무를 다했는지, 부지를 회피하는 것이 실제로 가능했는지.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 5문단 분석 – 법률의 착오의 중요성과 의의</div>
+                <div class="content">법적 책임은 단순한 법규 위반 사실만이 아니라 인식 가능성·주의 의무 이행 여부를 함께 고려해야 함 → 법적 판단의 공정성·합리성 제고.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>부지</strong>: 알지 못함.<br>
+                • <strong>법규(法規)</strong>: 일반 국민의 권리와 의무에 관계있는 법 규범.<br>
+                • <strong>형법(刑法)</strong>: 범죄와 형벌에 관한 법률 체계. 어떤 행위가 처벌되고 그 처벌은 어느 정도이며 어떤 종류의 것인가를 규정한다.<br>
+                • <strong>규정(規定)</strong>: 규칙으로 정함. 또는 그 정하여 놓은 것.<br>
+                • <strong>통상적(通常的)</strong>: 특별하지 아니하고 예사로운 것.<br>
+                • <strong>법령(法令)</strong>: 법률과 명령을 아울러 이르는 말.<br>
+                • <strong>제고(提高)</strong>: 수준이나 정도 따위를 끌어올림.
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <p style="font-size: 13.5px;">이 글은 현대 사회에서 법률의 복잡성이 증가함에 따라 발생하는 법률의 착오 문제를 중심으로 형법적 의미와 해석을 설명하고 있다. 법률의 착오란 행위자가 자신의 행위가 법적으로 금지된 것임을 알지 못하거나 잘못 이해한 경우를 말하며, 형법 제16조는 이러한 착오가 정당한 이유에 기초할 경우 벌하지 아니한다고 규정한다. 법률의 착오 논의의 핵심은 위법성의 인식과 정당한 이유이다. 위법성의 인식과 관련하여 이를 고의의 요소로 보는 고의설과, 고의와 구별하여 책임 판단의 요소로 보는 책임설이 대립한다. 또한 정당한 이유의 기준을 두고, 사회적으로 충분히 용인될 수 있는 사유가 있을 때 책임을 면할 수 있다는 상당한 이유설, 법규 인식이 회피 불가능한 경우에만 책임을 면할 수 있다는 회피 가능성설이 대립한다. 법률의 착오는 단순한 부지가 아닌 사회적으로 용인 가능한 정당성이 있을 때만 책임을 면할 수 있다는 기준으로, 법적 판단의 공정성과 합리성에 중요한 의미를 갖는다.</p>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">법률의 착오 성립 요건과 법적 해석</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 선생님의 만점 구조도 포인트 1 – 위법성의 인식: 고의설 vs 책임설 (문항 12 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>고의설</th><th>책임설</th></tr></thead>
+                    <tbody>
+                        <tr><td>위법성의 인식의 위치</td><td>고의의 구성 요소</td><td>고의와 분리된 책임 요소</td></tr>
+                        <tr><td>위법성의 인식이 없을 경우</td><td>고의 불성립 → 범죄 불성립 가능</td><td><strong>위법성</strong>의 인식과 무관하게 책임 판단</td></tr>
+                        <tr><td>주요 특징</td><td>위법성의 인식을 범죄 성립의 핵심 요소로 봄.</td><td><strong>위법성의 인식</strong>을/를 법적 책임 유무의 별도 요소로 고려</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 17px;">📊 선생님의 만점 구조도 포인트 2 – 상당한 이유설 vs 회피 가능성설 (문항 13 관련)</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>구분</th><th>상당한 이유설</th><th>회피 가능성설</th></tr></thead>
+                    <tbody>
+                        <tr><td>판단 기준</td><td>법규 인식 부지의 이유가 <strong>사회적</strong> 관점에서 이해 가능한가?</td><td>법규 인식의 <strong>부지</strong>를 회피하는 것이 가능했는가?</td></tr>
+                        <tr><td>판단 관점</td><td>사회적·객관적 타당성</td><td>행위자의 주의 의무 이행 가능성</td></tr>
+                        <tr><td>정당한 이유 인정 사례</td><td>난해한 법령, 최근 제·개정된 법령의 내용 공지 불충분, <strong>행정 기관</strong>의 안내 미비</td><td>주의 의무를 다해도 법규를 현실적으로 알 수 없었던 경우</td></tr>
+                        <tr><td>정당한 이유 불인정 사례</td><td>법규 인식 부지 이유가 사회적으로 용인하기 어려운 경우</td><td>간단한 확인 등으로 법규를 알 수 있었던 경우</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 배경지식 더 알아보기</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;"><strong>형법 제16조 – 법률의 착오 조문 전문과 해석</strong><br>형법 제16조(법률의 착오)의 원문은 다음과 같다. “자기의 행위가 법령에 의하여 죄가 되지 아니하는 것으로 오인한 행위는 그 오인에 정당한 이유가 있는 때에 한하여 벌하지 아니한다.” 이에 따르면, 법률의 착오로 인해 책임을 면할 수 있는 조건은 3가지이다. 첫째, 자기의 행위가 죄가 되지 않는다고 오인했을 것(착오의 존재). 둘째, 그 오인에 정당한 이유가 있을 것. 셋째, 이 두 조건을 모두 충족할 때만 벌하지 아니한다(면책). 즉 단순히 법을 몰랐다는 것만으로는 면책되지 않는다. 주의 의무를 다했음에도 인식이 어려운 사정이 있어야 한다.</p>
+                <p style="font-size: 13px;"><strong>고의설 vs 책임설 – 독일 형법학의 논쟁과 우리 법원의 입장</strong><br>고의설과 책임설의 대립은 20세기 독일 형법학에서 본격화된 논쟁이다. 고의설은 ‘불법을 알고 행위하는 것’이 고의의 본질이라고 보는 입장으로, 고전적 범죄론 체계와 연결된다. 위법성의 인식이 없으면 고의 자체가 성립하지 않으므로 범죄가 성립되지 않거나 과실범으로만 처벌할 수 있게 된다. 책임설은 제2차 세계 대전 이후 독일 연방 대법원(BGH)이 채택하면서 현대 형법학의 주류가 된 입장이다. 고의와 위법성의 인식을 분리하여, 위법성 인식이 없어도 고의 자체는 성립할 수 있다고 본다. 대신 위법성 인식의 결여가 정당하게 뒷받침될 때만 책임이 감면된다.</p>
+            </div>
+            <div class="qa-box">
+                <div class="q">💬 EBS Q&A – 지문의 핵심 개념을 구체적 사례에 적용하는 문항은 어떻게 해결해야 하나요? (문항 13 관련)</div>
+                문항 13은 드론 비행 사례를 주고, 그 사례에 법률의 착오 관련 개념을 적용하는 문제입니다. 이런 유형은 먼저 사례에 나타난 상황을 이해하는 것이 중요합니다. 즉 사례의 A가 법 자체를 몰랐는지, 금지 구역이라는 사실을 몰랐는지, 아니면 법을 알 수 있었는데 확인하지 않은 것인지를 구분해야 합니다. 지문의 핵심 개념을 사례에 적용하는 문제는 사례의 세부 사실을 단순히 읽는 것이 아니라, 그것을 개념과 대응해 보는 과정이 필요합니다. 이 문제에서는 특히 사실의 착오인지, 법률의 착오인지, 그리고 정당한 이유가 있는지 없는지를 나누어 보는 것이 핵심입니다. 예를 들어 드론 비행 제한 구역에 관한 법령은 알고 있었지만, 해당 지역이 최근 지정된 구역이라는 사실을 몰랐다면 이는 규범 자체에 대한 무지가 아니라 사실 관계의 인식 문제로 보아야 합니다. 구체적 사례에 적용하는 문제를 풀 때에는 지문 속 개념 정의를 짧게 정리해 두는 것이 매우 효과적입니다. 예를 들어 ‘사실의 착오 = 객관적 사실에 대한 오인’, ‘법률의 착오 = 규범적 금지에 대한 오인’, ‘상당한 이유설 = 사회적 이해 가능성’, ‘회피 가능성설 = 실제 확인 가능성’처럼 정리해 두면, 사례 속 학생 발화를 훨씬 빠르게 판별할 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">🧭 지문 구조도 (글 전개 흐름) <span>실전 3회 10~13</span></div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 법률 착오의 가능성</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">배경</span> 법률의 복잡화 → 자신도 모르게 법 위반</p>
+                    <p><span class="flow-badge">제도</span> 형법이 ‘법률의 착오’ 개념 규정</p>
+                    <div class="sub-point">✔ 1문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 법률의 착오 vs 사실의 착오</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">법률의 착오</span> 규범적 금지에 대한 오인</p>
+                    <p><span class="flow-badge">사실의 착오</span> 객관적 사실에 대한 오인</p>
+                    <div class="sub-point">✔ 2문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 위법성의 인식: 고의설·책임설</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">고의설</span> 위법성 인식 = 고의의 요소</p>
+                    <p><span class="flow-badge">책임설</span> 위법성 인식 = 별도의 책임 요소</p>
+                    <div class="sub-point">✔ 3문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>④</span> 정당한 이유의 두 기준</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">상당한 이유설</span> 사회적 관점의 이해 가능성</p>
+                    <p><span class="flow-badge">회피 가능성설</span> 부지의 회피 가능성</p>
+                    <div class="sub-point">✔ 4문단</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>⑤</span> 논의의 의의</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">결론</span> 인식 가능성 + 주의 의무 함께 고려</p>
+                    <p><span class="flow-badge">의미</span> 법적 판단의 공정성·합리성 제고</p>
+                    <div class="sub-point">✔ 5문단</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 법률 착오의 가능성 → 법률의 착오·사실의 착오 구별 → 위법성의 인식(고의설·책임설) → 정당한 이유(상당한 이유설·회피 가능성설) → 논의의 의의
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 10번 -->
+        <div class="question-full">
+            <div class="q-num">10</div>
+            <div class="question-stem">‘법률의 착오’를 이해하기 위해 윗글을 읽을 때, 독서 전략으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 법률의 착오와 혼동되는 개념을 구별하여 그 의미를 확인하며 읽는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 2문단에서 법률의 착오는 규범적 의미를 인식하지 못하거나 그 규범을 잘못 해석한 경우를 의미한다는 점에서 사실의 착오와 구별된다고 하였다. 법률의 착오를 사실의 착오와 구별하여 그 의미를 확인하며 읽는 것은 법률의 착오의 개념을 이해하기 위한 목적에 부합하는 읽기 방법이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 법률의 착오가 행위자의 책임 판단에 어떤 의미를 지니는지에 주목하며 읽는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 1문단에서 다양한 요인으로 법률이 점점 더 복잡해지고 다변화하는 상황 속에서 시민들은 법규를 정확히 알지 못하거나 잘못 이해하여 자신도 모르게 법을 위반하는 상황에 놓이기도 한다고 하였다. 우리 형법은 이러한 문제를 다루기 위해 ‘법률의 착오’라는 개념을 규정하여 행위자의 법적 책임 여부를 공정하게 판단하기 위한 근거를 제공한다고 하였으므로 법률의 착오가 행위자의 책임 판단에 어떤 의미를 지니는지에 주목하며 읽는 것은 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ 법률의 착오가 현대 사회의 법 복잡성 증가에 미치는 영향을 분석하며 읽는다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 1문단에 따르면, 기술 발전, 사회적 가치 변화, 경제 활동의 복잡성 등 다양한 요인으로 법률이 점점 더 복잡해지고 다변화하는 현대 사회에서 시민들은 법규를 정확히 알지 못하거나 잘못 이해하여 자신도 모르게 법을 위반하는 상황에 놓이기도 한다. 우리 형법은 이러한 문제를 다루기 위해 ‘법률의 착오’라는 개념을 규정하여 행위자의 법적 책임 여부를 공정하게 판단하기 위한 근거를 제공한다. 하지만 법률의 착오가 현대 사회의 법 복잡성 증가에 미치는 영향에 대해 설명하고 있지 않으므로, 법률의 착오가 현대 사회의 법 복잡성 증가에 미치는 영향을 분석하며 읽는 것은 읽기 목적에 부합하는 방법으로 볼 수 없다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 법률의 착오 규정이 법적 책임 판단의 공정성에 어떤 기여를 하는지 알아보며 읽는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 5문단에서 법률의 착오에 관한 논의는 행위자의 인식 가능성과 주의 의무 이행 여부를 함께 고려한 책임 판단이 필요함을 시사한다고 밝히며, 이러한 책임 판단의 방식이 법적 판단의 공정성과 합리성을 제고하는 데 기여함을 제시하고 있다. 따라서 법률의 착오 규정이 법적 책임 판단의 공정성에 어떤 기여를 하는지에 주목하는 읽기 방법은 법률의 착오 개념을 이해하기 위한 목적에 부합한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 법률의 착오에 대한 논의에서 핵심이 되는 요소를 파악하고 각 요소에 대한 쟁점 사항을 정리하며 읽는다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 법률의 착오에 대한 논의는 ‘위법성의 인식’과 ‘정당한 이유’라는 요소를 중심으로 이루어진다고 하였고, 이어지는 문장에서 각각의 요소를 둘러싼 상이한 입장을 제시하고 있다. 법률의 착오에 대한 논의에서 핵심 요소와 쟁점을 정리하는 것은 법률의 착오 개념을 이해하기 위한 목적에 부합하는 읽기 방법이다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 적절하지 않음(정답). [유형] 세부 내용 파악</div>
+        </div>
+
+        <!-- 문제 11번 -->
+        <div class="question-full">
+            <div class="q-num">11</div>
+            <div class="question-stem">윗글을 읽고 알 수 있는 내용으로 <strong>가장 적절한</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① 행위자가 객관적 사실을 잘못 인식하거나 해석한 경우도 법률의 착오에 해당한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 법률의 착오는 행위자가 자신이 행한 행위가 법적으로 금지된 것임을 알지 못하거나 잘못 이해한 경우를 말한다고 하였다. 이는 행위자가 객관적 사실을 잘못 인식하거나 알지 못한 경우를 뜻하는 사실의 착오와 구별된다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 행위자의 행위에 대한 정당한 이유는 법규와 규범을 알지 못했다는 사실만으로 인정된다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 4문단에서 정당한 이유란 행위자가 법을 알기 위해 통상적으로 요구되는 주의 의무를 다했음에도 불구하고 법규를 인식하기 어려운 사정이 존재하는 경우를 말한다고 하였다. 법규와 규범을 알지 못했다(인식 부족)는 사실 그 자체만으로 인정되는 것이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 행위자의 행위가 법률의 착오로 인정되면 정당한 이유와 관계없이 법적 책임을 부담해야 한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 형법 제16조는 법률의 착오가 정당한 이유에 기초한 것이라면 벌하지 아니한다는 규정을 두고 있다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 시민들이 법에 대한 인식과 지식이 부족한 상황에서 발생하는 문제는 사실의 착오에 해당한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 2문단에서 사실의 착오는 행위자가 객관적 사실을 잘못 인식하거나 알지 못한 경우를 뜻한다고 하였다. 또한 규범적 의미를 인식하지 못하거나 그 규범을 잘못 해석한 경우를 의미하는 법률의 착오와 구별된다고 하였다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 법령의 내용이 지나치게 난해하게 만들어진 경우는 위법성의 인식의 결여를 뒷받침하는 정당한 이유가 된다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 3문단에서 위법성의 인식이 결여된 이유가 정당하게 뒷받침될 경우, 착오로 인한 법적 책임을 면할 수 있게 된다고 하였다. 또한 4문단에 따르면, 법령의 내용이 지나치게 난해하거나, 제·개정이 최근 이루어져 널리 공지되지 않은 경우, 또는 관련 행정 기관의 안내가 미비한 경우 등은 행위자가 법규를 알지 못한 이유가 사회적 관점에서 충분히 이해될 수 있는 ‘정당한 이유’에 해당한다. 따라서 법령의 내용이 지나치게 난해하게 만들어진 경우는 위법성의 인식의 결여를 뒷받침하는 정당한 이유가 된다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 가장 적절함(정답). [유형] 세부 내용 파악</div>
+        </div>
+
+        <!-- 문제 12번 -->
+        <div class="question-full">
+            <div class="q-num">12</div>
+            <div class="question-stem"><span class="underline-phrase">㉠</span>, <span class="underline-phrase">㉡</span>에 대한 이해로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="choice-item">
+                <div class="choice-text">① ㉠은 고의의 성립 여부를 행위의 범죄 성립을 판단하는 중요한 기준으로 제시한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 고의설은 위법성의 인식이 고의의 중요한 요소라고 본다고 하였다. 행위자가 위법성을 인식하고도 그 행위를 실행했을 때 고의가 성립하고, 이는 범죄 성립의 핵심적인 요소로 간주된다. 즉 고의의 성립 여부는 행위의 범죄 성립을 판단하는 중요한 기준이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ㉠에 따르면, 규범을 잘못 해석한 줄 모르는 행위자의 행위가 법규를 위반했다면 법적 책임을 묻지 않을 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 고의설에 따르면 행위자가 자신의 행위가 법에 위반된다는 사실을 인식하고 의도적으로 그 행위를 실행했을 때 고의가 성립한다고 하였다. 행위자가 규범을 잘못 해석한 줄 모르고 한 행위는 위법성의 인식이 결여된 상태이다. 이는 고의가 성립하지 않아 범죄가 성립되지 않을 수 있으므로, 법적 책임을 묻지 않을 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ㉡에 따르면, 위법성의 인식이 결여되었더라도 정당한 이유가 없다면 법적 책임을 물을 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 책임설은 위법성의 인식을 고의와 구별하여 위법성의 인식이 결여된 경우에도 정당한 이유가 없다면 법적 책임을 물을 수 있다고 본다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ ㉡은 행위자가 위법성의 인식이 결여된 상태를 회피할 수 있는 상황이었다면 법적 책임을 면할 수 없다고 본다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 4문단에서 행위자가 법규를 인식하지 못했더라도, 그 법규를 알 수 있었거나 알 수 있는 상황이었다면 책임을 면할 수 없다고 하였다. 즉 법규를 인식하지 못하는 상황을 회피할 수 있는 가능성이 있었다면 법적 책임을 면할 수 없다는 것이다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ㉠과 ㉡은 모두 행위자가 법을 알기 위한 통상적인 주의 의무를 다했다는 사실을 위법성 인식의 정당한 이유로 인정한다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 3문단에 따르면, 고의설에서는 통상적인 주의 의무를 다했는지 여부를 근거로 위법성 인식의 정당한 이유를 인정하는 것을 다루지 않는다. 책임설에서는 위법성의 인식이 결여된 경우에도 정당한 이유가 없다면 법적 책임을 물을 수 있다고 본다. 4문단에 따르면, 정당한 이유는 행위자가 법을 알기 위해 통상적으로 요구되는 주의 의무를 다했음에도 불구하고 법규를 인식하기 어려운 사정이 존재하는 경우를 말한다. 이는 행위자의 부지가 사회적·객관적 관점에서 보아도 피하기 어려웠는지를 판단하기 위한 기준으로, 위법성의 인식이 결여된 경우에 그 결여가 정당화될 수 있는지를 평가하는 요소이다.</div>
+            </div>
+            <div class="correct-badge">📍 ⑤번이 적절하지 않음(정답). [유형] 중심 내용 파악</div>
+        </div>
+
+        <!-- 문제 13번 -->
+        <div class="question-full">
+            <div class="q-num">13</div>
+            <div class="question-stem">&lt;보기&gt;는 윗글을 읽은 학생들이 진행한 모의 재판의 일부이다. 윗글을 참고하여 학생의 발화를 분석한 내용으로 <strong>적절하지 않은</strong> 것은?</div>
+            <div class="view-box">
+                <div class="vb-title">📖 &lt;보 기&gt;</div>
+                <strong>[사건 개요]</strong><br>
+                A는 주말에 경관 촬영을 위해 도심 하천 인근에서 드론을 날렸다. A는 ‘항공안전법’에 따라 드론 비행 제한 구역에서는 드론을 날리지 않았다. A가 드론을 날린 지역은 비행 제한 구역이 아니었으나 최근에 비행 제한 구역으로 지정되었고, 관련 정보는 국토교통부에서 운영하는 드론 안내 사이트를 통해 확인할 수 있었다. 하지만 A는 해당 지역이 최근에 비행 제한 구역으로 지정되었다는 사실 자체를 알지 못한 채 드론을 날려 관계 기관에 신고되었다.<br><br>
+                <strong>[조건]</strong> 윗글에서 다룬 법적 개념을 [사건 개요]의 사례에 유추하여 적용한다고 가정한다.<br><br>
+                학생 1: A는 비행 제한 구역에 관한 법령은 알고 있었지만, 드론을 날린 지역이 드론 비행 제한 구역으로 지정된 사실을 모르고 있었습니다.<br>
+                학생 2: A가 드론을 날린 지역이 최근에 비행 제한 구역으로 지정되었고, 이에 대한 안내가 부족했다는 이유가 인정됩니다.<br>
+                학생 3: 도심 하천의 인근 지역이 비행 제한 구역임을 알았다면, A는 드론을 날리지 않았을 것입니다. 따라서 A에게는 잘못이 없습니다.<br>
+                학생 4: A가 드론을 날리기 전, 국토교통부에서 운영하는 드론 안내 사이트를 확인했다면 해당 지역이 비행 제한 구역임을 알 수 있었을 것입니다.<br>
+                학생 5: 비행 제한 구역에 대한 정보가 공식적으로 제공되고 있었던 만큼, 이를 확인하지 않은 A에게는 책임을 물을 수 있다고 생각합니다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① ‘학생 1’은 A가 법령을 인식하지 못한 것이 아니라, 비행 제한 구역으로 지정된 사실을 알지 못한 경우임을 지적하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘학생 1’은 A가 드론을 날린 지역이 비행 제한 구역인 것을 모르고 있었다는 점을 지적하고 있다. 이는 2문단에서 객관적 사실을 잘못 인식하거나 알지 못한 경우를 설명한 사실의 착오를 지적하고 있는 것이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② ‘학생 2’는 상당한 이유설을 기반으로 A가 비행 제한 구역에 대해 충분히 인지할 수 없는 상황을 법률의 착오 근거로 보고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘학생 2’는 비행 제한 구역 지정과 이에 대한 안내 부족을 A의 법률의 착오 근거로 들고 있다. 4문단에서 상당한 이유설은 법령의 내용이 지나치게 난해하거나, 제·개정이 최근 이루어져 널리 공지되지 않은 경우, 또는 관련 행정 기관의 안내가 미비한 경우 등을 행위자가 법규를 알지 못한 이유로 보고, 이는 사회적 관점에서 충분히 용인될 수 있다고 하였다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ ‘학생 3’은 A가 해당 지역이 비행 제한 구역이라는 사실을 알지 못했던 점을 위법성의 인식을 결여한 사유로 제시하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 3문단에서 위법성의 인식은 자신의 행위가 법적으로 금지된 것임을 인식하는 것을 말한다고 하였다. &lt;보기&gt;에서 A는 항공 안전법에 따라 드론 비행 제한 구역에서는 드론을 날리지 않았고, 드론을 날린 도심 하천 인근 지역이 비행 제한 구역으로 지정되었다는 사실은 알지 못했다고 하였다. 이를 바탕으로 ‘학생 3’은 A가 드론을 날린 지역이 비행 제한 구역이라는 사실을 알지 못했던 점을 위법성의 인식을 결여한 사유로 제시하고 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ ‘학생 4’는 A가 비행 제한 구역에 대한 확인 절차를 거치지 않은 것은 규정에 대한 부지에 정당한 이유가 있다고 보고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 4문단에서 회피 가능성설은 행위자가 해당 법규를 알기 위해 필요한 주의 의무를 다했는지 그리고 그러한 부지를 회피하는 것이 실제로 가능했는지를 판단 기준으로 삼는다고 했다. 이에 따르면, 법규에 대한 부지를 피할 수 있었던 상황에서는 정당한 이유가 인정되기 어렵다. ‘학생 4’가 A가 드론을 날리기 전, 국토교통부에서 운영하는 드론 안내 사이트를 통해 비행 제한 구역임을 확인할 수 있었을 것이라고 보는 것은 A가 법규에 대한 부지를 피할 수 있었던 상황이라고 해석한 것이다. 부지에 정당한 이유가 있다고 보고 있는 것이 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ ‘학생 5’는 A가 비행 제한 구역 정보를 알 수 있었음에도 불구하고 이를 확인하지 않았다는 점에서 책임을 물을 수 있다는 입장을 취하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – ‘학생 5’의 발화는 A가 비행 제한 구역 정보를 확인할 수 있었음에도 이를 확인하지 않았다는 점에서 책임을 인정해야 한다는 것이다. 4문단에서 회피 가능성설은 행위자가 해당 법규를 알기 위해 필요한 주의 의무를 다했는지 그리고 그러한 부지를 회피하는 것이 실제로 가능했는지를 판단 기준으로 삼아, 법규에 대한 부지를 피할 수 있었던 상황에서는 정당한 이유가 인정되기 어렵다고 하였다.</div>
+            </div>
+            <div class="correct-badge">📍 ④번이 적절하지 않음(정답). [유형] 구체적 사례 적용</div>
+        </div>
+    </div>
+
+    <!-- ========== 지문 연구 (교사용 아리랑틀) ========== -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용]</h2>
+        <ul>
+            <li><strong>해제</strong>: 이 글은 현대 사회에서 법률의 복잡성이 증가함에 따라 발생하는 법률의 착오 문제를 중심으로 형법적 의미와 해석을 설명하고 있다. 법률의 착오란 행위자가 자신의 행위가 법적으로 금지된 것임을 알지 못하거나 잘못 이해한 경우를 말하며, 형법 제16조는 이러한 착오가 정당한 이유에 기초할 경우 벌하지 아니한다고 규정한다. 법률의 착오 논의의 핵심은 위법성의 인식과 정당한 이유이다. 위법성의 인식과 관련하여 이를 고의의 요소로 보는 고의설과, 고의와 구별하여 책임 판단의 요소로 보는 책임설이 대립한다. 또한 정당한 이유의 기준을 두고, 사회적으로 충분히 용인될 수 있는 사유가 있을 때 책임을 면할 수 있다는 상당한 이유설, 법규 인식이 회피 불가능한 경우에만 책임을 면할 수 있다는 회피 가능성설이 대립한다. 법률의 착오는 단순한 부지가 아닌 사회적으로 용인 가능한 정당성이 있을 때만 책임을 면할 수 있다는 기준으로, 법적 판단의 공정성과 합리성에 중요한 의미를 갖는다.</li>
+            <li><strong>주제</strong>: 법률의 착오 성립 요건과 법적 해석</li>
+            <li><strong>구성</strong>
+                <ul style="margin-top:6px;">
+                    <li>1문단: 현대 사회의 법률 복잡화로 인한 법률 착오의 가능성</li>
+                    <li>2문단: 법률의 착오 개념과 사실의 착오와의 구별</li>
+                    <li>3문단: 위법성의 인식의 의미와 고의설·책임설</li>
+                    <li>4문단: 정당한 이유의 의미와 기준에 대한 두 이론</li>
+                    <li>5문단: 법률의 착오의 중요성과 의의</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

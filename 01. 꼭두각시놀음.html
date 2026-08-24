@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>꼭두각시놀음 - 문장별 상세 분석 + 핵심 개념 (최종 완성본)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            padding: 40px 20px;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 32px 35px;
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+        }
+        .title-main {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            color: #0f2b3d;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            color: #1e466e;
+            border-left: 4px solid #e67e22;
+            padding-left: 16px;
+        }
+        .original-text {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin: 20px 0;
+            font-family: 'Times New Roman', 'Noto Serif KR', serif;
+            line-height: 1.7;
+        }
+        .sentence-wrapper {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .sentence {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 6px;
+            white-space: pre-wrap;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            padding: 8px 14px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .highlight {
+            background-color: #fef9c3;
+            font-weight: 600;
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+        .badge {
+            background: #e67e22;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .list-styled {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-styled li {
+            margin: 8px 0;
+            padding-left: 22px;
+            position: relative;
+        }
+        .list-styled li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 880px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+        .core-box {
+            background: #eef2ff;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 30px;
+            border: 1px solid #cbd5e1;
+        }
+        .core-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1e466e;
+            text-align: center;
+        }
+        .conflict-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .conflict-table th, .conflict-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .conflict-table th {
+            background: #e2e8f0;
+            font-weight: 700;
+        }
+        .sarcasm-box {
+            background: #fff7e6;
+            border-radius: 20px;
+            padding: 18px;
+            margin: 15px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="title-main">🎭 꼭두각시놀음 · 작자 미상 (고전인형극)</div>
+        
+        <!-- ========== 제5막 전체 (문장별 분석) ========== -->
+        <div class="subtitle">■ 제5막 표 생원 거리</div>
+        <div class="original-text">
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> 내 얼굴은 뉘 탓이오? 강원도 가서 영감 찾느라고 깊은 산중에 도토리묵을 먹어서 그렇게 되었소.</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 자신의 못생긴 얼굴을 남편 탓으로 돌리며, 남편 찾아다닌 고생을 원망함. ‘도토리묵’은 산중 생활의 궁핍함을 상징. 인형극 특유의 익살과 푸념이 섞인 발화.</div>
+                <div class="vocab-note">📖 어구 – 도토리묵: 도토리로 만든 음식. 영감: 남편(표 생원).</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 뭐 어쩌고 어째여? 산골에서 묵을 먹고 얼굴이 저 모양새가 되었으면, 나는 함경도 백두산에 다녀서 삼수갑산(三水甲山)으로 나올 제 강냉이와 상수리를 통째로 삶아 먹었는데 <span class="highlight">㉠내 얼굴엔 네가 나막신을 신고 다녀 봐라</span>. 해괴망측스런 년. 요사스런 계집도 많다.</div>
+                <div class="side-analysis">📌 분석 – 표 생원도 자신이 백두산에서 고생했다고 맞받아치며, ‘우툴두툴커녕’(주름 하나 없이 매끈함)을 비유적으로 표현. ㉠은 ‘내 얼굴에 너의 나막신 자국이라도 나겠냐’는 뜻으로, 자기 얼굴이 깨끗하고 매끈함을 과장되게 자랑하며 부부 싸움의 해학을 보여줌.</div>
+                <div class="vocab-note">📖 어구 – 삼수갑산: 함경도 유배지. 강냉이: 옥수수. 상수리: 상수리나무 열매. 우툴두툴: 주름살.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(사이) 그러나 생각하니 개천에 나도 용은 용이요, 짚으로 만들어도 신주(神主)는 신주라니 돌모리집한테 훈계하여 큰마누라에게 상우례*나 시켜 보자. 여보게 돌모리집네! (돌모리집을 불러 앞에 세우고 꼭두각시에 대하여) 여보 부인, 그러나저러나 객담(客談)은 그만두고 살아갈 이야기나 합시다. 부인이 어느덧 환갑이 넘고, 내가 연만(年滿) 팔십에 늙어 가난하고, 따라서 일점혈육(一點血肉)이 슬하에 없으니 이런 낭패가 어디 있나? 그러므로 부인도 근심이 되지요?</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 본처에게 첩 문제를 꺼내기 위해 먼저 나이 많고 가난하며 자식이 없는 처지를 근심으로 제시. ‘개천에 나도 용’은 비록 못나도 본처는 본처라는 속담적 표현. ‘객담’을 그만두자며 본격적으로 첩 이야기를 시작하려 함.</div>
+                <div class="vocab-note">📖 어구 – 신주: 위패. 상우례: 혼례 후 처음 친척들에게 인사하는 예식. 환갑: 60세. 연만 팔십: 나이 80세. 일점혈육: 자식. 낭패: 난처함.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> 여러 해포 만에 만나긴 만났으나 그도 또한 나 역시 근심이오.</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 오랜만에 만난 남편 때문에 근심이 있음을 인정하며, 남편의 말에 화제를 맞춰 줌. 아직 본격적으로 첩 이야기를 눈치채지 못한 상태.</div>
+                <div class="vocab-note">📖 어구 – 해포: 여러 해.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 부인의 말이 그러하니 말이오. 내가 그전에 작은집을 하나 얻었소.</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 ‘작은집’(첩)을 얻었다고 말함. 동음이의어 ‘작은집’(주택 / 작은 마누라)을 활용한 언어유희로, 이후 꼭두각시의 오해를 유발하는 장치.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> 아이고 듣던 중 상쾌한 말이오. 이 형편에 큰 집 작은 집을 어찌 가리겠소. 집을 얻었으니 재목(材木)이나 성하며 양지바르고 또 장인들 담가 놨겠소?</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 ‘집’으로 착각하여 반가워하며 재목(목재)과 장인(목수)에 대해 묻는다. 언어유희의 함정에 빠지는 장면으로, 관객에게 웃음을 준다.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 어으? 아 이게 무슨 소리여? 장은 무슨 장이며, 재목은 무슨 재목? 떡 줄 놈은 생각도 안 하는데 김칫국 먼저 마시네. 소실(小室)*을 얻었단 말이여.</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 ‘소실(첩)’이라고 정정하며 ‘김칫국 먼저 마신다’는 속담으로 꼭두각시를 비웃음. 첩을 얻은 사실을 직설적으로 밝힘.</div>
+                <div class="vocab-note">📖 어구 – 소실: 첩. 김칫국 먼저 마시다: 일이 되기도 전에 미리 기대하는 것을 비꼼.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> 아이고 영감, 이게 무슨 소리요? 이날껏 찾아다니면서 나중에 이런 험한 꼴을 보자고 영감을 찾았구려.</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 분노하며 배신감을 표현. ‘험한 꼴’은 첩 얻은 사실을 보고 듣는 수치심을 뜻함.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 잔말 말고 주는 거나 먹고 지내지.</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 권위적으로 상황을 무마하려 함. 아내의 항의를 무시하는 가부장적 태도.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> <span class="highlight">㉡그러나저러나</span> 적어도 큰마누라요, 커도 작은마누라니 인사나 시키오.</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 본부인의 권위를 내세우며 첩(돌모리집)에게 인사할 것을 요구. ㉡은 ‘어쨌든’ 정도의 뜻으로, 상황을 받아들이되 최소한의 체면은 세우려는 태도.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 여보게, 돌모리집네! 법은 법대로 하세.</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 중간자(돌모리집)에게 ‘법대로’ 하라고 명령. ‘법’은 가부장제의 권위를 의미.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>돌모리집:</strong> 무얼 말이오?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 큰부인한테 인사나 하게.</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 돌모리집(첩)에게 본처에게 인사하라고 명령. 본부인의 권위를 인정하는 동시에 첩을 하인처럼 대우함.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>돌모리집:</strong> 머지 않은 좌석에서 들어도 알겠소. 내가 적어도 용산 삼개 돌모리집이라면 장안 안이 다 아는 터인데, 유명한 표 생원이기로 가문을 보고 살기어든 날더러 작은집이라 업신여겨 큰부인에게 인사를 하여라, 절을 하여라 하니 잣골 내시댁 문 앞인가 절은 웬 절이여? 인사도 싫고 나는 갈 터이니 큰마누라하고 잘 사소. (돌아선다.)</div>
+                <div class="side-analysis">📌 분석 – 돌모리집이 자신의 명성을 과시하며 인사를 거부. ‘용산 삼개’는 유명한 지역, ‘잣골 내시댁’은 고관대가를 비꼼. 첩의 자존심과 저항을 보여주는 장면.</div>
+                <div class="vocab-note">📖 어구 – 용산 삼개: 용산의 번화가. 잣골 내시댁: 높은 신분의 집을 빗댐.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> <span class="highlight">㉢돌모리집네! 여직 살던 정리(情理)로 그럴 수가 있나? 오뉴월 불도 쬐다 물러나면 서운하다네. 마음을 돌려 인사하게.</span></div>
+                <div class="side-analysis">📌 분석 – 표 생원이 첩을 달래며 인사를 권유. ‘오뉴월 불도 쬐다 물러나면 서운하다’는 속담으로, 오래 알고 지낸 정으로 인사를 하라는 의미. ㉢은 표 생원이 첩과의 관계를 유지하려는 회유의 말투.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>돌모리집:</strong> 그러면 인사해 볼까요? (아무 말 없이 화가 나서 꼭두각시한테 머리를 딱 들이받으며) 인사 받으우.</div>
+                <div class="side-analysis">📌 분석 – 돌모리집이 인사하는 척하며 오히려 꼭두각시를 머리로 들이받음. 예상 밖의 행동으로 해학과 갈등을 동시에 폭발시킴.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> (놀래며) 이게 웬일이요? 여보 영감! 이게 웬일이요. 요사이 인사 예절은 이러하오? 인사 두 번만 받으면 내 머리는 간다 봐라 하겠구나. 인사도 싫으니 세간을 나눠 주오.</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 놀라며 항의하고, 결국 재산 분할을 요구함. 상황이 첩 문제에서 재산 문제로 확장됨.</div>
+                <div class="vocab-note">📖 어구 – 세간: 살림살이 도구, 재산.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 괘씸스런 계집들은 불같은 욕심은 있구나. 나의 집은 해남 관머리요 몸 지체는 한양 성중인데 무슨 세간 무슨 재물을 나눠 주니? 짚은 몽둥이로 한번 치면 다 죽으리라. (표 생원이 화를 내고 있는데 박 첨지가 나온다.)</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 화를 내며 아내의 재산 요구를 거부. ‘짚은 몽둥이’로 때리겠다는 협박으로 권위를 과시. 이때 박 첨지(마을 구장)가 등장하여 중재자 역할을 맡음.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 실례 말씀이요만은 잠시 지내다 보니 남의 집안 문제나 내 몸은 일개 구장(區長)으로 모르는 체할 수 없어 물어보니 허물치 마오.</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 구장 자격으로 중재에 나섬. 공식적인 권위를 빌려 사적인 갈등에 개입하는 관료의 모습.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 네, 구장이십니까? 판결 좀 하여 주시오. 제가 해남 사는 표 생원으로 부부 이별하고 그간 소실을 얻어 이곳에 왔다가 저기 선 저 화상(꼭두각시를 가리키며)은 나의 큰마누라인데 작은집으로 감정을 내어 세간을 나눠 달라 하오니 백계무책(百計無策)*이오. 어찌할는지요?</div>
+                <div class="side-analysis">📌 분석 – 표 생원이 박 첨지에게 재산 분할 판결을 요청. ‘백계무책’(모든 꾀를 다 써도 방법이 없음)이라며 곤란함을 호소.</div>
+                <div class="vocab-note">📖 어구 – 백계무책: 어찌할 도리가 없음.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 그러면 세 분이 다 객지(客地)이오?</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 당사자들의 신분을 확인. 객지에서의 분쟁이라는 점을 고려.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 여기는 객지나 다름없습니다.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 재산이 있으면 나눠 줄 마음이오?</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 표 생원의 의향을 확인.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>표 생원:</strong> 다시 이를 말씀이오?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(박 첨지가 한참 생각한다.)</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 내가 한 마을의 구장으로 잘 처리하겠으니 염려 마우. &lt;창&gt; 돌모리집은 왕십리에 구실 은(銀) 두 되하는 논 네 마지기를 주고, 꼭두각시는 남산 봉우제 재실 재답 구실 닷 마지기 고추밭 하루갈이 주고, 용산 삼개 들어오는 뗏목은 모두 다 묶어다가 돌모리집 가져가고, 꼭두각시 널랑은 명년(明年) 장마에 떠밀리는 나무뿌리는 너 다 갖고, 은장 봉장 자개 함롱 반닫이는 글낭 모두 돌모리집 주고, 뒤꼍에 돌아가 개똥밭 하루갈이와 매운 짓독 깨진 걸랑 꼭두각시 너 다 가져라.</div>
+                <div class="side-analysis">📌 분석 – 박 첨지의 편파적인 재산 분배 판결. 첩(돌모리집)에게는 실질적 가치가 있는 재산(논, 뗏목, 귀중품)을, 본처(꼭두각시)에게는 거의 가치 없는 것(고추밭 하루갈이, 떠내려온 나무뿌리, 깨진 독)을 몰아줌. 지배층의 부패와 위선을 풍자하는 핵심 장면.</div>
+                <div class="vocab-note">📖 어구 – 마지기: 논밭 넓이 단위. 뗏목: 통나무를 엮어 만든 뗏목. 널랑: 너 같은(낮춤말).</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>꼭두각시:</strong> &lt;창&gt; <span class="highlight">㉣허허, 나는 가네. 나 돌아가네. 덜덜거리고 그 돌아가네.</span> (춤추며 나간다.)</div>
+                <div class="side-analysis">📌 분석 – 꼭두각시가 억울함을 참지 못하고 퇴장. ‘덜덜거리고 그 돌아가네’는 분노와 절망을 익살스럽게 표현한 대사. 춤추며 나가는 인형극 특유의 동작으로 관객의 웃음을 유발하면서도 본처의 비극적 상황을 보여줌.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(중략)</div>
+            </div>
+            
+        </div>
+        
+        <!-- ========== 제7막 전체 (문장별 분석) ========== -->
+        <div class="subtitle">■ 제7막 평안 감사 재상(在喪)* 거리</div>
+        <div class="original-text">
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(평안 감사의 모친 상여가 나온다.)</div>
+                <div class="side-analysis">📌 분석 – 장례(상여) 행렬이 시작되는 장면. 모친상을 당한 평안 감사가 등장한다.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>평안 감사:</strong> 꼴곡* 꼴곡 꼴곡 꼴곡. <span class="highlight">㉤아이고 좋아. 콩나물 안방 차지 내 차지.</span> (양산도* 등 노래를 부른다.)</div>
+                <div class="side-analysis">📌 분석 – 상주(평안 감사)가 슬퍼하지 않고 오히려 좋아하며 노래를 부름. ‘꼴곡’은 앓는 소리 흉내, ‘콩나물 안방 차지’는 상속 재산을 차지한 기쁨을 속된 말로 표현. 효를 가장한 위선과 지배층의 도덕적 해이를 풍자하는 대표적 장면. ㉤은 이 작품의 핵심 풍자 포인트.</div>
+                <div class="vocab-note">📖 어구 – 재상(在喪): 상중. 꼴곡: 앓는 소리 흉내. 양산도: 경기 민요.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>작은 박 첨지:</strong> (구경하다가) 이게 뉘 놈의 상여냐? 초상 상주 놈의 소리가 앓는 곳이냐?</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 평안 감사의 행동을 비판하며 의아해함. 피지배층의 시선에서 지배층의 부도덕을 꼬집음.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">(그때 상두꾼이 발병이 나서 못 가고 상여를 내려놓았다.)</div>
+                <div class="side-analysis">📌 분석 – 예상치 못한 장애 발생. 이후 전개를 위한 장치.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>평안 감사:</strong> 여봐라, 박가야. (박 첨지가 나온다.) 말 들어라. 상여가 나가다가 상두꾼이 발병이 났으니, 인부를 사 대라.</div>
+                <div class="side-analysis">📌 분석 – 평안 감사가 박 첨지에게 인부를 구해오라고 명령. 지배층의 갑질과 하수인을 통한 업무 처리 방식.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 인부가 졸지에 없사오니 소인의 조카 놈이 궂은일 잘 보고, 괴덜머리쩍고*, 기운이 역사요, 이상야릇한 놈이오니 그놈으로 천거하옵니다.</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 조카 홍동지를 천거. ‘이상야릇한 놈’이라는 표현으로 보아 평범하지 않은 인물임을 암시.</div>
+                <div class="vocab-note">📖 어구 – 괴덜머리쩍고: 수선스럽고 실없이 행동하는.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>평안 감사:</strong> 이놈 더디다. 빨리 대령하여라.</div>
+                <div class="side-analysis">📌 분석 – 평안 감사가 재촉하며 권위적으로 명령.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 네─ (홍동지를 부른다.) 여봐라, 듼둥아! 이번에 감사 사또 연번시* 상두꾼이 발탈이 났으니 하룻밤 삼시야 사시야 먹고, 돈 칠 푼 줄 것이니 상여꾼 품 팔러 안 가려느냐?</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 홍동지를 부르며 조건을 제시. ‘연번시’(상여 행렬)에서 일하면 돈을 준다고 꼬심.</div>
+                <div class="vocab-note">📖 어구 – 연번시: 상여 행렬을 따라 등불 드는 일.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 왜 그래쌌소?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 지금 한 말 못 들었느냐? 만일 지체하면 주릿대학춤, 고드래뼈 튕겨지면* 호소할 곳 바이없으니 지체 말고 빨리 나오너라.</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 지체하면 형벌을 받을 수 있다고 협박. ‘주릿대학춤, 고드래뼈 튕겨지면’은 매를 맞는 상황을 비유.</div>
+                <div class="vocab-note">📖 어구 – 주릿대학춤, 고드래뼈 튕겨지면: 매를 맞으며 춤추듯 몸을 움직이고 뼈가 튀어나올 정도로 맞는 형벌.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 아자씨 말씀이 정말이요? / <strong>박 첨지:</strong> 그짓말하겠느냐?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 빨가벗어도 좋소? / <strong>박 첨지:</strong> 관계없다.</div>
+                <div class="side-analysis">📌 분석 – 홍동지가 ‘빨가벗어도 좋냐’고 묻고, 박 첨지가 ‘관계없다’고 답함. 이후 전개의 복선.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 어디 가서 보기나 합시다. (홍동지가 가만히 가서 상제도 보고 또 상여를 냄새 맡더니) 카 ─ 이게 뭐요?</div>
+                <div class="side-analysis">📌 분석 – 홍동지가 상여 냄새를 맡고 ‘카’ 하며 놀람. 무례한 행동으로 지배층의 격식과 위엄을 무너뜨리는 행위.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 왜 그러느냐?</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 아─ 오뉴월 강생이* 썩는 냄새가 나는구려.</div>
+                <div class="side-analysis">📌 분석 – 홍동지가 상여에서 나는 냄새를 ‘강아지 썩는 냄새’에 비유. 지배층의 장례 의식을 저속한 표현으로 풍자하며, 위계질서를 무너뜨리는 발언.</div>
+                <div class="vocab-note">📖 어구 – 강생이: 강아지(방언).</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>박 첨지:</strong> 이놈아! 그게 무슨 말이냐? 감사또 아시면 서운치 않으시겠느냐?</div>
+                <div class="side-analysis">📌 분석 – 박 첨지가 홍동지를 꾸짖으며 감사에게 들리면 안 된다고 경고.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 사또가 섭섭하시면 큰 개 썩는 냄새가 난다 합시다.</div>
+                <div class="side-analysis">📌 분석 – 홍동지가 더 강도 높은 비속어로 응수. 지배층에 대한 철저한 조롱과 저항 의식.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>평안 감사:</strong> 꼴곡 꼴곡 꼴곡. (왔다 갔다 한다.)</div>
+                <div class="side-analysis">📌 분석 – 평안 감사가 상황을 모르고 앓는 소리를 내며 왔다 갔다 함. 무지하고 우스꽝스러운 모습.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 상제님 문안드리오.</div>
+                <div class="side-analysis">📌 분석 – 홍동지가 드디어 평안 감사에게 인사(문안)를 올림. 벌거벗은 상태로.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>평안 감사:</strong> 이놈! 상여도 대부인* 상여인데, 문안이고 문밖이고 웬 놈이 빨가벗고 덤벙거리느냐?</div>
+                <div class="side-analysis">📌 분석 – 평안 감사가 벌거벗은 홍동지를 보고 격노하며 ‘대부인 상여’(어머니 상여) 앞에서 무례하다고 꾸짖음. 지배층이 중시하는 격식과 체면을 대비시킴.</div>
+                <div class="vocab-note">📖 어구 – 대부인: 남의 어머니를 높임.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>홍동지:</strong> 빨가벗었더라도 상여만 잘 메면 됐지. 무삼 잔말.</div>
+                <div class="side-analysis">📌 분석 – 홍동지의 핵심 대사. ‘옷은 중요하지 않고 일만 잘하면 된다’는 실용주의적 태도로 지배층의 허위의식과 형식주의를 정면으로 비판. 피지배층의 저항과 반격.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence"><strong>평안 감사:</strong> 네가 상여를 모시러 왔다니 듣기는 반갑다마는 빨가벗고 무슨 상여를 멘단 말이냐? 괘씸한 놈 잡아내라. (평안 감사가 화를 내어 박 첨지를 잡아들여서 태장을 한다.)</div>
+                <div class="side-analysis">📌 분석 – 평안 감사가 화를 내며 박 첨지를 잡아 태장(매질)을 명령. 직접적인 가해자는 홍동지인데 왜 박 첨지를 벌주는지 보여주며, 지배층의 무능과 억압적 행정을 풍자. 결국 피지배층(박 첨지)이 억울하게 처벌받는 구조를 드러냄.</div>
+            </div>
+            
+            <div class="sentence-wrapper">
+                <div class="sentence">- 작자 미상, 「꼭두각시놀음」</div>
+            </div>
+            
+        </div>
+        
+        <!-- ========== 핵심 개념 구조도 (동일) ========== -->
+        <div class="core-box">
+            <h3>📌 이것만은 꼭 익히자 - 꼭두각시놀음</h3>
+            
+            <div class="badge">1. 인물 관계와 갈등 양상 (문항 1, 2 관련)</div>
+            <table class="conflict-table">
+                <thead><tr><th>인물</th><th>갈등 내용</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>꼭두각시</strong></td><td>남편이 첩을 들인 일과 재산 분할 문제로 인한 갈등을 겪음.</td></tr>
+                    <tr><td><strong>표 생원 (가부장)</strong></td><td>본처인 꼭두각시에게 강압적인 태도를 보이고, 첩인 돌모리집을 회유함.</td></tr>
+                    <tr><td><strong>돌모리집 (첩)</strong></td><td>꼭두각시에게 인사하는 문제로 인한 갈등을 겪음.</td></tr>
+                    <tr><td><strong>평안 감사 (지배층)</strong></td><td>벌거벗은 흥동지에게 화를 내며 지배층의 횡포를 보여 줌.</td></tr>
+                    <tr><td><strong>흥동지 (피지배층)</strong></td><td>벌거벗은 채 상여를 메려 하며 지배층에 맞서 반항함.</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="badge" style="margin-top:20px;">2. 풍자의 양상 (문항 3 관련)</div>
+            <div class="sarcasm-box">
+                <div class="grid-2">
+                    <div>
+                        <strong>■ 제5막</strong>
+                        <ul class="list-styled">
+                            <li>표 생원은 본처인 꼭두각시가 있는데도 작은마누라(돌모리집)를 데려와 첩 살이 갈등을 유발함.</li>
+                            <li>표 생원은 사사건건 꼭두각시를 구박함.</li>
+                            <li>→ 여성에 대한 남성의 부당한 횡포를 드러내 이를 비판하고 풍자함.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>■ 제7막</strong>
+                        <ul class="list-styled">
+                            <li>평안 감사는 벽 첨지에게 상여를 멜 인부를 사서 데려오라고 함.</li>
+                            <li>평안 감사는 흥동지를 추천해 데려온 벽 첨지에게 대장의 형벌을 가하려 함.</li>
+                            <li>흥동지는 평안 감사의 명령에 따라 상두꾼 역할을 하려고 하지만, 벌거벗은 체로 등장하여 상여를 메려는 파격적인 모습을 보임.</li>
+                            <li>평안 감사가 흥동지에게 화를 내자 흥동지가 반항함.</li>
+                            <li>→ 지배 계층의 신분적 특권과 횡포를 드러내 이를 비판하고 풍자함.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="badge" style="margin-top:20px;">3. 연희 문학적 특징 (문항 4 관련)</div>
+            <ul class="list-styled">
+                <li>각각의 막은 서사적인 연관성이 없어 독립적이지만, 공통된 인물(박 첨지)의 출현으로 느슨하게 연결됨.</li>
+                <li>무대는 전 세계적인 공중무대로 특별한 무대 장치는 없거나 간소화되며, 극적 효과를 높이기 위해 여러 가지 소도구를 사용함.</li>
+                <li>등장인물이 약사나 관객을 수시로 대화하므로 무대와 객석의 극적 경계가 느슨함.</li>
+                <li>서민들을 대상으로 연희되었기 때문에 서민들의 의식과 생활 모습이 잘 드러남.</li>
+                <li>재담, 비속어, 언어유희 등을 자주 활용하고 골계미가 잘 드러남.</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        ※ 본 자료는 「꼭두각시놀음」의 PDF 원문(제5막·제7막)을 <strong>한 글자도 빠짐 없이</strong> 수록하고, 각 문장별로 상세한 분석과 어구 풀이를 추가했습니다.<br>
+        문제에 표시된 ㉠~㉤ 지문을 강조 표시하였으며, 핵심 개념(인물 관계·갈등, 풍자 양상, 연희 문학적 특징)을 구조화하여 제시했습니다.
+    </footer>
+</div>
+</body>
+</html>

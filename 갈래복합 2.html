@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갈래 복합 실전 1 | 계녀가 · 상론 | 수능특강 문학 사용설명서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Arial', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            padding: 35px 45px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            border-left: 7px solid #c0392b;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            color: #0f2b3d;
+        }
+        h2 {
+            background: #f1f5f9;
+            padding: 12px 20px;
+            margin: 45px 0 20px 0;
+            font-size: 24px;
+            border-radius: 18px;
+            border-left: 5px solid #e67e22;
+            color: #1e466e;
+        }
+        .text-block {
+            background: #fefaf0;
+            border-left: 6px solid #f1c40f;
+            padding: 22px 28px;
+            margin: 25px 0;
+            border-radius: 28px;
+            font-size: 16px;
+            line-height: 1.9;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .sentence-line {
+            margin-bottom: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 4px 8px;
+        }
+        .original {
+            font-weight: 500;
+        }
+        .inline-annotation {
+            background: #e6f7ff;
+            border-radius: 16px;
+            padding: 2px 10px;
+            font-size: 12px;
+            color: #0050b3;
+            font-family: 'Segoe UI', sans-serif;
+            white-space: nowrap;
+        }
+        .side-analysis {
+            background: #f0f7ff;
+            margin-top: 12px;
+            margin-bottom: 16px;
+            padding: 10px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #004070;
+            border-left: 4px solid #3b82f6;
+        }
+        .vocab-note {
+            background: #f0fdf4;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: #166534;
+            border-left: 3px solid #22c55e;
+        }
+        .question-full {
+            background: #f8fafc;
+            border-radius: 26px;
+            padding: 18px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 2px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 10px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .analysis-box {
+            background: #fef9e6;
+            border-radius: 24px;
+            padding: 22px 28px;
+            margin: 25px 0 35px 0;
+            border-left: 6px solid #e67e22;
+        }
+        .analysis-box h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #b85c00;
+            font-weight: 700;
+        }
+        .analysis-box h4 {
+            font-size: 17px;
+            margin: 15px 0 8px 0;
+            color: #c0392b;
+        }
+        .bg-knowledge {
+            background: #eef2fa;
+            border-radius: 20px;
+            padding: 16px 22px;
+            margin-top: 20px;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 20px; }
+            .inline-annotation { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>갈래 복합 실전 01<br>계녀가 · 상론</h1>
+
+    <!-- ================= (가) 계녀가 ================= -->
+    <h2>■ (가) 계녀가 – 작자 미상</h2>
+    <div class="text-block">
+        <div class="sentence-line"><span class="original">아해야 들어 봐라 내일이 신행이라</span> <span class="inline-annotation">신행: 혼인할 때 신부가 신랑집으로 가는 행차</span></div>
+        <div class="sentence-line"><span class="original">네 마음 어떠하며 이 심사 갈발 없어</span> <span class="inline-annotation">갈발: 정처 없이 떠돎</span></div>
+        <div class="sentence-line"><span class="original">우마에 짐을 싣고 금반을 굳게 매어</span> <span class="inline-annotation">금반: 물건을 매는 줄</span></div>
+        <div class="sentence-line"><span class="original">친정을 하직하고 시가로 들어가니</span></div>
+        <div class="sentence-line"><span class="original">부모께 떠날 적에 경계할 말 많고 많다</span></div>
+        <div class="side-analysis">▶ 서사: 시집가는 딸에 대한 걱정</div>
+
+        <div class="sentence-line"><span class="original">문밖에 사관할 제 세수를 일찍 하고</span> <span class="inline-annotation">사관: 시집 간 뒤 3일 동안 아침 일찍 사당에 인사하고 부모님께 문후하는 절차</span></div>
+        <div class="sentence-line"><span class="original">문밖에서 절을 하고 가까이 나와 앉아</span></div>
+        <div class="sentence-line"><span class="original">방이나 덥사온가 잠이나 편하신가</span></div>
+        <div class="sentence-line"><span class="original">살뜰히 물을 적에 저근덧 앉았다가</span> <span class="inline-annotation">저근덧: 약간의 시간이 흐른 뒤</span></div>
+        <div class="sentence-line"><span class="original">가만히 돌아 나와 진지를 차릴 적에</span></div>
+        <div class="sentence-line"><span class="original">식성을 물어 가며 반찬을 맞게 하고</span> <span class="inline-annotation">식성에 맞게</span></div>
+        <div class="sentence-line"><span class="original">꿇어앉아 진지하고 식상을 물린 후에</span></div>
+        <div class="sentence-line"><span class="original">할 일을 사뢰 보아 다른 일 없다시면</span> <span class="inline-annotation">사뢰 보아: 여쭈어</span></div>
+        <div class="sentence-line"><span class="original">내 방에 돌아 나와 일손을 바삐 들여</span></div>
+        <div class="sentence-line"><span class="original">흥돈흥돈 하지 말고 자낙자낙 하여서라</span> <span class="inline-annotation">흥돈흥돈: 두서없이 / 자낙자낙: 침착하게</span></div>
+        <div class="side-analysis">▶ 본사 ① - 시부모 봉양과 길쌈</div>
+
+        <div class="sentence-line"><span class="original">(중략)</span></div>
+
+        <div class="sentence-line"><span class="original">두세 살 먹은 후에 지각이 들거들랑</span></div>
+        <div class="sentence-line"><span class="original">장난을 절금하고 음식을 존절하고</span> <span class="inline-annotation">예절을 존중함</span></div>
+        <div class="sentence-line"><span class="original">명주옷 입게 말고 새 소음 놓지 말고</span> <span class="inline-annotation">새솜</span></div>
+        <div class="sentence-line"><span class="original">썩은 음식 주지 말고 상한 고기 먹지 말고</span></div>
+        <div class="sentence-line"><span class="original">귀타고 안을 받아 버릇없게 하지 말고</span> <span class="inline-annotation">귀하다고 원하는 것을 받아</span></div>
+        <div class="sentence-line"><span class="original">밉다고 과장 주어 정신없게 하지 말고</span> <span class="inline-annotation">매를 쳐서</span></div>
+        <div class="sentence-line"><span class="original">맹자의 어마임도 맹자를 기르실 제</span></div>
+        <div class="sentence-line"><span class="original">이사를 세 번 하여 학교 곁에 사시고</span></div>
+        <div class="sentence-line"><span class="original">이웃에 돼지 잡거늘 너 먹인다 속이시고</span></div>
+        <div class="sentence-line"><span class="original">도로혀 후회하여 사다가 먹이신다</span></div>
+        <div class="sentence-line"><span class="original">너희도 이것 보와 속이지 말아서라</span></div>
+        <div class="side-analysis">▶ 본사 ② - 자녀 양육과 교육</div>
+
+        <div class="sentence-line"><span class="original">아해야 들어 봐라 또 한 말 이르리라</span></div>
+        <div class="sentence-line"><span class="original">노비는 수족이라 수족 없이 어이 살며</span></div>
+        <div class="sentence-line"><span class="original">더위에 농사지어 상전을 봉양하며</span></div>
+        <div class="sentence-line"><span class="original">추위에 물을 끼려 상전을 공양함이</span> <span class="inline-annotation">끓여</span></div>
+        <div class="sentence-line"><span class="original">그 아니 불쌍하며 그 아니 귀할손가</span></div>
+        <div class="sentence-line"><span class="original">귀천은 다르나마 혈육은 한가지라</span></div>
+        <div class="sentence-line"><span class="original">꾸짖어도 악언 말고 치나마 과장 말고</span></div>
+        <div class="sentence-line"><span class="original">명분을 밝게 하여 기수를 잃지 마라</span> <span class="inline-annotation">기수: 순서, 차례</span></div>
+        <div class="sentence-line"><span class="original">나이 많은 종이거든 언어를 삼가고</span></div>
+        <div class="sentence-line"><span class="original">어린 종이거든 자식같이 길러서라</span></div>
+        <div class="sentence-line"><span class="original">제때에 해 입히고 배곯게 말아서라</span> <span class="inline-annotation">제때에 옷을 만들어서 입히고</span></div>
+        <div class="side-analysis">▶ 본사 ③ - 노비 관리</div>
+
+        <div class="sentence-line"><span class="original">아해야 들어 봐라 또 한 말 이르리라</span></div>
+        <div class="sentence-line"><span class="original">제가를 하온 후에 치산을 하여서라</span></div>
+        <div class="sentence-line"><span class="original">곡식이 많으나마 입치레하지 말고</span> <span class="inline-annotation">먹는 데 다 소모하지 말고</span></div>
+        <div class="sentence-line"><span class="original">포백이 많으나마 몸치장하지 말고</span></div>
+        <div class="sentence-line"><span class="original">헌 의복 기워 입고 잡음식 먹어서라</span></div>
+        <div class="sentence-line"><span class="original">집 안은 자주 쓸되 문지 앉게 말아서라</span></div>
+        <div class="sentence-line"><span class="original">기명을 알아 놓아 닭과 개가 깨게 말아</span></div>
+        <div class="side-analysis">▶ 본사 ④ - 치산</div>
+
+        <div class="sentence-line"><span class="original">이웃을 왕래할 제 무름을 쓰고 가고</span> <span class="inline-annotation">무름: 부녀자가 바깥 출입 때 얼굴을 가리는 옷</span></div>
+        <div class="sentence-line"><span class="original">급한 일 아니거든 밤으로 왕래 말고</span></div>
+        <div class="sentence-line"><span class="original">남의 집 가거들랑 더욱 조심하여서라</span></div>
+        <div class="sentence-line"><span class="original">웃음을 과이하여 이뿌리 나게 말고</span> <span class="inline-annotation">지나치게 하여</span></div>
+        <div class="sentence-line"><span class="original">옷귀를 매게 하여 속옷을 나게 말고</span> <span class="inline-annotation">드러나게</span></div>
+        <div class="sentence-line"><span class="original">남의 말 하지 말고 남의 집 내지 말아</span> <span class="inline-annotation">남의 집 흉을 보지 말아</span></div>
+        <div class="sentence-line"><span class="original">인물을 평론 말고 양반을 고하 말고</span> <span class="inline-annotation">높다 낮다 하지 말고</span></div>
+        <div class="sentence-line"><span class="original">부귀를 흠선 말고 음식을 욕심 말아</span> <span class="inline-annotation">부러워</span></div>
+        <div class="side-analysis">▶ 본사 ⑤ - 행동과 처신에서 유의할 점</div>
+
+        <div class="sentence-line"><span class="original">아해야 들어 봐라 또 한 말 이르리라</span></div>
+        <div class="sentence-line"><span class="original">남의 집 처음 갈 때는 조심이 많건마는</span></div>
+        <div class="sentence-line"><span class="original">세월이 많애가면 홀만키기 쉬우려니</span> <span class="inline-annotation">흘러가면 / 소홀해지기</span></div>
+        <div class="sentence-line"><span class="original">처음의 가진 마음 늙도록 변치 마라</span></div>
+        <div class="sentence-line"><span class="original">옛글에 있는 말과 세정에 담은 일로</span></div>
+        <div class="sentence-line"><span class="original">대강으로 기록하여 책을 매서 경계하니</span></div>
+        <div class="sentence-line"><span class="original">이 책을 잃지 말고 시시로 내어 보며</span></div>
+        <div class="sentence-line"><span class="original">행신과 처세할 제 유익하게 되었으라</span></div>
+        <div class="sentence-line"><span class="original">그밖에 경계할 말 무수히 있다만은</span></div>
+        <div class="sentence-line"><span class="original">정신이 아득하여 이만하여 그치노라</span></div>
+        <div class="side-analysis">▶ 결사: 시집살이에 대한 권계와 당부</div>
+    </div>
+
+    <div class="analysis-box">
+        <h3>📌 감상 포인트</h3>
+        <p>이 작품은 조선 시대에 쓰인 규방 가사로, 시집가는 딸에게 어머니가 예의범절에 관해 훈계하는 내용을 담고 있다. 교훈서의 내용과 자신의 체험을 바탕으로 부녀자로서 지켜야 할 도리와 규범을 전하면서 딸이 이를 쉽게 익혀 실천하기를 바라는 친정어머니의 마음이 담겨 있다.</p>
+        <p><strong>주제</strong>: 시집가는 딸에 대한 걱정과 부녀자의 도리에 대한 권계</p>
+        
+        <h4>📌 핵심 개념 – 이것만은 꼭 익히자</h4>
+        <p><strong>포인트 1. 「계녀가」의 화자</strong><br>
+        계녀가류의 주된 화자는 주로 친정어머니로, 이러한 화자가 공통적으로 지향하는 전언은 자식에 대한 의무 혹은 책무에 대한 부모로서의 부탁이나 염원이다. 여기에는 부모로서 딸에게 당부하는 사항이 주를 이루고 있으며 이러한 당부 사항은 집을 떠나 시집에서 살아야 하는 딸에 대한 사랑이 바탕이 되어 나타난다. 즉 계녀가류 규방 가사에는 딸을 시집보내는 부모의 심정적 안타까움과 사랑이라는 정서가 담겨 있다고 할 수 있다.</p>
+        <p><strong>포인트 2. 봉건 사회에서 여성이 지켜야 할 덕목</strong><br>
+        성리학적 이념을 바탕으로 한 조선 시대에는 여성이 지켜야 할 여러 덕목이 있었다. 여성은 아내로서 남편과 신의를 지키고, 어머니로서 자녀 교육을 담당하며 치산, 노비 관리 등 집안을 돌보는 역할을 수행하였다. 이러한 역할에 대한 교육은 여성 교훈서가 그 기본 바탕이 되었다.</p>
+
+        <div class="bg-knowledge">
+            <h4>📖 배경지식 더 알아보기</h4>
+            <p><strong>계녀가류 규방 가사</strong>: 부녀자의 행실을 가르칠 목적으로 지어진 가사로 친정에서 교훈서와 자신의 체험을 바탕으로 시집가는 딸에게 교훈적으로 시집살이의 방법을 전수하는 가사 문학 양식이다. '계녀'의 '계(戒)'는 경계, 즉 여성으로서의 덕목과 일상적 행실을 가르친다는 데 있다. 시집살이의 덕목뿐만 아니라, 일상 행실의 규범까지 가르침의 범위가 광범위하다는 점에서 계녀가류 규방 가사의 교술적 기능은 두드러진다.</p>
+            <p><strong>성리학적 이념을 바탕으로 남성이 지켜야 할 덕목을 보여 주는 작품, 「훈계자손가」</strong>: (제1수) "어버이 효도하고 어른을 공경하여 / 일생에 효제를 닦아 어진 이름 얻어라" 등 남성의 덕목을 강조한 연시조.</p>
+        </div>
+    </div>
+
+    <!-- ================= (나) 상론 ================= -->
+    <h2>■ (나) 상론 – 정약용</h2>
+    <div class="text-block">
+        <div class="sentence-line"><span class="original">상은 익히는 것으로 인하여 변하고, 형세는 상으로 인하여 이루어지는데, 그 형국이다 유년이다의 설을 하는 사람은 거짓이다.</span> <span class="inline-annotation">유년: 한평생의 운수를 해마다 풀어 놓은 사주</span></div>
+        <div class="sentence-line"><span class="original">아주 어린 아이가 배를 땅에 대고 엉금엉금 길 적에 그 용모를 보면 예쁠 뿐이다. 하지만 그가 장성해서는 무리가 나누어지게 되는데, 무리가 나누어짐으로써 익히는 것이 서로 달라지고, 익히는 것이 서로 달라짐으로써 상도 이로 인하여 변하게 된다.</span></div>
+        <div class="side-analysis">▶ 처음: 익히는 것에 따라 달라지는 상</div>
+
+        <div class="sentence-line"><span class="original">서당의 무리는 그 상이 아름답고, 시장의 무리는 그 상이 검고, 목동의 무리는 그 상이 산란하고, 강패나 마조 같은 무리는 그 상이 사납고 약빠르다.</span> <span class="inline-annotation">익히는 것이 달라 서로 다른 상</span></div>
+        <div class="sentence-line"><span class="original">대체로 그 익히는 것이 오래됨으로써 그 성품이 날로 옮겨 가게 되니, 그 마음속에 생각하고 있는 것이 겉으로 나타나서, 상이 이로 인하여 변하게 되는데, 사람들은 그 상의 변한 것을 보고는 또한 말하기를 ‘그 상이 이렇게 생겼기 때문에 그 익히는 것이 저와 같다.’ 하니, 아, 그것은 틀린 말이다.</span> <span class="inline-annotation">상으로 인해 익히는 것이 달라졌다고 생각하는 사람들</span></div>
+
+        <div class="sentence-line"><span class="original">대저 학문을 익힌 사람은 사리를 통달하는 데 효과가 있고, 이를 익힌 사람은 재물을 모으는 데 효과가 있고, 힘을 익힌 사람은 비천한 일에 몸을 마치고, 악을 익힌 사람은 패망한 데 몸을 마치게 되니, 익힘과 효과가 아울러 진보함으로써 효과와 상이 모두 변하게 된다.</span> <span class="inline-annotation">사람마다 익히는 것이 각기 다름</span></div>
+        <div class="sentence-line"><span class="original">그런데도 사람들은 그 상의 변하는 것을 보고 또한 말하기를 ‘그 상이 이러하기 때문에 그 효과가 저와 같은 것이다.’ 하니, 아, 어쩌면 그렇게 어리석단 말인가.</span></div>
+
+        <div class="sentence-line"><span class="original">㉠어떤 아이가 있는데 그의 눈동자가 빛나면 부모는 말하기를 ‘이 아이는 가르칠 만하다.’ 하고, 그 아이를 위해 서적을 사들이고, 그 아이를 위해서 스승을 정하게 되고, 스승은 말하기를 ‘이 아이는 가르칠 만하다.’ 하여, 그 아이에게 붓·먹·연분·서판을 더욱더 주게 되니, 이 아이는 더욱 공부에 힘쓰고 날로 더 부지런하게 된다. [A] 대부는 이 사람을 천거하기를 ‘이 사람은 쓸 만합니다.’ 하고, 임금은 그 사람을 보고 이르기를 ‘이 사람은 대우할 만하다.’ 하여, 그를 권장하고 추켜세우고 칭찬하고 선발하여 이윽고 재상에 이르게 된다.</span> <span class="inline-annotation">상을 보고 익히는 것을 정한 사례 ①</span></div>
+        <div class="sentence-line"><span class="original">㉡어떤 아이가 있는데 얼굴이 풍만하게 생겼으면 아이의 부모는 말하기를 ‘이 아이는 부자가 될 만하다.’ 하여, 재산을 더욱더 주고, 부인은 그 아이를 보고 말하기를 ‘이 아이는 부릴 만하다.’ 하여, 자본을 더욱더 주게 되니, 이 아이는 더욱 힘쓰고 날로 부지런하여 사방으로 장사를 다닌다. [B] 그러면 부인은 그가 상업을 부흥시킬 것이라고 생각하고 그를 주인으로 삼으니, 잘될 사람을 더욱 도와주어 조금 뒤에는 백만장자가 되어 버린다.</span> <span class="inline-annotation">상을 보고 익히는 것을 정한 사례 ②</span></div>
+        <div class="sentence-line"><span class="original">㉢어떤 아이가 있는데 미모가 더부룩하고, 또 어떤 아이는 콧구멍이 밖으로 드러났으면, 그 아이의 부모와 사장들은 양성하고 협조하는 것을 모두 위와 반대로 하니, 이들이 어찌 자기 몸을 귀하고 부하게 할 수 있겠는가.</span> <span class="inline-annotation">상을 보고 아이의 교육에 대해 결정을 내림</span></div>
+        <div class="sentence-line"><span class="original">이와 같은 것은 그 상으로 인하여 그 형세를 이루고, 그 형세로 인하여 그 상을 이루게 된 것인데, 사람들은 그 상의 이루어진 것을 보고는 또 말하기를 ‘그 상이 이와 같기 때문에 그 이룬 것이 저와 같다.’ 하니, 아, 어쩌면 그리도 어리석단 말인가.</span></div>
+        <div class="sentence-line"><span class="original">세상에는 진실로 재덕을 충분히 간직하고도 액궁하여 그 재덕을 발휘하지 못한 사람이 있는데, 상에다 그 허물을 돌리지만, 그 상을 따지지 않고 이 사람을 우대했더라면 이 사람도 재상이 되었을 것이요, 이해에 밝고 귀천에 밝았는데도 종신토록 곤궁한 사람이 있는데, 상에다가 역시 그 허물을 돌리지만, 그 상을 따지지 않고 이 사람에게 자본을 대 주었더라면 또한 큰 부자가 되었을 것이다.</span> <span class="inline-annotation">상을 따지지 않아야 함을 드러냄</span></div>
+        <div class="sentence-line"><span class="original">하물며 거처는 기질을 변화시키고, 봉양은 신체를 변화시키며, 부귀는 그 뜻을 음란하게 하고, 우환은 그 마음을 슬프게 하여, 아침에는 무성하다가 저녁에는 시들게 된 사람도 있고, 어제는 초췌했다가 오늘은 살쪄서 윤택해진 사람도 있게 되니, 상을 어떻게 정할 것인가.</span> <span class="inline-annotation">사람의 상을 하나로 규정짓기 어려운 이유</span></div>
+        <div class="side-analysis">▶ 중간: 여러 사례를 통한 통념에 대한 비판</div>
+
+        <div class="sentence-line"><span class="original">사서인이 상을 믿으면 직업을 잃게 되고, 경대부가 상을 믿으면 그 친구를 잃게 되고, 임금이 상을 믿으면 신하를 잃게 된다. 공자가 말하기를, “용모로써 사람을 취했더라면 자우에게 실수할 뻔했다.” 하였으니, 참으로 성인이다.</span> <span class="inline-annotation">상에 의존했을 때의 폐해</span></div>
+        <div class="side-analysis">▶ 끝: 통념에 따른 폐해</div>
+    </div>
+
+    <div class="analysis-box">
+        <h3>📌 감상 포인트</h3>
+        <p>『여유당전서』에 실려 있는 논변류 글로, 용모로 사람을 판단하는 세태에 대한 경계의 뜻을 담고 있다. 작가는 사람이 무리에 따라 익히는 것이 다르고, 익히는 것에 따라 성품이 달라지며, 마음속에 생각하고 있는 것이 겉으로 나타나 상이 변하게 된다고 하며 상을 보고 익히는 것에 대해 생각하는 것을 비판한다. 작품에는 상을 믿었을 때 야기되는 폐해나 여러 사례를 통해 논지를 강화하는 서술상의 특징이 드러난다.</p>
+        <p><strong>주제</strong>: 타고난 관상으로 사람을 판단하는 것에 대한 경계</p>
+        
+        <h4>📌 핵심 개념 – 이것만은 꼭 익히자</h4>
+        <p><strong>포인트 1. 「상론」의 중심 내용 정리</strong><br>
+        작가는 '상'(용모)이 평소 익힌 바에 따라 변하고 형세는 상의 변화로 말미암아 이루어진다고 하며, 사람들이 상을 운명론적 조건으로 받아들이면서 상으로 인해 형세가 바뀔 수 있다고 생각하는 것을 지적하고 있다. 작가는 후천적 훈련을 통한 습관이 형성되면 상이 바뀌게 됨을 주장하고 있는데, 이러한 작가의 주장은 관상술의 운명론적 피동성을 벗어나 훈련과 노력을 통한 인간의 능동성과 성취 가능성을 정당하게 여기고 있음을 나타낸다.</p>
+        <p><strong>포인트 2. 다산 정약용의 사상</strong><br>
+        정약용은 '오학론'에서 개혁해야 할 전통적 사유 방식의 대표적 유형을 성리학, 훈고학, 문장학, 과거학, 술수학의 다섯 가지로 나누어 분석하고 전통문화의 왜곡과 폐단을 바로잡을 수 있는 방향을 제시한다.</p>
+
+        <div class="bg-knowledge">
+            <h4>📖 배경지식 더 알아보기</h4>
+            <p><strong>작가 정약용</strong>: 명문가에서 태어나 이상적인 교육 환경에서 성장하였으며, 출사 이후에는 관직 생활과 지방관으로서의 경험을 하였다. 유배 기간 동안 자신의 학문을 체계화하고 왕성한 저술 활동을 하게 되는데, 이때 그의 작품은 사색을 바탕으로 현실 문제에 다각적으로 접근하고 있으며 실생활과 밀접한 문제를 다루고 있다. 그는 현실을 단순히 비판하는 데 그치는 것이 아니라 국가 정책을 냉철하게 판단하고 당면한 문제를 바로잡기 위한 실제적인 방안을 제시하였으며, 민중의 애환을 목도하고 그들이 처한 삶의 현실을 공감하여 이를 문학으로 형상화하였다.</p>
+            <p><strong>논변류 산문</strong>: 어떤 사실의 시비를 변증하거나 이치를 설파하여 자신의 견해를 제시하거나 주장하는 논리적인 글. 엄밀한 논리성을 갖추며, 논지 전개 과정에서 적절하고 유효한 사실 논거를 사용한다.</p>
+            <p><strong>『여유당전서』</strong>: 다산 정약용의 저술을 정리한 문집으로, 시문집, 경집, 예집, 악집, 정법집, 지리집, 의학집으로 구성되어 있다. 『경세유표』, 『목민심서』, 『흠흠신서』 등이 포함되어 있다.</p>
+        </div>
+    </div>
+
+    <!-- ================= 문제 7~12 ================= -->
+    <h2>■ 문항 분석 (7~12번)</h2>
+
+    <div class="question-full">
+        <div class="q-num">7번</div>
+        <div class="question-stem">(가)와 (나)의 공통점으로 가장 적절한 것은?</div>
+        <div class="choice-item"><div class="choice-text">① 구체적 청자를 호명하며 공간에 대한 지향을 드러내고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">② 대조적인 상황을 제시하여 삶에 대한 인식을 드러내고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ 사물에 의탁하여 경험한 일로부터 받은 감흥을 드러내고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ 대상을 의인화하여 자연으로부터 얻은 깨달음을 드러내고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ 가상의 상황을 제시하여 대상에 대한 회의적 태도를 드러내고 있다.</div></div>
+        <div class="correct-badge">✅ 정답 ② – (가)에서는 '귀타고 안을 받아 버릇없게 하지 말고'와 '밉다고 과장 주어 정신없게 하지 말고', '더위에 농사지어'와 '추위에 물을 끼려' 등 대조적 상황을 제시해 삶에 대한 인식을 드러내고 있다. (나)에서는 '서당의 무리', '시장의 무리', '목동의 무리', '강패나 마조 같은 무리'를 대조하고, '학문을 익힌 사람'과 '이를 익힌 사람', '힘을 익힌 사람', '악을 익힌 사람'을 대조하여 삶에 대한 인식을 드러내고 있다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">8번</div>
+        <div class="question-stem">&lt;보기&gt;를 참고하여 (가)에 대해 이해한 내용으로 적절하지 않은 것은?</div>
+        <div style="background:#eef2ff; padding: 15px 20px; border-radius: 24px; margin-bottom: 20px;">
+            <strong>📖 &lt;보 기&gt;</strong><br>
+            봉건 사회에서 여성의 역할은 다면적으로 나타났다. 당시 여성은 아내와 어머니, 며느리로서의 역할뿐 아니라 재산 및 노비 관리의 역할까지 수행함으로써 가정의 내적인 생활을 주관했다. 이때 여성의 생활 공간인 규방은 길쌈과 같은 가사 노동을 하는 공간이자 가정의 일을 관리하는 공간으로 나타났다.
+        </div>
+        <div class="choice-item"><div class="choice-text">① '진지를 차릴' 때 '식성을 물어 가며 반찬을 맞게' 해야 한다는 것에는 시부모님을 봉양하는 며느리가 지켜야 할 태도가 드러나 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">② '내 방에 돌아 나와 일손을 바삐 들'여야 한다는 것에는 규방에서도 가사 일을 해야 하는 여성의 일상이 드러나 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ '귀타고 안을 받아 버릇없게 하지 말'라는 것에는 자녀를 양육하는 어머니로서 가져야 할 태도가 드러나 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ '꾸짖어도 악언 말'며 '명분을 밝게 하'라는 것에는 부리는 사람을 대할 때 귀천을 따지지 말아야 한다는 노비 관리의 방법이 드러나 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ '헌 의복 기워 입고 잡음식 먹'으라는 것에는 집안의 살림살이를 돌봐야 하는 입장에서 지켜야 할 태도가 드러나 있다.</div></div>
+        <div class="wrong-badge">❌ 정답 ④ – 화자는 노비에 대해 '귀천은 다르나마 혈육은 한 가지라'라고 하며 '꾸짖어도 악언 말'고 '명분을 밝게 하여 기수를 잃지 마라'라고 하였다. 이를 통해 노비를 대우하되 귀천을 따지고 있음을 알 수 있다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">9번</div>
+        <div class="question-stem">(가)와 (나)를 비교하여 이해한 내용으로 가장 적절한 것은?</div>
+        <div class="choice-item"><div class="choice-text">① (가)의 '우마'는 화자가 자신과 동일시하는 대상이고, (나)의 '임금'은 글쓴이가 자신과 동일시하는 대상이다.</div></div>
+        <div class="choice-item"><div class="choice-text">② (가)의 '상전'은 화자가 대상의 상황을 비유적으로 드러낸 표현이고, (나)의 '백만장자'는 글쓴이가 대상의 상황을 비유적으로 드러낸 표현이다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ (가)의 '남의 집'에 대해 화자는 대상이 유의해야 할 장소라고 여기고 있고, (나)의 '거처'에 대해 글쓴이는 대상이 지닌 특성이 달라지는 원인이라고 여기고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ (가)의 '양반'에 대해 화자는 친밀감을 드러내고 있고, (나)의 '악을 익힌 사람'에 대해 글쓴이는 적대감을 드러내고 있다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ (가)의 '이 책'은 화자가 시련을 극복하게 되는 계기이고, (나)의 '서적'은 글쓴이가 자신의 처지를 성찰하게 되는 계기이다.</div></div>
+        <div class="correct-badge">✅ 정답 ③ – (가)의 '남의 집'은 대상이 '더욱 조심'해야 하는 곳으로 화자는 '남의 집'에 대해 대상이 유의해야 할 장소라고 여기고 있다. (나)에서 글쓴이는 '거처'는 '기질을 변화시'킨다고 하며 '거처'에 대해 대상이 지닌 '기질'이 달라지는 원인이라고 여기고 있다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">10번</div>
+        <div class="question-stem">[A]와 [B]에 대한 이해로 가장 적절한 것은?</div>
+        <div class="choice-item"><div class="choice-text">① [A]에서 '형세는 상으로 인하여 이루어'진다는 글쓴이의 인식은, [B]에서 '그 상이 이렇게 생겼기 때문에 그 익히는 것이 저와 같다'는 사람들의 생각과 상통한다.</div></div>
+        <div class="choice-item"><div class="choice-text">② [A]에서 '설을 하는 사람'에 대한 글쓴이의 인식과 달리, [B]에서 '그 상의 변한 것을 보고 말하는 사람들'에 대한 글쓴이의 인식은 부정적으로 나타난다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ [A]에서 '아주 어린 아이'의 '용모를 보면 예'쁘다는 글쓴이의 생각은, [B]에서 '상이 아름'다운 경우에 대한 글쓴이의 예찬으로 이어진다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ [A]에서 '무리가 나누어짐으로써 익히는 것이 서로 달라'진다는 글쓴이의 진술은, [B]에서 '서당의 무리'와 '시장의 무리', '목동의 무리', '강패나 마조 같은 무리'를 통해 구체적인 양상으로 드러난다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ [A]에서 '익히는 것이 서로 달라짐으로써 상도 이로 인하여 변하게 된다'는 글쓴이의 주장은, [B]에서 '익히는 것이 오래'된 상황에는 적용되지 않는다.</div></div>
+        <div class="correct-badge">✅ 정답 ④ – 글쓴이는 [A]에서 '무리가 나누어짐으로써 익히는 것이 서로 달라'진다고 하면서 [B]에서 '서당의 무리', '시장의 무리', '목동의 무리', '강패나 마조 같은 무리'를 예로 들어 익히는 것이 서로 달라 상도 변하게 된 구체적 양상을 제시하고 있다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">11번</div>
+        <div class="question-stem">㉠~㉢에 대한 설명으로 가장 적절한 것은?</div>
+        <div class="choice-item"><div class="choice-text">① ㉠은 근면한 태도로 생활하는 경우를 보여 주고, ㉡은 천성으로 인해 게을리 생활하는 경우를 보여 준다.</div></div>
+        <div class="choice-item"><div class="choice-text">② ㉠은 주위의 도움을 받아 성장하는 경우를 보여 주고, ㉢은 자신의 힘으로 성장하는 경우를 보여 준다.</div></div>
+        <div class="choice-item"><div class="choice-text">③ ㉠과 ㉡은 ㉢과 달리 상으로 인해 그 형세가 변하게 된 경우를 보여 준다.</div></div>
+        <div class="choice-item"><div class="choice-text">④ ㉡은 ㉢과 달리 스스로 노력을 다하지 않았음에도 성공을 이룬 경우를 보여 준다.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ ㉠, ㉡, ㉢은 모두 성장하는 데 있어 주위 사람들의 평가가 영향을 준 경우를 보여 준다.</div></div>
+        <div class="correct-badge">✅ 정답 ⑤ – ㉠은 '가르칠 만하다'고 생각하는 부모와 스승의 평가로 더욱 공부에 힘쓰는 경우, ㉡은 '부자가 될 만하다', '부릴 만하다'는 평가로 더욱 장사에 힘쓰는 경우, ㉢은 부모와 사장들이 양성하고 협조하는 것을 반대로 하여 성장하지 못하는 경우를 보여 주므로, 모두 주위 사람들의 평가가 영향을 준 경우이다.</div>
+    </div>
+
+    <div class="question-full">
+        <div class="q-num">12번</div>
+        <div class="question-stem">&lt;보기&gt;를 참고하여 (가), (나)를 감상한 내용으로 적절하지 않은 것은?</div>
+        <div style="background:#eef2ff; padding: 15px 20px; border-radius: 24px; margin-bottom: 20px;">
+            <strong>📖 &lt;보 기&gt;</strong><br>
+            (가)와 (나)는 작가가 통념과 관련해 대상이 경계해야 할 태도에 대해 드러내고 있다. (가)의 작가는 시집가는 딸에게 부녀자의 행실을 가르치는 어머니로 추정된다. 작가는 당시 통념으로 여겨졌던 시집살이의 규범뿐 아니라 마음가짐이나 몸가짐, 말 등 여성으로서의 수신 자체를 강조하며 딸에게 부녀자의 도리를 다할 것을 이르고 있다. 작가는 전고나 역대의 사례를 빌려 이상적인 여성의 모습을 보여 줌으로써 딸이 실천해야 할 윤리적 덕목을 전하며, 조언을 하면서도 딸에 대한 걱정을 드러낸다. (나)의 작가는 세간의 통념을 비판하며, 사람을 그 자체로 보지 않고 겉모습으로만 판단하는 부조리를 지적하고 있다. 작가는 여러 사례를 통해 세간 사람들의 생각이 오류임을 밝히며 자신의 주장을 강화하고 운명론적 태도보다 노력이 중요함을 역설한다.
+        </div>
+        <div class="choice-item"><div class="choice-text">① (가)의 작가가 '이 심사 갈발없'다고 하며 '부모께 떠날 적'의 상황을 언급한 것에서 시집가는 딸에 대한 걱정으로 조언하고 있음을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">② (가)의 작가가 '문밖에 사관할 제'에 '가까이 나와 앉'아 할 일에 대해 언급한 것에서 부녀자로서의 올바른 품행에 대해 드러내고 있음을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">③ (나)의 작가가 '사람들'이 '그 상이 이러하기 때문에 그 효과가 저와 같은 것'이라고 하는 것에서 운명론적 태도를 지적하고 있음을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">④ (가)의 작가가 '이사를 세 번 하여 학교 곁에 산' '맹자의 어마임'에 대해 언급한 것에서 이상적인 여성의 전례를 전하고 있음을, (나)의 작가가 '공자'가 '용모로써 사람을 취'하지 않았음을 언급한 것에서 자신의 주장을 강화할 수 있는 사례를 활용하고 있음을 알 수 있군.</div></div>
+        <div class="choice-item"><div class="choice-text">⑤ (가)의 작가가 '옛글에 있는 말과 세정에 담은 일'로 '경계'한다는 것에서 대상이 통념에 따르기를 바라고 있음을, (나)의 작가가 '재덕을 충분히 간직'하였지만 '액궁'한 사람을 비판하는 것에서 통념을 따르는 대상의 생각이 오류임을 밝히고 있음을 알 수 있군.</div></div>
+        <div class="wrong-badge">❌ 정답 ⑤ – (가)의 작가는 '옛글에 있는 말과 세정에 담은 일'을 '기록하여 책을 매서 경계'한다고 하며 딸이 통념에 따라 부녀자로서의 도리를 지키기를 바라고 있다. (나)의 작가는 '재덕을 충분히 간직'하였지만 '액궁'하여 그 재덕을 발휘하지 못한 사람이 있다고 하였는데, 이러한 사람은 '상'에 허물이 있다고 여겨져 '우대'받지 못한 이를 가리킬 뿐 작가가 비판하는 대상이 아니다.</div>
+    </div>
+
+</div>
+</body>
+</html>

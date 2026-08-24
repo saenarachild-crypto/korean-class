@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 2회 - 12~17 (기체 분압과 폐포 호흡)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .section-label {
+            font-weight: 700;
+            font-size: 17px;
+            color: #b45309;
+            margin: 1.2em 0 0.6em 0;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 2회 · 독서 12~17</h1>
+        <p>기체 분압과 폐포 호흡 | 원문 + 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="section-label">(가)</div>
+                <p>기체 분자는 무작위로 운동하며 용기의 벽에 충돌하여 압력을 발생시킨다. 기체의 압력은 온도가 높을수록, 그리고 단위 부피당 분자의 수, 즉 농도가 높을수록 증가하는 경향이 있다. 여러 기체가 섞여 있는 혼합 기체의 경우, 각 기체 분자는 다른 기체에 거의 영향을 받지 않고 독립적으로 행동하므로, 전체 압력은 각 기체가 나타내는 압력의 합으로 표현할 수 있다. 이때 개별 기체가 나타내는 압력을 그 기체의 '분압'이라 하고, 개별 기체의 분압은 해당 기체의 농도에 비례한다.</p>
+
+                <p>예를 들어 대기압은 공기를 구성하는 모든 기체의 분압을 합한 값으로 해수면 기준 약 760mmHg에 해당한다. 공기 중 질소와 산소의 비율은 부피 기준으로 질소 약 78%, 산소 약 21%이며, 그 외에 이산화 탄소나 수증기 등으로 구성되어 있다. 따라서 해수면에서 '대기의 산소 분압'은 대기압에 산소의 농도비를 곱한 값이다.</p>
+
+                <p>분압은 기체의 이동 방향을 결정하는 중요한 변수가 된다. 개별 기체의 확산은 분압이 높은 곳에서 낮은 곳으로 일어나고 두 곳의 분압이 동일해지면 멈춘다. 이러한 원리는 기체가 액체와 접촉하는 상황에서도 작용한다. 외부 기체의 분압이 액체에 용해된 기체와 평형을 이룰 때의 분압보다 높은 경우, 외부 기체 분자들은 액체 표면을 통해 내부로 들어가 용해된다. 용해되는 기체의 양은 액체 표면에 접촉하는 외부 기체의 분압에 비례하며, 충분한 시간이 지나면 액체에 용해된 기체의 분압과 외부 기체의 분압은 평형을 이룬다. 만약 외부 기체의 분압이 액체에 용해된 기체의 분압보다 낮으면 액체에 용해된 기체는 외부로 빠져나온다. <span class="underline-phrase">㉠밀봉된 탄산음료 병의 뚜껑을 열면 거품이 발생하는 현상</span>은 분압 차에 따른 기체 이동의 원리를 보여 주는 사례이다.</p>
+
+                <div class="section-label">(나)</div>
+                <p>생명활동을 유지하기 위해 외부 환경으로부터 산소를 받아들이고, 체내에 축적된 이산화탄소를 배출하는 과정은 생존에 필수적이다. 인체에서 이러한 기체 교환이 대규모로 일어나는 곳이 폐에 있는 폐포이며, 폐포는 모세혈관으로 둘러싸여 있다. 모세혈관의 혈액에 용해된 기체와, 폐포 내부의 기체 사이에서는 분압 차에 따라 기체의 이동이 <span class="underline-phrase">④일어난다</span>. 그 결과 폐포 내부로 들어온 산소의 일부는 지속적으로 모세혈관의 혈액으로 확산되고, 혈액에 용해된 이산화탄소는 폐포 내부로 확산된다. 이때, 각 기체는 다른 기체의 확산 여부나 방향에 영향을 받지 않고, 해당 기체의 분압 차에 의해서만 이동한다.</p>
+
+                <p>그런데 왜 호흡 과정에서 기체 이동을 설명할 때 농도가 아닌 분압이라는 척도를 사용할까? 용액에 용해된 기체의 농도는 기체의 분압뿐만 아니라 용액에 대한 기체의 용해도에도 비례한다. 즉 분압이 같더라도 기체의 용해도에 따라 기체의 농도는 달라지는 것이다. 가령 물속에 산소와 이산화 탄소가 각각 같은 분압으로 용해되어 있다 하더라도, 이산화 탄소는 산소보다 용해도가 높아 실제 농도는 이산화 탄소가 더 높다. 그러나 확산은 분압 차에 의해 일어나므로, 시간에 따라 변하는 기체 이동의 방향과 양을 설명하는 데는 분압이 더 적합하다.</p>
+
+                <p>폐포 내부 기체의 산소 분압은 '대기의 산소 분압', '폐포 환기량', '세포의 산소 소모 속도'라는 세 요인에 따라 결정된다. 또한 여러 요인이 동시에 작용해 서로의 효과를 상쇄하거나 강화할 수도 있다. 그렇다면 각각의 요인에 따른 폐포 내부 기체의 산소 분압의 변화를 알아보자. 생명 활동을 유지하는 동안, <span class="underline-phrase">①대기의 산소 분압</span>은 폐포 내부 기체의 산소 분압보다 높다. 아울러 고산 지대와 같이, 대기의 산소 분압이 낮은 환경은 폐포 내부 기체의 산소 분압을 더 낮춘다.</p>
+
+                <p>폐포 환기량과 세포의 산소 소모 속도는 잠든 상태일 때보다 운동 상태일 때 증가하는 경향이 있다. 폐포 환기량은 1분 동안 들이마신 공기 중 폐포 내부까지 도달해 기체 교환에 쓰이는 공기량이다. 폐포 환기량이 증가하면 폐포 내부의 기체 중 이산화 탄소의 비율이 낮아져 폐포 내부 기체의 산소 분압은 높아지지만, 폐포 환기량이 줄면 이산화 탄소의 비율이 높아져 산소 분압은 낮아진다. 한편 세포의 산소 소모 속도가 증가하면, 혈액으로 확산되는 산소량이 많아지므로 폐포 내부 기체의 산소 분압은 낮아진다. 반대로 세포의 산소 소모 속도가 느려지면, 혈액으로 확산되는 산소량이 적어지므로 폐포 내부 기체의 산소 분압은 높아진다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 1문단 – 기체의 압력과 분압</div>
+                <div class="content">기체 압력은 온도·농도에 비례. 혼합 기체 전체 압력은 각 기체 분압의 합. 분압은 농도에 비례.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 2문단 – 대기압과 산소 분압</div>
+                <div class="content">대기압(760mmHg) = 모든 기체 분압의 합. 산소 분압 = 대기압 × 산소 농도비(0.21).</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 3문단 – 분압 차에 따른 기체 이동</div>
+                <div class="content">확산은 분압 높은 곳 → 낮은 곳. 액체 용해량은 외부 기체 분압에 비례. 평형 도달 시 이동 멈춤. <span class="underline-phrase">㉠탄산음료 거품</span>이 대표적 사례.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 1문단 – 폐포의 기체 교환</div>
+                <div class="content">폐포와 모세혈관 사이 <span class="underline-phrase">④분압 차</span>로 기체 교환. 산소는 혈액으로, 이산화탄소는 폐포로 확산. 각 기체는 독립적으로 이동.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 2문단 – 분압 vs 농도</div>
+                <div class="content">용해된 기체 농도 = 분압 × 용해도. 분압 같아도 용해도 따라 농도 달라짐. 확산 방향·양은 분압으로 설명하는 것이 적합.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 3~4문단 – 폐포 산소 분압 결정 요인</div>
+                <div class="content"><strong>①대기 산소 분압</strong>: 높을수록 폐포 산소 분압 ↑. <strong>폐포 환기량</strong>: 증가 → 산소 분압 ↑. <strong>세포 산소 소모 속도</strong>: 증가 → 산소 분압 ↓.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>분압</strong>: 혼합 기체 중 특정 기체가 나타내는 압력<br>
+                • <strong>확산</strong>: 분압이 높은 곳에서 낮은 곳으로 기체가 이동하는 현상<br>
+                • <strong>폐포</strong>: 폐에서 기체 교환이 일어나는 구조<br>
+                • <strong>폐포 환기량</strong>: 1분간 폐포에 도달해 기체 교환에 쓰이는 공기량<br>
+                • <strong>용해도</strong>: 특정 온도·압력에서 용매에 용해될 수 있는 기체의 양
+            </div>
+            <div class="info-box">
+                <h3>🎯 핵심 논리 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>분압의 정의</strong>: 혼합 기체에서 각 기체가 나타내는 압력 (농도에 비례)</li>
+                    <li><strong>기체 이동 원리</strong>: 분압 높은 곳 → 낮은 곳 (확산), 평형 도달 시 멈춤</li>
+                    <li><strong>폐포 호흡</strong>: 산소(폐포→혈액) / 이산화탄소(혈액→폐포) – 모두 분압 차에 의해 이동</li>
+                    <li><strong>분압 vs 농도</strong>: 용해도 차이로 분압 같아도 농도 다를 수 있음 → 확산 설명은 분압이 적합</li>
+                    <li><strong>폐포 산소 분압 결정 요인</strong>: 대기 산소 분압(↑), 폐포 환기량(↑→↑), 세포 산소 소모 속도(↑→↓)</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">(가) 기체 분압의 개념과 분압 차에 따른 기체의 확산·용해 원리, (나) 폐포에서 분압 차에 의해 일어나는 기체 교환과 폐포 내부 산소 분압을 결정하는 요인들을 설명.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 폐포 산소 분압 결정 요인</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>요인</th><th>변화 방향</th><th>폐포 산소 분압 영향</th></tr></thead>
+                    <tbody>
+                        <tr><td>대기 산소 분압</td><td>↑ (고산지대↓)</td><td>↑ (고산지대↓)</td></tr>
+                        <tr><td>폐포 환기량</td><td>↑ (운동 시)</td><td>↑</td></tr>
+                        <tr><td>세포 산소 소모 속도</td><td>↑ (운동 시)</td><td>↓</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>분압</strong>: 혼합 기체에서 각 기체의 압력 (농도 비례)</li>
+                    <li><strong>확산</strong>: 분압 높은 곳 → 낮은 곳 (평형까지)</li>
+                    <li><strong>폐포 호흡</strong>: 산소(폐포→혈액), 이산화탄소(혈액→폐포) – 분압 차에 의한 확산</li>
+                    <li><strong>분압 vs 농도</strong>: 용해도 차이로 분압 같아도 농도 다를 수 있음</li>
+                    <li><strong>폐포 산소 분압</strong>: 대기 산소 분압·폐포 환기량·세포 산소 소모 속도에 영향</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 2회 12~17</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>(가)</span> 분압 개념과 기체 이동</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">분압</span> 혼합 기체의 각 기체 압력</p>
+                    <p><span class="flow-badge">확산</span> 분압 높은 곳 → 낮은 곳</p>
+                    <p><span class="flow-badge">㉠탄산음료</span> 분압 차 사례</p>
+                    <div class="sub-point">✔ 1~3문단: 분압 정의, 대기압, 확산·용해 원리</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(나)</span> 폐포 호흡</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">기체 교환</span> 분압 차에 의한 확산</p>
+                    <p><span class="flow-badge">O₂</span> 폐포 → 혈액</p>
+                    <p><span class="flow-badge">CO₂</span> 혈액 → 폐포</p>
+                    <div class="sub-point">🔎 1문단: 폐포와 모세혈관 간 기체 교환</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>폐포 산소 분압 결정 요인</span></div>
+                <div class="card-body">
+                    <p><span class="flow-badge">①대기 산소 분압</span> ↑ → ↑</p>
+                    <p><span class="flow-badge">폐포 환기량</span> ↑ → ↑</p>
+                    <p><span class="flow-badge">세포 산소 소모</span> ↑ → ↓</p>
+                    <div class="sub-point">💬 2~4문단: 분압 vs 농도, 세 가지 결정 요인</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 분압 개념 및 기체 이동 원리(가) → 폐포 호흡과 분압 차(나) → 폐포 산소 분압 결정 요인(나)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (012~017번, PDF 원문 완전 일치) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 012번 문제 -->
+        <div class="question-full">
+            <div class="q-num">12</div>
+            <div class="question-stem">다음 중 (가)와 (나)를 읽은 방법으로 <strong>적절한</strong> 것끼리 짝지은 것은? <span class="ref-num">26052-0117</span></div>
+            <div class="view-box" style="margin-bottom: 14px;">
+                <strong>ㄱ.</strong> (가)에서 공기의 구성 성분을 파악한 후, (나)에서 공기 중에서 질소의 농도비가 가장 높은 이유를 이와 관련지어 읽었다.<br>
+                <strong>ㄴ.</strong> (가)에서 기체 이동의 방향을 결정하는 변수에 주목한 후, (나)에서 폐포와 혈액 사이에서 기체가 확산되는 조건을 파악하는 데 이를 활용하며 읽었다.<br>
+                <strong>ㄷ.</strong> (가)에서 기체의 압력과 온도의 관련성을 파악한 후, (나)에서 혈액 속에 용해된 이산화 탄소 분압과 인체 내부의 온도 변화를 이와 관련지어 읽었다.<br>
+                <strong>ㄹ.</strong> (가)에서 혼합 기체를 구성하는 분자들이 독립적으로 행동하는 것에 주목한 후, (나)에서 폐포 내부 기체와 모세혈관 혈액 사이의 이산화 탄소 교환이 산소의 이동에 종속되지 않는 것을 이와 관련지어 읽었다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ㄱ, ㄴ</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㄱ: (가)에서 공기 구성 성분을 제시하지만, (나)에서 질소 농도비가 가장 높은 이유는 언급하지 않았다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② ㄱ, ㄷ</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㄱ은 부적절. ㄷ: (가)에서 온도와 압력 관련성을 언급하지만, (나)에서 체온 변화와 관련지어 설명하지 않았다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ㄴ, ㄷ</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㄷ은 부적절. ㄴ은 적절.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ ㄴ, ㄹ</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: ㄴ: (가)에서 분압이 이동 방향 결정 변수, (나)에서 분압 차에 의한 확산 조건 파악에 활용. ㄹ: (가)에서 혼합 기체 분자가 독립적 행동, (나)에서 이산화 탄소 교환이 산소 이동에 종속되지 않는 것과 관련.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ ㄷ, ㄹ</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㄷ은 부적절. ㄹ은 적절.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 013번 문제 -->
+        <div class="question-full">
+            <div class="q-num">13</div>
+            <div class="question-stem">(가), (나)의 내용과 일치하지 않는 것은? <span class="ref-num">26052-0118</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① (가): 기체의 압력은 단위 부피당 분자의 수가 많을수록 증가하는 경향이 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가) 1문단에서 "단위 부피당 분자의 수, 즉 농도가 높을수록 증가하는 경향이 있다"고 하였으므로 일치한다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② (가): 혼합 기체의 전체 압력은 그 기체 내에서 가장 높은 분압을 가진 기체의 압력과 같다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: (가) 1문단에서 "전체 압력은 각 기체가 나타내는 압력의 합으로 표현할 수 있다"고 하였다. 따라서 가장 높은 분압과 같다는 설명은 일치하지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ (가): 해수면 기준에서 '대기의 산소 분압'은 대기압 760mmHg에 산소의 농도비 0.21을 곱하여 산출할 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가) 2문단에서 "해수면에서 '대기의 산소 분압'은 대기압에 산소의 농도비를 곱한 값"이라고 하였으므로 일치한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ (나): 폐포는 모세혈관으로 둘러싸여 있으며 생명 활동에 필요한 기체 교환이 이루어지는 신체의 부위이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 1문단에서 "인체에서 이러한 기체 교환이 대규모로 일어나는 곳이 폐에 있는 폐포이며, 폐포는 모세혈관으로 둘러싸여 있다"고 하였으므로 일치한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ (나): 들이마신 공기가 폐포 내부에 도달하더라도 기체 교환에 기여하지 않으면 폐포 환기량에 포함되지 않는다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 4문단에서 "폐포 환기량은 1분 동안 들이마신 공기 중 폐포 내부까지 도달해 기체 교환에 쓰이는 공기량"이라고 정의하였으므로, 기체 교환에 기여하지 않으면 포함되지 않는다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ②번</div>
+        </div>
+
+        <!-- 014번 문제 -->
+        <div class="question-full">
+            <div class="q-num">14</div>
+            <div class="question-stem">&lt;보기&gt; ①의 원리를 심화 탐구하기 위한 가상의 실험이다. (가), (나)에 근거하여 이 실험을 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0119</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                고압 환경에서 물을 병에 담되, 위에 기체 공간을 남겨 두고 밀봉하여 충분한 시간 동안 두었다. 이 물에는 산소와 이산화 탄소가 함께 용해되어 있으며, 물에 용해된 두 기체의 분압은 서로 동일하다. 병을 개봉하자 거품이 발생하며 기체가 분출되다가 시간이 지나자 멈추었다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 병을 개봉하기 전, 병 내부의 온도가 높아질 경우 병 내부 기체 공간의 압력도 높아진다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가) 1문단에서 "기체의 압력은 온도가 높을수록 증가하는 경향이 있다"고 하였으므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 병을 개봉하기 전, 물에 용해된 산소의 분압은 병 내부 기체 공간의 산소 분압과 같다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가) 3문단에서 "충분한 시간이 지나면 액체에 용해된 기체의 분압과 외부 기체의 분압은 평형을 이룬다"고 하였으므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 병을 개봉하는 순간, 기체 공간의 압력이 낮아져 물에 용해되었던 기체가 거품으로 분출되는 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가) 3문단에서 "외부 기체의 분압이 액체에 용해된 기체의 분압보다 낮으면 액체에 용해된 기체는 외부로 빠져나온다"고 하였으므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ 병을 개봉하는 순간, 물에 용해되어 있다가 병 바깥으로 확산되는 기체의 양은 산소와 이산화 탄소가 서로 같다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: (나) 2문단에서 용해된 기체 농도는 분압뿐만 아니라 용해도에도 비례하므로, 분압이 같더라도 용해도에 따라 실제 농도는 달라진다. 이산화 탄소는 산소보다 용해도가 높으므로 확산되는 양이 서로 같다고 단정할 수 없다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 병을 개봉한 후 기체 분출이 멈춘 것은, 물에 용해된 기체와 병 바깥 기체의 분압 차가 거의 사라졌기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가) 3문단에서 "개별 기체의 확산은 두 곳의 분압이 동일해지면 멈춘다"고 하였으므로 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+
+        <!-- 015번 문제 -->
+        <div class="question-full">
+            <div class="q-num">15</div>
+            <div class="question-stem">(나)를 바탕으로 할 때, ①의 이유로 가장 적절한 것은? <span class="ref-num">26052-0120</span></div>
+            <div class="choice-item correct">
+                <div class="choice-text">① 폐포 내부의 산소가 모세혈관의 혈액으로 끊임없이 확산되어 나가기 때문이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: (나) 1문단에서 "폐포 내부로 들어온 산소의 일부는 지속적으로 모세혈관의 혈액으로 확산된다"고 하였다. 따라서 대기 산소 분압이 폐포 산소 분압보다 높은 이유는 산소가 혈액으로 계속 빠져나가기 때문이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 폐포 내부 기체의 산소 분압은 '대기의 산소 분압'만으로 결정되는 것이기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 3문단에서 폐포 내부 산소 분압은 세 가지 요인에 의해 결정된다고 하였다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 생명 활동을 유지하려면 외부 환경으로부터 산소를 폐포 내부로 받아들여야 하기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 호흡의 목적에 해당할 뿐, ①의 직접적 원인이 아니다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 대기에서 유입된 산소가 모세혈관의 혈액에 용해되면, 용해된 산소가 폐포 내부에 축적되기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 산소는 혈액으로 확산되어 나가므로 폐포 내부에 축적되지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 폐포 내부로 확산되는 산소의 이동이 혈액에서 폐포로 배출되는 이산화 탄소의 이동에 의해 방해받기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 1문단에서 "각 기체는 다른 기체의 확산 여부나 방향에 영향을 받지 않는다"고 하였다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ①번</div>
+        </div>
+
+        <!-- 016번 문제 -->
+        <div class="question-full">
+            <div class="q-num">16</div>
+            <div class="question-stem">(가), (나)를 바탕으로 &lt;보기&gt;에 대해 탐구할 때, <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0121</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                A 지역은 고도가 해수면과 같은 지역이고, B 지역은 고산 지대이다. '갑'은 1시에 A 지역에서 편안하게 깊은 잠을 잤다. 그리고 13시에는 B 지역에서 무거운 짐을 계속 나르는 작업을 하였다.<br>
+                (단, 두 지역의 공기 중 산소 부피 비율은 약 21%로 동일하다.)
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 고도를 고려한다면, B 지역 '대기의 산소 분압'은 A 지역보다 낮을 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 3문단에서 고산 지대는 대기 산소 분압이 낮은 환경이라고 하였으므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 1시의 갑의 '폐포 환기량'은, 13시에 비해 폐포 내부 기체 중 이산화 탄소의 비율을 높이는 요인으로 작용할 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 4문단에서 잠든 상태(1시)는 운동 상태(13시)보다 폐포 환기량이 적고, 폐포 환기량이 줄면 이산화 탄소 비율이 높아진다고 하였으므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ B 지역에 간 갑이 일을 하지 않고 편하게 잠을 잤더라도, 폐포 내부 기체의 산소 분압은 1시일 때보다 더 낮았을 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 3문단에서 고산 지대는 대기 산소 분압이 낮아 폐포 내부 산소 분압을 더 낮춘다고 하였으므로, 같은 상태라도 A 지역(1시)보다 B 지역이 낮다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 1시의 갑의 '세포의 산소 소모 속도'는, 13시에 비해 갑의 폐포 내부 기체의 산소 분압을 높이는 요인으로 작용할 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (나) 4문단에서 세포 산소 소모 속도가 느리면(잠든 상태) 폐포 산소 분압이 높아진다고 하였으므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ 13시의 갑의 '대기의 산소 분압'과 '폐포 환기량'은, 모두 1시에 비해 갑의 폐포 내부 기체의 산소 분압을 낮추는 요인으로 작용할 것이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 대기 산소 분압(B 지역, 고산)은 낮추는 요인(적절). 그러나 폐포 환기량은 운동 상태(13시)에서 증가하므로, (나) 4문단에 따라 폐포 내부 산소 분압을 <strong>높이는</strong> 요인으로 작용한다. 따라서 두 요인 모두 낮춘다는 설명은 적절하지 않다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+
+        <!-- 017번 문제 -->
+        <div class="question-full">
+            <div class="q-num">17</div>
+            <div class="question-stem">문맥상 <span class="underline-phrase">④</span>와 가장 가까운 의미로 쓰인 것은? <span class="ref-num">26052-0122</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 작년에 산 옷에 솜털이 일어났다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '위로 솟거나 부풀어 오르다'의 의미.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② 비가 많이 내려 산사태가 일어났다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: ④는 '자연이나 인간 따위에게 어떤 현상이 발생하다'의 의미. ②의 '산사태가 일어났다'가 같은 의미로 쓰였다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 학생들은 학생회 문제를 들고 일어났다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '몸과 마음을 모아 나서다'의 의미.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 내 이름을 부르는 소리에 나는 의자에서 일어났다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '누웠다가 앉거나 앉았다가 서다'의 의미.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 식구들이 부지런히 일하여 가난하던 살림살이가 일어났다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '약하거나 희미하던 것이 성하여지다'의 의미.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ②번</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #5b6e8c;"></footer>
+</div>
+</body>
+</html>

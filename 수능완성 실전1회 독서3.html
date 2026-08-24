@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 1회 - 08~13 (인지 편향과 주식 투자)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text p {
+            margin-bottom: 1.2em;
+            font-size: 15px;
+            line-height: 1.85;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+        }
+        .original-text .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .note-box {
+            background: #fef9e6;
+            border: 1px solid #f1c40f;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 1회 · 독서 08~13</h1>
+        <p>인지 편향과 주식 투자의 비합리적 경향 | 원문 + 문장별 분석 + 어구 풀이 + 문제 + 정답/오답 해설 (PDF 완전 일치)</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p style="font-size: 17px; font-weight: 700; color: #1e466e; margin-bottom: 16px;">(가)</p>
+                <p>객관적인 정보보다는 개인의 감정이나 경험 등 주관적인 요인에 따라 비합리적인 판단이나 결정을 하는 경향을 인지 편향이라고 한다. 사람들에게 많이 나타나는 인지 편향에는 <span class="underline-phrase">이용가능성 편향</span>, <span class="underline-phrase">대표성 편향</span>, <span class="underline-phrase">확증 편향</span>이 있다.</p>
+                <p>우선 이용가능성 편향은 사람들이 객관적인 정보보다는 쉽게 떠오르는 정보를 바탕으로 판단하는 것을 말한다. 즉 최근에 직간접적으로 경험했거나 기억에 많이 남은 것 등 쉽게 떠오르는 것이 판단이나 결정에 큰 영향을 미치는 것이다. 사람들이 정보를 쉽게 얻을 수 있는 언론은 이용가능성 편향을 강화하는 데 큰 영향을 미친다.</p>
+                <p>대표성 편향은 어떤 집합에 속하는 하나의 구성 요소가 그 집합 전체의 특성을 그대로 대표한다고 간주하는 것을 말한다. 즉 대표성을 지니지 못한 일부 표본의 특성을 보고, 그것이 모집단 전체의 특성이라고 판단하는 것이다. 이용가능성 편향과 대표성 편향이 함께 나타나면 <span class="underline-phrase">착각 상관</span>을 일으킬 수 있는데, 착각 상관이란 두 요소가 실제로는 관련이 거의 없지만 서로 강한 상관관계가 있다고 생각하는 오류를 말한다.</p>
+                <p>확증 편향은 자신이 가진 신념이나 가치관, 사상 등을 지속적으로 정당화하려는 것을 의미한다. 확증 편향에 빠진 사람들은 일단 자신의 의사나 태도가 결정되면 이를 뒷받침할 수 있는 정보를 찾아 축적하고, 그것과 반대되는 정보는 무시하는 경향이 있다. 확증 편향이 강화되는 원인 중 하나로 <span class="underline-phrase">필터 버블</span> 현상을 들 수 있다. 필터 버블 현상이란 기업이 인터넷 사용자의 개인 정보나 활동을 분석하여 사용자가 보고 싶어 하는 콘텐츠를 추천함으로써 사용자의 관점과 일치하지 않는 정보로부터 사용자를 분리시키고, 결국에는 사용자를 자신만의 문화적, 이념적 버블 안에 가두게 만드는 현상을 말한다.</p>
+                <p>인지 편향은 개인의 판단이나 행동에 영향을 미칠 뿐 아니라 사회적으로 영향력을 확대할 수 있으며, 특히 <span class="underline-phrase">㉮확증 편향은 공동체에 부정적인 영향을 미칠 수 있다</span>. 따라서 인지 편향을 단순히 개인의 비합리적인 판단으로 치부하기보다, 인지 편향이 사회 전반의 건강한 의사소통과 합리적 의사결정에 어떠한 영향을 미치는지 주의 깊게 살펴볼 필요가 있다.</p>
+
+                <p style="font-size: 17px; font-weight: 700; color: #1e466e; margin: 30px 0 16px 0;">(나)</p>
+                <p>주식 투자는 사업보고서나 재무제표와 같은 공식 자료, 시가총액과 같은 시장 데이터, 금리나 환율과 같은 경제 지표 등 객관적인 자료를 참고하여 합리적으로 이루어지는 것으로 생각하지만, 실제 투자자들의 행동을 살펴보면 다양한 비합리적인 경향을 보여 주고 있다. 이는 정보를 받아들여 판단이나 결정을 하는 과정에서 개인의 심리적이고 주관적인 기준이 개입되어 판단 오류를 발생시키기 때문이다. 사람들이 주식 투자에서 보이는 대표적인 비합리적인 경향은 다음과 같다.</p>
+                <p>우선 투자를 결정할 때 객관적인 정보보다는 자신이 쉽게 떠올릴 수 있는 정보에 주로 의존하는 현상이 있다. 예를 들면 생활 속에서 자주 접하여 머릿속에 잘 떠오르는 기업에 투자하는 것이다. 경제 활동에서 사람들의 비합리적인 경향을 연구하는 행동 경제학에서는 인간의 정보 처리 능력이 한계가 있어 일부 정보에만 집중하여 판단하는 <span class="underline-phrase">'제한된 주의'</span> 때문에, 객관적인 정보보다는 자신이 쉽게 떠올릴 수 있는 정보에 주로 의존하는 현상이 나타난다고 <span class="underline-phrase">ⓐ보았다</span>.</p>
+                <p>또한 특정 기업이나 분야에 대해 기존에 자신이 가지고 있던 지식과 정보에 지속적으로 의존하여 투자를 결정하는 비합리적인 경향을 보이는 경우가 있다. 이는 새로운 정보를 거부하고 기존의 시각이나 생각을 유지하려는 인지적 오류인 <span class="underline-phrase">보수적 편향</span>을 보여 주는 것이다.</p>
+                <p>그리고 특정 주식에 대해 적정가를 설정한 후, 해당 기업의 재무 상황이나 시장 환경이 달라지는 상황에서도 자신이 과거에 설정한 기준 가격을 바탕으로 매수나 매도를 하는 것도 주식 투자에서 보이는 비합리적인 경향이다. 이는 어떤 판단이나 결정을 할 때, 초기에 주어진 정보가 기준점이 되어 이후에도 해당 기준점을 바탕으로 판단한다는 <span class="underline-phrase">앵커 효과</span>를 보여 주는 사례이다.</p>
+                <p>또한 <span class="underline-phrase">㉮최근 주가 상승으로 수익을 얻은 투자자가 많아졌다는 언론 보도만을 바탕으로 투자를 결정</span>하거나, 특정 기업에 대한 객관적 분석 없이 해당 기업이 속한 분야만을 보고 해당 기업에 대한 투자를 결정하는 것도 주식 투자에서 비합리적인 경향을 보여 주는 사례라고 볼 수 있다.</p>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 1문단 분석 – 인지 편향의 개념</div>
+                <div class="content">인지 편향: 객관적 정보보다 주관적 요인에 따라 비합리적 판단. 대표적 유형: 이용가능성 편향, 대표성 편향, 확증 편향.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 2문단 분석 – 이용가능성 편향</div>
+                <div class="content">쉽게 떠오르는 정보(최근 경험·기억)에 의존. 언론이 강화 요인으로 작용.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>이용가능성 편향</strong>: 쉽게 떠오르는 정보에 의존하는 경향<br>
+                • <strong>대표성 편향</strong>: 일부 표본이 전체를 대표한다고 생각<br>
+                • <strong>확증 편향</strong>: 자신의 신념을 정당화하려는 경향
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 3문단 분석 – 대표성 편향과 착각 상관</div>
+                <div class="content">일부 표본의 특성을 모집단 전체의 특성으로 일반화. 이용가능성 편향과 결합 시 착각 상관(실제 관련 없으나 강한 상관관계로 인식) 발생.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 4문단 분석 – 확증 편향과 필터 버블</div>
+                <div class="content">자신의 의사 결정 후 이를 뒷받침하는 정보만 선택. 필터 버블(추천 알고리즘)이 확증 편향 강화.</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>핵심 용어</strong><br>
+                • <strong>착각 상관</strong>: 실제 관련 없으나 강한 상관관계로 착각<br>
+                • <strong>필터 버블</strong>: 개인의 관점에 맞는 정보만 제공되어 고립되는 현상
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (가) 5문단 분석 – 인지 편향의 사회적 영향</div>
+                <div class="content">인지 편향은 개인을 넘어 사회에 영향. 특히 확증 편향은 공동체에 부정적 영향.</div>
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 1~2문단 분석 – 주식 투자의 비합리성</div>
+                <div class="content">주식 투자는 객관적 자료 기반이나 실제로 비합리적 경향(제한된 주의, 이용가능성 편향).</div>
+            </div>
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>보수적 편향</strong>: 기존 정보에 의존, 새 정보 거부<br>
+                • <strong>앵커 효과</strong>: 초기 기준점에 고정되어 판단
+            </div>
+            <div class="analysis-box">
+                <div class="title">📌 (나) 3~5문단 분석 – 비합리적 경향 사례</div>
+                <div class="content">① 보수적 편향(기존 지식 의존) ② 앵커 효과(초기 기준가 고수) ③ 언론 보도만으로 투자 결정, 업종만 보고 투자.</div>
+            </div>
+            <div class="info-box">
+                <h3>🎯 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li>(가)는 인지 편향의 개념과 세 가지 유형(이용가능성·대표성·확증 편향)을 설명하고, 특히 확증 편향이 공동체에 부정적 영향을 미칠 수 있음을 강조한다.</li>
+                    <li>(나)는 주식 투자에서 나타나는 비합리적 경향(제한된 주의, 보수적 편향, 앵커 효과)을 설명하고, 구체적 사례를 제시한다.</li>
+                    <li>두 글 모두 비합리적 판단·결정의 원인을 심리적·인지적 측면에서 조명한다.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">(가) 인지 편향의 유형(이용가능성·대표성·확증 편향)과 그 영향, (나) 주식 투자에서 보이는 비합리적 경향(제한된 주의·보수적 편향·앵커 효과)을 설명하고, 이들이 개인과 사회에 미치는 영향을 고찰한다.</p>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 인지 편향 유형 비교</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>편향 유형</th><th>개념</th><th>주식 투자 사례</th></tr></thead>
+                    <tbody>
+                        <tr><td>이용가능성 편향</td><td>쉽게 떠오르는 정보에 의존</td><td>생활 속 자주 접하는 기업에 투자</td></tr>
+                        <tr><td>대표성 편향</td><td>일부 표본이 전체를 대표한다고 생각</td><td>특정 분야만 보고 기업 투자 결정</td></tr>
+                        <tr><td>확증 편향</td><td>자신의 신념을 뒷받침하는 정보만 선택</td><td>자신의 판단에 유리한 정보만 축적</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-table">
+                <h3 style="font-size: 18px;">📊 주식 투자 비합리적 경향</h3>
+                <table style="font-size: 12.5px;">
+                    <thead><tr><th>경향</th><th>설명</th></tr></thead>
+                    <tbody>
+                        <tr><td>제한된 주의</td><td>정보 처리 능력 한계로 일부 정보에만 집중</td></tr>
+                        <tr><td>보수적 편향</td><td>기존 지식·정보에 의존, 새 정보 거부</td></tr>
+                        <tr><td>앵커 효과</td><td>초기 기준점에 고정되어 판단</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>인지 편향의 세 가지 유형</strong>: 이용가능성 편향 · 대표성 편향 · 확증 편향</li>
+                    <li><strong>착각 상관</strong>: 이용가능성 편향 + 대표성 편향이 결합될 때 발생</li>
+                    <li><strong>필터 버블</strong>: 추천 알고리즘이 확증 편향을 강화하는 기술적 요인</li>
+                    <li><strong>주식 투자의 비합리적 경향</strong>: 제한된 주의 · 보수적 편향 · 앵커 효과</li>
+                    <li><strong>확증 편향의 사회적 영향</strong>: 공동체의 건강한 의사소통과 합리적 의사결정 저해</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 1회 08~13</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>(가)</span> 인지 편향의 개념과 유형</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">정의</span> 객관적 정보보다 주관적 요인에 따른 비합리적 판단</p>
+                    <p><span class="flow-badge">유형 ①</span> 이용가능성 편향 (쉽게 떠오르는 정보 의존)</p>
+                    <p><span class="flow-badge">유형 ②</span> 대표성 편향 (일부 → 전체로 일반화)</p>
+                    <p><span class="flow-badge">유형 ③</span> 확증 편향 (신념 정당화 + 필터 버블)</p>
+                    <div class="sub-point">✔ (가) 1~4문단: 인지 편향의 개념과 세 가지 유형</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(가)</span> 사회적 영향</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">확증 편향</span> 공동체에 부정적 영향</p>
+                    <p><span class="flow-badge">해결 방향</span> 단순 치부 말고 사회적 영향 주목</p>
+                    <div class="sub-point">✔ (가) 5문단: 인지 편향의 사회적 확장과 영향</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>(나)</span> 주식 투자의 비합리적 경향</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">원인</span> 객관적 자료 + 개인 심리·주관 기준 개입</p>
+                    <p><span class="flow-badge">경향 ①</span> 제한된 주의 → 이용가능성 편향</p>
+                    <p><span class="flow-badge">경향 ②</span> 보수적 편향 (기존 정보 고수)</p>
+                    <p><span class="flow-badge">경향 ③</span> 앵커 효과 (초기 기준점 고정)</p>
+                    <div class="sub-point">💬 (나) 전체: 주식 투자 사례를 통한 비합리적 경향 구체화</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 인지 편향 개념 및 유형(이용가능성·대표성·확증) → 확증 편향의 사회적 영향 → 주식 투자에서의 비합리적 경향(제한된 주의·보수적 편향·앵커 효과)
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 문제 8번 -->
+        <div class="question-full">
+            <div class="q-num">08</div>
+            <div class="question-stem">(가)와 (나)에 대한 설명으로 가장 적절한 것은? <span class="ref-num">26051-0068</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① (가)는 비합리적인 판단과 관련 있는 인지 편향의 유형을, (나)는 주식 투자에서 나타나는 비합리적인 경향을 설명하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – (가)는 인지 편향의 개념과 유형(이용가능성·대표성·확증 편향)을, (나)는 주식 투자에서의 비합리적 경향(제한된 주의·보수적 편향·앵커 효과)을 설명한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (가)는 언론이 개인의 주관적 판단에 미치는 영향을, (나)는 언론이 주식 투자와 관련된 경제 지표 왜곡에 미치는 영향을 설명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)에서 언론이 이용가능성 편향을 강화한다고 언급하지만, 언론이 개인의 주관적 판단에 미치는 영향만을 설명하는 것은 아니다. (나)는 언론이 경제 지표를 왜곡한다고 말하지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (가)는 개인의 비합리적인 생각이 공동체에 미치는 영향을, (나)는 주식 투자자의 비합리적인 투자가 사회 경제에 미치는 영향을 설명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – (가)에서 인지 편향이 사회에 영향을 미친다고 언급하지만, (나)는 투자자의 비합리적 경향이 사회 경제에 미치는 영향을 설명하지 않는다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (가), (나) 모두 사람들의 비합리적인 경향이 개인의 정서에 어떤 영향을 미치는지 설명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두 글 모두 정서적 영향보다는 인지적·심리적 과정과 판단 오류에 초점을 둔다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (가), (나) 모두 사람들의 비합리적인 판단이나 결정의 원인을 사회 구조적 측면에서 설명하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두 글 모두 사회 구조보다는 개인의 인지적·심리적 요인에 초점을 맞춘다.</div>
+            </div>
+            <div class="correct-badge">📍 ①번이 가장 적절한 설명(정답).</div>
+        </div>
+
+        <!-- 문제 9번 -->
+        <div class="question-full">
+            <div class="q-num">09</div>
+            <div class="question-stem">(가), (나)에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0069</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① (가): 필터 버블 현상은 특정한 인지 편향을 심화하는 데 영향을 미친다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가) 4문단에서 필터 버블이 확증 편향을 강화한다고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② (가): 사람들에게 접근성이 높은 언론은 이용가능성 편향을 강화하는 요인이 될 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (가) 2문단에서 언론이 이용가능성 편향을 강화한다고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ (가): 대표성 편향이 나타나고 이용가능성 편향이 나타나지 않을 때 착각 상관이 일어난다.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – (가) 3문단에서 "이용가능성 편향과 대표성 편향이 함께 나타나면 착각 상관을 일으킬 수 있다"고 했으므로, 두 편향이 모두 나타날 때 착각 상관이 일어난다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ (나): 자신이 과거에 정해 놓은 기준점을 바탕으로 투자에 대해 판단한다면 앵커 효과가 나타난 것이다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나) 4문단에서 앵커 효과가 초기 기준점을 바탕으로 판단하는 것이라고 했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ (나): 행동 경제학에서는 인간의 정보 처리 능력과 주식 투자에서 보이는 비합리적인 경향이 관련이 있다고 생각한다.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – (나) 2문단에서 행동 경제학이 제한된 주의와 비합리적 경향의 관련성을 설명한다고 했다.</div>
+            </div>
+            <div class="wrong-badge">📍 ③번이 적절하지 않은 이해(정답).</div>
+        </div>
+
+        <!-- 문제 10번 -->
+        <div class="question-full">
+            <div class="q-num">10</div>
+            <div class="question-stem"><span class="underline-phrase">㉮</span>의 이유를 추론한 것으로 가장 적절한 것은? <span class="ref-num">26051-0070</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 확증 편향을 보이는 사람들은 타인의 의견이 자신의 관점에 부합하더라도 신뢰하지 않기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 확증 편향은 자신의 관점에 부합하는 정보는 신뢰하고, 반대 정보는 무시하는 경향이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 확증 편향이 심해질수록 개인의 생각이 쉽게 변하므로 사회 문제에 대해 공동체에서 합의한 의견을 유지하기가 어렵기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 확증 편향은 오히려 개인의 생각이 쉽게 변하지 않고 고정되도록 만든다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 확증 편향이 심화되면 생각이나 가치관이 자신과 다른 사람들을 이해하지 못해 공동체 구성원 간 갈등이 발생할 수 있기 때문이다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – 확증 편향은 자신의 신념을 정당화하고 반대 정보를 무시하므로, 자신과 다른 생각을 가진 사람을 이해하지 못하고 갈등을 유발할 수 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 확증 편향이 일어나면 신념의 혼란으로 인해 개인이 자신의 가치관을 정립하기 힘들어 공동체가 공통된 목표를 설정하기 어렵기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 확증 편향은 신념의 혼란을 일으키지 않고, 오히려 기존 신념을 강화한다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 확증 편향은 공동체 구성원들이 자신의 의사와 상관없이 기업으로부터 제공되는 다양한 정보에 무분별하게 노출되어 혼란이 발생할 때 나타나는 현상이기 때문이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 확증 편향은 자신의 의사에 따라 선택적으로 정보를 수용하는 경향으로, 무분별한 정보 노출과는 관련이 적다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 추론(정답).</div>
+        </div>
+
+        <!-- 문제 11번 -->
+        <div class="question-full">
+            <div class="q-num">11</div>
+            <div class="question-stem">인지 편향에 대한 설명을 바탕으로 <span class="underline-phrase">㉮</span>와 &lt;보기&gt;를 이해한 내용으로 가장 적절한 것은? <span class="ref-num">26051-0071</span></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                2014년 환경부에서는 전국 미세 먼지 예보를 처음으로 시작했다. 이에 언론은 전국의 미세 먼지 농도를 매일 방송으로 안내하며 미세 먼지의 위험성을 알리어 보도하였고, 사람들은 미세 먼지의 존재와 위험성을 인식하기 시작했다. 얼마 뒤 한 연구원에서 사회의 각종 위험 요소에 대한 사람들의 인식을 조사한 결과, 사람들이 우리 사회의 위험 요소 중 미세 먼지와 같은 대기 오염이 앞으로 가장 심각해질 문제라고 판단하고 있다는 결과를 발표하였다. 그런데 같은 시기에 미세 먼지를 조사한 연구 결과에 따르면 우리나라의 평균 미세 먼지 농도는 2000년대 초반에 가장 높았으며, 이후 조금씩 감소하는 추세를 보여 주었다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① &lt;보기&gt;와 달리 ㉮는 언론을 통해 인지한 정보를 과대평가하고 있으므로 인지 편향이 나타나고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉮(언론 보도만으로 투자 결정)도 언론을 통해 인지한 정보를 과대평가하는 것이므로 &lt;보기&gt;와 유사하다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② &lt;보기&gt;와 달리 ㉮는 최근에 얻은 정보를 근거로 미래를 합리적으로 예측하므로 인지 편향이 나타나고 있지 않다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – ㉮는 언론 보도만으로 투자 결정을 하는 것이므로 합리적 예측이라 보기 어렵다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ &lt;보기&gt;와 ㉮는 모두 쉽게 접할 수 있는 정보에 의존해 판단하고 있으므로 인지 편향이 나타나고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – &lt;보기&gt;는 언론을 통해 쉽게 접한 미세 먼지 정보에 의존하여 위험성을 과대평가하였고, ㉮는 언론 보도만으로 투자 결정을 하였다. 둘 다 이용가능성 편향의 사례이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ &lt;보기&gt;와 ㉮는 모두 자신만의 판단 기준을 정립하고 이에 따라 판단하고 있으므로 인지 편향이 나타나고 있지 않다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두 경우 모두 객관적 정보보다 쉽게 접한 정보에 의존한 비합리적 판단이므로 인지 편향이 나타나고 있다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ &lt;보기&gt;와 ㉮는 모두 언론에서 접한 정보를 왜곡하여 받아들여 해당 정보와 상반된 판단을 내리고 있으므로 인지 편향이 나타나고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 두 경우 모두 정보를 왜곡했다기보다는 쉽게 접한 정보에 과도하게 의존한 것이다. 또한 상반된 판단을 내렸다고 보기 어렵다.</div>
+            </div>
+            <div class="correct-badge">📍 ③번이 가장 적절한 이해(정답).</div>
+        </div>
+
+        <!-- 문제 12번 -->
+        <div class="question-full">
+            <div class="q-num">12</div>
+            <div class="question-stem">(가), (나)를 읽은 학생이 &lt;보기&gt;에 대해 보인 반응으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26051-0072</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 &lt;보 기&gt;</strong><br>
+                갑은 어느 날 동영상 공유 사이트를 통해 외국인 노동자가 폭력을 휘두르는 자극적인 영상을 보고 해당 사건을 검색해 보았다. 이후 갑이 동영상 공유 사이트에 접속할 때마다 비슷한 영상이 추천 영상으로 제시되었다. 갑은 외국인 노동자가 일으킨 범죄 영상을 반복적으로 시청하게 되었고, 외국인 노동자들은 범죄를 잘 저지른다고 생각하게 되었다. 갑의 이런 생각에 대해 친구인 을은 객관적인 근거가 없다며 의문을 제기하였고, 갑은 자신의 생각에 대한 근거를 찾기 위해 외국인 노동자의 범죄율을 연구한 객관적인 자료를 찾아보았다. 자료에는 외국인 노동자의 범죄율이 내국인의 범죄율과 큰 차이가 없다고 제시되어 있었으나 갑은 해당 내용을 무시하였고, 인터넷에서 외국인 노동자 범죄와 관련된 기사와 영상을 추가로 찾아보며 자신의 생각을 더욱 굳히게 되었다.
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">① 갑이 실제 범죄율과 상관없이 외국인 노동자와 범죄가 상관관계가 높다고 판단하고 있으므로 착각 상관이 나타나고 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 갑은 외국인 노동자 영상을 보고 범죄와의 상관관계를 높게 인식하고 있으므로 착각 상관의 사례이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 갑이 을의 생각을 받아들이기보다는 기존에 있는 객관적인 자료를 받아들이고 있으므로 보수적 편향이 나타나고 있군.</div>
+                <div class="choice-analysis">✅ <strong>부적절함 (정답)</strong> – 갑은 객관적 자료를 찾았지만, 자신의 생각과 반대되는 내용은 무시하고 자신의 생각을 뒷받침하는 정보만 찾았다. 이는 보수적 편향보다는 <strong>확증 편향</strong>에 가깝다. 보수적 편향은 기존 정보에 의존하여 새 정보를 거부하는 것이지만, 갑은 새 정보를 찾되 자신에게 유리한 정보만 선택했다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 갑이 자신이 본 영상처럼 쉽게 떠오르는 정보에 주목해 외국인 노동자를 판단하는 것은 '제한된 주의' 때문이라고 볼 수 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 갑은 자극적인 영상(쉽게 떠오르는 정보)에 주목하여 판단했으므로 제한된 주의의 사례이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 갑이 몇몇 외국인 노동자의 사례를 바탕으로 외국인 노동자 집단 전체의 특성을 단정하게 되었으므로 대표성 편향이 나타나고 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 일부 사례(자극적 영상)를 전체 외국인 노동자의 특성으로 일반화했으므로 대표성 편향이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 갑이 동영상 공유 사이트에 제시된 추천 영상을 반복적으로 시청하면서 외국인 노동자에 대해 판단한 것은 필터 버블 현상의 사례로 볼 수 있군.</div>
+                <div class="choice-analysis">❌ <strong>오답 아님 (적절함)</strong> – 추천 알고리즘이 갑의 관점에 맞는 콘텐츠를 계속 제공하여 특정 정보에 갇히게 했으므로 필터 버블 현상이다.</div>
+            </div>
+            <div class="wrong-badge">📍 ②번이 적절하지 않은 반응(정답).</div>
+        </div>
+
+        <!-- 문제 13번 (정답 ②번으로 수정) -->
+        <div class="question-full">
+            <div class="q-num">13</div>
+            <div class="question-stem"><span class="underline-phrase">ⓐ</span>와 문맥상 의미가 가장 가까운 것은? <span class="ref-num">26051-0073</span></div>
+            <div class="choice-item">
+                <div class="choice-text">① 그는 혼자서 집을 보다가 잠이 들었다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '보다'는 '돌보다, 관리하다'의 의미로, '생각하다'의 의미가 아니다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">② 그들은 그 사람의 말을 진실이라고 보고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – '보고 있다'는 '여기다, 간주하다'의 의미로, ⓐ '보았다'가 '생각하였다, 판단하였다'의 의미로 쓰인 것과 가장 가깝다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">③ 당신의 사정을 봐서 이번에는 용서하겠습니다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '봐서'는 '고려하여, 참작하여'의 의미이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">④ 다른 일을 보느라고 원래 계획한 일을 못 했다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '보느라고'는 '처리하다, 하다'의 의미이다.</div>
+            </div>
+            <div class="choice-item">
+                <div class="choice-text">⑤ 횡단보도를 건널 때에는 차가 오는지를 잘 보아야 한다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – '보아야'는 '시각적으로 관찰하다'의 의미이다.</div>
+            </div>
+            <div class="correct-badge">📍 ②번이 문맥상 의미가 가장 가까운 것(정답).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

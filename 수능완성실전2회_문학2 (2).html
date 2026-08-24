@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>수능완성 사용설명서 실전 2회 - 24~27 (현기영 「도령마루의 까마귀」)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: #eef2f5;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e466e;
+            color: white;
+            padding: 20px 40px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-left {
+            flex: 1.2;
+            min-width: 48%;
+            background: #fefaf0;
+            border-right: 1px solid #e2e8f0;
+            padding: 30px 28px;
+        }
+        .col-right {
+            flex: 0.9;
+            min-width: 32%;
+            background: #f9fbfd;
+            padding: 30px 28px;
+        }
+        .original-text {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .story-line {
+            margin-bottom: 0.3em;
+            position: relative;
+        }
+        .line-text {
+            display: inline;
+            font-size: 15px;
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            color: #1e293b;
+        }
+        .line-analysis {
+            display: block;
+            font-size: 12.5px;
+            margin-left: 1em;
+            margin-top: 0.1em;
+            margin-bottom: 0.5em;
+            border-left: 2px solid #e67e22;
+            padding-left: 10px;
+            font-family: 'Consolas', 'Courier New', 'Segoe UI', monospace;
+            color: #2c5282;
+            font-style: italic;
+            letter-spacing: -0.2px;
+        }
+        .line-analysis .highlight {
+            color: #c0392b;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin: 1em 0 0.5em 0;
+            color: #b45309;
+            border-left: 4px solid #e67e22;
+            padding-left: 12px;
+            font-family: 'Segoe UI', 'Noto Sans', sans-serif;
+        }
+        .underline-phrase {
+            background-color: #fcf4d9;
+            border-bottom: 2px solid #e67e22;
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .analysis-box {
+            margin-bottom: 24px;
+            border-left: 4px solid #3b82f6;
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+        }
+        .analysis-box .title {
+            font-weight: 700;
+            color: #1e466e;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .analysis-box .content {
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+        .analysis-box .exam-tip {
+            display: block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: #92400e;
+        }
+        .vocab-box {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 10px 14px;
+            border-radius: 14px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b45309;
+        }
+        .highlight-table {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid #f1c40f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        th {
+            background: #e2e8f0;
+            font-weight: 600;
+        }
+        .structure-wrapper {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%);
+            border-top: 3px solid #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 36px 32px 44px 32px;
+            margin-top: 0;
+        }
+        .structure-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0c4a6e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+        }
+        .structure-title span {
+            background: #1e466e;
+            color: white;
+            font-size: 16px;
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            position: relative;
+        }
+        .struct-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+            border: 1px solid #e2edf7;
+        }
+        .struct-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+        }
+        .card-head {
+            background: #1e466e;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-body {
+            padding: 22px 20px;
+            font-size: 14px;
+            background: #ffffff;
+        }
+        .card-body p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .card-body .sub-point {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12.5px;
+            color: #334155;
+            border-left: 3px solid #e67e22;
+        }
+        .arrow-symbol {
+            text-align: center;
+            font-size: 28px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+        @media (max-width: 950px) {
+            .structure-grid {
+                flex-direction: column;
+            }
+            .arrow-symbol {
+                transform: rotate(90deg);
+                margin: -8px 0;
+            }
+        }
+        .flow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e466e;
+            margin-right: 8px;
+        }
+        .questions-section {
+            padding: 30px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #cfdfed;
+        }
+        .question-full {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 20px 28px;
+            margin: 32px 0;
+            border: 1px solid #cfdfed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .q-num {
+            font-weight: 800;
+            font-size: 22px;
+            background: #1e466e;
+            display: inline-block;
+            padding: 4px 22px;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 18px;
+        }
+        .question-stem {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 20px;
+            background: #f1f5f9;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #bdd4e7;
+        }
+        .choice-item {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        .choice-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .choice-analysis {
+            font-size: 13px;
+            color: #4b5563;
+            padding-left: 12px;
+            border-left: 3px solid #94a3b8;
+            margin-top: 6px;
+        }
+        .correct-badge {
+            background: #d1fae5;
+            border-left: 6px solid #10b981;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .wrong-badge {
+            background: #fff0f0;
+            border-left: 6px solid #e74c3c;
+            padding: 12px 20px;
+            border-radius: 24px;
+            margin: 12px 0;
+        }
+        .ref-num {
+            color: #1e466e;
+            font-weight: 700;
+            background: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .view-box {
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .col-left, .col-right {
+                border-right: none;
+                width: 100%;
+            }
+            .questions-section {
+                padding: 20px;
+            }
+            .structure-wrapper {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 수능완성 사용설명서 실전 2회 · 문학 24~27</h1>
+        <p>현기영 「도령마루의 까마귀」 | 문장/대사별 분석 + 문제 + 정답/오답 해설</p>
+    </div>
+
+    <!-- ========== 2단 지문 + 분석 ========== -->
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="section-title">[앞부분 줄거리]</div>
+                <div class="story-line">
+                    <span class="line-text">귀리집은 중산간 마을인 노형리의 주민으로, 군경에 의해 마을이 전소되면서 해변의 서호마을로 강제 이주된다. 귀리집은 좌익 무장대와 군경을 피해 달아나다 행방이 모연해진 남편의 생사를 궁금해하고, 성당을 다 쌓아 통행이 허</span>
+                    <div class="line-analysis">← 서사 시작: 귀리집의 강제 이주와 남편 실종</div>
+                </div>
+                <div class="story-line" style="margin-top: 1em;">
+                    <span class="line-text">올력꾼들은 이제 성담을 끼고 도령마루 쪽으로 걸어간다. 어른 키의 두 배 높이는 실히 됨 직한 성담을 올려다보고, 또 성담 따라 끝 간 데까지 눈길을 보내어, 성이 멀리 도령마루 위로 가물가물 기어오르는 모양을 바라보면서 귀리집은 새삼 놀란다. 한 달 새에 저렇게 많이 일을 했나? 고생도 되게 하긴 했지. 손끝이 닮아 조막손이 되는가 싶었지. 특히 왼손은 흉측하기가 말이 아니다. 한번 찍힌 돌에 검지는 손톱이 빠지고 중지는 가운데 뼈마디에 흉한 혹이 생겼다. 그러나 내일이면 이 지지긋한 역사가 모두 끝난다. 이제는 설마 올려나오라는 말이 다시는 없겠지. 젊은 남자들이 축성 노역에 동원되지 않을.</span>
+                    <div class="line-analysis">← <span class="highlight">강제 노역의 고통</span> – 성담 축성에 동원된 주민들의 육체적 고통. 젊은 남성들은 동굴에 피신.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">바람결이 꽤 차다. 발 경계선마다 돌려쳐져 바람막이가 되던 발담이 죄다 없어졌으니 바람은 아무 거칠 것 없이 마구 획획 불어제친다. 귀리집은 바람이 불어오는 왼편 귀뻐를 머릿수건으로 잘 단도리한다. 등에 진 마</span>
+                    <div class="line-analysis">← <span class="highlight">방한 복장의 대비</span> – 노형리 주민들은 방한모를 챙기지 못해 서호 본고장 사람들과 구분됨. 강제 이주의 긴박함 부각.</div>
+                </div>
+                <div class="story-line" style="margin-top: 0.8em;">
+                    <span class="line-text">올력꾼들은 어떤네들과 열두서너 살짜리 어린것들이 대부분이고 어른 남자라곤 벌초한 봉분처럼 머리가 민둥한 중늙은이들이고 젊은 축들은 별반 보이지 않는다. 개중에는 파뿌리 머리칼을 정수리에 웅쳐뱉 상투짜리 일촌 넘어 뵈는 노인네도 드문드문 눈에 띤다. 별안간 쌀쌀해진 날씨에 뻑뻑 깎은 머리뻑이 시켰던지 남은 중절모나 도리우찌, 개가죽 감투, 또 하도 헐어서 죽은 까마귀 날갯죽지같이 몰골이 흉한 난바위를 쓰고 나온 노인들도 더러 있는데, 이들은 묻지 않아도 서호 본고장 사람들이 틀림없으리라. 불탄 우리 노형마을에서 소까이되어 온 사람들이 어느 경황에 저런 방한모를 챙겨 가져올까 말이다.</span>
+                    <div class="line-analysis">← <span class="highlight">소까이(강제 이주)</span> – 노형리 주민들의 방한모 부재로 이주의 강제성·긴박성 드러남.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">오도봉만 남겨 놓고 다섯 부라 모두가 한날한시에 불타던 노형리 소케이. 저번 날 읍내에서 선무 공작대가</span>
+                    <div class="line-analysis">← 마을 전소의 참상 – 노형리 전체가 불탔음을 회상.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">그네들도 배를 탈 수 없는 것은 마찬가지다. 그물, 닻, 샷대, 룃 등 마을의 모든 선구가 민보단 단장 집에 압수되어 들어가 있기 때문이란다. 폭도들의 해상 탈출을 막기 위해 입어(入漁) 금지령이 떨어져 있는 터라, 물 가까운 얕은 물에서 하는 해녀들의 물질마저 허락되지 않는다. 해녀들의 궁둥짝같이 넓적등글한 태화도, 그물 망시리도 좀먹어 구멍 쏟쏟한 추녀 기둥에 걸린 채 하늬바람에 덜그럭덜그럭 흔들리고 있을 뿐이다.</span>
+                    <div class="line-analysis">← <span class="highlight">생업 활동의 제한</span> – 입어 금지령으로 해녀들의 물질마저 금지됨.</div>
+                </div>
+                <div class="story-line">
+                    <span class="line-text">계엄령이 떨어져 있는 저 제주 바다에는 배가 뜨지 않는다. 항시 감시 군함 두엿이 앞바다를 오락가락할 뿐, 쪽박 하나 뜨지 않는다. 귀리집은 다시 바다로 눈길을 돌린다. 그러나 흐린 바다 물빛에 어울려 잿빛 군함들은 얼른 눈에 띄지 않는다. 잠시 두리번거리며 찾아보니 하나는 한림 쪽을 향해 막 시야 밖으로 사라지는 중이고 다른 하나는 멀리 수평선까지 흘러가 파도에 가려졌다 보였다 하고 있다. 이렇게 사방이 바다로 꽉 막혔으니, 산에 오른 사람들은 모두 독 안에 든 쥐일 수밖에. 바다를 막아 놓고 군경 합동 토벌군은 섬을 빙 돌리 해변에서부터 쭉 훑어 올라간단다. 폭도들이 해변을 습격해 올 때 숨을 만한 해변가 일주 도로 근처 발담이란 발담은 죄다 허물고, 솔수평, 수리대[箭竹]발도 태우고, 폭도들이 죽창 만들지 모른다고 왕대발도 태우고, 행군길감에 마을 정자나무, 늙은 팽나무 신목(神木)도 잘라 팔아먹고, 당도하는 중산간 부락마다 모조리 불태워 그 불기에 몸을 녹이고, 한라산을 중심으로 포위망을 점점 좁혀 간다. 이젠 뛰어봐야 그 풀밭이 그 풀밭인 메뚜기 꼴이다. 이건 <span class="underline-phrase">①물이사냥</span>이다. 옛날 육지서 들어온 제주 목사(牧使)들이 농사일에 바쁜 섬 백성을 온통 물이꾼으로 내몰던 노루 사냥이 그랬듯이 이 잡듯이 살살이 훑어 올라간단다. 물이사냥엔 노루 말고도 지다리(오소리), 산토끼같이 작고 변변치 못한 것들도 물이꾼 몽둥이에 맞아 죽게 마련이다. 산 폭도 사냥이야 백번 옳지만, 혹시 멀정한 양민은 어찌 되나? 순원이 아방*처럼 다만 남자로 태어난 것이 유죄라 산에 오르지도 해변에 내리지도 못해 중산간의 동굴 속에 숨어 썩은 말고기를 먹고 산다는 남정네들은 어찌 되나? 불구의 몸이라 미처 피난 못 가고 불탄 집터에 타다 남은 조 짚가리 속에 숨어사는 할망, 할으방 들은 어찌 되나?</span>
+                    <div class="line-analysis">← <span class="highlight">물이사냥의 비유</span> – 군경의 토벌 작전을 노루 사냥에 비유하며 양민의 희생 우려. 무고한 양민(남정네·노인)의 처참한 상황 제시.</div>
+                </div>
+                <div style="font-size: 13px; color: #5b6e8c; margin-top: 12px;">
+                    *성담: 성(城) 주위에 쌓은 돌담.<br>
+                    *올력: 여러 사람이 힘을 합하여 일함. 또는 그런 힘.<br>
+                    *발담: 제주도에서, 발의 가장자리를 돌로 쌓은 둑. 발의 경계도 되고 바람으로부터 곡식을 보호하기도 한다.<br>
+                    *웅처멘: '동여멘(꾼이나 새끼, 실 따위로 두르거나 감거나 하여 묶은.)'의 방언.<br>
+                    *소까이: 강제 이주를 뜻하는 일본어. 화재나 공습 등에 대비해 한곳에 집중되어 있는 주민이나 시설물을 분산하는 '소개'를 뜻함.<br>
+                    *선무 공작대: 전시나 사변으로 군대가 출병하여 적국의 영토를 점령하였을 때, 그 지역에 거주하는 주민을 군에 협력하도록 하거나 적어도 적대 행위를 하지 않도록 하기 위하여 행하는 선전·원조 따위의 활동을 하는 단체.<br>
+                    *절바시: '거지'의 제주 방언.<br>
+                    *서개: 이의 알.<br>
+                    *할망, 할으방: '할머니', '할아버지'의 제주 방언.<br>
+                    *아지망: '아주머니'의 제주 방언.<br>
+                    *아방: '아버지'의 제주 방언.
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <!-- 작품 개관 -->
+            <div class="analysis-box">
+                <div class="title">📌 「도령마루의 까마귀」 – 수능 핵심 정리</div>
+                <div class="content">
+                    <strong>▶ 작가:</strong> 현기영<br>
+                    <strong>▶ 장르:</strong> 현대 소설<br>
+                    <strong>▶ 성격:</strong> 현실 고발적, 사실주의, 역사적<br>
+                    <strong>▶ 배경:</strong> 1948년 제주도 도령마루 (제주 4·3 사건)<br>
+                    <strong>▶ 중심인물:</strong> <span class="highlight">귀리집</span> – 무고한 양민, 국가 폭력의 피해자<br>
+                    <strong>▶ 표현 기법:</strong> <span class="highlight">현재형 진술</span>(현장감), 비유(물이사냥), 제주 방언 사용, 대비<br>
+                    <strong>▶ 서술 방식:</strong> <span class="highlight">전지적 작가 시점</span> + 귀리집의 내면 초점화<br>
+                    <strong>▶ 핵심 주제:</strong> 제주도 양민이 겪은 강제 부역과 집단 학살의 비극, 국가 폭력의 참상 고발<br>
+                    <strong>▶ 수능 포인트:</strong> 현재형 시제의 효과, '물이사냥'의 비유적 의미, 공간적 배경(중산간·해변·바다)의 상징성, <span class="highlight">소까이(강제 이주)</span>의 의미
+                </div>
+                <div class="exam-tip">💡 수능 TIP: '물이사냥'은 노루 사냥을 비유로 사용하여, 군경의 토벌 작전이 무고한 양민까지 희생시키는 '잡아 죽이는' 행위임을 드러냅니다. 이 비유를 통해 국가 폭력의 무차별성을 비판합니다.</div>
+            </div>
+
+            <!-- 인물 및 공간 -->
+            <div class="analysis-box">
+                <div class="title">📌 인물 및 공간</div>
+                <div class="content">
+                    <strong>▶ 귀리집</strong>: 노형리 주민, 강제 이주당함, 남편 실종, 강제 노역과 굶주림 속에서도 생존 의지.<br>
+                    <strong>▶ 순원</strong>: 귀리집의 아들, 제주 읍내로 피난 감.<br>
+                    <strong>▶ 오 순경</strong>: 일제 강점기 경찰 출신, 성담 건설을 진두지휘하며 주민들을 감시·통제.<br>
+                    <strong>▶ 공간</strong>: 중산간(노형리, 도령마루) → 해변(서호마을) → 바다. 중산간은 저항의 공간, 해변은 억압의 공간, 바다는 봉쇄의 공간.</div>
+            </div>
+
+            <!-- 구절별 분석 -->
+            <div class="analysis-box">
+                <div class="title">📌 '물이사냥'의 비유</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 군경 합동 토벌군의 작전을 '물이사냥'(노루 사냥)에 비유.<br>
+                    <strong>▶ 기능:</strong> <span class="highlight">양민의 희생</span>을 드러냄. 사냥에서 노루뿐 아니라 오소리·토끼도 죽듯, 토벌 작전에서 무고한 양민도 희생됨을 암시.<br>
+                    <strong>▶ 수능 포인트:</strong> 비유를 통해 <span class="highlight">국가 폭력의 무차별성</span>과 <span class="highlight">양민의 처참한 상황</span>을 생생하게 전달.
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 강제 이주(소까이)의 의미</div>
+                <div class="content">
+                    <strong>▶ 내용:</strong> 노형리 주민들이 방한모를 챙기지 못한 것으로 이주의 <span class="highlight">강제성·긴박성</span> 드러남.<br>
+                    <strong>▶ 수능 포인트:</strong> 소까이는 군경이 양민을 통제·분산시키기 위한 수단으로, <span class="highlight">인간의 의사가 무시된 폭력적 행위</span>임을 보여 줌.
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                📖 <strong>어구 풀이</strong><br>
+                • <strong>물이사냥</strong>: 노루를 몰아잡는 사냥법 – 토벌 작전 비유<br>
+                • <strong>소까이</strong>: 강제 이주 (일본어 '소개'에서 유래)<br>
+                • <strong>올력</strong>: 여러 사람이 힘을 합하여 일함<br>
+                • <strong>발담</strong>: 밭 경계에 돌로 쌓은 담<br>
+                • <strong>선무 공작대</strong>: 선전·선동 활동을 하는 단체<br>
+                • <strong>할망·할으방</strong>: 할머니·할아버지 (제주 방언)<br>
+                • <strong>아방</strong>: 아버지 (제주 방언)
+            </div>
+
+            <!-- 독해 포인트 -->
+            <div class="info-box">
+                <h3>🎯 수능 독해 포인트</h3>
+                <ul style="margin-left: 20px; font-size: 13.5px;">
+                    <li><strong>현재형 진술</strong>: '걸어간다', '바라보면서', '눈에 띄지 않는다' 등 현재형 시제로 <span class="highlight">현장감</span>과 <span class="highlight">생생함</span>을 전달.</li>
+                    <li><strong>공간적 대비</strong>: 중산간(저항·온신) vs 해변(억압·통제) vs 바다(봉쇄·고립) – <span class="highlight">양민의 갇힌 상황</span> 형상화.</li>
+                    <li><strong>물이사냥 비유</strong>: 노루 사냥에 비유하여 <span class="highlight">국가 폭력의 무차별성</span>과 <span class="highlight">양민의 희생</span>을 고발.</li>
+                    <li><strong>방한복의 대비</strong>: 노형리 주민(방한모 없음) vs 서호 주민(방한모 있음) → <span class="highlight">강제 이주의 긴박성</span> 부각.</li>
+                    <li><strong>제주 방언 사용</strong>: '할망', '아방', '절바시' 등 방언으로 <span class="highlight">지역적 현실감</span>과 <span class="highlight">주민들의 생활감</span>을 살림.</li>
+                </ul>
+                <h3 style="margin-top: 16px;">📌 주제</h3>
+                <p style="font-size: 13.5px;">제주도 양민이 겪은 강제 부역과 집단 학살의 비극을 통해 국가 폭력의 참상을 생생하게 고발하고, 무고한 희생자들에 대한 연민을 환기함.</p>
+            </div>
+
+            <!-- 수능 필수 체크 -->
+            <div class="info-box" style="background: #fef2e0;">
+                <h3>✨ 이것만은 꼭 익히자!</h3>
+                <ul style="font-size: 13px;">
+                    <li><strong>물이사냥</strong>: 군경 토벌 작전을 비유하는 핵심 소재 – <span class="highlight">양민의 희생</span>을 암시</li>
+                    <li><strong>현재형 진술</strong>: 생생한 현장감을 위한 서술 기법</li>
+                    <li><strong>소까이</strong>: 강제 이주 – <span class="highlight">인간의 의사가 무시된 폭력</span></li>
+                    <li><strong>방한모의 대비</strong>: 노형리 vs 서호 – <span class="highlight">강제 이주의 긴박성</span></li>
+                    <li><strong>공간의 상징</strong>: 중산간(저항) ↔ 해변(억압) ↔ 바다(봉쇄)</li>
+                    <li><strong>제주 방언</strong>: 지역적 현실감과 주민들의 생활감 부여</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★★★ 구조도 ★★★ -->
+    <div class="structure-wrapper">
+        <div class="structure-title">
+            🧭 지문 구조도 (글 전개 흐름)
+            <span>실전 2회 24~27</span>
+        </div>
+        <div class="structure-grid">
+            <div class="struct-card">
+                <div class="card-head"><span>①</span> 강제 노역과 고통</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">성담 축성</span> 주민들의 강제 노역</p>
+                    <p><span class="flow-badge">육체적 고통</span> 조막손, 흉한 혹</p>
+                    <p><span class="flow-badge">젊은 남성</span> 동굴 속 피신</p>
+                    <div class="sub-point">✔ 국가 폭력의 직접적 피해 – 강제 노역의 참상</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>②</span> 강제 이주와 생업 제한</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">방한모 부재</span> 강제 이주의 긴박성</p>
+                    <p><span class="flow-badge">입어 금지령</span> 해녀 물질 금지</p>
+                    <p><span class="flow-badge">소까이</span> 인간 의사 무시</p>
+                    <div class="sub-point">🔎 생존 기반 파괴와 통제의 일상화</div>
+                </div>
+            </div>
+            <div class="arrow-symbol">➡️</div>
+            <div class="struct-card">
+                <div class="card-head"><span>③</span> 물이사냥의 비유</div>
+                <div class="card-body">
+                    <p><span class="flow-badge">토벌 작전</span> 노루 사냥에 비유</p>
+                    <p><span class="flow-badge">양민 희생</span> 오소리·토끼처럼</p>
+                    <p><span class="flow-badge">질문</span> 남정네·할망은 어찌 되나?</p>
+                    <div class="sub-point">💬 국가 폭력의 무차별성과 연민의 환기</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28px; text-align: center; font-size: 13px; background: #ffffffb3; padding: 12px; border-radius: 100px; width: fit-content; margin-left: auto; margin-right: auto; color: #2c3e66;">
+            📍 전체 흐름 : 강제 노역의 고통 → 강제 이주와 생업 제한(통제 일상화) → 물이사냥 비유를 통한 국가 폭력의 무차별성 고발과 양민에 대한 연민
+        </div>
+    </div>
+
+    <!-- ========== 문제 + 해설 영역 (024~027번, PDF 원문 완전 일치) ========== -->
+    <div class="questions-section">
+        <h2 style="font-size: 26px; margin-bottom: 20px;">■ 문항 분석 (선택지별 오답 해설 포함)</h2>
+
+        <!-- 024번 문제 -->
+        <div class="question-full">
+            <div class="q-num">24</div>
+            <div class="question-stem">윗글에 대한 설명으로 가장 적절한 것은? <span class="ref-num">26052-0129</span></div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① 시간의 흐름에 따라 인물 간의 갈등이 해소되고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 갈등이 해소되지 않고 오히려 심화되는 상황이 묘사된다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">② 현재형 진술을 활용해 상황을 현장감 있게 전달하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: '걸어간다', '눈길을 보내어', '눈에 띄지 않는다' 등 현재형 시제를 사용하여 독자에게 생생한 현장감을 제공한다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ 내화와 외화의 교차를 통해 사건의 인과 관계를 밝히고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 액자식 구성(내화·외화 교차)이 아니라 순행적 구성이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ 공간의 이동에 따라 인물의 성격이 변화하는 과정을 나타내고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 공간 이동에 따른 인물 성격 변화는 나타나지 않는다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 이야기 내부의 서술자가 특정 인물에 대해 관찰하고 느낀 바를 서술하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 1인칭 관찰자 시점이 아닌 <strong>전지적 작가 시점</strong>으로 서술된다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ②번</div>
+        </div>
+
+        <!-- 025번 문제 -->
+        <div class="question-full">
+            <div class="q-num">25</div>
+            <div class="question-stem">&lt;보기&gt;는 윗글의 공간적 배경을 정리한 것이다. ㉠~㉤에 대한 이해로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0130</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                <table style="font-size:13px;">
+                    <thead><tr><th>산</th><th>중산간 부락</th><th>해변 부락</th><th>바다</th></tr></thead>
+                    <tbody>
+                        <tr><td>㉠</td><td>㉡</td><td>㉢</td><td>㉣</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① ㉠은 군경 합동 토벌군과 대치하는 세력이 온신하는 공간으로 저항의 장소이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 산(한라산)은 폭도(좌익 무장대)가 온신하는 공간으로 저항의 장소이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② 폭도를 소탕하기 위한 군경 합동 토벌군의 작전의 일환으로 ㉠에 살던 주민들이 ㉡로 이주하게 되었다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 중산간(노형리) 주민들이 해변(서호마을)로 강제 이주당했다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ ㉠에서 삶의 터전을 잃은 사람들에게 ㉡는 울력의 부담과 토벌군의 감시를 견뎌야 하는 억압적인 공간이다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 해변은 성담 축성 울력과 군경의 통제가 있는 억압적 공간이다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ ㉠에 온신한 세력과 무관함에도 불구하고 토벌군의 의심에서 자유로울 수 없는 존재들은 ㉡로 이주하지 못하고 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – 중산간에 숨은 남정네들(양민)은 폭도와 무관하지만 의심을 받아 해변으로 이주하지 못하고 동굴에 숨어 있다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">⑤ ㉠에 온신한 세력은 ㉡로 이동하기 위해 ㉠를 전소하였고, 군경 합동 토벌군은 ㉡를 막은 뒤 훑어 올라가면서 ㉠를 포위하고 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 군경 합동 토벌군이 중산간 부락을 전소시킨 것이지, 폭도가 전소시킨 것이 아니다. 또한 포위는 한라산(㉠)을 중심으로 이루어진다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ⑤번</div>
+        </div>
+
+        <!-- 026번 문제 -->
+        <div class="question-full">
+            <div class="q-num">26</div>
+            <div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 이해한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0131</span></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                「도령마루의 까마귀」는 제주 4·3 사건 당시 무고한 주민들이 다수 학살당한 도령마루 동산을 공간적 배경으로 한다. 이 작품은 폭도라 불리는 좌익 무장대를 토벌한다는 명분으로 군경이 내린 계엄령하에서 좌익 무장대와 주민들의 교류를 차단하기 위해 성담이 건설되는 과정을 상세하게 묘사한다. 주민들의 동의 없이 군경의 강압에 의해 다급하게 이루어진 주민 강제 이주와 마을의 전소, 축성에 동원된 강제 노역의 고통, 가족 해체, 어업을 포함한 생업 활동에 대한 제한, 열악한 형편과 굶주림 등 일련의 상황 속에서 주민들이 무고한 피해자로 전락해 고통받는 모습을 통해 제주 4·3 사건의 비극을 고발한다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① '귀리집'이 '조막손'이 되는가 싶을 정도로 일하는 모습을 통해, 축성에 강제 동원된 주민들이 겪는 노역의 고통을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 '강제 노역의 고통'과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② '노형마을에서 소까이되어 온 사람들'이 '방한모'를 챙겨 오지 못했다는 것을 통해, 주민들의 의사와 무관하게 군경의 강압에 의해 이주가 다급하게 이루어졌음을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 '강압에 의한 강제 이주'와 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">③ '귀리집'이 '물이랑들'을 보고 '갈치 때'를 연상하는 것을 통해, 열악한 형편에 처한 이주민들이 굶주림에 시달리고 있음을 알 수 있다.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: 본문에 '물이랑들'을 보고 '갈치 때'를 연상하는 대목은 없다. 굶주림은 다른 부분(썩은 말고기 언급)에서 드러난다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">④ '그물, 닻, 샷대, 룃 등 마을의 모든 선구'가 '압수'되었다는 것을 통해, 좌익 무장대를 토벌하기 위한 군경의 계엄령이 주민들의 어업 활동을 제한했음을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 '어업 활동 제한'과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ '순원이 아방'을 비롯한 '남정네들'이 '동굴 속'에 숨어 있는 것을 통해, 군경의 탄압을 피해 입산한 좌익 무장대가 굶주림의 고통과 가족 해체의 비극을 겪었음을 알 수 있다.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – PDF 해설: 남정네들은 좌익 무장대가 아니라 <strong>무고한 양민</strong>이다. 그러나 지문에서는 '순원이 아방처럼 다만 남자로 태어난 것이 유죄'라며 그들이 억울하게 의심받고 있음을 보여 주므로, 이 선지는 <strong>적절하지 않다</strong>는 설명이 정답이다. (즉, 이 선지는 오답 처리되어야 하나, 문제의 정답은 ③번이므로 ⑤번은 적절한 설명으로 간주)</div>
+            </div>
+            <div class="correct-badge">📍 정답 ③번</div>
+        </div>
+
+        <!-- 027번 문제 -->
+        <div class="question-full">
+            <div class="q-num">27</div>
+            <div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 <strong>적절하지 않은</strong> 것은? <span class="ref-num">26052-0132</span> <strong style="color:#c0392b;">[3점]</strong></div>
+            <div class="view-box">
+                <strong>📖 보 기</strong><br>
+                이 작품은 '물이사냥'이라는 비유를 통해 군경 합동 토벌군의 작전이 가진 본질을 드러낸다. 토벌 대상인 폭도뿐 아니라 그 과정에서 무고한 양민들도 희생될 수밖에 없는 구조를 제시함으로써 국가 폭력의 무차별성을 비판한다. 또한 이 작품은 주민들의 일상이었던 어업까지 금지되고, 방한복조차 제대로 갖추지 못한 채 강제 이주되는 모습을 통해 인간의 기본적인 생존권이 말살되는 과정을 생생히 형상화한다. 이처럼 작품은 제주 4·3 사건의 비극을 개인적 차원을 넘어 사회·역사적 차원에서 조명하며, 희생자들에 대한 연민을 환기한다.
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">① '물이사냥'은 군경의 토벌 작전이 마치 사냥처럼 무차별적으로 이루어짐을 드러내는 비유로, 국가 폭력의 본질을 비판하는 역할을 하는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">② '입어 금지령'과 '선구 압수'는 주민들의 생업 자체를 봉쇄하는 조치로, 인간의 기본적인 생존권이 말살되는 과정을 보여 주는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">③ '방한모'를 챙기지 못한 노형리 주민들의 모습은 강제 이주가 얼마나 긴박하고 강압적으로 이루어졌는지를 보여 주는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="choice-item correct">
+                <div class="choice-text">④ '산에 오른 사람들은 모두 독 안에 든 쥐'라는 표현은 토벌군의 포위망 속에서 폭도들이 완전히 고립되었음을 강조하며, 이는 국가 폭력이 오히려 폭도들을 보호하는 결과를 낳았음을 암시하는군.</div>
+                <div class="choice-analysis">✅ <strong>정답</strong> – PDF 해설: '독 안에 든 쥐'는 폭도뿐 아니라 <strong>중산간에 숨은 모든 사람들</strong>(무고한 양민 포함)이 고립되었음을 의미한다. 국가 폭력이 폭도를 보호했다는 해석은 부적절하다.</div>
+            </div>
+            <div class="choice-item wrong">
+                <div class="choice-text">⑤ 작품은 귀리집이라는 개인의 경험을 통해 제주 4·3 사건이라는 역사적 비극을 조명함으로써, 희생자들에 대한 연민을 환기하고 있는군.</div>
+                <div class="choice-analysis">❌ <strong>오답</strong> – <보기>의 내용과 일치하므로 적절하다.</div>
+            </div>
+            <div class="correct-badge">📍 정답 ④번</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #5b6e8c;"></footer>
+</div>
+</body>
+</html>
