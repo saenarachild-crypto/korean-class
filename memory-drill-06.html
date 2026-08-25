@@ -243,9 +243,7 @@
 
   function renderPassageText(text) {
     if(!text) return "";
-    var paragraphs = text.split(/
-\s*
-/);
+    var paragraphs = text.split(/\n\s*\n/);
     var html = "";
     paragraphs.forEach(function(pRaw) {
       var p = pRaw.trim();
@@ -1280,19 +1278,11 @@
     var doneKeys = Object.keys(store.prog).filter(function(k){ return store.prog[k] >= PASS_THRESHOLD; });
     if(doneKeys.length === 0) return showToast("완료한 지문이 없습니다. 80점 이상을 달성하세요!");
 
-    var text = "[수특완 단기 암기 훈련 완료 보고서 · " + ROUND + "]
-학생 이름: " + (store.name || '미입력') + "
-
-";
+    var text = "[수특완 단기 암기 훈련 완료 보고서 · " + ROUND + "]\n학생 이름: " + (store.name || '미입력') + "\n\n";
     doneKeys.forEach(function(pid){
       var p = PASSAGES.find(function(x){ return x.pid === pid; });
       if(p){
-        text += "✅ " + p.title + "
- - 최고 점수: " + store.scores[pid] + "점
- - 시도 횟수: " + store.attempts[pid] + "회
- - 결과: PASS
-
-";
+        text += "✅ " + p.title + "\n - 최고 점수: " + store.scores[pid] + "점\n - 시도 횟수: " + store.attempts[pid] + "회\n - 결과: PASS\n\n";
       }
     });
     text += "누적 완료: " + doneKeys.length + " / " + PASSAGES.length + " 지문 (" + Math.round((doneKeys.length / PASSAGES.length) * 100) + "%)";
