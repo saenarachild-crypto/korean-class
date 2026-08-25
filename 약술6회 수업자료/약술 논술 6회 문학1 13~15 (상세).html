@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김현석 국어 · 약술 논술 6회 · 문학1 (13~15번)</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #fdfaf7; color: #1e293b; line-height: 1.7; padding: 36px 20px;
+}
+.container {
+    max-width: 1420px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(124, 44, 62, 0.15); overflow: hidden;
+    border: 1px solid #f0e2e5;
+}
+.header { background: linear-gradient(135deg, #7c2c3e, #5a1f2c); color: white; padding: 24px 40px; }
+.header h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+.header p { font-size: 14px; opacity: 0.9; }
+
+.bundle-title {
+    background: #fcf4f6; border-bottom: 2px solid #ecd5da; padding: 14px 40px;
+    font-size: 16px; font-weight: 800; color: #7c2c3e; display: flex; align-items: center; gap: 10px;
+}
+.bundle-title span.badge {
+    background: #7c2c3e; color: #fff; padding: 3px 12px; border-radius: 20px; font-size: 12px;
+}
+
+.two-columns { display: flex; flex-wrap: wrap; border-bottom: 1px solid #f0e2e5; }
+.col-left {
+    flex: 1.25; min-width: 48%; background: #fdfaf8; border-right: 1px solid #eddfe2; padding: 32px 30px;
+}
+.col-right { flex: 0.95; min-width: 32%; background: #faf5f6; padding: 32px 28px; }
+
+.original-text p {
+    margin-bottom: 1.15em; font-size: 15px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+    text-align: justify;
+}
+.original-text .underline-phrase {
+    background-color: #fae8eb; border-bottom: 2px solid #7c2c3e; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.5px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #7c2c3e; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 3px 16px; border-radius: 40px; margin: 16px 0 10px;
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #7c2c3e; border-radius: 0 14px 14px 0;
+    background: #fff8f9; padding: 14px 18px 6px 20px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #7c2c3e; color: #fff;
+    font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 8px;
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+}
+.footnote-box {
+    font-size: 12.5px; color: #7a6368; margin-top: 10px; margin-bottom: 18px; line-height: 1.65;
+    background: #fbf2f4; padding: 10px 14px; border-radius: 12px;
+}
+
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #7c2c3e; background: #ffffff; padding: 14px 18px; border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03); border: 1px solid #f2e3e6; border-left-width: 4px;
+}
+.analysis-box .title { font-weight: 800; color: #7c2c3e; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #2c1a1f; line-height: 1.65; }
+
+.vocab-box {
+    background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin-top: 14px; margin-bottom: 22px; font-size: 13px; line-height: 1.7;
+}
+.vocab-box strong { color: #15803d; }
+
+.info-box {
+    background: #fbf5f7; border-radius: 20px; padding: 18px 22px; margin: 20px 0; border-left: 5px solid #7c2c3e;
+}
+.info-box h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #7c2c3e; }
+.info-box p { font-size: 13.5px; color: #3d242a; }
+
+.highlight-table {
+    background: #fffdf5; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #e8dbb0;
+}
+.highlight-table h3 { font-size: 16px; font-weight: 800; color: #854d0e; margin-bottom: 10px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; background: #fff; }
+th, td { border: 1px solid #e2d9dc; padding: 9px 12px; text-align: left; vertical-align: top; font-size: 13.5px; }
+th { background: #f7ebed; font-weight: 700; color: #5a1f2c; }
+
+.structure-wrapper {
+    background: linear-gradient(145deg, #fdf8f9 0%, #f6ecee 100%); border-top: 2px solid #ecd5da;
+    border-bottom: 1px solid #e2cbd0; padding: 36px 32px 42px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 900; color: #5a1f2c; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 26px; border-left: 6px solid #7c2c3e; padding-left: 18px;
+}
+.structure-title span { background: #7c2c3e; color: white; font-size: 15px; padding: 3px 14px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 220px; background: white; border-radius: 24px;
+    box-shadow: 0 8px 20px -6px rgba(124, 44, 62, 0.08); overflow: hidden; border: 1px solid #eddfe2;
+}
+.card-head {
+    background: #7c2c3e; color: white; padding: 13px 16px; font-weight: 800; font-size: 16px;
+    display: flex; align-items: center; gap: 8px;
+}
+.card-body { padding: 16px 16px; font-size: 13.5px; background: #ffffff; line-height: 1.6; }
+.card-body p { margin-bottom: 8px; }
+.card-body .sub-point {
+    background: #fdf5f7; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #7c2c3e; border-left: 3px solid #7c2c3e; font-weight: 600;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #b98a94; display: flex; align-items: center;
+    justify-content: center; min-width: 24px;
+}
+.flow-badge {
+    display: inline-block; background: #faeaed; border-radius: 20px; padding: 2px 10px;
+    font-size: 11px; font-weight: 700; color: #7c2c3e; margin-right: 6px;
+}
+.flow-line {
+    margin-top: 22px; text-align: center; font-size: 13.5px; background: #ffffffdb;
+    padding: 10px 22px; border-radius: 100px; width: fit-content; margin-left: auto;
+    margin-right: auto; color: #5a1f2c; font-weight: 600; border: 1px solid #ebd5da;
+}
+
+.questions-section { padding: 34px 40px; background: #fdfbfb; border-top: 2px solid #ecd5da; }
+.questions-section h2 { font-size: 22px; color: #7c2c3e; margin-bottom: 8px; font-weight: 900; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 24px 30px; margin: 28px 0;
+    border: 1.5px solid #ebd7dc; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-head-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.q-num {
+    font-weight: 900; font-size: 20px; background: #7c2c3e; display: inline-block; padding: 3px 18px;
+    border-radius: 40px; color: white;
+}
+.q-tag { font-size: 12px; background: #f7ecf0; color: #7c2c3e; padding: 4px 12px; border-radius: 20px; font-weight: 800; }
+.q-pts { margin-left: auto; font-size: 13px; font-weight: 800; color: #9c6875; }
+.q-source-info { width: 100%; font-size: 12px; color: #8c7077; margin-top: 2px; }
+
+.question-stem {
+    font-weight: 800; font-size: 16.5px; margin-bottom: 16px; background: #fbf5f7; padding: 14px 20px;
+    border-radius: 20px; border: 1px solid #ebd0d6; color: #2c1218; line-height: 1.6;
+}
+.view-box {
+    background: #fdf6f7; padding: 16px 20px; border-radius: 18px; margin: 14px 0; font-size: 14px;
+    border-left: 4px solid #b96b74;
+}
+.view-box .vb-title { font-weight: 800; margin-bottom: 8px; color: #7c2c3e; font-size: 13px; letter-spacing: 0.1em; }
+.cond-box {
+    background: #fffdfd; border: 1px dashed #c9a8ae; border-radius: 16px; padding: 14px 18px;
+    margin: 14px 0; font-size: 13.5px; line-height: 1.6;
+}
+.cond-box b { color: #7c2c3e; }
+
+.correct-badge {
+    background: #f0fdf4; border-left: 6px solid #16a34a; padding: 14px 22px; border-radius: 18px;
+    margin: 18px 0 22px; font-size: 15.5px; font-weight: 800; color: #166534;
+}
+.correct-badge .ans-title { font-size: 13px; color: #15803d; letter-spacing: 0.1em; margin-bottom: 4px; }
+.correct-badge .ans-val { font-size: 17px; color: #14532d; font-family: monospace, sans-serif; white-space: pre-line; }
+
+.step-card {
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 16px 20px;
+    margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.step-card.step-1 { border-left: 5px solid #3b82f6; }
+.step-card.step-2 { border-left: 5px solid #8b5cf6; }
+.step-card.step-3 { border-left: 5px solid #10b981; }
+.step-card.step-warn { border-left: 5px solid #f59e0b; background: #fffdfa; }
+
+.step-title { font-weight: 800; font-size: 14.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.step-1 .step-title { color: #1d4ed8; }
+.step-2 .step-title { color: #6d28d9; }
+.step-3 .step-title { color: #047857; }
+.step-warn .step-title { color: #b45309; }
+.step-body { font-size: 13.5px; color: #334155; line-height: 1.7; }
+.step-body b { color: #0f172a; }
+.step-body code { background: #f1f5f9; padding: 2px 6px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #7c2c3e; }
+
+.rubric-box {
+    background: #fbf5f7; border: 1px solid #edd5da; border-radius: 16px; padding: 14px 18px;
+    margin-top: 14px; font-size: 13px; color: #4a2830;
+}
+.rubric-box b { color: #7c2c3e; }
+
+.passage-study { padding: 32px 40px 44px 40px; background: #ffffff; border-top: 2px solid #ecd5da; }
+.passage-study h2 { font-size: 22px; margin-bottom: 16px; color: #7c2c3e; font-weight: 900; }
+.passage-study h3 { font-size: 16px; margin: 18px 0 8px; color: #5a1f2c; font-weight: 800; }
+.passage-study p { font-size: 14px; color: #334155; line-height: 1.75; margin-bottom: 12px; }
+.passage-study ul { margin-left: 20px; font-size: 14px; color: #334155; line-height: 1.75; }
+.passage-study li { margin-bottom: 6px; }
+
+@media (max-width: 950px) {
+    .two-columns { flex-direction: column; }
+    .col-left, .col-right { border-right: none; width: 100%; min-width: 100%; padding: 20px; }
+    .questions-section, .passage-study, .structure-wrapper { padding: 20px; }
+    .structure-grid { flex-direction: column; }
+    .arrow-symbol { transform: rotate(90deg); margin: -4px 0; }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 김현석 약술 논술 6회 · 문학1 (13~15번) 수업 자료</h1>
+        <p>문학 · 13 송순 「면앙정가」 / 14 서정주 「자화상」 & 신경림 「목계 장터」 / 15 작자 미상 「현몽쌍룡기」 | 2단 원문 분석 + 구조도 + 수업 판서 SVG + 조건 해부 및 정답 도출 + 지문 연구</p>
+    </div>
+
+    <!-- ==================== 13번 문항 세트 ==================== -->
+    <div class="bundle-title">
+        <span class="badge">문항 13</span>
+        <span>문학 (고전시가) · 송순, 「면앙정가」 (수능특강 문학 01강 연계)</span>
+    </div>
+    
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p>무등산 한 줄기 동쪽으로 뻗어 있어<br>
+                멀리 떨쳐 와 제월봉이 되었거늘<br>
+                넓은 들판에 무슨 짐작하느라<br>
+                일곱 굽이 한데 모아서 문득문득 벌였는 듯<br>
+                가운데 굽이는 구멍에 든 늙은 용이<br>
+                선잠을 갓 깨어 머리를 얹었으니<br>
+                너럭바위 위에 송죽(松竹)을 헤치고<br>
+                정자를 얹었는데 구름 탄 청학이<br>
+                천 리를 가리라 두 날개 벌였는 듯<br>
+                옥천산 용천산 내린 물이<br>
+                정자 앞 넓은 들에 올올이 펼친 듯이<br>
+                넓거든 길지 말든지 푸르거든 희지 말든지<br>
+                쌍룡이 뒤트는 듯 긴 비단을 펼친 듯<br>
+                어디로 가느라고 무슨 일 바빠서<br>
+                [A] 내닫는 듯 따르는 듯 밤낮으로 흐르는 듯<br>
+                물가의 모래밭은 눈같이 펼쳤는데<br>
+                어지러운 기러기는 무엇을 어르노라<br>
+                앉았다 날았다 모였다 흩어졌다<br>
+                갈대꽃 사이 두고 울면서 따르는가<br>
+                넓은 길 바깥이요 긴 하늘 아래에<br>
+                두르고 꽂은 것은 산인가 병풍인가<br>
+                그림인가 아닌가 높은 듯 낮은 듯<br>
+                끊는 듯 잇는 듯 숨거니 뵈거니<br>
+                가거니 머물거니 어지러운 가운데<br>
+                [B] 이름난 양하여 하늘도 두려워 않고<br>
+                우뚝이 섰는 것이 추월산 머리 이루고<br>
+                용귀산 봉선산 불대산 어등산<br>
+                용진산 금성산이 허공에 벌였느니<br>
+                원근의 푸른 절벽에 머문 것도 많기도 많구나<br>
+                흰 구름 뿌연 연하(煙霞) 푸른 것은 산람(山嵐)*이라<br>
+                수많은 바위 골짜기를 제집으로 삼아 두고<br>
+                나면서 들면서 아양도 떠는구나<br>
+                오르거니 내리거니 하늘로 떠나거니 [C]<br>
+                광야로 건너거니<br>
+                푸르락 붉으락 옅으락 짙으락<br>
+                석양과 섞이어 가랑비마저 뿌리네<br>
+                가마를 급히 타고 솔 아래 굽은 길로<br>
+                오며 가며 하는 때에<br>
+                녹양에 우는 꾀꼬리 교태 겨워하는구나 (봄)<br>
+                나무 풀 우거지어 녹음이 짙어진 때<br>
+                기다란 난간에서 긴 졸음을 내어 펴니<br>
+                물 위의 서늘한 바람은 그칠 줄을 모르는가 (여름)<br>
+                된서리 걷힌 후에 산빛이 금수(錦繡)로다<br>
+                황운(黃雲)은 또 어찌 만경(萬頃)에 펼쳤는가<br>
+                어부 피리도 흥에 겨워 달을 따라 부는구나 (가을)<br>
+                초목이 다 진 후에 강산이 묻혔거늘<br>
+                조물주 헌사하여 빙설로 꾸며 내니<br>
+                경궁요대*와 옥해은산*이 눈 아래 벌였구나 (겨울)<br>
+                천지가 풍성하여 간 데마다 승경(勝景)이로다<br>
+                인간 세상 떠나와도 내 몸이 쉴 틈 없다<br>
+                이것도 보려 하고 저것도 들으려 하고<br>
+                바람도 쐬려 하고 달도 맞으려 하고<br>
+                밤일랑 언제 줍고 고기는 언제 낚고<br>
+                사립문 뉘 닫으며 진 꽃일랑 뉘 쓸려뇨 [D]<br>
+                아침 시간 모자라니 저녁이라 싫을쏘냐<br>
+                오늘이 부족하니 내일이라 넉넉하랴<br>
+                이 산에 앉아 보고 저 산에 걸어 보니<br>
+                번거로운 마음에도 버릴 일이 전혀 없다<br>
+                쉴 사이 없는데 오는 길을 알리랴<br>
+                다만 지팡이가 다 무디어 가는구나<br>
+                술이 익었으니 벗이야 없을쏘냐<br>
+                부르며 타이며 혀이며 이아며*<br>
+                온갖 소리로 취흥을 재촉하니<br>
+                근심이라 있으며 시름이라 붙었으랴<br>
+                누웠다가 앉았다가 굽혔다가 젖혔다가<br>
+                읊다가 휘파람 불다가 마음 놓고 노니<br>
+                천지도 넓디넓고 세월도 한가하다<br>
+                태평성대 몰랐는데 이때가 그때로다<br>
+                신선이 어떠한가 이 몸이 그로구나<br>
+                강산풍월 거느리고 내 백 년을 다 누리면 [E]<br>
+                악양루* 위의 이백이 살아온들<br>
+                호탕한 회포는 이보다 더할쏘냐<br>
+                <span class="source-underline">이 몸이 이러함도 역군은(亦君恩)이샷다</span></p>
+                <div class="footnote-box">
+                    *산람: 산 아지랑이. *경궁요대: 옥으로 꾸민 누각(눈 덮인 산천). *옥해은산: 맑은 바다와 은빛 산. *역군은: 또한 임금의 은혜로다.
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 공간적 배경 및 사계절의 아름다움</div>
+                <div class="content">
+                    • <strong>제월봉과 면앙정:</strong> 무등산에서 뻗어 나온 용의 형세 위에 학이 날개를 편 듯 세워진 면앙정의 웅장한 자태.<br>
+                    • <strong>면앙정 사계(춘하추동):</strong> 녹양 꾀꼬리(봄) → 난간 녹음과 청풍(여름) → 단풍과 황금 들판(가을) → 빙설의 옥해은산(겨울).
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 화자의 풍류와 결사의 연군지정</div>
+                <div class="content">
+                    • <strong>신선적 자족감:</strong> "신선이 어떠한가 이 몸이 그로구나", 당나라 시선 이백의 호탕한 회포 부럽지 않음.<br>
+                    • <strong>결사 귀결:</strong> 자연 속 안빈낙도의 궁극적 근원을 임금의 은혜(<b>역군은 亦君恩</b>)로 돌리며 사대부 시가의 정통적 충의 사상을 드러냄.
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                <strong>📖 핵심 어휘 및 개념</strong><br>
+                • <strong>강호가도(江湖歌道):</strong> 자연의 아름다움을 즐기는 풍류와 임금을 향한 유교적 충의(연군)를 조화시킨 조선 사대부 시가의 흐름.<br>
+                • <strong>역군은(亦君恩):</strong> '또한 임금의 은혜이시도다'라는 뜻의 관용적 종결구.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 약술형 출제 & 독해 포인트</h3>
+                <p>가사 문학의 결사에서는 <b>주제 의식이 집약된 핵심 관용구(역군은)</b>를 정확한 글자 수(3자) 조건에 맞춰 인출하는 문제가 출제됩니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문항 13 분석 -->
+    <div class="questions-section">
+        <h2>■ 문항 13 분석 (조건 해부 + 정답 도출 과정)</h2>
+        <div class="question-full">
+            <div class="q-head-bar">
+                <span class="q-num">13</span>
+                <span class="q-tag">문학 (고전시가)</span>
+                <span class="q-tag">조건부 서술형</span>
+                <span class="q-pts">배점 5점</span>
+                <div class="q-source-info">출처: EBS 2027 수능특강 국어영역 문학 01강 (26001-0043~0046)</div>
+            </div>
+
+            <div class="question-stem">
+                &lt;보기&gt;는 작품에 대한 감상의 관점을 제시한 것이다. &lt;보기&gt;의 ①에 들어갈 말을 &lt;조건&gt;에 맞게 쓰시오.
+            </div>
+
+            <div class="view-box">
+                <div class="vb-title">&lt; 보 기 &gt;</div>
+                이 작품은 화자가 자연 속에서 누리는 흥취와 풍류를 임금의 은혜로 돌리며 노래한 작품으로 감상할 수 있다. 이러한 관점에서, 화자가 자신의 풍류적 삶이 모두 임금의 은혜 덕분임을 밝히는 표현은 '이 몸이 이러함도 ( ① )이샷다'이다.
+            </div>
+
+            <div class="cond-box">
+                <b>&lt; 조 건 &gt;</b><br>
+                • 제시문의 한자어 표현을 그대로 활용하여 3자로 쓸 것(한자 병기는 글자 수에서 제외함).
+            </div>
+
+            <div class="correct-badge">
+                <div class="ans-title">🎯 모범 답안</div>
+                <div class="ans-val">①: 역군은(亦君恩)  [또는 역군은]</div>
+            </div>
+
+            <div class="step-card step-1">
+                <div class="step-title">🔍 1단계: 조건 및 발문 해부</div>
+                <div class="step-body">
+                    • <strong>문맥:</strong> '이 몸이 이러함도 ( ① )이샷다'<br>
+                    • <strong>글자 수 조건:</strong> 한자어 표현 그대로 <b>3자</b> (한자 병기 제외).<br>
+                    • <strong>타깃:</strong> 작품 맨 마지막 결사구의 <code>역군은</code>.
+                </div>
+            </div>
+
+            <div class="step-card step-2">
+                <div class="step-title">💡 2단계: 제시문 결사구 대조</div>
+                <div class="step-body">
+                    • 원문: "이 몸이 이러함도 <u>역군은(亦君恩)</u>이샷다"
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-title">✅ 3단계: 글자 수 및 표기 검증</div>
+                <div class="step-body">
+                    • '역군은' = 3자 (일치)<br>
+                    • 한자 병기 '역군은(亦君恩)' 또는 한글 '역군은' 모두 정답 인정.
+                </div>
+            </div>
+
+            <div class="rubric-box">
+                <b>📋 채점 기준:</b> 3자 조건과 제시문 표현 일치 시 5점 만점.
+            </div>
+        </div>
+    </div>
+
+    <!-- 지문 연구 (13번) -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용 지도 가이드]</h2>
+        <p><strong>[해제]</strong> 송순이 관직에서 물러나 전남 담양의 제월봉 아래에 면앙정을 짓고 그 주변의 수려한 경관과 사계절의 아름다움, 그 안에서 누리는 호방한 풍류를 노래한 강호가도의 대표 가사이다. 정철의 「성산별곡」, 「관동별곡」에 지대한 영향을 미친 조선 가사 문학의 백미이다.</p>
+        <p><strong>[주제]</strong> 면앙정 주변의 수려한 자연미와 사계절의 풍류, 그리고 연군지정</p>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+    <!-- ==================== 14번 문항 세트 ==================== -->
+    <div class="bundle-title">
+        <span class="badge">문항 14</span>
+        <span>문학 (현대시) · 서정주 「자화상」 / 신경림 「목계 장터」 (수능완성 유형편 연계)</span>
+    </div>
+    
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="part-label">(가) 서정주, 「자화상」</div>
+                <p>애비는 종이었다. 밤이 깊어도 오지 않았다.<br>
+                파뿌리같이 늙은 할머니와 대추꽃이 한 주 서 있을 뿐이었다.<br>
+                어매는 달을 두고 풋살구가 꼭 하나만 먹고 싶다 하였으나…… 흙으로 바람벽한 호롱불 밑에<br>
+                손톱이 까만 에미의 아들.<br>
+                갑오년이라든가 바다에 나가서는 돌아오지 않는다 하는 외할아버지의 숱 많은 머리털과<br>
+                그 커다란 눈이 나는 닮았다 한다.<br>
+                스물세 해 동안 나를 키운 건 팔 할이 바람이다.<br>
+                세상은 가도 가도 부끄럽기만 하드라.<br>
+                어떤 이는 내 눈에서 죄인을 읽고 가고<br>
+                어떤 이는 내 입에서 천치를 읽고 가나<br>
+                <span class="source-underline">나는 아무것도 뉘우치진 않으련다.</span><br>
+                찬란히 트여 오는 어느 아침에도<br>
+                이마 위에 얹힌 시의 이슬에는<br>
+                몇 방울의 피가 언제나 섞여 있어<br>
+                볕이거나 그늘이거나 혓바닥 늘어뜨린<br>
+                병든 수캐마냥 헐떡거리며 나는 왔다.</p>
+
+                <div class="part-label">(나) 신경림, 「목계 장터」 (참조)</div>
+                <p>하늘은 날더러 구름이 되라 하고 땅은 날더러 바람이 되라 하네 ... 산서리 맵차거든 풀 속에 얼굴 묻고 물여울 모질거든 바위 뒤에 붙으라네 ... 하늘은 날더러 바람이 되라 하고 산은 날더러 잔돌이 되라 하네</p>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 서정주 「자화상」 시상 전개 분석</div>
+                <div class="content">
+                    • <strong>1단락 (1~6행):</strong> 비천한 신분적 혈통(종의 자식)과 가난, 방랑의 유전적 숙명.<br>
+                    • <strong>2단락 (7~11행):</strong> 시련과 방황(팔 할이 바람) 속에서도 "부끄러운 삶을 뉘우치지 않겠다"는 원초적 생명력과 치열한 자기 긍정의 의지 (<b>정답 시행</b>).<br>
+                    • <strong>3단락 (12~16행):</strong> 고통(피)을 딛고 시적 성취를 향해 살아온 야수적 생명력('병든 수캐마냥 헐떡거리며').
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                <strong>📖 핵심 어구 풀이</strong><br>
+                • <strong>팔 할이 바람이다:</strong> 화자를 성장시킨 동력이 방황, 시련, 불안정이었음을 뜻함.<br>
+                • <strong>시의 이슬에 섞인 피:</strong> 고통과 치열한 생의 시련을 통해 창조된 예술적 결실.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 약술형 출제 & 독해 포인트</h3>
+                <p>외적 준거(&lt;보기&gt;)에 근거하여 <b>화자의 태도(부끄러운 삶에 대한 후회 없음·자기 긍정)가 응축된 단일 시행</b>을 찾아 첫 어절과 마지막 어절을 정확히 추출해야 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문항 14 분석 -->
+    <div class="questions-section">
+        <h2>■ 문항 14 분석 (조건 해부 + 정답 도출 과정)</h2>
+        <div class="question-full">
+            <div class="q-head-bar">
+                <span class="q-num">14</span>
+                <span class="q-tag">문학 (현대시)</span>
+                <span class="q-tag">어절지정형</span>
+                <span class="q-pts">배점 5점</span>
+                <div class="q-source-info">출처: EBS 2027 수능완성 국어영역 유형편 (26051-0021~0024)</div>
+            </div>
+
+            <div class="question-stem">
+                &lt;보기&gt;는 작품에 대한 감상의 관점을 제시한 것이다. &lt;보기&gt;의 관점에 따라 해당하는 시행을 (가)에서 찾아 첫 어절과 마지막 어절을 쓰시오.
+            </div>
+
+            <div class="view-box">
+                <div class="vb-title">&lt; 보 기 &gt;</div>
+                이 두 작품은 화자가 자신의 삶을 성찰하며 그것을 긍정하거나 그 안에서 방향을 찾는 모습을 형상화한 작품으로 감상할 수 있다. 이러한 관점에서, (가)의 화자가 부끄러운 삶을 후회하지 않겠다는 의지를 드러낸 시행을 찾으시오.
+            </div>
+
+            <div class="correct-badge">
+                <div class="ans-title">🎯 모범 답안</div>
+                <div class="ans-val">첫 어절: 나는 / 마지막 어절: 않으련다.</div>
+            </div>
+
+            <div class="step-card step-1">
+                <div class="step-title">🔍 1단계: 조건 및 발문 해부</div>
+                <div class="step-body">
+                    • <strong>요구 조건:</strong> "부끄러운 삶을 후회하지 않겠다는 의지를 드러낸 시행"<br>
+                    • <strong>형식 조건:</strong> 해당 시행의 첫 어절과 마지막 어절 추출.
+                </div>
+            </div>
+
+            <div class="step-card step-2">
+                <div class="step-title">💡 2단계: 제시문 시행 대조</div>
+                <div class="step-body">
+                    • 11행: "<u>나는</u> 아무것도 뉘우치진 <u>않으련다.</u>"<br>
+                    • '뉘우치다' = 후회하다 → '뉘우치지 않으련다' = 후회하지 않겠다는 단호한 의지.
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-title">✅ 3단계: 어절 검증</div>
+                <div class="step-body">
+                    • 첫 어절: <code>나는</code><br>
+                    • 마지막 어절: <code>않으련다.</code> (마침표 포함/불포함 모두 정답)
+                </div>
+            </div>
+
+            <div class="rubric-box">
+                <b>📋 채점 기준:</b> 첫 어절과 마지막 어절이 완벽히 일치해야 함. (5점)
+            </div>
+        </div>
+    </div>
+
+    <!-- 지문 연구 (14번) -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용 지도 가이드]</h2>
+        <p><strong>[해제]</strong> 서정주의 대표작 「자화상」은 가난과 신분적 한계, 방황과 부끄러움으로 점철된 지난 삶을 솔직하게 고백하면서도 이를 회피하거나 후회하지 않고 야수적인 생명력으로 긍정하며 시적 자아를 확립해 나가는 과정을 격정적인 어조로 형상화한 작품이다.</p>
+        <p><strong>[주제]</strong> 자신의 비극적 삶에 대한 성찰과 원초적 생명력을 통한 자기 긍정</p>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+    <!-- ==================== 15번 문항 세트 ==================== -->
+    <div class="bundle-title">
+        <span class="badge">문항 15</span>
+        <span>문학 (고전소설) · 작자 미상, 「현몽쌍룡기」 (수능특강 문학 01강 연계)</span>
+    </div>
+    
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p><strong>[앞부분 줄거리]</strong> 송나라 조 상국의 두 아들 용홍과 용창. 용홍은 정채임과 정혼하나, 채임의 부친이 계모의 모함에 넘어가 채임을 다른 곳에 강제로 시집보내려 하자 채임은 시녀 벽란·춘앵과 남복을 하고 도망치다 도적에게 쫓겨 강물에 투신한다. 지나가던 용홍·용창 형제가 우연히 이들을 구한다.</p>
+                <p>용홍과 용창은 물에 빠져 죽으려 하던 두 명의 서동을 불러 좌우의 사람들을 물러가게 하고 물었다.<br>
+                “우리는 서울로 가던 길인데 너희 등 노비와 주인 세 명이 물에 빠져 죽으려 하는 것을 보았다. 사람의 마음이 슬프고 매우 놀라서 구하였다. <span class="source-underline">너희와 주인을 보니 몸 위에 두건과 의복이 있으나 결코 남자가 아니다.</span> 무슨 까닭으로 떠돌아다니느냐? 실상을 속이지 마라. 우리들은 결단코 너희에게 해를 주지 않을 것이다.”<br>
+                춘앵과 벽란이 생각지도 못했는데 죽은 몸을 물에서 건져 내어 살려 주고 근본을 묻는 것을 들으니 매우 의심스럽고 괴이하다고 생각하며 다시 눈을 들어 두 공자를 보았다. 풍채가 시원하고 깨끗하며 골격이 비상하고 아름다운 얼굴과 별 같은 눈과 누에가 누워 있는 듯한 두 눈썹으로 인간 세상에서 뛰어났다. 반악(潘岳)*의 고움과 위개(衛玠)*의 미려함을 비웃는 듯하였다. 춘앵과 벽란이 크게 마음속 깊이 존경하며 복종하고 두 공자의 선함을 칭찬하였다. ... (중략) ... 벽란과 춘앵은 소저가 정혼한 조 공자 형제임을 알고 사실대로 고하였고, 용홍은 소저의 절행에 감복하여 강정(별장)에 안돈하고 보호하게 하였다.</p>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 작품의 구조와 남장 모티프</div>
+                <div class="content">
+                    • <strong>위기와 남장:</strong> 가부장적 강제 혼인 위기에서 주체적 정절을 지키기 위해 남복을 입고 탈출.<br>
+                    • <strong>인물들의 영민함:</strong> 용홍 형제는 의복에 속지 않고 즉각 이들이 <b>남자</b>가 아님(여성임)을 간파함.<br>
+                    • <strong>극적 재회:</strong> 정혼자 간의 극적 구출과 신뢰 형성.
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                <strong>📖 핵심 어휘 및 개념</strong><br>
+                • <strong>남장 모티프(男裝):</strong> 여주인공이 위기를 극복하거나 활동 영역을 넓히기 위해 남자의 옷을 입는 고전소설의 전형적 장치.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 약술형 출제 & 독해 포인트</h3>
+                <p>고전소설 지문에서는 <b>작중 인물의 대화 속에 담긴 핵심 정보(신분/성별 식별)</b>를 지정된 글자 수(2자) 조건에 맞춰 정확히 인출해야 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문항 15 분석 -->
+    <div class="questions-section">
+        <h2>■ 문항 15 분석 (조건 해부 + 정답 도출 과정)</h2>
+        <div class="question-full">
+            <div class="q-head-bar">
+                <span class="q-num">15</span>
+                <span class="q-tag">문학 (고전소설)</span>
+                <span class="q-tag">조건부 서술형</span>
+                <span class="q-pts">배점 5점</span>
+                <div class="q-source-info">출처: EBS 2027 수능특강 국어영역 문학 01강 (26001-0116~0119)</div>
+            </div>
+
+            <div class="question-stem">
+                &lt;보기&gt;는 작품에 대한 감상의 관점을 제시한 것이다. &lt;보기&gt;의 ①에 들어갈 말을 &lt;조건&gt;에 맞게 쓰시오.
+            </div>
+
+            <div class="view-box">
+                <div class="vb-title">&lt; 보 기 &gt;</div>
+                이 작품은 위기에 처한 여성이 신분을 감추고 방황하다가 도움을 받아 인연을 이루어 가는 과정을 그린 작품으로 감상할 수 있다. 이러한 관점에서, 용홍과 용창은 물에 빠져 죽으려 한 두 서동의 몸에 두건과 의복이 있으나, 이들이 결코 ( ① )가 아님을 알아차린다.
+            </div>
+
+            <div class="cond-box">
+                <b>&lt; 조 건 &gt;</b><br>
+                • 제시문의 표현을 그대로 활용하여 2자로 쓸 것.
+            </div>
+
+            <div class="correct-badge">
+                <div class="ans-title">🎯 모범 답안</div>
+                <div class="ans-val">①: 남자</div>
+            </div>
+
+            <div class="step-card step-1">
+                <div class="step-title">🔍 1단계: 조건 및 발문 해부</div>
+                <div class="step-body">
+                    • <strong>문맥:</strong> "두건과 의복이 있으나, 이들이 결코 ( ① )가 아님을 알아차린다"<br>
+                    • <strong>글자 수 조건:</strong> 제시문 표현 그대로 <b>2자</b> → <code>남자</code>.
+                </div>
+            </div>
+
+            <div class="step-card step-2">
+                <div class="step-title">💡 2단계: 제시문 대화 원문 대조</div>
+                <div class="step-body">
+                    • 용홍의 발화: "너희와 주인을 보니 몸 위에 두건과 의복이 있으나 결코 <u>남자</u>가 아니다."
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-title">✅ 3단계: 글자 수 검증</div>
+                <div class="step-body">
+                    • '남자' = 2자 (조건 일치)
+                </div>
+            </div>
+
+            <div class="rubric-box">
+                <b>📋 채점 기준:</b> 2자 조건 및 제시문 표현 일치 시 5점.
+            </div>
+        </div>
+    </div>
+
+    <!-- 지문 연구 (15번) -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용 지도 가이드]</h2>
+        <p><strong>[해제]</strong> 조용홍·정채임 부부와 조용창·양소저 부부의 이야기를 다룬 대하소설이다. 계모의 간계로 인한 강제 혼인 위기에서 정소저가 절개를 지키기 위해 남복을 입고 탈출하다가 우연히 정혼자인 용홍 형제에게 구출되는 장면을 통해 극적 긴장감과 운명적 인연의 소중함을 생생하게 형상화한다.</p>
+        <p><strong>[주제]</strong> 위기 속에서 절개를 지켜 정혼자와의 인연을 성취하는 과정</p>
+    </div>
+</div>
+</body>
+</html>

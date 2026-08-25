@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김현석 국어 · 약술 논술 6회 · 화작2 (4~6번)</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #fdfaf7; color: #1e293b; line-height: 1.7; padding: 36px 20px;
+}
+.container {
+    max-width: 1420px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(124, 44, 62, 0.15); overflow: hidden;
+    border: 1px solid #f0e2e5;
+}
+.header { background: linear-gradient(135deg, #7c2c3e, #5a1f2c); color: white; padding: 24px 40px; }
+.header h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+.header p { font-size: 14px; opacity: 0.9; }
+
+.bundle-title {
+    background: #fcf4f6; border-bottom: 2px solid #ecd5da; padding: 14px 40px;
+    font-size: 16px; font-weight: 800; color: #7c2c3e; display: flex; align-items: center; gap: 10px;
+}
+.bundle-title span.badge {
+    background: #7c2c3e; color: #fff; padding: 3px 12px; border-radius: 20px; font-size: 12px;
+}
+
+.two-columns { display: flex; flex-wrap: wrap; border-bottom: 1px solid #f0e2e5; }
+.col-left {
+    flex: 1.25; min-width: 48%; background: #fdfaf8; border-right: 1px solid #eddfe2; padding: 32px 30px;
+}
+.col-right { flex: 0.95; min-width: 32%; background: #faf5f6; padding: 32px 28px; }
+
+.original-text p {
+    margin-bottom: 1.15em; font-size: 15px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+    text-align: justify;
+}
+.original-text .underline-phrase {
+    background-color: #fae8eb; border-bottom: 2px solid #7c2c3e; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.5px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #7c2c3e; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 3px 16px; border-radius: 40px; margin: 16px 0 10px;
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #7c2c3e; border-radius: 0 14px 14px 0;
+    background: #fff8f9; padding: 14px 18px 6px 20px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #7c2c3e; color: #fff;
+    font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 8px;
+    font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif;
+}
+.footnote-box {
+    font-size: 12.5px; color: #7a6368; margin-top: 10px; margin-bottom: 18px; line-height: 1.65;
+    background: #fbf2f4; padding: 10px 14px; border-radius: 12px;
+}
+
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #7c2c3e; background: #ffffff; padding: 14px 18px; border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03); border: 1px solid #f2e3e6; border-left-width: 4px;
+}
+.analysis-box .title { font-weight: 800; color: #7c2c3e; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #2c1a1f; line-height: 1.65; }
+
+.vocab-box {
+    background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin-top: 14px; margin-bottom: 22px; font-size: 13px; line-height: 1.7;
+}
+.vocab-box strong { color: #15803d; }
+
+.info-box {
+    background: #fbf5f7; border-radius: 20px; padding: 18px 22px; margin: 20px 0; border-left: 5px solid #7c2c3e;
+}
+.info-box h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #7c2c3e; }
+.info-box p { font-size: 13.5px; color: #3d242a; }
+
+.highlight-table {
+    background: #fffdf5; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #e8dbb0;
+}
+.highlight-table h3 { font-size: 16px; font-weight: 800; color: #854d0e; margin-bottom: 10px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; background: #fff; }
+th, td { border: 1px solid #e2d9dc; padding: 9px 12px; text-align: left; vertical-align: top; font-size: 13.5px; }
+th { background: #f7ebed; font-weight: 700; color: #5a1f2c; }
+
+.structure-wrapper {
+    background: linear-gradient(145deg, #fdf8f9 0%, #f6ecee 100%); border-top: 2px solid #ecd5da;
+    border-bottom: 1px solid #e2cbd0; padding: 36px 32px 42px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 900; color: #5a1f2c; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 26px; border-left: 6px solid #7c2c3e; padding-left: 18px;
+}
+.structure-title span { background: #7c2c3e; color: white; font-size: 15px; padding: 3px 14px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 220px; background: white; border-radius: 24px;
+    box-shadow: 0 8px 20px -6px rgba(124, 44, 62, 0.08); overflow: hidden; border: 1px solid #eddfe2;
+}
+.card-head {
+    background: #7c2c3e; color: white; padding: 13px 16px; font-weight: 800; font-size: 16px;
+    display: flex; align-items: center; gap: 8px;
+}
+.card-body { padding: 16px 16px; font-size: 13.5px; background: #ffffff; line-height: 1.6; }
+.card-body p { margin-bottom: 8px; }
+.card-body .sub-point {
+    background: #fdf5f7; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #7c2c3e; border-left: 3px solid #7c2c3e; font-weight: 600;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #b98a94; display: flex; align-items: center;
+    justify-content: center; min-width: 24px;
+}
+.flow-badge {
+    display: inline-block; background: #faeaed; border-radius: 20px; padding: 2px 10px;
+    font-size: 11px; font-weight: 700; color: #7c2c3e; margin-right: 6px;
+}
+.flow-line {
+    margin-top: 22px; text-align: center; font-size: 13.5px; background: #ffffffdb;
+    padding: 10px 22px; border-radius: 100px; width: fit-content; margin-left: auto;
+    margin-right: auto; color: #5a1f2c; font-weight: 600; border: 1px solid #ebd5da;
+}
+
+.questions-section { padding: 34px 40px; background: #fdfbfb; border-top: 2px solid #ecd5da; }
+.questions-section h2 { font-size: 22px; color: #7c2c3e; margin-bottom: 8px; font-weight: 900; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 24px 30px; margin: 28px 0;
+    border: 1.5px solid #ebd7dc; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-head-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.q-num {
+    font-weight: 900; font-size: 20px; background: #7c2c3e; display: inline-block; padding: 3px 18px;
+    border-radius: 40px; color: white;
+}
+.q-tag { font-size: 12px; background: #f7ecf0; color: #7c2c3e; padding: 4px 12px; border-radius: 20px; font-weight: 800; }
+.q-pts { margin-left: auto; font-size: 13px; font-weight: 800; color: #9c6875; }
+.q-source-info { width: 100%; font-size: 12px; color: #8c7077; margin-top: 2px; }
+
+.question-stem {
+    font-weight: 800; font-size: 16.5px; margin-bottom: 16px; background: #fbf5f7; padding: 14px 20px;
+    border-radius: 20px; border: 1px solid #ebd0d6; color: #2c1218; line-height: 1.6;
+}
+.view-box {
+    background: #fdf6f7; padding: 16px 20px; border-radius: 18px; margin: 14px 0; font-size: 14px;
+    border-left: 4px solid #b96b74;
+}
+.view-box .vb-title { font-weight: 800; margin-bottom: 8px; color: #7c2c3e; font-size: 13px; letter-spacing: 0.1em; }
+.cond-box {
+    background: #fffdfd; border: 1px dashed #c9a8ae; border-radius: 16px; padding: 14px 18px;
+    margin: 14px 0; font-size: 13.5px; line-height: 1.6;
+}
+.cond-box b { color: #7c2c3e; }
+
+.correct-badge {
+    background: #f0fdf4; border-left: 6px solid #16a34a; padding: 14px 22px; border-radius: 18px;
+    margin: 18px 0 22px; font-size: 15.5px; font-weight: 800; color: #166534;
+}
+.correct-badge .ans-title { font-size: 13px; color: #15803d; letter-spacing: 0.1em; margin-bottom: 4px; }
+.correct-badge .ans-val { font-size: 17px; color: #14532d; font-family: monospace, sans-serif; white-space: pre-line; }
+
+.step-card {
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 16px 20px;
+    margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.step-card.step-1 { border-left: 5px solid #3b82f6; }
+.step-card.step-2 { border-left: 5px solid #8b5cf6; }
+.step-card.step-3 { border-left: 5px solid #10b981; }
+.step-card.step-warn { border-left: 5px solid #f59e0b; background: #fffdfa; }
+
+.step-title { font-weight: 800; font-size: 14.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.step-1 .step-title { color: #1d4ed8; }
+.step-2 .step-title { color: #6d28d9; }
+.step-3 .step-title { color: #047857; }
+.step-warn .step-title { color: #b45309; }
+.step-body { font-size: 13.5px; color: #334155; line-height: 1.7; }
+.step-body b { color: #0f172a; }
+.step-body code { background: #f1f5f9; padding: 2px 6px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #7c2c3e; }
+
+.rubric-box {
+    background: #fbf5f7; border: 1px solid #edd5da; border-radius: 16px; padding: 14px 18px;
+    margin-top: 14px; font-size: 13px; color: #4a2830;
+}
+.rubric-box b { color: #7c2c3e; }
+
+.passage-study { padding: 32px 40px 44px 40px; background: #ffffff; border-top: 2px solid #ecd5da; }
+.passage-study h2 { font-size: 22px; margin-bottom: 16px; color: #7c2c3e; font-weight: 900; }
+.passage-study h3 { font-size: 16px; margin: 18px 0 8px; color: #5a1f2c; font-weight: 800; }
+.passage-study p { font-size: 14px; color: #334155; line-height: 1.75; margin-bottom: 12px; }
+.passage-study ul { margin-left: 20px; font-size: 14px; color: #334155; line-height: 1.75; }
+.passage-study li { margin-bottom: 6px; }
+
+@media (max-width: 950px) {
+    .two-columns { flex-direction: column; }
+    .col-left, .col-right { border-right: none; width: 100%; min-width: 100%; padding: 20px; }
+    .questions-section, .passage-study, .structure-wrapper { padding: 20px; }
+    .structure-grid { flex-direction: column; }
+    .arrow-symbol { transform: rotate(90deg); margin: -4px 0; }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📖 김현석 약술 논술 6회 · 화작2 (4~6번) 수업 자료</h1>
+        <p>화법과 작문 · 04 도시 농업 보고서 및 대화 / 05 음식 배달 산업 비평문 / 06 주민 센터 개선 건의문 | 2단 원문 분석 + 구조도 + 수업 판서 SVG + 조건 해부 및 정답 도출 + 지문 연구</p>
+    </div>
+
+    <!-- ==================== 4번 문항 세트 ==================== -->
+    <div class="bundle-title">
+        <span class="badge">문항 04</span>
+        <span>화법과 작문 · 도시 농업 현황 조사 보고서와 수정 대화 (수능완성 실전편 연계)</span>
+    </div>
+    
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="part-label">(가) 학생 작성 보고서 초안</div>
+                <p><strong>도시 농업의 개념과 지역 내 현황 조사</strong><br>
+                <strong>1. 조사 배경과 목적:</strong> 기후 변화로 식량 재배 및 부족 문제가 심화되면서 ‘지속 가능한 산업’의 필요성이 보다 강조되고 있다. 이와 관련하여 우리 모둠은 도시 공간에서 실천 가능한, 지속 가능한 산업 중 하나인 ‘도시 농업’에 주목하여 그 개념과 현황을 조사하였다.<br>
+                <strong>2. 조사 방법:</strong> (1) 문헌 조사 (도시 농업 관련 보고서, 타 지자체의 사례) / (2) 설문 조사 (○○고등학교 2학년 학생 전체 200명 대상 인식 및 참여 경험) / (3) 면담 및 현장 답사 (◇◇ 도시 농업 협동조합 꽃사랑 농장 대표)<br>
+                <strong>3. 조사 결과:</strong> (1) 도시 농업의 개념: 도시 농업이란 도시나 도시 인접 지역에서 이루어지는 농업 활동을 말하며, 생업 농업과 생활 농업으로 구분된다. (2) 우리 지역 도시 농업의 현황: 주로 생활 농업 중심이며 ‘꽃사랑 농장’ 20여 가구 참여 텃밭, 학교 텃밭 3곳, 기업 옥상 텃밭 등이 활발하다. (3) 도시 농업의 가치와 어려움: 정서적·공동체적·교육적 가치가 높으나 시민 인식 부족과 정책적 지원 한계가 존재한다.<br>
+                <strong>4. 결론:</strong> 도시 농업은 다양한 공익적 가치가 있는 지속 가능한 산업이다. 제도적 기반 마련과 교육·홍보가 병행되어야 한다.</p>
+
+                <div class="part-label">(나) 보고서 수정을 위한 학생 대화</div>
+                <p><strong>학생 1:</strong> 어제 보내 준 초안은 다 읽어 봤지? 오늘 보고서를 함께 검토하면서 어떻게 수정해야 할지 이야기해 보자.<br>
+                <strong>학생 2:</strong> 글을 쓰느라 정말 고생 많았어. 먼저 주제를 도시 농업으로 정하게 된 배경이 잘 드러나지 않는 것 같아. 주제를 정할 때, 지속 가능하면서도 지역 주민들의 삶에 긍정적인 영향을 미치는 산업을 주제로 선정하기로 했었잖아?<br>
+                <strong>학생 1:</strong> 맞아. 그 부분이 잘 드러나지 않는 것 같아. 수정해 보도록 할게. 또 다른 의견은 없어?<br>
+                <strong>학생 2:</strong> 도시 농업의 가치를 서술한 부분에서, 도시 농업의 개인적 가치를 서술한 내용이 잘 공감되지 않는 것 같아.<br>
+                <strong>학생 3:</strong> 나도 동의해. 또 도시 농업의 제도적 한계를 서술한 부분에서도 제도적 한계가 실제로 어떠한지 알기 어려워 보여.<br>
+                <strong>학생 1:</strong> 너희 모두 생각한다는 거지? 나도 그 부분들이 좀 걸렸었는데 그 이유를 명확하게 파악하진 못했었어. 보완해 볼게.<br>
+                <strong>학생 3:</strong> <span class="source-underline">그리고 우리가 도시 농업에 대한 학생들의 인식을 조사하려고 실시한 설문 결과도 누락되어 있어. 조사 대상 학생의 15%만 실제 도시 농업에 참여해 봤다고 했었잖아.</span><br>
+                <strong>학생 2:</strong> 그리고 도시 농업에 참여한 학생 중 90%는 도시 농업이 심리적 안정을 주고, 생태 교육의 효과가 매우 높아 꼭 필요하다고 응답했었지.<br>
+                <strong>학생 1:</strong> 구체적인 수치를 활용하자는 거지? 지금은 응답 내용만 활용했는데, 의견을 준 대로 수정해 볼게.<br>
+                <strong>학생 3:</strong> 그리고 우리가 수집했던 자료들을 글 전체에서 충분히 활용하지 못한 것 같아. 특히 도시 농업의 가치 부분에서 사회적 측면만 부각이 되어서 아쉬워. 내가 조사한 보고서에서는, 도시 농업의 경제적 가치는 3조 1,090억 원가량으로, 사회적 가치는 1조 3,400억 원가량으로 추정된다고 하는데 이 부분을 활용하면 좋을 것 같아.<br>
+                <strong>학생 2:</strong> <span class="source-underline">나는 지자체 소유의 공유지를 활용해서 도시 농업에 필요한 공간을 확보한 ▽▽시의 사례를 수집했는데, 이 사례를 활용하면 글의 완결성을 높일 수 있을 거야.</span><br>
+                <strong>학생 3:</strong> 또 조사 결과 부분에서 우리 지역 도시 농업이 생활 중심이라고 서술된 부분에 구체적인 근거를 덧붙이면 좋겠어. 그래야 조사 결과의 타당성이 높아질 거 같아.<br>
+                <strong>학생 1:</strong> 좋은 의견 다들 고마워. 우리가 수집한 자료에서 의견들을 뒷받침할 만한 적절한 자료들이 있었던 것 같아. 글을 수정해서 다시 보내 주도록 할게.</p>
+            </div>
+        </div>
+        
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 (가) 보고서의 문제점 & 수정 방향</div>
+                <div class="content">
+                    • <strong>조사 방법과 결과의 불일치:</strong> 설문 조사를 실시했다고 기술했으나(방법 2), 조사 결과 본문에는 통계 수치가 누락되어 있었음.<br>
+                    • <strong>자료 활용의 불균형:</strong> 경제적 가치 자료 및 타 지자체(공유지 활용) 우수 사례가 반영되지 않음.
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 (나) 대화의 핵심 전략 발화 분석</div>
+                <div class="content">
+                    • <strong>수치 언급 & 자료 보완 요청:</strong> 학생 3이 "설문 결과 누락... 조사 대상 학생의 15%만..."을 언급하며 보완 요청(<b>①번 정답 자리</b>).<br>
+                    • <strong>타 지역 사례 & 완결성 제고 제안:</strong> 학생 2가 "공유지 활용 ▽▽시 사례... 글의 완결성을 높일 수 있을 거야"를 제안함(<b>②번 정답 자리</b>).
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                <strong>📖 핵심 어휘 및 개념</strong><br>
+                • <strong>생활 농업:</strong> 여가, 정서 안정, 체험, 생태 교육 등을 목적으로 텃밭이나 옥상 등에서 소규모로 이루어지는 도시 농업.<br>
+                • <strong>글의 완결성:</strong> 글의 주제와 목적에 맞는 내용 요소와 해결 방안이 빠짐없이 충실하게 갖추어진 상태.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 약술형 출제 & 독해 포인트</h3>
+                <p>보고서와 수정 대화 복합 지문에서는 <b>초안의 미흡한 점을 동료 피드백에서 어떻게 구체적으로 짚어내는지</b>를 묻습니다. 발문의 '구체적 수치 언급'과 '타 지역 사례 제안' 키워드를 대화 속 발화와 정확히 연결해야 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문항 04 분석 -->
+    <div class="questions-section">
+        <h2>■ 문항 04 분석 (조건 해부 + 정답 도출 과정)</h2>
+        <div class="question-full">
+            <div class="q-head-bar">
+                <span class="q-num">04</span>
+                <span class="q-tag">화법과 작문</span>
+                <span class="q-tag">어절지정형</span>
+                <span class="q-pts">배점 6점</span>
+                <div class="q-source-info">출처: EBS 2027 수능완성 국어영역 실전편 (26051-0234~0237)</div>
+            </div>
+
+            <div class="question-stem">
+                &lt;보기&gt;는 (나)에 나타난 말하기 방식을 정리한 것이다. &lt;보기&gt;의 ①, ②에 해당하는 발화를 (나)에서 찾아 각각의 첫 어절과 마지막 어절을 순서대로 쓰시오.
+            </div>
+
+            <div class="view-box">
+                <div class="vb-title">&lt; 보 기 &gt;</div>
+                ① 구체적인 수치를 언급하며 반영되지 않은 자료의 보완을 요청하고 있다.<br>
+                ② 다른 지역의 사례를 근거로 제시하며 글의 완결성을 높일 것을 제안하고 있다.
+            </div>
+
+            <div class="correct-badge">
+                <div class="ans-title">🎯 모범 답안</div>
+                <div class="ans-val">①: 첫 어절 그리고 / 마지막 어절 했었잖아.
+②: 첫 어절 나는 / 마지막 어절 거야.</div>
+            </div>
+
+            <div class="step-card step-1">
+                <div class="step-title">🔍 1단계: 발문 및 조건 분석 (대화 내 특정 피드백 발화 탐색)</div>
+                <div class="step-body">
+                    • <strong>①번 조건:</strong> '구체적 수치(15% 등) 언급' + '누락된 설문 자료 보완 요청'<br>
+                    • <strong>②번 조건:</strong> '다른 지역(▽▽시 등) 사례 언급' + '완결성 제고 제안'<br>
+                    • <strong>형식 조건:</strong> (나) 대화 속 해당 발화 전체의 첫 어절과 마지막 어절을 순서대로 추출.
+                </div>
+            </div>
+
+            <div class="step-card step-2">
+                <div class="step-title">💡 2단계: 제시문 내 문장 대조 및 추출</div>
+                <div class="step-body">
+                    • <strong>①번 발화:</strong> 학생 3의 발화<br>
+                    &nbsp;&nbsp;<em>"<u>그리고</u> 우리가 도시 농업에 대한 학생들의 인식을 조사하려고 실시한 설문 결과도 누락되어 있어. 조사 대상 학생의 15%만 실제 도시 농업에 참여해 봤다고 <u>했었잖아.</u>"</em><br>
+                    • <strong>②번 발화:</strong> 학생 2의 발화<br>
+                    &nbsp;&nbsp;<em>"<u>나는</u> 지자체 소유의 공유지를 활용해서 도시 농업에 필요한 공간을 확보한 ▽▽시의 사례를 수집했는데, 이 사례를 활용하면 글의 완결성을 높일 수 있을 <u>거야.</u>"</em>
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-title">✅ 3단계: 정답 형식화 및 어절 검증</div>
+                <div class="step-body">
+                    • ① 첫 어절: <code>그리고</code> / 마지막 어절: <code>했었잖아.</code><br>
+                    • ② 첫 어절: <code>나는</code> / 마지막 어절: <code>거야.</code>
+                </div>
+            </div>
+
+            <div class="step-card step-warn">
+                <div class="step-title">⚠️ 오답 함정 및 주의사항</div>
+                <div class="step-body">
+                    • ①번에서 학생 2의 "그리고 도시 농업에 참여한 학생 중 90%는..."은 학생 3의 의견에 동조하는 추가 발화이며, '누락 자료의 보완을 요청'한 주 발화는 학생 3의 발화(<code>그리고 ~ 했었잖아.</code>)임에 유의.<br>
+                    • ②번에서 '▽▽시'부터 시작하지 않고 발화의 시작 어절인 <code>나는</code>을 정확히 지정해야 함.
+                </div>
+            </div>
+
+            <div class="rubric-box">
+                <b>📋 채점 기준:</b> ①과 ② 각각 첫 어절과 마지막 어절이 일치해야 함. (각 3점, 총 6점)
+            </div>
+        </div>
+    </div>
+
+    <!-- 지문 연구 (4번) -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용 지도 가이드]</h2>
+        <p><strong>[해제]</strong> 이 세트는 도시 농업의 개념과 지역 현황을 다룬 보고서 초안(가)과 이를 동료 평가를 통해 수정·보완하는 대화(나)로 구성된다. 설문 조사 통계 수치 누락, 타 지자체 공유지 활용 사례 반영 등 구체적인 작문 점검 기준을 실제 대화 속에서 찾아내는 실전적 문제 해결력을 평가한다.</p>
+        <p><strong>[주제]</strong> 도시 농업 현황 조사 보고서 검토 및 구체적 자료 보완 협의</p>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+    <!-- ==================== 5번 문항 세트 ==================== -->
+    <div class="bundle-title">
+        <span class="badge">문항 05</span>
+        <span>화법과 작문 · 음식 배달 산업의 성장과 부작용에 대한 비평문 (수능특강 화작 01~02강 연계)</span>
+    </div>
+    
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <p><strong>[작문 과제]</strong> 관심 있는 사회 현상에 대해 자신의 관점이 명확히 드러나도록 비평문을 작성할 것</p>
+                <p><strong>[초고]</strong><br>
+                국내 음식 배달 산업은 최근 몇 년간 빠르게 성장하면서 우리 일상에 깊숙이 자리 잡았다. 특히 2019년 감염병 발생 이후 비대면 문화가 확산되면서 음식 배달 산업이 급속하게 성장하였다. <span class="source-underline">○○ 기관의 연구 보고서에서는 감염병의 유행이 끝난 이후에도 다양한 이유로 음식 배달 산업이 꾸준히 성장할 것으로 전망하고 있다.</span> 음식 배달 산업의 성장은 우리 삶에 다양한 변화를 가져왔는데, 우선 소비자의 편의성이 증대되었다. 소비자 입장에서는 집에서 편리하게 배달 음식을 받을 수 있게 되었다. <span class="source-underline">특히 고령층이나 거동이 불편한 사람들에게 음식 배달 서비스는 생활의 질을 크게 향상시키는 수단이 되고 있다.</span> 음식 배달 산업의 발달은 경제적인 측면에서도 긍정적인 효과를 보여 주고 있다. 통계청의 보고에 따르면 음식 배달 종사자의 숫자가 최근 몇 년간 크게 늘었는데, 음식 배달 산업의 성장이 일자리 창출에도 기여하고 있다는 점을 알 수 있다.<br>
+                하지만 음식 배달 산업의 급격한 성장은 여러 가지 부작용을 낳고 있다. 우선 음식을 담는 일회용 포장재 사용의 증가는 환경 오염을 가속화한다. 또한 음식 배달 노동자의 열악한 근로 환경과 처우 문제도 사회 문제로 떠오르고 있다. 빠른 배달을 위해 경쟁하다 보니 배달 노동자의 교통사고 위험이 증가하게 되었으나, 음식 배달 노동자 대부분이 비정규직인 탓에 사회적 안전망의 사각지대에서 보호를 받지 못하고 있는 실정이다.<br>
+                이러한 부작용에도 불구하고 음식 배달 산업의 양적 성장을 알려 주는 지표인 음식 배달 앱의 이용자 수는 지속적으로 증가하고 있다. 음식 배달 산업의 지속 가능한 성장을 위해서는 일회용품 사용 규제나 배달 노동자의 근로 환경 개선과 같은 정부의 노력이 필요하다. 더불어 음식을 주문할 때 일회용품 사용을 자제하거나 배달 노동자의 안전한 운행을 위해 따뜻한 격려를 보내는 등 소비자들의 관심과 동참도 필요하다. 결론적으로 음식 배달 산업의 발전은 우리 삶의 편리성을 높였지만, 동시에 환경과 노동 문제 등 여러 사회적 문제를 동반하고 있다. 음식 배달 산업의 지속 가능한 성장을 위해서는 우리 모두가 이러한 문제에 지속적으로 관심을 가져야 하며, 문제를 해결하기 위해 함께 노력해야 한다.</p>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 1문단: 성장 추세 & 긍정적 측면</div>
+                <div class="content">
+                    • <strong>공신력 있는 자료 인용 & 향후 전망:</strong> "○○ 기관의 연구 보고서에서는 ... 꾸준히 성장할 것으로 전망하고 있다." (<b>①번 정답 자리</b>)<br>
+                    • <strong>특정 계층 언급 & 편의성 구체화:</strong> 고령층·거동 불편자 등을 예로 들어 생활의 질 향상 근거 제시 (<b>②번 정답 자리</b>)<br>
+                    • <strong>경제적 효과:</strong> 통계청 자료를 바탕으로 배달 종사자 증가 및 일자리 창출 효과 제시.
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 2~3문단: 부작용 및 해결 방안</div>
+                <div class="content">
+                    • <strong>부작용 2가지:</strong> ① 일회용품 증가로 인한 환경 오염, ② 배달 노동자의 열악한 근로 환경(교통사고 위험, 안전망 사각지대).<br>
+                    • <strong>주체별 해결 방안:</strong> 정부(일회용품 규제, 근로 환경 개선) + 소비자(일회용품 자제, 따뜻한 격려 동참).
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                <strong>📖 핵심 어휘 및 개념</strong><br>
+                • <strong>비평문(批評文):</strong> 어떤 현상이나 대상의 가치, 문제점, 의의 등을 분석하고 평가하여 독자의 인식 변화를 유도하는 글.<br>
+                • <strong>사회적 안전망:</strong> 국민이 실업, 빈곤, 재해 등의 위험에 처했을 때 국가가 최소한의 생활을 보장해 주는 제도적 장치.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 약술형 출제 & 독해 포인트</h3>
+                <p>비평문의 <b>논지 전개 전략</b>을 묻는 문항입니다. 글쓴이가 자신의 주장에 객관성을 더하기 위해 활용한 '연구 보고서 인용 문장'과 '특정 계층(고령층 등)을 든 예시 문장'을 정확히 지정할 수 있어야 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문항 05 분석 -->
+    <div class="questions-section">
+        <h2>■ 문항 05 분석 (조건 해부 + 정답 도출 과정)</h2>
+        <div class="question-full">
+            <div class="q-head-bar">
+                <span class="q-num">05</span>
+                <span class="q-tag">화법과 작문</span>
+                <span class="q-tag">어절지정형</span>
+                <span class="q-pts">배점 6점</span>
+                <div class="q-source-info">출처: EBS 2027 수능특강 국어영역 화법과 작문 01~02강 (26003-0073~0075)</div>
+            </div>
+
+            <div class="question-stem">
+                &lt;보기&gt;는 비평문에 나타난 글쓰기 전략을 정리한 것이다. &lt;보기&gt;의 ①, ②에 해당하는 문장을 제시문에서 찾아 각각의 첫 어절과 마지막 어절을 순서대로 쓰시오.
+            </div>
+
+            <div class="view-box">
+                <div class="vb-title">&lt; 보 기 &gt;</div>
+                ① 공신력 있는 기관의 자료를 인용하여 향후 전망을 제시하고 있다.<br>
+                ② 특정 계층을 언급하며 긍정적 변화의 근거를 구체화하고 있다.
+            </div>
+
+            <div class="correct-badge">
+                <div class="ans-title">🎯 모범 답안</div>
+                <div class="ans-val">①: 첫 어절 ○○ / 마지막 어절 있다.
+②: 첫 어절 특히 / 마지막 어절 있다.</div>
+            </div>
+
+            <div class="step-card step-1">
+                <div class="step-title">🔍 1단계: 발문 및 조건 분석 (비평문 속 글쓰기 전략 문장 탐색)</div>
+                <div class="step-body">
+                    • <strong>①번 조건:</strong> '공신력 있는 기관 자료 인용' + '향후 전망 제시' → 1문단의 "○○ 기관의 연구 보고서에서는 ... 전망하고 있다." 탐색.<br>
+                    • <strong>②번 조건:</strong> '특정 계층 언급' + '긍정적 변화(편의성) 구체화' → 1문단의 "특히 고령층이나 거동이 불편한 사람들에게 ... 향상시키는 수단이 되고 있다." 탐색.
+                </div>
+            </div>
+
+            <div class="step-card step-2">
+                <div class="step-title">💡 2단계: 제시문 내 문장 대조 및 추출</div>
+                <div class="step-body">
+                    • <strong>①번 문장:</strong> 1문단 세 번째 문장<br>
+                    &nbsp;&nbsp;<em>"<u>○○</u> 기관의 연구 보고서에서는 감염병의 유행이 끝난 이후에도 다양한 이유로 음식 배달 산업이 꾸준히 성장할 것으로 전망하고 <u>있다.</u>"</em><br>
+                    • <strong>②번 문장:</strong> 1문단 여섯 번째 문장<br>
+                    &nbsp;&nbsp;<em>"<u>특히</u> 고령층이나 거동이 불편한 사람들에게 음식 배달 서비스는 생활의 질을 크게 향상시키는 수단이 되고 <u>있다.</u>"</em>
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-title">✅ 3단계: 정답 형식화 및 기호 처리 검증</div>
+                <div class="step-body">
+                    • ① 첫 어절: <code>○○</code> (기호 포함) / 마지막 어절: <code>있다.</code><br>
+                    • ② 첫 어절: <code>특히</code> / 마지막 어절: <code>있다.</code>
+                </div>
+            </div>
+
+            <div class="step-card step-warn">
+                <div class="step-title">⚠️ 오답 함정 및 주의사항</div>
+                <div class="step-body">
+                    • ①번에서 통계청 인용 문장("통계청의 보고에 따르면...")은 '일자리 창출 현황'을 보여 주는 것이지 '향후 전망'이 아니므로 혼동하지 말 것.<br>
+                    • 기호 <code>○○</code>는 띄어쓰기 없이 한 어절로 정확히 기재해야 함.
+                </div>
+            </div>
+
+            <div class="rubric-box">
+                <b>📋 채점 기준:</b> ①과 ② 각각 첫 어절과 마지막 어절이 일치해야 함. (각 3점, 총 6점)
+            </div>
+        </div>
+    </div>
+
+    <!-- 지문 연구 (5번) -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용 지도 가이드]</h2>
+        <p><strong>[해제]</strong> 음식 배달 산업의 급격한 성장이 가져온 긍정적 측면(소비자 편의, 일자리 창출)과 부정적 측면(일회용품 환경 오염, 배달 노동자의 안전망 부재)을 균형 있게 다루고, 정부 규제와 소비자 참여라는 지속 가능한 상생 방안을 제시하는 전형적인 사회 비평문이다.</p>
+        <p><strong>[주제]</strong> 음식 배달 산업 성장의 명암과 지속 가능한 발전을 위한 과제</p>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+    <!-- ==================== 6번 문항 세트 ==================== -->
+    <div class="bundle-title">
+        <span class="badge">문항 06</span>
+        <span>화법과 작문 · 주민 센터 서비스 개선 건의문 (수능특강 화작 02강 연계)</span>
+    </div>
+    
+    <div class="two-columns">
+        <div class="col-left">
+            <div class="original-text">
+                <div class="part-label">(가) 동아리 대화 (요약)</div>
+                <p>학생 1: 주민 센터 리모델링과 관련해 의견을 나눠 보자.<br>
+                학생 2: 청소년 스터디 카페 건의하자.<br>
+                학생 3: 모든 연령대가 쓰는 스터디 카페가 좋겠어. 작은 도서관 열람실을 개조하자. 소규모 회의실과 체육 시설(탁구, 배드민턴)도 필요해.<br>
+                학생 4: 거동 불편 어르신을 위한 실버 카 대여 서비스도 추가하자.<br>
+                학생 2: 유상·무상 여부에 대해 주민 설문 조사를 거쳐 제시하자.</p>
+
+                <div class="part-label">(나) 김◇◇ 학생의 건의문 초고</div>
+                <p>안녕하십니까? ○○동 주민이자 ○○ 고등학교 지역 사회 탐구 동아리 회장을 맡고 있는 김◇◇입니다. 저희 동아리에서는 우리 지역의 역사를 탐구하고 지역의 특색을 살펴보는 활동을 하고 있습니다. 이번 주민 센터 리모델링 사업과 관련하여 몇 가지 건의를 드리고자 합니다.<br>
+                첫째, 지역 주민들이 이용할 수 있는 스터디 카페를 마련해 주십시오. <span class="source-underline">최근 통계청 자료에 따르면 청소년뿐 아니라 성인들의 스터디 카페 이용률이 지속적으로 증가하고 있습니다.</span> 주민 센터 내에 운영 중인 작은 도서관의 열람실 공간을 활용하여 스터디 카페를 만들면 좋을 것 같습니다. 인터넷 강의 수강 등 이용자의 학습 편의를 위해 무선 인터넷 설비도 스터디 카페에 설치해 주십시오.<br>
+                둘째, 소규모 회의실을 지역 주민들에게 대관해 주십시오. 지역 사회 전문가들은 주민 센터 내 교육 및 회의 공간 확충이 지역 주민들의 역량 강화에 크게 기여한다고 강조합니다. 이미 주민 센터 내에 마련되어 있는 회의실을 주민 센터 일정을 고려하여 지역 주민들에게 대관한다면, 지역 주민들의 교육 및 소통의 장으로 활용될 것이며 이는 곧 우리 지역 주민들의 다양한 역량 강화에 도움이 될 것입니다.<br>
+                셋째, 기존 강당을 활용한 다목적 체육 시설 설치를 요청합니다. 국민체육진흥공단의 보고서에 따르면 지역 사회 내 공공 체육 시설 설치는 지역 주민의 건강 증진 및 삶의 질 향상에 기여합니다. 다양한 연령층의 주민들이 함께 즐길 수 있도록 배드민턴이나 탁구를 할 수 있는 시설을 마련해 주신다면, 지역 주민들의 삶의 질이 향상될 것입니다. 마지막으로 거동이 불편한 어르신들의 보행을 돕는 기구인 실버 카 대여 서비스 도입을 건의합니다. △△지역 주민 센터에서는 실버 카 대여 서비스 도입 후 어르신들의 활동 반경이 넓어지고 사회적 교류가 증가하는 등 생활 만족도가 향상된 것으로 발표했습니다. 우리 지역에 거주 중인 65세 이상의 어르신들께 이러한 편의를 제공하면 어르신들이 주민 센터를 비롯해 지역 곳곳을 방문하기가 더 수월해질 것입니다.<br>
+                <span class="source-underline">우리 지역 주민 100명을 대상으로 온라인 설문 조사를 실시한 결과, 90% 이상의 주민이 위건의 내용에 대해 동의하는 응답을 하였습니다.</span> 또한 이러한 서비스를 무상으로 제공해야 한다고 응답한 비율은 37%였으며 나머지 63%는 사설 업체보다 저렴한 수준에서 비용을 지불할 의향이 있다고 응답하였습니다. □□ 연구 보고서에 따르면, 지역 공공시설의 수준이 높을수록 지역 주민들의 지역에 대한 만족도도 높은 것으로 나타났습니다. 지역 주민들의 편의와 삶의 질 향상을 위한 주민 센터가 될 수 있도록 건의 사항을 검토해 주시기 바랍니다. 감사합니다. - ○○ 고등학교 지역 사회 탐구 동아리 일동</p>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="analysis-box">
+                <div class="title">📌 건의 내용의 체계적 구성</div>
+                <div class="content">
+                    • <strong>4대 건의 사항:</strong> ① 도서관 열람실 개조 스터디 카페 & 무선 인터넷, ② 소규모 회의실 대관, ③ 강당 활용 배드민턴·탁구 체육 시설, ④ 노인 실버 카 대여.<br>
+                    • <strong>근거 자료 활용:</strong> 통계청 자료(수요 증가), 전문가 인터뷰, 공단 보고서, 타 지자체(△△지역) 사례.
+                </div>
+            </div>
+
+            <div class="analysis-box">
+                <div class="title">📌 설문 조사를 통한 타당성 확보</div>
+                <div class="content">
+                    • <strong>수요 뒷받침 통계:</strong> "최근 통계청 자료에 따르면 ... 스터디 카페 이용률이 지속적으로 증가하고 있습니다." (<b>①번 정답 자리</b>)<br>
+                    • <strong>건의 지지도 설문:</strong> "우리 지역 주민 100명을 대상으로 ... 90% 이상의 주민이 위건의 내용에 대해 동의하는 응답을 하였습니다." (<b>②번 정답 자리</b>)
+                </div>
+            </div>
+
+            <div class="vocab-box">
+                <strong>📖 핵심 어휘 및 개념</strong><br>
+                • <strong>건의문(建議文):</strong> 공공 기관이나 단체에 개선이 필요한 사항을 합리적 근거와 구체적 방안을 들어 요청하는 실용적 글.<br>
+                • <strong>실버 카:</strong> 거동이 불편한 노인들의 보행을 돕고 짐을 실을 수 있는 보행 보조 기구.
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 약술형 출제 & 독해 포인트</h3>
+                <p>건의문에서는 <b>건의의 타당성을 높이기 위해 활용한 객관적 근거(통계, 설문, 사례)</b>를 묻습니다. 발문의 '서비스 수요 뒷받침 통계'와 '지지도를 밝힌 설문 조사'를 각각 건의 본문과 결론부에서 정확히 골라내야 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문항 06 분석 -->
+    <div class="questions-section">
+        <h2>■ 문항 06 분석 (조건 해부 + 정답 도출 과정)</h2>
+        <div class="question-full">
+            <div class="q-head-bar">
+                <span class="q-num">06</span>
+                <span class="q-tag">화법과 작문</span>
+                <span class="q-tag">어절지정형</span>
+                <span class="q-pts">배점 6점</span>
+                <div class="q-source-info">출처: EBS 2027 수능특강 국어영역 화법과 작문 02강 (26003-0144~0148)</div>
+            </div>
+
+            <div class="question-stem">
+                &lt;보기&gt;는 (나)에 나타난 글쓰기 전략을 정리한 것이다. &lt;보기&gt;의 ①, ②에 해당하는 문장을 (나)에서 찾아 각각의 첫 어절과 마지막 어절을 순서대로 쓰시오.
+            </div>
+
+            <div class="view-box">
+                <div class="vb-title">&lt; 보 기 &gt;</div>
+                ① 통계 자료를 근거로 제시하여 서비스의 수요를 뒷받침하고 있다.<br>
+                ② 설문 조사 결과를 근거로 제시하여 건의 내용에 대한 지지도를 밝히고 있다.
+            </div>
+
+            <div class="correct-badge">
+                <div class="ans-title">🎯 모범 답안</div>
+                <div class="ans-val">①: 첫 어절 최근 / 마지막 어절 있습니다.
+②: 첫 어절 우리 / 마지막 어절 하였습니다.</div>
+            </div>
+
+            <div class="step-card step-1">
+                <div class="step-title">🔍 1단계: 발문 및 조건 분석 ((나)의 근거 제시 문장 탐색)</div>
+                <div class="step-body">
+                    • <strong>①번 조건:</strong> '통계 자료 근거' + '서비스 수요 뒷받침' → 스터디 카페 건의 부분에서 "최근 통계청 자료에 따르면..." 탐색.<br>
+                    • <strong>②번 조건:</strong> '설문 조사 결과 근거' + '건의 지지도(90% 이상 동의)' → 결론부에서 "우리 지역 주민 100명을 대상으로..." 탐색.
+                </div>
+            </div>
+
+            <div class="step-card step-2">
+                <div class="step-title">💡 2단계: 제시문 내 문장 대조 및 추출</div>
+                <div class="step-body">
+                    • <strong>①번 문장:</strong> (나) 2문단 두 번째 문장<br>
+                    &nbsp;&nbsp;<em>"<u>최근</u> 통계청 자료에 따르면 청소년뿐 아니라 성인들의 스터디 카페 이용률이 지속적으로 증가하고 <u>있습니다.</u>"</em><br>
+                    • <strong>②번 문장:</strong> (나) 4문단 두 번째 문장<br>
+                    &nbsp;&nbsp;<em>"<u>우리</u> 지역 주민 100명을 대상으로 온라인 설문 조사를 실시한 결과, 90% 이상의 주민이 위건의 내용에 대해 동의하는 응답을 <u>하였습니다.</u>"</em>
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-title">✅ 3단계: 정답 형식화 및 어절 검증</div>
+                <div class="step-body">
+                    • ① 첫 어절: <code>최근</code> / 마지막 어절: <code>있습니다.</code><br>
+                    • ② 첫 어절: <code>우리</code> / 마지막 어절: <code>하였습니다.</code>
+                </div>
+            </div>
+
+            <div class="step-card step-warn">
+                <div class="step-title">⚠️ 오답 함정 및 주의사항</div>
+                <div class="step-body">
+                    • ②번 뒤 문장인 "또한 이러한 서비스를 무상으로..."는 비용 지불 의향에 관한 것이며, '건의 내용에 대한 지지도(동의율)' 문장의 종결 어절은 <code>하였습니다.</code>임.<br>
+                    • 문장 부호(마침표)는 포함하거나 제외해도 정답 인정.
+                </div>
+            </div>
+
+            <div class="rubric-box">
+                <b>📋 채점 기준:</b> ①과 ② 각각 첫 어절과 마지막 어절이 일치해야 함. (각 3점, 총 6점)
+            </div>
+        </div>
+    </div>
+
+    <!-- 지문 연구 (6번) -->
+    <div class="passage-study">
+        <h2>📚 지문 연구 [교사용 지도 가이드]</h2>
+        <p><strong>[해제]</strong> 주민 센터 리모델링 사업에 지역 고등학생들이 주민 복지 서비스 개선을 건의하는 상황이다. 스터디 카페, 회의실, 체육 시설, 실버 카 대여 등 구체적인 방안을 열거하고, 통계청 자료, 전문가 인터뷰, 공단 보고서, 인근 지역 사례, 자체 온라인 설문 조사 등 다채로운 객관적 근거를 체계적으로 조직한 모범적 건의문이다.</p>
+        <p><strong>[주제]</strong> 지역 주민 복지 향상을 위한 주민 센터 시설 및 서비스 개선 건의</p>
+    </div>
+</div>
+</body>
+</html>
