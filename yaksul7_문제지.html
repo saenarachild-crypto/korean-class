@@ -78,6 +78,17 @@ body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 <div class="toast" id="toast"></div>
 
 <script>
+window.addEventListener('error',function(ev){
+  var el=document.getElementById('list');
+  if(el&&el.innerHTML.replace(/\s/g,'')===''){
+    el.innerHTML='<div class="card" style="color:#b91c1c;font-size:13.5px;line-height:1.7">'
+    +'<b>문제를 불러오지 못했습니다.</b><br>기기 브라우저가 오래된 경우일 수 있어요.<br>'
+    +'iPad: 설정 &gt; 일반 &gt; 소프트웨어 업데이트 후 Safari로 다시 열어 주세요.<br><br>'
+    +'<span style="font-size:11.5px;color:#8b7378">오류: '+(ev.message||'')+'</span></div>';
+  }
+});
+</script>
+<script>
 const DATA = [
  {
   "n": 1,
@@ -703,6 +714,9 @@ function match(list,val){const v=normalize(val);if(!v)return false;return list.s
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800);}
 
+function up(el,cls){while(el&&el.nodeType===1){if(el.classList&&el.classList.contains(cls))return el;el=el.parentElement;}return null;}
+function goTo(el){if(!el)return;try{el.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){el.scrollIntoView()}}
+
 let slot=0;
 const html=DATA.map(d=>{
   const ps=d.passage.split('\n').filter(x=>x.trim()).map(x=>'<p>'+esc(x)+'</p>').join('');
@@ -730,7 +744,7 @@ document.getElementById('list').innerHTML=html;
 document.getElementById('nav').innerHTML=DATA.map(d=>'<button class="nav" data-n="'+d.n+'">'+d.n+'</button>').join('');
 
 const FLAT=[];DATA.forEach(d=>d.blanks.forEach(b=>FLAT.push({q:d.n,b:b})));
-const inputs=[...document.querySelectorAll('input[data-slot]')];
+const inputs=Array.prototype.slice.call(document.querySelectorAll('input[data-slot]'));
 
 function save(){const o={name:document.getElementById('name').value,v:inputs.map(i=>i.value)};
   try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
@@ -742,21 +756,22 @@ document.getElementById('name').addEventListener('input',save);
 
 function paintNav(){
   document.querySelectorAll('.nav').forEach(btn=>{
-    const n=+btn.dataset.n;
+    const n=+btn.getAttribute('data-n');
     if(graded)return;
     const idx=FLAT.map((f,i)=>[f,i]).filter(x=>x[0].q===n).map(x=>x[1]);
-    btn.classList.toggle('done', idx.every(i=>inputs[i].value.trim()!==''));
+    var _d=idx.every(function(i){return inputs[i].value.trim()!==''});
+    if(_d)btn.classList.add('done');else btn.classList.remove('done');
   });
 }
 paintNav();
 
 document.getElementById('nav').addEventListener('click',e=>{
-  const b=e.target.closest('.nav');if(!b)return;
-  document.getElementById('q'+b.dataset.n).scrollIntoView({behavior:'smooth',block:'start'});
+  const b=up(e.target,'nav');if(!b)return;
+  goTo(document.getElementById('q'+b.getAttribute('data-n')));
 });
 document.addEventListener('click',e=>{
-  const b=e.target.closest('.pmore');if(!b)return;
-  const p=document.getElementById('p'+b.dataset.p);
+  const b=up(e.target,'pmore');if(!b)return;
+  const p=document.getElementById('p'+b.getAttribute('data-p'));
   const open=p.style.maxHeight==='none';
   p.style.maxHeight=open?'340px':'none';
   b.textContent=open?'지문 전체 펼치기 ▾':'지문 접기 ▴';
@@ -772,11 +787,11 @@ document.getElementById('grade').addEventListener('click',()=>{
     document.querySelector('[data-rt="'+i+'"]').textContent=ok?'○':'✕';
     document.querySelector('[data-rt="'+i+'"]').style.color=ok?'#15803d':'#b91c1c';
     if(ok)correct++;
-    (per[f.q]??=[]).push(ok);
+    if(!per[f.q])per[f.q]=[];per[f.q].push(ok);
   });
   graded=true;
   document.querySelectorAll('.nav').forEach(btn=>{
-    const n=+btn.dataset.n;const a=per[n]||[];
+    const n=+btn.getAttribute('data-n');const a=per[n]||[];
     btn.classList.remove('done');
     btn.classList.add(a.every(Boolean)?'ok':'no');
   });
@@ -788,7 +803,7 @@ document.getElementById('grade').addEventListener('click',()=>{
   document.getElementById('banner').style.display='block';
   document.getElementById('showSol').disabled=false;
   document.getElementById('copy').disabled=false;
-  document.getElementById('banner').scrollIntoView({behavior:'smooth',block:'center'});
+  try{document.getElementById('banner').scrollIntoView({behavior:'smooth',block:'center'})}catch(e){document.getElementById('banner').scrollIntoView()}
 });
 
 document.getElementById('showSol').addEventListener('click',()=>{
@@ -804,6 +819,27 @@ document.getElementById('copy').addEventListener('click',()=>{
     +'\n🎯 '+result.pts+'점 / 100점'
     +'\n📊 '+result.correct+' / '+TOTAL+'칸 ('+Math.round(result.correct/TOTAL*100)+'%)'
     +'\n❌ 틀린 문항: '+(wrong.length?wrong.join(', ')+'번':'없음');
-  navigator.clipboard.writeText(t).then(()=>toast('복사되었습니다. 카톡에 붙여넣으세요'),()=>toast('복사 실패'));
+  copyText(t);
 });
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(function(){toast('복사되었습니다. 카톡에 붙여넣으세요')},function(){legacyCopy(t)});
+  }else{legacyCopy(t);}
+}
+function legacyCopy(t){
+  try{
+    const ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');
+    ta.style.position='fixed';ta.style.top='0';ta.style.left='0';ta.style.opacity='0';
+    document.body.appendChild(ta);
+    const r=document.createRange();r.selectNodeContents(ta);
+    const sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);
+    ta.setSelectionRange(0,t.length);
+    const ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast(ok?'복사되었습니다. 카톡에 붙여넣으세요':'복사 실패 - 길게 눌러 복사하세요');
+  }catch(e){toast('복사 실패 - 길게 눌러 복사하세요');}
+}
+if(document.getElementById('list').innerHTML.replace(/\s/g,'')===''){
+  document.getElementById('list').innerHTML='<div class="card" style="color:#b91c1c">문제를 불러오지 못했습니다. 브라우저를 업데이트한 뒤 다시 열어 주세요.</div>';
+}
 </script></body></html>
