@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>2027학년도 9월 모의평가 국어 · 셀프해설지</title>
+<meta name="description" content="스스로 채점하고, 지문을 분석하고, 함정을 찾아내고, 대응책을 세우는 자기주도 해설지">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2027 9월 모평 국어 · 셀프해설지">
+<meta property="og:description" content="채점 → 지문 분석 → 문항 분석 → 총평·계획. 다 쓰면 카톡 보고서로 제출!">
+<meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/logo.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="400">
+<meta property="og:url" content="https://saenarachild-crypto.github.io/korean-class/self-2027-09mo.html">
+<style>
+:root{
+  --navy:#12213f; --navy2:#1c3160; --ink:#1a1d23; --sub:#5b6473;
+  --line:#e2e6ee; --bg:#f5f7fb; --card:#ffffff;
+  --pur:#6b4ea8; --pur-bg:#f3efff;
+  --gold:#b7791f; --gold-bg:#fff8e6;
+  --red:#c0392b; --red-bg:#fdeceb;
+  --green:#1e8449; --green-bg:#eafaf1;
+  --blue:#1f5fa8; --blue-bg:#eaf2fc;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
+  background:var(--bg); color:var(--ink); font-size:15px; line-height:1.6;
+  padding-bottom:96px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 14px}
+header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:24px 0 20px}
+header h1{margin:0 0 4px;font-size:20px;letter-spacing:-0.4px}
+header .sub{font-size:13px;opacity:.82;margin:0}
+.idbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.idbar .fld{flex:1 1 150px;min-width:0}
+.idbar .fld > label{display:block;font-size:12px;font-weight:700;color:#fff;opacity:.9;margin:0 0 5px}
+.idbar .fld input,.idbar .fld select{
+  width:100%;font:inherit;font-size:15px;padding:11px 12px;border-radius:10px;
+  border:1px solid rgba(255,255,255,.35);background:#fff;color:#1a1d23;
+  -webkit-appearance:none;appearance:none;min-width:0
+}
+.idbar .fld input:focus,.idbar .fld select:focus{outline:none;border-color:#ffd76a;background:#fff}
+.idbar .fld select{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235b6473' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px
+}
+.idbar .fld input::-webkit-input-placeholder{color:#9aa3b2;opacity:1}
+.idbar .fld input::placeholder{color:#9aa3b2;opacity:1}
+.idbar option{color:#1a1d23}
+.idhint{font-size:12px;color:#fff;opacity:.75;margin:10px 0 0;line-height:1.5}
+.idhint.warn{opacity:1;color:#ffd76a;font-weight:700}
+
+nav.tabs{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);
+  box-shadow:0 2px 8px rgba(18,33,63,.05)}
+nav.tabs .wrap{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.tabs button{
+  flex:1 0 auto;font:inherit;font-size:14px;font-weight:600;padding:13px 12px;border:0;background:none;
+  color:var(--sub);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap
+}
+nav.tabs button.on{color:var(--navy);border-bottom-color:var(--navy)}
+
+section.tab{display:none;padding:18px 0 8px}
+section.tab.on{display:block}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card > h2{margin:0 0 4px;font-size:16px;letter-spacing:-0.3px}
+.card > .hint{margin:0 0 12px;font-size:12.5px;color:var(--sub);line-height:1.5}
+h3.blk{margin:18px 0 8px;font-size:14px;color:var(--navy);font-weight:700}
+
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;vertical-align:middle}
+.t-read{background:var(--blue-bg);color:var(--blue)}
+.t-lit{background:var(--pur-bg);color:var(--pur)}
+.t-sel{background:var(--gold-bg);color:var(--gold)}
+.t-3{background:var(--red-bg);color:var(--red)}
+.t-ebs{background:var(--green-bg);color:var(--green)}
+.t-non{background:#eef0f4;color:#8a93a3}
+.callout{background:var(--green-bg);border:1px solid #bfe6d0;border-radius:12px;
+  padding:12px 14px;margin:12px 0 0;font-size:13px;line-height:1.65;color:var(--ink)}
+.callout b{color:var(--green)}
+.callout .hd{display:block;font-size:13.5px;font-weight:800;color:var(--green);margin-bottom:5px}
+.howto{background:#f4f7fd;border:1px solid #d6e0f0;border-left:4px solid var(--navy2);
+  border-radius:10px;padding:12px 14px;margin:0 0 14px;font-size:12.8px;line-height:1.7;color:var(--ink)}
+.howto .hd{display:block;font-weight:800;color:var(--navy);margin-bottom:6px;font-size:13.5px}
+.howto ol{margin:0;padding-left:19px}
+.howto li{margin-bottom:4px}
+.howto .no{color:var(--red);font-weight:700}
+.howto .yes{color:var(--green);font-weight:700}
+label.f .q b{color:var(--navy2)}
+.cnt{display:block;text-align:right;font-size:11.5px;color:#a3abb9;margin-top:3px}
+.cnt.ok{color:var(--green);font-weight:700}
+.exbtn{display:inline-block;margin-top:9px;font:inherit;font-size:12.5px;font-weight:700;
+  padding:8px 14px;border-radius:9px;border:1px solid var(--navy2);background:#fff;color:var(--navy);cursor:pointer}
+.excav{background:var(--gold-bg);border:1px solid #ecd9a8;border-radius:10px;padding:10px 12px;
+  font-size:12.5px;line-height:1.6;color:#6b5518;margin:0 0 14px}
+.exsit{background:#f1f4fa;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.6;margin:0 0 14px}
+.exh{font-size:13.5px;color:var(--navy);margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--navy)}
+.exh span{font-weight:400;font-size:12px;color:var(--sub);margin-left:6px}
+.exi{margin-bottom:14px}
+.exf{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.exb,.exg{font-size:13px;line-height:1.65;border-radius:9px;padding:9px 11px;margin-bottom:5px}
+.exb{background:var(--red-bg);border:1px solid #f3c9c4}
+.exg{background:var(--green-bg);border:1px solid #bfe6d0}
+.exb b{display:block;font-size:11.5px;color:var(--red);margin-bottom:3px}
+.exg b{display:block;font-size:11.5px;color:var(--green);margin-bottom:3px}
+.exb b + *, .exg b + *{margin-top:0}
+.exwhy{display:block;margin-top:5px;font-size:12px;color:var(--sub);font-style:normal}
+
+/* 채점 */
+.omr{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.omr .q{border:1px solid var(--line);border-radius:10px;padding:7px 8px;background:#fff}
+.omr .q .n{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.omr .q .n .mk{font-size:14px}
+.choices{display:flex;gap:3px}
+.choices button{
+  flex:1;font:inherit;font-size:13px;padding:5px 0;border:1px solid var(--line);border-radius:7px;
+  background:#fafbfd;color:var(--sub);cursor:pointer
+}
+.choices button.sel{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.q.correct{background:var(--green-bg);border-color:#bfe6d0}
+.q.wrong{background:var(--red-bg);border-color:#f3c9c4}
+
+.marks{display:flex;gap:3px;margin-top:4px}
+.marks button{
+  flex:1;font:inherit;font-size:13px;line-height:1.1;padding:4px 0;border:1px dashed #cfd6e4;border-radius:7px;
+  background:#fff;color:#9aa3b2;cursor:pointer
+}
+.marks button.on{border-style:solid;font-weight:700}
+.marks button.on[data-m="o"]{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.marks button.on[data-m="t"]{background:var(--gold-bg);border-color:var(--gold);color:var(--gold)}
+.marks button.on[data-m="x"]{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.legend{font-size:12px;color:var(--sub);background:#f7f9fc;border:1px solid var(--line);
+  border-radius:10px;padding:9px 11px;margin:0 0 12px;line-height:1.6}
+.legend b{color:var(--navy)}
+.danger{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important}
+.danger b{color:#fff!important}
+.danger span{color:#fff!important;opacity:.85!important}
+.ptime{display:flex;align-items:center;gap:8px;background:#f7f9fc;border:1px solid var(--line);
+  border-radius:10px;padding:8px 11px;margin:0 0 10px}
+.ptime label{font-size:12.5px;font-weight:700;color:var(--navy);white-space:nowrap}
+.ptime input{width:78px;flex:0 0 auto;font:inherit;font-size:14px;padding:6px 9px;
+  border:1px solid var(--line);border-radius:8px;text-align:center;background:#fff;color:var(--ink)}
+.ptime .u{font-size:12.5px;color:var(--sub)}
+
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-top:6px}
+.score .box{background:var(--navy);color:#fff;border-radius:12px;padding:12px 8px;text-align:center}
+.score .box b{display:block;font-size:22px;line-height:1.2}
+.score .box span{font-size:11.5px;opacity:.8}
+.score .box.alt{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.score .box.alt b{color:var(--navy)}
+.score .box.alt span{color:var(--sub);opacity:1}
+
+label.f{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:12px 0 5px}
+label.f .q{font-weight:400;color:var(--sub);font-size:12px;display:block;margin-top:2px}
+textarea,input.t,select.s{
+  width:100%;font:inherit;font-size:14px;padding:9px 11px;border:1px solid var(--line);
+  border-radius:9px;background:#fcfdff;color:var(--ink);resize:vertical
+}
+textarea:focus,input.t:focus,select.s:focus{outline:none;border-color:var(--navy2);background:#fff}
+textarea{min-height:64px;line-height:1.55}
+.row2{display:flex;gap:8px;flex-wrap:wrap}
+.row2 > *{flex:1 1 140px}
+
+/* 지문 분석 */
+.pcard{border-left:4px solid var(--blue)}
+.pcard.lit{border-left-color:var(--pur)}
+.pcard.sel{border-left-color:var(--gold)}
+.pcard .meta{font-size:12px;color:var(--sub);margin:2px 0 10px}
+.workname{font-size:13px;font-weight:700;background:#f1f4fa;border-radius:8px;padding:7px 10px;margin:16px 0 2px;color:var(--navy)}
+
+/* 문항 분석 */
+.qcard{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:11px;background:#fff}
+.qcard.bad{border-color:#f0bdb6;background:#fffbfa}
+.qhead{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:3px}
+.qhead .num{font-size:15px;font-weight:800;color:var(--navy)}
+.qhead .ty{font-size:12px;color:var(--sub)}
+.qres{font-size:12px;font-weight:700;padding:2px 8px;border-radius:20px}
+.qres.o{background:var(--green-bg);color:var(--green)}
+.qres.x{background:var(--red-bg);color:var(--red)}
+.qres.n{background:#eef0f4;color:var(--sub)}
+.filterbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filterbar button{font:inherit;font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:20px;
+  border:1px solid var(--line);background:#fff;color:var(--sub);cursor:pointer}
+.filterbar button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* 개관 표 */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+.tbl th{background:#f1f4fa;color:var(--navy);font-weight:700;white-space:nowrap}
+.scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+ul.tips{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink)}
+ul.tips li{margin-bottom:5px}
+
+/* 하단바 */
+.bottombar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);
+  border-top:1px solid var(--line);padding:11px 14px calc(11px + env(safe-area-inset-bottom));z-index:40}
+.bottombar .inner{max-width:860px;margin:0 auto;display:flex;gap:8px;align-items:center}
+.bottombar .st{font-size:12px;color:var(--sub);flex:1 1 auto;line-height:1.35}
+.btn{font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;border:0;cursor:pointer;white-space:nowrap}
+.btn.k{background:#fee500;color:#191600}
+.btn.g{background:var(--navy);color:#fff}
+.btn.o{background:#fff;color:var(--navy);border:1px solid var(--line)}
+
+/* 모달 */
+.modal{position:fixed;inset:0;background:rgba(10,15,28,.55);z-index:60;display:none;
+  align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.modal .sheet{background:#fff;width:100%;max-width:860px;border-radius:18px 18px 0 0;
+  max-height:88vh;display:flex;flex-direction:column}
+.modal .sh-h{padding:15px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal .sh-h b{font-size:15px}
+.modal .sh-b{padding:14px 16px;overflow:auto;-webkit-overflow-scrolling:touch}
+.modal .sh-f{padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);display:flex;gap:8px}
+.modal .sh-f .btn{flex:1}
+#kakao-report-text{
+  white-space:pre-wrap;word-break:break-word;font-size:13px;line-height:1.6;
+  background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:12px;
+  -webkit-user-select:text;user-select:text
+}
+.xbtn{border:0;background:#eef0f4;color:var(--sub);border-radius:8px;font-size:18px;
+  width:32px;height:32px;line-height:1;cursor:pointer}
+.jsfail{display:none;background:var(--red-bg);color:var(--red);border:1px solid #f3c9c4;
+  border-radius:10px;padding:12px;margin:14px;font-size:13px}
+@media (max-width:400px){
+  .omr{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .choices button{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<div id="jsfail" class="jsfail">
+  화면이 제대로 열리지 않았습니다. 브라우저를 최신으로 업데이트하거나,
+  카카오톡 안에서 열었다면 <b>오른쪽 위 ⋯ → 다른 브라우저로 열기</b>를 눌러 주세요.
+</div>
+
+<script>window.__BAKED_ASGN__={
+"examKey":"2027_09MO",
+"title":"2027학년도 9월 모의평가 국어",
+"subtitle":"셀프해설지 · 스스로 채점하고 스스로 해설한다",
+"gas":"https://script.google.com/macros/s/AKfycbw05gNe7MRMnFfo10otZ1BU-IXwKmLQGLTYQznrynRCfYzh7YMw7JYpyQjZUe8IbQFjHw/exec",
+"passages":[
+ {"id":"p1","label":"[1~3]","sec":"c","kind":"read","field":"독서론","title":"전기류를 활용한 진로 독서","qs":[1,2,3],
+  "note":"전기류의 특성 → 진로 독서 4단계 → 활용 전략(참고 자료·도해 조직자·대립 척도표) 순으로 전개."},
+ {"id":"p2","label":"[4~9]","sec":"c","kind":"read","field":"인문 · 주제 통합","title":"(가) 종 차별주의의 옹호 논리와 그 한계 / (나) 인공 행위자의 도덕적 지위",
+  "qs":[4,5,6,7,8,9],
+  "note":"(가) 종 차별주의 옹호 근거 2가지(고차원적 정신 능력 · 유대감)와 각각의 반박. (나) 표준적 입장 ↔ 윤리적 행동주의(㉮) ↔ 존슨(독립성 논변) · 스미즈. 이번 시험 최고난도 세트.",
+  "works":[{"name":"(가) 종 차별주의","fs":"read"},{"name":"(나) 인공 행위자와 도덕적 지위","fs":"read"},{"name":"(가)·(나) 연결 정리","fs":"link"}]},
+ {"id":"p3","label":"[10~13]","sec":"c","kind":"read","field":"기술","title":"어댑터 — 선형 방식과 스위칭 방식","qs":[10,11,12,13],
+  "note":"㉠선형(변압기→정류기→평활 회로→정전압 소자) vs ㉡스위칭(정류기→평활→스위치→변압기→정류기→평활, 비교 회로). 순서와 기능을 도식으로 그려 두면 13번이 풀린다."},
+ {"id":"p4","label":"[14~17]","sec":"c","kind":"read","field":"사회","title":"커뮤니케이션 2단계 유통 이론과 오피니언 리더","qs":[14,15,16,17],
+  "note":"㉮ 2단계 유통 이론(라자스펠트) ↔ ㉯ 비판론(직접 획득·능동적 수용·분야별 위치·다단계). 16번은 ㉮/㉯ 어느 쪽 관점인지부터 갈라야 한다."},
+ {"id":"p5","label":"[18~21]","sec":"c","kind":"lit","field":"고전소설","title":"작자 미상, 「금환기봉」","ebs":"수능특강 문학 · 실전 학습 2회","qs":[18,19,20,21],
+  "note":"남복 입은 장 소저의 과거 급제 → 부친 신원 → 여성임을 밝힐 것인가의 갈등. 여성 영웅 소설. '한 소년'='장 소저' 임을 잡아내는 것이 18번의 핵심.","works":[{"name":"","fs":"novel"}]},
+ {"id":"p6","label":"[22~27]","sec":"c","kind":"lit","field":"갈래 복합","title":"(가) 장옥관 「가오리 날아오르다」 / (나) 김혜순 「잘 익은 사과」 / (다) 박지원 「공작관문고 자서」","ebs":"(나) 잘 익은 사과 — 수능특강 문학 · 갈래 복합 (가·다는 비연계)",
+  "qs":[22,23,24,25,26,27],
+  "note":"현대시 2편 + 고전 수필 1편. 26번은 [B](시 창작·감상 상황)를 [C](이명·코골이 일화)에 대응시키는 문제로, 대응 관계를 표로 정리하는 것이 정석.",
+  "works":[{"name":"(가) 가오리 날아오르다 — 현대시","fs":"poem"},{"name":"(나) 잘 익은 사과 — 현대시","fs":"poem"},{"name":"(다) 공작관문고 자서 — 고전 수필","fs":"essay"}]},
+ {"id":"p7","label":"[28~31]","sec":"c","kind":"lit","field":"현대소설","title":"박화성, 「고향 없는 사람들」","qs":[28,29,30,31],
+  "note":"일제 강점기 이주 농민. 판옥 ↔ 삼룡의 편지 교환이 서사의 축. 편지 ㉠㉡㉢의 기능과 [A]~[E] 대화의 연결 관계를 놓치면 29·30번이 무너진다.","works":[{"name":"","fs":"novel"}]},
+ {"id":"p8","label":"[32~34]","sec":"c","kind":"lit","field":"고전시가","title":"이진유, 「속사미인곡」","ebs":"수능특강 문학 · 2부 적용 학습 고전시가","qs":[32,33,34],
+  "note":"낯선 섬에 유배된 사대부의 유배 가사. 연군(戀君)의 관습적 표현 + 사대부 정체성 유지의 고투. 백두음·장문부 각주가 결정적 단서.","works":[{"name":"","fs":"poem"}]},
+
+ {"id":"h1","label":"[35~37]","sec":"h","kind":"speech","field":"화법","title":"강연 — 해양 유물의 발굴과 보존 처리","qs":[35,36,37]},
+ {"id":"h2","label":"[38~42]","sec":"h","kind":"speech","field":"화법+작문","title":"(가) 동아리 대화 / (나) 교지 기고 초고 — 수리 배움터","qs":[38,39,40,41,42]},
+ {"id":"h3","label":"[43~45]","sec":"h","kind":"speech","field":"작문","title":"지역신문 기고문 초고","qs":[43,44,45]},
+
+ {"id":"e1","label":"[35~36]","sec":"e","kind":"grammar","field":"문법(지문형)","title":"색채어의 형성과 의미","qs":[35,36]},
+ {"id":"e2","label":"37","sec":"e","kind":"grammar","field":"담화","title":"대용 표현 '자기'","qs":[37]},
+ {"id":"e3","label":"38","sec":"e","kind":"grammar","field":"음운","title":"한자어 'ㄹ' 뒤 경음화","qs":[38]},
+ {"id":"e4","label":"39","sec":"e","kind":"grammar","field":"문장","title":"문장 성분과 안긴절","qs":[39]},
+ {"id":"e5","label":"[40~43]","sec":"e","kind":"media","field":"매체","title":"(가) 실시간 인터넷 방송 / (나) 카드 뉴스 — 옥스퍼드 영어 사전 등재 어휘","qs":[40,41,42,43]},
+ {"id":"e6","label":"[44~45]","sec":"e","kind":"media","field":"매체","title":"(가) 둘레길 안내 앱 / (나) 누리 소통망 대화","qs":[44,45]}
+],
+"questions":{
+ "c":[
+  {"n":1,"a":4,"p":2,"t":"내용 일치","d":"전기류의 특성"},
+  {"n":2,"a":1,"p":2,"t":"핵심 개념 이해","d":"진로 독서 4단계"},
+  {"n":3,"a":4,"p":3,"t":"<보기> 적용","d":"독서록에 독서 전략 대응"},
+  {"n":4,"a":5,"p":2,"t":"추론","d":"(가) 종 차별주의 옹호 논리"},
+  {"n":5,"a":4,"p":2,"t":"내용 이해","d":"(나) 전체 이해"},
+  {"n":6,"a":2,"p":2,"t":"관점 파악","d":"㉮ 윤리적 행동주의의 입장"},
+  {"n":7,"a":1,"p":2,"t":"관점 적용","d":"표준적 입장으로 ㉠·㉡ 해석"},
+  {"n":8,"a":3,"p":3,"t":"<보기> 적용","d":"인격체·인격 종·속성 P"},
+  {"n":9,"a":1,"p":2,"t":"어휘(바꿔 쓰기)","d":"ⓐ구별된다 ⓑ부여하기"},
+  {"n":10,"a":2,"p":2,"t":"내용 일치","d":"어댑터의 구성"},
+  {"n":11,"a":5,"p":2,"t":"세부 정보 추론","d":"'특별한 경우'"},
+  {"n":12,"a":3,"p":2,"t":"비교 이해","d":"㉠선형 vs ㉡스위칭"},
+  {"n":13,"a":1,"p":3,"t":"<보기> 사례 적용","d":"스위칭 어댑터 수치 해석"},
+  {"n":14,"a":2,"p":2,"t":"내용 일치","d":"오피니언 리더"},
+  {"n":15,"a":3,"p":2,"t":"이유 추론","d":"㉠ 미디어 영향력이 미미했던 이유"},
+  {"n":16,"a":4,"p":3,"t":"<보기> 관점 적용","d":"㉮이론·㉯비판론으로 갑·을 해석"},
+  {"n":17,"a":5,"p":2,"t":"어휘(문맥적 의미)","d":"ⓐ 벗어나"},
+  {"n":18,"a":4,"p":2,"t":"인물 이해","d":"'한 소년'의 정체"},
+  {"n":19,"a":5,"p":2,"t":"사건 전개 파악","d":"㉠~㉢ '일'의 지시 대상"},
+  {"n":20,"a":4,"p":2,"t":"심리·태도 비교","d":"[A]·[B]의 남복 입기"},
+  {"n":21,"a":2,"p":3,"t":"외적 준거 감상","d":"경직되지 않은 주종 관계"},
+  {"n":22,"a":1,"p":2,"t":"공통점·차이점","d":"(가)(나)(다) 표현 방식"},
+  {"n":23,"a":1,"p":2,"t":"시구 의미","d":"[A]의 이해"},
+  {"n":24,"a":2,"p":3,"t":"외적 준거 감상","d":"상상력이 만든 '창조된 현실'"},
+  {"n":25,"a":3,"p":2,"t":"내용 이해","d":"(다) 이명과 코골이"},
+  {"n":26,"a":3,"p":2,"t":"자료 대응","d":"[B]의 상황을 [C]에 연결"},
+  {"n":27,"a":1,"p":2,"t":"표현상 특징","d":"㉠~㉤"},
+  {"n":28,"a":1,"p":2,"t":"내용 이해","d":"인물의 말과 행동"},
+  {"n":29,"a":3,"p":2,"t":"구성 이해","d":"[A]~[E]의 관계"},
+  {"n":30,"a":2,"p":2,"t":"소재의 서사적 기능","d":"㉠·㉡·㉢ 편지"},
+  {"n":31,"a":3,"p":3,"t":"외적 준거 감상","d":"디아스포라"},
+  {"n":32,"a":5,"p":2,"t":"표현상 특징","d":"㉠~㉤"},
+  {"n":33,"a":5,"p":2,"t":"시어 의미","d":"'꿈'을 중심으로 [A]"},
+  {"n":34,"a":4,"p":3,"t":"외적 준거 감상","d":"유배 가사와 사대부 정체성"}
+ ],
+ "h":[
+  {"n":35,"a":4,"p":2,"t":"말하기 방식","d":"강연자의 전략"},
+  {"n":36,"a":5,"p":2,"t":"자료 활용","d":"㉠~㉤ 자료의 기능"},
+  {"n":37,"a":5,"p":2,"t":"듣기·대화 분석","d":"학생 1·2의 반응"},
+  {"n":38,"a":4,"p":2,"t":"내용 확인","d":"'메모' 중 언급되지 않은 것"},
+  {"n":39,"a":3,"p":2,"t":"발화의 기능","d":"㉠~㉤"},
+  {"n":40,"a":2,"p":3,"t":"조건에 따른 반영","d":"편집부 요청 사항 ⓐ~ⓒ"},
+  {"n":41,"a":1,"p":2,"t":"자료 활용 계획","d":"사전 조사 결과 ㉮~㉰"},
+  {"n":42,"a":2,"p":2,"t":"고쳐쓰기","d":"마지막 문단"},
+  {"n":43,"a":3,"p":2,"t":"글쓰기 방식","d":"초고의 전개"},
+  {"n":44,"a":2,"p":2,"t":"조건에 맞는 내용 생성","d":"[A]에 들어갈 내용"},
+  {"n":45,"a":5,"p":3,"t":"자료 활용 방안","d":"ㄱ·ㄴ·ㄷ"}
+ ],
+ "e":[
+  {"n":35,"a":3,"p":2,"t":"문법 지문 추론","d":"색채어의 형성"},
+  {"n":36,"a":2,"p":2,"t":"학습 활동","d":"15세기 국어 색채어 분류"},
+  {"n":37,"a":2,"p":2,"t":"담화","d":"대용 표현 '자기'의 지시 범위"},
+  {"n":38,"a":3,"p":2,"t":"음운 변동","d":"한자어 'ㄹ' 뒤 경음화"},
+  {"n":39,"a":4,"p":3,"t":"문장 구조","d":"문장 성분과 안긴절"},
+  {"n":40,"a":1,"p":2,"t":"매체 - 정보 전달 방식","d":"실시간 방송"},
+  {"n":41,"a":4,"p":2,"t":"매체 - 제작 계획","d":"(나)에 반영되지 않은 것"},
+  {"n":42,"a":2,"p":2,"t":"매체 - 수용자 반응","d":"시청자 댓글"},
+  {"n":43,"a":5,"p":2,"t":"매체 언어","d":"㉠~㉤의 문법 요소"},
+  {"n":44,"a":2,"p":3,"t":"매체 - 자료 이해","d":"앱 화면과 대화"},
+  {"n":45,"a":5,"p":2,"t":"매체 - 기능 활용","d":"누리 소통망 기능"}
+ ]
+},
+"examples":{"passage": "<p class=\"excav\">아래 예시는 <b>이번 시험에 나오지 않은 수능특강 작품</b>으로 만들었습니다. 옮겨 적을 곳이 없습니다. <b>문장이 아니라 쓰는 방식</b>만 보세요. 교재 판본에 따라 세부 내용은 다를 수 있습니다.</p><h4 class=\"exh\">문학 · 시 — 송순 「면앙정가」 <span>수능특강 문학 2부 고전시가</span></h4><div class=\"exi\"><div class=\"exf\">화자와 화자가 처한 상황</div><div class=\"exb\"><b>✕ 부족한 답</b>자연을 노래하고 있다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>벼슬에서 물러나 면앙정을 짓고, 그 앞에 펼쳐진 산과 물을 바라보는 화자. 구경하는 사람이면서 동시에 그 풍경의 주인이다.</div></div><div class=\"exi\"><div class=\"exf\">정서·태도의 변화</div><div class=\"exb\"><b>✕ 부족한 답</b>자연을 좋아하는 마음이 나타난다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>산수를 둘러보는 흥취 → 사계절을 차례로 즐기는 몰입 → '역군은이샷다'로 임금의 은혜에 돌리는 마무리. 흥이 커질수록 오히려 신하의 자리로 되돌아온다.</div></div><div class=\"exi\"><div class=\"exf\">주제</div><div class=\"exb\"><b>✕ 부족한 답</b>자연의 아름다움</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>면앙정 주변의 사계절 풍경을 즐기는 흥취와, 그 즐거움을 끝내 임금의 은혜로 돌리는 사대부의 태도</div></div><div class=\"exi\"><div class=\"exf\">표현상 특징</div><div class=\"exb\"><b>✕ 부족한 답</b>비유가 많이 쓰였다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>산의 모습을 사람의 몸에 빗댐(활유), 봄·여름·가을·겨울을 차례로 배열한 계절적 구성, '~로다 / ~이샷다'의 영탄형 종결.</div></div><h4 class=\"exh\">문학 · 소설 — 채만식 「치숙」 <span>수능특강 문학 2부 현대소설</span></h4><div class=\"exi\"><div class=\"exf\">시점과 서술자의 태도</div><div class=\"exb\"><b>✕ 부족한 답</b>1인칭 관찰자 시점이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>1인칭 관찰자 시점. 그런데 서술자인 '나'가 아저씨를 비웃으며 말하고, 독자는 그 비웃음이 오히려 '나'의 무지를 드러낸다고 읽게 된다. <b>믿을 수 없는 서술자</b>다. — 시점 이름만 쓰면 절반이다. 서술자를 믿어도 되는지까지 써야 한다.</div></div><div class=\"exi\"><div class=\"exf\">인물 관계와 갈등의 축</div><div class=\"exb\"><b>✕ 부족한 답</b>'나'와 아저씨가 갈등한다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>'나'(일본인 상점 점원, 현실 순응) ↔ 아저씨(사회주의 운동, 생활 무능). 인물끼리 다투는 갈등이 아니라 두 <b>가치관</b>이 부딪히는 갈등이다. 작가는 어느 쪽도 편들지 않는다.</div></div><div class=\"exi\"><div class=\"exf\">사건의 흐름</div><div class=\"exb\"><b>✕ 부족한 답</b>'나'가 아저씨 이야기를 한다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>'나'가 아저씨의 이력을 소개 → 아주머니의 헌신을 언급 → 병든 아저씨와 대화 → 서로를 끝내 이해하지 못한 채 끝남</div></div><div class=\"exi\"><div class=\"exf\">서술상 특징</div><div class=\"exb\"><b>✕ 부족한 답</b>구어체를 사용했다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>'나'의 수다스러운 구어체 독백으로만 이어진다. 대화가 아니라 일방적 진술이라 반박하는 목소리가 없고, 그래서 판단을 독자가 직접 해야 한다. 서술자의 의도와 작품의 의미가 어긋나는 <b>반어적 효과</b>가 생긴다.</div></div><h4 class=\"exh\">문학 · 수필 — 이상 「산촌여정」 <span>수능특강 문학 2부 극·수필</span></h4><div class=\"exi\"><div class=\"exf\">글쓴이의 관점·주장</div><div class=\"exb\"><b>✕ 부족한 답</b>산촌의 풍경을 묘사했다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>도시를 떠나 산촌에 머물면서도, 산촌을 끝내 도시의 감각과 언어로 바라보는 사람의 시선</div></div><div class=\"exi\"><div class=\"exf\">핵심 소재와 비유의 의미</div><div class=\"exb\"><b>✕ 부족한 답</b>여러 가지를 비유했다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>별 = 도회의 불빛 / 벌레 소리 = 기계·활자 소리. 산촌의 것을 도시의 것에 빗대는 방향이 일관된다. 그 방향 자체가 화자의 처지를 말해 준다.</div></div><div class=\"exi\"><div class=\"exf\">인상적인 표현과 그 효과</div><div class=\"exb\"><b>✕ 부족한 답</b>감각적 표현이 인상적이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>외래어와 근대적 어휘를 산촌 묘사에 끌어들여, <b>대상과 언어가 어긋나는 것</b> 자체가 화자의 이질감을 드러낸다.</div></div><h4 class=\"exh\">독서 — 수능특강 「가상 메모리」 <span>과학·기술</span></h4><div class=\"exi\"><div class=\"exf\">핵심 화제와 주제</div><div class=\"exb\"><b>✕ 부족한 답</b>가상 메모리에 대해 설명한 글이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>실제 메모리보다 큰 프로그램을 실행하기 위해 보조기억장치를 메모리처럼 쓰는 가상 메모리의 작동 원리 — <b>무엇에 대한 글인지 + 그것에 대해 무엇을 말하는지</b>가 둘 다 있다.</div></div><div class=\"exi\"><div class=\"exf\">문단별 핵심어</div><div class=\"exb\"><b>✕ 부족한 답</b>메모리, 페이지, 주소</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>① 메모리 부족 문제 ② 가상 주소와 페이지 분할 ③ 페이지 테이블과 주소 변환 ④ 페이지 부재와 교체 ⑤ 장점과 그 대가 — 번호를 붙이고 명사로 끊는다.</div></div><div class=\"exi\"><div class=\"exf\">글의 구조·전개 방식</div><div class=\"exb\"><b>✕ 부족한 답</b>차례대로 설명하고 있다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>문제 제기 → 해결 방식 → 작동 과정(순서) → 대가. '문제 → 해결 → 과정 → 한계' 구조. — <b>구조에 이름을 붙여야</b> 다음에 같은 구조를 만났을 때 써먹는다.</div></div><div class=\"exi\"><div class=\"exf\">내가 막혔던 지점과 그 이유</div><div class=\"exb\"><b>✕ 부족한 답</b>3문단이 어려웠다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>3문단에서 '가상 주소'와 '물리 주소'를 반대로 잡고 읽었다. 변환의 방향(가상 → 물리)을 화살표로 그려 두지 않아서 4문단이 통째로 꼬였다.</div></div><h4 class=\"exh\">주제 통합 연결 — 수능완성 「(가) 인지 편향 / (나) 주식 투자의 비합리적 경향」</h4><div class=\"exi\"><div class=\"exf\">(가)와 (나)가 공유하는 쟁점</div><div class=\"exb\"><b>✕ 부족한 답</b>둘 다 비합리적인 판단을 다룬다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>사람은 왜 정보를 앞에 두고도 합리적으로 판단하지 못하는가? — <b>물음표 문장</b>으로 적는다. 소재가 같다는 말은 쟁점이 아니다.</div></div><div class=\"exi\"><div class=\"exf\">(가)와 (나)의 입장 차이</div><div class=\"exb\"><b>✕ 부족한 답</b>(가)는 심리학, (나)는 경제학이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>(가)는 편향이 생기는 심리 기제를 설명하고, (나)는 그 기제가 시장에서 어떻게 나타나는지를 보여 준다. 대립이 아니라 <b>원리와 사례</b>의 관계.</div></div><div class=\"exi\"><div class=\"exf\">두 글을 겹쳐 읽을 때 나오는 질문</div><div class=\"exb\"><b>✕ 부족한 답</b>둘을 비교해 볼 수 있다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>(가)의 어느 편향이 (나)의 어느 투자 행동에 대응하는가? 대응되지 않는 편향이 있다면 왜 그런가?</div></div><h4 class=\"exh\">언어와 매체 · 문법 — '비음화' 개념 정리</h4><div class=\"exi\"><div class=\"exf\">핵심 개념 정리</div><div class=\"exb\"><b>✕ 부족한 답</b>비음화는 비음으로 바뀌는 것이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>파열음 ㄱ·ㄷ·ㅂ이 비음 ㅁ·ㄴ 앞에서 같은 자리의 비음 ㅇ·ㄴ·ㅁ으로 바뀌는 교체. 국물[궁물], 받는[반는], 밥물[밤물]. — <b>예를 반드시 함께</b> 적는다.</div></div><div class=\"exi\"><div class=\"exf\">헷갈렸던 부분</div><div class=\"exb\"><b>✕ 부족한 답</b>비음화가 헷갈린다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>'ㄹ의 비음화'(종로[종노])와 '유음화'(신라[실라])를 구분하지 못했다. 어느 쪽 소리가 바뀌는지가 서로 반대다. — <b>두 대상을 명시</b>해야 다음에 찾아볼 수 있다.</div></div><div class=\"exi\"><div class=\"exf\">반드시 외워 둘 것</div><div class=\"exb\"><b>✕ 부족한 답</b>비음화를 외우자.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>조음 위치는 그대로, 조음 방법만 비음으로. ㄱ→ㅇ, ㄷ→ㄴ, ㅂ→ㅁ. 자리끼리 짝지어 외운다.</div></div><h4 class=\"exh\">매체 · 화법과 작문 — 쓰는 방식</h4><div class=\"exi\"><div class=\"exf\">매체의 종류와 그 특성</div><div class=\"exb\"><b>✕ 부족한 답</b>카드 뉴스이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>카드 뉴스 — 이미지와 문자를 결합한 복합 양식. 한 장에 한 정보만 담고 넘겨 보게 하므로, 정보의 분량보다 <b>순서</b>가 중요하다.</div></div><div class=\"exi\"><div class=\"exf\">말하기·글쓰기의 상황·목적·수용자</div><div class=\"exb\"><b>✕ 부족한 답</b>강연이다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>학예 연구사가 / 학생들에게 / 자기 분야를 소개하고 전시관 방문을 권하려고. 전문가가 비전문가에게 말하는 상황이라 용어 풀이와 자료 제시가 계속 나온다. — <b>누가·누구에게·무엇을 위해</b> 셋이 다 있다.</div></div>", "question": "<p class=\"excav\">아래 예시는 <b>이번 시험에 나오지 않은 수능특강 작품</b>으로 만들었습니다. 옮겨 적을 곳이 없습니다. <b>문장이 아니라 쓰는 방식</b>만 보세요. 교재 판본에 따라 세부 내용은 다를 수 있습니다.</p><p class=\"exsit\"><b>예시 상황</b> — 수능특강 「치숙」 세트의 &lt;보기&gt; 문제. &lt;보기&gt;는 “이 작품은 믿을 수 없는 서술자를 내세워 독자가 서술자의 판단을 의심하게 만든다”는 취지였다. 나는 ③을 골랐고 정답은 ⑤였다.</p><div class=\"exi\"><div class=\"exf\">왜 이게 답인가 — 내 논리</div><div class=\"exb\"><b>✕ 부족한 답</b>⑤가 &lt;보기&gt;의 내용과 맞기 때문이다.<br><span class='exwhy'>→ 어느 문장이 근거인지가 없다. 이건 근거가 아니라 결론을 다시 쓴 것이다.</span></div><div class=\"exg\"><b>○ 이 정도는 되어야</b>⑤가 답. &lt;보기&gt;는 '독자가 서술자의 판단을 의심하게 만든다'고 했다. '나'가 아저씨를 비웃는 대목에서 독자는 아저씨가 아니라 <b>그렇게 말하는 '나'</b>를 의심하게 된다. 서술자의 평가와 독자의 판단이 어긋나는 지점이라 &lt;보기&gt;와 맞물린다.<br><span class='exwhy'>→ ① 정답 번호 ② &lt;보기&gt;의 근거를 따옴표로 그대로 ③ 선지와 맞물리는 지점. 셋이 다 있다.</span></div></div><div class=\"exi\"><div class=\"exf\">출제자의 함정</div><div class=\"exb\"><b>✕ 부족한 답</b>급하게 봐서 실수했다.<br><span class='exwhy'>→ '실수'는 원인이 아니라 결과다. 이렇게 쓰면 다음에도 똑같이 틀린다.</span></div><div class=\"exg\"><b>○ 이 정도는 되어야</b>③을 골랐다. ③에 '서술자가 자신의 무지를 자각한다'는 말이 있었는데, 지문에는 '나'가 끝까지 자기 생각을 옳다고 여기는 장면만 있다. <b>지문에 없는 말을 넣은</b> 수법이었다. '무지'라는 단어가 &lt;보기&gt;의 취지와 비슷해 보여서 맞다고 느꼈다.<br><span class='exwhy'>→ ① 내가 고른 번호 ② 나를 속인 한 단어('자각한다') ③ 수법에 이름 붙이기.</span></div></div><div class=\"exi\"><div class=\"exf\">다음엔 이렇게</div><div class=\"exb\"><b>✕ 부족한 답</b>다음엔 선지를 꼼꼼히 읽겠다.<br><span class='exwhy'>→ 시험장에서 이걸 어떻게 실행하나? 동작이 없다.</span></div><div class=\"exg\"><b>○ 이 정도는 되어야</b>선지에 인물의 자각을 말하는 서술어(깨닫는다·자각한다·반성한다)가 나오면, 그 장면이 지문에 실제로 있는지 <b>손가락으로 짚고</b> 넘어간다. 없으면 그 선지가 답이다. &lt;보기&gt;와 분위기가 비슷하다는 느낌만으로는 고르지 않는다.<br><span class='exwhy'>→ 읽자마자 시험장에서 그대로 할 수 있는 동작이다.</span></div></div>", "review": "<p class=\"excav\">아래는 <b>지난 6월 모평</b>을 본 어떤 학생의 총평입니다. 이번 시험과는 무너진 지점이 다릅니다. <b>쓰는 방식</b>만 보세요.</p><div class=\"exi\"><div class=\"exf\">이번 시험 한 줄 총평</div><div class=\"exb\"><b>✕ 부족한 답</b>생각보다 어려웠다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>문학은 시간이 남았는데 독서 첫 세트에서 20분을 써서 뒤가 통째로 밀렸다.</div></div><div class=\"exi\"><div class=\"exf\">무너진 지점과 그 원인</div><div class=\"exb\"><b>✕ 부족한 답</b>독서가 약하다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>1) 독서 첫 세트에 20분. 문단마다 핵심어를 안 적고 통으로 읽어서 선지마다 되돌아갔다. → <b>시간 부족</b><br>2) 고전시가 어휘를 몰라 3문항을 다 놓쳤다. → <b>지식 부족</b><br>3) '적절하지 않은 것'을 반대로 읽었다. → <b>오독</b><br>— 원인이 다르면 처방도 다르다. 셋을 뭉뚱그리면 안 된다.</div></div><div class=\"exi\"><div class=\"exf\">가장 오래 걸린 문항 TOP 3</div><div class=\"exb\"><b>✕ 부족한 답</b>3점 문항들이 오래 걸렸다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>1) 14번 · 약 7분 · &lt;보기&gt;의 개념을 지문 용어와 연결 못 해 &lt;보기&gt;만 다시 읽었다.<br>2) 27번 · 약 5분 · 선지 다섯 개를 모두 지문에서 다시 찾았다.<br>— <b>번호 · 시간 · 이유</b> 셋이 다 있어야 한다.</div></div><div class=\"exi\"><div class=\"exf\">이 문항들을 빠르게 푸는 방법</div><div class=\"exb\"><b>✕ 부족한 답</b>더 빨리 풀도록 연습하겠다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>① &lt;보기&gt;가 길면 선지를 보기 전에 &lt;보기&gt;의 새 용어를 지문 용어와 1:1로 적는다.<br>② 선지를 전부 확인하지 않는다. 확실한 두 개를 먼저 지우고 남은 것만 지문에서 찾는다.<br>— '열심히'가 아니라 <b>순서</b>로 적혀 있다.</div></div><div class=\"exi\"><div class=\"exf\">이번 달 목표</div><div class=\"exb\"><b>✕ 부족한 답</b>독서를 열심히 하겠다.</div><div class=\"exg\"><b>○ 이 정도는 되어야</b>독서 오답 5개 이하 / 한 세트를 12분 안에 / 고전시가 필수 어휘 100개 암기 — <b>숫자</b>가 들어가야 지켰는지 알 수 있다.</div></div>"},
+"fguides":{"read": ["필수 ① 무엇에 대한 글인지(화제) ② 글쓴이가 그것에 대해 무엇을 말하는지(주제). 두 개를 한 문장에 담을 것.", "필수 ① 문단 번호를 붙일 것 ② 문단마다 핵심어 2~5개 ③ 문장으로 늘이지 말고 명사로 끊을 것.", "필수 ① 문단끼리의 관계를 화살표로 ② 그 관계에 이름을 붙일 것 — 대립 / 과정·절차 / 통시적 변화 / 원인→결과 / 주장→반박.", "필수 ① '어려웠다'로 끝내지 말 것 ② 어느 문장에서 ③ 무엇을 잘못 연결해서 막혔는지까지."], "link": ["필수 ① 두 글이 함께 다루는 것을 '물음표 문장'으로 ② 소재가 같다는 말은 쟁점이 아니다.", "필수 ① 'A는 ~, B는 ~' 형태로 대비시킬 것 ② 어느 쪽이 더 강한 결론인지까지.", "필수 ① 두 글을 겹쳐야만 나오는 질문을 하나 ② 한 글만 읽어도 나오는 질문은 적지 말 것."], "poem": ["필수 ① 화자가 누구인지 ② 어디서 무엇을 하고 있는지. 둘 다 있어야 한다.", "필수 ① 변화를 화살표로 ② 처음과 끝이 같다면 '유지'라 쓰고 그 근거 시어를 적을 것.", "필수 ① 소재 나열이 아니라 '무엇을 말하려 하는가'로 ② 한 문장, 서술어까지 완성할 것.", "필수 ① 비유·감각·어조·종결 중 최소 두 가지 ② 각각 시어를 따옴표로 인용해 짝지을 것."], "essay": ["필수 ① 소재 나열이 아니라 '무엇을 주장하는가'로 ② 주장 문장의 형태로 쓸 것.", "필수 ① 핵심 소재가 무엇에 빗댄 것인지를 = 기호로 연결 ② 소재가 둘이면 둘 다.", "필수 ① 한 문장 ② 서술어까지 완성할 것.", "필수 ① 표현을 따옴표로 인용 ② 그 표현이 만드는 효과까지."], "novel": ["필수 ① 시점 이름 ② 서술자가 인물을 어떻게 대하는지(개입? 거리 둠? 비판?)까지.", "필수 ① 인물을 ↔ 로 연결 ② 갈등에 이름 붙이기 — 인물 간 / 내적 / 상황과의 갈등.", "필수 ① → 화살표로 5단계 안팎 ② 중략 앞뒤를 반드시 이어 붙일 것.", "필수 ① 대화·독백·편지·사투리·장면 전환 중 두드러진 것 ② 그것이 이 작품에서 하는 '일'까지."], "speech": ["필수 ① 누가 ② 누구에게 ③ 무엇을 위해. 셋 다.", "필수 ① 처음-가운데-끝을 화살표로 ② 각 부분이 하는 역할까지.", "필수 ① 자료(㉠~㉤, ㄱ·ㄴ·ㄷ)마다 '무엇을 보여 주려고 쓴 것인지' 하나씩.", "필수 ① '주의하자'로 끝내지 말 것 ② 어떤 선지에 어떻게 속을 뻔했는지."], "grammar": ["필수 ① 교재 문장을 옮기지 말고 내 말로 ② 조건이 있는 개념이면 조건을 번호로 나눌 것.", "필수 ① '헷갈렸다'가 아니라 'A와 B를 구분하지 못했다'로 ② 두 대상을 반드시 명시.", "필수 ① 시험장에서 30초 안에 떠올릴 수 있는 형태로 ② 예외가 있으면 예외까지."], "media": ["필수 ① 매체 이름 ② 그 매체만의 특성 — 쌍방향성 / 복합 양식 / 실시간 / 하이퍼링크 등.", "필수 ① 수치·순서·분류가 나왔다면 그대로 옮겨 적을 것 ② 매체 문제는 자료 안에 답이 있다.", "필수 ① 어미·조사·높임 표현을 하나씩 짚을 것 ② 각각의 기능까지.", "필수 ① 기능 이름(투표·답장·검색 등)과 대화 장면을 짝지을 것."]},
+"qguides":{"why": "필수 ① 정답 번호를 먼저 쓴다 ② 지문·&lt;보기&gt;의 근거를 따옴표 안에 <b>그대로</b> 옮긴다 ③ 그 문장이 선지의 어느 말과 맞물리는지 연결한다. — 요약해서 옮기면 근거가 아니다.", "trap": "필수 ① 내가 고른 번호 ② 그 선지의 <b>어느 한 단어</b>가 나를 속였는지 ③ 출제자의 수법에 이름 붙이기 — 범위 확대 / 인과 뒤집기 / 주체 바꾸기 / &lt;보기&gt;가 부정한 말 되살리기 / 지문에 없는 말 넣기.", "plan": "필수 ① 다음 시험에서 <b>몸으로 할 수 있는 행동</b>으로 ② 순서나 기준의 형태로 — '먼저 ~하고, 그다음 ~한다' ③ '꼼꼼히·열심히·집중해서'는 대응책이 아니다."},
+"fieldsets":{
+ "read":["핵심 화제와 주제 (한 문장으로)","문단별 핵심어 (①…  ②…  ③… 순서대로)","글의 구조·전개 방식 (대립? 과정? 통시적?)","내가 막혔던 지점과 그 이유"],
+ "link":["(가)와 (나)가 공유하는 쟁점","(가)와 (나)의 입장 차이","두 글을 겹쳐 읽을 때 나오는 질문"],
+ "poem":["화자와 화자가 처한 상황","정서·태도의 변화","주제 (한 문장으로)","표현상 특징 (비유·감각·어조·종결)"],
+ "essay":["글쓴이의 관점·주장","핵심 소재와 비유의 의미","주제 (한 문장으로)","인상적인 표현과 그 효과"],
+ "novel":["시점과 서술자의 태도","인물 관계와 갈등의 축","사건의 흐름 (→ 화살표로)","서술상 특징"],
+ "speech":["말하기·글쓰기의 상황·목적·수용자","내용 전개의 흐름","자료(매체)를 활용한 방식","다음에 주의할 점"],
+ "grammar":["핵심 개념 정리 (내 말로)","헷갈렸던 부분","반드시 외워 둘 것"],
+ "media":["매체의 종류와 그 특성","핵심 정보의 흐름","매체 언어(문법 요소) 포인트","다음에 주의할 점"]
+}
+};</script>
+
+<header>
+  <div class="wrap">
+    <h1 id="hd-title">2027학년도 9월 모의평가 국어</h1>
+    <p class="sub" id="hd-sub">셀프해설지 · 스스로 채점하고 스스로 해설한다</p>
+    <div class="idbar">
+      <div class="fld">
+        <label for="stu">이름</label>
+        <input class="t" id="stu" autocomplete="off">
+      </div>
+      <div class="fld">
+        <label for="acad">학원</label>
+        <input class="t" id="acad" autocomplete="off">
+      </div>
+      <div class="fld">
+        <label for="sel">선택 과목</label>
+        <select id="sel">
+          <option value="e">언어와 매체</option>
+          <option value="h">화법과 작문</option>
+        </select>
+      </div>
+    </div>
+    <p class="idhint" id="idhint">
+      먼저 이름과 학원을 적어 주세요. 적어야 작성한 내용이 이 기기에 저장되고, 마지막에 보고서로 제출됩니다.
+    </p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button type="button" data-tab="t1" class="on">① 채점</button>
+    <button type="button" data-tab="t2">② 지문 분석</button>
+    <button type="button" data-tab="t3">③ 문항 분석</button>
+    <button type="button" data-tab="t4">④ 총평·계획</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- 탭1 -->
+<section class="tab on" id="t1">
+  <div class="card">
+    <h2>이번 시험, 한눈에</h2>
+    <p class="hint">먼저 전체 지형을 보고 채점하자. 어디서 무너졌는지가 훨씬 잘 보인다.</p>
+    <div class="scrollx">
+      <table class="tbl">
+        <tr><th>번호</th><th>영역</th><th>제재 / 작품</th><th>EBS 연계</th><th>체크 포인트</th></tr>
+        <tr><td>1~3</td><td>독서론</td><td>전기류를 활용한 진로 독서</td><td><span class="tag t-non">비연계</span></td><td>4단계와 전략(도해 조직자·대립 척도표)을 <b>단계별로</b> 구분</td></tr>
+        <tr><td>4~9</td><td>인문(주제 통합)</td><td>종 차별주의 / 인공 행위자의 도덕적 지위</td><td><span class="tag t-non">비연계</span></td><td><b>이번 시험 최고 난도.</b> 6문항 세트. 논지 지도를 그려야 함</td></tr>
+        <tr><td>10~13</td><td>기술</td><td>어댑터(선형·스위칭)</td><td><span class="tag t-non">비연계</span></td><td>회로 <b>순서도</b>를 여백에 그렸는지가 13번을 가름</td></tr>
+        <tr><td>14~17</td><td>사회</td><td>커뮤니케이션 2단계 유통 이론</td><td><span class="tag t-non">비연계</span></td><td>㉮이론과 ㉯비판론의 <b>대립각</b> 4가지</td></tr>
+        <tr><td>18~21</td><td>고전소설</td><td>작자 미상 「금환기봉」</td><td><span class="tag t-ebs">연계</span><br>수능특강 문학<br>실전 학습 2회</td><td>수특 실전 세트에 <b>그대로</b> 나온 작품. '한 소년' = 장 소저, 남복(男服) 화소</td></tr>
+        <tr><td>22~27</td><td>갈래 복합</td><td>(가) 장옥관 / (나) 김혜순 / (다) 박지원</td><td><span class="tag t-ebs">부분 연계</span><br>(나) 잘 익은 사과<br>수능특강 문학 갈래 복합</td><td>(나)만 연계. (가)·(다)는 처음 보는 글. 26번 [B]↔[C] <b>대응표</b> 필수</td></tr>
+        <tr><td>28~31</td><td>현대소설</td><td>박화성 「고향 없는 사람들」</td><td><span class="tag t-non">비연계</span></td><td>편지가 서사를 움직인다. [A]~[E] 연결 관계</td></tr>
+        <tr><td>32~34</td><td>고전시가</td><td>이진유 「속사미인곡」</td><td><span class="tag t-ebs">연계</span><br>수능특강 문학<br>2부 고전시가</td><td>수특에서 봤어야 할 유배 가사. 각주(백두음·장문부)가 열쇠</td></tr>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="hd">EBS 연계 — 문학 4세트 중 3세트</span>
+      「금환기봉」(수능특강 실전 학습 2회) · 「잘 익은 사과」(수능특강 갈래 복합) · 「속사미인곡」(수능특강 2부 고전시가)이
+      <b>수능특강 문학에 실린 그대로</b> 나왔다. 반면 <b>독서 3세트와 독서론은 연계 지문이 없다.</b><br>
+      → 여기서 갈린다. 「속사미인곡」을 수특에서 <b>분석해 본</b> 학생은 각주만 보고 34번을 풀었고,
+      <b>훑어만 본</b> 학생은 처음 보는 유배 가사로 읽으며 시간을 쏟았다.
+      아래에서 채점한 뒤, <b>연계 작품 세트(18~21 · 22~27 · 32~34)에서 틀린 문항</b>이 있다면
+      그건 실력이 아니라 <b>수능특강 복습 방식</b>의 문제다. ③ 문항 분석에 그 점을 적자.
+      <br><span style="color:var(--sub);font-size:12px">※ 연계 여부는 공개 목차 기준입니다. 독서는 소재·유형 수준의 간접 연계 가능성이 있습니다.</span>
+    </div>
+
+    <ul class="tips">
+      <li><b>권장 시간 배분</b> — 선택 과목 25분 · 독서 3세트 38분 · 문학 4세트 32분 · 검토 5분</li>
+      <li>3점 문항(공통 3·8·13·16·21·24·31·34)에서만 24점이 걸려 있다. 여기서 몇 개를 잃었는지부터 확인하자.</li>
+      <li><b>연계 문학은 빨리 끝내고 비연계 독서에 시간을 넘겨주는 것</b>이 이 시험의 설계였다. 나는 그렇게 했는지 ②에서 지문별 시간으로 확인하자.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>답 체크</h2>
+    <p class="hint">내가 고른 답을 눌러 주세요. 누르는 즉시 채점됩니다.</p>
+    <p class="legend">
+      아래 칸에는 <b>내가 푼 느낌</b>을 남깁니다. 채점 결과와 별개로, 반드시 직접 표시하세요.<br>
+      <b>○ 확실히 맞음</b> — 근거를 대고 골랐다 &nbsp;·&nbsp;
+      <b>△ 애매함</b> — 두 개까지 좁히고 감으로 골랐다 &nbsp;·&nbsp;
+      <b>✕ 못 풀었음</b> — 모르고 찍었거나 시간이 없었다<br>
+      <b>○ 로 표시했는데 틀린 문항</b>이 가장 위험합니다. 그건 실수가 아니라 잘못 알고 있는 것입니다.
+    </p>
+    <h3 class="blk">공통 과목 <span class="tag t-read">1 ~ 34</span></h3>
+    <div class="omr" id="omr-c"></div>
+    <h3 class="blk">선택 과목 <span class="tag t-sel" id="sel-label">35 ~ 45</span></h3>
+    <div class="omr" id="omr-s"></div>
+  </div>
+
+  <div class="card">
+    <h2>결과</h2>
+    <div class="score">
+      <div class="box"><b id="sc-pt">0</b><span>원점수 / 100</span></div>
+      <div class="box alt"><b id="sc-ct">0</b><span>맞은 개수 / 45</span></div>
+      <div class="box alt"><b id="sc-c3">0</b><span>3점 오답 개수</span></div>
+      <div class="box alt"><b id="sc-rd">0</b><span>독서 오답</span></div>
+      <div class="box alt"><b id="sc-lt">0</b><span>문학 오답</span></div>
+      <div class="box alt"><b id="sc-sl">0</b><span>선택 오답</span></div>
+      <div class="box alt" id="box-dg"><b id="sc-dg">0</b><span>○인데 틀림</span></div>
+      <div class="box alt"><b id="sc-tx">0</b><span>△ · ✕ 표시</span></div>
+    </div>
+    <p class="hint" id="dg-list" style="margin:10px 0 0"></p>
+    <label class="f">시험을 어떻게 운영했나?<span class="q">시간이 모자랐다면 어디서 무너졌는지까지 적자.</span></label>
+    <div class="row2">
+      <select class="s" id="tm-order">
+        <option value="">푼 순서 선택</option>
+        <option>선택 → 독서 → 문학</option>
+        <option>선택 → 문학 → 독서</option>
+        <option>독서 → 문학 → 선택</option>
+        <option>문학 → 독서 → 선택</option>
+        <option>1번부터 순서대로</option>
+      </select>
+      <select class="s" id="tm-fin">
+        <option value="">시간 상황 선택</option>
+        <option>다 풀고 검토까지 했다</option>
+        <option>다 풀었지만 검토는 못 했다</option>
+        <option>1~3문항 못 풀고 찍었다</option>
+        <option>4문항 이상 못 풀고 찍었다</option>
+      </select>
+    </div>
+    <textarea id="tm-memo" placeholder="예) 4~9번 인문에서 18분을 썼다. 그 바람에 고전시가를 5분 만에 대충 읽었고 34번을 놓쳤다."></textarea>
+  </div>
+</section>
+
+<!-- 탭2 -->
+<section class="tab" id="t2">
+  <div class="card">
+    <h2>지문 분석</h2>
+    <p class="hint">
+      문제를 다시 풀기 전에 <b>지문부터</b> 정리한다. 답이 기억나는 상태로 문제만 다시 보는 건 복습이 아니다.<br>
+      전부 채우려 하지 말고, <b>내가 틀린 문항이 딸린 지문</b>부터 확실하게 채우자.<br>
+      지문마다 <b>쓴 시간</b>을 먼저 적는다. 어디에서 시간이 새는지는 점수보다 정확한 진단이다.
+    </p>
+    <p class="hint" id="time-sum" style="margin:0 0 12px"></p>
+    <div class="howto">
+      <span class="hd">지문 분석 작성 요령</span>
+      <ol>
+        <li>지문을 <b>다시 펴 놓고</b> 쓴다. 기억으로 쓰면 그건 분석이 아니라 회상이다.</li>
+        <li>지문의 <b>단어를 그대로</b> 쓴다. 내 말로 바꿔 쓰면 나중에 다시 봤을 때 근거로 못 쓴다.</li>
+        <li>줄글로 늘이지 말고 <b>화살표(→)와 기호(↔, =)</b>로 끊는다. 관계가 보여야 분석이다.</li>
+        <li>각 칸 아래의 <b>'필수' 항목을 하나씩 지우듯</b> 채운다. 하나라도 빠지면 그 칸은 미완성이다.</li>
+      </ol>
+      <span class="no">✕ 이렇게 쓰면 안 된다</span> — "잘 모르겠다" / "어려웠다" / 제목만 다시 옮겨 적기 /
+      해설지 문장 옮겨 적기.<br>
+      <span class="yes">○ 기준</span> — <b>내가 쓴 것만 보고도 이 지문을 남에게 3분간 설명할 수 있는가?</b>
+      설명이 안 되면 아직 덜 쓴 것이다.
+      <br><button type="button" class="exbtn" data-ex="passage">다른 작품으로 쓴 예시 보기</button>
+    </div>
+  </div>
+  <div id="passages"></div>
+</section>
+
+<!-- 탭3 -->
+<section class="tab" id="t3">
+  <div class="card">
+    <h2>문항 분석 — 답이 아니라 '왜'를 쓴다</h2>
+    <p class="hint">
+      각 문항마다 네 가지를 적는다.<br>
+      ① <b>유형 분류</b> · ② <b>왜 이게 답인가</b>(지문의 어느 문장이 근거인지 인용) · ③ <b>출제자의 함정</b>(나는 왜 그 선지를 골랐나) · ④ <b>다음엔 이렇게</b>(재현 가능한 행동으로).<br>
+      맞힌 문항이라도 <b>△ 로 표시했다면</b> 반드시 쓰자. 그게 다음에 틀릴 문항이다. ○ △ ✕ 는 여기서도 바꿀 수 있다.
+    </p>
+    <div class="howto">
+      <span class="hd">문항 분석 작성 요령 — 세 칸의 역할이 다르다</span>
+      <ol>
+        <li><b>근거</b>는 '지문에서 찾은 것'을 쓴다. 정답 해설을 옮기는 칸이 아니라, <b>내가 지문에서 무엇을 찾았어야 했는지</b>를 쓰는 칸이다.</li>
+        <li><b>함정</b>은 '나에 대한 것'을 쓴다. 선지가 왜 틀렸는지가 아니라, <b>왜 내가 그걸 골랐는지</b>를 쓴다. 여기가 제일 중요하다.</li>
+        <li><b>대응</b>은 '다음 시험에 대한 것'을 쓴다. 다짐이 아니라 <b>동작</b>으로 쓴다. 읽고 나서 시험장에서 그대로 할 수 있어야 한다.</li>
+      </ol>
+      <span class="no">✕ 자주 나오는 잘못된 답</span> —
+      근거 : "③이 지문 내용과 일치하기 때문" (어느 문장인지가 없다) ·
+      함정 : "실수였다 / 급하게 봤다" (그건 원인이 아니라 결과다) ·
+      대응 : "다음엔 꼼꼼히 읽겠다" (다음에도 똑같이 틀린다)<br>
+      <span class="yes">○ 스스로 검사하는 법</span> —
+      <b>이 세 칸만 보고 한 달 뒤의 내가 같은 문제를 다시 틀리지 않을 수 있는가?</b>
+      없다면 아직 '틀린 이유'를 못 찾은 것이다.
+      <br><button type="button" class="exbtn" data-ex="question">다른 작품으로 쓴 예시 보기</button>
+    </div>
+    <div class="filterbar">
+      <button type="button" data-fil="bad" class="on">틀린 문항 + △ · ✕ 문항</button>
+      <button type="button" data-fil="all">전체 45문항</button>
+      <button type="button" data-fil="p3">3점 문항만</button>
+    </div>
+  </div>
+  <div id="qlist"></div>
+</section>
+
+<!-- 탭4 -->
+<section class="tab" id="t4">
+  <div class="card">
+    <h2>총평</h2>
+    <p class="hint">점수가 아니라 <b>과정</b>을 평가하자. 다음 시험에서 바꿀 수 있는 것만 적는다.</p>
+    <div class="howto">
+      <span class="hd">총평 작성 요령</span>
+      <ol>
+        <li>모든 항목을 <b>'내가 한 행동'</b>으로 쓴다. "운이 좋았다 / 컨디션이 나빴다"는 다음 시험에 쓸 수 없다.</li>
+        <li>무너진 지점은 반드시 <b>원인을 넷 중 하나로 분류</b>한다 —
+            <b>지식 부족</b>(몰라서) / <b>시간 부족</b>(알지만 못 봐서) / <b>근거 확인 생략</b>(느낌으로 골라서) / <b>오독</b>(잘못 읽어서).
+            원인이 다르면 처방도 다르다.</li>
+        <li>계획에는 <b>숫자</b>를 넣는다. 무엇을, 몇 개, 언제까지.</li>
+        <li>질문 칸은 비워 두지 않는다. <b>끝내 이해가 안 된 지점</b>을 문항 번호와 함께 구체적으로 적는다.</li>
+      </ol>
+      <span class="no">✕ 이런 총평은 소용없다</span> — "다음엔 더 열심히 하겠다" / "독서가 약하다" (무엇이 어떻게 약한지가 없다)<br>
+      <span class="yes">○ 기준</span> — <b>내일 아침에 이걸 보고 바로 무엇을 할지 알 수 있는가?</b>
+      <br><button type="button" class="exbtn" data-ex="review">지난 시험으로 쓴 예시 보기</button>
+    </div>
+    <label class="f">이번 시험 한 줄 총평<span class="q">스스로에게 정직하게. 예) "독서는 시간, 문학은 근거 부족."</span></label>
+    <textarea id="g-one" placeholder="한 문장으로"></textarea>
+
+    <label class="f">잘한 점 3가지<span class="q">우연이 아니라 '내가 한 행동' 으로 적을 것.</span></label>
+    <textarea id="g-good" placeholder="1)&#10;2)&#10;3)"></textarea>
+
+    <label class="f">무너진 지점과 그 원인<span class="q">지식 부족 / 시간 부족 / 근거 확인 생략 / 선지 오독 — 어느 쪽인지 구분해서.</span></label>
+    <textarea id="g-bad" placeholder="1)&#10;2)&#10;3)"></textarea>
+
+    <label class="f">가장 오래 걸린 문항 TOP 3<span class="q">번호와 걸린 시간, 그리고 왜 오래 걸렸는지.</span></label>
+    <textarea id="g-slow" placeholder="예) 8번 · 약 7분 · <보기>의 '속성 P'를 지문 개념과 연결하지 못해 <보기>만 네 번 다시 읽었다."></textarea>
+
+    <label class="f">이 문항들을 빠르게 푸는 방법<span class="q">'열심히'가 아니라 '순서'와 '기준'으로. 다음 시험에서 그대로 실행할 수 있게.</span></label>
+    <textarea id="g-fast" placeholder="예) <보기> 문제는 선지부터 보지 않는다. <보기>의 새 개념(인격체·인격 종·속성 P)을 먼저 지문 용어와 1:1로 연결한 뒤 선지로 내려간다."></textarea>
+
+    <label class="f">반복되는 나의 실수 패턴<span class="q">지난 시험에서도 같은 실수를 했는가?</span></label>
+    <textarea id="g-pat" placeholder="예) '적절하지 않은 것'을 '적절한 것'으로 읽는 실수가 이번에도 2번 나왔다."></textarea>
+  </div>
+
+  <div class="card">
+    <h2>앞으로 할 일</h2>
+    <p class="hint">기한과 분량이 없는 계획은 계획이 아니다. 오늘·이번 주·이번 달로 나눠 적자.</p>
+    <label class="f">오늘 안에 끝낼 것</label>
+    <textarea id="a-day" placeholder="예) 4~9번 지문 논지 지도 A4 1장으로 다시 그리기"></textarea>
+    <label class="f">이번 주에 할 것</label>
+    <textarea id="a-week" placeholder="예) 주제 통합 지문 4세트 · 매일 1세트, 문항당 90초 기준으로 시간 재고 풀기"></textarea>
+    <label class="f">이번 달 목표<span class="q">숫자로.</span></label>
+    <textarea id="a-month" placeholder="예) 독서 오답 5개 이하 / 선택 과목 22분 내 완료"></textarea>
+    <label class="f">선생님께 묻고 싶은 것</label>
+    <textarea id="a-ask" placeholder="이해가 끝내 안 되는 문항·지점을 구체적으로"></textarea>
+  </div>
+</section>
+
+</main>
+
+<div class="bottombar">
+  <div class="inner">
+    <div class="st" id="status">작성한 내용은 이 기기에 자동 저장됩니다.</div>
+    <button type="button" class="btn k" id="btn-report">보고서 만들기</button>
+  </div>
+</div>
+
+<div class="modal" id="exmodal">
+  <div class="sheet">
+    <div class="sh-h"><b id="ex-title">작성 예시</b><button type="button" class="xbtn" id="ex-close">×</button></div>
+    <div class="sh-b" id="ex-body"></div>
+    <div class="sh-f"><button type="button" class="btn g" id="ex-ok">닫고 내 것 쓰러 가기</button></div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="sheet">
+    <div class="sh-h"><b>제출용 보고서</b><button type="button" class="xbtn" id="btn-close">×</button></div>
+    <div class="sh-b"><div id="kakao-report-text"></div></div>
+    <div class="sh-f">
+      <button type="button" class="btn o" id="btn-copy">복사하기</button>
+      <button type="button" class="btn g" id="btn-send">선생님께 제출</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var D = window.__BAKED_ASGN__;
+  var KEY_BASE = 'SELF_' + D.examKey + '_v2_';
+  var S = { name:'', acad:'', sel:'e', ans:{}, mark:{}, ptime:{}, ty:{}, why:{}, trap:{}, plan:{}, pa:{}, g:{} };
+  var filter = 'bad';
+  var MK = { o:'○', t:'△', x:'✕' };
+  var MKNAME = { o:'확실히 맞음', t:'애매함', x:'못 풀었음' };
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  var CIR = ['','①','②','③','④','⑤'];
+
+  /* ---------- 저장 ---------- */
+  function storeKey(){ return KEY_BASE + (S.name || 'guest'); }
+  function save(){
+    try{
+      window.localStorage.setItem(storeKey(), JSON.stringify(S));
+      if(S.name) window.localStorage.setItem(KEY_BASE + 'LAST', S.name);
+    }catch(e){}
+  }
+  function load(){
+    try{
+      var raw = window.localStorage.getItem(storeKey());
+      if(!raw) return false;
+      var o = JSON.parse(raw);
+      for(var k in o){ if(o.hasOwnProperty(k)) S[k] = o[k]; }
+      return true;
+    }catch(e){ return false; }
+  }
+  var saveTimer = null;
+  function saveLater(){
+    if(saveTimer) window.clearTimeout(saveTimer);
+    saveTimer = window.setTimeout(function(){
+      save();
+      $('status').innerHTML = '저장됨 · ' + new Date().toLocaleTimeString('ko-KR');
+    }, 400);
+  }
+
+  /* ---------- 문항 목록 ---------- */
+  function qsOf(sec){ return D.questions[sec]; }
+  function allQs(){
+    var out = [], i;
+    var c = qsOf('c');
+    for(i=0;i<c.length;i++) out.push({sec:'c', q:c[i]});
+    var s = qsOf(S.sel);
+    for(i=0;i<s.length;i++) out.push({sec:'s', q:s[i]});
+    return out;
+  }
+  function qid(sec, n){ return sec + n; }
+
+  /* ---------- 채점 ---------- */
+  function buildOmr(){
+    var c = qsOf('c'), s = qsOf(S.sel), i;
+    var h1 = '', h2 = '';
+    for(i=0;i<c.length;i++) h1 += omrCell('c', c[i]);
+    for(i=0;i<s.length;i++) h2 += omrCell('s', s[i]);
+    $('omr-c').innerHTML = h1;
+    $('omr-s').innerHTML = h2;
+    $('sel-label').innerHTML = (S.sel === 'e' ? '언어와 매체' : '화법과 작문') + ' 35 ~ 45';
+    bindOmr();
+    paintOmr();
+  }
+  function omrCell(sec, q){
+    var id = qid(sec, q.n), i, b = '', m = '';
+    for(i=1;i<=5;i++){
+      b += '<button type="button" data-q="'+id+'" data-v="'+i+'">'+CIR[i]+'</button>';
+    }
+    var keys = ['o','t','x'];
+    for(i=0;i<3;i++){
+      m += '<button type="button" data-mk="'+id+'" data-m="'+keys[i]+'" title="'+MKNAME[keys[i]]+'">'+MK[keys[i]]+'</button>';
+    }
+    return '<div class="q" id="cell-'+id+'">'
+      + '<div class="n"><span>'+q.n+(q.p===3?' <span class="tag t-3">3점</span>':'')+'</span><span class="mk" id="mk-'+id+'"></span></div>'
+      + '<div class="choices">'+b+'</div>'
+      + '<div class="marks">'+m+'</div></div>';
+  }
+  function bindOmr(){
+    var btns = document.querySelectorAll('.choices button'), i;
+    for(i=0;i<btns.length;i++){
+      btns[i].onclick = function(){
+        var id = this.getAttribute('data-q');
+        var v = parseInt(this.getAttribute('data-v'), 10);
+        S.ans[id] = (S.ans[id] === v) ? 0 : v;
+        paintOmr(); score(); renderQList(); saveLater();
+      };
+    }
+    var mbs = document.querySelectorAll('.marks button');
+    for(i=0;i<mbs.length;i++){
+      mbs[i].onclick = function(){
+        setMark(this.getAttribute('data-mk'), this.getAttribute('data-m'));
+      };
+    }
+  }
+  function setMark(id, m){
+    S.mark[id] = (S.mark[id] === m) ? '' : m;
+    paintOmr(); score(); renderQList(); saveLater();
+  }
+  function paintOmr(){
+    var list = allQs(), i, j;
+    for(i=0;i<list.length;i++){
+      var sec = list[i].sec, q = list[i].q, id = qid(sec, q.n);
+      var cell = $('cell-'+id); if(!cell) continue;
+      var mine = S.ans[id] || 0, mk = S.mark[id] || '';
+      var cbs = cell.getElementsByClassName('choices')[0].getElementsByTagName('button');
+      for(j=0;j<cbs.length;j++){
+        var v = parseInt(cbs[j].getAttribute('data-v'), 10);
+        cbs[j].className = (v === mine) ? 'sel' : '';
+      }
+      var mbs = cell.getElementsByClassName('marks')[0].getElementsByTagName('button');
+      for(j=0;j<mbs.length;j++){
+        mbs[j].className = (mbs[j].getAttribute('data-m') === mk) ? 'on' : '';
+      }
+      cell.className = 'q' + (mine ? (mine === q.a ? ' correct' : ' wrong') : '');
+      $('mk-'+id).innerHTML = mine ? (mine === q.a ? '○' : '✕') : '';
+    }
+  }
+  function score(){
+    var list = allQs(), i, pt = 0, ct = 0, c3 = 0, rd = 0, lt = 0, sl = 0, dg = [], tx = 0;
+    for(i=0;i<list.length;i++){
+      var sec = list[i].sec, q = list[i].q, id = qid(sec,q.n);
+      var mine = S.ans[id] || 0, mk = S.mark[id] || '';
+      if(mk === 't' || mk === 'x') tx++;
+      if(!mine) continue;
+      if(mine === q.a){ pt += q.p; ct++; }
+      else{
+        if(q.p === 3) c3++;
+        if(sec === 's') sl++;
+        else if(q.n <= 17) rd++;
+        else lt++;
+        if(mk === 'o') dg.push(q.n + (sec === 's' ? '(선택)' : ''));
+      }
+    }
+    $('sc-pt').innerHTML = pt; $('sc-ct').innerHTML = ct; $('sc-c3').innerHTML = c3;
+    $('sc-rd').innerHTML = rd; $('sc-lt').innerHTML = lt; $('sc-sl').innerHTML = sl;
+    $('sc-dg').innerHTML = dg.length; $('sc-tx').innerHTML = tx;
+    $('box-dg').className = 'box alt' + (dg.length ? ' danger' : '');
+    $('dg-list').innerHTML = dg.length
+      ? '<b>○ 로 표시했는데 틀린 문항 : ' + dg.join(', ') + '번</b> — 이 문항들은 ③ 문항 분석에서 가장 먼저, 가장 길게 쓰세요.'
+      : '';
+  }
+
+  /* ---------- 지문 분석 ---------- */
+  var TYPES = ['','내용 일치·확인','중심 내용·전개 방식','추론','관점·입장 비교','<보기> 적용','구체적 사례 적용','어휘·문맥적 의미',
+    '시어·시구의 의미','표현상 특징','인물·심리 파악','서사 구조·기능','외적 준거 감상','말하기·글쓰기 방식',
+    '자료 활용','고쳐쓰기','문법 개념','매체 언어·기능'];
+
+  function buildPassages(){
+    var html = '', i, k;
+    for(i=0;i<D.passages.length;i++){
+      var p = D.passages[i];
+      if(p.sec === 'h' && S.sel !== 'h') continue;
+      if(p.sec === 'e' && S.sel !== 'e') continue;
+      var cls = p.sec === 'c' ? (p.kind === 'lit' ? 'lit' : '') : 'sel';
+      var tagc = p.sec === 'c' ? (p.kind === 'lit' ? 't-lit' : 't-read') : 't-sel';
+      html += '<div class="card pcard '+cls+'">';
+      html += '<h2><span class="tag '+tagc+'">'+esc(p.field)+'</span> '+esc(p.label)+' '+esc(p.title)+'</h2>';
+      html += '<div class="meta">문항 '+p.qs.join(', ')+'번' + (p.note ? ' · ' + esc(p.note) : '') + '</div>';
+      if(p.ebs){
+        html += '<div class="meta"><span class="tag t-ebs">EBS 연계</span> ' + esc(p.ebs)
+             + ' &nbsp;— 수능특강에서 이 작품을 어떻게 봤는지도 함께 적자.</div>';
+      }
+      html += '<div class="ptime"><label>이 지문에 쓴 시간</label>'
+           + '<input type="text" inputmode="numeric" data-pt="'+p.id+'" placeholder="0">'
+           + '<span class="u">분 &nbsp;— 지문 읽기 + 문제 풀이를 합쳐서</span></div>';
+      var works = p.works || [{ name:'', fs:p.kind }];
+      for(k=0;k<works.length;k++){
+        var w = works[k];
+        if(w.name) html += '<div class="workname">'+esc(w.name)+'</div>';
+        var fs = D.fieldsets[w.fs] || D.fieldsets[p.kind] || D.fieldsets.read;
+        for(var f=0;f<fs.length;f++){
+          var key = p.id + '_' + k + '_' + f;
+          var gd = (D.fguides[w.fs] || D.fguides[p.kind] || [])[f] || '';
+          html += '<label class="f">'+esc(fs[f])
+               + (gd ? '<span class="q">'+esc(gd)+'</span>' : '') + '</label>';
+          html += '<textarea data-pa="'+key+'"></textarea>';
+        }
+      }
+      if(p.ebs){
+        html += '<label class="f">수능특강에서 이 작품을 어떻게 공부했나?'
+             + '<span class="q">① 제대로 분석했다 / ② 훑어만 봤다 / ③ 기억이 안 난다 — 하나를 고르고, '
+             + '시험장에서 이 작품을 알아봤는지, 알아본 것이 실제로 도움이 됐는지까지 적자.</span></label>';
+        html += '<textarea data-pa="'+p.id+'_ebs"></textarea>';
+      }
+      html += '</div>';
+    }
+    $('passages').innerHTML = html;
+    var tas = document.querySelectorAll('#passages textarea'), n;
+    for(n=0;n<tas.length;n++){
+      var kk = tas[n].getAttribute('data-pa');
+      if(S.pa[kk]) tas[n].value = S.pa[kk];
+      tas[n].oninput = function(){
+        S.pa[this.getAttribute('data-pa')] = this.value; saveLater();
+      };
+    }
+    var tis = document.querySelectorAll('#passages input[data-pt]');
+    for(n=0;n<tis.length;n++){
+      var pk = tis[n].getAttribute('data-pt');
+      if(S.ptime[pk]) tis[n].value = S.ptime[pk];
+      tis[n].oninput = function(){
+        var v = this.value.replace(/[^0-9]/g,'').substring(0,3);
+        this.value = v;
+        S.ptime[this.getAttribute('data-pt')] = v;
+        paintTimeSum(); saveLater();
+      };
+    }
+    paintTimeSum();
+  }
+  function paintTimeSum(){
+    var el = $('time-sum'); if(!el) return;
+    var i, sum = 0, filled = 0;
+    for(i=0;i<D.passages.length;i++){
+      var p = D.passages[i];
+      if(p.sec === 'h' && S.sel !== 'h') continue;
+      if(p.sec === 'e' && S.sel !== 'e') continue;
+      var v = parseInt(S.ptime[p.id] || '0', 10);
+      if(v > 0){ sum += v; filled++; }
+    }
+    el.innerHTML = filled
+      ? '지금까지 적은 소요 시간 합계 <b>' + sum + '분</b> (' + filled + '개 지문 기록) · 시험 시간은 80분입니다.'
+      : '';
+  }
+
+  /* ---------- 문항 분석 ---------- */
+  function renderQList(){
+    var list = allQs(), i, html = '', shown = 0;
+    for(i=0;i<list.length;i++){
+      var sec = list[i].sec, q = list[i].q, id = qid(sec, q.n);
+      var mine = S.ans[id] || 0;
+      var wrong = mine && mine !== q.a;
+      var mk = S.mark[id] || '';
+      var danger = wrong && mk === 'o';
+      var show = true;
+      if(filter === 'bad') show = wrong || mk === 't' || mk === 'x';
+      else if(filter === 'p3') show = (q.p === 3);
+      if(!show) continue;
+      shown++;
+
+      var res = !mine ? '<span class="qres n">미체크</span>'
+        : (wrong ? '<span class="qres x">오답 · 정답 '+CIR[q.a]+'</span>' : '<span class="qres o">정답 '+CIR[q.a]+'</span>');
+      if(mk) res += '<span class="qres '+(mk==='o'?'o':(mk==='t'?'n':'x'))+'">내 표시 '+MK[mk]+' '+MKNAME[mk]+'</span>';
+      if(danger) res += '<span class="qres x">확실하다고 했지만 틀림</span>';
+      var opts = '', t;
+      for(t=0;t<TYPES.length;t++){
+        var lbl = TYPES[t] || '유형 선택';
+        opts += '<option value="'+esc(TYPES[t])+'"'+((S.ty[id]||'')===TYPES[t]?' selected':'')+'>'+esc(lbl)+'</option>';
+      }
+      var keys = ['o','t','x'], mb = '', mi;
+      for(mi=0;mi<3;mi++){
+        mb += '<button type="button" data-qmk="'+id+'" data-m="'+keys[mi]+'" class="'+(mk===keys[mi]?'on':'')+'">'
+            + MK[keys[mi]] + ' ' + MKNAME[keys[mi]] + '</button>';
+      }
+
+      html += '<div class="qcard'+(wrong?' bad':'')+'">';
+      html += '<div class="qhead"><span class="num">'+q.n+'번</span>'
+           + (q.p===3?'<span class="tag t-3">3점</span>':'')
+           + res + '</div>';
+      html += '<div class="qhead"><span class="ty">출제 유형(참고) : '+esc(q.t)+' — '+esc(q.d)+'</span></div>';
+      html += '<div class="marks" style="margin-top:8px">'+mb+'</div>';
+      html += '<div class="row2" style="margin-top:8px">'
+           + '<select class="s" data-ty="'+id+'">'+opts+'</select></div>';
+      html += '<label class="f">왜 이게 답인가 — 내 논리<span class="q">'+D.qguides.why+'</span></label>';
+      html += '<textarea data-why="'+id+'"></textarea><span class="cnt" id="cnt-why-'+id+'"></span>';
+      html += '<label class="f">출제자의 함정<span class="q">'+D.qguides.trap+'</span></label>';
+      html += '<textarea data-trap="'+id+'"></textarea><span class="cnt" id="cnt-trap-'+id+'"></span>';
+      html += '<label class="f">다음엔 이렇게<span class="q">'+D.qguides.plan+'</span></label>';
+      html += '<textarea data-plan="'+id+'"></textarea><span class="cnt" id="cnt-plan-'+id+'"></span>';
+      html += '</div>';
+    }
+    if(!shown) html = '<div class="card"><p class="hint" style="margin:0">해당하는 문항이 없습니다. ① 채점 탭에서 답을 체크하고 ○ △ ✕ 를 표시하면, 틀린 문항과 △ · ✕ 문항이 여기에 모입니다.</p></div>';
+    $('qlist').innerHTML = html;
+    bindQList();
+  }
+  function bindQList(){
+    var pairs = [['why','why'],['trap','trap'],['plan','plan']], i, j;
+    for(j=0;j<pairs.length;j++){
+      var attr = pairs[j][0], bag = pairs[j][1];
+      var els = document.querySelectorAll('#qlist textarea[data-'+attr+']');
+      for(i=0;i<els.length;i++){
+        (function(el, attr, bag){
+          var k = el.getAttribute('data-'+attr);
+          if(S[bag][k]) el.value = S[bag][k];
+          var cel = $('cnt-'+attr+'-'+k);
+          var upd = function(){
+            if(!cel) return;
+            var L = el.value.replace(/\s/g,'').length;
+            cel.innerHTML = L + '자' + (L >= 60 ? ' · 충분해요' : ' · 60자 이상 권장');
+            cel.className = 'cnt' + (L >= 60 ? ' ok' : '');
+          };
+          upd();
+          el.oninput = function(){ S[bag][k] = el.value; upd(); saveLater(); };
+        })(els[i], attr, bag);
+      }
+    }
+    var tys = document.querySelectorAll('#qlist select[data-ty]');
+    for(i=0;i<tys.length;i++){
+      (function(el){
+        var k = el.getAttribute('data-ty');
+        el.onchange = function(){ S.ty[k] = el.value; saveLater(); };
+      })(tys[i]);
+    }
+    var mbs = document.querySelectorAll('#qlist button[data-qmk]');
+    for(i=0;i<mbs.length;i++){
+      mbs[i].onclick = function(){
+        setMark(this.getAttribute('data-qmk'), this.getAttribute('data-m'));
+      };
+    }
+  }
+
+  /* ---------- 총평 ---------- */
+  var GKEYS = ['g-one','g-good','g-bad','g-slow','g-fast','g-pat','a-day','a-week','a-month','a-ask','tm-memo'];
+  var GSEL  = ['tm-order','tm-fin'];
+  function bindGeneral(){
+    var i;
+    for(i=0;i<GKEYS.length;i++){
+      (function(id){
+        var el = $(id); if(!el) return;
+        if(S.g[id]) el.value = S.g[id];
+        el.oninput = function(){ S.g[id] = el.value; saveLater(); };
+      })(GKEYS[i]);
+    }
+    for(i=0;i<GSEL.length;i++){
+      (function(id){
+        var el = $(id); if(!el) return;
+        if(S.g[id]) el.value = S.g[id];
+        el.onchange = function(){ S.g[id] = el.value; saveLater(); };
+      })(GSEL[i]);
+    }
+  }
+
+  /* ---------- 보고서 ---------- */
+  function cut(s, n){
+    s = (s || '').replace(/\s+/g, ' ');
+    if(!s) return '';
+    return s.length > n ? s.substring(0, n) + '…' : s;
+  }
+  function blk(s, n){
+    s = (s || '').replace(/\r/g, '').replace(/[ \t]+/g, ' ').replace(/\n{2,}/g, '\n');
+    s = s.replace(/^\s+/, '').replace(/\s+$/, '');
+    if(!s) return '';
+    if(s.length > n) s = s.substring(0, n) + '…';
+    return s.replace(/\n/g, '\n     ');
+  }
+  function generateKakaoReport(){
+    var list = allQs(), i, L = [];
+    var pt = 0, ct = 0, wrongNos = [], oNos = [], tNos = [], xNos = [], dgNos = [];
+    for(i=0;i<list.length;i++){
+      var sec = list[i].sec, q = list[i].q, id = qid(sec,q.n), mine = S.ans[id]||0;
+      var lab = q.n + (sec==='s'?'(선택)':''), mk = S.mark[id] || '';
+      if(mine && mine === q.a){ pt += q.p; ct++; }
+      else if(mine){ wrongNos.push(lab); if(mk === 'o') dgNos.push(lab); }
+      if(mk === 'o') oNos.push(lab);
+      else if(mk === 't') tNos.push(lab);
+      else if(mk === 'x') xNos.push(lab);
+    }
+    L.push('[2027 9월 모평 국어 · 셀프해설지]');
+    L.push('이름 : ' + (S.name || '(미기재)'));
+    L.push('학원 : ' + (S.acad || '(미기재)'));
+    L.push('선택 : ' + (S.sel === 'e' ? '언어와 매체' : '화법과 작문'));
+    L.push('제출 : ' + new Date().toLocaleString('ko-KR'));
+    L.push('');
+    L.push('■ 채점');
+    L.push('원점수 ' + pt + '점 / 100  (정답 ' + ct + '개 / 45)');
+    L.push('오답 : ' + (wrongNos.length ? wrongNos.join(', ') + '번' : '없음'));
+    L.push('');
+    L.push('■ 내 표시 (○ 확실 / △ 애매 / ✕ 못 품)');
+    L.push('○ ' + oNos.length + '개  △ ' + tNos.length + '개  ✕ ' + xNos.length + '개');
+    if(tNos.length) L.push('△ 애매 : ' + tNos.join(', ') + '번');
+    if(xNos.length) L.push('✕ 못 품 : ' + xNos.join(', ') + '번');
+    L.push('※ ○인데 틀림 : ' + (dgNos.length ? dgNos.join(', ') + '번  ← 최우선 복습' : '없음'));
+    if(S.g['tm-order'] || S.g['tm-fin']){
+      L.push('운영 : ' + (S.g['tm-order']||'-') + ' / ' + (S.g['tm-fin']||'-'));
+    }
+    if(S.g['tm-memo']) L.push('시간 메모 : ' + blk(S.g['tm-memo'], 260));
+
+    L.push('');
+    L.push('■ 지문별 소요 시간');
+    var tl = [], tsum = 0, tp;
+    for(tp=0; tp<D.passages.length; tp++){
+      var pp = D.passages[tp];
+      if(pp.sec === 'h' && S.sel !== 'h') continue;
+      if(pp.sec === 'e' && S.sel !== 'e') continue;
+      var tv = parseInt(S.ptime[pp.id] || '0', 10);
+      if(tv > 0){ tl.push('  · ' + pp.label + ' ' + cut(pp.title, 48) + ' — ' + tv + '분'); tsum += tv; }
+    }
+    if(tl.length){ L.push(tl.join('\n')); L.push('  합계 ' + tsum + '분 / 80분'); }
+    else L.push('(기록 없음)');
+
+    L.push('');
+    L.push('■ EBS 연계 세트 점검');
+    var ei, eany = 0;
+    for(ei=0; ei<D.passages.length; ei++){
+      var ep = D.passages[ei];
+      if(!ep.ebs) continue;
+      if(ep.sec === 'h' && S.sel !== 'h') continue;
+      if(ep.sec === 'e' && S.sel !== 'e') continue;
+      eany++;
+      var ew = [], eq;
+      for(eq=0; eq<ep.qs.length; eq++){
+        var eid = 'c' + ep.qs[eq], em = S.ans[eid] || 0;
+        var eqo = null, ez;
+        for(ez=0; ez<D.questions.c.length; ez++){ if(D.questions.c[ez].n === ep.qs[eq]) eqo = D.questions.c[ez]; }
+        if(eqo && em && em !== eqo.a) ew.push(ep.qs[eq]);
+      }
+      L.push('▷ ' + ep.label + ' ' + cut(ep.title, 40));
+      L.push('  · 연계 : ' + ep.ebs);
+      L.push('  · 오답 : ' + (ew.length ? ew.join(', ') + '번' : '없음'));
+      var ev = S.pa[ep.id + '_ebs'];
+      if(ev && ev.replace(/\s/g,'')) L.push('  · 수능특강 학습 상태 : ' + blk(ev, 220));
+    }
+    if(!eany) L.push('(해당 없음)');
+
+    L.push('');
+    L.push('■ 지문 분석');
+    var pi, wk, fi, wrote = 0;
+    for(pi=0; pi<D.passages.length; pi++){
+      var p = D.passages[pi];
+      if(p.sec === 'h' && S.sel !== 'h') continue;
+      if(p.sec === 'e' && S.sel !== 'e') continue;
+      var works = p.works || [{name:'', fs:p.kind}];
+      var lines = [];
+      for(wk=0; wk<works.length; wk++){
+        var fs = D.fieldsets[works[wk].fs] || D.fieldsets[p.kind] || D.fieldsets.read;
+        var sub = [];
+        for(fi=0; fi<fs.length; fi++){
+          var v = S.pa[p.id + '_' + wk + '_' + fi];
+          if(v && v.replace(/\s/g,'')){
+            var lb = fs[fi].replace(/\s*\([^)]*\)\s*$/, '');
+            sub.push('  · ' + lb + ' : ' + blk(v, 200));
+          }
+        }
+        if(sub.length){
+          if(works.length > 1 && works[wk].name) lines.push(' [' + works[wk].name + ']');
+          lines.push(sub.join('\n'));
+        }
+      }
+      if(lines.length){
+        wrote++;
+        L.push('▷ ' + p.label + ' ' + p.title);
+        L.push(lines.join('\n'));
+      }
+    }
+    if(!wrote) L.push('(작성 없음)');
+
+    L.push('');
+    L.push('■ 문항 분석');
+    var wrote2 = 0;
+    for(i=0;i<list.length;i++){
+      var sec2 = list[i].sec, q2 = list[i].q, id2 = qid(sec2,q2.n);
+      var why = S.why[id2], trap = S.trap[id2], plan = S.plan[id2];
+      if(!why && !trap && !plan) continue;
+      wrote2++;
+      var mine2 = S.ans[id2]||0;
+      var mark = !mine2 ? '미체크' : (mine2===q2.a ? '정답' : '오답 · 내 답 ' + CIR[mine2] + ' / 정답 ' + CIR[q2.a]);
+      var mk2 = S.mark[id2] || '';
+      L.push('▷ ' + q2.n + '번' + (sec2==='s'?'(선택)':'') + ' [' + mark + (mk2 ? ' / 내 표시 ' + MK[mk2] : '') + '] ' + (S.ty[id2] || q2.t));
+      if(why)  L.push('  · 근거 : ' + blk(why, 260));
+      if(trap) L.push('  · 함정 : ' + blk(trap, 260));
+      if(plan) L.push('  · 대응 : ' + blk(plan, 260));
+    }
+    if(!wrote2) L.push('(작성 없음)');
+
+    L.push('');
+    L.push('■ 총평');
+    if(S.g['g-one'])  L.push('한 줄 : ' + blk(S.g['g-one'], 200));
+    if(S.g['g-good']) L.push('[잘한 점]\n     ' + blk(S.g['g-good'], 400));
+    if(S.g['g-bad'])  L.push('[무너진 지점과 원인]\n     ' + blk(S.g['g-bad'], 400));
+    if(S.g['g-slow']) L.push('[오래 걸린 문항 TOP 3]\n     ' + blk(S.g['g-slow'], 400));
+    if(S.g['g-fast']) L.push('[빠르게 푸는 법]\n     ' + blk(S.g['g-fast'], 450));
+    if(S.g['g-pat'])  L.push('[반복 실수 패턴]\n     ' + blk(S.g['g-pat'], 260));
+
+    L.push('');
+    L.push('■ 앞으로 할 일');
+    if(S.g['a-day'])   L.push('오늘 : ' + blk(S.g['a-day'], 240));
+    if(S.g['a-week'])  L.push('이번 주 : ' + blk(S.g['a-week'], 240));
+    if(S.g['a-month']) L.push('이번 달 : ' + blk(S.g['a-month'], 240));
+    if(S.g['a-ask'])   L.push('질문 : ' + blk(S.g['a-ask'], 300));
+
+    return L.join('\n');
+  }
+  function paintIdHint(){
+    var el = $('idhint'); if(!el) return;
+    if(!S.name){
+      el.className = 'idhint warn';
+      el.innerHTML = '먼저 <b>이름</b>과 <b>학원</b>을 적어 주세요. 적어야 작성한 내용이 이 기기에 저장되고, 마지막에 보고서로 제출됩니다.';
+    }else{
+      el.className = 'idhint';
+      el.innerHTML = S.name + (S.acad ? ' · ' + S.acad : '') + ' — 작성한 내용은 이 기기에 자동 저장됩니다. 같은 기기에서 다시 열면 이어서 쓸 수 있어요.';
+    }
+  }
+  function syncId(){
+    var n = $('stu').value.replace(/\s+/g,'');
+    if(n && n !== S.name){ S.name = n; $('stu').value = n; }
+    S.acad = $('acad').value;
+    paintIdHint();
+  }
+  function showKakaoReport(){
+    syncId();
+    if(!S.name){
+      window.alert('맨 위에 이름을 먼저 적어 주세요.');
+      window.scrollTo(0,0); $('stu').focus(); return;
+    }
+    $('kakao-report-text').textContent = generateKakaoReport();
+    $('modal').className = 'modal on';
+  }
+  function closeKakaoModal(){ $('modal').className = 'modal'; }
+  function copyKakaoReport(){
+    var txt = $('kakao-report-text').textContent;
+    var done = function(){ $('btn-copy').innerHTML = '복사됨!'; window.setTimeout(function(){ $('btn-copy').innerHTML = '복사하기'; }, 1500); };
+    var fallback = function(){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = txt;
+        ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.left = '0'; ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select(); ta.setSelectionRange(0, txt.length);
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      }catch(e){
+        window.alert('자동 복사가 되지 않았습니다. 위 내용을 길게 눌러 직접 복사해 주세요.');
+      }
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    }else{ fallback(); }
+  }
+  function submitToTeacher(){
+    var txt = generateKakaoReport();
+    var btn = $('btn-send');
+    btn.innerHTML = '제출 중…';
+    try{
+      var fd = new FormData();
+      fd.append('exam', D.examKey);
+      fd.append('title', D.title);
+      fd.append('name', S.name || '(미기재)');
+      fd.append('academy', S.acad || '');
+      fd.append('select', S.sel === 'e' ? '언어와 매체' : '화법과 작문');
+      fd.append('report', txt);
+      fd.append('raw', JSON.stringify(S));
+      fetch(D.gas, { method:'POST', mode:'no-cors', body: fd });
+      window.setTimeout(function(){
+        btn.innerHTML = '제출 완료';
+        window.setTimeout(function(){ btn.innerHTML = '선생님께 제출'; }, 2500);
+      }, 900);
+    }catch(e){
+      btn.innerHTML = '선생님께 제출';
+      window.alert('제출에 실패했습니다. [복사하기]를 눌러 카톡으로 보내 주세요.');
+    }
+  }
+
+  /* ---------- 탭 ---------- */
+  function bindTabs(){
+    var bs = document.querySelectorAll('nav.tabs button'), i;
+    for(i=0;i<bs.length;i++){
+      bs[i].onclick = function(){
+        var t = this.getAttribute('data-tab'), j;
+        var all = document.querySelectorAll('nav.tabs button');
+        for(j=0;j<all.length;j++) all[j].className = '';
+        this.className = 'on';
+        var secs = document.querySelectorAll('section.tab');
+        for(j=0;j<secs.length;j++) secs[j].className = 'tab' + (secs[j].id === t ? ' on' : '');
+        window.scrollTo(0,0);
+      };
+    }
+    var fs = document.querySelectorAll('.filterbar button');
+    for(i=0;i<fs.length;i++){
+      fs[i].onclick = function(){
+        var j, all = document.querySelectorAll('.filterbar button');
+        for(j=0;j<all.length;j++) all[j].className = '';
+        this.className = 'on';
+        filter = this.getAttribute('data-fil');
+        renderQList();
+      };
+    }
+  }
+
+  /* ---------- 초기화 ---------- */
+  function rebuildAll(){
+    buildOmr(); score(); buildPassages(); renderQList();
+  }
+  function init(){
+    $('hd-title').innerHTML = esc(D.title);
+    $('hd-sub').innerHTML = esc(D.subtitle);
+
+    $('stu').onchange = function(){
+      var nm = this.value.replace(/\s+/g,'');
+      this.value = nm;
+      if(!nm) return;
+      S.name = nm;
+      var raw = null;
+      try{ raw = window.localStorage.getItem(storeKey()); }catch(e){}
+      if(raw && window.confirm(nm + ' 이름으로 저장된 기록이 있습니다.\n[확인] 저장된 기록 불러오기 / [취소] 지금 쓰던 내용 그대로 이어 쓰기')){
+        load(); S.name = nm;
+      }
+      rebuildAll(); bindGeneral();
+      $('stu').value = S.name; $('acad').value = S.acad || ''; $('sel').value = S.sel;
+      paintIdHint(); save();
+    };
+    $('acad').oninput = function(){ S.acad = this.value; paintIdHint(); saveLater(); };
+    $('sel').onchange = function(){
+      S.sel = this.value; rebuildAll(); saveLater();
+    };
+    var exb = document.querySelectorAll('.exbtn'), xi;
+    for(xi=0; xi<exb.length; xi++){
+      exb[xi].onclick = function(){
+        var k = this.getAttribute('data-ex');
+        var t = { passage:'지문 분석 — 작성 예시', question:'문항 분석 — 작성 예시', review:'총평 — 작성 예시' };
+        $('ex-title').innerHTML = t[k] || '작성 예시';
+        $('ex-body').innerHTML = D.examples[k] || '';
+        $('exmodal').className = 'modal on';
+        $('ex-body').scrollTop = 0;
+      };
+    }
+    $('ex-close').onclick = function(){ $('exmodal').className = 'modal'; };
+    $('ex-ok').onclick = function(){ $('exmodal').className = 'modal'; };
+    $('exmodal').onclick = function(e){ if(e.target === this) $('exmodal').className = 'modal'; };
+
+    $('btn-report').onclick = showKakaoReport;
+    $('btn-close').onclick = closeKakaoModal;
+    $('btn-copy').onclick = copyKakaoReport;
+    $('btn-send').onclick = submitToTeacher;
+    $('modal').onclick = function(e){ if(e.target === this) closeKakaoModal(); };
+
+    try{
+      var last = window.localStorage.getItem(KEY_BASE + 'LAST');
+      if(last){ S.name = last; load(); }
+    }catch(e){}
+
+    bindTabs();
+    rebuildAll();
+    bindGeneral();
+    $('stu').value = S.name || '';
+    $('acad').value = S.acad || '';
+    $('sel').value = S.sel;
+    paintIdHint();
+  }
+
+  try{ init(); }
+  catch(err){
+    var f = document.getElementById('jsfail');
+    if(f) f.style.display = 'block';
+  }
+})();
+</script>
+</body>
+</html>
