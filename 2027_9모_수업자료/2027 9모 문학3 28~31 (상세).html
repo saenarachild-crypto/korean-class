@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 문학3 28~31 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header" style="background:#4a1d96;"><h1>📖 2027학년도 9월 모의평가 · 문학3 28~31</h1>
+<p>현대소설 박화성, 「고향 없는 사람들」 | 지문 원문 + 문단별 심층 분석 + 서사 구조도 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<div class="part-label" style="background:#4a1d96;">박화성, 「고향 없는 사람들」</div>
+<p>논둑길을 걸어오는 우편배달부가 판옥이를 부르며 편지 한 장을 전했다. 판옥이는 발신인의 이름을 보면서 달리다시피 집으로 뛰어갔다.<br>
+"어디서 왔소? 아마 덕근 아배한테서 왔는감만, 저리도 좋아하게."<br>
+마누라가 방에서 고개를 내밀었다.</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[A]</span>
+<p>"덕근 어메도 잘 있고 덕근이 남매도 잘 있다고 했소?"<br>그 역시 판옥이만큼 바쁜 모양이었다.<br>"허 그 여편네 무척 급했네. 읽어 봐야 알지 안 읽어 보고도 아는 재주가 있는가?"<br>판옥이는 빙긋이 웃으며 떠듬떠듬 편지를 내려 읽어 갔다.</p>
+</div>
+<p>한참 만에야</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[B]</span>
+<p>"그러면 그렇지, 우리같이 없는 놈이 어디 가면 별수 있을라고."<br>하고 판옥이가 편지를 접으면서 혼잣말을 하였다.</p>
+</div>
+<p>"아이고 갑갑하구만, 원 얘기나 좀 시원스럽게 해 주시오그려."<br>마누라는 마루로 나와서 쪼그리고 앉으며 남편의 입을 쳐다보았다.<br>"당초에 모든 형편이 말 아니라네."</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[C]</span>
+<p>"어째서 그럴까? 지어는 집에 논 스무 마지기씩 주고 소 한 마리씩 주고 왼통 농사 기계 다 주고 그런다는디."</p>
+</div>
+<p>"그 집이라는 것, 말이 아니래어, 방 한 간 정제(부엌) 한 간에다가 양철때기만 얹어서 집이라고 만들어 놓고 흉악한 초석 자리 한 닢에 오십 전씩 깎드라고 안 하는가?"<br>"저런!"</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[D]</span>
+<p>"그리고 장난감같이 생긴 삼 하나, 쇠스랑 하나, 팽이 하나, 호미 하나씩 주고 농장에서 본값보다도 비싸게 깎어 버리드라네그라."<br>"아가……?"</p>
+</div>
+<p>"그것도 그렇고 왼갖 것을 다 그렇게 비싸게 감하는디 요새 안주 땅이 덜 풀려서 일을 못 하니께 농장에서 주는 돈 십 원으로 한 달을 살어 갈랴니께 죽겠다고 덕근 어무니는 날마당 울고 있다고 안 하는가?"<br>"저를 어짜까? 망할 놈의 곳도 있다. 여기는 봄도 한창인디 안즉 땅이 안 풀리다니. 아니 한 사람 앞에 일백 얼마씩 기부했다더니만 왜 그럴께라우?"</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[E]</span>
+<p>"흥, 당구(堂狗) 삼 년에 음풍월이라더니 작년 내 하도 이민 이민 하고 기부 기부 하는 덕에 우리 마누라까지 유식해졌네."<br>판옥이는 쓰디쓰게 웃었다.</p>
+</div>
+<p>[중략 부분의 줄거리] 삼룡(덕근 아배)은 고향으로 돌아가게 해 달라는 진정서를 조선 총독부에 제출한다. 그 무렵 고향에는 가뭄이 들어 다시 사람들이 떠나가고, 고향으로 돌아가기 사흘 전 삼룡은 판옥의 편지를 받는다.</p>
+<p>삼룡이, 고향이 대체 무슨 쓸데 있는 것인가? 자네들 보내고 나서 뚝 끊어졌던 노래가 요새는 다시 살아나서 야단이네. 정답던 고향이건만 묵은 채로 자빠져 있는 논을 보면 인제는 그만 정이 뚝 떨어지고 어서 하루바삐 타관으로 가서 고향의 참혹한 꼴을 안 보고 싶네. 말을 들으니 자네들도 다시 고향에 오려고 생각한다네마는, 자네들이 왔자 누가 하나 반갑게 자네들을 맞아 줄 사람이 없겠네.<br>
+삼룡이, 인제 우리는 정말 죽어서 저승에 가서나 만나 보겠네. 자네나 내나 더욱 좋은 일만 하세. 좋은 일을 하면 극락에 간다고 않는가? 둘이 다 극락에를 못 가겠거든 차라리 똑같이 지옥에나 가세. 고향에서 쫓겨나는 우리 같은 놈들에게 남는 것이 악뿐일 텐데 어찌 좋은 일을 해 보겠는가? 자네나 내나 몸만 성하면 혹시 어느 하늘 밑에서 또 모이게 될지 누가 알 것인가?<br>
+할 말은 태산같이 쌔고 썼네마는 가슴이 답답하여 더 못 쓰겠네. 떠나기 전에 자네 답장 받아 보도록 편지나 한 장 해 주게.<br>
+<span class="source-underline">㉠편지를 읽은 삼룡의 입이 씰룩씰룩 일그러지고 손이 벌벌 떨리더니만 굵은 눈물방울이 눈에서 뚝뚝 떨어져 내렸다</span>.<br>
+그는 편지를 다 읽고 나서 잠깐 앉아 있다가 벌떡 일어나서 회사로 쫓아갔다. 그날 밤에 삼룡이는 판옥에게 이런 답장을 보냈다.<br>
+자네의 만지장서를 받고 <span class="source-underline">㉡나는 그냥 회사로 쫓아가서 모레 떠나기로 한 귀향 사건을 중지하고 말았네</span>. 내가 가지 않기로 하니 동무들도 다 아니 가기로 했네.<br>
+자네는 고향을 떠나는 사람을 보고 죽어 나가는 사람들이라고 하지마는 우리는 죽어서 나오는 사람들이 아니라 차고 무정한 고향을 박차 버리고 나오는 영웅이라고 생각하네. 우리는 고향이 없는 사람들이네. 고향이 없는 사람들에게 무슨 고향을 못 잊어 하는 설움이 있겠는가? 어디든지 우리가 발을 딛고 살아가는 곳을 우리의 고향으로 만드세.<br>
+너무 비감하여 말게. 맘을 든든히 먹고 두 팔을 단단히 갈아서 우리의 살아 나갈 길을 뚫어 보세.<br>
+우리는 고향이 없는 사람들이니 고향을 떠날 때 뒤도 돌아보지 마세. 앞만 바라보고 호랑이같이 사납게 나가 보세, 알아듣겠는가? 동무들에게 이 뜻을 말해 주소. 다음 또 쓰기로 하고 이만 줄이네.<br>
+<span class="source-underline">㉢편지를 다 쓰고 난 삼룡의 손끝은 새로운 기운에 부르르 떨었다</span>.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 전반부 · 이민간 삼룡의 편지와 비참한 실상</div><div class="content">· 상황: 북간도로 이주한 덕근 아배(삼룡)의 편지가 고향의 판옥에게 도착.<br>· 기대와 실상의 대조:<br>  - 판옥 처의 기대([C]): 논 스무 마지기, 소, 농기계 제공.<br>  - 실상([D]): 조잡한 방 한 간에 엉터리 초석 자리 50전씩 감면, 장난감 같은 농기구 주고 비싸게 원금 공제, 혹한으로 땅이 얼어 농사 불가, 월 10원으로 연명 ➔ <b>이민 농장의 가혹한 사기와 착취</b>.</div></div>
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 후반부 · 판옥의 편지와 삼룡의 비장한 결단</div><div class="content">· 판옥의 편지: 고향 또한 가뭄과 착취로 피폐해져 정이 떨어짐, 귀향을 만류하며 절망과 비애("죽어 저승에서나 만나세")를 토로.<br>· 삼룡의 반응: 오열 후 <b>귀향 포기(㉡)</b> ➔ 능동적 디아스포라 의지.<br>· 삼룡의 답장: "우리는 죽어 나가는 자가 아니라 무정한 고향을 박차고 나온 영웅", <b>"발을 딛고 살아가는 곳을 우리의 고향으로 만드세"</b> ➔ 절망을 극복하는 강인한 생존 의지와 개척 정신.</div></div>
+<div class="vocab-box"><strong>📖 핵심 문학 개념어</strong><div>• <strong>디아스포라(Diaspora)</strong>: 조국이나 고향을 떠나 타향에서 흩어져 살아가는 유랑민 집단.</div><div>• <strong>당구삼년폐풍월(堂狗三年吠風月)</strong>: 서당 개 삼 년에 풍월을 읊는다는 속담.</div><div>• <strong>만지장서(滿紙長書)</strong>: 종이에 가득 써 내려간 긴 편지.</div></div>
+<div class="info-box" style="background:#faf5ff; border-left-color:#7c3aed;"><h3 style="color:#4a1d96;">🎯 31번 [3점] 핵심 분석</h3><p>판옥의 "어느 하늘 밑에서 또 모이게 될지 누가 알 것인가"는 <b>삶의 터전을 마련하기 위한 용기가 아니라, 살아서 다시 만날 기약조차 없는 참담한 유랑의 비극과 자조</b>를 토로한 구절이다. 선지의 긍정적 왜곡을 날카롭게 간파해야 한다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 서사 구조도 <span>28~31</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">1. 편지 수신 (고향)</div><div class="card-body"><p>• 삼룡의 편지 도착</p><p>• 환상과 실상의 대조</p><p>• 농장의 혹독한 착취</p><div class="sub-point">✔ 이민자의 참담한 현실</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">2. 고향의 파탄 (중략)</div><div class="card-body"><p>• 가뭄으로 고향 황폐화</p><p>• 판옥의 만류 편지</p><p>• 귀향해도 맞을 이 없음</p><div class="sub-point">✔ 고향 상실의 비극</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">3. 귀향 번복 (삼룡)</div><div class="card-body"><p>• 삼룡의 눈물과 결단</p><p>• 회사로 달려가 귀향 취소</p><p>• 판옥에게 답장 작성</p><div class="sub-point">✔ 운명과의 정면 대결</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">4. 주체적 의지</div><div class="card-body"><p>• 발 딛는 곳을 고향으로</p><p>• 무정한 고향 박찬 영웅</p><p>• 강인한 생존 의지 고취</p><div class="sub-point">✔ 실존적 위기 극복</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">28</div>
+<div class="question-stem">28. 윗글에 대한 이해로 적절하지 않은 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① 판옥은 삼룡이 거주하는 집의 상태가 형편없다는 것이 사실인지에 대한 의구심을 드러냈다.</div><div class="choice-analysis">✅ 정답 — 판옥은 삼룡의 편지를 읽고 "우리같이 없는 놈이 어디 가면 별수 있을라고"라며 편지에 적힌 비참한 실상을 사실 그대로 인정하고 체념하며 아내에게 설명하고 있다. 집의 상태가 형편없다는 것이 사실인지에 대해 의구심을 품은 적이 없다.</div></div>
+<div class="choice-item"><div class="choice-text">② 판옥은 삼룡이 돌아와도 반갑게 맞아 줄 사람이 없을 것이라고 삼룡에게 전했다.</div><div class="choice-analysis">❌ 일치 — 중략 후 판옥의 편지에서 "자네들이 왔자 누가 하나 반갑게 자네들을 맞아 줄 사람이 없겠네"라고 명시되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 판옥의 처는 집에 들어오는 판옥의 모습을 보고 누구로부터 연락이 왔는지 짐작했다.</div><div class="choice-analysis">❌ 일치 — "아마 덕근 아배한테서 왔는감만, 저리도 좋아하게"라며 정확히 짐작하였다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 판옥의 처는 자신이 알고 싶어 하는 내용을 곧바로 전달해 주지 않는 남편에게 갑갑함을 드러냈다.</div><div class="choice-analysis">❌ 일치 — "아이고 갑갑하구만, 원 얘기나 좀 시원스럽게 해 주시오그려"라고 하였다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 판옥의 처는 땅이 풀리지 않아 농사일을 하지 못하고 있는 삼룡이네의 처지를 안타깝게 여겼다.</div><div class="choice-analysis">❌ 일치 — "저를 어짜까? 망할 놈의 곳도 있다. 여기는 봄도 한창인디 안즉 땅이 안 풀리다니"라며 안타까워하였다.</div></div>
+<div class="correct-badge">📍 정답 ① [인물의 심리 및 태도 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">29</div>
+<div class="question-stem">29. [A]~[E]에 대한 설명으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① [A]에서 인물이 궁금해하는 내용에 대한 답은 [E]에서 나타난다.</div><div class="choice-analysis">❌ 오답 — [A]에서 궁금해한 안부는 판옥의 말 전체에서 간접적으로 설명된다.</div></div>
+<div class="choice-item"><div class="choice-text">② [B]에서 인물이 자신의 삶에 대해 자조적인 태도를 보이는 이유는 [C]에서 확인된다.</div><div class="choice-analysis">❌ 오답 — 자조적 태도의 이유는 [C]의 막연한 기대가 아니라 삼룡의 편지 내용 전체에서 확인된다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ [C]에서 인물이 알고 있던 정보가 실상과 다르다는 것은 [D]에서 드러난다.</div><div class="choice-analysis">✅ 정답 — [C]에서 아내는 "논 스무 마지기씩 주고 소 한 마리씩 주고 왼통 농사 기계 다 주고 그런다는디"라며 풍요로운 지원을 해준다는 정보를 알고 있었으나, [D]에서 판옥이 "장난감같이 생긴 삼 하나, 쇠스랑 하나... 주고 농장에서 본값보다도 비싸게 깎어 버리드라네그라"라며 그 실상이 착취와 사기였음을 밝히고 있으므로 ③번이 완벽히 적절하다.</div></div>
+<div class="choice-item"><div class="choice-text">④ [D]에서 간접 인용을 통해 전달된 인물의 상황은 [A]에서도 확인된다.</div><div class="choice-analysis">❌ 오답 — [A]는 편지를 읽기 전의 성급한 질문일 뿐이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ [E]에서 인물이 관용 표현을 사용해 대화 상대를 책망하는 일은 [B]에서도 나타난다.</div><div class="choice-analysis">❌ 오답 — [E]의 속담은 씁쓸한 농담조이지 책망이 아니다.</div></div>
+<div class="correct-badge">📍 정답 ③ [대화 단락 간 정보의 대조 분석]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">30</div>
+<div class="question-stem">30. ㉠~㉢의 서사적 기능에 대한 설명으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① ㉠은 발신인의 처지에 대한 수신인의 동정심을 환기하여, 수신인과 발신인 가족 사이의 긴장감을 완화한다.</div><div class="choice-analysis">❌ 오답 — 둘 사이에 긴장감이 존재하지 않는다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② ㉡(모레 떠나기로 한 귀향 사건을 중지하고 말았네)은 발신인(판옥)의 입장을 수신인(삼룡)에게 전달하여, 수신인이 결정을 번복하는 계기가 된다.</div><div class="choice-analysis">✅ 정답 — 판옥의 편지(고향도 폐허가 되어 맞을 사람이 없으니 오지 말라)를 읽고, 원래 귀향하려고 총독부에 진정서까지 냈던 삼룡이 귀향 계획을 중지(결정 번복)하고 개척 의지를 다지는 계기가 되었으므로 ②번이 정확하다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉡은 발신인이 회사에 전한 내용을 수신인에게 알려, 회사와 수신인 사이의 갈등을 고조한다.</div><div class="choice-analysis">❌ 오답 — 회사와의 갈등 고조가 아니라 귀향 중지 조치이다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉢은 ㉠과 달리 발신인 가족의 안부를 수신인에게 전달하여, 수신인이 가지고 있던 근심을 해소하는 실마리가 된다.</div><div class="choice-analysis">❌ 오답 — ㉢은 답장을 쓰고 난 삼룡의 내적 결단과 결기이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉠~㉢은 모두, 수신인이 몰랐던 정보를 전달하여, 수신인이 새로운 장소에 정착하면서 겪는 갈등을 심화한다.</div><div class="choice-analysis">❌ 오답 — 갈등 심화가 아니라 새로운 각오와 삶의 의지를 다지는 과정이다.</div></div>
+<div class="correct-badge">📍 정답 ② [서사적 매개체(편지)의 기능 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">31</div>
+<div class="question-stem">31. &lt;보기&gt;를 바탕으로 윗글을 감상한 내용으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+정치적·경제적 이유 등으로 어쩔 수 없이 삶의 터전을 떠나온 이들, 즉 디아스포라는 고향으로 돌아갈 수도, 타향에 뿌리내릴 수도 없는 상황에 놓여 있다. 이로 인해 이들은 자신이 누구인지, 어디에 속하는지 확신할 수 없는 실존적 위기에 처하게 된다. 『고향 없는 사람들』은 일제 강점기 농민들이 고향을 상실하고 디아스포라가 되는 상황을 다루고 있다. 인물들은 고향에 대한 애착과 환멸, 떠날 수밖에 없는 처지의 비애와 비참함을 느끼면서도 살아 내기 위한 용기와 의지를 드러내기도 한다.</div>
+<div class="choice-item"><div class="choice-text">① 판옥이 '고향이 대체 무슨 쓸데'가 있냐며 '정답던 고향'에 대해 이제는 '그만 정이 뚝 떨어졌다'고 한 데서, 인물이 애착을 가졌던 고향에 대해 환멸을 느끼고 있음을 알 수 있군.</div><div class="choice-analysis">❌ 적절 — 고향의 참혹한 피폐화로 인한 애착에서 환멸로의 변화이다.</div></div>
+<div class="choice-item"><div class="choice-text">② 판옥이 더 이상 '고향의 참혹한 꼴'을 보고 싶어 하지 않으며 '고향에서 쫓겨'난다고 한 데서, 인물이 고향의 상황 변화로 인해 어쩔 수 없이 타관으로 이주하려는 것임을 알 수 있군.</div><div class="choice-analysis">❌ 적절 — 삶의 터전을 강제로 상실하고 떠날 수밖에 없는 디아스포라의 처지이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 판옥이 삼룡에게 '또 모이게 될지 누가 알 것인가'라고 한 데서, 인물이 떠날 수밖에 없는 비참한 처지에도 삶의 터전을 함께 마련하기 위한 용기를 드러내고 있음을 알 수 있군.</div><div class="choice-analysis">✅ 정답 — 판옥의 편지 문맥에서 "인제 우리는 정말 죽어서 저승에 가서나 만나 보겠네... 둘이 다 극락에를 못 가겠거든 차라리 똑같이 지옥에나 가세... 몸만 성하면 혹시 어느 하늘 밑에서 또 모이게 될지 누가 알 것인가"는 뿔뿔이 흩어져 유랑해야 하는 비참한 처지에서 다시는 살아서 만날 수 없을지도 모른다는 기약 없는 슬픔과 비극적 체념을 토로한 것이다. 이를 '삶의 터전을 함께 마련하기 위한 용기'로 해석하는 것은 &lt;보기&gt;와 텍스트의 정서에 정면으로 위배된다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 판옥이 '가슴이 답답'하여 '할 말'을 다 못하고, 삼룡이 '굵은 눈물방울'을 '뚝뚝 떨어'뜨리는 데서, 고향 상실을 맞닥뜨린 인물들이 비애를 느끼고 있음을 알 수 있군.</div><div class="choice-analysis">❌ 적절 — 고향 상실의 실존적 위기에 직면한 인물들의 깊은 비애이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 삼룡이 어디서든지 자신이 '발을 딛고 살아가는 곳'을 '고향으로 만들'자고 한 데서, 뿌리내릴 수 없는 삶에도 불구하고 인물이 살아 내기 위한 의지를 다지고 있음을 알 수 있군.</div><div class="choice-analysis">❌ 적절 — 능동적으로 삶의 터전을 개척하겠다는 강인한 의지 표명이다.</div></div>
+<div class="correct-badge">📍 정답 ③ [정서적 맥락의 왜곡 판별]</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 작품 해제 및 교수 전략</h2>
+<p><strong>해제:</strong> 일제 강점기 수탈과 기근으로 인해 고향을 잃고 북간도 이민 농장으로 떠나간 유랑 농민들의 비참한 실상을 다룬 박화성의 대표적 리얼리즘 소설이다. 고향과 이주지 양쪽 모두에서 버림받은 디아스포라의 비극적 현실을 고발하면서도, '발 딛는 곳을 고향으로 만들자'는 삼룡의 결단을 통해 절망을 딛고 일어서는 민중의 강인한 생명력과 연대 의지를 형상화하고 있다.</p>
+<p><strong>수업 지도 포인트:</strong> 31번 문항에서 보듯 판옥의 '체념과 비애의 한탄'과 삼룡의 '개척과 연대의 능동적 의지'라는 두 인물의 상반된 반응과 어조의 결을 명확히 대조하여 감상하도록 지도해야 한다.</p>
+</div>
+</div>
+</body></html>

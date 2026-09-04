@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 독서4 14~17 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header"><h1>📖 2027학년도 9월 모의평가 · 독서4 14~17</h1>
+<p>사회 「커뮤니케이션 2단계 유통 이론과 오피니언 리더, 비판론」 | 지문 원문 + 문단별 심층 분석 + 구조도 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<p>리더는 목표 달성을 위해 구성원을 이끌고 그들에게 영향력을 미치는 핵심 인물이다. 이와 관련하여 리더와 구성원이 서로 신뢰하는 관계인지, 리더가 구성원의 창의성을 자극하는지, 구성원에게 어떤 방식으로 동기를 부여하는지 등이 연구되어 왔다. 이들 연구가 기업 같은 정형적 조직의 리더와 구성원 간 관계에 주목한다면, 커뮤니케이션 영역의 오피니언 리더에 관한 연구와 같이 비정형적 환경의 리더에 주목하는 접근도 있다. <span class="underline-phrase">오피니언 리더는 미디어에서 획득한 정보를 주위 사람에게 전달하면서 영향력을 발휘하는 인물</span>이다.</p>
+<p>20세기 중반, 주류 미디어인 신문, 잡지, 라디오를 통해 선거 캠페인이 활발하게 전개되었다. 당시 선거 캠페인의 영향력을 연구하던 라자스펠트와 그의 동료들은 뜻밖의 현상을 발견하였다. <span class="source-underline">㉠미디어가 유권자의 투표 결정에 미친 영향력이 미미하였던 것</span>이다. 이들은 이러한 결과가 <span class="underline-phrase">오피니언 리더의 영향력에서 비롯하였음을 확인하고, 이를 핵심적 요소로 하여 커뮤니케이션 2단계 유통 이론을 정립</span>하였다. 이 이론은 미디어 이용자를 상호 고립되어 원자화된 존재로 파악한 대중 사회 이론의 <span class="source-underline">가정을 ⓐ벗어나</span> 가족, 친구와 같은 <span class="underline-phrase">1차적 사회 집단의 유대 관계에 주목함으로써, 커뮤니케이션학의 영역을 대인 커뮤니케이션으로 확장</span>했다. 또한 미디어가 이용자들에게 직접적이고 즉각적인 효과를 미친다는 입장을 위축시켰고, 이를 계기로 <span class="underline-phrase">미디어의 효과가 제한적이라는 입장이 주류로 부상</span>하였다. 미디어 환경의 변화에도 불구하고 이 이론에 근거한 연구들이 지속되어 왔다.</p>
+<p>오피니언 리더는 자신이 정보 제공자로서 주위 사람들에게 영향을 미친다는 자부심을 가진다. 이들 중 상당수는 <span class="underline-phrase">남보다 먼저 새로운 것을 수용하고 자신의 삶에 적용하는 선구자, 사회적으로 신뢰받는 전문가로서 다양한 활동을 하며 대인 관계의 중심</span>에 선다. 오늘날 정보의 홍수 속에서 이용자의 정보 선택을 돕고 인터넷 생태계를 지속 가능한 공론장으로 만드는 오피니언 리더의 역할이 커졌다. 이들은 일반 이용자보다 뉴스 사이트, 온라인 플랫폼, 신문, 텔레비전 등의 이용 동기도 높고 실제로 이들 미디어를 더 많이 이용한다. 온라인 커뮤니케이션이 확대되면서 미디어 기반 정보 제공자라는 기존의 역할을 넘어 <span class="underline-phrase">자신이 정보를 창출해 일반 이용자들에게 제공</span>한다.</p>
+<p>이러한 <span class="source-underline">㉮커뮤니케이션 2단계 유통 이론</span>에 대한 <span class="source-underline">㉯비판론</span>은, 이 이론이 <span class="underline-phrase">일반 이용자가 오피니언 리더의 개입 없이도 미디어에서 정보를 직접 획득한다는 점과, 정보 수용 방식에 있어 항상 수동적인 것은 아니라는 점</span>을 간과하였다고 비판한다. 또한 <span class="underline-phrase">한 분야에서 오피니언 리더의 위치를 가진 사람이 다른 분야에서는 일반 이용자의 위치를 가질 수 있음</span>을 제대로 살피지 않았다고 지적한다. 그리고 <span class="underline-phrase">미디어에서 나온 정보의 흐름은 2단계 외에 1단계로, 또는 3단계 이상의 과정을 거쳐 일반 이용자에게 전달되는 다단계로도 나타난다</span>고 주장한다. 이러한 비판론의 취지를 수용한 커뮤니케이션 연구들이 여러 영역에서 펼쳐지고 있다.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box"><div class="title">📌 1문단 · 오피니언 리더의 개념</div><div class="content">· 기업 조직 리더(정형적 환경) vs 커뮤니케이션 오피니언 리더(비정형적 환경).<br>· 정의: 미디어에서 얻은 정보를 주변인에게 전달하며 영향력을 행사하는 핵심 인물.</div></div>
+<div class="analysis-box"><div class="title">📌 2문단 · 2단계 유통 이론의 탄생과 의의</div><div class="content">· 배경: 20세기 중반 라자스펠트의 <b>선거 캠페인 연구</b>에서 미디어 직접 영향력이 미미함을 발견(㉠).<br>· 원인: 유권자가 미디어보다 가족·친구 등 '오피니언 리더'의 말에 더 큰 영향을 받음.<br>· 학문적 의의:<br>  ① 원자화된 대중관 탈피 ➔ <b>1차적 사회 집단 유대 관계와 대인 커뮤니케이션</b>으로 확장.<br>  ② 직접·강효과 이론 위축 ➔ <b>제한효과 이론 주류 부상</b>.</div></div>
+<div class="analysis-box"><div class="title">📌 3문단 · 현대 인터넷 환경에서의 오피니언 리더</div><div class="content">· 특성: 신뢰받는 전문가, 얼리어답터, 대인관계 중심.<br>· 현대적 변화: 단순 전달자를 넘어 <b>직접 정보를 창출(콘텐츠 생산)</b>하여 일반 이용자에게 제공.</div></div>
+<div class="analysis-box"><div class="title">📌 4문단 · 2단계 유통 이론에 대한 4가지 비판론 (㉯)</div><div class="content">① 직접 정보 획득 간과 (오피니언 리더 없이 직접 획득 가능).<br>② 능동적 수용성 간과 (일반 이용자도 무비판적 수용자가 아님).<br>③ <b>분야별 다중 지위</b> 간과 (A 분야 오피니언 리더가 B 분야에선 일반 이용자).<br>④ <b>다양한 유통 단계</b> 간과 (1단계 직접 유통, 3단계 이상 다단계 유통 존재).</div></div>
+<div class="vocab-box"><strong>📖 핵심 사회과학 개념어</strong><div>• <strong>원자화(Atomization)</strong>: 사회 구성원들이 유대감 없이 개별적으로 분리·고립되어 있는 상태.</div><div>• <strong>대인 커뮤니케이션(Interpersonal Communication)</strong>: 매체를 통하지 않고 사람들 간의 직접적인 상호작용으로 이루어지는 소통.</div><div>• <strong>제한효과 이론(Limited Effects Theory)</strong>: 미디어의 영향력이 수용자의 사회적 관계나 기존 신념 등에 의해 제한된다는 이론.</div></div>
+<div class="info-box"><h3>🎯 독해 핵심 포인트</h3><p>2문단의 이론 형성 배경(선거 연구)과 4문단의 4가지 비판 요소를 표로 구조화해 두면 14번(시작 계기 왜곡), 16번(사례 적용) 문항을 신속 정확하게 해결할 수 있다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 지문 구조도 <span>14~17</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head">1. 발견 (라자스펠트)</div><div class="card-body"><p>• 선거 캠페인 연구</p><p>• 미디어 직접 영향 미미</p><p>• 오피니언 리더 매개 발견</p><div class="sub-point">✔ 대인 커뮤니케이션 주목</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">2. 2단계 유통 이론 (㉮)</div><div class="card-body"><p>• 미디어 ➔ 오피니언 리더 ➔ 대중</p><p>• 제한효과 이론 주류화</p><p>• 1차 집단 유대 관계 중시</p><div class="sub-point">✔ 정보 전달 및 영향력</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">3. 현대적 확장</div><div class="card-body"><p>• 온라인 플랫폼 활용</p><p>• 정보 선택 보조 및 공론장 형성</p><p>• 직접 정보 창출자 역할</p><div class="sub-point">✔ 전문성 기반 영향력</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">4. 비판론의 반론 (㉯)</div><div class="card-body"><p>• 직접 획득 & 능동적 수용</p><p>• 분야별 지위 상대성</p><p>• 1단계 및 3단계 이상 다단계</p><div class="sub-point">✔ 복합 유통 모형으로 발전</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num">14</div>
+<div class="question-stem">14. 윗글에서 알 수 있는 내용으로 적절하지 않은 것은?</div>
+<div class="choice-item"><div class="choice-text">① 오피니언 리더가 가지는 자부심은 정보 제공자로서의 역할 수행과 관계가 있다.</div><div class="choice-analysis">❌ 일치 — 3문단 첫 문장에 "오피니언 리더는 자신이 정보 제공자로서 주위 사람들에게 영향을 미친다는 자부심을 가진다"고 나와 있다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 기업 내에서의 리더와 구성원 간 관계에 주목하여 오피니언 리더 연구가 시작되었다.</div><div class="choice-analysis">✅ 정답 — 1문단에서 기업 연구는 정형적 조직에 주목한 연구이며 오피니언 리더 연구와 대비된다고 하였고, 2문단에서 오피니언 리더 연구는 20세기 중반 라자스펠트 등의 '선거 캠페인 연구'에서 시작되었다고 명시되어 있다. 따라서 기업 내 리더 연구에서 시작되었다는 진술은 틀렸다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 오피니언 리더는 다른 사람들에 앞서 새로운 것을 수용하여 자신의 삶에 적용하기도 한다.</div><div class="choice-analysis">❌ 일치 — 3문단에 "남보다 먼저 새로운 것을 수용하고 자신의 삶에 적용하는 선구자"라고 서술되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 미디어의 효과가 제한적이라는 입장의 부상은 미디어가 즉각적인 효과를 지닌다는 입장의 위축과 관계가 있다.</div><div class="choice-analysis">❌ 일치 — 2문단에 "직접적이고 즉각적인 효과를 미친다는 입장을 위축시켰고, 이를 계기로 미디어의 효과가 제한적이라는 입장이 주류로 부상하였다"고 서술되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 라자스펠트와 그의 동료들이 발견한 현상은 커뮤니케이션학의 영역을 대인 커뮤니케이션으로 확장한 계기가 되었다.</div><div class="choice-analysis">❌ 일치 — 2문단에 "커뮤니케이션학의 영역을 대인 커뮤니케이션으로 확장했다"고 명시되어 있다.</div></div>
+<div class="correct-badge">📍 정답 ② [연구 기원 및 배경 왜곡 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">15</div>
+<div class="question-stem">15. ㉠(미디어가 유권자의 투표 결정에 미친 영향력이 미미하였던 것)의 이유로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 당시 유권자들이 상호 고립되어 원자화된 미디어 이용자에 머물러 있었기 때문이다.</div><div class="choice-analysis">❌ 오답 — 원자화되어 있지 않고 1차 집단 유대 관계를 맺고 있었기 때문이다.</div></div>
+<div class="choice-item"><div class="choice-text">② 유권자의 정보 선택을 돕는 이들이 주류 미디어를 지속 가능한 공론장으로 만들었기 때문이다.</div><div class="choice-analysis">❌ 오답 — 지속 가능한 공론장은 3문단의 현대 인터넷 생태계 이야기이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 1차적 사회 집단의 유대 관계에 기반한 정보 제공자들의 존재가 미디어의 효과에 영향을 미쳤기 때문이다.</div><div class="choice-analysis">✅ 정답 — 2문단에 따르면 유권자들은 미디어에서 직접 영향을 받기보다 가족, 친구 등 1차적 사회 집단 내에서 영향력을 발휘하는 오피니언 리더(정보 제공자)의 영향을 더 강하게 받았기 때문에 미디어의 직접 영향력이 미미하게 나타났다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 사회적으로 신뢰받는 전문가들이 당시 주류 미디어를 통해 전개된 선거 캠페인에 참여했기 때문이다.</div><div class="choice-analysis">❌ 오답 — 전문가의 미디어 참여 여부가 원인이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 다양한 사회적 활동을 하면서 대인 관계를 중시하는 전문가들이 정보의 유통 과정에 참여하지 않았기 때문이다.</div><div class="choice-analysis">❌ 오답 — 참여하지 않은 것이 아니라 오피니언 리더로서 적극 참여하여 미디어 효과를 매개하였다.</div></div>
+<div class="correct-badge">📍 정답 ③ [원인 및 인과 관계 도출]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">16</div>
+<div class="question-stem">16. ㉮(2단계 유통 이론), ㉯(비판론)의 입장에서 &lt;보기&gt;를 이해한 내용으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+'갑'과 '을'은 공공 이슈와 패션에 관심이 많다. '갑'은 공공 이슈와 관련하여 주위 사람들보다 미디어를 더 많이 이용한다. 여기서 얻은 정보에 의견을 더해 친구들에게 전달하며 이들에게 영향력을 발휘한다. 패션과 관련하여서는 미디어를 많이 이용하는 주위 전문가로부터 정보를 얻는 입장인데, 그가 말하는 대로 패션 상품을 구입하기보다 그 정보가 자기에게 맞는지를 가려 선별적으로 수용한다.<br>
+'을'은 온라인 플랫폼에서 패션 정보를 획득하려는 동기가 주위 사람들보다 더 높고 패션에 관한 정보를 직접 생산하여 온라인 플랫폼에 빈번히 올리며 영향력을 발휘한다. 공공 이슈 분야의 정보는 뉴스 사이트 기사에서 직접 얻기도 하지만, 대부분의 정보는 사회적으로 신뢰받는 전문가인 친구가 신문을 읽고 전달해 주는 것을 믿고 수용한다.</div>
+<div class="choice-item"><div class="choice-text">① ㉮에 따르면, '갑'이 공공 이슈 분야의 정보에 대해 보인 행위로 보아, '갑'은 공공 이슈 분야의 오피니언 리더이군.</div><div class="choice-analysis">❌ 적절 — 미디어를 많이 이용하고 의견을 더해 친구들에게 전달하며 영향력을 발휘하므로 전형적인 오피니언 리더이다.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉮에 따르면, '을'이 온라인 플랫폼을 이용하는 양상으로 보아, '을'은 오피니언 리더로서 정보를 창출하는 역할을 하는군.</div><div class="choice-analysis">❌ 적절 — 패션 정보를 직접 생산하여 플랫폼에 올리며 영향력을 행사하므로 정보를 창출하는 현대적 오피니언 리더이다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉯에 따르면, '갑'이 패션 분야의 정보를 수용하는 방식으로 보아, 일반 이용자가 항상 수동적인 것은 아니군.</div><div class="choice-analysis">❌ 적절 — 전문가의 말을 무조건 따르지 않고 자기에게 맞는지 선별적으로 수용하므로 능동적 수용자이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ㉯에 따르면, '을'이 공공 이슈 분야의 정보에 대해 보인 행위로 보아, 미디어 정보는 일반 이용자에게 다단계로 유통되는 점을 ㉮가 간과한 것이군.</div><div class="choice-analysis">✅ 정답 — '을'은 공공 이슈 정보를 '뉴스 사이트에서 직접 얻거나(1단계)', '신문을 읽은 친구(오피니언 리더)에게서 전달받아 수용(2단계)'하고 있다. 이는 1단계 직접 유통이거나 전형적인 2단계 유통이지, 3단계 이상의 '다단계 유통'이 아니다. 따라서 다단계 유통을 간과한 사례로 볼 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉯에 따르면, '갑'이 공공 이슈 분야와 패션 분야에서 점하는 위치로 보아, 동일인이라도 분야별로 오피니언 리더 여부가 다를 수 있다는 사실을 ㉮가 간과한 것이군.</div><div class="choice-analysis">❌ 적절 — '갑'은 공공 이슈에서는 오피니언 리더이지만 패션에서는 일반 이용자이다. 이는 비판론이 지적한 '분야별 위치의 상대성'에 정확히 들어맞는다.</div></div>
+<div class="correct-badge">📍 정답 ④ [&lt;보기&gt; 사례와 비판 개념의 불일치]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 16번 [3점] 유통 단계의 엄밀한 계산</div>
+<p><strong>비판론의 3가지 경로:</strong> ① 1단계(미디어 ➔ 수용자 직접) / ② 2단계(미디어 ➔ 리더 ➔ 수용자) / ③ 다단계(3단계 이상). '을'의 사례는 [뉴스 직접 획득 = 1단계] + [친구를 통한 수용 = 2단계]이므로 3단계 이상의 다단계 유통은 전혀 나타나지 않는다.</p>
+</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">17</div>
+<div class="question-stem">17. 문맥상 ⓐ(가정을 ⓐ벗어나)와 가장 가까운 의미로 쓰인 것은?</div>
+<div class="choice-item"><div class="choice-text">① 새장을 벗어난 작은 새가 훨훨 날아올랐다.</div><div class="choice-analysis">❌ 오답 — 물리적 공간·구속에서 빠져나옴.</div></div>
+<div class="choice-item"><div class="choice-text">② 동생은 터널을 벗어나 넓은 길로 들어섰다.</div><div class="choice-analysis">❌ 오답 — 물리적 장소·통로를 빠져나옴.</div></div>
+<div class="choice-item"><div class="choice-text">③ 그들은 대열을 벗어나 잠시 휴식을 취했다.</div><div class="choice-analysis">❌ 오답 — 물리적 줄·무리에서 이탈함.</div></div>
+<div class="choice-item"><div class="choice-text">④ 오늘 우리는 고생을 벗어나 매우 행복하다.</div><div class="choice-analysis">❌ 오답 — 고통·어려운 상태에서 해탈함.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 우리는 규범을 벗어난 행동을 하지 않는다.</div><div class="choice-analysis">✅ 정답 — 지문의 '가정을 벗어나'는 어떤 관념, 틀, 규칙, 기준 등의 범위나 한계를 이탈한다는 추상적 의미이므로, '규범을 벗어난'과 문맥적 의미가 가장 가깝다.</div></div>
+<div class="correct-badge">📍 정답 ⑤ [다의어의 문맥적 의미 파악]</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 지문 해제 및 교수 전략</h2>
+<p><strong>해제:</strong> 커뮤니케이션학의 고전 이론인 라자스펠트의 '2단계 유통 이론(Two-step Flow Theory)'의 성립 배경과 핵심 내용(오피니언 리더의 중개 효과, 제한효과 이론), 그리고 현대 인터넷 환경에서의 확장과 이에 대한 4가지 비판론을 체계적으로 정리한 사회 지문이다.</p>
+<p><strong>수업 지도 포인트:</strong> 16번 문항에서 비판론의 핵심인 '1단계(직접 수용)', '2단계(리더 중개)', '다단계(3단계 이상)'의 경로 구분을 학생들이 도식화하여 실전에서 함정에 빠지지 않도록 지도해야 한다.</p>
+</div>
+</div>
+</body></html>

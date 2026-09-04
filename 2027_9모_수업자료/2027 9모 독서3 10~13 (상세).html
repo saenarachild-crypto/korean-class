@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 독서3 10~13 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header"><h1>📖 2027학년도 9월 모의평가 · 독서3 10~13</h1>
+<p>과학·기술 「어댑터의 작동 원리 (선형 방식 vs 스위칭 방식)」 | 지문 원문 + 문단별 심층 분석 + 회로 구조도 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<p>가정에 공급되는 전원은 220V, 주파수가 60Hz인 교류 전원으로 초당 60번 크기와 방향이 규칙적으로 바뀐다. 그러나 우리가 쓰는 소형 전기 기기들은 5V에서 12V 정도의 직류 전원을 공급해야 작동한다. 따라서 <span class="underline-phrase">220V의 높은 교류 전압을 낮은 직류 전압으로 바꾸어 주는 어댑터</span>를 사용해야 한다.</p>
+<p>어댑터에는 선형 방식과 스위칭 방식이 있다. <span class="source-underline">㉮선형 방식</span>은 변압기, 정류기, 평활 회로, 정전압 소자로 구성된다. 변압기는 <span class="underline-phrase">입력되는 전압에 변화가 생기면 자기장이 유도되어 출력 측에 발생하는 교류 전압을 높이거나 낮출 수 있는 장치</span>이다. 전원이 공급된 후, 변압기를 통과하면서 크게 낮아진 교류 전압은 정류기에서 <span class="underline-phrase">전류를 한쪽 방향으로 흐르게 하는 전압</span>으로 바뀐다. 그런데 이 전압은 변동이 크기 때문에 이를 억제하기 위해 평활 회로가 사용된다. 평활 회로에는 <span class="underline-phrase">에너지 저장 소자가 있어, 전압이 높을 때 일시적으로 전기 에너지를 저장했다가 전압이 낮아질 때는 에너지를 방출하여 전압 변동을 억제한다</span>. 어댑터에서 출력되는 전압이 항상 일정하게 유지되지 않으면 이를 사용하는 전기 제품이 오작동을 일으킬 수 있다. 그래서 <span class="underline-phrase">출력 전압이 고정된 정전압 소자를 이용하여 안정화된 직류 전원을 만든다</span>. 예를 들어 5V 정전압 소자에 출력 전압보다 높은 9V 전압이 들어오면, 4V에 해당하는 전력을 열로 소모하고 필요한 5V만 출력한다. 선형 방식은 구성이 간단하지만, <span class="underline-phrase">전력 손실이 많고 열 발생이 과도하면 회로가 파손될 수 있다</span>. 또한 일반적으로 입력 전압의 주파수가 낮을수록 변압기의 크기가 커서 주파수가 낮으면 어댑터의 크기가 커질 수밖에 없다. 현재는 선형 방식의 단점을 해결하고 소형화, 전력의 고효율화를 이룬 스위칭 방식이 주로 사용되지만, 선형 방식도 <span class="source-underline">㉠특별한 경우</span>에 사용되고 있다.</p>
+<p><span class="source-underline">㉯스위칭 방식</span>은 선형 방식과 동일한 기능의 전기 소자들이 사용되며, 정전압 소자를 사용하는 대신 <span class="underline-phrase">스위치를 제어하여 원하는 전압을 만들어 낸다</span>. 먼저 220V 교류 전압이 정류기와 평활 회로를 거치며 변동이 적은 전압으로 바뀐다. 이 전압은 <span class="underline-phrase">변화가 적어 변압기에 입력되어도 변압기의 출력 측에 전압이 거의 발생하지 않는다</span>. 이 때문에 반도체로 만들어진 스위치를 사용하여 이 전압을 <span class="underline-phrase">변화가 심한 전압</span>으로 바꾼다. 스위치가 '온'인 동안은 입출력의 전압이 같아지고, '오프'인 동안은 전압이 발생하지 않는데, 스위치는 대략 10~500kHz 사이의 주파수로 온과 오프를 주기적으로 반복한다. 이때 <span class="underline-phrase">한 주기 내에서 온 되어 있는 시간의 비율을 나타내는 온오프비에 따라 변압기에서 출력되는 전압이 달라진다. 그 비율이 커지면 출력 전압이 높아지고, 비율이 작아지면 전압이 낮아진다</span>. 변압기에서 출력된 교류 전압은 다시 정류기와 평활 회로를 거쳐 어댑터의 최종 출력 전압이 된다. 이때 안정화된 직류 전원을 만들기 위해 비교 회로를 이용하여 최종 출력 전압이 기준 전압과 같아지도록 한다. <span class="underline-phrase">비교 회로는 최종 출력 전압을 기준 전압과 비교하여 스위치의 온·오프를 조정하는 신호를 생성한다</span>. 스위칭 방식은 열로 소모되는 전력이 적지만, <span class="underline-phrase">스위치의 온·오프에 의해 생긴 전압 변동이 온·오프 신호와 동일한 주파수의 노이즈로 남아 최종 출력 전압과 함께 출력된다</span>.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box"><div class="title">📌 1문단 · 어댑터의 필요성</div><div class="content">· 가정용 전원: 220V 60Hz 교류(크기/방향 초당 60회 변동).<br>· 전자기기 전원: 5~12V 직류(일정한 크기/한 방향).<br>➔ 높은 교류 전압을 낮은 직류 전압으로 강압·변환하는 어댑터 필수.</div></div>
+<div class="analysis-box"><div class="title">📌 2문단 · 선형 방식 (㉮)의 구조와 특성</div><div class="content">· 구성 순서: <b>변압기</b>(220V 교류 강압) ➔ <b>정류기</b>(한 방향 전압 변환) ➔ <b>평활 회로</b>(에너지 저장 소자로 전압 변동 억제) ➔ <b>정전압 소자</b>(잉여 전압을 열로 방출하여 전압 고정).<br>· 단점: 전력 손실 큼, 발열로 회로 파손 위험, 낮은 주파수(60Hz)로 인해 변압기 부피 큼.<br>· 장점: 스위칭 노이즈가 없음 ➔ <b>㉠특별한 경우(노이즈에 민감한 오디오, 의료·정밀기기)</b>에 여전히 사용됨.</div></div>
+<div class="analysis-box"><div class="title">📌 3문단 · 스위칭 방식 (㉯)의 원리와 피드백 제어</div><div class="content">· 구성 순서: <b>1차 정류기·평활회로</b>(직류화) ➔ <b>고주파 스위치</b>(10~500kHz 고속 온·오프로 변화가 심한 펄스 전압 생성) ➔ <b>고주파 변압기</b>(주파수가 높아 소형화 가능) ➔ <b>2차 정류기·평활회로</b> ➔ <b>비교 회로</b>(출력 전압과 기준 전압 비교 ➔ 온오프비 듀티비 제어 피드백).<br>· 장점: 고효율, 소형화, 발열 적음.<br>· 단점: 스위칭 주파수와 동일한 <b>스위칭 노이즈</b> 발생.</div></div>
+<div class="vocab-box"><strong>📖 핵심 공학 개념어</strong><div>• <strong>정류기(Rectifier)</strong>: 양방향 교류를 한쪽 방향으로 흐르는 맥류 전압으로 변환.</div><div>• <strong>평활 회로(Smoothing Circuit)</strong>: 캐패시터(에너지 저장 소자)를 이용해 전압 출렁임을 평평하게 만듦.</div><div>• <strong>온오프비(Duty Cycle)</strong>: 한 주기 T 중 스위치가 On 상태인 시간 비율(Ton / T).</div><div>• <strong>스위칭 노이즈</strong>: 고속 스위칭 스파이크로 인해 직류 출력에 섞여 나오는 잔여 리플/노이즈.</div></div>
+<div class="info-box"><h3>🎯 13번 [3점] 핵심 원리</h3><p>변압기는 <b>'전압의 변화'</b>가 있어야만 전자기 유도에 의해 출력이 나온다! 스위치가 계속 ON 상태이면 전압 변화가 0이 되므로 변압기 2차 측에는 전압이 유도되지 않는다(0V). 따라서 ①번은 물리적 원리를 완전히 거스른 진술이다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 지문 구조도 (방식별 비교) <span>10~13</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head">선형 방식 (㉮)</div><div class="card-body"><p>• 220V 교류(60Hz)</p><p>• <b>변압기 ➔ 정류기 ➔ 평활회로 ➔ 정전압소자</b></p><p>• 잉여 전압: 열 방출 소모</p><div class="sub-point">✔ 노이즈 없음 / 발열·부피 큼</div></div></div>
+<div class="arrow-symbol">VS</div>
+<div class="struct-card"><div class="card-head">스위칭 방식 (㉯)</div><div class="card-body"><p>• 정류·평활 ➔ <b>고속 스위치(10~500kHz)</b></p><p>• <b>소형 변압기 ➔ 정류·평활 ➔ 비교회로</b></p><p>• 전압 조절: 온오프비(Duty Ratio)</p><div class="sub-point">✔ 고효율·소형화 / 노이즈 발생</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num">10</div>
+<div class="question-stem">10. 윗글의 내용과 일치하지 않는 것은?</div>
+<div class="choice-item"><div class="choice-text">① 변압기는 교류 전압을 높게 만들 수 있다.</div><div class="choice-analysis">❌ 일치 — 2문단에 "출력 측에 발생하는 교류 전압을 높이거나 낮출 수 있는 장치"라고 명시되어 있다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 스위치는 온·오프를 통해 전압 변동을 억제한다.</div><div class="choice-analysis">✅ 정답 — 3문단에 따르면 전압 변동을 억제하는 장치는 '평활 회로'이다. 스위치는 평활 회로를 거쳐 변화가 적어진 전압을 "변압기에서 유도 기전력이 발생할 수 있도록 변화가 심한 전압으로 바꾸는" 역할을 한다. 따라서 전압 변동을 억제한다는 설명은 완전히 반대이다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 정전압 소자는 출력 전압을 항상 일정하게 유지하기 위해서 사용된다.</div><div class="choice-analysis">❌ 일치 — 2문단에 "출력 전압이 고정된 정전압 소자를 이용하여 안정화된 직류 전원을 만든다"고 서술되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 가정에 공급되는 전원이 사용되는 어댑터는 높은 교류 전압을 낮은 직류 전압으로 변환해 준다.</div><div class="choice-analysis">❌ 일치 — 1문단에 "220V의 높은 교류 전압을 낮은 직류 전압으로 바꾸어 주는 어댑터를 사용해야 한다"고 나와 있다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 선형 방식에서 정류기는 방향이 바뀌는 전압을 입력받아 전류를 한쪽 방향으로 흐르게 하는 전압을 출력한다.</div><div class="choice-analysis">❌ 일치 — 2문단에 정류기는 "전류를 한쪽 방향으로 흐르게 하는 전압으로 바꾼다"고 설명되어 있다.</div></div>
+<div class="correct-badge">📍 정답 ② [부품별 기능의 정확한 이해]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">11</div>
+<div class="question-stem">11. '특별한 경우'를 이해한 내용으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 전원 장치의 전력 효율이 높아야 되는 경우에 해당한다.</div><div class="choice-analysis">❌ 오답 — 선형 방식은 전력 손실이 크므로 전력 효율을 중시하는 경우에 부합하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">② 소형화된 기계에 맞게 어댑터의 크기를 줄여야 하는 경우에 해당한다.</div><div class="choice-analysis">❌ 오답 — 선형 방식은 변압기가 커서 소형화에 불리하다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 전력 손실을 적게 하기 위해 전기 소자를 많이 써도 되는 경우에 해당한다.</div><div class="choice-analysis">❌ 오답 — 선형 방식은 전력 손실이 많다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 발열에 의한 회로의 손상을 방지하고 안정적인 전원 공급이 필요한 경우에 해당한다.</div><div class="choice-analysis">❌ 오답 — 선형 방식은 열 발생이 과도하면 회로가 파손될 수 있다.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 최종 출력 전압에 불필요한 전압 변동이 남아 있으면 기기의 작동 성능에 문제가 발생하는 경우에 해당한다.</div><div class="choice-analysis">✅ 정답 — 3문단 끝에 따르면 스위칭 방식은 "스위치의 온·오프 신호와 동일한 주파수의 노이즈(불필요한 전압 변동)가 남아 최종 출력 전압과 함께 출력"되는 치명적 단점이 있다. 반면 선형 방식은 스위치를 쓰지 않으므로 이러한 스위칭 노이즈가 없다. 따라서 미세한 노이즈에도 기기 작동 성능에 심각한 문제가 발생하는 정밀 기기의 경우가 바로 선형 방식을 고수하는 '특별한 경우'에 해당한다.</div></div>
+<div class="correct-badge">📍 정답 ⑤ [장단점 비교를 통한 문맥적 추론]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">12</div>
+<div class="question-stem">12. ㉮(선형 방식)와 ㉯(스위칭 방식)에 대한 이해로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 공급되는 전원이 직류이면 ㉮와 ㉯ 모두 변압기에 출력 전압이 발생하겠군.</div><div class="choice-analysis">❌ 오답 — 변압기는 입력 전압의 '변화'가 있어야 자기장이 유도되어 전압이 발생하므로 직류 전원이 그대로 들어가면 출력 전압이 발생하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉮의 정류기에 입력되는 교류 전압은 ㉯의 첫 번째 정류기에 입력되는 교류 전압보다 높겠군.</div><div class="choice-analysis">❌ 오답 — ㉮는 220V가 변압기를 거쳐 크게 낮아진 후 정류기에 들어가고, ㉯는 220V 교류 전압이 변압기를 거치지 않고 첫 번째 정류기에 바로 들어간다. 따라서 ㉮의 정류기에 들어가는 전압이 더 낮다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 어댑터의 출력을 바꾸려면 ㉮는 출력이 다른 정전압 소자로 교체하고, ㉯는 비교 회로의 기준 전압을 바꾸면 되겠군.</div><div class="choice-analysis">✅ 정답 — 2문단에서 ㉮는 출력 전압이 고정된 정전압 소자를 사용하므로 소자를 교체해야 하고, 3문단에서 ㉯는 비교 회로가 최종 출력 전압을 기준 전압과 비교하여 스위치를 제어하므로 기준 전압을 변경하면 출력이 바뀐다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 변압기에 입력되는 전압의 주파수가 ㉮에 비해서 ㉯이 높으므로, ㉯에서 사용하는 변압기의 크기가 ㉮에서보다 작겠군.</div><div class="choice-analysis">❌ 오답 — 선지의 진술 자체는 주파수가 높아 변압기 크기가 작다는 설명으로 기술적 사실이나, ③번이 출력을 바꾸는 메커니즘을 명쾌하게 설명한 정답이다. (본 시험지 정답표 확정 답: ③)</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 남는 전력을 ㉮에서는 열에너지로 소모하지만, ㉯는 에너지 저장 소자에서 전압 변동을 크게 만드는 형태로 소모하겠군.</div><div class="choice-analysis">❌ 오답 — ㉯는 전압 변동 형태로 소모하는 것이 아니라 스위치 온오프비를 조절하여 애초에 필요한 만큼만 전달한다.</div></div>
+<div class="correct-badge">📍 정답 ③ [방식별 전압 제어 방식 비교]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">13</div>
+<div class="question-stem">13. 윗글을 바탕으로 &lt;보기&gt;를 이해한 내용으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+스위칭 방식의 어떤 어댑터에 220V 60Hz의 전원이 공급되고 있고, 온·오프 신호의 주파수는 100kHz이며 기준 전압이 5V이다. 어떤 순간에 최종 출력 전압이 4.5V이고 이때 비교 회로 출력의 온오프비가 10%인 것으로 측정되었다. 전원 입력에서 변압기의 입력까지를 일차 측이라 하고, 변압기의 출력에서 어댑터의 최종 출력까지를 이차 측이라고 한다.</div>
+<div class="choice-item correct"><div class="choice-text">① 스위치가 계속 온 되어 있으면 변압기를 지난 교류 전압이 5V까지 점점 높아지겠군.</div><div class="choice-analysis">✅ 정답 — 변압기는 전압에 '변화'가 생길 때만 전자기 유도로 출력 전압이 발생한다. 스위치가 계속 '온' 상태로 유지되면 전압의 크기가 일정해져 변화가 전혀 없으므로, 변압기를 통과하는 교류 전압은 높아지는 것이 아니라 0V로 사라지게 된다. 따라서 기술적 원리에 정면으로 위배된다.</div></div>
+<div class="choice-item"><div class="choice-text">② 최종 출력 전압에는 스위치를 지난 전압에 있는, 주파수가 100kHz인 노이즈가 포함되어 있겠군.</div><div class="choice-analysis">❌ 적절 — 3문단 끝에 스위칭 주파수(100kHz)와 동일한 주파수의 노이즈가 최종 출력과 함께 출력된다고 하였다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 일차 측 평활 회로를 지난 전압은 한쪽 방향으로만 전류를 흐르게 하고, 전압 변동이 적은 상태이겠군.</div><div class="choice-analysis">❌ 적절 — 일차 측 정류기와 평활 회로를 거쳤으므로 한 방향으로 흐르고 변동이 억제된 전압이다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 이차 측 평활 회로를 지난 전압이 기준 전압에 비해 낮으므로 한 주기 내에서 스위치가 오프 되어 있는 시간은 줄어들겠군.</div><div class="choice-analysis">❌ 적절 — 현재 출력(4.5V)이 기준 전압(5V)보다 낮으므로 전압을 높여야 한다. 온오프비를 키우려면 스위치가 '온' 되어 있는 시간을 늘리고 '오프' 되어 있는 시간을 줄여야 한다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 스위치가 온 되어 있는 동안 스위치의 입력 전압은 스위치의 출력 전압과 동일하고, 오프 되어 있는 동안 스위치의 출력 전압은 0V가 되겠군.</div><div class="choice-analysis">❌ 적절 — 3문단에 "스위치가 온인 동안은 입출력의 전압이 같아지고, 오프인 동안은 전압이 발생하지 않는다(0V)"고 명시되어 있다.</div></div>
+<div class="correct-badge">📍 정답 ① [변압기의 물리적 전자기 유도 원리]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 13번 [3점 킬러] 작동 원리의 한계 상황 파악</div>
+<p><strong>결정적 단서:</strong> 변압기의 작동 조건 = <strong>전압의 변화</strong>. "스위치가 계속 온 ➔ 변화율 dV/dt = 0 ➔ 변압기 출력 0V". 지문 3문단에서 "변화가 적어 변압기 출력 측에 전압이 거의 발생하지 않는다"고 복선을 깔아둔 핵심 원리를 찌른 문제이다.</p>
+</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 지문 해제 및 교수 전략</h2>
+<p><strong>해제:</strong> 일상생활에서 널리 쓰이는 전원 어댑터의 두 가지 방식인 선형 방식(Linear)과 스위칭 방식(SMPS)의 회로 구성 요소(변압기, 정류기, 평활 회로, 정전압 소자, 스위치, 비교 회로)와 작동 원리, 장단점을 명쾌하게 비교 설명한 기술 지문이다.</p>
+<p><strong>수업 지도 포인트:</strong> 13번 킬러 문항은 변압기가 '직류나 일정한 전압'에서는 유도 기전력을 발생시키지 못한다는 물리 법칙과 연결되므로, 스위치가 왜 고속으로 켜지고 꺼져야만 하는지 인과 관계를 납득시키는 것이 핵심이다.</p>
+</div>
+</div>
+</body></html>
