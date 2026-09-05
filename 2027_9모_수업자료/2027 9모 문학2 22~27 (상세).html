@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 문학2 22~27 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+.poem-stanza { margin-bottom: 22px; line-height: 1.9; }
+.poem-line { margin-bottom: 4px; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header" style="background:#4a1d96;"><h1>📖 2027학년도 9월 모의평가 · 문학2 22~27</h1>
+<p>갈래복합 (가) 장옥관 「가오리 날아오르다」 / (나) 김혜순 「잘 익은 사과」 / (다) 박지원 「공작관문고 자서」 | 지문 원문 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<div class="part-label" style="background:#4a1d96;">(가) 장옥관, 「가오리 날아오르다」</div>
+<div class="poem-stanza">
+<p class="poem-line">경주 남산 달밤에 가오리들이 날아다닌다</p>
+<p class="poem-line">아닌 밤중에 웬 가오리라니</p>
+<p class="poem-line">뒤틀리고 꼬여 자라는 것이 남산 소나무들이어서</p>
+<p class="poem-line">그 나무들 <span class="source-underline">㉠무릎뼈 펴둥식</span>, 만월이다</p>
+</div>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[A]</span>
+<p class="poem-line">그럴 즈음은 잡티 하나 없는 고요의 대낮이 되어서는</p>
+<p class="poem-line">꽃, 새, 바위의 내부가 훤히 들여다보이고 당신은 고요히</p>
+<p class="poem-line">자신의 바닥으로 가라앉을 것이다</p>
+<p class="poem-line">그때 귀 먹먹하고 숨 갑갑하다면 남산 일대가</p>
+<p class="poem-line">바다로 바뀐 탓일 게다</p>
+<p class="poem-line">항아리에 차오르는 달빛이 봉우리까지 담겨들면</p>
+<p class="poem-line">산꼭대기에 납작 엎드려 있던 삼층석탑 옥개석이 주욱,</p>
+<p class="poem-line">지느러미 펼치면서 저런, 저런 소리치며 등짝 검은 가오리</p>
+<p class="poem-line"><span class="source-underline">㉡솟구친다</span></p>
+<p class="poem-line">무겁게 어둠 눌러 덮은 오랜 자국이 저 희디흰 배때기여서</p>
+<p class="poem-line">그 빛은 참 아뜩한 기쁨이 아닐 수 없겠다</p>
+</div>
+<div class="poem-stanza">
+<p class="poem-line">달밤에 천 마리 가오리들이 날아다닌다</p>
+<p class="poem-line">골짜기마다 코 떨어지고 목 사라진 돌부처</p>
+<p class="poem-line">앉음새 고쳐 앉은 몸에</p>
+<p class="poem-line">금강소나무 같은 굵은 팔뚝이 툭, 툭 불거진다</p>
+</div>
+
+<div class="part-label" style="background:#4a1d96;">(나) 김혜순, 「잘 익은 사과」</div>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[B]</span>
+<div class="poem-stanza">
+<p class="poem-line">백 마리 여치가 한꺼번에 우는 소리</p>
+<p class="poem-line">내 자전거 바퀴가 치르르치르르 도는 소리</p>
+<p class="poem-line">보랏빛 가을 찬바람이 정미소에 실려온 나락들처럼</p>
+<p class="poem-line">바퀴살 아래에서 자꾸만 <span class="source-underline">㉢빻아지는 소리</span></p>
+</div>
+<div class="poem-stanza">
+<p class="poem-line">처녀 엄마의 눈물만 받아먹고 살다가</p>
+<p class="poem-line">유모차에 실려 먼 나라로 입양 가는</p>
+<p class="poem-line">아가의 뺨보다 더 차가운 한 송이 구름이</p>
+<p class="poem-line">하늘에서 내려와 내 손등을 덮어주고 가네요</p>
+</div>
+<div class="poem-stanza">
+<p class="poem-line">그 작은 구름에게선 천 년 동안 아직도</p>
+<p class="poem-line">아가인 그 사람의 냄새가 나네요</p>
+<p class="poem-line">내 자전거 바퀴는 골목의 모퉁이를 만날 때마다</p>
+<p class="poem-line">둥글게 둥글게 길을 깎아내고 있어요</p>
+</div>
+<div class="poem-stanza">
+<p class="poem-line">그럴 때마다 나 돌아온 고향 마을만큼</p>
+<p class="poem-line">큰 사과가 소리없이 깎이고 있네요</p>
+<p class="poem-line">구멍가게 노망든 할머니가 평상에 앉아</p>
+<p class="poem-line">그렇게 큰 사과를 숟가락으로 파내서</p>
+<p class="poem-line">잇몸으로 <span class="source-underline">㉣오물오물 잘도 잡수시네요</span></p>
+</div>
+</div>
+
+<div class="part-label" style="background:#4a1d96;">(다) 박지원, 「공작관문고 자서(孔雀館文稿 自序)」</div>
+<p>말이란 거창할 필요가 없으며, 도(道)는 털끝만한 차이로도 나뉘는 법이니, 말로써 도를 표현할 수 있다면 기와 조각이나 돌멩이인들 어찌 버리겠는가. (중략) 글을 짓는 사람은 글이 진실되었는가를 생각하면 그만이다. 이로써 보자면 <span class="underline-phrase">글이 잘되고 못되고는 내게 달려 있고, 글을 칭찬하고 비판하고는 남의 소관이다. 이는 꼭 이명(耳鳴)이나 코골이와 같다</span>.</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[C]</span>
+<p>한 아이가 뜰에서 놀다가 갑자기 '왜앵'하고 귀가 울리자 '와!'하고 좋아하면서 가만히 옆의 동무에게 이렇게 말했다.<br>
+"애, 이 소리 좀 들어 봐! 내 귀에서 '왜앵'하는 소리가 난다. 피리 부는 것 같기도 하고 생황을 부는 것 같기도 한데 동글동글한 게 꼭 별 같단다."<br>
+그 동무가 자기 귀를 기울여 맞대어 보았으나 끝내 아무 소리도 듣지 못하자, 그만 소리를 지르며 남이 알지 못하는 것을 한스럽게 여겼다.<br>
+언젠가 어떤 시골 사람과 함께 잔 적이 있는데, 그 사람의 코 고는 소리가 우람하여 마치 토하는 것 같기도 하고, 휘파람을 부는 것 같기도 하고, 탄식하는 것 같기도 하고, 한숨 쉬는 것 같기도 하고, 후후 불을 부는 것 같기도 하고, 보글보글 솥이 끓는 것 같기도 하고, 빈 수레가 덜커덩거리는 것 같기도 했다. 숨을 들이쉴 땐 톱질하는 소리가 나고, 내뿜을 때는 돼지가 꿀꿀거리는 소리가 났다. 그러다가 남이 흔들어 깨우자 발끈 성을 내며 이렇게 말했다.<br>
+"나는 그런 적 없소이다!"</p>
+</div>
+<p>아, <span class="underline-phrase"><span class="source-underline">㉤자기만이 홀로 아는 경우</span>는 남이 알지 못할까 항상 근심하고, 자기가 깨닫지 못한 경우는 남이 먼저 깨닫는 것을 싫어하나니</span>, 어찌 코와 귀에만 이러한 병이 있겠는가. 문장의 경우는 이보다 더 심하다. 이명은 병이건만 남이 알지 못할까 걱정하는데, 하물며 병이 아닌 것이야 말해 무엇 하겠는가. 코를 고는 것은 병이 아닌데도 남이 일깨워 주면 골을 내니, 하물며 병이야 일러 무엇 하겠는가.</p>
+<p>그러므로 이 책을 보는 사람이 기와 조각이나 돌멩이 같은 것이라도 버리지 않는다면, 화공의 평범한 그림에서도 도적의 뻗친 귀밑털을 보듯 진실을 보게 될 것이다. 그러니 <span class="underline-phrase">이 책의 독자가 이명은 듣지 못하더라도 나의 코골이를 일깨워 준다면, 그것이 내가 이 글을 쓴 의도에 가까울 것이다</span>.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 (가) 장옥관 · 환상적 바다로의 변모</div><div class="content">· 중심 이미지: 달밤의 남산 ➔ 바다로 전이.<br>· <b>삼층석탑 옥개석 ➔ 가오리의 비상</b>: 오랜 어둠을 눌러 덮고 있던 하얀 배때기를 드러내며 솟구침 ➔ 억압을 뚫고 솟구치는 자유로운 생명력과 환희.<br>· 마애불/돌부처: 굵은 팔뚝이 불거지며 생명력 회복.</div></div>
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 (나) 김혜순 · 자전거와 거대한 사과의 비유</div><div class="content">· 감각적 경험: 여치 소리, 자전거 바퀴살 도는 소리 ➔ 찬바람이 빻아지는 소리.<br>· 슬픔과 위로: 입양 가는 아기 뺨처럼 차가운 구름 ➔ 손등을 덮어줌.<br>· <b>길을 도는 행위 = 사과 깎기</b>: 고향 마을만큼 큰 사과가 깎이고, 노망든 할머니가 숟가락으로 오물오물 잡수심 ➔ 마을 전체가 삶의 애환과 상처를 보듬는 따뜻한 상상의 공간.</div></div>
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 (다) 박지원 · 이명과 코골이의 글쓰기론</div><div class="content">· 도(道)의 표현: 일상의 사소한 기와·돌멩이에서도 진실 표현 가능.<br>· <b>이명(耳鳴)의 비유</b>: 자기만 아는 독창적 생각 ➔ 남이 몰라줄까 안달함.<br>· <b>코골이의 비유</b>: 자기의 결점·허물 ➔ 남이 지적하면 성을 냄.<br>· 작가의 태도: 독자가 나의 이명(주관적 생각)은 몰라주더라도, 나의 코골이(글의 결점·허물)를 일깨워주길 바람 ➔ 겸허하고 열린 문학관.</div></div>
+<div class="info-box" style="background:#faf5ff; border-left-color:#7c3aed;"><h3 style="color:#4a1d96;">🎯 24번 & 26번 문제 풀이 키</h3><p>• 24번 ②번: 가오리의 비상은 어두운 바다가 아니라 '환희와 억압 탈피의 생명력'이다.<br>• 26번 ③번: 다(공감 감상)는 [C]에서 아이가 소리 지르며 '남이 알지 못함을 한스러워하는 상황'과 전혀 대응되지 않는다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 세 작품 비교 구조도 <span>22~27</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">(가) 가오리 날아오르다</div><div class="card-body"><p>• 달밤 남산의 환상적 변모</p><p>• 석탑 옥개석 ➔ 비상하는 가오리</p><p>• 억압 탈피와 찬란한 생명력</p><div class="sub-point">✔ 바다의 환상적 이미지</div></div></div>
+<div class="arrow-symbol">➕</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">(나) 잘 익은 사과</div><div class="card-body"><p>• 자전거 타기와 감각적 연상</p><p>• 골목길 돌기 = 큰 사과 깎기</p><p>• 상처·입양의 애환을 품는 고향</p><div class="sub-point">✔ 따뜻한 위로의 상상 공간</div></div></div>
+<div class="arrow-symbol">➕</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">(다) 공작관문고 자서</div><div class="card-body"><p>• 사소한 것 속의 도(道)</p><p>• 이명(주관) & 코골이(결점)</p><p>• 독자의 비판과 일깨움 수용</p><div class="sub-point">✔ 박지원의 진실한 문학관</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">22</div>
+<div class="question-stem">22. (가)~(다)에 대한 설명으로 가장 적절한 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① (가)는 (나)와 달리, 의외의 상황에 의아함을 표현하면서 시상 전개를 시작하고 있다.</div><div class="choice-analysis">✅ 정답 — (가)는 1연에서 "경주 남산 달밤에 가오리들이 날아다닌다 / 아닌 밤중에 웬 가오리라니"라며 달밤에 가오리가 난다는 의외의 상황에 의아함을 직접 표출하며 시상을 시작한다.</div></div>
+<div class="choice-item"><div class="choice-text">② (나)는 (가)와 달리, 감탄의 표현을 활용하여 고조된 감정을 드러내고 있다.</div><div class="choice-analysis">❌ 오답 — (나)는 차분한 어조(~네요)로 서술하며 고조된 감탄 표현을 주로 쓰지 않았다. 오히려 (가)에 '저런, 저런', '기쁨이 아닐 수 없겠다' 등의 감탄적 표현이 두드러진다.</div></div>
+<div class="choice-item"><div class="choice-text">③ (나)는 (다)와 달리, 현재와 미래의 상황을 대비하여 인식의 변화를 강조하고 있다.</div><div class="choice-analysis">❌ 오답 — (나)는 현재의 감각과 연상에 집중하고 있으며 미래 상황과의 대비가 나타나지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">④ (다)는 (나)와 달리, 특정 상황을 가정하여 변화된 시대상에 대해 비판적 태도를 드러내고 있다.</div><div class="choice-analysis">❌ 오답 — (다)는 글쓰기와 독서의 본질을 논한 것이지 변화된 시대상을 비판한 글이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (가), (나), (다)는 모두, 자연물을 활용하여 현실을 잊고자 하는 의지를 강조하고 있다.</div><div class="choice-analysis">❌ 오답 — 세 작품 모두 현실 도피나 현실을 잊으려는 의지를 담고 있지 않다.</div></div>
+<div class="correct-badge">📍 정답 ① [작품의 시상 전개 방식 비교]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">23</div>
+<div class="question-stem">23. [A]에 관한 이해로 적절하지 않은 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① '그럴 즈음'은, 만월을 보고 있는 상황에서 시간이 어느새 낮으로 바뀌었음을 지각하는 순간을 가리키고 있군.</div><div class="choice-analysis">✅ 정답 — '그럴 즈음'은 만월의 달빛이 너무나 밝고 투명하여 밤이 마치 '잡티 하나 없는 고요의 대낮'처럼 느껴지는 주관적·환상적 상태를 가리키는 것이지, 실제로 밤에서 낮으로 시간이 흘러 바뀌었음을 지각한 것이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">② '대낮'은, '잡티 하나 없는 고요의' 상태로서 지극히 밝으면서도 조용한 상태임을 보여 주고 있군.</div><div class="choice-analysis">❌ 적절 — 지극히 밝은 달밤의 투명한 고요를 대낮에 빗대어 표현하였다.</div></div>
+<div class="choice-item"><div class="choice-text">③ '훤히'는, 시적 공간에 있는 대상들이 투명할 만큼 명료하게 드러나는 상황임을 나타내고 있군.</div><div class="choice-analysis">❌ 적절 — 꽃, 새, 바위의 내부까지 비칠 정도로 맑고 투명함을 나타낸다.</div></div>
+<div class="choice-item"><div class="choice-text">④ '바닥'은, 자신의 내면으로 침잠하는 존재가 이를 수 있는 잠잠한 상태를 형상화하고 있군.</div><div class="choice-analysis">❌ 적절 — 자신의 바닥으로 가라앉는 깊은 침잠의 상태를 나타낸다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ '귀 먹먹하고 숨 갑갑하다'는, 특정한 시적 공간에 놓이게 되었을 때 일어날 수 있는 신체적 반응을 표현하고 있군.</div><div class="choice-analysis">❌ 적절 — 공간이 깊은 바다로 바뀌었을 때 느끼는 압력과 숨 막힘을 형상화하였다.</div></div>
+<div class="correct-badge">📍 정답 ① [시어의 문맥적 의미 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">24</div>
+<div class="question-stem">24. &lt;보기&gt;를 참고하여 (가), (나)를 감상한 것으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+상상력은 일상의 현실을 이미지의 세계로 구성하는 데 관여한다. 그러한 점에서 시적 현실은 실재와는 다른, 창조된 현실이다. 여기에는 세계에 대한 화자의 시각이 투영되어 있다. (가)는 화자가 달밤에 탑의 덮개에서 유사한 모양의 자연물을 떠올리고 공간의 성격이 돌연 변화됨을 느낌으로써 달밤은 생명력이 가득한 환상의 바다로 전환된다. (나)는 화자가 자전거를 타면서 접한 대상들에 대한 감각적 경험과 이 과정에서 연상된 대상들을 서로 결합함으로써 마을은 삶의 애환을 감싸안는 상상의 공간으로 전환된다.</div>
+<div class="choice-item"><div class="choice-text">① (가)에서 '아뜩한 기쁨'인 '그 빛'은, '눌러 덮은 오랜 자국'을 지닌 가오리가 비상하여 '희디흰 배때기'를 드러낼 때 나타난다는 점에서, 자유로운 생명력에 대한 화자의 환희로 볼 수 있군.</div><div class="choice-analysis">❌ 적절 — 오랜 어둠의 억압을 뚫고 솟구치는 가오리의 빛에 대한 경이와 환희이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② (가)에서 '천 마리 가오리들이 날아다니'는 남산은, '등짝 검은 가오리'가 '뒤틀린 소나무'들 사이로 날아다닌다는 점에서, 환상적이면서 어두운 바다의 이미지로 볼 수 있군.</div><div class="choice-analysis">✅ 정답 — &lt;보기&gt;에서 (가)의 달밤은 "생명력이 가득한 환상의 바다"로 전환된다고 명확히 제시하였다. 또한 시 전체에서 만월의 달빛은 '잡티 하나 없는 대낮', '희디흰 배때기의 아뜩한 기쁨', '돌부처에 불거지는 팔뚝' 등 강렬한 생명력과 빛의 환희를 형상화하고 있으므로, 이를 '어두운 바다의 이미지'로 감상하는 것은 적절하지 않다.</div></div>
+<div class="choice-item"><div class="choice-text">③ (나)에서 '큰 사과'가 '깎이고 있네요'는, 골목을 도는 것을 사과 깎기로 보는 상상이 전제된다는 점에서, 마을이 '큰 사과'라는 상상의 공간으로 전환되고 있음을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — 골목 모퉁이를 도는 행위가 사과 깎기로 전이되어 마을 전체가 상상의 사과로 변모한다.</div></div>
+<div class="choice-item"><div class="choice-text">④ (가)에서 '삼층석탑 옥개석'이 '지느러미'를 펼치는 것과 (나)에서 '그 사람'이 '천 년 동안' '아가인' 것은, 각각의 시적 형상이 실재와는 다른, 창조된 현실임을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — 시적 상상력에 의해 창조된 이미지들이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (가)에서 '팔뚝'이 '불거진다'는 것과 (나)에서 '한 송이 구름'이 '손등을 덮어주'는 것은, 각각 활력과 위로의 이미지를 상상한 화자의 긍정적 시각을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — 돌부처의 팔뚝은 활력, 구름의 어루만짐은 위로의 긍정적 시각이다.</div></div>
+<div class="correct-badge">📍 정답 ② [공간의 분위기와 이미지 해석 오류]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">25</div>
+<div class="question-stem">25. (다)에 대한 이해로 적절하지 않은 것은?</div>
+<div class="choice-item"><div class="choice-text">① '도(道)는 털끝만한 차이로도 나뉘는 법'이라고 하는 데에는, 도를 드러낼 수 있다면 사소해 보이는 것도 소홀히 다루어서는 안 된다는 생각이 반영되어 있다.</div><div class="choice-analysis">❌ 적절 — 기와 조각이나 돌멩이도 소홀히 버릴 수 없다는 논리의 근거이다.</div></div>
+<div class="choice-item"><div class="choice-text">② '이명'이 있는 사람이 다른 사람에게 소리를 들어 보라고 하는 데에는, 그 소리가 다른 사람에게도 들릴 것이라는 생각이 반영되어 있다.</div><div class="choice-analysis">❌ 적절 — 아이는 자기 귀에 들리는 소리를 동무도 들을 수 있을 것이라 생각하고 귀를 맞댔다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ '자기만이 홀로 아는 경우'가 생기는 데에는, 다른 사람이 자신보다 아는 것이 많아지는 경우를 부정적으로 보는 관점이 반영되어 있다.</div><div class="choice-analysis">✅ 정답 — 지문에서 '자기만이 홀로 아는 경우'는 "남이 알지 못할까 항상 근심하는" 태도를 낳는다고 하였고, "남이 먼저 깨닫는 것을 싫어하는" 태도는 '자기가 깨닫지 못한 경우'에 해당한다. 따라서 남이 자신보다 많이 아는 것을 부정적으로 보는 관점은 '자기가 깨닫지 못한 경우'에 연결되어야 하므로 서술이 뒤바뀌었다.</div></div>
+<div class="choice-item"><div class="choice-text">④ '말해 무엇 하겠는가'에는, 자신이 아는 것을 남이 알아주지 않을까 봐 근심하는 정도가 글을 짓는 사람의 경우에 더 심할 것이라는 생각이 반영되어 있다.</div><div class="choice-analysis">❌ 적절 — 병인 이명도 남이 모를까 걱정하는데, 하물며 심혈을 기울인 문장은 더욱 심할 것이라는 설의적 표현이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ '기와 조각이나 돌멩이 같은 것이라도 버리지 않는다면'에는, 글 읽는 사람이 거창하지 않은 것에서도 진실을 찾을 수 있다고 보는 관점이 반영되어 있다.</div><div class="choice-analysis">❌ 적절 — 평범한 글 속에서도 진실을 발견할 수 있다는 독서관이다.</div></div>
+<div class="correct-badge">📍 정답 ③ [대응 관계의 도치 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">26</div>
+<div class="question-stem">26. 다음은 수업 활동의 일부이다. 학생의 답변 내용으로 적절하지 않은 것은?</div>
+<div class="view-box"><div class="vb-title">[수업 활동]</div>
+• ㉮: 작가가 자전거 바퀴살의 움직임에서 남들이 느끼지 못하는, 나락이 빻아지는 듯한 바람 소리를 느꼈다.<br>
+• ㉯: 작가가 나락이 빻아지는 듯한 바람 소리를 느껴서 이를 전해 주고자 했으나, 독자는 느끼지 못했다.<br>
+• ㉰: 작가가 나락이 빻아지는 듯한 바람 소리를 시로 표현하였고, 독자는 그 표현에 공감하며 감상하였다.<br>
+• ㉱: 어떤 독자가 '바퀴살 아래'라는 시어에서 작가가 미처 생각하지 못했던 희생이라는 의미를 찾아 시를 해석하였고, 이를 작가에게 알려 주었다.<br>
+• ㉲: 어떤 독자가 '바퀴살 아래'라는 시어에서 작가가 미처 생각하지 못했던 희생이라는 의미를 찾아 시를 해석한 것에 대해, 작가는 그 해석을 부정하였다.</div>
+<div class="choice-item"><div class="choice-text">① ㉮의 작가의 상황은 [C]에서 아이의 귀가 '왜앵'하고 울리는 것에 해당해요.</div><div class="choice-analysis">❌ 적절 — 자기 혼자만의 감각(이명)을 느낀 상황과 일치한다.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉯의 독자의 상황은 [C]에서 동무가 '아무 소리도 듣지 못한' 것에 해당해요.</div><div class="choice-analysis">❌ 적절 — 작가의 주관적 느낌을 타인이 공유하지 못한 상황과 일치한다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ ㉰의 작가의 상황은 [C]에서 아이가 '소리를 지르'는 것에 해당해요.</div><div class="choice-analysis">✅ 정답 — [C]에서 아이가 소리를 지른 것은 동무가 아무 소리도 듣지 못하자 "남이 알지 못하는 것을 한스럽게 여겨서" 지른 화풀이/분통이다. 반면 ㉰는 독자가 작가의 표현에 '공감하며 감상'한 성공적인 소통 상황이므로, 동무가 알아주지 못해 한스러워 소리치는 아이의 상황과 전혀 대응되지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉱의 독자의 상황은 [C]에서 남이 시골 사람을 '흔들어 깨우'는 것에 해당해요.</div><div class="choice-analysis">❌ 적절 — 코 고는 사람(결점/미지각)을 타인이 일깨워주는 상황에 부합한다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉲의 작가의 상황은 [C]에서 시골 사람이 '그런 적 없다'고 말하는 것에 해당해요.</div><div class="choice-analysis">❌ 적절 — 타인의 지적에 발끈하며 부정하는 태도와 일치한다.</div></div>
+<div class="correct-badge">📍 정답 ③ [비유와 상황 대응의 오류 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">27</div>
+<div class="question-stem">27. ㉠~㉤에 대한 이해로 가장 적절한 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① ㉠('무릎뼈 펴둥식')은 소나무가 펴지는 듯한 이미지와 만월이 뜨는 이미지를 연결하여 형상화한 표현이다.</div><div class="choice-analysis">✅ 정답 — 1연에서 뒤틀린 소나무들의 무릎뼈가 둥실 펴지면서 만월(보름달)이 떠오르는 환상적인 밤의 정경을 역동적으로 결합한 표현이다.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 대상의 움직임에 대한 화자의 안타까움을 드러내는 표현이다.</div><div class="choice-analysis">❌ 오답 — 생명력 넘치는 비상의 솟구침이지 안타까움이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉢은 계절의 풍요로움과 이와 대비되는 화자의 불안을 함께 암시하는 표현이다.</div><div class="choice-analysis">❌ 오답 — 화자의 불안을 암시하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉣('오물오물 잘도 잡수시네요')은 시원스러운 움직임을 꾸준하게 이어 가는 할머니의 모습을 묘사한 표현이다.</div><div class="choice-analysis">❌ 오답 — 이가 빠진 노망든 할머니가 잇몸으로 조심스럽고 느리게 씹는 모습이지 시원스러운 움직임이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉤은 앞서 제시된 일화에 대한 글쓴이의 찬탄을 드러내는 표현이다.</div><div class="choice-analysis">❌ 오답 — 찬탄이 아니라 인간의 그릇된 편견과 아집에 대한 비판적 성찰이다.</div></div>
+<div class="correct-badge">📍 정답 ① [시구의 이미지 형상화 파악]</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 작품 해제 및 교수 전략</h2>
+<p><strong>(가) 장옥관 「가오리 날아오르다」:</strong> 달밤의 경주 남산이라는 역사적 공간에서 삼층석탑의 옥개석이 억압을 뚫고 솟구치는 가오리로 전이되는 역동적 상상력을 통해 불교 유적과 자연이 생명력 넘치는 환상의 바다로 부활하는 경이를 노래함.</p>
+<p><strong>(나) 김혜순 「잘 익은 사과」:</strong> 자전거를 타고 고향 마을 골목길을 도는 일상의 체험을 '거대한 사과 깎기'라는 환상적 이미지로 치환하여, 입양아의 슬픔 등 시대의 상처와 아픔을 넉넉하게 보듬어 안는 고향의 모성적 포용력을 형상화함.</p>
+<p><strong>(다) 박지원 「공작관문고 자서」:</strong> 이명(자신만의 주관적 생각에 집착)과 코골이(자신의 결점을 남이 지적하면 분노함)의 탁월한 비유를 통해, 글쓴이는 자신의 허물(코골이)을 겸허히 지적해 주는 독자의 비판을 진정으로 수용해야 한다는 열린 문학론을 제시함.</p>
+</div>
+</div>
+</body></html>
