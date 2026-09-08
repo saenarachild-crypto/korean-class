@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김현석 국어 실전 풀이법 &amp; 유형별 분석 표준 매뉴얼</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Pretendard', 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background: #eef2f6; color: #1e293b; line-height: 1.75; padding: 40px 20px;
+}
+.container {
+    max-width: 1200px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.12); overflow: hidden; border: 1px solid #e2e8f0;
+}
+.header {
+    background: linear-gradient(135deg, #7c3f1d 0%, #4a240f 100%);
+    color: white; padding: 36px 48px; position: relative;
+}
+.header h1 { font-size: 28px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
+.header p { font-size: 15px; opacity: 0.9; line-height: 1.6; }
+.header .badge {
+    display: inline-block; background: #f59e0b; color: #78350f; font-weight: 700;
+    font-size: 12px; padding: 3px 12px; border-radius: 20px; margin-bottom: 12px;
+}
+
+.content-wrapper { padding: 40px 48px; }
+
+.section-block {
+    margin-bottom: 44px; padding-bottom: 36px; border-bottom: 2px dashed #e2e8f0;
+}
+.section-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.sec-title {
+    font-size: 22px; font-weight: 800; color: #7c3f1d; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; border-left: 6px solid #7c3f1d; padding-left: 16px;
+}
+.sec-title span {
+    background: #fdf4ec; color: #7c3f1d; font-size: 14px; font-weight: 700;
+    padding: 3px 12px; border-radius: 12px; border: 1px solid #fed7aa;
+}
+
+.card-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 18px 0;
+}
+.card {
+    background: #f8fafc; border-radius: 20px; border: 1px solid #e2e8f0; padding: 22px 24px;
+    box-shadow: 0 4px 6px -2px rgba(0,0,0,0.03); transition: all 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.08); }
+.card-head {
+    font-weight: 700; font-size: 17px; color: #0f172a; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.card-head .tag {
+    font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px;
+    background: #e2e8f0; color: #475569;
+}
+.card-body { font-size: 14px; color: #334155; }
+.card-body p { margin-bottom: 8px; line-height: 1.65; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body ul { margin-left: 18px; margin-bottom: 8px; }
+.card-body li { margin-bottom: 4px; }
+
+.highlight-box {
+    background: #fffaf5; border: 1.5px solid #fed7aa; border-radius: 18px;
+    padding: 18px 24px; margin: 18px 0;
+}
+.highlight-box h4 { font-size: 16px; font-weight: 700; color: #9a3412; margin-bottom: 8px; }
+
+.step-flow {
+    display: flex; flex-wrap: wrap; gap: 14px; margin: 18px 0; align-items: center;
+}
+.step-item {
+    flex: 1; min-width: 200px; background: #ffffff; border: 1.5px solid #cbd5e1;
+    border-radius: 16px; padding: 14px 18px; text-align: center;
+}
+.step-num { font-size: 12px; font-weight: 800; color: #7c3f1d; margin-bottom: 4px; }
+.step-text { font-size: 14.5px; font-weight: 700; color: #0f172a; }
+.step-arrow { font-size: 20px; color: #94a3b8; font-weight: 800; }
+
+.formula-box {
+    background: #0f172a; color: #f8fafc; border-radius: 18px; padding: 18px 24px;
+    margin: 18px 0; font-size: 15px; font-family: 'Consolas', 'Courier New', monospace;
+}
+.formula-box .comment { color: #94a3b8; font-size: 13px; margin-top: 6px; font-family: 'Pretendard', sans-serif; }
+
+.trick-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 14px;
+}
+.trick-item {
+    background: #ffffff; border-left: 4px solid #ef4444; border-radius: 12px; padding: 12px 16px;
+    border: 1px solid #fee2e2; border-left-width: 4px; font-size: 13.5px;
+}
+.trick-item strong { color: #b91c1c; display: block; margin-bottom: 4px; font-size: 14px; }
+
+.table-custom {
+    width: 100%; border-collapse: collapse; margin: 18px 0; border-radius: 14px; overflow: hidden;
+}
+.table-custom th, .table-custom td {
+    padding: 14px 18px; font-size: 14px; border: 1px solid #cbd5e1; text-align: left; vertical-align: top;
+}
+.table-custom th { background: #f1f5f9; font-weight: 700; color: #334155; }
+
+.sub-detail-box {
+    background: #fdfaf5; border: 1px solid #fbd38d; border-radius: 16px; padding: 18px 22px;
+    margin-top: 16px; font-size: 14px; line-height: 1.7;
+}
+.sub-detail-box .title { font-weight: 800; color: #7c3f1d; margin-bottom: 8px; font-size: 15px; }
+
+.milestone-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0;
+}
+.milestone-card {
+    background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 16px;
+    border-top: 4px solid #7c3f1d;
+}
+.milestone-card .ms-step { font-size: 11.5px; font-weight: 800; color: #7c3f1d; }
+.milestone-card .ms-title { font-size: 14.5px; font-weight: 700; color: #0f172a; margin: 4px 0; }
+.milestone-card .ms-time { font-size: 13px; font-weight: 700; color: #b91c1c; }
+.milestone-card .ms-desc { font-size: 12.5px; color: #64748b; margin-top: 4px; }
+
+@media (max-width: 768px) {
+    .header { padding: 24px 20px; }
+    .content-wrapper { padding: 24px 20px; }
+    .step-flow { flex-direction: column; }
+    .step-arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="badge">KIM HYUN-SEOK KOREAN SYSTEM</div>
+        <h1>📖 국어 실전 풀이법 &amp; 유형별 분석 표준 매뉴얼</h1>
+        <p>수능·모의고사 국어 전 영역(독서·문학) 문제 해결을 위한 행동 강령, 6대 출제 트릭, 3점 적용 공식 및 공통과목 60분 마스터플랜</p>
+    </div>
+
+    <div class="content-wrapper">
+
+        <!-- 섹션 1 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅰ. 전개 방식 &amp; 서술·표현상 특징 <span>공통 원칙</span></div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-head">
+                        <span>1. 논지 전개 방식 (독서)</span>
+                        <span class="tag">거시 독해</span>
+                    </div>
+                    <div class="card-body">
+                        <p>• <strong>첫 단락 장악:</strong> 첫 문단에서 중심 화제와 문제의식(질문/한계점)을 반드시 체크.</p>
+                        <p>• <strong>방식 + 서술 의도(효과):</strong> 단순히 내용 나열이 아닌 글쓴이의 집필 의도와 효과 파악.</p>
+                        <p>• <strong>(가)/(나) 복합 지문:</strong> (가)와 (나)의 논지 전개 방식을 각각 독립 분석 후 연결 관계 판별.</p>
+                        <p>• <strong>긍정형 발문:</strong> 글 전체 구조를 가장 포괄적이고 정직하게 담아낸 선지가 정답.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <span>2. 표현상·서술상 특징 (문학)</span>
+                        <span class="tag">형식 &gt; 내용</span>
+                    </div>
+                    <div class="card-body">
+                        <p>• <strong>대원칙: [형식 &gt; 내용]</strong> 내용 해석에 앞서 <strong>1초 만에 눈으로 확인 가능한 형식적 표지</strong>부터 1순위 검증 (의문형, 대화체, 과장법, 색채어 등).</p>
+                        <p>• <strong>소설 서술상 특징 4단계 점검:</strong></p>
+                        <div class="formula-box" style="margin:8px 0; padding:10px 14px; font-size:13px;">
+                            시점 → 구성 → 인물 제시 방법 → 문체
+                        </div>
+                        <p>• <strong>문체 주의점:</strong> 문장의 길이(만연체/간결체)와 사건 전개 속도는 직접적 관련이 없음. <strong>'인물 행위의 연속적 제시'</strong>가 속도와 긴박감을 결정.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 섹션 2 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅱ. 정보 파악 &amp; 세부 정보 6대 출제 트릭 <span>미시 독해</span></div>
+            
+            <div class="highlight-box">
+                <h4>🎯 핵심 정보 파악의 3대 축</h4>
+                <p>1. <strong>중심 화제 및 주제:</strong> 글이 궁극적으로 설명하려는 핵심 개념어 선별.</p>
+                <p>2. <strong>개념의 정의:</strong> 따옴표, 볼드체, '~란 ~이다', '단순히 A가 아니라 B이다' 구문은 100% 출제 포인트.</p>
+                <p>3. <strong>단락별 핵심 문장:</strong> 각 단락의 <strong>첫 문장</strong>, <strong>마지막 문장</strong>, <strong>추상적 원리 진술</strong>을 중심으로 구조화.</p>
+            </div>
+
+            <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-top:20px;">⚠️ 출제자가 파놓은 세부 정보 6대 함정 트릭 (시간 끌기용 선지)</h4>
+            <div class="trick-list">
+                <div class="trick-item">
+                    <strong>1. 구체어 / 개념어 위치 왜곡</strong>
+                    지문에 등장하는 단어만 슬쩍 따와서 엉뚱한 주어·서술어 자리에 배치.
+                </div>
+                <div class="trick-item">
+                    <strong>2. 단정적 부정 표현</strong>
+                    '~하지 못한다', '~할 수 없다' 등 극단적 부정 선지는 최우선 검증 대상.
+                </div>
+                <div class="trick-item">
+                    <strong>3. 귀속식 대립 관계 왜곡</strong>
+                    A의 속성과 B의 속성을 교차시켜 뒤바꾸는 트릭 (반드시 출제!).
+                </div>
+                <div class="trick-item">
+                    <strong>4. 인과 관계 조작</strong>
+                    원인과 결과를 뒤집거나 무관한 두 사실을 인과로 연결.
+                </div>
+                <div class="trick-item">
+                    <strong>5. 확인 불가 (없는 내용)</strong>
+                    지문에 전혀 언급되지 않은 그럴듯한 배경지식을 날조.
+                </div>
+                <div class="trick-item">
+                    <strong>6. 논리성 결함</strong>
+                    전제와 결론이 서로 모순되거나 양립할 수 없는 진술.
+                </div>
+            </div>
+        </div>
+
+        <!-- 섹션 3 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅲ. [3점] 독서 구체적 상황 적용 <span>3단계 공식</span></div>
+            
+            <div class="step-flow">
+                <div class="step-item">
+                    <div class="step-num">STEP 1</div>
+                    <div class="step-text">선택지 역순 확인</div>
+                    <div style="font-size:12px; color:#64748b; margin-top:4px;">5번 → 4번 → 3번 순서 스캔</div>
+                </div>
+                <div class="step-arrow">➔</div>
+                <div class="step-item">
+                    <div class="step-num">STEP 2</div>
+                    <div class="step-text">선택지 분할 검증</div>
+                    <div style="font-size:12px; color:#64748b; margin-top:4px;">[지문 개념] ↔ [&lt;보기&gt; 이해] 매칭</div>
+                </div>
+                <div class="step-arrow">➔</div>
+                <div class="step-item">
+                    <div class="step-num">STEP 3</div>
+                    <div class="step-text">&lt;보기&gt; 마지막 문장 점검</div>
+                    <div style="font-size:12px; color:#64748b; margin-top:4px;">괄호 조건 및 단서 확인</div>
+                </div>
+            </div>
+
+            <div class="card" style="background:#f1f5f9; margin-top:16px;">
+                <div class="card-body">
+                    <p>• <strong>선택지 분할 요령:</strong> 선택지를 `[지문의 원리/개념]`과 `[&lt;보기&gt;의 구체적 대상/수치]`로 쪼갠 후, 양자 간의 1:1 대입이 참인지 거짓인지 판정.</p>
+                    <p>• <strong>마지막 문장의 위력:</strong> &lt;보기&gt; 하단에 괄호로 주어지는 단서(예: '단, ~는 고려하지 않음', '새로 들어온 비트는 ~')에 정답을 가르는 결정적 키가 있음.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 섹션 4 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅳ. 어휘 문제 풀이 원칙 <span>사전적 vs 문맥적</span></div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-head">
+                        <span>1. 사전적 의미 파악</span>
+                        <span class="tag" style="background:#fee2e2; color:#b91c1c;">발췌독 1순위</span>
+                    </div>
+                    <div class="card-body">
+                        <p>• <strong>지문 내용과 무관:</strong> 순수한 어휘 정의 판별.</p>
+                        <p>• <strong>시험 시작 직후 발췌독:</strong> 지문 전체를 읽기 전, 문제지를 받자마자 가장 먼저 풀어 10초 만에 해결.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <span>2. 문맥적 의미 파악</span>
+                        <span class="tag" style="background:#dcfce7; color:#15803d;">의미·통사 유사성</span>
+                    </div>
+                    <div class="card-body">
+                        <p>• <strong>필수 성분의 의미상 유사성 (+ / -):</strong> 함께 결합하는 목적어·주어의 추상/구체 자질 비교 (예: '비판[평가]을 받다' ↔ '평가[평가]를 받았다').</p>
+                        <p>• <strong>통사 구조의 유사성:</strong> 문장 성분 결합 구조의 일치 확인.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 섹션 5 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅴ. 문학 감상의 적절성 평가 <span>&lt;보기&gt; 3점 공식</span></div>
+            
+            <div class="formula-box">
+                [선택지 지문 근거] 로 보아 [&lt;보기&gt; 해석] 을 할 수 있는가?
+                <div class="comment">1단계: + / - 정서·태도 일치 여부 판별 ➔ 2단계: 연결 인과 및 지문 팩트(Fact) 일치 검증</div>
+            </div>
+
+            <div class="card-body" style="font-size:14px;">
+                <p>• <strong>&lt;보기&gt;의 본질:</strong> 작품을 감상하는 유일무이한 **외적 준거(절대 기준)**. 작품 설명 + 문학 개념어 + 작가 경향으로 구성.</p>
+                <p>• <strong>정답이 갈리는 자리:</strong> 정답의 80% 이상은 &lt;보기&gt;의 그럴듯한 감상평이 아니라, **선지 앞부분의 지문 팩트(상황/주체/인과)를 날조한 부분**에서 판가름 남.</p>
+            </div>
+        </div>
+
+        <!-- 섹션 6 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅵ. 공통과목 60분 실전 시간 배분 &amp; 갈래별 핵심 전략 <span>마스터플랜</span></div>
+            
+            <div class="highlight-box">
+                <h4>⏱️ 전체 타임라인 마스터플랜 (총 80분 시험 기준)</h4>
+                <p>• <strong>선택과목 (화작/언매 11문항):</strong> 15~18분</p>
+                <p>• <strong>공통과목 (독서 17문항 + 문학 17문항 = 34문항):</strong> <strong style="color:#b91c1c; font-size:16px;">순수 60분 배분!</strong></p>
+                <p>• <strong>마킹 및 최종 검토:</strong> 2~5분</p>
+            </div>
+
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th style="width:13%;">영역</th>
+                        <th style="width:18%;">세부 갈래</th>
+                        <th style="width:11%;">문항/시간</th>
+                        <th style="width:28%;">시간 배분 이유</th>
+                        <th style="width:30%;">갈래별 핵심 전략</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4" style="text-align:center; font-weight:800; background:#fdfaf5; color:#7c3f1d; vertical-align:middle;">
+                            1단계<br>문학<br><span style="font-size:12px; font-weight:600; color:#b45309;">(17문항 / 24분)</span>
+                        </td>
+                        <td><strong>고전시가 / 사설시조</strong></td>
+                        <td>3문항<br><span style="color:#b91c1c; font-weight:700;">4분</span></td>
+                        <td>EBS 연계 체감률이 가장 높고 지문 길이가 짧으며, 관습적 시어의 상징성이 고정되어 있어 기준선만 잡히면 가장 빠르게 해결 가능.</td>
+                        <td>• &lt;보기&gt;로 화자 분화, 출사/은거, 이별/무상 등 <strong>감상 기준선 30초 선점</strong>.<br>• 형식적 표지(과장, 의문형 등) 1차 검증.<br>• 관습적 시어(+/-) 매칭.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>고전소설</strong></td>
+                        <td>4문항<br><span style="color:#b91c1c; font-weight:700;">6분</span></td>
+                        <td>인물의 호칭 변화(이칭)와 군담/전기적 사건 전개로 인해 인물 간 대립 관계와 사건 인과를 정리하는 최소한의 독해 시간 필요.</td>
+                        <td>• 인물 진영(아군 vs 적군) 즉시 기호화.<br>• [A] 구간 등 <strong>'행위의 연속적 제시에 따른 긴박감'</strong> 1순위 점검.<br>• 고육책/위장 투항 시 표면적 명분 vs 실제 계책 인과 왜곡 주의.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>현대소설</strong></td>
+                        <td>4문항<br><span style="color:#b91c1c; font-weight:700;">6분</span></td>
+                        <td>서술자의 시점(1인칭/3인칭), 인물의 심리·태도의 시차적 변화, 시대적·제도적 갈등을 섬세하게 읽어내야 하므로 차분한 호흡 요구.</td>
+                        <td>• 서술자 위치 및 대화/행동을 통한 내면 심리 간접 제시 대목 집중.<br>• 인물 심리와 서술자 평가를 바꾼 <strong>주체 전도 트릭</strong> 및 양측 공통 태도를 차등화한 왜곡 선별.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>갈래복합 (시+수필)</strong></td>
+                        <td>6문항<br><span style="color:#b91c1c; font-weight:700;">8분</span></td>
+                        <td>3개 작품이 엮여 문항 수가 가장 많고(6문항), 작품 간 비교 및 철학적 성찰이 결합되어 가장 높은 인지적 부하 발생.</td>
+                        <td>• <strong>작품별 끊어 풀기:</strong> (가),(나) 시 독해 후 시 문항 먼저 해결 ➔ (다) 수필 독해 후 나머지 해결.<br>• 수필은 '인위 vs 무위자연', '실상 vs 가상'의 대립축 설정.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="text-align:center; font-weight:800; background:#f0f7ff; color:#1e3a8a; vertical-align:middle;">
+                            2단계<br>독서<br><span style="font-size:12px; font-weight:600; color:#2563eb;">(17문항 / 36분)</span>
+                        </td>
+                        <td><strong>독서론</strong></td>
+                        <td>3문항<br><span style="color:#b91c1c; font-weight:700;">3~4분</span></td>
+                        <td>정보 밀도가 낮고 구조가 정형화되어 있어 시간을 최대로 단축하고 멘탈을 안정시키는 워밍업 구간.</td>
+                        <td>• 발달 단계/인지 조건 등 핵심 기준 번호 매김.<br>• 선지의 시기적 선후 관계('~하기 전에')와 부정 표현 팩트 체크로 4분 내 만점 확보.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>사회 지문 (법/경제)</strong></td>
+                        <td>4문항<br><span style="color:#b91c1c; font-weight:700;">9~10분</span></td>
+                        <td>법률적 요건과 효과(추정 vs 의제), 경제학적 상관관계(비례/반비례)가 얽혀 있고 복합 사례 3점 문항 난도 높음.</td>
+                        <td>• 핵심 법리 대립 표(반증 번복 가능 vs 소송 필수) 머릿속 구축.<br>• <strong>'법률에 규정되어 있지 않다(입법 공백)'</strong> 1순위 확인.<br>• 3점 사례는 선택지 분할로 대입 검증.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>인문 지문 (철학/사상)</strong></td>
+                        <td>6문항<br><span style="color:#b91c1c; font-weight:700;">11~12분</span></td>
+                        <td>학자별 3자 대립 구도, 복합 명제(ㄱ~ㅁ) 진릿값 판정, 제3의 견해 비판 등 고난도 문항이 6개로 집중되어 심층 사고 시간 필수.</td>
+                        <td>• 학자별 핵심 명제(S1, S2, S3)와 진릿값 판정(T/F/판정불가) 여백에 기호화.<br>• '뜻 vs 지시체', '진릿값=대상 vs 속성' 등 <strong>개념 짝과 주체 왜곡</strong> 분리.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>과학 / 기술 지문</strong></td>
+                        <td>4문항<br><span style="color:#b91c1c; font-weight:700;">10~11분</span></td>
+                        <td>시스템 메커니즘, 상태 비트 변환, 포인터 이동 등 원리 이해 후 단계별 시뮬레이션을 직접 수행해야 하므로 계산 시간 필요.</td>
+                        <td>• 하드웨어적 물리적 불변값 1차 확인.<br>• 탐색 단계별 비트 변경 조건 구분.<br>• 3점 문항은 <strong>여백에 상태 비트 표와 포인터 화살표를 직접 작성</strong>하여 역순 검증.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 섹션 7 -->
+        <div class="section-block">
+            <div class="sec-title">Ⅶ. 마일스톤(Milestone) 개념 및 실전 활용법 <span>완급 조절</span></div>
+            
+            <div class="highlight-box">
+                <h4>🚩 마일스톤(Milestone)이란 무엇인가?</h4>
+                <p>도로변에 1마일마다 세워둔 **'이정표(거리 표지석)'**에서 유래한 용어로, 국어 시험에서는 <strong>'문제 풀이 도중 나의 현재 속도와 남은 시간을 점검하는 구간별 기준 체크포인트'</strong>를 의미합니다.</p>
+                <p style="margin-top:6px; font-size:13.5px; color:#64748b;">수시로 시계를 보며 초조해하는 불안형 풀이를 탈피하고, <strong>정해진 갈래(세트)가 끝나는 순간에만 시계를 딱 1초 확인</strong>하여 페이스를 조절하는 최고난도 실전 기법입니다.</p>
+            </div>
+
+            <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-top:20px;">⏱️ 수능 국어 80분 실전 5대 마일스톤 (08:40 시험 시작 기준)</h4>
+            <div class="milestone-grid">
+                <div class="milestone-card">
+                    <div class="ms-step">CHECKPOINT 1</div>
+                    <div class="ms-title">선택과목 완료</div>
+                    <div class="ms-time">08:55 ~ 08:58 (15~18분 소요)</div>
+                    <div class="ms-desc">화작/언매 11문항 종료 후 공통과목 60분 진입</div>
+                </div>
+                <div class="milestone-card" style="border-top-color:#b91c1c;">
+                    <div class="ms-step" style="color:#b91c1c;">CHECKPOINT 2 (핵심)</div>
+                    <div class="ms-title">문학 4세트 완료</div>
+                    <div class="ms-time">09:20 ~ 09:22 (24분 소요)</div>
+                    <div class="ms-desc">문학 17문항 종료, 1등급 진입의 핵심 분수령</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="ms-step">CHECKPOINT 3</div>
+                    <div class="ms-title">독서 전반부 완료</div>
+                    <div class="ms-time">09:35 전후 (13분 소요)</div>
+                    <div class="ms-desc">독서론 + 사회(법/경제) 지문 종료</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="ms-step">CHECKPOINT 4</div>
+                    <div class="ms-title">독서 후반부 완료</div>
+                    <div class="ms-time">09:55 전후 (23분 소요)</div>
+                    <div class="ms-desc">인문 + 과학/기술 2개 지문 전체 종료</div>
+                </div>
+                <div class="milestone-card" style="border-top-color:#16a34a;">
+                    <div class="ms-step" style="color:#16a34a;">CHECKPOINT 5 (FINAL)</div>
+                    <div class="ms-title">별표 문항 &amp; 마킹</div>
+                    <div class="ms-time">10:00 (종료 5분 전)</div>
+                    <div class="ms-desc">별표 쳐둔 3점 문항 회수 및 OMR 마킹 최종 검토</div>
+                </div>
+            </div>
+
+            <div class="sub-detail-box">
+                <div class="title">🎯 마일스톤을 실전에서 사용하는 3단계 행동 요령</div>
+                <p><strong>[원칙 1] 문제 풀이 중에는 절대 시계를 보지 않는다:</strong> 지문 독해와 문제 풀이 중에는 100% 텍스트에만 몰입합니다. 시계는 오직 '선택과목 완료 시', '문학 4세트 완료 시', '독서 지문 세트 완료 시'에만 딱 1초 확인합니다.</p>
+                <p><strong>[원칙 2] 마일스톤보다 빠를 때 (시간 세이브 상황):</strong> 예컨대 문학 종료 시 09:18을 가리키고 있다면, 남은 독서 4지문에 37분 이상의 잉여 시간이 확보된 것이므로, 독서 3점 고난도 문항(기술 시뮬레이션, 인문 학자 비교)을 서두르지 않고 침착하게 도식화하여 100% 정답률을 완성합니다.</p>
+                <p><strong>[원칙 3] 마일스톤보다 늦어졌을 때 (시간 지연 / 위기 상황):</strong> 예컨대 문학 종료 시 09:25를 넘어가고 있다면, 당황하지 말고 즉시 '선택과 집중 모드'로 전환합니다. 독서 3점 적용 문제에서 1분 이상 도식화가 막히면 미련 없이 '별표'를 치고 넘어가 전체 2점 문항을 먼저 싹 쓸어 담은 뒤, 남은 3~5분에 별표 문항으로 돌아와 해결합니다.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
