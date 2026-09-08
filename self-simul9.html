@@ -59,7 +59,7 @@ nav.tabs button{
   flex:1 0 auto;font:inherit;font-size:14px;font-weight:600;padding:13px 12px;border:0;background:none;
   color:var(--sub);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap
 }
-nav.tabs button.on{color:var(--navy);border-bottom-color:var(--navy)}
+nav.tabs button.on,nav.tabs label.tablink.on{color:var(--navy);border-bottom-color:var(--navy)}
 
 section.tab{display:none;padding:18px 0 8px}
 section.tab.on{display:block}
@@ -247,6 +247,49 @@ ul.tips li{margin-bottom:5px}
 .chips button.on{border-color:var(--pur);background:var(--pur);color:#fff;box-shadow:0 2px 6px rgba(107,78,168,.35)}
 .chips button.on .s{opacity:.9}
 .pickmsg{font-size:12.5px;color:var(--sub);margin:10px 0 0;line-height:1.55}
+
+/* iOS/카톡: JS 없이도 답 선택 가능 (radio + label) */
+.choices label.ch,.marks label.mkb{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font:inherit;font-size:13px;padding:8px 0;min-height:36px;border:1px solid var(--line);border-radius:7px;
+  background:#fafbfd;color:var(--sub);cursor:pointer;
+  -webkit-user-select:none;user-select:none;touch-action:manipulation;margin:0;
+  position:relative;
+}
+.choices label.ch input,.marks label.mkb input{
+  position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;
+}
+.choices label.ch:has(input:checked),
+.choices label.ch.sel{
+  background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700;
+}
+.marks label.mkb{border-style:dashed;background:#fff;color:#9aa3b2;padding:6px 0;min-height:32px}
+.marks label.mkb:has(input:checked[value="o"]),
+.marks label.mkb.on[data-m="o"]{background:var(--green-bg);border-color:var(--green);color:var(--green);border-style:solid;font-weight:700}
+.marks label.mkb:has(input:checked[value="t"]),
+.marks label.mkb.on[data-m="t"]{background:var(--gold-bg);border-color:var(--gold);color:var(--gold);border-style:solid;font-weight:700}
+.marks label.mkb:has(input:checked[value="x"]),
+.marks label.mkb.on[data-m="x"]{background:var(--red-bg);border-color:var(--red);color:var(--red);border-style:solid;font-weight:700}
+/* :has 미지원 구형 대비 — JS가 class 부여 */
+.choices label.ch input:checked + span{font-weight:700}
+
+/* CSS-only 탭 (radio) */
+.tab-radios{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+nav.tabs label.tablink{
+  flex:1 0 auto;font:inherit;font-size:14px;font-weight:600;padding:14px 12px;border:0;background:none;
+  color:var(--sub);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;
+  text-align:center;touch-action:manipulation;-webkit-user-select:none;user-select:none;
+  min-height:48px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;
+}
+#tr1:checked ~ nav.tabs label[for="tr1"],
+#tr2:checked ~ nav.tabs label[for="tr2"],
+#tr3:checked ~ nav.tabs label[for="tr3"],
+#tr4:checked ~ nav.tabs label[for="tr4"]{
+  color:var(--navy);border-bottom-color:var(--navy);font-weight:700;
+}
+/* 패널 표시: 라디오와 섹션이 형제가 아니므로 body 클래스/JS 병행.
+   순수 CSS만으로는 구조상 제한 → 최소 인라인 스크립트로 보강 */
+
 </style>
 </head>
 <body>
@@ -805,14 +848,75 @@ ul.tips li{margin-bottom:5px}
   </div>
 </header>
 
-<nav class="tabs">
+<div class="tab-radios" aria-hidden="true">
+  <input type="radio" name="maintab" id="tr1" value="t1" checked>
+  <input type="radio" name="maintab" id="tr2" value="t2">
+  <input type="radio" name="maintab" id="tr3" value="t3">
+  <input type="radio" name="maintab" id="tr4" value="t4">
+</div>
+<nav class="tabs" id="tabnav">
   <div class="wrap">
-    <button type="button" data-tab="t1" class="on">① 채점</button>
-    <button type="button" data-tab="t2">② 지문 분석</button>
-    <button type="button" data-tab="t3">③ 문항 분석</button>
-    <button type="button" data-tab="t4">④ 총평·계획</button>
+    <label class="tablink on" for="tr1" data-tab="t1">① 채점</label>
+    <label class="tablink" for="tr2" data-tab="t2">② 지문 분석</label>
+    <label class="tablink" for="tr3" data-tab="t3">③ 문항 분석</label>
+    <label class="tablink" for="tr4" data-tab="t4">④ 총평·계획</label>
   </div>
 </nav>
+<script>
+/* 초경량 탭 전환 — 메인 스크립트 실패해도 동작 */
+(function(){
+  function go(t){
+    var secs=document.querySelectorAll("section.tab");
+    for(var i=0;i<secs.length;i++){
+      secs[i].className = "tab" + (secs[i].id===t ? " on" : "");
+    }
+    var labs=document.querySelectorAll("nav.tabs label.tablink");
+    for(var j=0;j<labs.length;j++){
+      labs[j].className = "tablink" + (labs[j].getAttribute("data-tab")===t ? " on" : "");
+    }
+    try{ window.scrollTo(0,0); }catch(e){}
+    if(window.__switchTab) try{ window.__switchTab(t); }catch(e){}
+  }
+  window.__switchTabLite = go;
+
+/* OMR 즉시 반응 — 메인 JS 전에도 채점 표시 */
+(function(){
+  var omr=document.getElementById("omr-c");
+  if(!omr) return;
+  omr.addEventListener("change", function(e){
+    var t=e.target;
+    if(!t || t.tagName!=="INPUT" || !t.name || t.name.indexOf("ans-")!==0) return;
+    var cell=t.closest ? t.closest(".q") : null;
+    if(!cell) return;
+    var ans=parseInt(cell.getAttribute("data-ans")||"0",10);
+    var mine=parseInt(t.value,10);
+    cell.className = "q " + (mine===ans ? "correct" : "wrong");
+    var mk=cell.querySelector(".mk");
+    if(mk) mk.textContent = mine===ans ? "○" : "✕";
+    var labs=cell.querySelectorAll(".choices label.ch");
+    for(var i=0;i<labs.length;i++){
+      var inp=labs[i].querySelector("input");
+      if(inp && inp.checked) labs[i].classList.add("sel");
+      else labs[i].classList.remove("sel");
+    }
+  }, false);
+})();
+
+  var radios=document.querySelectorAll("input[name=maintab]");
+  for(var i=0;i<radios.length;i++){
+    radios[i].addEventListener("change", function(){ go(this.value); });
+  }
+  var labs=document.querySelectorAll("nav.tabs label.tablink");
+  for(var k=0;k<labs.length;k++){
+    labs[k].addEventListener("click", function(){
+      var t=this.getAttribute("data-tab");
+      var r=document.getElementById(t.replace("t","tr"));
+      if(r) r.checked=true;
+      go(t);
+    });
+  }
+})();
+</script>
 
 <main class="wrap">
 
@@ -862,7 +966,42 @@ ul.tips li{margin-bottom:5px}
       <b>○ 로 표시했는데 틀린 문항</b>이 가장 위험합니다. 그건 실수가 아니라 잘못 알고 있는 것입니다.
     </p>
     <h3 class="blk">공통 과목 <span class="tag t-read">1 ~ 34</span></h3>
-    <div class="omr" id="omr-c"></div>
+    <div class="omr" id="omr-c">
+<div class="q" id="cell-c1" data-ans="5" data-p="2"><div class="n"><span>1</span><span class="mk" id="mk-c1"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c1" value="1" data-q="c1" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c1" value="2" data-q="c1" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c1" value="3" data-q="c1" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c1" value="4" data-q="c1" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c1" value="5" data-q="c1" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c1" value="o" data-mk="c1" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c1" value="t" data-mk="c1" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c1" value="x" data-mk="c1" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c2" data-ans="3" data-p="2"><div class="n"><span>2</span><span class="mk" id="mk-c2"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c2" value="1" data-q="c2" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c2" value="2" data-q="c2" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c2" value="3" data-q="c2" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c2" value="4" data-q="c2" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c2" value="5" data-q="c2" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c2" value="o" data-mk="c2" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c2" value="t" data-mk="c2" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c2" value="x" data-mk="c2" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c3" data-ans="4" data-p="3"><div class="n"><span>3 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c3"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c3" value="1" data-q="c3" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c3" value="2" data-q="c3" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c3" value="3" data-q="c3" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c3" value="4" data-q="c3" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c3" value="5" data-q="c3" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c3" value="o" data-mk="c3" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c3" value="t" data-mk="c3" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c3" value="x" data-mk="c3" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c4" data-ans="4" data-p="2"><div class="n"><span>4</span><span class="mk" id="mk-c4"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c4" value="1" data-q="c4" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c4" value="2" data-q="c4" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c4" value="3" data-q="c4" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c4" value="4" data-q="c4" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c4" value="5" data-q="c4" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c4" value="o" data-mk="c4" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c4" value="t" data-mk="c4" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c4" value="x" data-mk="c4" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c5" data-ans="2" data-p="2"><div class="n"><span>5</span><span class="mk" id="mk-c5"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c5" value="1" data-q="c5" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c5" value="2" data-q="c5" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c5" value="3" data-q="c5" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c5" value="4" data-q="c5" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c5" value="5" data-q="c5" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c5" value="o" data-mk="c5" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c5" value="t" data-mk="c5" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c5" value="x" data-mk="c5" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c6" data-ans="3" data-p="2"><div class="n"><span>6</span><span class="mk" id="mk-c6"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c6" value="1" data-q="c6" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c6" value="2" data-q="c6" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c6" value="3" data-q="c6" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c6" value="4" data-q="c6" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c6" value="5" data-q="c6" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c6" value="o" data-mk="c6" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c6" value="t" data-mk="c6" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c6" value="x" data-mk="c6" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c7" data-ans="5" data-p="2"><div class="n"><span>7</span><span class="mk" id="mk-c7"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c7" value="1" data-q="c7" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c7" value="2" data-q="c7" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c7" value="3" data-q="c7" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c7" value="4" data-q="c7" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c7" value="5" data-q="c7" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c7" value="o" data-mk="c7" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c7" value="t" data-mk="c7" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c7" value="x" data-mk="c7" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c8" data-ans="5" data-p="3"><div class="n"><span>8 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c8"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c8" value="1" data-q="c8" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c8" value="2" data-q="c8" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c8" value="3" data-q="c8" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c8" value="4" data-q="c8" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c8" value="5" data-q="c8" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c8" value="o" data-mk="c8" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c8" value="t" data-mk="c8" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c8" value="x" data-mk="c8" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c9" data-ans="1" data-p="2"><div class="n"><span>9</span><span class="mk" id="mk-c9"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c9" value="1" data-q="c9" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c9" value="2" data-q="c9" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c9" value="3" data-q="c9" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c9" value="4" data-q="c9" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c9" value="5" data-q="c9" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c9" value="o" data-mk="c9" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c9" value="t" data-mk="c9" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c9" value="x" data-mk="c9" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c10" data-ans="1" data-p="2"><div class="n"><span>10</span><span class="mk" id="mk-c10"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c10" value="1" data-q="c10" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c10" value="2" data-q="c10" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c10" value="3" data-q="c10" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c10" value="4" data-q="c10" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c10" value="5" data-q="c10" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c10" value="o" data-mk="c10" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c10" value="t" data-mk="c10" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c10" value="x" data-mk="c10" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c11" data-ans="4" data-p="2"><div class="n"><span>11</span><span class="mk" id="mk-c11"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c11" value="1" data-q="c11" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c11" value="2" data-q="c11" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c11" value="3" data-q="c11" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c11" value="4" data-q="c11" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c11" value="5" data-q="c11" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c11" value="o" data-mk="c11" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c11" value="t" data-mk="c11" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c11" value="x" data-mk="c11" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c12" data-ans="5" data-p="3"><div class="n"><span>12 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c12"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c12" value="1" data-q="c12" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c12" value="2" data-q="c12" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c12" value="3" data-q="c12" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c12" value="4" data-q="c12" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c12" value="5" data-q="c12" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c12" value="o" data-mk="c12" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c12" value="t" data-mk="c12" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c12" value="x" data-mk="c12" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c13" data-ans="3" data-p="2"><div class="n"><span>13</span><span class="mk" id="mk-c13"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c13" value="1" data-q="c13" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c13" value="2" data-q="c13" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c13" value="3" data-q="c13" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c13" value="4" data-q="c13" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c13" value="5" data-q="c13" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c13" value="o" data-mk="c13" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c13" value="t" data-mk="c13" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c13" value="x" data-mk="c13" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c14" data-ans="2" data-p="2"><div class="n"><span>14</span><span class="mk" id="mk-c14"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c14" value="1" data-q="c14" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c14" value="2" data-q="c14" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c14" value="3" data-q="c14" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c14" value="4" data-q="c14" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c14" value="5" data-q="c14" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c14" value="o" data-mk="c14" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c14" value="t" data-mk="c14" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c14" value="x" data-mk="c14" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c15" data-ans="3" data-p="2"><div class="n"><span>15</span><span class="mk" id="mk-c15"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c15" value="1" data-q="c15" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c15" value="2" data-q="c15" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c15" value="3" data-q="c15" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c15" value="4" data-q="c15" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c15" value="5" data-q="c15" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c15" value="o" data-mk="c15" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c15" value="t" data-mk="c15" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c15" value="x" data-mk="c15" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c16" data-ans="4" data-p="2"><div class="n"><span>16</span><span class="mk" id="mk-c16"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c16" value="1" data-q="c16" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c16" value="2" data-q="c16" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c16" value="3" data-q="c16" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c16" value="4" data-q="c16" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c16" value="5" data-q="c16" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c16" value="o" data-mk="c16" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c16" value="t" data-mk="c16" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c16" value="x" data-mk="c16" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c17" data-ans="5" data-p="3"><div class="n"><span>17 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c17"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c17" value="1" data-q="c17" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c17" value="2" data-q="c17" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c17" value="3" data-q="c17" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c17" value="4" data-q="c17" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c17" value="5" data-q="c17" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c17" value="o" data-mk="c17" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c17" value="t" data-mk="c17" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c17" value="x" data-mk="c17" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c18" data-ans="1" data-p="2"><div class="n"><span>18</span><span class="mk" id="mk-c18"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c18" value="1" data-q="c18" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c18" value="2" data-q="c18" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c18" value="3" data-q="c18" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c18" value="4" data-q="c18" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c18" value="5" data-q="c18" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c18" value="o" data-mk="c18" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c18" value="t" data-mk="c18" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c18" value="x" data-mk="c18" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c19" data-ans="3" data-p="2"><div class="n"><span>19</span><span class="mk" id="mk-c19"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c19" value="1" data-q="c19" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c19" value="2" data-q="c19" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c19" value="3" data-q="c19" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c19" value="4" data-q="c19" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c19" value="5" data-q="c19" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c19" value="o" data-mk="c19" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c19" value="t" data-mk="c19" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c19" value="x" data-mk="c19" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c20" data-ans="2" data-p="2"><div class="n"><span>20</span><span class="mk" id="mk-c20"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c20" value="1" data-q="c20" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c20" value="2" data-q="c20" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c20" value="3" data-q="c20" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c20" value="4" data-q="c20" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c20" value="5" data-q="c20" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c20" value="o" data-mk="c20" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c20" value="t" data-mk="c20" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c20" value="x" data-mk="c20" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c21" data-ans="3" data-p="3"><div class="n"><span>21 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c21"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c21" value="1" data-q="c21" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c21" value="2" data-q="c21" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c21" value="3" data-q="c21" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c21" value="4" data-q="c21" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c21" value="5" data-q="c21" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c21" value="o" data-mk="c21" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c21" value="t" data-mk="c21" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c21" value="x" data-mk="c21" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c22" data-ans="5" data-p="2"><div class="n"><span>22</span><span class="mk" id="mk-c22"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c22" value="1" data-q="c22" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c22" value="2" data-q="c22" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c22" value="3" data-q="c22" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c22" value="4" data-q="c22" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c22" value="5" data-q="c22" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c22" value="o" data-mk="c22" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c22" value="t" data-mk="c22" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c22" value="x" data-mk="c22" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c23" data-ans="3" data-p="2"><div class="n"><span>23</span><span class="mk" id="mk-c23"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c23" value="1" data-q="c23" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c23" value="2" data-q="c23" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c23" value="3" data-q="c23" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c23" value="4" data-q="c23" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c23" value="5" data-q="c23" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c23" value="o" data-mk="c23" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c23" value="t" data-mk="c23" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c23" value="x" data-mk="c23" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c24" data-ans="2" data-p="2"><div class="n"><span>24</span><span class="mk" id="mk-c24"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c24" value="1" data-q="c24" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c24" value="2" data-q="c24" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c24" value="3" data-q="c24" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c24" value="4" data-q="c24" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c24" value="5" data-q="c24" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c24" value="o" data-mk="c24" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c24" value="t" data-mk="c24" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c24" value="x" data-mk="c24" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c25" data-ans="5" data-p="2"><div class="n"><span>25</span><span class="mk" id="mk-c25"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c25" value="1" data-q="c25" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c25" value="2" data-q="c25" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c25" value="3" data-q="c25" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c25" value="4" data-q="c25" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c25" value="5" data-q="c25" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c25" value="o" data-mk="c25" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c25" value="t" data-mk="c25" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c25" value="x" data-mk="c25" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c26" data-ans="2" data-p="3"><div class="n"><span>26 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c26"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c26" value="1" data-q="c26" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c26" value="2" data-q="c26" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c26" value="3" data-q="c26" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c26" value="4" data-q="c26" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c26" value="5" data-q="c26" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c26" value="o" data-mk="c26" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c26" value="t" data-mk="c26" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c26" value="x" data-mk="c26" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c27" data-ans="1" data-p="2"><div class="n"><span>27</span><span class="mk" id="mk-c27"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c27" value="1" data-q="c27" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c27" value="2" data-q="c27" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c27" value="3" data-q="c27" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c27" value="4" data-q="c27" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c27" value="5" data-q="c27" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c27" value="o" data-mk="c27" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c27" value="t" data-mk="c27" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c27" value="x" data-mk="c27" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c28" data-ans="1" data-p="2"><div class="n"><span>28</span><span class="mk" id="mk-c28"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c28" value="1" data-q="c28" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c28" value="2" data-q="c28" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c28" value="3" data-q="c28" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c28" value="4" data-q="c28" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c28" value="5" data-q="c28" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c28" value="o" data-mk="c28" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c28" value="t" data-mk="c28" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c28" value="x" data-mk="c28" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c29" data-ans="5" data-p="2"><div class="n"><span>29</span><span class="mk" id="mk-c29"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c29" value="1" data-q="c29" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c29" value="2" data-q="c29" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c29" value="3" data-q="c29" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c29" value="4" data-q="c29" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c29" value="5" data-q="c29" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c29" value="o" data-mk="c29" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c29" value="t" data-mk="c29" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c29" value="x" data-mk="c29" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c30" data-ans="2" data-p="3"><div class="n"><span>30 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c30"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c30" value="1" data-q="c30" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c30" value="2" data-q="c30" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c30" value="3" data-q="c30" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c30" value="4" data-q="c30" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c30" value="5" data-q="c30" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c30" value="o" data-mk="c30" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c30" value="t" data-mk="c30" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c30" value="x" data-mk="c30" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c31" data-ans="1" data-p="2"><div class="n"><span>31</span><span class="mk" id="mk-c31"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c31" value="1" data-q="c31" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c31" value="2" data-q="c31" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c31" value="3" data-q="c31" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c31" value="4" data-q="c31" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c31" value="5" data-q="c31" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c31" value="o" data-mk="c31" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c31" value="t" data-mk="c31" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c31" value="x" data-mk="c31" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c32" data-ans="4" data-p="2"><div class="n"><span>32</span><span class="mk" id="mk-c32"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c32" value="1" data-q="c32" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c32" value="2" data-q="c32" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c32" value="3" data-q="c32" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c32" value="4" data-q="c32" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c32" value="5" data-q="c32" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c32" value="o" data-mk="c32" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c32" value="t" data-mk="c32" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c32" value="x" data-mk="c32" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c33" data-ans="3" data-p="2"><div class="n"><span>33</span><span class="mk" id="mk-c33"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c33" value="1" data-q="c33" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c33" value="2" data-q="c33" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c33" value="3" data-q="c33" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c33" value="4" data-q="c33" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c33" value="5" data-q="c33" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c33" value="o" data-mk="c33" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c33" value="t" data-mk="c33" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c33" value="x" data-mk="c33" data-m="x"><span>✕</span></label></div></div>
+<div class="q" id="cell-c34" data-ans="3" data-p="3"><div class="n"><span>34 <span class="tag t-3">3점</span></span><span class="mk" id="mk-c34"></span></div><div class="choices"><label class="ch"><input type="radio" name="ans-c34" value="1" data-q="c34" data-v="1"><span>①</span></label><label class="ch"><input type="radio" name="ans-c34" value="2" data-q="c34" data-v="2"><span>②</span></label><label class="ch"><input type="radio" name="ans-c34" value="3" data-q="c34" data-v="3"><span>③</span></label><label class="ch"><input type="radio" name="ans-c34" value="4" data-q="c34" data-v="4"><span>④</span></label><label class="ch"><input type="radio" name="ans-c34" value="5" data-q="c34" data-v="5"><span>⑤</span></label></div><div class="marks"><label class="mkb" title="확실히 맞음"><input type="radio" name="mk-c34" value="o" data-mk="c34" data-m="o"><span>○</span></label><label class="mkb" title="애매함"><input type="radio" name="mk-c34" value="t" data-mk="c34" data-m="t"><span>△</span></label><label class="mkb" title="못 풀었음"><input type="radio" name="mk-c34" value="x" data-mk="c34" data-m="x"><span>✕</span></label></div></div>
+</div>
   </div>
 
   <div class="card">
@@ -1142,43 +1281,33 @@ ul.tips li{margin-bottom:5px}
   function qid(sec, n){ return sec + n; }
 
   /* ---------- 채점 ---------- */
+  /* OMR은 HTML에 미리 렌더됨(라디오). JS는 이벤트·채점만 연결 — 카톡/iOS에서도 칸이 보임 */
   function buildOmr(){
-    var c = qsOf('c'), i, h1 = '';
-    for(i=0;i<c.length;i++) h1 += omrCell('c', c[i]);
-    $('omr-c').innerHTML = h1;
     bindOmr();
     paintOmr();
   }
-  function omrCell(sec, q){
-    var id = qid(sec, q.n), i, b = '', m = '';
-    for(i=1;i<=5;i++){
-      b += '<button type="button" data-q="'+id+'" data-v="'+i+'">'+CIR[i]+'</button>';
-    }
-    var keys = ['o','t','x'];
-    for(i=0;i<3;i++){
-      m += '<button type="button" data-mk="'+id+'" data-m="'+keys[i]+'" title="'+MKNAME[keys[i]]+'">'+MK[keys[i]]+'</button>';
-    }
-    return '<div class="q" id="cell-'+id+'">'
-      + '<div class="n"><span>'+q.n+(q.p===3?' <span class="tag t-3">3점</span>':'')+'</span><span class="mk" id="mk-'+id+'"></span></div>'
-      + '<div class="choices">'+b+'</div>'
-      + '<div class="marks">'+m+'</div></div>';
-  }
   function bindOmr(){
-    var btns = document.querySelectorAll('.choices button'), i;
-    for(i=0;i<btns.length;i++){
-      btns[i].onclick = function(){
-        var id = this.getAttribute('data-q');
-        var v = parseInt(this.getAttribute('data-v'), 10);
-        S.ans[id] = (S.ans[id] === v) ? 0 : v;
+    var omr = $('omr-c'); if(!omr) return;
+    if(omr.getAttribute('data-bound') === '1') return;
+    omr.setAttribute('data-bound', '1');
+    omr.addEventListener('change', function(e){
+      var t = e.target;
+      if(!t || t.tagName !== 'INPUT') return;
+      if(t.name && t.name.indexOf('ans-') === 0){
+        var id = t.getAttribute('data-q');
+        var v = parseInt(t.value, 10);
+        S.ans[id] = v;
         paintOmr(); score(); autoPick(); renderPick(); renderPpick(); renderQList(); saveLater();
-      };
-    }
-    var mbs = document.querySelectorAll('.marks button');
-    for(i=0;i<mbs.length;i++){
-      mbs[i].onclick = function(){
-        setMark(this.getAttribute('data-mk'), this.getAttribute('data-m'));
-      };
-    }
+      } else if(t.name && t.name.indexOf('mk-') === 0){
+        var mid = t.getAttribute('data-mk');
+        var mm = t.value;
+        S.mark[mid] = (S.mark[mid] === mm) ? '' : mm;
+        if(!S.mark[mid]){
+          try{ t.checked = false; }catch(err){}
+        }
+        paintOmr(); score(); renderPick(); renderQList(); saveLater();
+      }
+    }, false);
   }
   function setMark(id, m){
     S.mark[id] = (S.mark[id] === m) ? '' : m;
@@ -1190,17 +1319,28 @@ ul.tips li{margin-bottom:5px}
       var sec = list[i].sec, q = list[i].q, id = qid(sec, q.n);
       var cell = $('cell-'+id); if(!cell) continue;
       var mine = S.ans[id] || 0, mk = S.mark[id] || '';
-      var cbs = cell.getElementsByClassName('choices')[0].getElementsByTagName('button');
-      for(j=0;j<cbs.length;j++){
-        var v = parseInt(cbs[j].getAttribute('data-v'), 10);
-        cbs[j].className = (v === mine) ? 'sel' : '';
+      var ansInputs = cell.querySelectorAll('.choices input[type=radio]');
+      for(j=0;j<ansInputs.length;j++){
+        var v = parseInt(ansInputs[j].value, 10);
+        ansInputs[j].checked = (v === mine);
+        var lab = ansInputs[j].parentNode;
+        if(lab && lab.classList){
+          if(v === mine) lab.classList.add('sel'); else lab.classList.remove('sel');
+        }
       }
-      var mbs = cell.getElementsByClassName('marks')[0].getElementsByTagName('button');
-      for(j=0;j<mbs.length;j++){
-        mbs[j].className = (mbs[j].getAttribute('data-m') === mk) ? 'on' : '';
+      var mkInputs = cell.querySelectorAll('.marks input[type=radio]');
+      for(j=0;j<mkInputs.length;j++){
+        var mv = mkInputs[j].value;
+        mkInputs[j].checked = (mv === mk);
+        var mlab = mkInputs[j].parentNode;
+        if(mlab && mlab.classList){
+          mlab.className = 'mkb' + (mv === mk ? ' on' : '');
+          if(mv === mk) mlab.setAttribute('data-m', mv); else mlab.removeAttribute('data-m');
+        }
       }
       cell.className = 'q' + (mine ? (mine === q.a ? ' correct' : ' wrong') : '');
-      $('mk-'+id).innerHTML = mine ? (mine === q.a ? '○' : '✕') : '';
+      var mkEl = $('mk-'+id);
+      if(mkEl) mkEl.innerHTML = mine ? (mine === q.a ? '○' : '✕') : '';
     }
   }
   function score(){
@@ -1772,21 +1912,39 @@ ul.tips li{margin-bottom:5px}
   }
 
   /* ---------- 탭 ---------- */
-  function bindTabs(){
-    var bs = document.querySelectorAll('nav.tabs button'), i;
-    for(i=0;i<bs.length;i++){
-      bs[i].onclick = function(){
-        var t = this.getAttribute('data-tab'), j;
-        var all = document.querySelectorAll('nav.tabs button');
-        for(j=0;j<all.length;j++) all[j].className = '';
-        this.className = 'on';
-        var secs = document.querySelectorAll('section.tab');
-        for(j=0;j<secs.length;j++) secs[j].className = 'tab' + (secs[j].id === t ? ' on' : '');
-        window.scrollTo(0,0);
-      };
+  function switchTab(t){
+    if(!t) return;
+    if(window.__switchTabLite){
+      try{ window.__switchTabLite(t); }catch(e){}
+    } else {
+      var secs = document.querySelectorAll('section.tab'), j;
+      for(j=0;j<secs.length;j++) secs[j].className = 'tab' + (secs[j].id === t ? ' on' : '');
+      var labs = document.querySelectorAll('nav.tabs label.tablink');
+      for(j=0;j<labs.length;j++) labs[j].className = 'tablink' + (labs[j].getAttribute('data-tab') === t ? ' on' : '');
     }
+    var rid = t.replace('t', 'tr');
+    var r = document.getElementById(rid);
+    if(r) r.checked = true;
+    try{ window.scrollTo(0,0); }catch(e){}
+  }
+  window.__switchTab = switchTab;
+
+  function isKakaoInApp(){
+    try{
+      var ua = (navigator.userAgent || '') + ' ' + (navigator.vendor || '');
+      return /KAKAOTALK/i.test(ua) || /KakaoTalk/i.test(ua);
+    }catch(e){ return false; }
+  }
+  function detectInApp(){
+    if(isKakaoInApp()){
+      try{ document.body.className = ((document.body.className || '') + ' is-kakao').replace(/^\s+/, ''); }catch(e){}
+    }
+  }
+
+  function bindTabs(){
+    /* 탭은 초경량 스크립트 + 라디오/label 이 담당. 여기는 필터만. */
     var fs = document.querySelectorAll('.filterbar button');
-    for(i=0;i<fs.length;i++){
+    for(var i=0;i<fs.length;i++){
       fs[i].onclick = function(){
         var j, all = document.querySelectorAll('.filterbar button');
         for(j=0;j<all.length;j++) all[j].className = '';
@@ -1848,6 +2006,7 @@ ul.tips li{margin-bottom:5px}
       if(last){ S.name = last; load(); }
     }catch(e){}
 
+    detectInApp();
     bindTabs();
     bindPickPresets();
     rebuildAll();
@@ -1857,10 +2016,13 @@ ul.tips li{margin-bottom:5px}
     paintIdHint();
   }
 
-  try{ init(); }
-  catch(err){
+  try{
+    detectInApp();
+    init();
+  }catch(err){
     var f = document.getElementById('jsfail');
     if(f) f.style.display = 'block';
+    try{ console && console.error && console.error(err); }catch(e){}
   }
 })();
 </script>
