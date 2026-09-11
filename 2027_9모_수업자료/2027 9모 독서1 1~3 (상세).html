@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 독서1 1~3 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header"><h1>📖 2027학년도 9월 모의평가 · 독서1 1~3</h1>
+<p>독서론 「전기류를 활용한 진로 독서」 | 지문 원문 + 문단별 심층 분석 + 구조도 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<p><span class="underline-phrase">진로 독서에 활용할 수 있는 글의 유형 중 하나는 전기류이다</span>. 전기류란 실제 인물의 생애를 쓴 글로, 전기문이나 자서전이 이에 해당한다. 전기류는 <span class="underline-phrase">인물의 생애 전부를 다루거나 인물의 가치관을 파악할 수 있는 특정 일화를 집중적으로 다룬다</span>. 그리고 전기류에는 인물의 성장 과정, 업적 등의 주요 사건이 주로 시간순으로 제시되며, 인물에게 영향을 미친 주변 인물과의 관계와 인물이 살았던 시대적 상황이 드러난다. 전기문의 경우 작가의 인물 평가가 추가되기도 한다.</p>
+<p>전기류를 활용한 진로 독서는 네 단계에 걸쳐 수행할 수 있다. 첫째, <span class="underline-phrase">자신의 진로 분야와 관련이 있는 인물에 대한 책을 고르고, 배경지식을 활성화한다</span>. 둘째, 인물이 진로와 관련하여 겪은 주요 사건을 중심으로 인물의 삶을 파악한다. 이를 위해 인물의 성공과 실패 경험뿐만 아니라 그 과정에서 인물에게 나타난 변화를 파악한다. 그리고 글을 읽다가 이해하기 어려운 부분이 있다면 그에 관한 배경지식을 보강한다. 셋째, <span class="underline-phrase">주체적으로 인물을 평가한다. 이때 인물의 삶을 맹목적으로 긍정하기보다 자신의 관점에서 평가하는 것이 중요하다</span>. 그리고 <span class="underline-phrase">글을 다 읽기 전까지는 인물을 온전히 이해할 수 없으므로 인물에 대한 최종 판단을 유보할 필요가 있다</span>. 넷째, <span class="underline-phrase">인물의 삶과 나의 삶을 연결해 본다</span>. 책을 읽으며 인물의 삶을 이해한 후 자기를 성찰하고, 이를 바탕으로 인물을 더 깊게 파악해 볼 수 있다. 이를 통해 <span class="underline-phrase">자신에 대한 이해도 심화될 수 있다</span>.</p>
+<p>진로 탐색을 위해 전기류를 읽을 때 다양한 전략을 활용할 수 있다. <span class="underline-phrase">배경지식을 보강하거나 인물을 평가할 때 참고 자료를 활용하면 유용하다</span>. 책을 고를 때도 희망 진로 분야의 추천 도서 목록과 같은 참고 자료를 활용할 수 있다. 인물의 삶을 파악할 때는 <span class="source-underline">도해 조직자</span>를 활용하는 것이 도움이 된다. <span class="source-underline">도해 조직자</span>는 글의 내용을 시각적으로 구조화한 것으로, <span class="underline-phrase">사건을 시간순으로 나타낸 순서도나 인물 간 관계를 나타낸 인물망 등이 그 예이다</span>. 인물과 자신을 비교할 때는, <span class="source-underline">대립되는 특성을 양 끝에 표시하고 인물과 자신이 각각 어디에 더 가까운지 3, 5, 7단계 등으로 평가하는 대립 척도표를 활용할 수 있다</span>. 이를 활용해 인물과 자신에 대해 이해할 수 있다.</p>
+<p>독자는 전기류를 읽으며 진로 탐색에 필요한 정보를 얻고, 타인의 삶을 통해 자기를 이해할 수 있다. 나아가 진로에 대한 가치관과 긍정적인 자아 개념을 형성할 수 있다.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box"><div class="title">📌 1문단 · 전기류의 개념과 특성</div><div class="content">· 개념: 실제 인물의 생애를 기록한 글(전기문, 자서전).<br>· 범위: <b>생애 전부를 다루거나 특정 일화를 집중적</b>으로 다룸.<br>· 내용 구성: 성장 과정, 업적(시간순 제시), 주변 인물 관계, 시대적 상황, 작가의 평가(전기문).<br>※ 1번 ④번 함정: '생애 전부만을 다룬다'는 오답! 일화 중심도 가능함.</div></div>
+<div class="analysis-box"><div class="title">📌 2문단 · 진로 독서의 4단계 수행 과정</div><div class="content">① 책 선정 및 배경지식 활성화<br>② 주요 사건 중심 삶 파악 (성공·실패 경험 및 변화 추적, 배경지식 보강)<br>③ 주체적 평가 (맹목적 긍정 지양, <b>완독 전 최종 판단 유보</b>)<br>④ 인물과 나의 삶 연결 (인물 이해 → 자기 성찰 → 인물 심화 이해 및 자아 이해 심화).<br>※ 2번 ①번 정답: 인물 이해는 자기 성찰을 거쳐 상호 심화됨.</div></div>
+<div class="analysis-box"><div class="title">📌 3문단 · 전기류 독서의 3대 독서 전략</div><div class="content">· 참고 자료 활용: 추천 도서 목록(선정), 배경지식 보강, 인물 평가 시 활용.<br>· <b>도해 조직자</b>: 사건 순서도, 인물망 등 시각적 구조화 도구.<br>· <b>대립 척도표</b>: 대립 특성 양 끝 표시 후 3·5·7단계로 인물과 자신을 비교 평가.<br>※ 3번 ④번 함정: 주방 사진은 시각적 '참고 자료'이지 '도해 조직자'가 아님!</div></div>
+<div class="analysis-box"><div class="title">📌 4문단 · 전기류 진로 독서의 의의</div><div class="content">· 정보 획득 + 타인을 통한 자기 이해.<br>· 진로 가치관 및 긍정적 자아 개념 형성.</div></div>
+<div class="vocab-box"><strong>📖 핵심 개념어 정리</strong><div>• <strong>도해 조직자(Graphic Organizer)</strong>: 개념 간의 관계나 사건의 순서를 순서도, 망 등으로 시각화한 표·도표.</div><div>• <strong>대립 척도표</strong>: '적극적 - 소극적'처럼 반대 특성을 척도화하여 평가하는 도구.</div><div>• <strong>판단 유보</strong>: 글을 다 읽기 전 성급한 단정을 피하고 이해를 열어둠.</div></div>
+<div class="info-box"><h3>🎯 독해 핵심 포인트</h3><p>독서론 세트는 <b>정보의 정확한 일치(1번)</b>, <b>과정 간의 인과 및 상관관계(2번)</b>, <b><보기> 학생 활동에 대한 개념 도구의 적절한 대응(3번)</b>을 빠르고 정확하게 짚어내는 것이 핵심이다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 지문 구조도 <span>01~03</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head">1. 전기류 특성</div><div class="card-body"><p>• 전기문 / 자서전</p><p>• 생애 전체 or 특정 일화</p><p>• 시간순 사건 + 주변 관계</p><div class="sub-point">✔ 인물 가치관 파악</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">2. 4단계 독서 과정</div><div class="card-body"><p>① 선정 및 배경지식</p><p>② 사건 파악 및 변화</p><p>③ 주체적 평가(판단 유보)</p><p>④ 삶의 연결 및 자기 성찰</p><div class="sub-point">✔ 인물·자아 상호 이해</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">3. 독서 전략 도구</div><div class="card-body"><p>• 참고 자료(서평·사진)</p><p>• 도해 조직자(순서도·인물망)</p><p>• 대립 척도표(단계별 비교)</p><div class="sub-point">✔ 시각적·분석적 독해</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">4. 최종 의의</div><div class="card-body"><p>• 진로 탐색 정보 획득</p><p>• 긍정적 자아 개념 형성</p><div class="sub-point">✔ 진로 가치관 정립</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num">01</div>
+<div class="question-stem">1. 윗글의 내용과 일치하지 않는 것은?</div>
+<div class="choice-item"><div class="choice-text">① 전기류는 주요 사건을 주로 시간순으로 제시한다.</div><div class="choice-analysis">❌ 일치 — 1문단에 "전기류에는 인물의 성장 과정, 업적 등의 주요 사건이 주로 시간순으로 제시되며"라고 명시되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">② 전기류는 인물의 성장 과정이나 업적을 소재로 삼는다.</div><div class="choice-analysis">❌ 일치 — 1문단에 "인물의 성장 과정, 업적 등의 주요 사건이 주로 시간순으로 제시되며"라고 서술되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 전기류에는 인물이 주변 인물과 맺는 관계가 나타난다.</div><div class="choice-analysis">❌ 일치 — 1문단에 "인물에게 영향을 미친 주변 인물과의 관계와 인물이 살았던 시대적 상황이 드러난다"고 언급되어 있다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 전기류는 인물의 특정 일화가 아닌 생애 전부를 다룬다.</div><div class="choice-analysis">✅ 정답 — 1문단에서 전기류는 "인물의 생애 전부를 다루거나 인물의 가치관을 파악할 수 있는 특정 일화를 집중적으로 다룬다"고 하였으므로, '특정 일화가 아닌 생애 전부만을 다룬다'는 진술은 명백히 잘못되었다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 전기류에는 인물에 대한 작가의 평가가 나타나기도 한다.</div><div class="choice-analysis">❌ 일치 — 1문단 끝에 "전기문의 경우 작가의 인물 평가가 추가되기도 한다"고 명시되어 있다.</div></div>
+<div class="correct-badge">📍 정답 ④ [세부 내용 파악]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 01번 세부 일치 검증</div>
+<p><strong>출제 패턴:</strong> 'A이거나 B'로 제시된 양립·선택 관계를 'B가 아닌 A만'으로 왜곡하는 <strong>한정 왜곡 트릭</strong>이다.</p>
+<p><strong>실전 팁:</strong> 선지의 'A가 아닌 B' 형태는 지문의 'A이거나 B'와 충돌하므로 1초 만에 오답 후보로 포착해야 한다.</p>
+</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">02</div>
+<div class="question-stem">2. 전기류를 활용한 진로 독서에 대한 설명으로 가장 적절한 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① 인물에 대한 이해는 자기 성찰을 거쳐 심화될 수 있다.</div><div class="choice-analysis">✅ 정답 — 2문단의 넷째 단계에서 "책을 읽으며 인물의 삶을 이해한 후 자기를 성찰하고, 이를 바탕으로 인물을 더 깊게 파악해 볼 수 있다"고 설명하고 있으므로 가장 적절하다.</div></div>
+<div class="choice-item"><div class="choice-text">② 인물에 대한 최종 판단을 책을 다 읽은 후로 미룰 수 없다.</div><div class="choice-analysis">❌ 오답 — 2문단 셋째 단계에서 "글을 다 읽기 전까지는 인물을 온전히 이해할 수 없으므로 인물에 대한 최종 판단을 유보할 필요가 있다"고 하였으므로, 다 읽은 후로 판단을 미뤄야 한다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 인물의 실패 경험에서는 인물에게 나타난 변화를 이해할 수 없다.</div><div class="choice-analysis">❌ 오답 — 2문단 둘째 단계에서 "인물의 성공과 실패 경험뿐만 아니라 그 과정에서 인물에게 나타난 변화를 파악한다"고 하였으므로 실패 경험에서도 변화를 파악할 수 있다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 허구적 인물을 다룬 글을 읽으며 긍정적 자아 개념을 형성할 수 있다.</div><div class="choice-analysis">❌ 오답 — 1문단에서 전기류는 '실제 인물의 생애를 쓴 글'이라고 규정하고 있으므로 허구적 인물은 대상이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 옳고 그름을 판단하지 않고 인물의 행적을 수용했을 때 인물을 온전히 이해할 수 있다.</div><div class="choice-analysis">❌ 오답 — 2문단 셋째 단계에서 "인물의 삶을 맹목적으로 긍정하기보다 자신의 관점에서 평가하는 것이 중요하다"고 하였으므로 맹목적 수용은 적절하지 않다.</div></div>
+<div class="correct-badge">📍 정답 ① [핵심 원리 추론]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 02번 인과 및 상호 작용 파악</div>
+<p><strong>핵심 원리:</strong> [인물 이해] ➔ [자기 성찰] ➔ [인물에 대한 심화 이해 + 자신에 대한 이해 심화]의 선순환 구조를 정확히 짚어낸 ①번이 정답이다.</p>
+</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">03</div>
+<div class="question-stem">3. &lt;보기&gt;는 학생이 쓴 독서록이다. 윗글을 바탕으로 &lt;보기&gt;를 이해한 내용으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+요리를 좋아하는 나는 진로 탐색에 도움이 될 만한 책을 인터넷에서 찾다가 30년 전에 활동한 요리사 A의 자서전인 『요리사의 식탁』을 발견하였다. 다른 독자들이 쓴 서평을 보니 이 책에 내게 도움이 될 만한 내용이 있을 것 같아 읽어 보기로 했다. 책을 읽으면서 A가 요리사가 되기로 결심한 일, 시행착오를 겪은 일 등을, 사건의 전개 과정을 나타내는 순서도로 정리하였다. 그리고 주방을 묘사한 부분이 이해가 안 되어 당시의 주방 사진이 포함된 글을 찾아 읽었다. 이를 통해 열악했던 당시의 조리 환경을 알 수 있었다. 자서전을 다 읽은 뒤 A를 다룬 칼럼을 찾아 읽었다. 칼럼에서 내가 동의하는 부분과 그렇지 않은 부분을 점검하고, 결론적으로 A는 자신만의 철학을 바탕으로 끊임없이 메뉴 개발에 도전한 요리사라는 생각에 이르렀다. 이후 '끈기 있는-끈기 없는'을 적고, A와 내가 각각 어디에 가까운지 점수로 표시한 후, 판단의 이유를 생각해 보았다. 이를 통해 나도 요리사가 될 수 있다는 자신감을 갖게 되었다.</div>
+<div class="choice-item"><div class="choice-text">① 인물을 평가하는 과정에서, 참고 자료를 읽고 자신의 관점에서 인물을 주체적으로 판단하였다.</div><div class="choice-analysis">❌ 적절 — A를 다룬 칼럼(참고 자료)을 읽고 동의 여부를 점검하며 자신만의 결론에 도달하였다.</div></div>
+<div class="choice-item"><div class="choice-text">② 읽을 책을 선정하는 과정에서, 참고 자료를 읽고 책의 내용이 진로 탐색에 도움이 될지 판단하였다.</div><div class="choice-analysis">❌ 적절 — 다른 독자들이 쓴 서평(참고 자료)을 보고 읽기로 결정하였다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 자신에 대해 이해하는 과정에서, 대립 척도표를 활용하여 인물과 자신의 특성을 비교하였다.</div><div class="choice-analysis">❌ 적절 — '끈기 있는-끈기 없는' 대립 척도표를 활용해 점수로 표시하고 자신감을 얻었다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 배경지식을 보강하는 과정에서, 도해 조직자를 활용하여 인물이 살았던 시대 상황에 대한 정보를 정리하였다.</div><div class="choice-analysis">✅ 정답 — 학생이 당시의 열악한 조리 환경(시대 상황)을 파악한 것은 '당시 주방 사진이 포함된 글(참고 자료)'을 찾아 읽은 것이지, '도해 조직자'를 활용한 것이 아니다. 학생이 활용한 도해 조직자는 A의 결심과 시행착오를 정리한 '순서도'뿐이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 인물의 삶을 파악하는 과정에서, 도해 조직자를 활용하여 인물이 진로와 관련하여 겪었던 사건들을 정리하였다.</div><div class="choice-analysis">❌ 적절 — A가 요리사가 되기로 결심한 일, 시행착오 등을 순서도(도해 조직자)로 정리하였다.</div></div>
+<div class="correct-badge">📍 정답 ④ [도구와 개념의 1:1 매칭 검증]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 03번 개념 도구 매칭 트릭</div>
+<p><strong>함정 포인트:</strong> '주방 사진이 포함된 글'은 <strong>시각적 참고 자료</strong>이지 지문 3문단에서 규정한 '순서도, 인물망'과 같은 <strong>도해 조직자</strong>가 아니다. 개념 도구의 범주 혼동을 찌른 전형적인 수능형 킬러 선지이다.</p>
+</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 지문 해제 및 교수 전략</h2>
+<p><strong>해제:</strong> 진로 독서의 효과적인 갈래인 전기류(전기문·자서전)의 개념과 특징, 그리고 4단계 수행 과정(선정-파악-주체적 평가-자아 연결) 및 3대 독서 전략 도구(참고 자료, 도해 조직자, 대립 척도표)를 설명하고 있는 독서론 지문이다.</p>
+<p><strong>수업 지도 포인트:</strong> 3번 문항에서 보듯 '도해 조직자'와 '참고 자료'의 개념 범주를 학생들이 엄밀하게 구분하도록 지도해야 한다.</p>
+</div>
+</div>
+</body></html>

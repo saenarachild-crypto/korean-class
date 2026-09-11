@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김현석 국어 · 2027학년도 9월 모의평가 실전 풀이 &amp; 출제 매뉴얼</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Pretendard', 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background: #eef2f6; color: #1e293b; line-height: 1.75; padding: 40px 20px;
+}
+.container {
+    max-width: 1200px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.12); overflow: hidden; border: 1px solid #e2e8f0;
+}
+.header {
+    background: linear-gradient(135deg, #7c3f1d 0%, #4a240f 100%);
+    color: white; padding: 36px 48px; position: relative;
+}
+.header h1 { font-size: 28px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
+.header p { font-size: 15px; opacity: 0.9; line-height: 1.6; }
+.header .badge {
+    display: inline-block; background: #f59e0b; color: #78350f; font-weight: 700;
+    font-size: 12px; padding: 3px 12px; border-radius: 20px; margin-bottom: 12px;
+}
+.content-wrapper { padding: 40px 48px; }
+.section-block { margin-bottom: 44px; padding-bottom: 36px; border-bottom: 2px dashed #e2e8f0; }
+.section-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.sec-title {
+    font-size: 22px; font-weight: 800; color: #7c3f1d; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; border-left: 6px solid #7c3f1d; padding-left: 16px; flex-wrap: wrap;
+}
+.sec-title span {
+    background: #fdf4ec; color: #7c3f1d; font-size: 14px; font-weight: 700;
+    padding: 3px 12px; border-radius: 12px; border: 1px solid #fed7aa;
+}
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 18px 0; }
+.card { background: #f8fafc; border-radius: 20px; border: 1px solid #e2e8f0; padding: 22px 24px; box-shadow: 0 4px 6px -2px rgba(0,0,0,0.03); }
+.card-head { font-weight: 700; font-size: 17px; color: #0f172a; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card-head .tag { font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 20px; background: #e2e8f0; color: #475569; }
+.card-body { font-size: 14px; color: #334155; }
+.card-body p { margin-bottom: 8px; line-height: 1.65; }
+.card-body p:last-child { margin-bottom: 0; }
+.card-body ul { margin-left: 18px; margin-bottom: 8px; }
+.card-body li { margin-bottom: 4px; }
+.highlight-box { background: #fffaf5; border: 1.5px solid #fed7aa; border-radius: 18px; padding: 18px 24px; margin: 18px 0; }
+.highlight-box h4 { font-size: 16px; font-weight: 700; color: #9a3412; margin-bottom: 8px; }
+.step-flow { display: flex; flex-wrap: wrap; gap: 14px; margin: 18px 0; align-items: center; }
+.step-item { flex: 1; min-width: 200px; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 18px; text-align: center; }
+.step-num { font-size: 12px; font-weight: 800; color: #7c3f1d; margin-bottom: 4px; }
+.step-text { font-size: 14.5px; font-weight: 700; color: #0f172a; }
+.step-arrow { font-size: 20px; color: #94a3b8; font-weight: 800; }
+.formula-box { background: #0f172a; color: #f8fafc; border-radius: 18px; padding: 18px 24px; margin: 18px 0; font-size: 15px; font-family: 'Consolas', 'Courier New', monospace; }
+.formula-box .comment { color: #94a3b8; font-size: 13px; margin-top: 6px; font-family: 'Pretendard', sans-serif; }
+.trick-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+.trick-item { background: #ffffff; border-radius: 12px; padding: 12px 16px; border: 1px solid #fee2e2; border-left: 4px solid #ef4444; font-size: 13.5px; }
+.trick-item strong { color: #b91c1c; display: block; margin-bottom: 4px; font-size: 14px; }
+.table-custom { width: 100%; border-collapse: collapse; margin: 18px 0; }
+.table-custom th, .table-custom td { padding: 12px 14px; font-size: 13.5px; border: 1px solid #cbd5e1; text-align: left; vertical-align: top; }
+.table-custom th { background: #f1f5f9; font-weight: 700; color: #334155; }
+.table-wrap { width: 100%; overflow-x: auto; }
+.sub-detail-box { background: #fdfaf5; border: 1px solid #fbd38d; border-radius: 16px; padding: 18px 22px; margin-top: 16px; font-size: 14px; line-height: 1.7; }
+.sub-detail-box .title { font-weight: 800; color: #7c3f1d; margin-bottom: 8px; font-size: 15px; }
+.milestone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
+.milestone-card { background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 16px; border-top: 4px solid #7c3f1d; }
+.milestone-card .ms-step { font-size: 11.5px; font-weight: 800; color: #7c3f1d; }
+.milestone-card .ms-title { font-size: 14.5px; font-weight: 700; color: #0f172a; margin: 4px 0; }
+.milestone-card .ms-time { font-size: 13px; font-weight: 700; color: #b91c1c; }
+.milestone-card .ms-desc { font-size: 12.5px; color: #64748b; margin-top: 4px; }
+
+/* ---- 매뉴얼 전용 추가 컴포넌트 ---- */
+.toc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 18px 24px; margin-bottom: 32px; }
+.toc h4 { font-size: 15px; font-weight: 800; color: #7c3f1d; margin-bottom: 10px; }
+.toc a { display: inline-block; font-size: 13.5px; color: #334155; text-decoration: none; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 4px 14px; margin: 0 6px 8px 0; }
+.set-block { border: 1.5px solid #e2e8f0; border-radius: 22px; overflow: hidden; margin-bottom: 30px; background: #ffffff; }
+.set-head { background: #7c3f1d; color: #fff; padding: 14px 22px; font-size: 17px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.set-head .set-sub { font-size: 13px; font-weight: 600; opacity: 0.9; }
+.set-body { padding: 22px 24px; }
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+.meta-cell { background: #fdfaf5; border: 1px solid #fbd38d; border-radius: 14px; padding: 10px 14px; }
+.meta-cell .mk { font-size: 11.5px; font-weight: 800; color: #7c3f1d; }
+.meta-cell .mv { font-size: 14.5px; font-weight: 700; color: #0f172a; }
+.meta-cell .mv.time { color: #b91c1c; }
+.design-box { background: #f1f5f9; border-left: 5px solid #7c3f1d; border-radius: 0 16px 16px 0; padding: 14px 18px; margin-bottom: 18px; font-size: 13.5px; }
+.design-box .dt { font-weight: 800; color: #7c3f1d; margin-bottom: 6px; font-size: 14px; }
+.design-box p { margin-bottom: 5px; }
+.q-block { border: 1px solid #cbd5e1; border-radius: 18px; padding: 16px 18px; margin-bottom: 16px; background: #ffffff; }
+.q-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.q-num { background: #0f172a; color: #fff; font-weight: 800; font-size: 14px; padding: 3px 14px; border-radius: 30px; }
+.q-type { font-size: 12.5px; font-weight: 700; color: #7c3f1d; background: #fdf4ec; border: 1px solid #fed7aa; border-radius: 20px; padding: 2px 10px; }
+.q-sec { font-size: 12.5px; font-weight: 700; color: #1d4ed8; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 20px; padding: 2px 10px; }
+.q-pt { font-size: 12.5px; font-weight: 800; color: #b91c1c; background: #fee2e2; border: 1px solid #fecaca; border-radius: 20px; padding: 2px 10px; }
+.answer-row { background: #ecfdf5; border: 1px solid #a7f3d0; border-left: 5px solid #10b981; border-radius: 14px; padding: 10px 14px; font-size: 13.5px; margin: 8px 0 10px; }
+.answer-row b { color: #047857; }
+.opt { font-size: 13px; padding: 8px 12px; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; margin-bottom: 6px; line-height: 1.6; }
+.opt.ok { background: #f0fdf4; border-color: #bbf7d0; }
+.onum { font-weight: 800; color: #0f172a; margin-right: 6px; }
+.trick { display: inline-block; font-size: 11.5px; font-weight: 800; padding: 1px 9px; border-radius: 20px; margin-right: 6px; white-space: nowrap; }
+.t1 { background: #fee2e2; color: #b91c1c; }
+.t2 { background: #ffedd5; color: #c2410c; }
+.t3 { background: #fef3c7; color: #a16207; }
+.t4 { background: #dbeafe; color: #1d4ed8; }
+.t5 { background: #ede9fe; color: #6d28d9; }
+.t6 { background: #e0f2fe; color: #0369a1; }
+.tnone { background: #e2e8f0; color: #475569; }
+.checkpoint { background: #fff1f2; border: 1px solid #fecdd3; border-radius: 16px; padding: 12px 18px; font-size: 13.5px; margin-top: 6px; }
+.checkpoint .ct { font-weight: 800; color: #b91c1c; margin-bottom: 4px; }
+.bar-wrap { margin: 6px 0 14px; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 13px; }
+.bar-label { width: 210px; flex-shrink: 0; font-weight: 700; color: #334155; }
+.bar-track { flex: 1; background: #e2e8f0; border-radius: 20px; height: 16px; min-width: 90px; }
+.bar-fill { background: linear-gradient(90deg, #b45309, #7c3f1d); height: 16px; border-radius: 20px; }
+.bar-val { width: 88px; flex-shrink: 0; font-weight: 800; color: #b91c1c; text-align: right; }
+.note { font-size: 12.5px; color: #64748b; margin-top: 6px; }
+.js-warn { display: none; background: #fee2e2; color: #b91c1c; padding: 10px 16px; border-radius: 12px; font-size: 13px; margin-bottom: 14px; }
+@media (max-width: 768px) {
+    body { padding: 16px 8px; }
+    .header { padding: 24px 20px; }
+    .content-wrapper { padding: 24px 18px; }
+    .set-body { padding: 18px 14px; }
+    .step-flow { flex-direction: column; }
+    .step-arrow { transform: rotate(90deg); }
+    .bar-label { width: 120px; font-size: 12px; }
+    .bar-val { width: 70px; font-size: 12px; }
+    .table-custom th, .table-custom td { font-size: 12.5px; padding: 9px 8px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="badge">KIM HYUN-SEOK KOREAN SYSTEM</div>
+        <h1>📕 2027학년도 9월 모의평가 · 실전 풀이 &amp; 출제 매뉴얼</h1>
+        <p>표준 매뉴얼(Ⅰ~Ⅶ) 준거 · 공통과목 34문항 전 세트 실전 운용법 · 오답 선지 6대 트릭 전수 태깅 · 회차 출제 진단</p>
+    </div>
+    <div class="content-wrapper">
+        <div id="jsWarn" class="js-warn">※ 일부 기능(접기/펼치기)이 이 기기에서 동작하지 않습니다. 본문 내용은 모두 그대로 보이니 그대로 학습하면 됩니다.</div>
+
+        <div class="toc">
+            <h4>📑 목차</h4>
+            <a href="#s1">Ⅰ. 회차 개요 &amp; 60분 운용 타임라인</a>
+            <a href="#s2">Ⅱ. 회차 출제 진단 (트릭 분포)</a>
+            <a href="#s3">Ⅲ. 세트별 실전 풀이법 (8세트)</a>
+            <a href="#s4">Ⅳ. 이 회차가 확정한 5대 출제 공식</a>
+            <a href="#s5">Ⅴ. 수업 운용 &amp; 재출제 대비</a>
+        </div>
+
+        <!-- ================= 섹션 Ⅰ ================= -->
+        <div class="section-block" id="s1">
+            <div class="sec-title">Ⅰ. 회차 개요 &amp; 공통과목 60분 운용 타임라인 <span>매뉴얼 Ⅵ·Ⅶ</span></div>
+
+            <div class="highlight-box">
+                <h4>🧭 이번 회차의 세트 구성 (공통과목 34문항)</h4>
+                <p>독서론(1~3) → 인문 주제 통합(4~9) → 기술(10~13) → 사회(14~17) → 고전소설(18~21) → 갈래복합(22~27) → 현대소설(28~31) → 고전시가(32~34)</p>
+                <p style="margin-top:6px;"><strong style="color:#b91c1c;">문제지 배열 순서대로 풀지 않는다.</strong> 매뉴얼 Ⅵ 원칙에 따라 <strong>문학 4세트(17문항·24분) → 독서 4세트(17문항·36분)</strong> 순으로 진입하고, 독서 안에서는 <strong>독서론 → 사회 → 인문 → 기술</strong> 순으로 처리한다.</p>
+            </div>
+
+            <div class="table-wrap">
+            <table class="table-custom">
+                <thead>
+                    <tr><th style="width:8%;">순번</th><th style="width:20%;">세트</th><th style="width:11%;">문항</th><th style="width:11%;">목표 시간</th><th style="width:10%;">난도</th><th style="width:40%;">이 세트에서 시간이 새는 자리</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td style="text-align:center;font-weight:800;">1</td><td><strong>고전소설</strong> 18~21<br>「금환기봉」</td><td>4문항</td><td style="color:#b91c1c;font-weight:700;">6분</td><td>중</td><td>'한 소년 = 장 소저'라는 동일 인물 관계를 놓치면 18번에서 30초 이상 소모된다.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">2</td><td><strong>갈래복합</strong> 22~27<br>현대시2 + 고전수필</td><td>6문항</td><td style="color:#b91c1c;font-weight:700;">8분</td><td>최상</td><td>26번 수업 활동 대응표. (가)(나) 먼저 끝내고 (다)를 따로 읽는 <b>끊어 풀기</b> 필수.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">3</td><td><strong>현대소설</strong> 28~31<br>「고향 없는 사람들」</td><td>4문항</td><td style="color:#b91c1c;font-weight:700;">6분</td><td>중</td><td>편지 3통([A]~[E] 구간 포함)의 발신·수신 방향 표시를 안 하면 29·30번이 동시에 막힌다.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">4</td><td><strong>고전시가</strong> 32~34<br>이진유 「속사미인곡」</td><td>3문항</td><td style="color:#b91c1c;font-weight:700;">4분</td><td>중</td><td>&lt;보기&gt;의 '유배 가사·사대부 정체성' 기준선을 먼저 잡으면 3문항이 함께 풀린다.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">5</td><td><strong>독서론</strong> 1~3<br>전기류 진로 독서</td><td>3문항</td><td style="color:#b91c1c;font-weight:700;">3~4분</td><td>하</td><td>없음. 이 세트는 <b>3분 30초 안에 만점</b>으로 끊어 독서 시간을 벌어 두는 구간이다.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">6</td><td><strong>사회</strong> 14~17<br>오피니언 리더</td><td>4문항</td><td style="color:#b91c1c;font-weight:700;">9~10분</td><td>중</td><td>16번 &lt;보기&gt;의 '갑·을'을 분야별로 쪼개 표로 만들지 않으면 선지 5개를 두 번 읽게 된다.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">7</td><td><strong>인문 주제 통합</strong> 4~9<br>종 차별주의 / 인공 행위자</td><td>6문항</td><td style="color:#b91c1c;font-weight:700;">11~12분</td><td>최상</td><td>'인식론 / 존재론'의 축을 여백에 세우지 않으면 5·6번에서 각 1분씩 샌다.</td></tr>
+                    <tr><td style="text-align:center;font-weight:800;">8</td><td><strong>기술</strong> 10~13<br>어댑터</td><td>4문항</td><td style="color:#b91c1c;font-weight:700;">10~11분</td><td>상</td><td>6개 부품 기능 카드와 두 방식의 순서도를 여백에 그리는 90초가 결과적으로 3분을 아낀다.</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-top:20px;">⏱️ 이 회차 5대 마일스톤 (08:40 시험 시작 기준)</h4>
+            <div class="milestone-grid">
+                <div class="milestone-card">
+                    <div class="ms-step">CHECKPOINT 1</div>
+                    <div class="ms-title">선택과목 완료</div>
+                    <div class="ms-time">08:55 ~ 08:58</div>
+                    <div class="ms-desc">화작/언매 11문항 종료 → 공통과목 60분 진입</div>
+                </div>
+                <div class="milestone-card" style="border-top-color:#b91c1c;">
+                    <div class="ms-step" style="color:#b91c1c;">CHECKPOINT 2 (핵심)</div>
+                    <div class="ms-title">문학 4세트(18~34) 완료</div>
+                    <div class="ms-time">09:20 ~ 09:22 (24분)</div>
+                    <div class="ms-desc">고전소설 6 + 갈래복합 8 + 현대소설 6 + 고전시가 4</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="ms-step">CHECKPOINT 3</div>
+                    <div class="ms-title">독서론 + 사회 완료</div>
+                    <div class="ms-time">09:35 전후 (13분)</div>
+                    <div class="ms-desc">1~3 · 14~17 종료. 여기서 09:37을 넘기면 인문에서 회복 불가</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="ms-step">CHECKPOINT 4</div>
+                    <div class="ms-title">인문 + 기술 완료</div>
+                    <div class="ms-time">09:55 전후 (23분)</div>
+                    <div class="ms-desc">4~9 · 10~13 종료. 8번·13번은 별표 후 회수 대상 1순위</div>
+                </div>
+                <div class="milestone-card" style="border-top-color:#16a34a;">
+                    <div class="ms-step" style="color:#16a34a;">CHECKPOINT 5 (FINAL)</div>
+                    <div class="ms-title">별표 문항 &amp; 마킹</div>
+                    <div class="ms-time">10:00 (종료 5분 전)</div>
+                    <div class="ms-desc">이 회차 별표 후보: 8 · 13 · 16 · 26 · 31</div>
+                </div>
+            </div>
+
+            <div class="sub-detail-box">
+                <div class="title">🚩 이 회차 전용 완급 조절 지침</div>
+                <p><strong>[빠를 때]</strong> 문학을 09:18 이전에 끝냈다면, 남는 시간은 전부 <strong>인문(4~9)</strong>에 붓는다. 이 회차는 인문 6문항이 최대 실점 구간이며, 8번 &lt;보기&gt;의 개념 규정을 두 번 읽을 여유가 있는지가 등급을 가른다.</p>
+                <p><strong>[늦어질 때]</strong> 09:25를 넘겼다면 <strong>기술 13번과 인문 8번을 즉시 별표 처리</strong>하고 2점 문항부터 쓸어 담는다. 이 회차의 2점 문항(1·2·9·10·14·17·18·22·23·28 등)은 지문 팩트 확인만으로 해결되므로 회수 효율이 가장 높다.</p>
+                <p><strong>[공통]</strong> 시계는 세트가 끝나는 순간에만 1초 본다. 갈래복합 26번을 붙들고 있다가 문학 24분을 넘기는 것이 이 회차의 가장 흔한 붕괴 경로다.</p>
+            </div>
+        </div>
+
+        <!-- ================= 섹션 Ⅱ ================= -->
+        <div class="section-block" id="s2">
+            <div class="sec-title">Ⅱ. 회차 출제 진단 <span>6대 트릭 전수 태깅</span></div>
+
+            <div class="highlight-box">
+                <h4>📊 왜곡 선지 68개 전수 분석 결과</h4>
+                <p>공통과목 31문항(어휘 2문항 제외 29문항)의 <strong>왜곡 선지 68개</strong>를 표준 매뉴얼 Ⅱ의 6대 트릭으로 전수 태깅한 결과다.</p>
+            </div>
+
+            <div class="bar-wrap">
+                <div class="bar-row"><div class="bar-label">③ 귀속식 대립 관계 왜곡</div><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><div class="bar-val">24개 · 35%</div></div>
+                <div class="bar-row"><div class="bar-label">① 구체어·개념어 위치 왜곡</div><div class="bar-track"><div class="bar-fill" style="width:63%;"></div></div><div class="bar-val">15개 · 22%</div></div>
+                <div class="bar-row"><div class="bar-label">⑤ 확인 불가(없는 내용)</div><div class="bar-track"><div class="bar-fill" style="width:46%;"></div></div><div class="bar-val">11개 · 16%</div></div>
+                <div class="bar-row"><div class="bar-label">④ 인과 관계 조작</div><div class="bar-track"><div class="bar-fill" style="width:29%;"></div></div><div class="bar-val">7개 · 10%</div></div>
+                <div class="bar-row"><div class="bar-label">⑥ 논리성 결함</div><div class="bar-track"><div class="bar-fill" style="width:25%;"></div></div><div class="bar-val">6개 · 9%</div></div>
+                <div class="bar-row"><div class="bar-label">② 단정적 부정 표현</div><div class="bar-track"><div class="bar-fill" style="width:21%;"></div></div><div class="bar-val">5개 · 8%</div></div>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-head"><span>결론 1 · ③+①이 57%</span><span class="tag">최우선 훈련</span></div>
+                    <div class="card-body">
+                        <p>이 회차의 오답 선지 <strong>10개 중 6개</strong>는 ③(속성을 A↔B로 뒤바꾸기)과 ①(개념어를 엉뚱한 자리에 배치)이다.</p>
+                        <p>두 트릭 모두 <strong>'무엇이 무엇의 속성인가'</strong> 하나만 확인하면 걸러진다. 선지를 읽을 때 <strong>주어(귀속 주체)에 먼저 동그라미</strong>를 치는 습관이 이 회차의 정답률을 그대로 결정했다.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><span>결론 2 · 부정형 발문의 정답</span><span class="tag">16문항</span></div>
+                    <div class="card-body">
+                        <p>'적절하지 않은 것' 16문항의 정답 선지 트릭: <strong>③ 7개 · ① 4개 · ④ 2개 · ②⑤⑥ 각 1개</strong>.</p>
+                        <p>부정형 발문에서 답이 안 보이면 <strong>③(주체·속성 뒤바꿈)부터 의심</strong>하는 것이 이 회차 기준 확률상 최적 전략이다.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head"><span>결론 3 · 정답 번호 분포</span><span class="tag">31문항</span></div>
+                    <div class="card-body">
+                        <p>① 8개 / ② 6개 / ③ 7개 / ④ 6개 / ⑤ 4개.</p>
+                        <p>고르게 분포되어 있어 번호 편중 심리를 이용할 여지가 없다. <strong>찍기 전략이 통하지 않는 회차</strong>임을 학생에게 명확히 알려 줄 것.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-top:24px;">🗂️ 문항별 유형 · 정답 · 정답 선지 트릭 일람 (판서본 유형 라벨 대응)</h4>
+            <div class="table-wrap">
+            <table class="table-custom">
+                <thead><tr><th style="width:8%;">문항</th><th style="width:24%;">발문 유형(판서 라벨)</th><th style="width:8%;">정답</th><th style="width:22%;">적용 매뉴얼 섹션</th><th style="width:38%;">정답을 가른 지점</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>부정 표현 · 세부 정보 파악</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅱ 트릭 ②</td><td>'A이거나 B'를 'B가 아닌 A'로 한정</td></tr>
+                    <tr><td>2</td><td>핵심 정보 파악(2단락 주제문)</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅱ 3대 축</td><td>인물 이해 → 자기 성찰 → 심화의 선순환</td></tr>
+                    <tr><td>3 [3점]</td><td>구체적 상황에 적용</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅲ 3단계 공식</td><td>참고 자료 ↔ 도해 조직자 범주 혼동</td></tr>
+                    <tr><td>4</td><td>세부 정보 파악 · 인과 역전</td><td style="text-align:center;font-weight:800;">⑤</td><td>Ⅱ 트릭 ④</td><td>지문이 부정한 것을 원인으로 설정</td></tr>
+                    <tr><td>5</td><td>구체어 확인</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅱ 트릭 ①</td><td>인식론적 한계의 <b>대상</b> 바꿔치기(③번 선지)</td></tr>
+                    <tr><td>6</td><td>관점(㉠)의 입장</td><td style="text-align:center;font-weight:800;">②</td><td>Ⅱ 트릭 ①·②</td><td>'전제하지 않는다' 3개 문장의 소재</td></tr>
+                    <tr><td>7</td><td>관점 적용(표준적 입장)</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅲ 선택지 분할</td><td>행위자 = 피행위자 범주 일치 원칙</td></tr>
+                    <tr><td>8 [3점]</td><td>&lt;보기&gt; 개념어를 지문에 적용</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅲ 3단계 공식</td><td>'전형적 = 대표적 구성원'을 종 전체로 확대</td></tr>
+                    <tr><td>9</td><td>어휘 · 바꿔 쓰기</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅳ 문맥적 의미</td><td>필수 성분의 의미상 유사성</td></tr>
+                    <tr><td>10</td><td>구체어 · 세부 정보 파악</td><td style="text-align:center;font-weight:800;">②</td><td>Ⅱ 트릭 ③</td><td>스위치 ↔ 평활 회로 기능 뒤바꿈</td></tr>
+                    <tr><td>11</td><td>생략된 내용 추론(특별한 경우)</td><td style="text-align:center;font-weight:800;">⑤</td><td>Ⅱ 트릭 ③</td><td>스위칭의 장점을 선형에 귀속</td></tr>
+                    <tr><td>12</td><td>핵심 정보(두 방식 비교)</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅱ 트릭 ③</td><td>변압기의 <b>위치</b>가 다르다는 사실 하나</td></tr>
+                    <tr><td>13 [3점]</td><td>구체적 상황에 적용</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅲ 3단계 공식</td><td>변압기 작동 조건 = '전압의 변화'</td></tr>
+                    <tr><td>14</td><td>정보의 위치(담화 표지 '시작')</td><td style="text-align:center;font-weight:800;">②</td><td>Ⅱ 트릭 ④</td><td>연구가 시작된 계기의 출처 왜곡</td></tr>
+                    <tr><td>15</td><td>인과 관계 확인</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅱ 트릭 ④</td><td>미디어와 유권자 사이의 매개자 존재</td></tr>
+                    <tr><td>16 [3점]</td><td>대립 관계 역전</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅲ 선택지 분할</td><td>2단계 사례를 '다단계' 비판에 대응</td></tr>
+                    <tr><td>17</td><td>어휘 · 문맥적 의미</td><td style="text-align:center;font-weight:800;">⑤</td><td>Ⅳ 문맥적 의미</td><td>목적어가 추상적 체계('가정')</td></tr>
+                    <tr><td>18</td><td>주체 혼동 트릭</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅱ 트릭 ③</td><td>설낭은 '한 소년 = 소저'로 인식</td></tr>
+                    <tr><td>19</td><td>핵심 사건(㉠~㉢)</td><td style="text-align:center;font-weight:800;">⑤</td><td>Ⅱ 트릭 ④</td><td>목적(㉢) - 수단(㉡) - 부수 결과(㉠) 배열</td></tr>
+                    <tr><td>20</td><td>인물의 심리·태도([A]/[B])</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅰ 문학 형식 우선</td><td>남복의 기능이 응시 조건 → 유지 조건</td></tr>
+                    <tr><td>21 [3점]</td><td>&lt;보기&gt; 감상 · 보기에 없는 내용</td><td style="text-align:center;font-weight:800;">②</td><td>Ⅴ 감상 3점 공식</td><td>'근심하지 말라' = 안심시키는 말</td></tr>
+                    <tr><td>22</td><td>작품 간 공통점·차이점</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅰ 표현상 특징</td><td>'저런, 저런'의 소속을 먼저 표시</td></tr>
+                    <tr><td>23</td><td>세부 정보 · 시적 상황 파악</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅱ 트릭 ①</td><td>비유적 '대낮'을 실제 시간 변화로</td></tr>
+                    <tr><td>24 [3점]</td><td>&lt;보기&gt; 감상 · +,- 비대칭</td><td style="text-align:center;font-weight:800;">②</td><td>Ⅴ 감상 3점 공식</td><td>생명력의 환상 ↔ '어두운' 이미지</td></tr>
+                    <tr><td>25</td><td>대립 관계 역전</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅱ 트릭 ③</td><td>이명(내가 앎) ↔ 코골이(남이 앎)</td></tr>
+                    <tr><td>26</td><td>창의적·주체적 수용(수업 활동)</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅲ 선택지 분할</td><td>성공 사례를 실패 장면에 대응(이중 오류)</td></tr>
+                    <tr><td>27</td><td>표현상 특징(㉠~㉤)</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅰ·Ⅳ</td><td>음성 상징어는 사전적 정의로 확정</td></tr>
+                    <tr><td>28</td><td>부정 표현 · 내용 이해</td><td style="text-align:center;font-weight:800;">①</td><td>Ⅱ 트릭 ③</td><td>의구심의 주체는 판옥이 아니라 판옥의 처</td></tr>
+                    <tr><td>29</td><td>핵심 사건([A]~[E])</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅱ 트릭 ①</td><td>[C] 알던 정보 ↔ [D] 실상</td></tr>
+                    <tr><td>30</td><td>핵심 소재의 서사적 기능</td><td style="text-align:center;font-weight:800;">②</td><td>Ⅱ 트릭 ④</td><td>편지 3통의 발신·수신 방향 표시</td></tr>
+                    <tr><td>31 [3점]</td><td>&lt;보기&gt; 감상 · +,- 비대칭</td><td style="text-align:center;font-weight:800;">③</td><td>Ⅴ 감상 3점 공식</td><td>본문에 없는 '함께 터전 마련'</td></tr>
+                    <tr><td>32</td><td>표현상 특징(㉠~㉤) · +,- 비대칭</td><td style="text-align:center;font-weight:800;">⑤</td><td>Ⅰ 표현상 특징</td><td>임이 자신을 살피지 않을까 하는 걱정</td></tr>
+                    <tr><td>33</td><td>핵심 사건('꿈' 중심 [A])</td><td style="text-align:center;font-weight:800;">⑤</td><td>Ⅱ 트릭 ③</td><td>꿈속 재회 ↔ 현실의 애절함</td></tr>
+                    <tr><td>34 [3점]</td><td>&lt;보기&gt; 감상 · 부정 표현 역전</td><td style="text-align:center;font-weight:800;">④</td><td>Ⅴ 감상 3점 공식</td><td>'망령됨이 죄라' = 자책 아닌 충정 표현</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="note">※ 32~34번(고전시가 「속사미인곡」)은 상세 분석 파일이 없어 <strong>판서본 기준</strong>으로 유형·정답·핵심 근거만 수록했다. 세트 상세본은 별도 제작 대상.</p>
+        </div>
+
+        <!-- ================= 섹션 Ⅲ ================= -->
+        <div class="section-block" id="s3">
+            <div class="sec-title">Ⅲ. 세트별 실전 풀이법 <span>실전 운용 순서대로 배열</span></div>
+            <p style="font-size:13.5px; color:#64748b; margin-bottom:18px;">아래 순서는 문제지 번호 순이 아니라 <strong>실제로 풀어야 하는 순서</strong>다. 각 세트는 [개요 → 독해 설계 → 문항별 풀이 절차 → 실전 체크포인트]로 고정 구성되어 있다.</p>
+
+            <!-- ===== SET 1 : 고전소설 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 1 · 고전소설 18~21 「금환기봉」</span><span class="set-sub">실전 순서 1번째 · 09:00 진입</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">문학 · 고전소설(여성 영웅)</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">4문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">6분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">중</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계</div>
+                        <p><strong>① 첫 대목 장악:</strong> "장 소저가 이 참정의 권함으로 인하여 과거를 보러 갈새" — <strong>주인공이 여성이고 남복 상태</strong>라는 사실을 첫 줄에서 확정한다. 이 세트 4문항 전부가 이 한 가지 설정 위에 서 있다.</p>
+                        <p><strong>② 인물 기호화:</strong> 장 소저 = 장수정 = 학사 = '한 소년' (동일 인물, 등호로 묶을 것) / 김희경 = 김생 / 시비 : 설낭 · 영춘 / 상(황제).</p>
+                        <p><strong>③ 대립축:</strong> [윤리적 의무 : 부친 신원] ↔ [사회적 성취 : 7년 공명] — 두 축은 [A]에서는 <b>양립</b>하고 [B]에서는 <b>충돌</b>한다.</p>
+                        <p><strong>④ 사건 배열:</strong> ㉢ 부친 신원(목적) ← ㉡ 등과(수단) ← ㉠ 김생과 동방 급제(부수적 결과). 화살표로 그려 두면 19번이 도식 하나로 정리된다.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">18</span><span class="q-type">주체 혼동 트릭 · 인물 이해</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 근거 : 급제 후 귀가 장면, 설낭·영춘의 발화 "이제 <b>소저</b>의 몸이 이렇듯이 귀하시니 기쁘오며" — 두 시비는 '한 소년'을 장 소저와 <b>동일 인물</b>로 알고 있다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>"장수정으로 태학사를 시키시니" — 상이 관직을 제수함.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>제신이 "기둥과 주춧돌 같은 두 신하"라 평가함.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>과거장에서 "자기 이름이고, 또한 김희경의 이름이라".</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span><b>왜곡 지점</b> — 설낭이 '별개의 사람으로 인식'한다고 했으나, 본문은 설낭·영춘이 소저를 그대로 '소저'라 부르며 맞이한다. <b>인식 주체의 앎을 반대로 귀속</b>시킨 전형적 주체 혼동.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>김생이 '장 상서의 아들' 호명을 듣고 북해의 일을 떠올림.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">19</span><span class="q-type">핵심 사건(㉠~㉢)</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ④</span></div>
+                        <div class="answer-row"><b>정답 ⑤</b> · 근거 : "이튿날 장 학사가 표문을 올려 그 부친의 신원함을 청하니, 상이 그 정회에 감동하시어 즉시 … 청주후에 추증하시더라." — 간청(㉡ 수행자) → 상의 수용 → ㉢ 실현.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t1">트릭 ① 구체어 위치 왜곡</span>구경하는 사람들이 흠모한 대상은 "그 풍도 기상"이지 ㉠(함께 등과한 일)의 희소성이 아니다.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t5">트릭 ⑤ 확인 불가</span>김희경의 동의 여부는 본문에 <b>전혀 언급이 없다</b>. ㉢은 상의 권한에 속한 일.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t4">트릭 ④ 인과 조작</span>영춘이 ㉠을 인식한 것은 등과 <b>이후</b>의 일. 뒤에 일어난 인식을 앞선 실현의 동기로 놓은 <b>선후 역전</b>.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t4">트릭 ④ 인과 조작</span>㉡의 목적은 ㉢이다. ㉠은 의도하지 않은 부수 결과이므로 <b>목적과 결과를 맞바꾼</b> 진술.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">정답</span>㉡을 수행한 인물의 간청 → 상의 수용 → ㉢ 실현.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">20</span><span class="q-type">인물의 심리·태도([A]/[B])</span><span class="q-sec">매뉴얼 Ⅰ 형식 &gt; 내용</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 근거 : [A] "내가 사 년을 남복으로 세상에 용납하니 … 내 만일 여자이나 과거에 급제하면" (응시 조건) / [B] "일조에 건곤이 바뀌어 옥당 대신이 심규 아녀자가 되니" (유지 조건).</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t5">트릭 ⑤ 확인 불가</span>'세상 사람들이 허락했다'는 진술은 본문에 없다. [A]는 "다 남자로 알고"일 뿐.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>애석해하는 주체는 <b>장 소저 자신</b>("애석한 것은 … 어찌 비감하지 아니하리오"). 이를 '사람들'로 옮긴 <b>정서 주체 전도</b>.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t1">트릭 ① 위치 왜곡</span>남복은 이미 <b>사 년 전</b>에 시작되었고 [B]는 중단 고민 장면이다. 시점을 앞뒤로 옮긴 선지.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">정답</span>[A] 과거 응시의 조건 → [B] 관직 유지의 조건으로 <b>기능이 이동</b>.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t6">트릭 ⑥ 논리성 결함</span>[A]에서 두 목적은 <b>양립</b>하므로 갈등이 성립하지 않고, [B]는 부친에 대한 의무와 무관하다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">21</span><span class="q-type">&lt;보기&gt; 감상 · 보기에 없는 내용</span><span class="q-sec">매뉴얼 Ⅴ 감상 3점 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ②</b> · 근거 : "너희들은 근심하지 말라"는 <b>자신을 걱정하는 영춘을 안심시키는 말</b>이다. 시비의 역할을 제한하는 규범적 태도가 아니다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>급제를 기뻐함 → &lt;보기&gt;의 '정서적 밀착'.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span><b>발화 의도 전도</b> — '안심시키는 말'을 '역할을 제한하는 말'로 뒤집고, &lt;보기&gt;의 '신분적 위계의 한계' 항목에 억지로 붙였다.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>'상공'이 아닌 '소저' 호칭 → '경직되지 않은 주종 관계'.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>여성임을 밝히라는 조언 → '중요한 결정에 개입'.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>"어질다, 너의 소견이여" → '서로 존중하며 소통'.</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>① <strong>18번</strong>에서 '한 소년'의 정체를 다시 확인하러 지문 앞으로 돌아가면 40초가 날아간다. 첫 문단에서 등호를 그어 두는 것으로 예방한다.</p>
+                        <p>② <strong>21번 ②</strong>는 &lt;보기&gt;의 네 항목(밀착 / 의사 개진 / 위계의 한계 / 경직되지 않은 주종)을 여백에 번호로 적어 두면 3초 만에 걸린다. &lt;보기&gt; 항목 번호 매기기를 이 세트의 고정 루틴으로 훈련시킬 것.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 2 : 갈래복합 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 2 · 갈래복합 22~27 (가)장옥관 / (나)김혜순 / (다)박지원</span><span class="set-sub">실전 순서 2번째 · 이 회차 최고 난도</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">문학 · 현대시2 + 고전수필</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">6문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">8분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">최상</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계 — 반드시 '끊어 풀기'</div>
+                        <p><strong>① 처리 순서:</strong> (가)(나) 독해 → <strong>22 · 23 · 24 · 27</strong> 해결 → (다) 독해 → <strong>25 · 26</strong> 해결. 세 작품을 한 번에 다 읽고 시작하면 (가)의 세부가 증발한다.</p>
+                        <p><strong>② (가) 상상의 축:</strong> 달밤 → 바다 / 삼층석탑 옥개석 → 가오리 / 어두운 등짝 → 희디흰 배때기. 방향은 일관되게 <strong>+ (생명력·환희)</strong>. 부호를 여백에 '＋'로 적어 둘 것.</p>
+                        <p><strong>③ (나) 연상의 사슬:</strong> 여치 소리 → 바퀴 소리 → 나락 빻는 소리 → 골목 깎기 → 큰 사과 깎기. 마을이 '큰 사과'라는 상상 공간으로 전환되며, 애환을 <strong>감싸안는 + 방향</strong>.</p>
+                        <p><strong>④ (다) 대립축(가장 중요):</strong> <b>이명 = 나만 아는 것 → 남이 몰라줄까 근심</b> / <b>코골이 = 내가 모르는 것 → 남이 일깨우면 성냄</b>. 이 두 줄을 여백에 적지 않으면 25 · 26번을 둘 다 놓친다.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">22</span><span class="q-type">작품 간 공통점·차이점</span><span class="q-sec">매뉴얼 Ⅰ 표현상 특징</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : (가) 2행 "아닌 밤중에 웬 가오리라니" — 의외의 상황에 대한 의아함으로 시상을 연다. (나)는 소리에 대한 인상 제시로 시작.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">정답</span>(가)의 도입 = 의아함. (나)에는 없음.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>감탄 표현('저런, 저런')은 <b>(가)</b>에 있다. 두 작품의 소속을 통째로 뒤바꾼 선지.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t5">트릭 ⑤ 확인 불가</span>(나)·(다) 모두 현재/미래 대비도, 인식 변화 강조도 없다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t5">트릭 ⑤ 확인 불가</span>(다)에 '변화된 시대상'에 대한 비판은 존재하지 않는다.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t5">트릭 ⑤ 확인 불가</span>자연물은 쓰이지만 '현실을 잊고자 하는 의지'는 세 작품 어디에도 없다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">23</span><span class="q-type">세부 정보 · 시적 상황 파악</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ①</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : [A]의 '대낮'은 <b>달빛으로 환해진 상태를 비유</b>한 말이다("잡티 하나 없는 고요의 대낮"). 실제 시간이 밤 → 낮으로 바뀐 것이 아니다.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t1">트릭 ① 개념어 위치 왜곡</span><b>비유적 표현을 실제 사실로</b> 옮겨 놓은 선지. '지각하는 순간'이라는 말에 속으면 안 된다.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>'잡티 하나 없는 고요의' → 밝으면서 조용한 상태.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>'훤히' → 꽃·새·바위의 내부까지 명료함.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>'자신의 바닥으로 가라앉을 것이다' → 내면 침잠.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>'귀 먹먹하고 숨 갑갑하다' → 바다로 바뀐 공간의 신체 반응.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">24</span><span class="q-type">&lt;보기&gt; 감상 · ＋/－ 비대칭</span><span class="q-sec">매뉴얼 Ⅴ 감상 3점 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ②</b> · 근거 : &lt;보기&gt;는 (가)의 달밤이 "<b>생명력이 가득한 환상의 바다</b>"로 전환된다고 못박았다. 감상의 부호는 ＋로 고정.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>'아뜩한 기쁨' → 자유로운 생명력에 대한 환희(＋).</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span><b>＋를 －로 뒤집은 부호 왜곡.</b> '등짝 검은'이라는 시어 하나를 근거로 '어두운 바다'를 만들어 냈으나 &lt;보기&gt;의 규정과 정면 충돌한다.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>골목 돌기 = 사과 깎기 → 마을이 '큰 사과'로 전환.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>옥개석의 지느러미 / '천 년 동안 아가인' → 창조된 현실.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>'팔뚝이 불거진다'(활력) / '구름이 손등을 덮어주'(위로) → 긍정적 시각.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">25</span><span class="q-type">대립 관계 역전</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : "자기만이 홀로 아는 경우는 <b>남이 알지 못할까 항상 근심하고</b>, 자기가 깨닫지 못한 경우는 남이 먼저 깨닫는 것을 싫어하나니" — 앞이 이명, 뒤가 코골이.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>'도는 털끝만한 차이로도 나뉘는 법' → 사소한 것도 소홀히 하지 않음.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>"애, 이 소리 좀 들어 봐!" → 남에게도 들릴 것이라는 생각.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span><b>이명의 자리에 코골이의 속성을 끼워 넣음.</b> '자기만이 홀로 아는 경우'는 <b>내가 아는 것을 남이 몰라줄까</b> 근심하는 쪽이지, '남이 나보다 아는 것이 많아지는 것'을 부정적으로 보는 쪽이 아니다.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>"말해 무엇 하겠는가" → 글 짓는 사람에게서 그 정도가 더 심함.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>'기와 조각이나 돌멩이라도 버리지 않는다면' → 거창하지 않은 데서 진실을 봄.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">26</span><span class="q-type">창의적·주체적 수용(수업 활동)</span><span class="q-sec">매뉴얼 Ⅲ 선택지 분할</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : ㉰는 독자가 <b>공감에 성공</b>한 경우인데, [C]에서 '소리를 지'른 것은 <b>아무 소리도 듣지 못한 동무</b>, 곧 <b>전달 실패</b> 장면이다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>㉮(작가만 느낌) = 아이의 귀가 '왜앵' 울림.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>㉯(독자가 못 느낌) = 동무가 '아무 소리도 듣지 못한' 것.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span><b>이중 오류.</b> ⓐ 성공 사례(㉰)를 실패 장면에 대응시켰고, ⓑ 소리를 지른 <b>주체</b>까지 아이로 잘못 지목했다. 이 회차 최고난도 선지.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>㉱(독자가 일깨움) = 남이 시골 사람을 '흔들어 깨우'는 것.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>㉲(작가가 부정) = "나는 그런 적 없소이다!".</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">27</span><span class="q-type">표현상 특징(㉠~㉤)</span><span class="q-sec">매뉴얼 Ⅰ·Ⅳ</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : ㉠ '둥싯' = 가볍게 떠오르는 모습. 뒤틀린 소나무가 펴지는 이미지와 만월이 뜨는 이미지를 <b>하나로 연결</b>한 표현.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">정답</span>두 이미지의 연결로 형상화.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 정서 부호 전도</span>㉡ '저런, 저런'은 <b>놀라움·감탄</b>(＋). '안타까움'(－)으로 뒤집었다.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t5">트릭 ⑤ 확인 불가</span>㉢은 바퀴 소리를 여치 소리로 감각한 것일 뿐, '화자의 불안'은 시 어디에도 없다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t3">트릭 ③ 사전적 의미 역전</span>㉣ '오물오물' = "<b>시원스럽지 아니하게</b> 조금씩 자꾸 씹는 모양". '시원스러운 움직임'은 정반대.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t3">트릭 ③ 태도 전도</span>㉤은 잘못된 태도에 대한 <b>안타까움</b>이지 일화에 대한 찬탄이 아니다.</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>① <strong>26번에서 2분 이상 쓰면 문학 24분이 붕괴</strong>한다. ㉮~㉲를 '작가/독자 × 성공/실패' 2×2로 배열하고 [C]의 두 일화를 이명/코골이로 갈라 붙이는 것까지가 90초. 넘어가면 즉시 별표.</p>
+                        <p>② <strong>27번 ④</strong>처럼 음성 상징어의 <strong>사전적 정의</strong> 하나로 끝나는 선지가 매년 나온다. '오물오물·둥싯·치르르치르르' 같은 시어는 어감이 아니라 <strong>사전 뜻</strong>으로 확정하도록 훈련시킬 것.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 3 : 현대소설 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 3 · 현대소설 28~31 박화성 「고향 없는 사람들」</span><span class="set-sub">실전 순서 3번째</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">문학 · 현대소설(일제 강점기)</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">4문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">6분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">중</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계</div>
+                        <p><strong>① 편지 3통의 방향부터 그린다(필수):</strong> ㉠ 삼룡 → 판옥 / ㉡ 판옥 → 삼룡 / ㉢ 삼룡 → 판옥. 화살표 세 개를 그리지 않으면 30번은 손을 못 댄다.</p>
+                        <p><strong>② [A]~[E] 구간에 한 단어씩 라벨:</strong> [A] 안부 궁금 / [B] 자조 / [C] 알던 정보 / [D] 실상 / [E] 냉소. 이 다섯 라벨이 29번 선지 5개를 기계적으로 정리한다.</p>
+                        <p><strong>③ 대립축:</strong> [C] 약속된 조건(논 스무 마지기·소·농사 기계) ↔ [D] 실제(양철 얹은 방 한 간, 장난감 같은 농기구, 그마저 비싸게 감함). <strong>이 낙차가 이 작품의 주제 의식</strong>이다.</p>
+                        <p><strong>④ 인물 심리의 전환점:</strong> ㉡ 수신 → 눈물 → 회사로 달려가 귀향 중지 → ㉢에서 "고향을 박차 버리고 나오는 영웅". <b>비애(－) → 의지(＋)</b>의 부호 전환을 표시해 둘 것.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">28</span><span class="q-type">부정 표현 · 내용 이해</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : "어째서 그럴까?"라며 의구심을 드러낸 것은 <b>판옥의 처</b>다. 판옥은 그에 답하여 집의 실상을 <b>전달</b>하는 쪽이다.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t3">트릭 ③ 주체 전도</span><b>발화 주체 뒤바꿈.</b> 의구심의 주체(처)와 전달의 주체(판옥)를 맞바꿨다.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>"자네들이 왔자 누가 하나 반갑게 자네들을 맞아 줄 사람이 없겠네".</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>"아마 덕근 아배한테서 왔는감만, 저리도 좋아하게".</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>"아이고 갑갑하구만. 원 얘기나 좀 시원스럽게 해 주시오그려".</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>"여기는 봄도 한창인디 안즉 땅이 안 풀리다니".</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">29</span><span class="q-type">핵심 사건([A]~[E])</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ①</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : [C] 처가 알고 있던 조건 ↔ [D] 실제로 받은 것("장난감같이 생긴 삽 하나, 쇠스랑 하나…"). <b>정보와 실상의 어긋남</b>.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t1">트릭 ① 구간 위치 왜곡</span>[A]의 궁금증(식구 안부)에 대한 답은 [E]에 없다. [E]는 '이민·기부'에 대한 냉소.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t1">트릭 ① 구간 위치 왜곡</span>[B] 자조의 이유는 [C]가 아니라 [D]의 실상에서 확인된다.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">정답</span>[C] 알던 정보 → [D] 실상.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t1">트릭 ① 구간 위치 왜곡</span>[D]의 간접 인용 상황은 [A]에 없다. [A]는 안부를 묻는 대목.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t1">트릭 ① 구간 위치 왜곡</span>[E]의 관용 표현('당구 삼 년에 음풍월')은 맞으나 [B]에는 그런 표현이 없다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">30</span><span class="q-type">핵심 소재의 서사적 기능(㉠~㉢)</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ④</span></div>
+                        <div class="answer-row"><b>정답 ②</b> · 근거 : ㉢ 첫 문장 "자네의 만지장서를 받고 나는 그냥 회사로 쫓아가서 모레 떠나기로 한 귀향 사건을 중지하고 말았네." — ㉡이 <b>수신인의 결정을 번복</b>시킨 계기.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t5">트릭 ⑤ 확인 불가</span>동정심 환기는 인정되나, 판옥과 삼룡 <b>가족 사이의 긴장감</b>은 작품에 존재하지 않는다.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">정답</span>㉡ → 귀향 중지.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t5">트릭 ⑤ 확인 불가</span>'회사와 수신인의 갈등'은 제시되지 않았다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t4">트릭 ④ 인과 조작</span>㉠을 읽은 판옥은 오히려 자조한다. 근심을 <b>해소</b>하는 실마리가 아니다.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t6">트릭 ⑥ 논리성 결함</span>㉡은 결정을 번복시키고 ㉢은 의지를 북돋운다. '정착 갈등 심화'와 양립할 수 없다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">31</span><span class="q-type">&lt;보기&gt; 감상 · 보기에 없는 내용</span><span class="q-sec">매뉴얼 Ⅴ 감상 3점 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : "몸만 성하면 혹시 어느 하늘 밑에서 또 모이게 될지 누가 알 것인가" — 재회의 <b>기약 없음</b>을 말한 대목이다. '함께 삶의 터전을 마련하자'는 내용은 두 편지 어디에도 없다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>'그만 정이 뚝 떨어'졌다 → 애착 → 환멸.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>'고향에서 쫓겨'난다 → 어쩔 수 없는 이주.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t5">트릭 ⑤ 확인 불가</span>&lt;보기&gt;의 '용기와 의지'라는 말에 이끌려 <b>본문에 없는 내용을 창작</b>한 선지. ＋ 방향의 감상어를 근거 없는 자리에 붙인 <b>＋/－ 비대칭</b> 유형이다.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>'가슴이 답답' / '굵은 눈물방울' → 비애.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>'발을 딛고 살아가는 곳'을 '고향으로 만들'자 → 살아 내려는 의지.</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>① 편지 화살표 3개와 [A]~[E] 라벨 5개를 그리는 데 <strong>40초</strong>. 이 40초를 아끼면 29·30번에서 2분을 잃는다.</p>
+                        <p>② <strong>31번 ③</strong>은 &lt;보기&gt; 문항의 대원칙 — <strong>감상의 근거는 반드시 본문 문장</strong> — 을 확인시키기에 가장 좋은 선지다. &lt;보기&gt;의 좋은 말(용기·의지)이 선지에 등장하면 오히려 <strong>본문 대조를 한 번 더</strong> 하도록 지도할 것.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 4 : 고전시가 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 4 · 고전시가 32~34 이진유 「속사미인곡」</span><span class="set-sub">실전 순서 4번째 · 판서본 기준 요약</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">문학 · 고전시가(유배 가사)</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">3문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">4분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">중</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계 — &lt;보기&gt; 선점 30초</div>
+                        <p><strong>① 기준선:</strong> &lt;보기&gt;가 '유배 가사 / 사대부의 정체성 유지 / 임금과 함께한 과거 그리움 / 자기 성찰 = 정신적 고투'를 통째로 준다. 본문을 읽기 전에 이 네 항목을 여백에 옮겨 적는다.</p>
+                        <p><strong>② 관습적 시어 매칭:</strong> 임 = 임금 / 고각(高閣)·주자의 경서 = 사대부 정체성 / 가을 부채(추선) = 버림받은 처지 / 꿈 = 임과의 재회 공간.</p>
+                        <p><strong>③ 정서의 축:</strong> [현실 : 홀로·불안·기약 없음(－)] ↔ [꿈 : 재회·완연함(＋)]. 두 축을 세워 두면 33번 '꿈' 문항이 즉시 풀린다.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">32</span><span class="q-type">표현상 특징(㉠~㉤) · ＋/－ 비대칭</span><span class="q-sec">매뉴얼 Ⅰ 표현상 특징</span></div>
+                        <div class="answer-row"><b>정답 ⑤</b> · 핵심 : ㉤은 임이 자신을 <b>살피지 않을까 하는 걱정</b>을 드러낸 대목이다. 이를 '화자와 임의 정서적 유대감 심화'라는 ＋ 방향으로 뒤집은 것이 정답 근거.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t3">트릭 ③ 정서 부호 전도</span>－(걱정·불안)를 ＋(유대감 심화)로 바꾼 <b>부호 비대칭</b>.</div>
+                        <div class="opt ok"><span class="onum">①~④</span><span class="trick tnone">적절</span>① 계절적 배경 → 적적한 정서 부각 / ② 새 거처의 특징 → 불편함 완화 / ③ 의문형 종결 → 안타까움 강조 / ④ 고사 활용 → 상황 가정과 바람.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">33</span><span class="q-type">핵심 사건('꿈' 중심 [A])</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ⑤</b> · 핵심 : '생시로 삼을런가'는 꿈에서 경험한 임과의 만남을 <b>현실에서는 이루지 못하는 애절함</b>을 드러낸다. 꿈(＋)과 현실(－)의 낙차가 정답의 축.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">정답</span>꿈 ↔ 현실의 대비.</div>
+                        <div class="opt"><span class="onum">①~④</span><span class="trick t3">트릭 ③ 대립 관계 왜곡</span>모두 꿈속 경험과 현실의 관계를 '전환·이어짐·고마움' 등 ＋ 방향으로 잘못 연결했다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">34</span><span class="q-type">&lt;보기&gt; 감상 · 부정 표현 역전</span><span class="q-sec">매뉴얼 Ⅴ 감상 3점 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 핵심 : '옛 허물'을 헤아리며 '망령됨'을 말하는 대목은 <b>근본을 생각하니 임 위한 정성일세</b>로 이어진다. 곧 <b>죄를 저지른 동기를 부끄러워하는 것이 아니라</b>, 자신의 행동이 충정에서 나왔음을 밝히는 자기 합리화다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t3">트릭 ③ 대립 관계 왜곡</span>충정(＋)의 진술을 <b>자책(－)</b>으로 뒤집었다.</div>
+                        <div class="opt ok"><span class="onum">①②③⑤</span><span class="trick tnone">적절</span>사대부 정체성 유지 / 임금과의 과거 그리움 / 새로운 정치적 판단에 대한 소망 / 유배객으로서의 불안감.</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>이 세트는 <strong>4분 안에 3문항</strong>이 목표다. &lt;보기&gt; 기준선을 먼저 잡지 않고 본문부터 읽으면 유배 가사의 관습적 어휘에서 시간이 샌다. 세 문항 모두 <strong>＋/－ 부호 판정</strong>으로 결판나므로, 시어 옆에 부호만 찍고 진행할 것.</p>
+                        <p class="note">※ 지문 원문·선지 전문은 별도 상세본 제작 시 반영. 현재 블록은 판서본에서 확인된 유형·정답·핵심 근거만 담았다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 5 : 독서론 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 5 · 독서론 1~3 「전기류를 활용한 진로 독서」</span><span class="set-sub">실전 순서 5번째 · 독서 진입 워밍업</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">독서 · 독서론</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">3문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">3~4분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">하</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계</div>
+                        <p><strong>① 첫 단락 장악:</strong> 1문단은 <b>전기류의 개념 정의</b>다. "전기류란 실제 인물의 생애를 쓴 글" — 정의 문장에 네모를 치면 2번 ④(허구적 인물)가 그 자리에서 걸린다.</p>
+                        <p><strong>② 단계에 번호 매기기:</strong> 2문단의 첫째~넷째에 ①②③④를 크게 적는다. 독서론은 <b>단계·조건·순서</b>가 곧 출제 지점이다.</p>
+                        <p><strong>③ 도구 3종을 표로:</strong> 3문단의 <b>참고 자료 / 도해 조직자(순서도·인물망) / 대립 척도표</b>를 세 칸으로 나눈다. 3번은 이 표 하나로 끝난다.</p>
+                        <p><strong>④ 접속 표지 표시:</strong> '~거나', '~뿐만 아니라' → 선택·양립 관계. 1번 ④가 바로 이 자리에서 나왔다.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">1</span><span class="q-type">부정 표현 · 세부 정보 파악</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ②</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 근거 : <b>1문단 3번째 문장</b> "전기류는 인물의 생애 전부를 다루<b>거나</b> 인물의 가치관을 파악할 수 있는 특정 일화를 집중적으로 다룬다."</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">일치</span>1문단 4문장 — 주요 사건이 주로 시간순으로 제시됨.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">일치</span>1문단 4문장 — 성장 과정·업적 등을 주요 사건으로 다룸.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">일치</span>1문단 4문장 — 주변 인물과의 관계가 드러남.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t2">트릭 ② 단정적 부정</span><b>'A이거나 B' → 'B가 아닌 A'.</b> 양립 가능한 선택 관계를 배타 관계로 한정했다. 선지에 '~가 아닌'이 보이면 <b>1순위 검증 대상</b>.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">일치</span>1문단 마지막 문장 — 전기문의 경우 작가의 평가가 추가되기도 함.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">2</span><span class="q-type">핵심 정보 파악(2문단 주제문)</span><span class="q-sec">매뉴얼 Ⅱ 3대 축</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : <b>2문단 넷째 단계</b> "책을 읽으며 인물의 삶을 이해한 후 자기를 성찰하고, 이를 바탕으로 인물을 더 깊게 파악해 볼 수 있다."</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">정답</span>인물 이해 → 자기 성찰 → 인물 이해 심화의 선순환.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t2">트릭 ② 단정적 부정</span>셋째 단계는 최종 판단을 "<b>유보할 필요가 있다</b>". '미룰 수 없다'는 정반대.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t2">트릭 ② 단정적 부정</span>둘째 단계는 성공·실패 경험에서 <b>나타난 변화까지</b> 파악한다. '이해할 수 없다'로 차단했다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t1">트릭 ① 개념 정의 위반</span>전기류는 <b>실제 인물</b>의 생애를 쓴 글(1문단). '허구적 인물'은 애초에 전기류가 아니다.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>'맹목적 긍정'과 '주체적 평가'의 대립을 뒤집었다. 지문은 맹목적 수용을 <b>경계</b>한다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">3</span><span class="q-type">구체적 상황에 적용(독서록)</span><span class="q-sec">매뉴얼 Ⅲ 3단계 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 근거 : <b>3문단 5번째 문장</b> — 도해 조직자의 예는 <b>순서도·인물망</b>뿐이다. '주방 사진이 포함된 글'은 <b>참고 자료</b>이지 도해 조직자가 아니다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>칼럼(참고 자료) → 주체적 평가.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>서평(참고 자료) → 책 선정.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>'끈기 있는-끈기 없는' 점수 표시 → 대립 척도표.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t1">트릭 ① 개념어 위치 왜곡</span><b>도구 범주 혼동.</b> 배경지식 보강에 쓰인 것은 참고 자료인데 '도해 조직자'라는 개념어를 그 자리에 옮겨 놓았다.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>사건을 순서도로 정리 → 도해 조직자.</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>이 세트를 <strong>3분 30초</strong>에 끊어야 뒤의 인문·기술에 시간을 넘길 수 있다. 3번은 &lt;보기&gt;의 학생 행동 6개에 <strong>도구 이름을 하나씩 적어 내려가는</strong> 방식이 가장 빠르다(서평=참고, 순서도=도해, 사진 글=참고, 칼럼=참고, 척도=대립 척도표).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 6 : 사회 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 6 · 사회 14~17 「오피니언 리더와 커뮤니케이션 2단계 유통 이론」</span><span class="set-sub">실전 순서 6번째</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">독서 · 사회(미디어)</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">4문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">9~10분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">중</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계</div>
+                        <p><strong>① 첫 단락 장악:</strong> 1문단은 <b>연구의 갈래</b>를 나눈다. [정형적 조직(기업)의 리더] ↔ [비정형적 환경의 오피니언 리더]. 이 구분 하나가 14번 ②를 만든다.</p>
+                        <p><strong>② 시간축 표시:</strong> 2문단 = <b>20세기 중반</b>(라자스펠트, 선거 캠페인) / 3문단 = <b>오늘날</b>(온라인 플랫폼). 두 시점을 섞은 선지가 15번 ②로 출제되었다.</p>
+                        <p><strong>③ 이론의 두 의의:</strong> ⓐ 대중 사회 이론의 가정(원자화)을 <b>벗어나</b> 1차적 사회 집단에 주목 → 대인 커뮤니케이션으로 확장, ⓑ 직접·즉각 효과론 위축 → <b>제한적 효과론</b> 부상.</p>
+                        <p><strong>④ 비판론 4개에 번호:</strong> ① 직접 획득 / ② 항상 수동적이지 않음 / ③ 분야별 위치 변동 / ④ 1단계·다단계 유통. <strong>16번은 선지가 이 넷 중 어디에 대응하는지부터 확정</strong>해야 한다.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">14</span><span class="q-type">정보의 위치(담화 표지 '시작')</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ④</span></div>
+                        <div class="answer-row"><b>정답 ②</b> · 근거 : <b>1문단 3번째 문장</b>(기업 연구와 <b>구분되는</b> 접근) + <b>2문단 2~3번째 문장</b>(라자스펠트 등이 <b>선거 캠페인</b> 영향력을 연구하다 발견).</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>3문단 1문장 — 정보 제공자로서의 자부심.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t4">트릭 ④ 인과 조작</span><b>연구가 시작된 계기를 바꿔치기.</b> 오피니언 리더 연구는 기업 조직 연구와 <b>구분되는</b> 접근이며, 실제 출발점은 선거 캠페인 연구다.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>3문단 2문장 — 남보다 먼저 수용하는 선구자.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>2문단 끝 — 즉각 효과론 위축 → 제한적 효과론 부상.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>2문단 — 발견된 현상 → 대인 커뮤니케이션으로 확장.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">15</span><span class="q-type">인과 관계 확인(㉠의 이유)</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ④</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : <b>2문단 4~6번째 문장</b> — 미디어의 영향력이 미미했던 것은 <b>오피니언 리더의 영향력</b> 때문이며, 그 기반은 가족·친구 같은 <b>1차적 사회 집단의 유대 관계</b>다.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>'원자화'는 이 이론이 <b>벗어난</b> 대중 사회 이론의 가정이다. 부정한 전제를 이유로 되돌려 놓았다.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t1">트릭 ① 시점 위치 왜곡</span>'지속 가능한 공론장'은 <b>3문단(오늘날)</b>의 서술이다. 20세기 중반의 이유로 쓸 수 없다.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">정답</span>미디어와 유권자 사이에 정보 제공자가 있었기 때문.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t5">트릭 ⑤ 확인 불가</span>전문가가 주류 미디어 선거 캠페인에 참여했다는 서술은 지문에 없다.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t4">트릭 ④ 인과 역전</span><b>참여했기 때문에</b> 미디어의 직접 효과가 줄었다. '참여하지 않았기 때문'은 인과를 통째로 뒤집은 것.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">16</span><span class="q-type">대립 관계 역전(㉮/㉯ 관점 적용)</span><span class="q-sec">매뉴얼 Ⅲ 선택지 분할</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 근거 : '을'의 공공 이슈 수용은 <b>신문(미디어) → 전문가 친구(리더) → 을</b>, 곧 <b>정확히 2단계</b>다. ㉮에 부합하는 사례이므로 '다단계 간과'의 근거가 될 수 없다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>㉮ 관점 — 갑은 공공 이슈 분야의 오피니언 리더.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>㉮ 관점 — 을은 정보를 창출하는 오피니언 리더.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>㉯ 비판 ② — 갑의 선별적 수용 = 항상 수동적이지는 않음.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t1">트릭 ① 개념어 위치 왜곡</span><b>사례와 비판 항목의 대응을 어긋나게 붙였다.</b> 사례 자체는 옳지만 그것이 뒷받침하는 비판 항목이 틀렸다. 이 유형은 <b>선지 뒷부분(비판 항목)</b>부터 확인해야 한다.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>㉯ 비판 ③ — 분야별로 오피니언 리더 여부가 달라짐.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">17</span><span class="q-type">어휘 · 문맥적 의미(ⓐ 벗어나)</span><span class="q-sec">매뉴얼 Ⅳ 문맥적 의미</span></div>
+                        <div class="answer-row"><b>정답 ⑤</b> · 근거 : ⓐ의 목적어는 '<b>가정</b>'이라는 <b>추상적 체계</b>다. '규범이나 이치, 체계 따위에 어긋나다'의 뜻.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick tnone">공간·구속</span>'구속·장애로부터 자유로워지다'.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick tnone">공간</span>'공간적 범위 밖으로 빠져나오다'.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick tnone">집단</span>'집단에서 빠져나오다'.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick tnone">처지</span>'어려운 처지에서 헤어나다'.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">정답</span>'규범 = 추상적 체계' → ⓐ와 필수 성분의 자질이 일치.</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>① <strong>17번은 지문을 읽기 전에 푼다.</strong> 어휘 문항은 발췌독 1순위이며, 목적어의 <strong>추상/구체 자질</strong>만 비교하면 10초에 끝난다.</p>
+                        <p>② <strong>16번</strong>은 &lt;보기&gt;의 갑·을을 <strong>[분야 × 위치]</strong> 4칸 표로 만든다(갑-공공:리더 / 갑-패션:일반 / 을-패션:리더 / 을-공공:일반). 표를 만든 뒤 선지를 읽으면 ④가 30초 안에 걸린다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 7 : 인문 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 7 · 인문 주제 통합 4~9 (가)종 차별주의 / (나)인공 행위자</span><span class="set-sub">실전 순서 7번째 · 최대 실점 구간</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">독서 · 인문(윤리학) 주제 통합</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">6문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">11~12분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">최상</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계 — 축 두 개를 먼저 세운다</div>
+                        <p><strong>① 축 1(가장 중요):</strong> <b>존재론 = 있느냐 / 인식론 = 알 수 있느냐</b>. 이 두 글자를 여백에 세로로 적고, 존슨(존재론적 독립성) · 스미즈(인식론적 증거는 인정, 본질적 근거는 부정)를 각각 붙인다.</p>
+                        <p><strong>② 축 2:</strong> <b>행위자</b>(도덕적 행위의 원천) ↔ <b>피행위자</b>(도덕적 배려의 대상). 표준적 입장은 두 범주가 <b>일치</b>해야 한다는 것 <b>하나뿐</b>이다. 7번 네 선지가 이 한 줄로 정리된다.</p>
+                        <p><strong>③ 부정 표현 3연발에 밑줄:</strong> (나) 2문단 — "존재론적으로 부정하거나 … <b>전제하지 않는다</b>", "동일하다는 것을 <b>전제하지 않는다</b>", "인식론적 한계를 <b>인정</b>". 6번 ①·③·⑤의 직접 근거다.</p>
+                        <p><strong>④ (가) 옹호 2 - 반박 2 구조:</strong> [옹호 1 고유한 특징] → 반박 3개(능력 잃은 사람 / 근접 영장류 / 인간 간 차등) · [옹호 2 유대감] → 반박 2개(경험적 확인 불가 / 사실→규범 도출 불가).</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">4</span><span class="q-type">세부 정보 파악 · 인과 역전</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ④</span></div>
+                        <div class="answer-row"><b>정답 ⑤</b> · 근거 : <b>(가) 3문단 3~4번째 문장</b> — "인간 종 전체에서의 유대감은 <b>경험적으로 확인하기 어렵다</b>", 유대감은 "혈연 등으로 연결된 <b>소규모 인간 집단 내에서 주로 나타나며</b>".</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>1문단 — 해를 끼치는 것이 부당하다면 그 정당화 논리도 성립 불가.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>2문단 — 고유한 특징 + <b>도덕적 의미</b>가 옹호의 필수 조건.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>2문단 — 근접 능력의 일부 영장류는 인간 범주에 포함되어야 함.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>3문단 — 사실에서 보편적 규범 원칙을 이끌어 낼 수 없음.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t4">트릭 ④ 인과 조작</span><b>지문이 존재를 부정한 것을 원인으로 세운 역방향 인과.</b> 확인조차 어려운 '종 전체 유대감'에서 소규모 집단 유대감이 기인한다고 볼 근거가 없다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">5</span><span class="q-type">구체어 확인 · (나)의 이해</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ①</span></div>
+                        <div class="answer-row"><b>정답 ④</b> · 근거 : <b>(나) 3문단 2~3번째 문장</b> — 존슨의 '독립성 논변' : X는 존재론적으로 다른 실재 Y로부터 <b>온전히 독립적</b>이어야 한다.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t4">트릭 ④ 인과 조작</span>3문단의 반론은 인공 지능 담론이 종 차별주의를 <b>약화시킬 수 있음</b>을 전제한 것이다. '우월성을 강화하는 계기'는 성립하지 않는다.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>전통적 윤리는 인간 행위자<b>만</b> 인정한다(1문단). 인공 행위자까지 포함시킨 왜곡.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t1">트릭 ① 구체어 바꿔치기</span><b>인식론적 한계의 대상</b>은 '형이상학적 속성'이지 '외부에서 관찰할 수 있는 행위'가 아니다. <b>이 회차 최다 오답 지점.</b></div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">정답</span>존슨 = 존재론적 관계 고려.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t2">트릭 ② 단정적 부정</span>스미즈는 인식론적 증거<b>일 수는 있다</b>고 인정했다. '거부한다'는 단정이 과하다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">6</span><span class="q-type">㉠(윤리적 행동주의)의 입장</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ①·②</span></div>
+                        <div class="answer-row"><b>정답 ②</b> · 근거 : <b>(나) 2문단 마지막 문장</b> — "인공 행위자가 인간과 그 행동에 있어서 대략적으로 동등하면 … 도덕적 지위를 부여하는 것이 적절하다".</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t2">트릭 ② 단정적 부정</span>형이상학적 속성을 존재론적으로 <b>부정하지 않는다</b>. '부정해야 한다'는 이 입장이 아니다.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">정답</span>인공 행위자의 행동 + 인간의 행동 → 추론.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t6">트릭 ⑥ 논리성 결함</span>형이상학적 속성이 외적 행동과 <b>동일하다고 전제하지 않는다</b>. '존재론적으로 일치한다'는 전제 자체를 부정한다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t1">트릭 ① 개념어 위치 왜곡</span>자유 의지는 <b>형이상학적 속성</b>이며, 이 입장은 그 동등성이 <b>아니라</b> 행동의 동등성으로 판단한다.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t5">트릭 ⑤ 확인 불가</span>인공 행위자의 행위로 <b>인간의 마음 상태</b>를 알 수 있다는 진술은 지문에 없다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">7</span><span class="q-type">관점 적용(표준적 입장 → [A])</span><span class="q-sec">매뉴얼 Ⅲ 선택지 분할</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : <b>(나) 1문단 마지막 문장</b> — '행위자'와 '피행위자'의 범주가 <b>일치해야</b> 한다. 따라서 행위자가 될 수 없는 종은 <b>피행위자도 될 수 없다</b>.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">정답</span>도덕적 지위 부정 → 피행위자도 불가.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t6">트릭 ⑥ 논리성 결함</span>범주가 <b>일치해야</b> 하므로 관계에 따라 달라질 수 없다. 원칙과 모순.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>인간과의 관계로 <b>고려 대상</b>이 되는 것과 <b>'행위자' 범주 편입</b>은 전혀 다른 문제다.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>침해된 것은 <b>소유권을 가진 인간의 권리뿐</b>. 다른 종을 피행위자로 세운 것이 오류.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t3">트릭 ③ 귀속식 대립 왜곡</span>이 사례의 피행위자도 <b>인간</b>이다. 피행위자를 '다른 종'으로 지정한 순간 표준적 입장을 벗어난다.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">8</span><span class="q-type">&lt;보기&gt; 개념어를 지문에 적용</span><span class="q-sec">매뉴얼 Ⅲ 3단계 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : <b>&lt;보기&gt; 4번째 문장</b> — "'전형적'이라는 말은 <b>대부분의 구성원이 인격체라는 것이 아니라</b> 그 종의 <b>대표적인 구성원</b>이 인격체라는 것이다."</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">적절</span>속성 P → 능력을 잃은 사람도 인격 종에 포함.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>지위 근거가 '인격 종의 구성원'이면 능력 수준 차등은 정당화 불가.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t1">트릭 ① 한정 조건의 전칭 확대</span><b>&lt;보기&gt;가 명시적으로 배제한 해석을 그대로 되살린 선지.</b> '대표적 구성원의 특징'을 '인간 종 <b>전체</b>의 특징'으로 확대했다.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>인격 종 = 자연 종 → 인공 행위자는 도덕적 행위자 불가.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>자의식 = 형이상학적 속성 → 도덕적 지위의 근거.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">9</span><span class="q-type">어휘 · 바꿔 쓰기(ⓐ구별된다고 / ⓑ부여하는)</span><span class="q-sec">매뉴얼 Ⅳ 문맥적 의미</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : ⓐ 구별되다 = '성질·종류에 따라 차이가 나다' → <b>다르다</b>. ⓑ 부여하다 = '권리·명예·임무 따위를 지니도록 해 주다' → <b>주다</b>.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">정답</span>다르다고 / 주기.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick tnone">오답</span>'가지다' = 자기 것으로 하다. 도덕적 지위는 <b>주는</b> 것이다.</div>
+                        <div class="opt"><span class="onum">③④⑤</span><span class="trick tnone">오답</span>'갈리다·갈라지다' = 쪼개져 나뉘다(성질상의 차이 ✕), '더하다' = 보태어 늘리다(없던 지위 부여 ✕).</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>① <strong>9번을 지문 읽기 전에 처리</strong>하고 들어간다(발췌독). 이 세트에서 1분을 미리 세이브해야 8번을 두 번 읽을 수 있다.</p>
+                        <p>② <strong>5번 ③</strong>과 <strong>8번 ③</strong>은 <strong>같은 원리의 문제</strong>다 — 지문/&lt;보기&gt;가 <strong>범위를 좁혀 규정한 문장</strong>을 선지에서 슬쩍 넓힌다. '~에 대한', '~라는 것이 아니라'가 나오면 그 문장에 네모를 치고 선지와 1:1로 대조하도록 훈련시킬 것.</p>
+                        <p>③ 7번에서 1분 이상 걸리면 별표 후 넘어간다. 표준적 입장은 '범주 일치' 한 줄이므로, 돌아왔을 때 그 한 줄만 다시 대입하면 30초에 해결된다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SET 8 : 기술 ===== -->
+            <div class="set-block">
+                <div class="set-head"><span>SET 8 · 기술 10~13 「어댑터의 작동 방식과 원리」</span><span class="set-sub">실전 순서 8번째 · 마지막 세트</span></div>
+                <div class="set-body">
+                    <div class="meta-grid">
+                        <div class="meta-cell"><div class="mk">영역 / 갈래</div><div class="mv">독서 · 기술(전자 회로)</div></div>
+                        <div class="meta-cell"><div class="mk">문항 수</div><div class="mv">4문항 (3점 1개)</div></div>
+                        <div class="meta-cell"><div class="mk">목표 시간</div><div class="mv time">10~11분</div></div>
+                        <div class="meta-cell"><div class="mk">난도</div><div class="mv">상</div></div>
+                    </div>
+
+                    <div class="design-box">
+                        <div class="dt">🧭 독해 설계 — 여백에 반드시 그릴 두 가지</div>
+                        <p><strong>① 부품 기능 카드 6장(한 줄씩):</strong> 변압기 = <b>전압 변화</b>가 있어야 출력 발생 / 정류기 = 한쪽 방향으로 흐르게 / 평활 회로 = 저장·방출로 <b>변동 억제</b> / 정전압 소자 = 출력 고정, 남는 전력은 <b>열로 소모</b> / 스위치 = 변동을 <b>만들어 냄</b> / 비교 회로 = 기준 전압과 비교해 온·오프 조정.</p>
+                        <p><strong>② 두 방식의 순서도:</strong><br>㉮ 선형 : 변압기 → 정류기 → 평활 회로 → 정전압 소자<br>㉯ 스위칭 : 정류기 → 평활 회로 → <b>스위치</b> → 변압기 → 정류기 → 평활 회로 (+ 비교 회로)<br><strong>변압기의 위치가 앞이냐 뒤냐</strong> — 이 한 가지가 12번 ①②④를 한꺼번에 정리한다.</p>
+                        <p><strong>③ 물리적 불변값:</strong> 가정 전원 220V·60Hz(1문단) / 스위칭 주파수 10~500kHz(4문단) / 주파수가 낮을수록 변압기가 커짐(3문단).</p>
+                        <p><strong>④ 장단점 대조:</strong> 선형 = 노이즈 없음, 발열·부피 큼 / 스위칭 = 고효율·소형, <b>온·오프 신호와 같은 주파수의 노이즈</b> 발생. 11번은 이 대조표만으로 풀린다.</p>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">10</span><span class="q-type">구체어 · 세부 정보 파악</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ②</b> · 근거 : <b>4문단</b> — 스위치는 변동이 적어진 전압을 "<b>변화가 심한 전압으로 바꾼다</b>". 전압 변동을 <b>억제</b>하는 것은 <b>2문단의 평활 회로</b>다.</div>
+                        <div class="opt ok"><span class="onum">①</span><span class="trick tnone">일치</span>2문단 — 변압기는 교류 전압을 높이거나 낮춤.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 기능 뒤바꿈</span><b>스위치 ↔ 평활 회로.</b> 두 부품의 기능을 교차시킨 이 회차의 대표적 트릭 ③ 선지.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">일치</span>2문단 — 정전압 소자로 안정화된 직류 전원을 만듦.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">일치</span>1문단 — 높은 교류 → 낮은 직류.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">일치</span>2문단 — 정류기의 기능.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">11</span><span class="q-type">생략된 내용 추론(㉠ 특별한 경우)</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ⑤</b> · 근거 : <b>4문단 마지막 문장</b>(스위칭은 노이즈가 최종 출력에 남는다) ↔ <b>2문단</b>(선형은 정전압 소자로 안정화된 직류를 만든다). 곧 <b>노이즈가 문제가 되는 상황</b>이 선형 방식을 쓰는 경우다.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t3">트릭 ③ 장점의 오귀속</span>전력 고효율화는 <b>스위칭</b>의 장점(3문단).</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 장점의 오귀속</span>소형화도 <b>스위칭</b>의 장점. 선형은 주파수가 낮아 변압기가 크다.</div>
+                        <div class="opt"><span class="onum">③</span><span class="trick t3">트릭 ③ 장점의 오귀속</span>선형은 구성이 간단한 대신 <b>전력 손실이 많다</b>.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t3">트릭 ③ 장점의 오귀속</span>발열 억제도 <b>스위칭</b> 쪽. 선형은 남는 전력을 열로 소모한다.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">정답</span>노이즈가 곧 선형 방식이 남아 있는 이유.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">12</span><span class="q-type">핵심 정보(㉮/㉯ 비교)</span><span class="q-sec">매뉴얼 Ⅱ 트릭 ③</span></div>
+                        <div class="answer-row"><b>정답 ③</b> · 근거 : <b>2문단</b>(선형은 출력 전압이 고정된 정전압 소자가 최종 출력을 결정) + <b>4문단</b>(스위칭은 비교 회로가 최종 출력을 기준 전압에 맞춤).</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t6">트릭 ⑥ 원리 위반</span>직류는 변화가 없으므로 ㉮의 변압기 출력 측에 전압이 발생하지 않는다.</div>
+                        <div class="opt"><span class="onum">②</span><span class="trick t3">트릭 ③ 대소 역전</span>㉮는 변압기를 <b>먼저</b> 거쳐 낮아진 전압이 정류기로 가고, ㉯는 220V가 <b>곧바로</b> 들어간다. 대소가 반대.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">정답</span>정전압 소자 교체 / 기준 전압 변경.</div>
+                        <div class="opt"><span class="onum">④</span><span class="trick t3">트릭 ③ 대소 역전</span>주파수는 ㉯(10~500kHz)가 높고, 주파수가 낮을수록 변압기가 크므로 <b>㉮의 변압기가 더 크다</b>.</div>
+                        <div class="opt"><span class="onum">⑤</span><span class="trick t1">트릭 ① 기능 왜곡</span>에너지 저장 소자는 평활 회로에서 변동을 <b>억제</b>한다. '변동을 크게 만드는 형태로 소모'는 성립 불가.</div>
+                    </div>
+
+                    <div class="q-block">
+                        <div class="q-head"><span class="q-num">13</span><span class="q-type">구체적 상황에 적용(&lt;보기&gt; 시뮬레이션)</span><span class="q-sec">매뉴얼 Ⅲ 3단계 공식</span><span class="q-pt">3점</span></div>
+                        <div class="answer-row"><b>정답 ①</b> · 근거 : <b>4문단 3~4번째 문장</b> — "이 전압은 <b>변화가 적어</b> 변압기에 입력되어도 변압기의 출력 측에 전압이 거의 발생하지 않는다." 스위치가 계속 온이면 전압 변화가 없으므로 변압기 출력도 없다.</div>
+                        <div class="opt"><span class="onum">①</span><span class="trick t6">트릭 ⑥ 논리성 결함</span><b>작동 원리를 정면으로 위반한 선지.</b> '스위치를 켜 두면 전압이 올라갈 것'이라는 <b>일상적 직관</b>을 노렸다.</div>
+                        <div class="opt ok"><span class="onum">②</span><span class="trick tnone">적절</span>온·오프 신호와 동일 주파수(100kHz)의 노이즈.</div>
+                        <div class="opt ok"><span class="onum">③</span><span class="trick tnone">적절</span>일차 측 : 정류 → 한 방향, 평활 → 변동 적음.</div>
+                        <div class="opt ok"><span class="onum">④</span><span class="trick tnone">적절</span>4.5V &lt; 5V → 출력을 높여야 함 → 온오프비 ↑ → 오프 시간 ↓.</div>
+                        <div class="opt ok"><span class="onum">⑤</span><span class="trick tnone">적절</span>온 : 입출력 전압 동일 / 오프 : 전압 발생 없음(0V).</div>
+                    </div>
+
+                    <div class="checkpoint">
+                        <div class="ct">⏱️ 실전 체크포인트</div>
+                        <p>① 부품 카드 6장과 순서도 2개를 그리는 <strong>90초</strong>가 이 세트의 전부다. 그리지 않고 선지로 들어가면 10·12번에서 지문을 4~5회 왕복하게 된다.</p>
+                        <p>② <strong>13번 ①</strong>은 '<strong>변압기는 변화에만 반응한다</strong>'는 원리 한 줄로 끝난다. 4문단의 복선 문장("변화가 적어 … 거의 발생하지 않는다")에 밑줄을 그어 두는 훈련이 그대로 3점이 된다.</p>
+                        <p>③ 시간이 부족한 상태로 이 세트에 도착했다면 <strong>10 → 12 → 11 → 13</strong> 순으로 푼다. 11번은 두 방식의 장단점 대조가 끝난 뒤가 훨씬 빠르다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= 섹션 Ⅳ ================= -->
+        <div class="section-block" id="s4">
+            <div class="sec-title">Ⅳ. 이 회차가 확정한 5대 출제 공식 <span>유형 심화</span></div>
+            <p style="font-size:13.5px; color:#64748b; margin-bottom:16px;">표준 매뉴얼 Ⅱ의 6대 트릭이 이번 회차에서 <strong>어떤 문장 형태로 구현되었는지</strong>를 다섯 개 공식으로 정리했다. 하위 문서이므로 표준 매뉴얼의 번호 체계를 그대로 따른다.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-head"><span>공식 1 · 범위 한정 문장의 확대</span><span class="tag">트릭 ①</span></div>
+                    <div class="card-body">
+                        <p><strong>출제 형태 :</strong> 지문이나 &lt;보기&gt;가 <b>"A가 아니라 B이다"</b>로 범위를 좁혀 규정한 문장을, 선지에서 슬쩍 A쪽으로 넓힌다.</p>
+                        <p><strong>이번 회차 사례 :</strong> 8번 ③(대표적 구성원 → 종 전체) · 5번 ③(형이상학적 속성 → 관찰 가능한 행위) · 1번 ④(A이거나 B → B가 아닌 A).</p>
+                        <div class="formula-box" style="font-size:13.5px; padding:12px 16px;">'~라는 것이 아니라 ~이다' 문장 = 네모 치기 → 선지와 1:1 대조<div class="comment">배타적 정의를 확인하면 3초에 답이 보인다.</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><span>공식 2 · 속성 교차(A↔B 뒤바꿈)</span><span class="tag">트릭 ③ · 최다</span></div>
+                    <div class="card-body">
+                        <p><strong>출제 형태 :</strong> 두 대상이 나오면 반드시 한쪽의 속성을 다른 쪽에 붙인다. <b>부품·인물·작품·학자·태도</b>를 가리지 않는다.</p>
+                        <p><strong>이번 회차 사례 :</strong> 10번 ②(스위치↔평활 회로) · 11번 ①②③④(스위칭의 장점을 선형에) · 22번 ②((가)의 감탄을 (나)에) · 25번 ③(이명↔코골이) · 18번 ④·28번 ①(인식·발화 주체 전도).</p>
+                        <div class="formula-box" style="font-size:13.5px; padding:12px 16px;">선지의 <b>주어(귀속 주체)</b>에 먼저 동그라미<div class="comment">'무엇이 무엇의 속성인가'만 확인하면 24개 선지가 한 번에 걸린다.</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><span>공식 3 · 인과의 방향 뒤집기</span><span class="tag">트릭 ④</span></div>
+                    <div class="card-body">
+                        <p><strong>출제 형태 :</strong> A→B를 B→A로 바꾸거나, <b>지문이 존재를 부정한 것</b>을 원인 자리에 놓는다. 시간적 선후를 뒤집는 변형도 있다.</p>
+                        <p><strong>이번 회차 사례 :</strong> 4번 ⑤(확인 불가한 것에서 기인) · 15번 ⑤(참여하지 않았기 때문에) · 19번 ③(뒤의 인식이 앞의 동기) · 14번 ②(연구 시작 계기).</p>
+                        <div class="formula-box" style="font-size:13.5px; padding:12px 16px;">지문의 인과를 <b>화살표</b>로 표시 → 선지의 화살표와 방향 비교<div class="comment">'~때문이다 / ~에서 기인한다 / ~하기 위하여'는 전부 방향 검증 대상.</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><span>공식 4 · &lt;보기&gt;의 좋은 말 이식</span><span class="tag">트릭 ⑤ · 문학 3점</span></div>
+                    <div class="card-body">
+                        <p><strong>출제 형태 :</strong> &lt;보기&gt;에 있는 그럴듯한 감상어(용기·의지·환희)를 가져다, <b>본문에 없는 사건</b>에 붙인다. 감상 자체는 매끄러워 보인다.</p>
+                        <p><strong>이번 회차 사례 :</strong> 31번 ③('함께 터전을 마련') · 21번 ②(안심시키는 말 → 역할 제한) · 27번 ③(불안).</p>
+                        <div class="formula-box" style="font-size:13.5px; padding:12px 16px;">[선지 앞부분 = 본문 팩트] / [뒷부분 = &lt;보기&gt; 해석]으로 <b>분할</b><div class="comment">정답의 80%는 뒷부분이 아니라 앞부분의 팩트 날조에서 갈린다.</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><span>공식 5 · ＋/－ 부호 비대칭</span><span class="tag">문학 전 갈래</span></div>
+                    <div class="card-body">
+                        <p><strong>출제 형태 :</strong> 정서·태도의 부호를 한 칸 뒤집는다. 시어 하나(예 : '등짝 검은')를 빌미로 작품 전체의 방향을 반대로 규정한다.</p>
+                        <p><strong>이번 회차 사례 :</strong> 24번 ②(생명력의 환상 → 어두운 바다) · 27번 ②(놀라움 → 안타까움) · 27번 ⑤(안타까움 → 찬탄) · 32번 ⑤(걱정 → 유대감 심화) · 34번 ④(충정 → 자책).</p>
+                        <div class="formula-box" style="font-size:13.5px; padding:12px 16px;">&lt;보기&gt;를 읽자마자 작품 옆에 <b>＋ 또는 －</b> 하나만 크게 적는다<div class="comment">부호가 정해지면 반대 부호의 선지는 읽는 즉시 탈락한다.</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><span>보조 · 어휘 2문항 처리</span><span class="tag">매뉴얼 Ⅳ</span></div>
+                    <div class="card-body">
+                        <p><strong>9번(바꿔 쓰기) :</strong> 사전적 정의로 판정. '부여하다 = 지니도록 <b>해 주다</b>' → '주다'. 스스로 '가지다'와는 방향이 다르다.</p>
+                        <p><strong>17번(문맥적 의미) :</strong> <b>목적어의 자질</b>로 판정. ⓐ의 목적어 '가정' = 추상적 체계 → 공간·집단·처지가 목적어인 선지는 자동 탈락.</p>
+                        <p style="color:#b91c1c;"><strong>두 문항 모두 지문 독해 전에 발췌독으로 20초 안에 끝낸다.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= 섹션 Ⅴ ================= -->
+        <div class="section-block" id="s5">
+            <div class="sec-title">Ⅴ. 수업 운용 &amp; 재출제 대비 <span>지도 순서</span></div>
+
+            <div class="step-flow">
+                <div class="step-item"><div class="step-num">1차시</div><div class="step-text">타임라인 &amp; 마일스톤</div><div style="font-size:12px; color:#64748b; margin-top:4px;">Ⅰ장. 푸는 순서부터 고쳐 준다</div></div>
+                <div class="step-arrow">➔</div>
+                <div class="step-item"><div class="step-num">2차시</div><div class="step-text">트릭 ③ 집중</div><div style="font-size:12px; color:#64748b; margin-top:4px;">10·11·22·25·18·28번 묶어서</div></div>
+                <div class="step-arrow">➔</div>
+                <div class="step-item"><div class="step-num">3차시</div><div class="step-text">트릭 ① 집중</div><div style="font-size:12px; color:#64748b; margin-top:4px;">5·8·16·23·29번 묶어서</div></div>
+                <div class="step-arrow">➔</div>
+                <div class="step-item"><div class="step-num">4차시</div><div class="step-text">3점 5문항 재시험</div><div style="font-size:12px; color:#64748b; margin-top:4px;">3·8·13·16·21·24·26·31·34번</div></div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🎯 이 회차에서 반드시 재출제되는 3가지</h4>
+                <p><strong>1. 사례 - 항목 대응 오류(16번형) :</strong> 사례 자체는 맞는데 <b>대응시킨 이론 항목이 틀린</b> 선지. 관점 문항(㉮/㉯, 학자별 견해)이 나오면 100% 등장한다.</p>
+                <p><strong>2. 개념 도구의 범주 혼동(3번형) :</strong> 지문이 예시로 <b>한정</b>한 도구(순서도·인물망)를 다른 도구 자리에 끼워 넣기. 독서론·사회 지문의 단골.</p>
+                <p><strong>3. 원리 위반 시뮬레이션(13번형) :</strong> '작동 조건'을 무너뜨린 가정을 던져 놓고 일상적 직관으로 답하게 만드는 기술 3점. <b>조건 문장 한 줄</b>을 찾는 훈련이 유일한 대비책.</p>
+            </div>
+
+            <div class="sub-detail-box">
+                <div class="title">✅ 학생 배포 시 확인 사항</div>
+                <p>· 이 매뉴얼은 <strong>세트별 상세 해설본 7종</strong>(독서1~4, 문학1~3)과 함께 배포한다. 상세본이 '왜 그 답인가'를 설명한다면, 이 매뉴얼은 <strong>'어떤 순서로, 몇 분 안에, 무엇을 표시하며 푸는가'</strong>를 다룬다.</p>
+                <p>· 고전시가(32~34) 세트는 상세본이 없으므로, 필요 시 「김현석_국어_실전풀이법_속사미인곡_9월모평.html」을 별도 제작해 이 매뉴얼 SET 4를 대체한다.</p>
+                <p>· 재시험은 <strong>3점 9문항(3·8·13·16·21·24·26·31·34)</strong>만 뽑아 25분 제한으로 시행하면 이 회차의 실점 구조가 그대로 재현된다.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+/* ES5 전용 · 실패해도 본문은 그대로 보이도록 설계 */
+(function () {
+    try {
+        var heads = document.getElementsByClassName('set-head');
+        var i;
+        for (i = 0; i < heads.length; i++) {
+            heads[i].style.cursor = 'pointer';
+            heads[i].onclick = function () {
+                try {
+                    var body = this.nextSibling;
+                    while (body && body.nodeType !== 1) { body = body.nextSibling; }
+                    if (!body) { return; }
+                    body.style.display = (body.style.display === 'none') ? 'block' : 'none';
+                } catch (e2) { }
+            };
+        }
+    } catch (e) {
+        try {
+            var w = document.getElementById('jsWarn');
+            if (w) { w.style.display = 'block'; }
+        } catch (e3) { }
+    }
+})();
+</script>
+
+</body>
+</html>

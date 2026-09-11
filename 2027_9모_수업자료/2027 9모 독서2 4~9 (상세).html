@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 독서2 4~9 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header"><h1>📖 2027학년도 9월 모의평가 · 독서2 4~9</h1>
+<p>인문 주제통합 「종 차별주의와 인공지능의 도덕적 행위자 자격」 | 지문 원문 + 문단별 심층 분석 + 구조도 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<div class="part-label">(가) 종 차별주의 옹호 논리와 한계</div>
+<p>인간의 이익을 위해 인간 이외의 종(種)에게 해를 입히는 것이 정당할까? 이를 정당화하는 방법은 우리가 속한 종의 이익이 다른 종의 이익보다 우선시된다는 종 차별주의를 옹호하는 것이다. 종 차별주의에 따르면 인간은 그 존재 자체로 도덕적 지위를 가지므로 도덕적 고려 대상이다. 이에 반해 <span class="source-underline">ⓐ인간 이외의 다른 종은 도덕적 지위가 없거나</span>, <span class="source-underline">ⓑ인간과의 관계에 의해서만 도덕적 고려의 대상이 된다</span>. 예를 들어 <span class="source-underline">ⓓ누군가의 소유인 동물에게 해를 입히면 그 사람의 소유권을 침해하는 행위이므로 옳지 않고</span>, <span class="source-underline">ⓔ동물에게 잔인한 행동을 하면 그 행위자의 심성이 포악해지므로 옳지 않다고</span> 보는 것이다.</p>
+<p>종 차별주의는 <span class="underline-phrase">인간에게만 존재하고 다른 종에게는 없는 고유한 특징이 있고, 이 특징이 도덕적으로 의미가 있다는 점</span>으로 옹호된다. 흔히 인간은 다른 종에는 없는 복잡한 사고 능력, 도덕적 이상에 따라 행동할 수 있는 능력 등의 고차원적 정신 능력을 갖추고 있기에 다른 종과 <span class="source-underline">ⓐ구별된다고</span> 주장한다. 이러한 고차원적 정신 능력 가운데 대표적인 것이 도덕적인 판단과 행위를 자율적으로 완수할 수 있는 <span class="underline-phrase">도덕적 행위자로서의 능력</span>이다. 하지만 이런 방식으로 인간의 특징을 설명하면 <span class="underline-phrase">사고로 고차원적 정신 능력을 잃어버린 사람은 인간의 범주에 들어오기 어렵고, 인간에 근접한 정신 능력이 있는 일부 영장류는 인간의 범주에 포함되어야 한다</span>. 또한 고차원적 정신 능력이 인간과 다른 종을 구별할 정도로 중요한 요소라면 <span class="underline-phrase">이러한 정신 능력의 수준에 따라 인간을 차등적으로 대우하는 차별도 정당화되어야 한다</span>.</p>
+<p>종 차별주의는 우리가 다른 종과 달리 인간 종에게 특별한 유대감을 갖고 있으므로 다른 종보다 인간 종에게 특혜를 줘야 한다는 주장으로 옹호되기도 한다. 인간이 같은 인간에게 유대감을 갖는 현상이나 같은 집단의 구성원들이 서로를 우대하는 것은 자연스러운 일이다. 그러나 <span class="underline-phrase">인간 종 전체에서의 유대감은 경험적으로 확인하기 어렵다</span>. 인간이 같은 집단 사람들에게 유대감을 갖는 현상은 <span class="underline-phrase">혈연 등으로 연결된 소규모 인간 집단 내에서 주로 나타나며, 이를 벗어나면 서로 싸우고 갈등하는 모습을 흔하게 볼 수 있다</span>. 또한 인간들 간에 유대감을 가진다는 것은 사실일 뿐, 규범 원칙이 아니다. <span class="underline-phrase">어떤 현상을 있는 대로 기술한 사실을 전제로 우리의 행동이 어떠해야 한다는 보편적 규범 원칙을 논리적으로 이끌어 낼 수 없기 때문이다</span>.</p>
+
+<div class="part-label">(나) 인공지능의 도덕적 행위자 자격 담론</div>
+<p>인간 중심적 종 차별주의는 인간과 동물의 종적 차이를 주장하기 위해 고차원적 정신 능력을 갖춘 도덕적 행위자라는 인간의 특징을 방어벽으로 내세웠다. 전통적 윤리의 관점에서는 인간 행위자를 도덕적 행위자로 인정하지만, 그 이외의 행위자는 도덕적 행위자가 될 수 없다고 본다. 인간의 종적 우월성을 강화하는 이러한 견해의 기저에는 <span class="underline-phrase">도덕적 행위의 원천인 '행위자'의 범주와 도덕적 배려의 대상인 '피행위자'의 범주가 일치해야 한다고 보는 표준적 입장</span>이 있다.</p>
+<p>하지만 전통적 윤리의 관점과 달리 고도의 지능을 갖춘 인공지능을 인공 행위자이자 도덕적 행위자로 인정할 수 있다는 방법론들이 제시되었다. 그중 하나로 <span class="source-underline">㉠윤리적 행동주의</span>가 있다. 이 방법론에 따르면 <span class="underline-phrase">도덕적 지위는 서로 다른 두 실재 사이의 자유 의지, 의도, 의식 등과 같은 형이상학적 속성의 동등성이 아니라, 경험적으로 인식 가능한 행동의 동등성을 비교하여 추론할 수 있다</span>. 이는 형이상학적 속성을 존재론적으로 부정하거나 그 속성이 외부에서 인식할 수 있는 행동과 동일하다는 것을 전제하지 않는다. 대신 <span class="underline-phrase">형이상학적 속성에 대한 인식론적 한계를 인정하고 도덕적 지위의 판단은 외부에서 관찰할 수 있는 행동의 패턴에 근거해야 함을 말한다</span>. 따라서 인공 행위자가 인간과 그 행동에 있어서 대략적으로 동등하면, 인간과 마찬가지로 도덕적 지위를 그 인공 행위자에게 <span class="source-underline">ⓑ부여하는</span> 것이 적절하다고 보는 것이다.</p>
+<p>이에 대해 존슨은 인식론적 방법론에 근거한 탈형이상학적인 입장을 취한다고 해서 윤리적 행동주의가 곧장 정당화되는 것은 아니라고 주장하며 그 근거로 <span class="underline-phrase">'독립성 논변'</span>을 제시한다. 이는 <span class="underline-phrase">인공 행위자 X가 도덕적 행위자로 인정되기 위해서는 X는 존재론적으로 다른 실재 Y로부터 온전히 독립적이어야 한다는 것</span>이다. 또한 스미즈는 다른 실재 간 행동의 동등성이 도덕적 지위의 인식론적 증거일 수는 있지만, 본질적 근거는 아니라고 주장한다. 그는 <span class="underline-phrase">어떤 실재에 도덕적 지위를 부여하기 위해서는 결국 그 실재의 행동으로부터 그 지위를 정당화하는 형이상학적 속성에로의 추론이 본질적으로 요구된다</span>고 말한다. 이들의 주장에 따르면 인간 중심의 종 차별주의는 인공지능의 도덕적 행위자로서의 가능성에 대한 담론에 의해서 약화되지 않는다.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box"><div class="title">📌 (가) 1문단 · 종 차별주의의 정의와 동물 대우</div><div class="content">· 종 차별주의: 인간은 존재 자체로 도덕적 지위 가짐. 다른 종은 도덕적 지위가 없거나 인간과의 관계에 의해서만 도덕적 고려 대상.<br>· 간접적 배려: 동물 소유권 침해 금지(소유자 권리), 동물 학대 금지(행위자 인성 악화 방지).</div></div>
+<div class="analysis-box"><div class="title">📌 (가) 2~3문단 · 종 차별주의 옹호 논리와 반박</div><div class="content"><b>논리 1: 고차원적 정신 능력(도덕적 행위자 능력)</b><br>➔ 반박: 가장자리 인간(능력 상실자) 배제, 고지능 영장류 포함 역설, 인간 내 차등 대우 정당화 문제.<br><b>논리 2: 인간 종 내 유대감</b><br>➔ 반박 ① 경험적 반박: 종 전체 유대감은 확인 불가, 소규모 집단 벗어나면 갈등 발생.<br>➔ 반박 ② 논리적 반박(자연주의적 오류): '유대감 존재 사실'에서 '인간 우대 당위'를 도출 불가.</div></div>
+<div class="analysis-box"><div class="title">📌 (나) 1문단 · 표준적 입장</div><div class="content">· 전통 윤리: 오직 인간만 도덕적 행위자.<br>· <b>표준적 입장</b>: 도덕적 행위의 주체인 '행위자'와 배려 대상인 '피행위자'의 범주가 일치해야 함.</div></div>
+<div class="analysis-box"><div class="title">📌 (나) 2문단 · 윤리적 행동주의 (㉠)</div><div class="content">· 도덕적 지위의 근거: 내면적 '형이상학적 속성(자유 의지, 의도)'이 아니라 <b>'경험적으로 관찰 가능한 외적 행동의 동등성'</b>.<br>· 형이상학적 속성 자체를 부정하는 것이 아니라, 그것을 알 수 없다는 '인식론적 한계'를 인정하고 행동 패턴을 기준으로 삼음.</div></div>
+<div class="analysis-box"><div class="title">📌 (나) 3문단 · 윤리적 행동주의 비판</div><div class="content">· <b>존슨 (독립성 논변)</b>: 도덕적 행위자 X는 제작자나 프로그래머 등 다른 실재 Y로부터 존재론적으로 온전히 독립적이어야 함.<br>· <b>스미즈</b>: 행동의 동등성은 표면적 증거일 뿐! 본질적으로 행동을 통해 형이상학적 속성을 추론해야 지위 부여 가능.</div></div>
+<div class="vocab-box"><strong>📖 핵심 철학 개념어</strong><div>• <strong>종 차별주의(Speciesism)</strong>: 소속된 생물학적 종을 이유로 도덕적 지위를 차별하는 입장.</div><div>• <strong>도덕적 행위자 vs 피행위자</strong>: 도덕적 책임을 지고 행위하는 주체(Agent)와 도덕적 배려를 받는 대상(Patient).</div><div>• <strong>존재론적 vs 인식론적</strong>: 실제 존재하는가의 문제(존재론) vs 우리가 그것을 알 수 있는가의 문제(인식론).</div></div>
+<div class="info-box"><h3>🎯 킬러 문항 8번 공략법</h3><p>&lt;보기&gt;의 '인격체', '인격 종', '전형적', '속성 P'의 정의를 지문 (가), (나)에 치밀하게 대응시켜야 한다. '전형적'이란 대다수가 아니라 <b>대표적 구성원</b>의 특성이므로, ③번의 '인간 종 전체의 특징'이라는 진술이 바로 정답(적절하지 않은 것)이 된다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 지문 구조도 <span>04~09</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head">(가) 종 차별주의 비판</div><div class="card-body"><p>• 옹호: 정신 능력 & 유대감</p><p>• 반박 1: 가장자리 인간 문제</p><p>• 반박 2: 사실-당위 괴리</p><div class="sub-point">✔ 도덕적 지위 근거 흔들림</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">(나) 전통 윤리와 표준적 입장</div><div class="card-body"><p>• 인간만이 도덕적 행위자</p><p>• 행위자 = 피행위자 일치</p><div class="sub-point">✔ 종적 우월성 고수</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">(나) 윤리적 행동주의 (㉠)</div><div class="card-body"><p>• 외적 행동의 동등성 비교</p><p>• 형이상학적 속성 판단 한계</p><div class="sub-point">✔ AI 도덕적 지위 부여 가능</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head">(나) 재반박 논변</div><div class="card-body"><p>• 존슨: 독립성 논변 (의존성)</p><p>• 스미즈: 형이상학적 속성 필요</p><div class="sub-point">✔ 종 차별주의 약화 안 됨</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num">04</div>
+<div class="question-stem">4. (가)를 바탕으로 추론한 내용으로 적절하지 않은 것은?</div>
+<div class="choice-item"><div class="choice-text">① 인간을 위해 다른 종에게 해를 끼치는 것이 부당하다면 인간의 이익을 다른 종의 이익에 비해 우선시할 수 없다.</div><div class="choice-analysis">❌ 적절 — 1문단 첫머리에 인간을 위해 다른 종에게 해를 끼치는 것을 정당화하는 방법이 종 차별주의라고 하였으므로, 이것이 부당하다면 우선시할 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">② 인간에게만 있는 고유한 특징으로 종 차별주의가 옳다는 것을 지지하려면 이 특징이 도덕적으로 의미가 있어야 한다.</div><div class="choice-analysis">❌ 적절 — 2문단 첫 문장에 종 차별주의는 고유한 특징이 도덕적으로 의미가 있다는 점으로 옹호된다고 명시되어 있다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 고차원적 정신 능력이 인간과 다른 종을 구별하는 기준이라면 영장류의 일부는 인간과 동일한 도덕적 고려 대상이 된다.</div><div class="choice-analysis">❌ 적절 — 2문단에서 인간에 근접한 정신 능력이 있는 일부 영장류는 인간의 범주에 포함되어야 한다고 지적하고 있다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 인간이 같은 종의 구성원에게 유대감을 갖는다는 사실에서 인간 종을 우대해야 한다는 보편적 원칙을 도출할 수 없다.</div><div class="choice-analysis">❌ 적절 — 3문단 끝에 사실을 전제로 보편적 규범 원칙을 논리적으로 이끌어 낼 수 없다고 서술되어 있다.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 혈연관계와 같은 소규모 인간 집단에서 나타나는 유대감은 인간이 인간 종 전체에 대해 느끼는 유대감으로부터 기인한다.</div><div class="choice-analysis">✅ 정답 — 3문단에서 인간 종 전체에서의 유대감은 경험적으로 확인하기 어려우며, 유대감은 주로 혈연 등으로 연결된 소규모 집단에서 나타난다고 하였다. 소규모 집단의 유대감이 종 전체에 대한 유대감에서 기인한다는 진술은 인과 관계가 완전히 왜곡되었다.</div></div>
+<div class="correct-badge">📍 정답 ⑤ [지문 내용의 논리적 추론]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 04번 근거와 파생의 방향성 점검</div>
+<p><strong>오답 코드:</strong> [종 전체 유대감은 실재하지 않음] vs [소규모 집단 유대감만 존재함]. 지문에서 부정한 대상을 원인(기인)으로 설정한 역방향 인과 트릭이다.</p>
+</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">05</div>
+<div class="question-stem">5. (나)에 대한 이해로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 고도의 지능을 갖춘 인공지능의 등장은 인간의 종적 우월성을 강화하는 계기가 되었다.</div><div class="choice-analysis">❌ 오답 — 인공지능의 등장은 인간 행위자 중심의 종적 우월성에 도전하고 도덕적 행위자로 인정하려는 방법론을 낳았다.</div></div>
+<div class="choice-item"><div class="choice-text">② 전통적 윤리의 관점에서는 인간 행위자와 인공 행위자 둘 다 도덕적 행위자 자격을 갖춘 것으로 본다.</div><div class="choice-analysis">❌ 오답 — 전통적 윤리는 오직 인간 행위자만 도덕적 행위자로 인정한다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 인공 행위자의 도덕적 지위를 인정하기 위한 행동주의 방법론은 도덕적 행위자의 외부에서 관찰할 수 있는 행위에 대한 인식론적 한계를 인정한다.</div><div class="choice-analysis">❌ 오답 — 외부에서 관찰할 수 있는 행동이 아니라, 내면의 '형이상학적 속성'에 대한 인식론적 한계를 인정한다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 존슨은 어떤 인공 행위자가 도덕적 행위자인지를 판단하려면, 그 인공 행위자와 다른 실재 사이의 존재론적 관계를 고려해야 한다고 주장한다.</div><div class="choice-analysis">✅ 정답 — 3문단에서 존슨은 '독립성 논변'을 통해 "인공 행위자 X가 도덕적 행위자로 인정되기 위해서는 X는 존재론적으로 다른 실재 Y로부터 온전히 독립적이어야 한다"고 주장했으므로 정확히 부합한다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 스미즈는 탈형이상학적 입장에 반대하며, 도덕적 지위를 정당화하는 행동에 관한 인식론적 증거를 거부한다.</div><div class="choice-analysis">❌ 오답 — 스미즈는 행동의 동등성이 '도덕적 지위의 인식론적 증거일 수는 있다'고 인정하였다(본질적 근거가 아니라고 했을 뿐 거부하지 않음).</div></div>
+<div class="correct-badge">📍 정답 ④ [학자별 핵심 논변 파악]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 05번 학자별 키워드 매칭</div>
+<p><strong>핵심:</strong> 존슨 ➔ '독립성 논변', '존재론적 독립성'. 지문의 표현을 그대로 선지화한 ④번이 정답이다.</p>
+</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">06</div>
+<div class="question-stem">6. ㉠(윤리적 행동주의)의 입장으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 어떤 실재의 형이상학적 속성은 그 속성 자체의 특성을 파악할 수 없기 때문에 부정해야 한다.</div><div class="choice-analysis">❌ 오답 — 2문단에서 형이상학적 속성을 존재론적으로 부정하는 것은 아니라고 명시하였다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 인공 행위자의 도덕적 지위는 그 행위자의 행동과 인간의 행동을 기반으로 추론할 수 있다.</div><div class="choice-analysis">✅ 정답 — 2문단에서 "경험적으로 인식 가능한 행동의 동등성을 비교하여 추론할 수 있다... 인공 행위자가 인간과 그 행동에 있어서 대략적으로 동등하면 도덕적 지위를 부여하는 것이 적절하다"고 하였으므로 가장 적절하다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 어떤 실재의 내면에서 이루어지는 활동과 이에 대응하여 발생하는 외적 활동은 존재론적으로 일치한다.</div><div class="choice-analysis">❌ 오답 — 형이상학적 속성이 외적 행동과 동일하다는 것을 전제하지 않는다고 하였다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 서로 다른 두 실재가 동등한 수준의 자유 의지를 가진다면, 두 실재는 동등한 수준의 도덕적 지위를 지닌다.</div><div class="choice-analysis">❌ 오답 — 자유 의지 같은 형이상학적 속성의 동등성을 비교하는 것이 아니라고 하였다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 인간의 마음 상태는 경험적으로 인식할 수 없지만, 인간과 유사한 수준의 인공 행위자의 행위를 통해 알 수 있다.</div><div class="choice-analysis">❌ 오답 — 인공 행위자의 행동을 통해 인간의 마음 상태를 알 수 있다는 주장이 아니다.</div></div>
+<div class="correct-badge">📍 정답 ② [개념 정의와 방법론 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">07</div>
+<div class="question-stem">7. '표준적 입장'의 관점에 따라 [A]를 이해한 것으로 가장 적절한 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① 인간을 제외한 다른 종의 도덕적 지위를 인정하지 않는다는 ⓐ의 내용은, 인간 이외의 종은 '피행위자'가 될 수 없음을 의미하겠군.</div><div class="choice-analysis">✅ 정답 — (나) 1문단에 따르면 표준적 입장은 도덕적 행위의 원천인 '행위자'의 범주와 도덕적 배려의 대상인 '피행위자'의 범주가 일치해야 한다고 본다. 따라서 인간 이외의 종이 도덕적 행위자가 될 수 없다면(도덕적 지위 부재), 피행위자의 범주에도 들어올 수 없다는 결론이 도출된다.</div></div>
+<div class="choice-item"><div class="choice-text">② 다른 종은 인간이라는 존재에 기대어 도덕적 고려 대상이 된다는 ⓑ의 내용은, '피행위자'의 범주가 '행위자'와의 관계에 의해 달라짐을 의미하겠군.</div><div class="choice-analysis">❌ 오답 — 표준적 입장은 행위자와 피행위자의 범주가 고정적으로 일치해야 하므로, 관계에 따라 달라진다고 보지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 다른 종에 대한 도덕적 고려는 인간과의 관계에 의해서 인정된다는 ⓑ의 내용은, 다른 종도 경우에 따라서는 '행위자'의 범주에 포함됨을 의미하겠군.</div><div class="choice-analysis">❌ 오답 — 다른 종은 어떤 경우에도 행위자가 될 수 없다는 것이 표준적 입장이다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 타인이 소유한 동물에게 해를 입히는 ⓓ의 사례는, '행위자'의 행위로 인해 '피행위자'인 다른 종과 인간의 권리가 모두 침해된 경우이겠군.</div><div class="choice-analysis">❌ 오답 — 표준적 입장에서 동물은 피행위자가 아니므로 동물의 권리 침해가 성립하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 동물을 대상으로 한 잔인한 행동이 그 행동을 한 사람의 심성에 악영향을 미친다는 ⓔ의 사례는, '피행위자'인 다른 종에게 영향을 준 행위가 '행위자'에게 위해가 되는 경우이겠군.</div><div class="choice-analysis">❌ 오답 — 표준적 입장에서 동물은 피행위자가 될 수 없다.</div></div>
+<div class="correct-badge">📍 정답 ① [두 관점 간의 접점 도출]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">08</div>
+<div class="question-stem">8. &lt;보기&gt;를 바탕으로 (가), (나)를 이해한 내용으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+어떤 개체가 '인격체'이거나 '인격 종'의 구성원이라면 도덕적 지위를 갖는다. 여기서 인격체란 합리적 판단 능력과 시간이 흘러도 지속적으로 자기의 존재를 의식하는 자의식을 가진 존재이다. 인격 종이란 자연 종의 하나로서 그 종의 구성원이 전형적으로 인격체인 종을 말하며, 인간이 그러한 인격 종이다. 여기서 '전형적'이라는 말은 대부분의 구성원이 인격체라는 것이 아니라 그 종의 대표적인 구성원이 인격체라는 것이다. 더불어 어떤 개체가 현재 인격체에 요구되는 특징을 갖추지 못하더라도 속성 P를 갖는다면 인격 종에 포함될 수 있다. 이때 P는 어떤 실재 Z가 현재 상황에서는 인격체가 아니라도 실제로 인격체일 수 있었다는 그런 속성이다.</div>
+<div class="choice-item"><div class="choice-text">① '속성 P'를 고려하면, (가)에서 제시된 '사고로 고차원적 정신 능력을 잃어버린 사람'은 사고 후에도 인격 종에 포함되므로 도덕적 지위를 가질 수 있다.</div><div class="choice-analysis">❌ 적절 — 과거에 인격체였으므로 '실제로 인격체일 수 있었다'는 속성 P를 만족하여 인격 종에 포함된다.</div></div>
+<div class="choice-item"><div class="choice-text">② 인간은 '인격 종의 구성원'이기에 도덕적 지위를 부여받는다는 내용을 고려하면, (가)에서 제시된 '정신 능력의 수준'은 인간 종 내의 차별을 정당화하는 근거가 되기 어렵다.</div><div class="choice-analysis">❌ 적절 — 개별 능력 차이와 무관하게 '인격 종의 구성원' 자격으로 도덕적 지위를 얻기 때문이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ '전형적'을 종의 대표적 구성원의 특징이라고 한 점을 고려하면, (가)에서 제시된 '고차원적 정신 능력'을 대표하는 '도덕적 행위자'로서의 능력은 인간 종 전체의 특징이다.</div><div class="choice-analysis">✅ 정답 — &lt;보기&gt;에서 '전형적'이란 "대부분의 구성원이 인격체라는 것이 아니라 그 종의 대표적인 구성원이 인격체라는 것"이라고 명시하였다. 따라서 도덕적 행위자로서의 능력은 '대표적 구성원의 특징'이지 '인간 종 전체의 특징'이 아니다. 정면으로 모순된다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 인격 종의 구성원을 '자연 종'으로 한정한다는 내용을 고려하면, (나)에서 제시된 '인공 행위자'는 그가 지닌 뛰어난 능력과 관계없이 '도덕적 행위자'가 될 수 없다.</div><div class="choice-analysis">❌ 적절 — 인공지능은 인공물이지 '자연 종'이 아니므로 인격 종에 포함될 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 도덕적 지위를 가진 '인격체'가 자기의 존재를 의식한다는 특징이 있음을 고려하면, (나)에서 제시된 '형이상학적 속성'은 어떤 실재에 대한 도덕적 지위의 근거가 된다.</div><div class="choice-analysis">❌ 적절 — 자의식은 형이상학적 속성의 일종이므로 도덕적 지위의 근거가 된다.</div></div>
+<div class="correct-badge">📍 정답 ③ [개념 조건의 엄밀한 대조]</div>
+<div class="strategy-box">
+<div class="st-head">💡 김현석 국어 풀이 공식 · 08번 [3점 킬러] 한정 조건의 전칭 왜곡</div>
+<p><strong>출제 공식:</strong> &lt;보기&gt;에서 '전체/대부분이 아니라 대표적 구성원'이라고 엄격히 선을 그어준 개념 규정을 선지에서 슬그머니 '종 전체의 특징'으로 일반화시켜 놓았다. 텍스트의 배타적 정의를 확인하면 3초 만에 답이 보이는 문제이다.</p>
+</div>
+</div>
+
+<div class="question-full">
+<div class="q-num">09</div>
+<div class="question-stem">9. 문맥상 ⓐ(구별된다고), ⓑ(부여하는)와 바꿔 쓰기에 가장 적절한 것은?</div>
+<div class="choice-item correct"><div class="choice-text">① ⓐ: 다르다고 / ⓑ: 주기</div><div class="choice-analysis">✅ 정답 — '구별된다'는 문맥상 다른 종과 '다르다'는 뜻이며, '도덕적 지위를 부여하는'은 지위를 '주는' 행위를 가리키므로 ①번이 가장 자연스럽다.</div></div>
+<div class="choice-item"><div class="choice-text">② ⓐ: 다르다고 / ⓑ: 가지기</div><div class="choice-analysis">❌ 오답 — 인공 행위자에게 인간이 지위를 '부여하는(주는)' 것이지 '가지는' 것이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ⓐ: 갈린다고 / ⓑ: 가지기</div><div class="choice-analysis">❌ 오답 — 어휘의 문맥적 호응이 부자연스럽다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ⓐ: 갈라진다고 / ⓑ: 주기</div><div class="choice-analysis">❌ 오답 — '갈라진다고'는 주로 갈래가 나뉠 때 쓴다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓐ: 갈라진다고 / ⓑ: 더하기</div><div class="choice-analysis">❌ 오답 — '더하기'는 지위 부여와 어울리지 않는다.</div></div>
+<div class="correct-badge">📍 정답 ① [문맥적 어휘 대치]</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 지문 해제 및 교수 전략</h2>
+<p><strong>해제:</strong> (가)는 전통적인 종 차별주의가 내세우는 고차원적 정신 능력과 종적 유대감 논변의 철학적 결함을 가장자리 인간 논증 및 자연주의적 오류 비판을 통해 밝히고 있다. (나)는 인공지능의 발달에 따라 도덕적 지위의 부여 기준을 내면적 형이상학적 속성이 아닌 외적 행동의 동등성에서 찾으려는 '윤리적 행동주의'와 이에 대한 비판론(존슨의 독립성 논변, 스미즈의 본질적 속성 추론론)을 심도 있게 전개하고 있다.</p>
+<p><strong>수업 지도 포인트:</strong> 8번 문항은 평가원이 고난도 인문 철학 문항에서 즐겨 쓰는 '정의(Definition)의 조건 충족성 검증' 유형이므로, 학생들이 &lt;보기&gt;의 정의 구절 하나하나를 밑줄 그어 선지와 1:1로 맞춰보는 훈련을 시켜야 한다.</p>
+</div>
+</div>
+</body></html>
