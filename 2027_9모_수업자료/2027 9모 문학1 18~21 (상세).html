@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027학년도 9평 국어 · 문학1 18~21 (상세)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px;
+}
+.container {
+    max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden;
+}
+.header { background: #1e3a8a; color: white; padding: 22px 40px; }
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.88; }
+.two-columns { display: flex; flex-wrap: wrap; }
+.col-left {
+    flex: 1.2; min-width: 48%; background: #fdfaf5; border-right: 1px solid #e2e8f0; padding: 32px 30px;
+}
+.col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 32px 30px; }
+.original-text p {
+    margin-bottom: 1.2em; font-size: 15.5px; line-height: 1.95; font-family: 'Times New Roman', 'Noto Serif KR', serif;
+}
+.original-text .underline-phrase {
+    background-color: #f7e9da; border-bottom: 2px solid #b5651d; font-weight: 600; padding: 0 2px;
+}
+.source-underline { border-bottom: 1.8px solid #1e293b; padding-bottom: 1px; font-weight: 600; }
+.part-label {
+    display: inline-block; background: #1e3a8a; color: #fff; font-size: 13px; font-weight: 700;
+    padding: 4px 16px; border-radius: 40px; margin: 18px 0 10px;
+}
+.author-line {
+    text-align: right; font-size: 13.5px; color: #64748b; margin: 6px 0 18px;
+}
+.bracket-block {
+    position: relative; border-left: 3.5px solid #1e3a8a; border-radius: 0 14px 14px 0;
+    background: #f0f4ff; padding: 12px 18px 6px 18px; margin: 16px 0 20px;
+}
+.bracket-block .bracket-label {
+    position: absolute; left: -14px; top: 12px; background: #1e3a8a; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.analysis-box {
+    margin-bottom: 22px; border-left: 4px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 16px;
+}
+.analysis-box .title { font-weight: 700; color: #1e3a8a; margin-bottom: 6px; font-size: 14.5px; }
+.analysis-box .content { font-size: 13.5px; color: #1e293b; }
+.vocab-box {
+    background: #f0fdf4; border-left: 3.5px solid #16a34a; padding: 12px 16px; border-radius: 14px;
+    margin: 16px 0; font-size: 13px;
+}
+.info-box {
+    background: #fdf4ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #a855f7;
+}
+.info-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #7e22ce; }
+.structure-wrapper {
+    background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1;
+    border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px;
+}
+.structure-title {
+    font-size: 21px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; border-left: 6px solid #2563eb; padding-left: 18px;
+}
+.structure-title span { background: #1e3a8a; color: white; font-size: 15px; padding: 4px 16px; border-radius: 40px; }
+.structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.struct-card {
+    flex: 1; min-width: 210px; background: white; border-radius: 24px;
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7;
+}
+.card-head {
+    background: #1e3a8a; color: white; padding: 12px 16px; font-weight: 700; font-size: 16px;
+}
+.card-body { padding: 16px; font-size: 13.5px; background: #ffffff; }
+.card-body p { margin-bottom: 8px; line-height: 1.55; }
+.sub-point {
+    background: #f1f5f9; padding: 6px 10px; border-radius: 12px; margin-top: 8px; font-size: 12px;
+    color: #334155; border-left: 3px solid #2563eb;
+}
+.arrow-symbol {
+    text-align: center; font-size: 24px; color: #94a3b8; display: flex; align-items: center;
+    justify-content: center; min-width: 25px;
+}
+.questions-section { padding: 32px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+.questions-section h2 { font-size: 22px; color: #1e3a8a; margin-bottom: 8px; }
+.question-full {
+    background: #ffffff; border-radius: 24px; padding: 22px 28px; margin: 30px 0;
+    border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.q-num {
+    font-weight: 800; font-size: 20px; background: #1e3a8a; display: inline-block; padding: 4px 20px;
+    border-radius: 50px; color: white; margin-bottom: 16px;
+}
+.question-stem {
+    font-weight: 700; font-size: 16.5px; margin-bottom: 18px; background: #f1f5f9; padding: 12px 20px;
+    border-radius: 20px; border: 1px solid #cbd5e1;
+}
+.view-box { background: #f8fafc; padding: 18px 22px; border-radius: 20px; margin: 16px 0; font-size: 14.5px; border: 1.5px solid #cbd5e1; }
+.view-box .vb-title { font-weight: 700; margin-bottom: 8px; color: #0f172a; text-align: center; }
+.choice-item { margin: 10px 0; padding: 12px 16px; background: white; border-radius: 18px; border: 1px solid #e2e8f0; }
+.choice-item.correct { border: 1.8px solid #10b981; background: #f0fdf9; }
+.choice-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.choice-analysis { font-size: 13px; color: #475569; padding-left: 10px; border-left: 3px solid #94a3b8; margin-top: 4px; line-height: 1.6; }
+.correct-badge {
+    background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 20px; margin: 14px 0; font-weight: 700;
+}
+.strategy-box {
+    background: #fdfdfd; border: 1.5px solid #cbd5e1; border-left: 5px solid #2563eb;
+    border-radius: 18px; padding: 16px 20px; margin-top: 18px; font-size: 13.5px;
+}
+.strategy-box .st-head {
+    font-weight: 700; color: #1e3a8a; font-size: 14.5px; margin-bottom: 10px;
+}
+.strategy-box p { margin-bottom: 8px; line-height: 1.6; }
+.passage-study { padding: 30px 40px; background: #ffffff; border-top: 2px solid #e2e8f0; }
+.passage-study h2 { font-size: 22px; margin-bottom: 14px; color: #1e3a8a; }
+.passage-study p { margin-bottom: 10px; font-size: 14.5px; line-height: 1.8; }
+
+</style>
+</head><body>
+<div class="container">
+<div class="header" style="background:#4a1d96;"><h1>📖 2027학년도 9월 모의평가 · 문학1 18~21</h1>
+<p>고전소설 작자 미상, 「금환기봉(金丸奇逢)」 | 지문 원문 + 인물 관계도 + 문단별 심층 분석 + 문항 분석</p></div>
+<div class="two-columns">
+<div class="col-left">
+<div class="original-text">
+<div class="part-label" style="background:#4a1d96;">작자 미상, 「금환기봉」</div>
+<p>이때 장 소저가 이 참정의 권함으로 인하여 과거를 보러 갈새 마음에 생각하되,</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[A]</span>
+<p>'내가 사 년을 남복(男服)으로 세상에 용납하니 사람들이 다 남자로 알고, 부친이 만 리 절역에서 원한을 품고 세상을 떠나시되 신원할 사람이 없으니, 내 만일 여자이나 과거에 급제하면 위로는 부친의 원한을 씻고, 더하여 이름을 후세에 전할지니 과거를 보러 가리라.'</p>
+</div>
+<p>하고 이날 과거에 참여했더라. 과거장에서 호명하는 소리를 들으니 자기 이름이고, 또한 김희경의 이름이라.<br>
+이때 김생이 또한 장 상서의 아들이라 함을 듣고 대경하여 생각하되,<br>
+'내 북해 갔을 때 장 상서의 아들이란 말을 믿지 않았더니, 오늘 이 말을 들으니 분명한지라. 장 소저가 나를 속임이 있던가?'<br>
+다시 생각하여 혹 동명(同名)이 있는가 의심하더라.<br>
+김생이 옥계로 향하더니 <span class="source-underline">한 소년</span>이 완완히 걸어 전상을 바라보며 오거늘, 보니 옥안영풍이 무리 중에서 빼어난지라. 생이 놀라고 기뻐함을 이기지 못하더라.<br>
+두 사람이 한가지로 어전에 이르매 상(上)이 길이 칭선하시고 제신이 칭찬 아니 하는 이 없더라. 좌우를 돌아보사 왈,<br>
+"옥을 얻었다고 진주를 버리지 못하리니 짐이 두 사람을 다 쓰고자 하니 제신의 뜻이 어떠하뇨?"<br>
+일시에 대답하되,<br>
+"폐하가 금일 기둥과 주춧돌 같은 두 신하를 얻으시니 국가의 만복이라. 신들이 어찌 뜻을 거스르리까."<br>
+상이 대열하사 즉시 두 사람을 제수할새, 김희경으로 춘방 한림학사를 시키시고 장수정으로 태학사를 시키시니, 두 사람이 천은을 감사하고 물러 나오더라. 두 사람이 옥모화풍에 청삼을 입고 백마금안에 화려한 일산을 죽여 궐문을 나올새, 길에 구경하는 사람이 그 풍도 기상을 흠모하지 않은 이가 없더라.</p>
+<p>김생이 돌아오니 평장 부부가 기뻐함이 비할 데 없더라.<br>
+장 소저 또한 돌아오매, 설낭과 영춘이 서로 맞이하여 눈을 들어 보니, 소저가 머리에 계화를 쓰고 청삼을 입고 손에 옥홀을 잡아 완완히 들어오더라. 설낭과 영춘이 서로 놀라며 기쁨을 이기지 못하고 다만 차탄하더라. 나아와 여쭈오되,<br>
+"이제 소저의 몸이 이렇듯이 귀하시니 기쁘오며 또 듣자오니 김생도 소저와 함께 등과하였다 하오니 더욱 고금의 드문 <span class="source-underline">㉠일</span>이오나 소저는 나중에 어찌하시려 하시나이까?"<br>
+학사 쓸쓸히 대 왈,<br>
+"나의 본의 아니로되 마지못해 한 일이고 부친의 원한을 풀어 주기 위함이라. 만일 일을 이루면 죽어도 한이 없을지라."<br>
+영춘 왈,<br>
+"김생이 등과하매 소저는 당초 맹약을 어찌하시려 하시나이까?"<br>
+학사 왈,<br>
+"일의 기미가 이리 되었으니 설마 어찌하리오? 제가 머지않아 나를 찾아오리니 내 자연스레 대답할 말이 있으리니 너희들은 근심하지 말라."<br>
+이튿날 장 학사가 표문을 올려 <span class="source-underline">㉡그 부친의 신원함을 청하니</span>, 상이 그 정회에 감동하시어 즉시 상서의 애매함을 신원하여 <span class="source-underline">㉢청주후에 추증하시더라</span>.</p>
+<p>[중략 부분의 줄거리] 반란을 진압하고 개선한 장 소저에게 상이 공주와 혼인하라 하니, 장 소저가 당황하여 시비 영춘과 상의한다.</p>
+<p>"소저가 이제 벼슬이 공경에 올라 위엄이 사해에 진동하시매 누가 두려워하지 아니하리오마는, 첩 등의 이목이 외람하여 소저가 재상의 위풍이 당당함에도 매번 부르기를 '상공(相公)'이라 하지 않고 '소저(小姐)'라 하오니, 마음이 없는 것은 아니나 본심이 스스로 드러남이니, 마음을 꾸며 세상을 속이는 것이 실로 어려운 일이라. 바라건대 소저는 익히 살피소서. 이런 기회에 진실을 전달하여, 검은 모자를 화관으로 바꾸고 도포와 띠를 녹의홍상으로 바꾸어 규방의 아름다운 여자 되시면, 이 또한 기특한 이름이 되리니, 이러하면 후세의 칭찬을 받으려니와, 그렇지 않으면 만고의 비웃음을 면치 못하리니, 세 번 생각하여 한 번의 혐의를 꺼리지 마소서."<br>
+영춘의 말이 정연하고 태도에 힘이 있어 조금도 의리에 벗어난 말이 없는지라.<br>
+학사가 듣기를 다하매 밝게 깨달아 서안을 치며 차탄 왈,<br>
+"어질다, 너의 소견이여. 밝고 높음이 오히려 내가 미치지 못하리로다.</p>
+<div class="bracket-block" style="border-left-color:#4a1d96;"><span class="bracket-label" style="background:#4a1d96;">[B]</span>
+<p>그러나 애석한 것은 천하 사람이 다 나의 이름을 들으면 두려워하지 않는 이가 없더니 일조에 건곤이 바뀌어 옥당 대신이 심규 아녀자가 되니 어찌 비감하지 아니하리오. 칠 년 공명이 속절없이 되었도다."</p>
+</div>
+<p>말을 마치매 길이 탄식하더라.</p>
+</div>
+</div>
+<div class="col-right">
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 전반부 · 남복 입기와 과거 급제</div><div class="content">· 장 소저(장수정)의 동기: 4년간 남복으로 생활, 억울하게 죽은 <b>부친의 원한을 신원</b>하고 이름을 후세에 전하기 위해 과거 응시([A]).<br>· 과거장: 김희경과 함께 급제 (김희경=한림학사, 장수정=태학사).<br>· 갈등 요소: 김생과의 당초 혼인 맹약, 부친 신원 달성(㉡➔㉢ 청주후 추증).</div></div>
+<div class="analysis-box" style="border-left-color:#7c3aed; background:#f5f3ff;"><div class="title" style="color:#4a1d96;">📌 후반부 · 공주 혼인 위기와 영춘의 간언</div><div class="content">· 위기: 반란 진압 후 상이 공주와의 부마 결연을 명령 ➔ 여성 신분 탄로 위기.<br>· 영춘의 현명한 간언:<br>  - "마음을 꾸며 세상을 속이는 것은 불가."<br>  - "남복(모자와 도포)을 벗고 규방의 여인(녹의홍상)으로 돌아가 진실을 고하면 후세의 칭찬을 얻음."<br>· 장 소저의 반응: 영춘의 식견을 극찬하면서도, <b>7년간 이룬 사회적 공명이 허무하게 사라짐에 대한 깊은 비감과 탄식([B])</b>.</div></div>
+<div class="vocab-box"><strong>📖 핵심 고전 어휘</strong><div>• <strong>신원(伸寃)</strong>: 가슴에 맺힌 원한이나 억울함을 풀어 버림.</div><div>• <strong>계화(桂花)</strong>: 과거 급제자의 모자에 꽂던 종이꽃(어사화).</div><div>• <strong>심규(深閨)</strong>: 깊숙한 여자의 방(규방).</div><div>• <strong>공명(功名)</strong>: 공을 세워 이름을 널리 떨침.</div></div>
+<div class="info-box" style="background:#faf5ff; border-left-color:#7c3aed;"><h3 style="color:#4a1d96;">🎯 핵심 감상 포인트</h3><p>여성 영웅 소설의 전형적인 '남장 모티프'가 등장하지만, 부마 결연 위기에서 <b>시비(영춘)의 주체적인 조언</b>을 수용하고 자신의 사회적 성취(7년 공명) 상실에 대해 <b>인간적인 비감과 탄식([B])</b>을 토로하는 복합적 심리가 탁월하게 형상화되어 있다.</p></div>
+</div>
+</div>
+
+<div class="structure-wrapper"><div class="structure-title">🧭 서사 구조도 <span>18~21</span></div><div class="structure-grid">
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">1. 과거 응시 결단</div><div class="card-body"><p>• 남복 4년 생활</p><p>• 부친 신원 & 입신양명</p><div class="sub-point">✔ 효(孝)와 공명 의지</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">2. 동방급제 & 신원</div><div class="card-body"><p>• 김희경과 함께 급제</p><p>• 상서 애매함 신원(청주후)</p><div class="sub-point">✔ 목표 1차 달성</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">3. 부마 결연 위기</div><div class="card-body"><p>• 황제의 공주 혼인 명</p><p>• 영춘의 환원(여성) 권유</p><div class="sub-point">✔ 진실 고백의 결단</div></div></div>
+<div class="arrow-symbol">➡️</div>
+<div class="struct-card"><div class="card-head" style="background:#4a1d96;">4. 소저의 내적 탄식</div><div class="card-body"><p>• 영춘의 소견 극찬</p><p>• 7년 공명 상실에 비감</p><div class="sub-point">✔ 입신양명과 규범 한계</div></div></div>
+</div></div>
+
+<div class="questions-section">
+<h2>■ 문항 분석 (선택지별 정답·오답 해설)</h2>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">18</div>
+<div class="question-stem">18. '한 소년'에 대한 이해로 적절하지 않은 것은?</div>
+<div class="choice-item"><div class="choice-text">① 상이 태학사 관직을 내려 주는 인물이다.</div><div class="choice-analysis">❌ 적절 — '한 소년'은 남장한 장수정(장 소저)이며 상이 태학사를 제수하였다.</div></div>
+<div class="choice-item"><div class="choice-text">② 여러 신하가 훌륭한 인재로 평가하는 인물이다.</div><div class="choice-analysis">❌ 적절 — 신하들이 "국가의 기둥과 주춧돌 같은 신하"라고 칭송하였다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 과거 시험장에서 김희경과 나란히 호명되는 인물이다.</div><div class="choice-analysis">❌ 적절 — 과거장에서 장수정과 김희경의 이름이 함께 호명되었다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 설낭이 장 소저와는 별개의 사람으로 인식하는 인물이다.</div><div class="choice-analysis">✅ 정답 — 설낭은 장 소저의 집안 시비(가족)로서 급제하고 돌아온 '장수정'을 보고 "소저의 몸이 이렇듯이 귀하시니 기쁘오며"라며 장 소저 본인임을 정확히 알고 맞이하였다. 별개의 인물로 인식하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 김생이 북해에서의 일을 떠올리는 계기가 되는 인물이다.</div><div class="choice-analysis">❌ 적절 — 김생은 장수정의 이름을 듣고 '북해 갔을 때 장 상서의 아들이란 말'을 떠올린다.</div></div>
+<div class="correct-badge">📍 정답 ④ [인물 동일성 및 인지 관계 파악]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">19</div>
+<div class="question-stem">19. ㉠~㉢을 중심으로 윗글을 이해한 내용으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① 길에서 구경하는 사람들은 ㉠의 희소성에 놀라며 기뻐했다.</div><div class="choice-analysis">❌ 오답 — 구경꾼들은 두 사람의 풍도 기상을 흠모했을 뿐이다.</div></div>
+<div class="choice-item"><div class="choice-text">② 김희경이 동의했기 때문에 ㉢이 이루어질 수 있었다.</div><div class="choice-analysis">❌ 오답 — ㉢(추증)은 장 학사의 표문과 상의 감동으로 이루어졌다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 영춘이 ㉠을 인식한 것은 장 소저가 ㉡을 실현하는 동기가 되었다.</div><div class="choice-analysis">❌ 오답 — ㉡(신원 청원)은 과거 급제 전부터 장 소저가 품었던 본래 뜻이다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 장 소저는 ㉡을 하기 위하여 김희경과 함께 ㉠을 이루었다.</div><div class="choice-analysis">❌ 오답 — 김희경과 함께 급제한 것(㉠)은 우연의 일치이지 협력하여 이룬 것이 아니다.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 상은 ㉡(그 부친의 신원함을 청하니)을 수행한 인물의 간청을 받아들여 ㉢(청주후에 추증하시더라)이 이루어지도록 하였다.</div><div class="choice-analysis">✅ 정답 — 장 소저(장 학사)가 올린 표문(㉡)에 상이 감동하여 장 상서의 애매함을 신원하고 청주후에 추증(㉢)하였으므로 ⑤번이 사건의 인과를 정확히 기술하였다.</div></div>
+<div class="correct-badge">📍 정답 ⑤ [서사적 사건의 인과 관계]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">20</div>
+<div class="question-stem">20. '남복 입기'와 관련하여, [A], [B]의 '장 소저'를 이해한 내용으로 가장 적절한 것은?</div>
+<div class="choice-item"><div class="choice-text">① [A]에서는 세상 사람들이 자신의 남복 입기를 허락했음을 자부하고 있다.</div><div class="choice-analysis">❌ 오답 — 허락을 자부한 것이 아니라 남자로 속아 넘어가고 있음을 서술하였다.</div></div>
+<div class="choice-item"><div class="choice-text">② [B]에서는 자신이 남복 입기를 중단하면 사람들이 이를 애석하게 여길 것이라 예상하고 있다.</div><div class="choice-analysis">❌ 오답 — 남들이 애석해하는 것이 아니라 자기 스스로 7년 공명이 허사가 됨을 애석해함.</div></div>
+<div class="choice-item"><div class="choice-text">③ [A]에서는 처음으로 남복 입기를 시작할 것을, [B]에서는 중단했던 남복 입기를 재개할 것을 고민하고 있다.</div><div class="choice-analysis">❌ 오답 — [A]는 이미 4년간 남복 생활 중이었고, [B]는 영구적으로 여성으로 환원하는 상황이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ [A]에서는 남복 입기를 과거 응시를 위한 조건으로, [B]에서는 남복 입기를 관직 유지를 위한 조건으로 간주하고 있다.</div><div class="choice-analysis">✅ 정답 — [A]에서 "사 년을 남복으로 세상에 용납하니... 과거에 급제하면"이라 하여 남복을 과거 응시의 전제 조건으로 보았고, [B]에서 남복을 벗고 규방 여인으로 돌아가면 "옥당 대신"으로서의 관직과 "칠 년 공명"을 유지할 수 없다고 탄식하므로 남복이 관직 유지를 위한 필수 조건임을 인식하고 있다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ [A]와 [B]에서는 모두, 남복 입기를 두고 부친을 향한 윤리적 의무와 자신을 위한 사회적 성취 사이에서 갈등하고 있다.</div><div class="choice-analysis">❌ 오답 — [A]에서 부친 원한 신원과 이름 전하기(성취)는 대립 갈등이 아닌 일치된 목표이다.</div></div>
+<div class="correct-badge">📍 정답 ④ [장면별 태도 및 인식 비교]</div>
+</div>
+
+<div class="question-full">
+<div class="q-num" style="background:#4a1d96;">21</div>
+<div class="question-stem">21. &lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은? [3점]</div>
+<div class="view-box"><div class="vb-title">&lt;보 기&gt;</div>
+『금환기봉』에서 주인공은 보조적 인물의 영향을 많이 받는다. 장 소저와 시비 영춘은 정서적으로 밀착되어 있고, 서로 존중하며 소통한다. 영춘은 주인 보호와 수발에 충실하면서도, 자신의 의사를 적극 개진함으로써 주인이 삶에서 중요한 결정을 내릴 때 개입하기도 한다. 그들의 모습은 때로 신분적 위계에서 오는 한계를 드러내기도 하지만, 지위나 규범에 얽매이기보다는 서로의 진심을 중시한다는 점에서 경직되지 않은 주종 관계를 보여 준다.</div>
+<div class="choice-item"><div class="choice-text">① 장 소저가 급제한 것을 보고 영춘이 기뻐한 것은, 주인의 성취에 대해 반가운 감정을 표출하는 것이라는 점에서, 영춘이 장 소저에게 정서적으로 밀착되어 있음을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — 주인의 성공을 함께 기뻐하는 정서적 밀착이다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 장 소저가 영춘의 질문에 근심하지 말라고 한 것은, 시비의 역할을 보호와 수발로 제한하려는 규범적 태도가 드러난 것이라는 점에서, 신분적 위계에서 오는 한계를 보여 주는군.</div><div class="choice-analysis">✅ 정답 — 장 소저가 "너희들은 근심하지 말라"고 한 것은 시비의 질문을 무시하거나 역할을 제한하려는 권위적 태도가 아니라, 시비들을 안심시키고 자신이 김생과의 관계를 책임지고 해결하겠다는 주체적이고 다정한 태도이다. 이를 '신분적 위계의 한계'로 해석하는 것은 &lt;보기&gt;의 맥락과 인물의 정서에 부합하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 영춘이 외람됨을 알고도 주인을 '상공'이 아닌 '소저'로 부른 것은, 진심에 따른 행동을 주인이 존중했기에 가능했다는 점에서, 그들의 주종 관계가 경직되지 않았음을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — 신분적 규범보다 본심과 진실을 중시하는 비경직적 관계이다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 영춘이 장 소저에게 여성임을 밝히라고 조언한 것은, 사회적 지위가 바뀌는 선택을 권유하는 것이라는 점에서, 시비가 주인의 삶의 중요한 결정에 개입하는 것을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — 공주 혼인을 거절하고 환원하라는 결정적 조언이다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 장 소저가 영춘의 말에 깨달음을 얻고 칭찬한 것은, 주인이 시비가 한 말의 가치를 인정하는 것이라는 점에서, 그들이 서로 존중하며 소통하는 것을 보여 주는군.</div><div class="choice-analysis">❌ 적절 — "너의 소견이 어질다"며 시비의 지혜를 인정하고 있다.</div></div>
+<div class="correct-badge">📍 정답 ② [&lt;보기&gt; 관점과의 정합성 판별]</div>
+</div>
+
+</div>
+<div class="passage-study">
+<h2>■ 작품 해제 및 교수 전략</h2>
+<p><strong>해제:</strong> 작자 미상의 조선 후기 영웅·애정 소설로, 여주인공 장수정이 남복을 입고 입신양명하여 부친의 원한을 풀고 국가적 공을 세우는 남장여자 모티프를 담고 있다. 특히 공주와의 부마 결연 위기에서 시비 영춘과의 대화를 통해 여성으로 환원하는 과정에서 드러나는 '7년 공명'에 대한 인간적 고뇌와 비감이 문학적 완성도를 높여준다.</p>
+<p><strong>수업 지도 포인트:</strong> 21번 문항처럼 주종 간의 대화에서 배어 나오는 신뢰와 안심의 발화를 '신분 위계의 한계'로 왜곡 해석하는 평가원의 감상 선지 판별법을 지도해야 한다.</p>
+</div>
+</div>
+</body></html>
