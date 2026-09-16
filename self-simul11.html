@@ -144,6 +144,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:20px 10px 34px}
  "version": "1.0",
  "title": "마침내 시뮬 11회",
  "examKey": "SIMUL11",
+ "gas": "https://script.google.com/macros/s/AKfycbw05gNe7MRMnFfo10otZ1BU-IXwKmLQGLTYQznrynRCfYzh7YMw7JYpyQjZUe8IbQFjHw/exec",
  "storagePrefix": "SELF_SIMUL11_v2_",
  "maxAttempts": 3,
  "cooldownMin": 10,
@@ -902,10 +903,11 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:20px 10px 34px}
   <section id="p3" class="hide">
     <div class="card">
       <h2><span class="num">10</span>제출용 보고서</h2>
-      <p class="hint">아래 버튼으로 보고서를 만든 뒤 <b>복사</b>해서 선생님께 카톡으로 보내세요.</p>
+      <p class="hint">보고서를 만든 뒤 <b>선생님께 제출</b>을 누르세요. 제출이 안 되면 <b>복사</b>해서 카톡으로 보내세요.</p>
       <div class="row">
         <button class="btn" onclick="makeReport()">보고서 만들기</button>
         <button class="btn ghost" onclick="copyReport()">복사하기</button>
+        <button class="btn" id="btnSend" onclick="submitToTeacher()">선생님께 제출</button>
       </div>
       <textarea id="reportText" readonly placeholder="‘보고서 만들기’를 누르면 여기에 나타납니다."></textarea>
       <div class="save" id="copyMsg"></div>
@@ -1299,6 +1301,36 @@ function copyReport(){
   }
   setText('copyMsg', done ? '복사했습니다. 카톡에 붙여넣어 주세요.'
     : '자동 복사가 안 됩니다. 위 칸을 길게 눌러 전체 선택 후 직접 복사해 주세요.');
+}
+
+/* ── 선생님께 제출 (GAS) ──────────────── */
+function submitToTeacher(){
+  var btn = document.getElementById('btnSend');
+  if(!val('studentName').trim()){ alert('이름을 먼저 적어 주세요.'); go(1); document.getElementById('studentName').focus(); return; }
+  makeReport();
+  var txt = document.getElementById('reportText').value;
+  btn.textContent = '제출 중…'; btn.disabled = true;
+  try{
+    var picked = Object.keys(ST.picks||{}).filter(function(k){ return ST.picks[k]; });
+    var fd = new FormData();
+    fd.append('exam', A.examKey);
+    fd.append('title', A.title);
+    fd.append('name', ST.name || '(미기재)');
+    fd.append('academy', '');
+    fd.append('picked', picked.join(','));
+    fd.append('report', txt);
+    fd.append('raw', JSON.stringify(ST));
+    fetch(A.gas, { method:'POST', mode:'no-cors', body: fd }).then(function(){
+      btn.textContent = '제출 완료'; setText('copyMsg','선생님께 제출했습니다.');
+      setTimeout(function(){ btn.textContent = '선생님께 제출'; btn.disabled = false; }, 2500);
+    }, function(){
+      btn.textContent = '선생님께 제출'; btn.disabled = false;
+      setText('copyMsg','제출에 실패했습니다. [복사하기]를 눌러 카톡으로 보내 주세요.');
+    });
+  }catch(e){
+    btn.textContent = '선생님께 제출'; btn.disabled = false;
+    setText('copyMsg','제출에 실패했습니다. [복사하기]를 눌러 카톡으로 보내 주세요.');
+  }
 }
 
 /* ── 시작 ─────────────────────────────── */
