@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>김현석 국어 · 마침내 시뮬 12회</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="김현석 국어 · 마침내 시뮬 12회">
+<meta property="og:description" content="마침내 시뮬 12회 · 셀프해설지 + 답안지">
+<meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/logo.jpg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
+<meta property="og:url" content="">
+<style>
+:root{
+  --bg:#f6f5f2; --card:#fff; --ink:#1c1b19; --dim:#6b6760; --line:#e2ded6;
+  --accent:#6b4fa0; --accent-soft:#efe9f7; --read:#2f6f5e; --lit:#a4503a;
+  --ok:#2f7a4f; --no:#c0392b; --warn:#b9770e;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",
+  "Noto Sans KR",sans-serif; line-height:1.65; font-size:15px}
+.wrap{max-width:920px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#54407e,#6b4fa0 55%,#8a6fbe);color:#fff;
+  padding:22px 16px 18px;text-align:center}
+header .brand{font-size:12px;letter-spacing:.18em;opacity:.85}
+header h1{margin:6px 0 4px;font-size:22px;font-weight:800;letter-spacing:-.02em}
+header .sub{font-size:13px;opacity:.9}
+header .meta{margin-top:10px;font-size:12px;opacity:.85}
+
+.tabs{display:flex;gap:6px;margin:14px 0 12px;position:sticky;top:0;z-index:20;
+  background:var(--bg);padding:8px 0}
+.tabs button{flex:1;padding:10px 6px;border:1px solid var(--line);background:#fff;
+  border-radius:10px;font-size:13.5px;font-weight:700;color:var(--dim);cursor:pointer}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:16px;margin-bottom:14px}
+.card h2{margin:0 0 4px;font-size:17px;font-weight:800}
+.card h2 .num{color:var(--accent);margin-right:6px}
+.card .hint{color:var(--dim);font-size:13px;margin:0 0 12px}
+
+label.fl{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}
+input[type=text],input[type=number],textarea,select{width:100%;border:1px solid var(--line);
+  border-radius:9px;padding:9px 10px;font:inherit;background:#fdfdfc;color:inherit}
+textarea{min-height:72px;resize:vertical;line-height:1.6}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+
+.btn{display:inline-block;border:0;border-radius:10px;padding:11px 18px;font:inherit;
+  font-weight:700;cursor:pointer;background:var(--accent);color:#fff}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.sm{padding:7px 11px;font-size:12.5px;border-radius:8px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* OMR */
+.omr{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:7px}
+.oitem{border:1px solid var(--line);border-radius:10px;padding:6px 7px;background:#fdfdfc}
+.oitem .top{display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700}
+.oitem .qn{width:22px;text-align:right;color:var(--accent)}
+.oitem .tag{font-size:10px;padding:1px 4px;border-radius:4px;background:#efece7;color:var(--dim)}
+.oitem .tag.p3{background:#fdf0d9;color:var(--warn)}
+.bub{display:flex;gap:4px;margin-top:5px}
+.bub button{flex:1;aspect-ratio:1/1;border:1px solid var(--line);border-radius:50%;
+  background:#fff;font-size:11.5px;font-weight:700;color:var(--dim);cursor:pointer;padding:0}
+.bub button.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.oitem.ok{background:#f1f8f3;border-color:#bcd9c6}
+.oitem.no{background:#fdf1f0;border-color:#e8c2bd}
+.bub button.isans{box-shadow:inset 0 0 0 2px var(--ok)}
+.conf{display:flex;gap:3px;margin-top:4px}
+.conf button{flex:1;border:1px solid var(--line);border-radius:6px;background:#fff;
+  font-size:10.5px;padding:2px 0;color:var(--dim);cursor:pointer}
+.conf button.sel{background:#efece7;color:var(--ink);font-weight:700;border-color:#cfc9bf}
+
+.setbar{display:flex;align-items:center;gap:8px;margin:14px 0 6px;font-size:12.5px;
+  font-weight:800;color:var(--dim)}
+.setbar .line{flex:1;height:1px;background:var(--line)}
+.setbar .g{padding:2px 8px;border-radius:20px;background:#efece7}
+.setbar .g.read{background:#e6f0ec;color:var(--read)}
+.setbar .g.lit{background:#f7e9e5;color:var(--lit)}
+
+/* 채점 결과 */
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:6px 0 2px}
+.score div{background:#faf9f7;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.score b{display:block;font-size:22px;font-weight:800;color:var(--accent)}
+.score span{font-size:11.5px;color:var(--dim)}
+.wrongbox{margin-top:10px;font-size:13.5px}
+.wrongbox code{background:#fdf1f0;color:var(--no);border-radius:5px;padding:1px 5px;font:inherit;font-weight:700}
+.alert{margin-top:10px;border-left:3px solid var(--warn);background:#fdf9f0;padding:9px 12px;
+  border-radius:0 8px 8px 0;font-size:13px}
+
+/* 해설 */
+.sol{border:1px solid var(--line);border-radius:11px;margin-bottom:9px;overflow:hidden;background:#fff}
+.sol summary{cursor:pointer;padding:10px 12px;font-size:13.5px;font-weight:700;list-style:none}
+.sol summary::-webkit-details-marker{display:none}
+.sol summary .badge{display:inline-block;min-width:26px;text-align:center;background:var(--accent);
+  color:#fff;border-radius:6px;font-size:11.5px;padding:1px 5px;margin-right:7px}
+.sol summary .t{color:var(--dim);font-weight:600;font-size:12.5px}
+.sol .body{padding:0 12px 12px;font-size:13.5px}
+.sol .key{background:var(--accent-soft);border-radius:8px;padding:9px 11px;margin-bottom:9px}
+.sol ol{margin:0;padding-left:1.35em}
+.sol ol li{margin:3px 0}
+.sol ol li.ansli{font-weight:700;color:var(--ok)}
+.locked{color:var(--dim);font-size:13px;background:#faf9f7;border:1px dashed var(--line);
+  border-radius:10px;padding:14px;text-align:center}
+
+/* 문항 선택 */
+.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:5px;margin-top:8px}
+.picker button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 0;
+  font-size:12.5px;font-weight:700;color:var(--dim);cursor:pointer}
+.picker button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.picker button.miss{border-color:#e8c2bd;color:var(--no)}
+.picker button.on.miss{background:var(--no);border-color:var(--no);color:#fff}
+.counter{font-size:13px;color:var(--dim);margin-top:8px}
+.counter b{color:var(--accent)}
+
+.qcard{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:11px;background:#fdfdfc}
+.qcard .h{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:2px}
+.qcard .h .badge{background:var(--accent);color:#fff;border-radius:6px;font-size:11.5px;
+  font-weight:700;padding:1px 6px}
+.qcard .h .ty{font-size:12px;color:var(--dim)}
+.qcard .h .rate{font-size:11px;color:var(--warn);font-weight:700}
+.qcard .stem{font-size:13px;color:var(--dim);margin-bottom:4px}
+
+footer{text-align:center;color:var(--dim);font-size:12px;padding:20px 10px 34px}
+.bar{position:sticky;bottom:0;background:rgba(246,245,242,.96);border-top:1px solid var(--line);
+  padding:10px 16px;display:flex;gap:8px;justify-content:center;backdrop-filter:blur(6px);z-index:30}
+.hide{display:none!important}
+#reportText{min-height:320px;font-size:12.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  white-space:pre;-webkit-user-select:text;user-select:text}
+.save{font-size:12px;color:var(--dim);text-align:right;margin-top:-4px}
+@media (max-width:520px){
+  .omr{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+  header h1{font-size:19px}
+}
+</style>
+</head>
+<body>
+<script>window.__BAKED_ASGN__ = {
+ "version": "1.0",
+ "title": "마침내 시뮬 12회",
+ "examKey": "SIMUL12",
+ "storagePrefix": "SELF_SIMUL12_v1_",
+ "maxAttempts": 3,
+ "cooldownMin": 10,
+ "ansHash": "84d7e764ef",
+ "sets": [
+  {
+   "range": "1~3",
+   "area": "독서",
+   "genre": "독서 이론",
+   "title": "질문 생성 전략",
+   "src": "독서 이론: 질문 생성 전략",
+   "wrong": 25
+  },
+  {
+   "range": "4~9",
+   "area": "독서",
+   "genre": "법",
+   "title": "행정상 강제 집행과 취소 소송",
+   "src": "법: 행정상 강제 집행과 취소 소송",
+   "wrong": 31
+  },
+  {
+   "range": "10~13",
+   "area": "독서",
+   "genre": "과학",
+   "title": "세포 노화와 세포 리프로그래밍",
+   "src": "과학: 세포 노화와 세포 리프로그래밍",
+   "wrong": 24
+  },
+  {
+   "range": "14~17",
+   "area": "독서",
+   "genre": "미학",
+   "title": "크로체와 굿맨의 표현 이론",
+   "src": "미학: 크로체와 굿맨의 표현 이론",
+   "wrong": 29
+  },
+  {
+   "range": "18~21",
+   "area": "문학",
+   "genre": "현대소설",
+   "title": "박완서, 「그 많던 싱아는 누가 다 먹었을까」",
+   "src": "현대소설: 박완서, 「그 많던 싱아는 누가 다 먹었을까」",
+   "wrong": 27
+  },
+  {
+   "range": "22~27",
+   "area": "문학",
+   "genre": "갈래 복합",
+   "title": "(가) 조지훈 「눈 오는 날에」 · (나) 박남준 「겨울 풍경」 · (다) 김시습 「무사(無思)」",
+   "src": "갈래 복합: (가) 조지훈 「눈 오는 날에」 · (나) 박남준 「겨울 풍경」 · (다) 김시습 「무사(無思)」",
+   "wrong": 34
+  },
+  {
+   "range": "28~31",
+   "area": "문학",
+   "genre": "고전소설(판소리계)",
+   "title": "작자 미상, 「적벽가」",
+   "src": "고전소설(판소리계): 작자 미상, 「적벽가」",
+   "wrong": 32
+  },
+  {
+   "range": "32~34",
+   "area": "문학",
+   "genre": "고전 시가",
+   "title": "(가) 김창협 「산민」 · (나) 이철보 「가을 노래」",
+   "src": "고전 시가: (가) 김창협 「산민」 · (나) 이철보 「가을 노래」",
+   "wrong": 41
+  }
+ ],
+ "q": [
+  {
+   "no": 1,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 14,
+   "type": "세부 내용 확인",
+   "set": 0,
+   "stem": "윗글에 대한 이해로 적절하지 않은 것은?",
+   "key": "3문단 마지막 문장에서 상위 인지 질문이 '내용 관련 질문의 답을 찾는 과정에서 제기되기도 한다'고 했으므로, 교육자의 질문(내용 관련 질문 포함)에도 상위 인지 질문이 섞여 나올 수 있다 — '포함되지 않는다'는 진술은 틀렸다.",
+   "ch": [
+    "4문단 '자기 질문 생성은 ~ 보다 짧은 시간이 소요되고, 자기 주도적인 독서 활동으로 이어질 가능성이 높다'와 일치 — 혼자 수행 가능.",
+    "3문단 '자신의 독서 방법이 적절한지 등을 점검한다'와 일치.",
+    "★ 3문단 마지막 문장에서 상위 인지 질문이 '내용 관련 질문의 답을 찾는 과정에서 제기되기도 한다'고 했으므로, 교육자의 질문(내용 관련 질문 포함)에도 상위 인지 질문이 섞여 나올 수 있다 — '포함되지 않는다'는 진술은 틀렸다.",
+    "4문단 '독자의 호기심을 자극하고 독서 활동을 돌아보도록 돕는 효과가 있다'와 일치.",
+    "4문단 결론 '교육자의 질문에 의존하기보다, 스스로 질문을 던지는 주체적인 태도를 갖출 필요가 있다'와 일치."
+   ]
+  },
+  {
+   "no": 2,
+   "ans": 5,
+   "pt": 2,
+   "wrong": 22,
+   "type": "핵심 정보 간 관계 파악",
+   "set": 0,
+   "stem": "㉠~㉢에 대한 설명으로 가장 적절한 것은?",
+   "key": "㉡(행간의 숨은 정보)과 ㉢(글에 없는 새 정보) 모두 '글에 명시되지 않은 정보'를 알아내는 데 도움을 준다는 진술이 지문과 정확히 일치.",
+   "ch": [
+    "이해 수준 자각(상위 인지 질문)이 '항상' ㉠의 답을 찾는 과정에서만 이루어진다는 근거가 없다 — '항상'이 과도한 일반화.",
+    "㉡ 추론적 질문은 '여러 정보를 조합해 행간을 파악'하는 것이지 '숨겨진 정보들을 조합'하는 것이 아니다 — 조합 대상이 뒤바뀜.",
+    "㉢의 답은 배경지식과 글 정보를 '유기적으로 연결'해 도출되는 것이지, 글 정보만으로 도출되는 것이 아니다.",
+    "글 안의 정보로 ㉠뿐 아니라 ㉡(정보 조합)의 답도 찾을 수 있다.",
+    "★ ㉡(행간의 숨은 정보)과 ㉢(글에 없는 새 정보) 모두 '글에 명시되지 않은 정보'를 알아내는 데 도움을 준다는 진술이 지문과 정확히 일치."
+   ]
+  },
+  {
+   "no": 3,
+   "ans": 5,
+   "pt": 3,
+   "wrong": 38,
+   "type": "구체적 사례에 적용",
+   "set": 0,
+   "stem": "다음은 학생의 독서 일지이다. 윗글을 바탕으로 ⓐ~ⓔ를 이해한 내용으로 적절하지 않은 것은? [3점]",
+   "key": "ⓔ는 책에 없는 '전원생활의 단점'이라는 새 정보를 배경지식과 결합해 얻으려는 <b>확산적 질문</b>이지, 독서 활동 자체를 점검하는 상위 인지 질문이 아니다.",
+   "ch": [
+    "ⓐ(교육자의 질문)는 교육자와 소통이 필요해 자기 질문 생성보다 시간이 더 걸린다 — 적절.",
+    "ⓑ는 저자의 '주요 주장'을 찾는 사실적 질문에 가깝지만, 답을 찾는 과정에서 자신의 이해 수준을 점검하는 상위 인지 질문이 곁들여질 수 있다 — 적절.",
+    "ⓒ(혼자 다시 읽고 새 질문을 떠올림)는 자기 주도적 독서 활동에 해당 — 적절.",
+    "ⓓ는 명시되지 않은 정보를 여러 구절을 연결해 추론한 것이므로 추론적 사고력 발달과 관련 — 적절.",
+    "★ ⓔ는 책에 없는 '전원생활의 단점'이라는 새 정보를 배경지식과 결합해 얻으려는 <b>확산적 질문</b>이지, 독서 활동 자체를 점검하는 상위 인지 질문이 아니다."
+   ]
+  },
+  {
+   "no": 4,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 20,
+   "type": "세부 내용 확인",
+   "set": 1,
+   "stem": "(가), (나)에 대한 이해로 적절하지 않은 것은?",
+   "key": "1문단에 '부작위 의무를 위반한 경우라도 ~ 대집행이 가능하다'는 예외가 명시돼 있으므로 '이루어질 수 없다'는 단정은 틀렸다.",
+   "ch": [
+    "1문단 '제삼자로 하여금 이를 하도록 하는 제도'와 일치 — 반드시 직접 할 필요는 없음.",
+    "2문단 '비상시에는 생략할 수 있다'와 일치 — 곧바로 실행 가능.",
+    "★ 1문단에 '부작위 의무를 위반한 경우라도 ~ 대집행이 가능하다'는 예외가 명시돼 있으므로 '이루어질 수 없다'는 단정은 틀렸다.",
+    "3문단 과세 처분·징수 처분은 '서로 다른 목적'이라 했으므로 독촉 처분도 과세 처분과 별개 목적 — 일치.",
+    "2문단 '처분은 ~ 법률관계의 변동을 일으키는 행위'라 했으므로 변동을 일으키지 않으면 처분이 아님 — 일치."
+   ]
+  },
+  {
+   "no": 5,
+   "ans": 2,
+   "pt": 2,
+   "wrong": 26,
+   "type": "구체적 사례에 적용",
+   "set": 1,
+   "stem": "(가)를 참고할 때, 대집행이 가능한 경우를 <보기>에서 있는 대로 고른 것은?",
+   "key": "ㄷ은 '법률에 따른 제거 명령'(별도 법령 근거의 작위 의무 부과)에 해당하므로 1문단 단서에 따라 대집행이 가능하다.",
+   "ch": [
+    "ㄴ은 철거 '의무 규정'이 없으므로 대체적 작위 의무 자체가 성립하지 않아 대집행 불가.",
+    "★ ㄷ은 '법률에 따른 제거 명령'(별도 법령 근거의 작위 의무 부과)에 해당하므로 1문단 단서에 따라 대집행이 가능하다.",
+    "ㄱ은 '출석하여 진술'이라는 비대체적 작위 의무이므로 대집행 대상이 아니다.",
+    "ㄱ이 대집행 대상이 아니므로 ㄱ을 포함하는 조합은 오답.",
+    "ㄴ이 대집행 대상이 아니므로 ㄴ을 포함하는 조합은 오답."
+   ]
+  },
+  {
+   "no": 6,
+   "ans": 4,
+   "pt": 2,
+   "wrong": 44,
+   "type": "이유 추론",
+   "set": 1,
+   "stem": "(나)를 바탕으로 할 때, ㉡의 이유로 가장 적절한 것은?",
+   "key": "제소 기간이 만료되지 않았다면 선행 처분을 직접 대상으로 취소 소송을 제기해 위법 여부를 다툴 수 있으므로, 굳이 하자 승계 법리를 쓸 필요가 없다는 것이 ㉡의 이유다.",
+   "ch": [
+    "㉡은 선행 처분이 소송 대상이 될 수 있는지와 무관하게, 제소기간 요건에 관한 단서다.",
+    "제소 기간이 만료되지 않았다면 오히려 선행 처분 자체를 다툴 수 있어 소송의 이익이 문제되지 않는다.",
+    "제소 기간은 각 처분이 내려진 시점을 기준으로 하지, 후행 처분 시점으로 재계산되지 않는다.",
+    "★ 제소 기간이 만료되지 않았다면 선행 처분을 직접 대상으로 취소 소송을 제기해 위법 여부를 다툴 수 있으므로, 굳이 하자 승계 법리를 쓸 필요가 없다는 것이 ㉡의 이유다.",
+    "하자가 당연히 승계되는 것이 아니라 '법률 효과의 동일성'이라는 조건이 충족될 때만 승계된다."
+   ]
+  },
+  {
+   "no": 7,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 24,
+   "type": "개념 적용",
+   "set": 1,
+   "stem": "(가), (나)를 참고하여 ㉠을 이해한 내용으로 적절하지 않은 것은?",
+   "key": "계고·통지·비용 징수는 모두 당사자에게 의무를 발생시키는 처분성이 있어 소송 대상이지만, '실행'도 사실행위로서 실질적 강제행위이면 소송 대상이 될 수 있다 — '실행과 달리'라는 배타적 진술이 틀렸다.",
+   "ch": [
+    "★ 계고·통지·비용 징수는 모두 당사자에게 의무를 발생시키는 처분성이 있어 소송 대상이지만, '실행'도 사실행위로서 실질적 강제행위이면 소송 대상이 될 수 있다 — '실행과 달리'라는 배타적 진술이 틀렸다.",
+    "요건 심리에서 소송요건 결여 시 각하된다는 것은 지문과 일치.",
+    "㉠을 갖추지 못해 각하되면 본안 심리(하자 유무 판단)로 나아가지 않는다는 것은 지문과 일치.",
+    "제소기간 두 요건 중 하나(90일)만 만료돼도 부적법하다는 것과 일치.",
+    "영업 정지 기간 경과로 원상회복 불가능 상태가 되면 원칙적으로 소송의 이익이 없다는 것과 일치."
+   ]
+  },
+  {
+   "no": 8,
+   "ans": 5,
+   "pt": 3,
+   "wrong": 56,
+   "type": "종합적 사례 판단",
+   "set": 1,
+   "stem": "(가), (나)를 바탕으로 <보기>를 이해한 내용으로 가장 적절한 것은? [3점]",
+   "key": "1차 계고와 2차 계고는 '동일한 내용의 반복된 처분'에 해당해, 2차 계고 자체가 소송 대상이 되기 어렵고 1차 계고의 하자가 승계되지도 않으므로 청구는 인용될 수 없다.",
+   "ch": [
+    "구두로 한 비용 납부 명령은 '문서로 정해 명해야' 의무가 발생하므로(3문단) 구두 명령으로는 납부 의무가 발생하지 않는다.",
+    "적법한 철거 대집행을 방해하는 점유자는 판례상 퇴거 조치가 가능하므로 물리력을 동원할 수 있다.",
+    "영장 통지 자체에 하자가 있어도, 실행이 별도로 유효하게 이루어졌다면 그 하자만으로 청구가 바로 인용되는 것은 아니다.",
+    "철거 명령(선행 처분)에 제소 기간이 지났다면 그 하자를 이유로 1차 계고(후행 처분이 아니라 별개 절차)의 취소를 구하는 것은 하자 승계 법리의 요건에 맞지 않는다.",
+    "★ 1차 계고와 2차 계고는 '동일한 내용의 반복된 처분'에 해당해, 2차 계고 자체가 소송 대상이 되기 어렵고 1차 계고의 하자가 승계되지도 않으므로 청구는 인용될 수 없다."
+   ]
+  },
+  {
+   "no": 9,
+   "ans": 5,
+   "pt": 2,
+   "wrong": 16,
+   "type": "어휘 바꿔쓰기",
+   "set": 1,
+   "stem": "문맥상 ⓐ~ⓔ와 바꿔 쓰기에 적절하지 않은 것은?",
+   "key": "ⓔ '경과한'은 '(기간이) 지난'의 뜻인데 '남은'은 반대 의미이므로 바꿔 쓸 수 없다.",
+   "ch": [
+    "ⓐ '시정하기'는 '바로잡기'로 바꿔 써도 문맥상 자연스럽다.",
+    "ⓑ '생략할'은 '건너뛸'로 바꿔 써도 자연스럽다.",
+    "ⓒ '납부할'은 '낼'로 바꿔 써도 자연스럽다.",
+    "ⓓ '구비하지'는 '갖추지'로 바꿔 써도 자연스럽다.",
+    "★ ⓔ '경과한'은 '(기간이) 지난'의 뜻인데 '남은'은 반대 의미이므로 바꿔 쓸 수 없다."
+   ]
+  },
+  {
+   "no": 10,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 18,
+   "type": "세부 내용 확인",
+   "set": 2,
+   "stem": "윗글에서 알 수 있는 내용으로 적절하지 않은 것은?",
+   "key": "DNA 파편 '제거'를 위한 메커니즘에 사용되는 ATP 비율은 '증가'한다고 했으므로 '줄어들 수 있다'는 반대 진술이다.",
+   "ch": [
+    "1문단 '미토콘드리아와 핵이 손상되면 물질대사에 차질이 생겨 세포의 기능이 저하된다'와 일치.",
+    "2문단에서 미토콘드리아 손상이 촉진되면 활성 산소 생성량이 증가하고, 이는 3문단의 핵 침투와 이어진다 — 일치.",
+    "★ DNA 파편 '제거'를 위한 메커니즘에 사용되는 ATP 비율은 '증가'한다고 했으므로 '줄어들 수 있다'는 반대 진술이다.",
+    "4문단(시르투인=지연 가능, 완전 회복 불가)과 5문단(리프로그래밍=인위적 방법으로 역행 가능)을 종합하면 일치.",
+    "1문단 'ATP가 만들어지면 핵에서 이를 소모하여 DNA로부터 RNA를 생성한다'와 일치."
+   ]
+  },
+  {
+   "no": 11,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 20,
+   "type": "핵심 개념 이해",
+   "set": 2,
+   "stem": "㉠에 대한 이해로 적절하지 않은 것은?",
+   "key": "회복 유전자를 활성화하는 것은 시르투인이 아니라 5문단의 Oct4·Sox2(세포 리프로그래밍)이다 — 시르투인은 항산화 효소 활성화·텔로미어 복구를 담당할 뿐 회복 유전자 활성화 기능은 없다.",
+   "ch": [
+    "★ 회복 유전자를 활성화하는 것은 시르투인이 아니라 5문단의 Oct4·Sox2(세포 리프로그래밍)이다 — 시르투인은 항산화 효소 활성화·텔로미어 복구를 담당할 뿐 회복 유전자 활성화 기능은 없다.",
+    "시르투인이 텔로미어를 복구하면 물질대사 저해 정도가 줄어든다는 것과 일치.",
+    "3문단에서 시르투인이 텔로미어를 복구하면 DNA 파편 제거 메커니즘에 쓰이는 ATP 비율이 낮아진다는 것과 일치.",
+    "시르투인이 활성 산소를 제거하면 내막·효소 산화 속도, 즉 활성 산소 증가 속도가 줄어든다는 것과 일치.",
+    "4문단 '텔로미어의 손상 복구가 일시적으로 이루어지더라도 ~ 손상을 완전히 복구할 수는 없다'와 일치."
+   ]
+  },
+  {
+   "no": 12,
+   "ans": 3,
+   "pt": 3,
+   "wrong": 48,
+   "type": "구체적 사례에 적용",
+   "set": 2,
+   "stem": "윗글을 바탕으로 <보기>를 이해한 내용으로 가장 적절한 것은? [3점]",
+   "key": "C(Oct4+Sox2+c-Myc)는 c-Myc로 회복이 촉진되므로, Klf4 없이 회복 속도만 빠른 D보다 내막 효소가 먼저 모두 회복될 것이라는 판단이 지문의 c-Myc 기능(회복 촉진)과 부합한다.",
+   "ch": [
+    "B는 시르투인 일부가 비활성화돼 활성 산소 제거가 줄어드므로, A보다 오히려 활성 산소가 더 빨리 늘어난다 — 반대 진술.",
+    "A는 아무 처리도 받지 않았으므로 텔로미어 복구가 일어나지 않는다 — D(Oct4+Sox2로 텔로미어 복구)와 달리 ATP 비율 변화가 없다.",
+    "★ C(Oct4+Sox2+c-Myc)는 c-Myc로 회복이 촉진되므로, Klf4 없이 회복 속도만 빠른 D보다 내막 효소가 먼저 모두 회복될 것이라는 판단이 지문의 c-Myc 기능(회복 촉진)과 부합한다.",
+    "D와 E는 손상 수준이 같아도 E는 c-Myc로 회복이 더 촉진되므로 RNA 생성용 ATP 비율은 D가 아니라 E가 더 높을 것이다.",
+    "B는 시르투인 일부 비활성화로 손상이 커지는 반면 E는 c-Myc·Klf4로 회복이 촉진되므로, B가 E보다 기능이 더 향상된다고 볼 근거가 없다."
+   ]
+  },
+  {
+   "no": 13,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 12,
+   "type": "문맥적 의미 파악",
+   "set": 2,
+   "stem": "문맥상 ⓐ와 가장 가까운 의미로 쓰인 것은?",
+   "key": "'증거로 들다'는 '이유나 근거로 삼아 말하다'의 뜻으로, ⓐ '원인으로 활성 산소를 들 수 있다'와 같은 용법이다.",
+   "ch": [
+    "★ '증거로 들다'는 '이유나 근거로 삼아 말하다'의 뜻으로, ⓐ '원인으로 활성 산소를 들 수 있다'와 같은 용법이다.",
+    "'맛이 들다'는 '(음식 등에) 어떤 상태가 배어들다'라는 뜻으로 문맥이 다르다.",
+    "'가뭄이 들다'는 '어떤 시기·현상이 닥치다'라는 뜻으로 문맥이 다르다.",
+    "'적금에 들다'는 '가입하다'의 뜻으로 문맥이 다르다.",
+    "'예감이 들다'는 '느낌이 생기다'의 뜻으로 문맥이 다르다."
+   ]
+  },
+  {
+   "no": 14,
+   "ans": 2,
+   "pt": 2,
+   "wrong": 16,
+   "type": "글의 전개 방식 파악",
+   "set": 3,
+   "stem": "윗글의 내용 전개 방식에 대한 설명으로 가장 적절한 것은?",
+   "key": "'표현'을 크로체는 '직관', 굿맨은 '기호의 예시'로 서로 다르게 정의하며 차례로 소개하는 구조와 정확히 일치한다.",
+   "ch": [
+    "두 이론을 평가해 하나의 종합적 결론으로 수렴시키지 않고 각자의 정의를 병렬적으로 제시할 뿐이다.",
+    "★ '표현'을 크로체는 '직관', 굿맨은 '기호의 예시'로 서로 다르게 정의하며 차례로 소개하는 구조와 정확히 일치한다.",
+    "구체적 사례(우는 아이 등)는 이론 설명을 위한 예시일 뿐, 가설을 '검증'하는 절차는 나타나지 않는다.",
+    "사회적 영향 분석은 지문에 없다.",
+    "견해 차이의 '근본 원인 진단'이나 '해결책'은 제시되지 않는다."
+   ]
+  },
+  {
+   "no": 15,
+   "ans": 2,
+   "pt": 2,
+   "wrong": 24,
+   "type": "세부 견해 확인",
+   "set": 3,
+   "stem": "윗글에 제시된 크로체와 굿맨의 견해로 적절하지 않은 것은?",
+   "key": "크로체는 예술가의 표현은 '작품 제작' 없이 직관 자체로 이미 성립하며 물리적 작품은 전달 수단일 뿐이라고 보았으므로, '작품 제작을 통해 이루어진다'는 진술은 크로체의 견해와 반대된다.",
+   "ch": [
+    "1문단 '일상적으로 행해지는 낮은 수준의 직관도 예술'과 일치.",
+    "★ 크로체는 예술가의 표현은 '작품 제작' 없이 직관 자체로 이미 성립하며 물리적 작품은 전달 수단일 뿐이라고 보았으므로, '작품 제작을 통해 이루어진다'는 진술은 크로체의 견해와 반대된다.",
+    "4문단 '문자적으로 소유한 특성을 나타내는 기호를 예시하는 것은 표현이 아니'라는 것과 일치(특성을 소유하지 않으면 예시 자체가 성립하지 않아 표현도 불가).",
+    "3문단 대상을 기호와의 관계(소유 여부)로 분류한다는 것과 일치.",
+    "4문단 마지막 문장(은유적 소유의 인식이 세계를 다각적으로 이해하는 데 중요)과 일치."
+   ]
+  },
+  {
+   "no": 16,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 30,
+   "type": "개념의 적용",
+   "set": 3,
+   "stem": "'굿맨'의 견해를 바탕으로, ㉠과 ㉡을 이해한 내용으로 가장 적절한 것은?",
+   "key": "㉠(우는 아이)은 '슬프다'를 문자적으로 소유하므로 이를 예시할 수는 있지만, 4문단 규정상 문자적 소유의 예시는 표현이 아니다.",
+   "ch": [
+    "★ ㉠(우는 아이)은 '슬프다'를 문자적으로 소유하므로 이를 예시할 수는 있지만, 4문단 규정상 문자적 소유의 예시는 표현이 아니다.",
+    "㉡(음악)은 비정서적 대상이지만 '슬프다'를 은유적으로 소유·예시할 수 있다.",
+    "㉠은 '슬프다'라는 기호에 의해 지시되는 대상이 맞지만, ㉡도 비통상적으로 지시되는 대상이므로 '㉡과 달리'는 틀렸다.",
+    "㉡도 '슬프다'를 은유적으로 소유하므로 '어떤 특성도 은유적으로 소유하지 않는다'는 틀렸다.",
+    "㉠은 통상적 지시 영역(문자적 소유), ㉡은 비통상적 지시 영역(은유적 소유)에 속하므로 '모두 통상적 지시 영역'은 틀렸다."
+   ]
+  },
+  {
+   "no": 17,
+   "ans": 3,
+   "pt": 3,
+   "wrong": 46,
+   "type": "구체적 사례에 적용",
+   "set": 3,
+   "stem": "윗글을 바탕으로 <보기>의 상황을 이해한 내용으로 적절하지 않은 것은? [3점]",
+   "key": "굿맨의 입장에서 「우울」은 화가 A와 마찬가지로 '파랗다' 같은 특성을 문자적으로 소유할 수 있다(작품도 색상 등은 문자적으로 소유) — '갖지 않는다'는 단정은 지문에 근거가 없다.",
+   "ch": [
+    "B는 A와 동일한 직관을 떠올렸으므로 크로체의 이상적 감상(동등한 예술적 성취)에 해당 — 적절.",
+    "크로체에게 작품은 감정을 전달하는 수단이므로 「우울」이 A의 감정을 B에게 전달하는 매개라는 서술은 적절.",
+    "★ 굿맨의 입장에서 「우울」은 화가 A와 마찬가지로 '파랗다' 같은 특성을 문자적으로 소유할 수 있다(작품도 색상 등은 문자적으로 소유) — '갖지 않는다'는 단정은 지문에 근거가 없다.",
+    "C는 비정서적 대상(회화)도 우울함을 은유적으로 소유할 수 있음을 새롭게 인식했으므로 굿맨이 강조한 '대상의 재분류'에 해당 — 적절.",
+    "크로체는 A의 표현을 '감정의 직관'으로, 굿맨은 작품이 '우울하다'는 기호를 표현한다고 보는 것은 두 이론의 정의 그대로 — 적절."
+   ]
+  },
+  {
+   "no": 18,
+   "ans": 2,
+   "pt": 2,
+   "wrong": 20,
+   "type": "서술상 특징 파악",
+   "set": 4,
+   "stem": "㉠~㉤의 서술 방식에 대한 설명으로 적절하지 않은 것은?",
+   "key": "㉡은 '실상 집보다 우리 마음은 더 심하게 흔들리고 있었다'는, 병원(집)의 물리적 흔들림에 빗대어 인물들의 심리적 동요를 강조한 표현이지, '외부 상황을 파악하지 못함'을 나타낸 것이 아니다.",
+   "ch": [
+    "㉠은 '희망을 잃은 평온함'이라는 모순된 표현(역설)으로 오빠의 내적 상태를 드러낸다 — 적절.",
+    "★ ㉡은 '실상 집보다 우리 마음은 더 심하게 흔들리고 있었다'는, 병원(집)의 물리적 흔들림에 빗대어 인물들의 심리적 동요를 강조한 표현이지, '외부 상황을 파악하지 못함'을 나타낸 것이 아니다.",
+    "㉢은 '~듯'이라는 추측 표현으로 엄마의 태도에 대한 서술자의 인상을 제시한다 — 적절.",
+    "㉣은 '목구멍은 포도청이었으므로'라는 불가피성을 내세워 양심의 가책을 느끼지 않는 서술자의 자의식을 단정적으로 드러낸다 — 적절.",
+    "㉤은 오빠를 내려놓은(행위 종료) 상황에서도 짐이 가벼워지지 않았다는 비유로 서술자의 부담감을 나타낸다 — 적절."
+   ]
+  },
+  {
+   "no": 19,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 26,
+   "type": "인물의 심리·태도 파악",
+   "set": 4,
+   "stem": "윗글의 인물에 대한 이해로 가장 적절한 것은?",
+   "key": "엄마는 '저렇게 내모는데 안 가고 있어 봐라. 나중에 우릴 얼마나 못살게 굴겠니'라며 피난을 가지 않았을 때 돌아올 비난(못살게 굶)을 의식해 가짜 피난(현저동에 머물다 돌아가기)을 계획했다.",
+   "ch": [
+    "'오빠'는 총상에 대해 '희망을 잃은 평온함'을 보였을 뿐, 회복을 단념했다고 명시적으로 서술되지 않았고 '단념하는 태도'로 단정할 근거가 부족하다.",
+    "의사는 '생명에는 지장이 없지만 덧나면 골치 아프다'고 했을 뿐 병세 악화를 확언하지 않았다.",
+    "★ 엄마는 '저렇게 내모는데 안 가고 있어 봐라. 나중에 우릴 얼마나 못살게 굴겠니'라며 피난을 가지 않았을 때 돌아올 비난(못살게 굶)을 의식해 가짜 피난(현저동에 머물다 돌아가기)을 계획했다.",
+    "손수레 때문에 택한 우회로는 오빠를 '숙부의 집'이 아니라 '현저동'(가짜 피난지)으로 데려가기 위한 것이다.",
+    "'나'는 대책 없는 식구들을 답답하고 짐스러워했을 뿐, 엄마가 문제를 해결할 것이라는 믿음은 나타나지 않는다."
+   ]
+  },
+  {
+   "no": 20,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 22,
+   "type": "소재(사건)의 기능 파악",
+   "set": 4,
+   "stem": "윗글에서 '피난'의 서사적 기능에 대한 설명으로 가장 적절한 것은?",
+   "key": "'피난' 중 손수레를 끌게 된 '나'는 책임의 무게를 절감하고(㉤), 텅 빈 도시를 보며 앞날에 대해서도 고민하게 되므로(마지막 문단) 정답에 부합한다.",
+   "ch": [
+    "★ '피난' 중 손수레를 끌게 된 '나'는 책임의 무게를 절감하고(㉤), 텅 빈 도시를 보며 앞날에 대해서도 고민하게 되므로(마지막 문단) 정답에 부합한다.",
+    "가족에게서 벗어나려는 결심은 나타나지 않는다.",
+    "안전한 곳(현저동)에 도착해서도 '나'는 안일함이 아니라 오히려 대책 없음에 대한 답답함과 새로운 공포를 느낀다.",
+    "'피난'이 내적 갈등을 해소하게 해 준다는 내용은 나타나지 않는다.",
+    "'나'의 분노(한강 다리 발언)는 피난 도중 일시적으로 표출될 뿐, 상대의 가치관을 비난하는 방향으로 이어지지 않는다."
+   ]
+  },
+  {
+   "no": 21,
+   "ans": 4,
+   "pt": 3,
+   "wrong": 40,
+   "type": "외적 준거에 따른 감상",
+   "set": 4,
+   "stem": "<보기>를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은? [3점]",
+   "key": "'인공기라도 꽂혀 있었다면 덜 무서웠으리라'는 진술은 '타자(적)라도 있는 것이 아예 없는 것보다 낫다'는 것으로, 타자와의 '적대적 긴장 관계'가 아니라 <b>타자의 존재 자체</b>를 통해 존재감을 느끼려는 인간의 속성을 보여 준다 — '적대적 긴장 관계 형성'은 지나친 해석이다.",
+   "ch": [
+    "엄마의 말은 후퇴령을 따르지 않았을 때 겪을 결과(비난·고초)에 대한 두려움을 드러내 외부 압박에 의한 이동임을 보여 준다 — 적절.",
+    "피난민이 뛰어내리는 길을 거슬러 올라가는 모습은 상반된 이동 경로로 공동체 흐름에서의 이탈을 보여 준다 — 적절.",
+    "'더 나쁜 일이 없을 지경까지 몰렸을 때'의 숙면은 극한 상황에서만 가능한 일시적 평안을 보여 준다 — 적절.",
+    "★ '인공기라도 꽂혀 있었다면 덜 무서웠으리라'는 진술은 '타자(적)라도 있는 것이 아예 없는 것보다 낫다'는 것으로, 타자와의 '적대적 긴장 관계'가 아니라 <b>타자의 존재 자체</b>를 통해 존재감을 느끼려는 인간의 속성을 보여 준다 — '적대적 긴장 관계 형성'은 지나친 해석이다.",
+    "천지에 사람이 없음을 알고 소멸하고 싶다는 진술은 고립된 상태의 심리적 위기를 드러낸다 — 적절."
+   ]
+  },
+  {
+   "no": 22,
+   "ans": 4,
+   "pt": 2,
+   "wrong": 24,
+   "type": "복합 구성상의 공통점 파악",
+   "set": 5,
+   "stem": "(가)~(다)에 대한 설명으로 가장 적절한 것은?",
+   "key": "(가)는 '나려 쌓인다', (나)는 '한다/생각한다' 등 현재형 진술을 반복 사용해 눈 내리는 정경과 성찰의 순간을 생생하게 강조한다.",
+   "ch": [
+    "(가)에 상승·하강 이미지가 뚜렷하지 않고, '위기감'도 나타나지 않는다.",
+    "(나)에 '~하리라'는 추측이 있으나 이는 대상에 대한 '회의감'이 아니라 긍정적 전망이다.",
+    "(다)는 두 관점을 대비하나 '인간과 자연의 차이'가 아니라 도를 닦는 방법(생각의 필요성)을 논한다.",
+    "★ (가)는 '나려 쌓인다', (나)는 '한다/생각한다' 등 현재형 진술을 반복 사용해 눈 내리는 정경과 성찰의 순간을 생생하게 강조한다.",
+    "(나)(다) 모두 '미래에 대한 낙관적 전망'으로 귀결된다고 보기 어렵다 — (다)는 수양의 필요성을 논할 뿐이다."
+   ]
+  },
+  {
+   "no": 23,
+   "ans": 5,
+   "pt": 2,
+   "wrong": 34,
+   "type": "구절[A~E]에 대한 이해",
+   "set": 5,
+   "stem": "[A]~[E]에 대한 이해로 적절하지 않은 것은?",
+   "key": "[E]는 '비애로 하여 나 혼이 야위기에는'이라 하여 슬픔으로 인해 혼이 야위어 감(슬픔이 존재함)을 전제로 하고, 그런 상태에서조차 절망이 포근하다는 역설을 드러내는 것이지, '슬픔이 사라진 상태'를 말하는 것이 아니다.",
+   "ch": [
+    "[A]는 검정·흰색의 색채 대비로 창가에 기댄 화자의 외양을 묘사한다 — 적절.",
+    "[B]는 '기울은 울타리', '장독대' 등 구체적 사물로 눈 내리는 풍경을 그린다 — 적절.",
+    "[C]는 '눈발'을 '꽃다발처럼' 비유해 위안을 얻는 정서를 강조한다 — 적절.",
+    "[D]는 '고요한 마음'을 '서라벌 천년'(신라의 유구한 역사)과 연결해 회고적 정취를 환기한다 — 적절.",
+    "★ [E]는 '비애로 하여 나 혼이 야위기에는'이라 하여 슬픔으로 인해 혼이 야위어 감(슬픔이 존재함)을 전제로 하고, 그런 상태에서조차 절망이 포근하다는 역설을 드러내는 것이지, '슬픔이 사라진 상태'를 말하는 것이 아니다."
+   ]
+  },
+  {
+   "no": 24,
+   "ans": 5,
+   "pt": 2,
+   "wrong": 54,
+   "type": "외적 준거에 따른 감상(나)",
+   "set": 5,
+   "stem": "<보기>를 바탕으로 (나)를 감상한 내용으로 적절하지 않은 것은?",
+   "key": "'풍경 소리가 징징거린다'는 것은 화자의 고독한 처지를 청각적으로 형상화한 것일 뿐, <보기>가 말하는 '성숙한 존재로 거듭나려는 태도'나 '극복해야 할 미성숙한 내면'을 보여 준다고 볼 근거가 지문에 없다 — 감상을 지문에 없는 내용으로 과잉 해석한 오답.",
+   "ch": [
+    "빨래를 널며 '삶도 때론 그러하리'라고 하는 것은 일상적 관찰에서 삶의 통찰을 얻는 모습 — 적절.",
+    "겨울빨래가 '따뜻한 품 안이 되기도 하리라'는 것은 다양한 경험이 타자를 포용하는 밑거름이 된다는 인식 — 적절.",
+    "'늙은 호박들의 자투리'를 보며 '내 몸의 유통기한'을 생각하는 것은, 점차 쇠락해 가는 대상에서 인간의 유한성을 자각하는 모습으로 <보기>의 취지와 부합 — 적절.",
+    "'늙은 사내 하나'가 '산골'에서 '호박죽'을 끓이는 모습은 향토적 공간에서 삶을 대상화하는 화자상과 부합 — 적절.",
+    "★ '풍경 소리가 징징거린다'는 것은 화자의 고독한 처지를 청각적으로 형상화한 것일 뿐, <보기>가 말하는 '성숙한 존재로 거듭나려는 태도'나 '극복해야 할 미성숙한 내면'을 보여 준다고 볼 근거가 지문에 없다 — 감상을 지문에 없는 내용으로 과잉 해석한 오답."
+   ]
+  },
+  {
+   "no": 25,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 28,
+   "type": "시어의 의미 비교",
+   "set": 5,
+   "stem": "㉠과 ㉡을 이해한 내용으로 가장 적절한 것은?",
+   "key": "㉠은 '세상에 뼈 없는 것들 어디 있으랴'라는 구절과 이어져 시련(추위)에 반응하는 존재들의 공통적 속성(뼈를 세움)을 나타내고, ㉡(담박한 생활)은 방외의 선비들이 세속적 가치에 얽매이지 않는 삶의 방식을 나타낸다.",
+   "ch": [
+    "㉠(뼈를 곧추세움)은 생명력 상실이 아니라 겨울빨래가 얼어붙는 모습의 비유이고, ㉡(담박한 생활)도 사회적 단절 자체를 가리키지 않는다.",
+    "㉠은 좌절감이 아니라 얼고 마르는 자연현상의 묘사이며, ㉡도 만족감보다는 삶의 태도를 가리킨다.",
+    "★ ㉠은 '세상에 뼈 없는 것들 어디 있으랴'라는 구절과 이어져 시련(추위)에 반응하는 존재들의 공통적 속성(뼈를 세움)을 나타내고, ㉡(담박한 생활)은 방외의 선비들이 세속적 가치에 얽매이지 않는 삶의 방식을 나타낸다.",
+    "㉠은 화자의 '목표'가 아니라 겨울빨래의 상태 묘사이다.",
+    "㉠㉡ 모두 화자·글쓴이가 '부조리하다고 여기는 부정적 현실'로 보기 어렵다."
+   ]
+  },
+  {
+   "no": 26,
+   "ans": 2,
+   "pt": 3,
+   "wrong": 48,
+   "type": "외적 준거에 따른 감상(가·다)",
+   "set": 5,
+   "stem": "<보기>를 참고하여 (가)와 (다)를 감상한 내용으로 적절하지 않은 것은? [3점]",
+   "key": "'아련히 들려오는 풀피리 소리'는 화자가 이미 무념의 상태에 접어든 이후의 정서를 심화하는 요소이지, '부정적 상황에서 벗어나게 된 계기'로 명시되지는 않는다 — <보기>의 인과 관계(계기)를 지문에 없는 내용으로 단정한 오답.",
+   "ch": [
+    "'값진 보람과 빛나는 자랑을 모조리 불사르'는 것은 세속적 가치에 대한 집착에서 벗어나려는 의지를 보여 준다 — 적절.",
+    "★ '아련히 들려오는 풀피리 소리'는 화자가 이미 무념의 상태에 접어든 이후의 정서를 심화하는 요소이지, '부정적 상황에서 벗어나게 된 계기'로 명시되지는 않는다 — <보기>의 인과 관계(계기)를 지문에 없는 내용으로 단정한 오답.",
+    "'고민이 있으면 그것은 거짓'이라는 상대의 말은 도의 본질이 무사(無思)라는 입장을 보여 준다 — 적절.",
+    "'선'에 '생각하고 고민한다는 뜻'이 있다는 청한자의 말은 도의 경지에 이르려면 사유가 필요함을 강조한다 — 적절.",
+    "(가)의 절망을 포근함으로 여기는 것과 (다)의 산의 높음을 배우려는 사유는 각각 내면의 평정과 능동적 사유를 보여 준다 — 적절."
+   ]
+  },
+  {
+   "no": 27,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 18,
+   "type": "인물의 논증 방식 파악",
+   "set": 5,
+   "stem": "(다)의 '청한자'에 관한 설명으로 가장 적절한 것은?",
+   "key": "청한자는 상대가 제시한 '무사(생각 없음)가 도의 본질'이라는 근거를, '심사숙고하는 수양의 과정이야말로 도를 터득하는 요령'이라며 재반박하고 있다.",
+   "ch": [
+    "★ 청한자는 상대가 제시한 '무사(생각 없음)가 도의 본질'이라는 근거를, '심사숙고하는 수양의 과정이야말로 도를 터득하는 요령'이라며 재반박하고 있다.",
+    "권위 있는 문헌(『논어』)을 인용하기는 하지만, 이는 '세상 사람들의 통념이 생긴 이유'를 설명하기 위해서가 아니라 자신의 주장(사유의 필요성)을 뒷받침하기 위해서다.",
+    "청한자는 이상적 방법을 제시할 뿐, 그 실천의 '현실적 어려움'을 언급하지는 않는다.",
+    "청한자는 직접 경험한 일화를 제시하지 않는다.",
+    "청한자는 자신의 논리에 모순이 있음을 인정하거나 사과하지 않는다."
+   ]
+  },
+  {
+   "no": 28,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 22,
+   "type": "구절에 대한 이해",
+   "set": 6,
+   "stem": "㉠~㉤에 대한 설명으로 적절하지 않은 것은?",
+   "key": "㉢은 '요망한 저 장승이 날 속일 줄 어이 알았겠는가'라며 장승에게 속았다는 것이지, '경험에 비추어' 자신의 어리석음을 '세태 탓'으로 돌리는 것이 아니다 — 세태 탓이라는 내용은 지문에 없다.",
+   "ch": [
+    "㉠은 정욱의 제안(큰길)과 다르게 화용도를 택하는 이유(병서의 논리)를 밝히는 주관적 판단 — 적절.",
+    "㉡은 '군사 열만 두었으면'이라는 가정으로 상대(주유·공명)의 대응을 얕보는 태도 — 적절.",
+    "★ ㉢은 '요망한 저 장승이 날 속일 줄 어이 알았겠는가'라며 장승에게 속았다는 것이지, '경험에 비추어' 자신의 어리석음을 '세태 탓'으로 돌리는 것이 아니다 — 세태 탓이라는 내용은 지문에 없다.",
+    "㉣은 배·수레를 만든 나무들의 쓰임을 들어 천대받는 자신(장승)의 처지를 대비적으로 부각 — 적절.",
+    "㉤은 '장승이 한 일을 무효로 하라'며 스스로 장승에게 씌웠던 혐의를 철회 — 적절."
+   ]
+  },
+  {
+   "no": 29,
+   "ans": 1,
+   "pt": 2,
+   "wrong": 20,
+   "type": "인물(장승)을 중심으로 한 사건 이해",
+   "set": 6,
+   "stem": "'장승'을 중심으로 윗글을 이해한 내용으로 가장 적절한 것은?",
+   "key": "목신은 조조가 자신을 처벌하면 '후환을 면하겠습니까'라는 말로, 즉 처벌을 강행할 경우 닥칠 후환(미래에 대한 두려움)을 언급함으로써 처벌을 면하려 했다.",
+   "ch": [
+    "★ 목신은 조조가 자신을 처벌하면 '후환을 면하겠습니까'라는 말로, 즉 처벌을 강행할 경우 닥칠 후환(미래에 대한 두려움)을 언급함으로써 처벌을 면하려 했다.",
+    "군사들이 장승 관련 명령에 심적으로 동의하지 못했다는 서술은 나타나지 않는다.",
+    "장수들은 조조의 물음에 '장승이요'라고 사실대로 답했을 뿐, 조조가 장수들의 반대에 부딪힌 장면은 없다.",
+    "조조가 장졸들을 위안하려는 목적으로 장승에게 화풀이했다는 서술은 나타나지 않는다.",
+    "여러 장수는 거짓이 아니라 사실(장승이라는 것)을 보고했다."
+   ]
+  },
+  {
+   "no": 30,
+   "ans": 5,
+   "pt": 2,
+   "wrong": 42,
+   "type": "감상문에 따른 세부 내용 판단",
+   "set": 6,
+   "stem": "다음은 학생이 윗글을 읽고 작성한 감상문의 일부이다. ㉮~㉲ 중 적절하지 않은 것은?",
+   "key": "㉲(사물까지 적으로 의심하여 군율로 다스림)는 장승을 잡아들여 처벌하려 한 것까지는 맞지만, 이후 '꿈을 꾼 후 결정을 번복'한 것이지 ㉲ 자체가 잘못 서술된 것은 아니다 — 감상문 전체 흐름과 대조했을 때 이 부분이 사건의 다른 세부(꾸짖는 대상이 실제로는 처벌이 아니라 꿈속 항변에 의해 풀려남)를 놓치고 있어 적절하지 않다.",
+   "ch": [
+    "㉮(부하의 신중한 의견을 일축하며 화용도로 들어감)는 1~2문단과 일치 — 적절.",
+    "㉯(군사들이 고통받는 와중에도 결정을 고집)는 3~5문단의 행군 강행과 일치 — 적절.",
+    "㉰(화용도에서 대부분의 군사를 잃고 산 밖에 당도)는 중략 이후의 상황과 일치 — 적절.",
+    "㉱(적이 숨어 있는 것처럼 예민하게 반응)는 '새만 펄쩍 날아도 복병인가 의심'과 일치 — 적절.",
+    "★ ㉲(사물까지 적으로 의심하여 군율로 다스림)는 장승을 잡아들여 처벌하려 한 것까지는 맞지만, 이후 '꿈을 꾼 후 결정을 번복'한 것이지 ㉲ 자체가 잘못 서술된 것은 아니다 — 감상문 전체 흐름과 대조했을 때 이 부분이 사건의 다른 세부(꾸짖는 대상이 실제로는 처벌이 아니라 꿈속 항변에 의해 풀려남)를 놓치고 있어 적절하지 않다."
+   ]
+  },
+  {
+   "no": 31,
+   "ans": 4,
+   "pt": 3,
+   "wrong": 44,
+   "type": "외적 준거에 따른 감상",
+   "set": 6,
+   "stem": "<보기>를 참고하여 윗글을 감상한 내용으로 적절하지 않은 것은? [3점]",
+   "key": "정욱은 조조의 수하로서 '위계질서에서 벗어난 주변 인물'이라 보기 어렵고, 그의 말은 조롱이라기보다는 사실을 알려 주는 발언에 가까워 <보기>의 '위계질서를 거스르며 조롱하는 주변 인물'에 해당한다고 단정하기 어렵다.",
+   "ch": [
+    "물소리에 '대경'했다가 오인임을 깨닫는 것은 두려움으로 인한 상황 오인이자 품격 상실을 보여 줌 — 적절.",
+    "헛장담 직후 방포 소리가 나는 것은 근거 없는 과신을 드러내는 희화화 — 적절.",
+    "'인정 없다'는 서술자의 직접적 논평 — 적절.",
+    "★ 정욱은 조조의 수하로서 '위계질서에서 벗어난 주변 인물'이라 보기 어렵고, 그의 말은 조롱이라기보다는 사실을 알려 주는 발언에 가까워 <보기>의 '위계질서를 거스르며 조롱하는 주변 인물'에 해당한다고 단정하기 어렵다.",
+    "목신이 '왕위를 빼앗으려고 전쟁했다'고 지적하는 것은 상상적 존재가 조조의 잘못을 꼬집는 대목으로, 피지배층의 목소리를 대변한다고 볼 수 있음 — 적절."
+   ]
+  },
+  {
+   "no": 32,
+   "ans": 3,
+   "pt": 2,
+   "wrong": 20,
+   "type": "표현상 공통점·차이점 파악",
+   "set": 7,
+   "stem": "(가), (나)에 대한 설명으로 가장 적절한 것은?",
+   "key": "(가)는 '아침에 쟁기 들고 산에 갔다오 → 해가 저물도록 못 오신다오'처럼 인물의 행동을 순차적으로 보여 주고, (나)는 '베거니 묶거니 이거니 지거니', '도리깨질…그네질'처럼 여러 인물의 행동을 나열해 상황을 구체화한다.",
+   "ch": [
+    "(가)에 뚜렷한 계절감이나 대상의 변모 양상은 나타나지 않는다.",
+    "(나)에 설의적 표현이 있으나 '과거로의 회귀 소망'이 아니라 현재 상황에 대한 진술이다.",
+    "★ (가)는 '아침에 쟁기 들고 산에 갔다오 → 해가 저물도록 못 오신다오'처럼 인물의 행동을 순차적으로 보여 주고, (나)는 '베거니 묶거니 이거니 지거니', '도리깨질…그네질'처럼 여러 인물의 행동을 나열해 상황을 구체화한다.",
+    "(가)(나) 모두 특정 지명(고유명사)을 활용하지 않는다.",
+    "(가)(나) 모두 의인화된 대상과의 유대감을 나타내는 부분은 없다."
+   ]
+  },
+  {
+   "no": 33,
+   "ans": 5,
+   "pt": 2,
+   "wrong": 50,
+   "type": "시어·구절의 의미 파악",
+   "set": 7,
+   "stem": "㉠~㉤을 이해한 내용으로 적절하지 않은 것은?",
+   "key": "㉤은 '잔기침 굵은 호령'으로 위세를 부리던 면주인을 '어서 나오소 자주 나오소'라며 맞이하는 것으로, 이는 반기는 것이 아니라 <b>수탈자를 두려워하며 어쩔 수 없이 응대</b>하는 태도에 가깝다 — '대상을 내몰려던 생각을 전환'했다는 해석은 지문의 문맥(공포와 순응)과 어긋난다.",
+   "ch": [
+    "㉠ '초가집'에서 손님을 대접하는 모습은 궁핍 속 인정을 보여 준다 — 적절.",
+    "㉡ '호랑이'는 항상 위협 속에 사는 산민의 불안정한 처지를 보여 준다 — 적절.",
+    "㉢ '참새'·'기러기'가 논에 몰려드는 것은 애써 지은 농사에 해를 끼치는 대상에 대한 원망 — 적절.",
+    "㉣ '한 해'와 '하루'의 대비로 노동에 대한 보상의 시간을 갖자는 제안 — 적절.",
+    "★ ㉤은 '잔기침 굵은 호령'으로 위세를 부리던 면주인을 '어서 나오소 자주 나오소'라며 맞이하는 것으로, 이는 반기는 것이 아니라 <b>수탈자를 두려워하며 어쩔 수 없이 응대</b>하는 태도에 가깝다 — '대상을 내몰려던 생각을 전환'했다는 해석은 지문의 문맥(공포와 순응)과 어긋난다."
+   ]
+  },
+  {
+   "no": 34,
+   "ans": 3,
+   "pt": 3,
+   "wrong": 52,
+   "type": "외적 준거에 따른 감상",
+   "set": 7,
+   "stem": "<보기>를 참고하여 (가), (나)를 감상한 내용으로 적절하지 않은 것은? [3점]",
+   "key": "(가)의 '사방을 둘러봐도 이웃은 없고'는 산민의 고립된 생활을 보여 주는 것이 맞지만, (나)의 '자네 밭에 몇 묶음인가 내 논 소출 이뿐일세'는 <보기>가 말하는 '불합리한 조세 제도로 인한 실상'이 아니라 이웃 간 소출을 비교하며 함께 수확하는 공동체적 정경을 보여 주는 구절이다 — 조세 수탈의 실상은 (중략) 이후 '환자·부세' 등에서 드러나므로, 이 구절을 그 근거로 삼는 것은 지문과 어긋난다.",
+   "ch": [
+    "(가)의 문답('바깥어른은 어디 계시오' → '산밭은…못 오신다오')은 산골 생활의 실상을 드러내는 인물 간 문답 — 적절.",
+    "(나)의 '누런 구름'·'절로 배부르네'는 수확기를 맞은 화자의 기대감을 보여 줌 — 적절.",
+    "★ (가)의 '사방을 둘러봐도 이웃은 없고'는 산민의 고립된 생활을 보여 주는 것이 맞지만, (나)의 '자네 밭에 몇 묶음인가 내 논 소출 이뿐일세'는 <보기>가 말하는 '불합리한 조세 제도로 인한 실상'이 아니라 이웃 간 소출을 비교하며 함께 수확하는 공동체적 정경을 보여 주는 구절이다 — 조세 수탈의 실상은 (중략) 이후 '환자·부세' 등에서 드러나므로, 이 구절을 그 근거로 삼는 것은 지문과 어긋난다.",
+    "(가)의 '가련할손'은 산민 부부를 단편적으로 판단하는 방문객의 인식을, (나)의 '일족 세금까지'는 조세 제도의 부당함에 대한 화자의 인식을 보여 줌 — 적절.",
+    "(가)의 '가고파도 고을 관리 너무 무서워'는 벗어날 수 없는 산민의 처지를, (나)의 '내일은 들 거두세'는 공동체 구성원으로서의 근면한 태도를 보여 줌 — 적절."
+   ]
+  }
+ ]
+};</script>
+
+<header>
+  <div class="brand">김 현 석 &nbsp;국 어</div>
+  <h1>마침내 모의고사 시뮬 12회</h1>
+  <div class="sub">국어 공통 34문항 · 셀프해설지 + 답안지</div>
+  <div class="meta">원점수 76점 · 권장 60분 · 2027학년도 9월 모의평가 규격</div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button id="tab1" class="on" onclick="go(1)">① 답안·채점</button>
+    <button id="tab2" onclick="go(2)">② 셀프해설</button>
+    <button id="tab3" onclick="go(3)">③ 보고서</button>
+  </div>
+
+  <!-- ───────── 1. 답안 · 채점 ───────── -->
+  <section id="p1">
+    <div class="card">
+      <h2><span class="num">1</span>이름을 먼저 적어 주세요</h2>
+      <p class="hint">이름을 적으면 작성 내용이 이 기기에 자동 저장됩니다. 같은 이름으로 다시 열면 이어서 쓸 수 있어요.</p>
+      <input type="text" id="studentName" placeholder="예) 김현석" autocomplete="off">
+      <div class="save" id="saveMsg"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span>답안 표기</h2>
+      <p class="hint">번호를 누르면 표기됩니다. 아래 <b>확·애·찍</b>은 그 문항을 풀 때의 확신도예요 —
+        <b>확</b>실히 알았다 / <b>애</b>매했다 / <b>찍</b>었다. 채점 뒤 “찍어서 맞힌 문항”을 찾아내는 데 씁니다.</p>
+      <div id="omr"></div>
+      <div class="counter" id="progress">표기 0 / 34</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">3</span>채점</h2>
+      <p class="hint">채점은 <b>최대 3회</b>, 채점 사이 <b>10분</b> 간격입니다. 해설은 <b>2회차 채점 뒤</b> 열립니다.
+        한 번에 다 맞히려 하지 말고, 틀린 문항을 지문으로 돌아가 다시 풀어 보고 2회차를 누르세요.</p>
+      <div class="row">
+        <button class="btn" id="gradeBtn" onclick="grade()">채점하기</button>
+        <span class="counter" id="attemptMsg"></span>
+      </div>
+      <div id="result" class="hide"></div>
+    </div>
+
+    <div class="card" id="solCard">
+      <h2><span class="num">4</span>해설</h2>
+      <p class="hint">정답 근거와 다섯 선지 판단을 모두 담았습니다. <b>★</b>가 정답 선지입니다.</p>
+      <div id="solList"></div>
+    </div>
+  </section>
+
+  <!-- ───────── 2. 셀프해설 ───────── -->
+  <section id="p2" class="hide">
+    <div class="card">
+      <h2><span class="num">5</span>총평</h2>
+      <p class="hint">점수보다 중요한 건 “왜 그렇게 됐는지”입니다. 세 칸만 솔직하게 적어 주세요.</p>
+      <label class="fl">시험 전체를 돌아본 소감 — 무엇이 잘됐고 무엇이 무너졌나요?</label>
+      <textarea id="ovAll" placeholder="예) 문학은 시간이 남았는데 독서 기술 지문에서 12분을 썼다. 17번 표를 읽다가 흐름을 놓쳤다."></textarea>
+      <label class="fl">시간 배분 — 실제로 각 영역에 몇 분을 썼나요? 계획과 어떻게 달랐나요?</label>
+      <textarea id="ovTime" placeholder="예) 문학 24분 / 독서 33분 / 검토 3분. 계획은 문학 22분이었는데 갈래복합에서 4분 초과."></textarea>
+      <label class="fl">가장 오래 걸린 문항과, 지금 생각하는 “빠르게 푸는 방법”</label>
+      <textarea id="ovSlow" placeholder="예) 8번. 세 방안을 표로 정리하고 나서 선지를 봤어야 했다. 선지부터 읽다가 두 번 되돌아갔다."></textarea>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">6</span>분석할 문항 고르기</h2>
+      <p class="hint">34문항을 전부 쓸 필요는 없습니다. <b>틀린 문항 + 찍어서 맞힌 문항</b>이 기본이고,
+        여유가 있으면 3점 문항과 오답률이 높은 문항을 더하세요. 목표 개수를 정해 두면 아래에 진행 상황이 표시됩니다.</p>
+      <div class="row">
+        <button class="btn ghost sm" onclick="pick('wrong')">틀린 문항</button>
+        <button class="btn ghost sm" onclick="pick('guess')">찍은·애매한 문항</button>
+        <button class="btn ghost sm" onclick="pick('p3')">3점 문항</button>
+        <button class="btn ghost sm" onclick="pick('hard')">오답률 40%↑</button>
+        <button class="btn ghost sm" onclick="pick('all')">전체</button>
+        <button class="btn ghost sm" onclick="pick('none')">모두 해제</button>
+      </div>
+      <div class="picker" id="picker"></div>
+      <label class="fl">오늘 목표 개수</label>
+      <input type="number" id="goal" min="0" max="34" step="1" placeholder="예) 8">
+      <div class="counter" id="pickMsg"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">7</span>문항별 분석</h2>
+      <p class="hint">고른 문항만 나타납니다. <b>정답을 외우지 말고 “내가 왜 걸렸는지”를 쓰세요.</b>
+        출제자의 트릭을 이름 붙여 적어 두면 다음 회차에서 같은 함정이 보입니다.</p>
+      <div id="qCards"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">8</span>지문 분석</h2>
+      <p class="hint">어려웠던 지문만 골라 적어도 됩니다. 지문의 구조를 한 줄로 요약하는 연습이 핵심입니다.</p>
+      <div id="setCards"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">9</span>앞으로 해야 할 일</h2>
+      <label class="fl">다음 회차까지 실제로 할 일 (구체적으로, 3가지 이내)</label>
+      <textarea id="todo" placeholder="예) 1) 주제 통합 지문은 (가)(나) 공통 화제를 먼저 한 줄로 적고 문항 진입 2) <보기> 계산형은 조건을 표로 옮긴 뒤 선지 판단 3) 갈래복합은 8분 타이머 재기"></textarea>
+      <label class="fl">선생님께 묻고 싶은 것</label>
+      <textarea id="ask" placeholder="예) 12번에서 ‘상충하지 않는다’를 판단하는 기준이 헷갈립니다."></textarea>
+    </div>
+  </section>
+
+  <!-- ───────── 3. 보고서 ───────── -->
+  <section id="p3" class="hide">
+    <div class="card">
+      <h2><span class="num">10</span>제출용 보고서</h2>
+      <p class="hint">아래 버튼으로 보고서를 만든 뒤 <b>복사</b>해서 선생님께 카톡으로 보내세요.</p>
+      <div class="row">
+        <button class="btn" onclick="makeReport()">보고서 만들기</button>
+        <button class="btn ghost" onclick="copyReport()">복사하기</button>
+      </div>
+      <textarea id="reportText" readonly placeholder="‘보고서 만들기’를 누르면 여기에 나타납니다."></textarea>
+      <div class="save" id="copyMsg"></div>
+    </div>
+  </section>
+
+  <footer>김현석 국어 · 마침내 모의고사 시뮬 12회 · 셀프해설지</footer>
+</div>
+
+<div class="bar">
+  <button class="btn ghost sm" onclick="go(1)">답안·채점</button>
+  <button class="btn ghost sm" onclick="go(2)">셀프해설</button>
+  <button class="btn sm" onclick="go(3);makeReport()">보고서 만들기</button>
+</div>
+
+<script>
+'use strict';
+var A = window.__BAKED_ASGN__;
+var CIRC = ['①','②','③','④','⑤'];
+var ST = { name:'', marks:{}, conf:{}, picks:{}, notes:{}, sets:{}, ov:{}, attempts:0, last:0, best:null };
+
+/* ── 저장 ─────────────────────────────── */
+function keyFor(n){ return A.storagePrefix + (n||'_익명'); }
+function save(){
+  try{
+    ST.name = val('studentName');
+    ST.ov = { all:val('ovAll'), time:val('ovTime'), slow:val('ovSlow'),
+              todo:val('todo'), ask:val('ask'), goal:val('goal') };
+    localStorage.setItem(keyFor(ST.name), JSON.stringify(ST));
+    setText('saveMsg','저장됨 · ' + new Date().toLocaleTimeString('ko-KR'));
+  }catch(e){ setText('saveMsg','이 브라우저에서는 자동 저장이 되지 않습니다. 보고서를 바로 복사해 두세요.'); }
+}
+function load(n){
+  try{
+    var raw = localStorage.getItem(keyFor(n)); if(!raw) return false;
+    var o = JSON.parse(raw);
+    if(o._ansHash && o._ansHash !== A.ansHash){ return false; }
+    ST = Object.assign(ST, o);
+    setVal('ovAll',(ST.ov||{}).all); setVal('ovTime',(ST.ov||{}).time);
+    setVal('ovSlow',(ST.ov||{}).slow); setVal('todo',(ST.ov||{}).todo);
+    setVal('ask',(ST.ov||{}).ask); setVal('goal',(ST.ov||{}).goal);
+    return true;
+  }catch(e){ return false; }
+}
+function val(id){ var e=document.getElementById(id); return e ? (e.value||'') : ''; }
+function setVal(id,v){ var e=document.getElementById(id); if(e && v!=null) e.value=v; }
+function setText(id,t){ var e=document.getElementById(id); if(e) e.textContent=t; }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ── 탭 ───────────────────────────────── */
+function go(n){
+  [1,2,3].forEach(function(i){
+    document.getElementById('p'+i).classList.toggle('hide', i!==n);
+    document.getElementById('tab'+i).classList.toggle('on', i===n);
+  });
+  window.scrollTo(0,0);
+}
+
+/* ── OMR 만들기 ───────────────────────── */
+function buildOmr(){
+  var host = document.getElementById('omr'), html = '';
+  A.sets.forEach(function(s, si){
+    html += '<div class="setbar"><span class="g ' + (s.area==='독서'?'read':'lit') + '">' +
+            esc(s.area) + ' · ' + esc(s.genre) + '</span><span class="line"></span>' +
+            '<span>' + esc(s.range) + '번</span></div><div class="omr">';
+    A.q.filter(function(q){ return q.set===si; }).forEach(function(q){
+      html += '<div class="oitem" id="oi'+q.no+'"><div class="top">' +
+        '<span class="qn">'+q.no+'</span>' +
+        '<span class="tag'+(q.pt===3?' p3':'')+'">'+q.pt+'점</span>' +
+        '</div><div class="bub">';
+      for(var c=1;c<=5;c++){
+        html += '<button type="button" data-q="'+q.no+'" data-c="'+c+'" ' +
+                'onclick="mark('+q.no+','+c+')">'+CIRC[c-1]+'</button>';
+      }
+      html += '</div><div class="conf">' +
+        ['확','애','찍'].map(function(t,i){
+          return '<button type="button" id="cf'+q.no+'_'+i+'" onclick="conf('+q.no+','+i+')">'+t+'</button>';
+        }).join('') + '</div></div>';
+    });
+    html += '</div>';
+  });
+  host.innerHTML = html;
+}
+function mark(no,c){
+  ST.marks[no] = (ST.marks[no]===c) ? 0 : c;
+  paintOmr(); save(); renderPicker(); renderQCards();
+}
+function conf(no,i){
+  ST.conf[no] = (ST.conf[no]===i) ? null : i;
+  paintOmr(); save(); renderPicker();
+}
+function paintOmr(){
+  var done = 0;
+  A.q.forEach(function(q){
+    var it = document.getElementById('oi'+q.no); if(!it) return;
+    var sel = ST.marks[q.no]||0; if(sel) done++;
+    it.querySelectorAll('.bub button').forEach(function(b){
+      var c = +b.getAttribute('data-c');
+      b.classList.toggle('sel', c===sel);
+      b.classList.toggle('isans', ST.attempts>0 && c===q.ans);
+    });
+    for(var i=0;i<3;i++){
+      var cb = document.getElementById('cf'+q.no+'_'+i);
+      if(cb) cb.classList.toggle('sel', ST.conf[q.no]===i);
+    }
+    it.classList.remove('ok','no');
+    if(ST.attempts>0 && sel) it.classList.add(sel===q.ans?'ok':'no');
+  });
+  setText('progress','표기 ' + done + ' / 34');
+}
+
+/* ── 채점 ─────────────────────────────── */
+function attemptMsg(){
+  var left = A.maxAttempts - ST.attempts;
+  var wait = 0;
+  if(ST.last){ wait = Math.ceil((A.cooldownMin*60000 - (Date.now()-ST.last))/60000); }
+  var m = '채점 ' + ST.attempts + '/' + A.maxAttempts + '회';
+  if(left<=0) m += ' · 더 채점할 수 없습니다';
+  else if(wait>0) m += ' · ' + wait + '분 후 다시 채점할 수 있어요';
+  setText('attemptMsg', m);
+  document.getElementById('gradeBtn').disabled = (left<=0) || (wait>0);
+}
+function grade(){
+  if(!val('studentName').trim()){ alert('이름을 먼저 적어 주세요.'); go(1); return; }
+  var blank = A.q.filter(function(q){ return !ST.marks[q.no]; }).length;
+  if(blank && !confirm('표기하지 않은 문항이 ' + blank + '개 있습니다. 그대로 채점할까요?')) return;
+  ST.attempts++; ST.last = Date.now();
+  var r = calc(); ST.best = r; ST._ansHash = A.ansHash;
+  save(); paintOmr(); attemptMsg(); renderResult(r); renderSol(); renderPicker(); renderQCards();
+  document.getElementById('result').classList.remove('hide');
+}
+function calc(){
+  var raw=0, o={독서:{c:0,t:0,w:[]}, 문학:{c:0,t:0,w:[]}}, wrong=[], luck=[], missed=[];
+  A.q.forEach(function(q){
+    var s = A.sets[q.set].area, sel = ST.marks[q.no]||0;
+    o[s].t++;
+    if(sel===q.ans){ raw += q.pt; o[s].c++; if(ST.conf[q.no]===2) luck.push(q.no); }
+    else { wrong.push(q.no); o[s].w.push(q.no); if(!sel) missed.push(q.no); }
+  });
+  return { raw:raw, wrong:wrong, luck:luck, missed:missed, area:o,
+           correct:34-wrong.length };
+}
+function renderResult(r){
+  var h = '<div class="score">' +
+    '<div><b>' + r.raw + '</b><span>원점수 / 76</span></div>' +
+    '<div><b>' + r.correct + '</b><span>맞힌 문항 / 34</span></div>' +
+    '<div><b>' + r.area['독서'].c + '</b><span>독서 / 17</span></div>' +
+    '<div><b>' + r.area['문학'].c + '</b><span>문학 / 17</span></div></div>';
+  h += '<div class="wrongbox"><b>틀린 문항</b> ' +
+       (r.wrong.length ? r.wrong.map(function(n){return '<code>'+n+'</code>';}).join(' ') : '없음 — 만점!') + '</div>';
+  h += '<div class="wrongbox"><b>독서 오답</b> ' + (r.area['독서'].w.join(', ')||'없음') +
+       ' &nbsp;/&nbsp; <b>문학 오답</b> ' + (r.area['문학'].w.join(', ')||'없음') + '</div>';
+  if(r.luck.length){
+    h += '<div class="alert"><b>찍어서 맞힌 문항: ' + r.luck.join(', ') + '</b><br>' +
+         '맞았지만 실력이 아닙니다. 틀린 문항과 똑같이 분석해 두세요.</div>';
+  }
+  var easyMiss = r.wrong.filter(function(n){ return qOf(n).wrong <= 25; });
+  if(easyMiss.length){
+    h += '<div class="alert"><b>많이들 맞히는데 놓친 문항: ' + easyMiss.join(', ') + '</b><br>' +
+         '예상 오답률이 낮은 문항입니다. 여기서 실점하면 등급이 흔들립니다. 가장 먼저 복습하세요.</div>';
+  }
+  var hardGot = A.q.filter(function(q){ return q.wrong>=50 && ST.marks[q.no]===q.ans; }).map(function(q){return q.no;});
+  if(hardGot.length){
+    h += '<div class="alert"><b>어려운데 맞힌 문항: ' + hardGot.join(', ') + '</b><br>' +
+         '어떻게 풀었는지 과정을 적어 두면 그대로 무기가 됩니다.</div>';
+  }
+  if(ST.attempts < 2){
+    h += '<div class="alert">해설은 <b>2회차 채점 뒤</b>에 열립니다. 틀린 문항을 지문으로 돌아가 다시 풀어 보세요.</div>';
+  }
+  document.getElementById('result').innerHTML = h;
+}
+function qOf(no){ return A.q.filter(function(q){return q.no===no;})[0]; }
+
+/* ── 해설 ─────────────────────────────── */
+function renderSol(){
+  var host = document.getElementById('solList');
+  if(ST.attempts < 2){
+    host.innerHTML = '<div class="locked">2회차 채점을 마치면 해설이 열립니다.<br>' +
+      '먼저 틀린 문항을 스스로 다시 풀어 보세요.</div>';
+    return;
+  }
+  var html = '';
+  A.sets.forEach(function(s, si){
+    html += '<div class="setbar"><span class="g ' + (s.area==='독서'?'read':'lit') + '">' +
+      esc(s.range) + '번 · ' + esc(s.genre) + '</span><span class="line"></span>' +
+      '<span>' + esc(s.title) + '</span></div>';
+    A.q.filter(function(q){return q.set===si;}).forEach(function(q){
+      var mine = ST.marks[q.no]||0;
+      html += '<details class="sol"><summary><span class="badge">' + q.no + '</span>' +
+        CIRC[q.ans-1] + ' &nbsp;<span class="t">' + esc(q.type) +
+        ' · 예상 오답률 ' + q.wrong + '%' + (mine && mine!==q.ans ? ' · 내 답 ' + CIRC[mine-1] : '') +
+        '</span></summary><div class="body">' +
+        '<div class="key"><b>정답 근거</b><br>' + mdb(q.key) + '</div><ol>';
+      q.ch.forEach(function(t,i){
+        html += '<li class="' + (i===q.ans-1?'ansli':'') + '">' + mdb(t) + '</li>';
+      });
+      html += '</ol></div></details>';
+    });
+  });
+  host.innerHTML = html;
+}
+function mdb(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>'); }
+
+/* ── 문항 선택 ────────────────────────── */
+function renderPicker(){
+  var host = document.getElementById('picker'), html='';
+  A.q.forEach(function(q){
+    var miss = ST.attempts>0 && ST.marks[q.no] !== q.ans;
+    html += '<button type="button" class="' + (ST.picks[q.no]?'on ':'') + (miss?'miss':'') +
+      '" onclick="togglePick(' + q.no + ')">' + q.no + '</button>';
+  });
+  host.innerHTML = html;
+  var n = Object.keys(ST.picks).filter(function(k){return ST.picks[k];}).length;
+  var goal = parseInt(val('goal'),10);
+  var m = '고른 문항 ' + n + '개';
+  if(goal>0) m += ' / 목표 ' + goal + '개' + (n>=goal ? ' — 목표 달성!' : ' — ' + (goal-n) + '개 남음');
+  var done = Object.keys(ST.picks).filter(function(k){
+    return ST.picks[k] && ST.notes[k] && (ST.notes[k].why||'').trim();
+  }).length;
+  m += ' · 작성 완료 ' + done + '개';
+  document.getElementById('pickMsg').innerHTML = m.replace(/(\d+)개/g,'<b>$1</b>개');
+}
+function togglePick(no){ ST.picks[no] = !ST.picks[no]; save(); renderPicker(); renderQCards(); }
+function pick(kind){
+  A.q.forEach(function(q){
+    var on;
+    if(kind==='all') on = true;
+    else if(kind==='none') on = false;
+    else if(kind==='wrong') on = ST.attempts>0 && ST.marks[q.no]!==q.ans;
+    else if(kind==='guess') on = ST.conf[q.no]===1 || ST.conf[q.no]===2;
+    else if(kind==='p3') on = q.pt===3;
+    else if(kind==='hard') on = q.wrong>=40;
+    if(kind==='none') ST.picks[q.no] = false;
+    else if(on) ST.picks[q.no] = true;
+  });
+  save(); renderPicker(); renderQCards();
+}
+
+/* ── 문항별 분석 카드 ─────────────────── */
+var FIELDS = [
+  ['cls','문제 분류 — 어떤 유형인가요?','예) 주제 통합 <보기> 적용형'],
+  ['why','왜 이것이 답인가 — 지문의 어느 대목이 근거인가요?','예) (나) 마지막 문단에서 자산 구조 변경이 “가장 많은 비용”이라 했으므로…'],
+  ['trick','출제자의 트릭 — 내가 고른 선지는 어디를 비틀었나요?','예) 효과가 “작을수록” 침해 가능성이 높다고 인과를 거꾸로 뒤집었다'],
+  ['plan','나의 대응책 — 다음에 같은 함정을 어떻게 피할까요?','예) 비교급 선지는 지문에서 두 대상의 크기 관계를 표로 먼저 적는다'],
+  ['time','걸린 시간과 빠르게 푸는 방법','예) 3분 20초. 세 방안을 먼저 표로 정리했으면 1분 30초에 끝났다']
+];
+function renderQCards(){
+  var host = document.getElementById('qCards');
+  var list = A.q.filter(function(q){ return ST.picks[q.no]; });
+  if(!list.length){ host.innerHTML = '<div class="locked">위에서 분석할 문항을 골라 주세요.</div>'; return; }
+  var html = '';
+  list.forEach(function(q){
+    var mine = ST.marks[q.no]||0;
+    var n = ST.notes[q.no] || {};
+    html += '<div class="qcard"><div class="h"><span class="badge">' + q.no + '</span>' +
+      '<span class="ty">' + esc(q.type) + '</span>' +
+      '<span class="rate">예상 오답률 ' + q.wrong + '%</span>' +
+      (ST.attempts>0 ? '<span class="ty">정답 ' + CIRC[q.ans-1] +
+        (mine ? ' · 내 답 ' + CIRC[mine-1] + (mine===q.ans?' (○)':' (✕)') : ' · 미표기') + '</span>' : '') +
+      '</div><div class="stem">' + esc(q.stem) + '</div>';
+    FIELDS.forEach(function(f){
+      html += '<label class="fl">' + esc(f[1]) + '</label>' +
+        '<textarea data-q="' + q.no + '" data-f="' + f[0] + '" placeholder="' + esc(f[2]) + '">' +
+        esc(n[f[0]]||'') + '</textarea>';
+    });
+    html += '</div>';
+  });
+  host.innerHTML = html;
+  host.querySelectorAll('textarea').forEach(function(t){
+    t.addEventListener('input', function(){
+      var no = t.getAttribute('data-q'), f = t.getAttribute('data-f');
+      ST.notes[no] = ST.notes[no] || {}; ST.notes[no][f] = t.value;
+      save(); renderPicker();
+    });
+  });
+}
+
+/* ── 지문 분석 카드 ───────────────────── */
+var SFIELDS = [
+  ['sum','지문을 한 줄로 요약하면?','예) 방어 수단은 세 가지이고 효과가 클수록 비용·절차 부담도 커진다'],
+  ['hard','읽으면서 막힌 대목과 그 이유','예) 자사주가 “산입되지 않는다”는 말의 효과를 계산으로 옮기지 못했다'],
+  ['next','이 지문을 다시 만나면 어떻게 읽을까','예) 세 수단을 효과·비용·절차 3열 표로 즉시 정리한다']
+];
+function renderSetCards(){
+  var host = document.getElementById('setCards'), html='';
+  A.sets.forEach(function(s, si){
+    var v = ST.sets[si] || {};
+    html += '<div class="qcard"><div class="h">' +
+      '<span class="badge">' + esc(s.range) + '</span>' +
+      '<span class="ty">' + esc(s.area) + ' · ' + esc(s.genre) + '</span>' +
+      '<span class="rate">지문 평균 오답률 ' + s.wrong + '%</span></div>' +
+      '<div class="stem">' + esc(s.title) + '</div>';
+    SFIELDS.forEach(function(f){
+      html += '<label class="fl">' + esc(f[1]) + '</label>' +
+        '<textarea data-s="' + si + '" data-f="' + f[0] + '" placeholder="' + esc(f[2]) + '">' +
+        esc(v[f[0]]||'') + '</textarea>';
+    });
+    html += '</div>';
+  });
+  host.innerHTML = html;
+  host.querySelectorAll('textarea').forEach(function(t){
+    t.addEventListener('input', function(){
+      var si = t.getAttribute('data-s'), f = t.getAttribute('data-f');
+      ST.sets[si] = ST.sets[si] || {}; ST.sets[si][f] = t.value; save();
+    });
+  });
+}
+
+/* ── 보고서 ───────────────────────────── */
+function cut(s,n){ s = String(s==null?'':s).replace(/\s+/g,' ').trim();
+  return s.length>n ? s.slice(0,n)+'…' : s; }
+function makeReport(){
+  save();
+  var L = [];
+  L.push('[' + A.title + ' 셀프해설 결과]');
+  L.push('이름: ' + (ST.name||'(미기재)'));
+  L.push('제출: ' + new Date().toLocaleString('ko-KR'));
+  if(ST.best){
+    var r = ST.best;
+    L.push('원점수: ' + r.raw + '/76 (' + r.correct + '/34문항) · 채점 ' + ST.attempts + '회');
+    L.push('독서: ' + r.area['독서'].c + '/17 · 문학: ' + r.area['문학'].c + '/17');
+    L.push('[독서 오답] ' + (r.area['독서'].w.join(', ')||'없음'));
+    L.push('[문학 오답] ' + (r.area['문학'].w.join(', ')||'없음'));
+    if(r.missed.length) L.push('[미표기] ' + r.missed.join(', '));
+    if(r.luck.length)   L.push('[찍어서 맞힘] ' + r.luck.join(', '));
+  } else {
+    L.push('※ 아직 채점하지 않았습니다.');
+  }
+  L.push('');
+  L.push('■ 총평');
+  L.push('- 소감: ' + cut((ST.ov||{}).all, 160));
+  L.push('- 시간 배분: ' + cut((ST.ov||{}).time, 160));
+  L.push('- 오래 걸린 문항: ' + cut((ST.ov||{}).slow, 160));
+  var picked = A.q.filter(function(q){ return ST.picks[q.no]; });
+  L.push('');
+  L.push('■ 문항별 분석 (' + picked.length + '문항' +
+         ((ST.ov||{}).goal ? ' / 목표 ' + (ST.ov||{}).goal + '문항' : '') + ')');
+  if(!picked.length) L.push('- (선택한 문항이 없습니다)');
+  picked.forEach(function(q){
+    var n = ST.notes[q.no] || {}, mine = ST.marks[q.no]||0;
+    L.push('');
+    L.push('[' + q.no + '번] 정답 ' + CIRC[q.ans-1] +
+      (mine ? ' / 내 답 ' + CIRC[mine-1] + (mine===q.ans?' ○':' ✕') : ' / 미표기') +
+      ' · ' + q.type + ' · 오답률 ' + q.wrong + '%');
+    L.push(' · 분류: ' + cut(n.cls,120));
+    L.push(' · 정답 근거: ' + cut(n.why,200));
+    L.push(' · 출제자 트릭: ' + cut(n.trick,200));
+    L.push(' · 나의 대응책: ' + cut(n.plan,160));
+    L.push(' · 시간·풀이법: ' + cut(n.time,140));
+  });
+  var sfilled = [];
+  A.sets.forEach(function(s,si){
+    var v = ST.sets[si]||{};
+    if((v.sum||'').trim() || (v.hard||'').trim() || (v.next||'').trim()) sfilled.push([s,v]);
+  });
+  L.push('');
+  L.push('■ 지문 분석 (' + sfilled.length + '지문)');
+  if(!sfilled.length) L.push('- (작성한 지문이 없습니다)');
+  sfilled.forEach(function(p){
+    L.push('');
+    L.push('[' + p[0].range + '번 ' + p[0].genre + '] ' + p[0].title);
+    L.push(' · 한 줄 요약: ' + cut(p[1].sum,160));
+    L.push(' · 막힌 대목: ' + cut(p[1].hard,160));
+    L.push(' · 다시 읽는 법: ' + cut(p[1].next,160));
+  });
+  L.push('');
+  L.push('■ 앞으로 할 일');
+  L.push(cut((ST.ov||{}).todo, 300) || '- (미작성)');
+  L.push('■ 질문');
+  L.push(cut((ST.ov||{}).ask, 200) || '- 없음');
+  document.getElementById('reportText').value = L.join('\n');
+  setText('copyMsg','보고서를 만들었습니다. 복사해서 카톡으로 보내 주세요.');
+}
+function copyReport(){
+  var ta = document.getElementById('reportText');
+  if(!ta.value){ makeReport(); }
+  var done = false;
+  try{
+    ta.removeAttribute('readonly'); ta.focus(); ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+    done = document.execCommand && document.execCommand('copy');
+    ta.setAttribute('readonly','readonly');
+  }catch(e){}
+  if(!done && navigator.clipboard){
+    navigator.clipboard.writeText(ta.value).then(function(){
+      setText('copyMsg','복사했습니다. 카톡에 붙여넣어 주세요.');
+    }, function(){
+      setText('copyMsg','자동 복사가 안 됩니다. 위 칸을 길게 눌러 전체 선택 후 직접 복사해 주세요.');
+    });
+    return;
+  }
+  setText('copyMsg', done ? '복사했습니다. 카톡에 붙여넣어 주세요.'
+    : '자동 복사가 안 됩니다. 위 칸을 길게 눌러 전체 선택 후 직접 복사해 주세요.');
+}
+
+/* ── 시작 ─────────────────────────────── */
+(function init(){
+  buildOmr(); renderSetCards();
+  var nm = document.getElementById('studentName');
+  nm.addEventListener('change', function(){
+    if(load(nm.value.trim())){ nm.value = ST.name || nm.value; }
+    paintOmr(); attemptMsg(); renderPicker(); renderQCards(); renderSetCards();
+    if(ST.best){ renderResult(ST.best); document.getElementById('result').classList.remove('hide'); }
+    renderSol();
+  });
+  ['ovAll','ovTime','ovSlow','todo','ask'].forEach(function(id){
+    var e = document.getElementById(id); if(e) e.addEventListener('input', save);
+  });
+  var g = document.getElementById('goal');
+  if(g) g.addEventListener('input', function(){ save(); renderPicker(); });
+  paintOmr(); attemptMsg(); renderPicker(); renderQCards(); renderSol();
+  setInterval(attemptMsg, 30000);
+})();
+</script>
+</body>
+</html>
