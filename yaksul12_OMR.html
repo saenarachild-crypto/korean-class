@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <title>김현석 국어 · 약술 논술 12회</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="김현석 국어 · 약술 논술 12회">
+  <meta property="og:description" content="제출 기한 ○월 ○일(○) 밤 11시">
+  <meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/logo.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:url" content="">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif;
+      background: #faf6f3;
+      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      -webkit-text-size-adjust: 100%;
+    }
+    .header {
+      background: linear-gradient(135deg, #7c2c3e, #5a1f2c);
+      color: white;
+      padding: 16px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h2 { font-size: 20px; }
+    .info-card, .time-box {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .info-card label { font-weight: 600; color: #7c2c3e; display: block; margin-bottom: 6px; }
+    .info-card input, .time-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 14px;
+      font-size: 16px;
+    }
+    .section {
+      background: white;
+      border-radius: 24px;
+      padding: 12px 12px 4px;
+      margin-bottom: 20px;
+    }
+    .section-header {
+      font-size: 17px;
+      font-weight: bold;
+      color: #7c2c3e;
+      padding: 8px 4px;
+      border-bottom: 2px solid #f0e2e5;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-header span { font-size: 13px; color: #a5808a; }
+    .q-card {
+      border-bottom: 1px solid #f5ecee;
+      padding: 12px 4px 14px;
+    }
+    .q-card:last-child { border-bottom: none; }
+    .q-card.skip { background: #fffaf2; border-radius: 14px; }
+    .q-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .q-num {
+      font-weight: 800;
+      color: #7c2c3e;
+      font-size: 16px;
+      min-width: 36px;
+    }
+    .q-tag {
+      font-size: 11px;
+      background: #f5ecee;
+      color: #7c2c3e;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    .q-tag.warn { background: #ffe9c9; color: #9a5b00; }
+    .q-src { font-size: 11px; color: #9b8188; flex: 1 1 100%; }
+    .mark-buttons { display: flex; gap: 5px; margin-left: auto; }
+    .mark-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1.5px solid #d8c8cc;
+      background: white;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #7c2c3e;
+    }
+    .mark-btn.active { background: #7c2c3e; color: white; border-color: #7c2c3e; }
+    .blank-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 7px;
+    }
+    .blank-label {
+      width: 82px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #5a1f2c;
+      flex-shrink: 0;
+    }
+    .blank-row input {
+      flex: 1;
+      padding: 11px 12px;
+      border: 1.5px solid #d8c8cc;
+      border-radius: 14px;
+      font-size: 16px;
+      background: #fffdfd;
+      min-width: 0;
+    }
+    .blank-row input:focus { outline: none; border-color: #7c2c3e; background: #fff; }
+    .blank-row input:disabled { background: #f4f0f1; color: #6b5b5f; }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-primary { background: #7c2c3e; color: white; }
+    .btn-kakao { background: #fee500; color: #3c1e1e; }
+    .btn-warning { background: #ff9f4a; color: #2c1518; }
+    .score-banner {
+      background: #fff8f5;
+      border: 2px solid #7c2c3e;
+      border-radius: 24px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .score-banner.show { display: block; }
+    .attempt-text { font-size: 12px; color: #7c2c3e; font-weight: 700; margin-bottom: 5px; }
+    .timer-text { font-size: 13px; font-weight: bold; color: #d04141; margin-top: 8px; }
+    .toast {
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      background: #333; color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      opacity: 0;
+      transition: 0.2s;
+      pointer-events: none;
+      font-size: 13px;
+      z-index: 2000;
+      max-width: 90%;
+      text-align: center;
+    }
+    .toast.show { opacity: 1; }
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      padding: 20px;
+      text-align: center;
+    }
+    #report-text {
+      width: 100%; height: 240px;
+      margin: 15px 0; padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+    .hidden { display: none; }
+    .link-box a {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1.5px solid #7c2c3e;
+      border-radius: 30px;
+      text-decoration: none;
+      color: #7c2c3e;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 4px;
+    }
+    .notice {
+      font-size: 12px;
+      color: #8b7378;
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+  
+    .ans-input { -webkit-appearance:none; appearance:none; display:block; min-width:0; min-height:44px; background:#fff; color:#231016; }
+    .blank-row { display:flex; }
+  </style>
+</head>
+<body>
+<div class="header">
+  <h2>김현석 약술 논술 12회</h2>
+  <div style="font-size: 12px; margin-top:4px;">대학 실전형 12문항(50칸) · 120점 · 시험 시간 80분 · 최대 3회 채점 · 채점 간 5분 대기</div>
+  <div style="font-size: 11px; margin-top:4px; opacity:.9">국민대 · 상명대 · 가천대 · 강남대 · 수원대 · 을지대 변형 · 제출 기한 ○월 ○일(○) 밤 11시</div>
+</div>
+<div class="score-banner" id="scoreBanner">
+  <div class="attempt-text" id="attemptDisplay">📌 남은 채점 횟수: 3회</div>
+  <div style="font-size: 32px; font-weight:800;"><span id="scoreCorrect">0</span>/<span id="scoreTotal">120</span></div>
+  <div id="scoreText">정답률 0%</div>
+  <div id="wrongList" style="color:#d04141; margin-top:6px; font-size:13px;"></div>
+  <div id="partialList" style="color:#c47b1a; margin-top:4px; font-size:13px;"></div>
+  <div id="cooldownTimer" class="timer-text hidden"></div>
+</div>
+<div class="info-card">
+  <label>📛 학생 이름</label>
+  <input type="text" id="studentName" placeholder="실명 입력">
+</div>
+<div class="notice">
+  ✏️ <b>답안 작성 안내</b><br>
+  · 칸 오른쪽 숫자가 배점입니다. 띄어쓰기, 괄호, 마침표 차이는 채점에 반영되지 않습니다.<br>
+  · 문항마다 10점입니다. 문항 머리의 ‘○○대 변형’은 해당 대학의 출제 형식과 채점 방식을 옮겨 온 것입니다.<br>· 제시문에서 찾아 쓰라는 문항은 제시문의 표현을 그대로 씁니다. 임의로 바꾸어 쓰면 오답 처리됩니다.<br>· ‘첫 어절’·‘마지막 어절’은 띄어쓰기 단위 한 개입니다. 1번 ②는 두 칸이 모두 맞아야 점수를 받습니다.<br>· 3번 (2)·5번(을지대형)은 기호가 틀리면 고쳐 쓴 말도 인정하지 않습니다. 4번 (2)·9번 (2)는 같은 묶음 안에서 순서가 달라도 됩니다.<br>· 8번·11번(강남대형)은 세 칸 가운데 1개 맞으면 4점, 2개 7점, 3개 10점입니다.<br>· 6번·10번은 &lt;유의 사항&gt;의 글자 수·어절 수를 지켜야 합니다. 12번은 시행을 그대로 옮겨 씁니다.<br>· 9-(3)은 ‘100자 이내(띄어 쓰기 포함)의 한 문장’입니다. 두 문장 이상이거나 100자를 넘으면 감점됩니다.<br>
+  · 서술형(9-(3) 4점)은 자동 채점에서 빠지고, 답안이 리포트에 실려 선생님이 채점합니다.
+</div>
+<div class="time-box">
+  <label style="font-weight:700; color:#7c2c3e; display:block; margin-bottom:8px;">⏱️ 총 소요 시간 기록 (선택)</label>
+  <input type="text" id="totalTime" placeholder="예: 60분">
+</div>
+<div class="section">
+  <div class="section-header">대학 실전형 문항 (1~12) <span id="progressText">0/50</span></div>
+  <div id="quizList"></div>
+</div>
+<button id="submitBtn" class="btn btn-primary">✅ 채점하기</button>
+<button id="kakaoBtn" class="btn btn-kakao">💬 카톡 공유 (보고서)</button>
+<button id="resetBtn" class="btn btn-warning">🔄 ★ 새로 시작하기 (초기화) ★</button>
+<div class="link-box" style="text-align:center; margin-top:14px;">
+  <a id="paperLink" href="yaksul12_문제지.html" target="_blank" rel="noopener" style="display:none;">📄 문제지 보기</a>
+  <a id="solutionLink" href="#" target="_blank" rel="noopener" style="display:none;">📑 해설지 보기</a>
+</div>
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3>📋 결과 리포트</h3>
+    <textarea id="report-text" readonly></textarea>
+    <button id="copyReportBtn" class="btn btn-primary" style="margin-top:10px;">📋 클립보드 복사</button>
+    <button id="closeModalBtn" class="btn btn-warning" style="margin-top:10px;">닫기</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<div id="jsError" style="display:none;background:#fde8e8;color:#9b1c1c;padding:12px;border-radius:12px;margin-top:12px;font-size:13px">화면이 제대로 나오지 않으면 카카오톡 오른쪽 위 ⋯ → ‘다른 브라우저로 열기’를 눌러 주세요.</div>
+<script>
+var OMR = {"round": 12, "items": [{"n": 1, "univ": "가천대", "area": "화법과 작문", "src": "한지와 문화유산 보존에 대한 강연", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["흘림뜨기"], "partial": ["도침", "발"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["실제로"], "partial": ["한지는", "이러한", "앞으로"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["유지되었습니다."], "partial": ["재료입니다.", "있습니다.", "기대합니다."], "grp": "g1"}]}, {"n": 2, "univ": "상명대", "area": "화법과 작문", "src": "자율 배식제 도입에 대한 주장하는 글", "pts": 10, "blanks": [{"label": "①", "pts": 2.5, "accept": ["급식"], "partial": ["또", "앞에서"]}, {"label": "②", "pts": 2.5, "accept": ["답했다."], "partial": ["꼽혔다.", "어렵다."]}, {"label": "③", "pts": 2.5, "accept": ["일부"], "partial": ["물론", "하지만"]}, {"label": "④", "pts": 2.5, "accept": ["우려한다."], "partial": ["있다."]}]}, {"n": 3, "univ": "을지대", "area": "문법", "src": "주성분과 보어, 서술어의 자릿수", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 2, "accept": ["주어"], "partial": ["보어", "주성분"]}, {"label": "(1) ②", "pts": 2, "accept": ["부사어"], "partial": ["필수적 부사어", "부사"]}, {"label": "(1) ③", "pts": 2, "accept": ["보어"], "partial": ["주어", "목적어"]}, {"label": "(2) ①-1 기호", "pts": 1, "accept": ["ⓑ", "b"]}, {"label": "(2) ①-2 고쳐 쓴 말", "pts": 1, "accept": ["두 자리 서술어"], "partial": ["두 자리", "세 자리 서술어"], "dep": 3}, {"label": "(2) ②-1 기호", "pts": 1, "accept": ["ⓓ", "d"]}, {"label": "(2) ②-2 고쳐 쓴 말", "pts": 1, "accept": ["필수적 부사어"], "partial": ["부사어", "필수 부사어"], "dep": 5}]}, {"n": 4, "univ": "국민대", "area": "문법", "src": "단어의 짜임: 파생어와 합성어", "pts": 10, "blanks": [{"label": "(1) ⓐ", "pts": 1, "accept": ["파생", "파생어"], "partial": ["합성"]}, {"label": "(1) ⓑ", "pts": 1, "accept": ["합성", "합성어"], "partial": ["파생"]}, {"label": "(1) ⓒ", "pts": 1, "accept": ["접두", "접두사"], "partial": ["접미"]}, {"label": "(1) ⓓ", "pts": 1, "accept": ["접미", "접미사"], "partial": ["접두"]}, {"label": "(2) 파생어 ①", "pts": 1.5, "accept": ["ㄱ", "ㄴ"], "set": "s4a"}, {"label": "(2) 파생어 ②", "pts": 1.5, "accept": ["ㄱ", "ㄴ"], "set": "s4a"}, {"label": "(2) 합성어 ①", "pts": 1.5, "accept": ["ㄷ", "ㄹ"], "set": "s4b"}, {"label": "(2) 합성어 ②", "pts": 1.5, "accept": ["ㄷ", "ㄹ"], "set": "s4b"}]}, {"n": 5, "univ": "을지대", "area": "독서", "src": "히트 펌프의 작동 원리와 성적 계수", "pts": 10, "blanks": [{"label": "①-1 기호", "pts": 2, "accept": ["ⓑ", "b"]}, {"label": "①-2 수정", "pts": 3, "accept": ["압축기"], "partial": ["응축기", "증발기"], "dep": 0}, {"label": "②-1 기호", "pts": 2, "accept": ["ⓓ", "d"]}, {"label": "②-2 수정", "pts": 3, "accept": ["떨어진다"], "partial": ["떨어짐"], "alt": [{"accept": ["낮아진다", "낮아짐"], "pts": 1}], "dep": 2}]}, {"n": 6, "univ": "수원대", "area": "독서", "src": "공유 자원 관리의 두 접근 방법", "pts": 10, "blanks": [{"label": "㉠", "pts": 4, "accept": ["개인은 자기 이익만을 추구한다는 가정", "개인이 자기 이익만을 추구한다는 가정"], "partial": ["개인은 자기 이익만을 추구한다", "자기 이익만을 추구한다는 가정", "개인은 자기 이익을 추구한다는 가정"], "limit": 18}, {"label": "㉡", "pts": 3, "accept": ["공동체 자치 접근 방법"], "partial": ["공동체 자치 접근", "공동체 자치"]}, {"label": "㉢", "pts": 3, "accept": ["퇴르벨"], "partial": ["스위스", "알프스"]}]}, {"n": 7, "univ": "상명대", "area": "독서", "src": "데이터 압축의 원리", "pts": 10, "blanks": [{"label": "①", "pts": 2.5, "accept": ["원본"], "partial": ["데이터", "정보"]}, {"label": "②", "pts": 2.5, "accept": ["런 렝스", "런렝스"], "partial": ["허프만"]}, {"label": "③", "pts": 2.5, "accept": ["빈도"], "partial": ["횟수", "길이"]}, {"label": "④", "pts": 2.5, "accept": ["지각"], "partial": ["눈", "감각", "눈과 귀"]}]}, {"n": 8, "univ": "강남대", "area": "독서", "src": "롤스와 노직의 분배 정의론", "pts": 10, "blanks": [{"label": "①", "pts": null, "accept": ["무지의 베일"], "partial": ["원초적 입장", "베일"]}, {"label": "②", "pts": null, "accept": ["차등 원칙"], "partial": ["평등한 자유의 원칙", "차등"]}, {"label": "③", "pts": null, "accept": ["최소 국가"], "partial": ["소유 권리론", "최소"]}], "score": {"mode": "count", "table": [0, 4, 7, 10]}}, {"n": 9, "univ": "국민대", "area": "독서", "src": "이황과 기대승의 사단칠정 논쟁", "pts": 10, "blanks": [{"label": "(1) ⓐ", "pts": 1, "accept": ["법칙"], "partial": ["까닭", "원리"]}, {"label": "(1) ⓑ", "pts": 1, "accept": ["칠정"], "partial": ["사단", "감정"]}, {"label": "(1) ⓒ", "pts": 1, "accept": ["이기호발", "이기호발설"], "partial": ["호발"]}, {"label": "(2) ①", "pts": 1.5, "accept": ["이발이기수지", "이발이기수지(理發而氣隨之)", "기발이이승지", "기발이이승지(氣發而理乘之)"], "partial": ["이발", "기발"], "set": "s9"}, {"label": "(2) ②", "pts": 1.5, "accept": ["이발이기수지", "이발이기수지(理發而氣隨之)", "기발이이승지", "기발이이승지(氣發而理乘之)"], "partial": ["이발", "기발"], "set": "s9"}, {"label": "(3) 서술", "pts": 4, "essay": {"limit": 100}}]}, {"n": 10, "univ": "수원대", "area": "문학", "src": "김소월, 「진달래꽃」 / 한용운, 「님의 침묵」", "pts": 10, "blanks": [{"label": "㉠", "pts": 3, "accept": ["진달래꽃"], "partial": ["꽃", "그 꽃"]}, {"label": "㉡", "pts": 3.5, "accept": ["차디찬 티끌"], "partial": ["한숨의 미풍", "미풍"], "alt": [{"accept": ["티끌"], "pts": 2}]}, {"label": "㉢", "pts": 3.5, "accept": ["침묵"], "partial": ["노래", "곡조"]}]}, {"n": 11, "univ": "강남대", "area": "문학", "src": "김소월, 「산유화」 / 한용운, 「알 수 없어요」", "pts": 10, "blanks": [{"label": "①", "pts": null, "accept": ["저만치"], "partial": ["혼자서"]}, {"label": "②", "pts": null, "accept": ["작은 새"], "partial": ["새"]}, {"label": "③", "pts": null, "accept": ["등불"], "partial": ["약한 등불", "기름", "재"]}], "score": {"mode": "count", "table": [0, 4, 7, 10]}}, {"n": 12, "univ": "가천대", "area": "문학", "src": "김소월, 「초혼」", "pts": 10, "blanks": [{"label": "㉠", "pts": 5, "accept": ["하늘과 땅 사이가 너무 넓구나."], "partial": ["부르는 소리는 비껴 가지만", "허공 중에 헤어진 이름이여!"]}, {"label": "㉡", "pts": 5, "accept": ["선 채로 이 자리에 돌이 되어도"], "partial": ["부르다가 내가 죽을 이름이여!", "떨어져 나가 앉은 산 위에서"]}]}], "max": 120, "essayPts": 4, "essayDesc": "9-(3) 4점", "key": "kimhs_yaksul_nonsul_12_omr", "colors": {"국민대": "#1d4f91", "상명대": "#3b3f9c", "가천대": "#12795a", "강남대": "#0b6e99", "한신대": "#8a3b12", "수원대": "#6b2f8f", "성신여대": "#7a1f5c", "을지대": "#2f6b2f", "서경대": "#5c4a12", "홍익대": "#9a2b2b"}};
+/* 김현석 약술 논술 OMR 공통 스크립트 (ES5 · 구형 iPad Safari 대응)
+   설정은 페이지의 var OMR = {round, items, max, essayPts, essayDesc, key, colors} 에서 읽는다.
+   칸 속성: accept[] 정답, alt[{accept[],pts}] 감점 인정, partial[] 부분 정답(선생님 확인),
+           grp 묶음(모두 맞아야 점수), set 순서 무관 묶음, dep 앞 칸(기호)이 맞아야 인정, keepHyphen, essay{limit}
+   문항 속성: score {mode:'count', table:[0,4,7,10]} → 맞힌 칸 수로 점수(강남대형) */
+(function () {
+  window.onerror = function () { var e = document.getElementById('jsError'); if (e) e.style.display = 'block'; };
+  function $(sel) { return document.querySelector(sel); }
+  function each(list, fn) { for (var i = 0; i < list.length; i++) fn(list[i], i); }
+  function qsa(sel) { return document.querySelectorAll(sel); }
+
+  var ITEMS = OMR.items, UC = OMR.colors || {};
+  var SLOTS = [];
+  each(ITEMS, function (it) { each(it.blanks, function (b) { SLOTS.push({ q: it.n, def: b }); }); });
+  var TOTAL = SLOTS.length;
+  var GRADED = 0; each(SLOTS, function (s) { if (!s.def.essay) GRADED++; });
+  var AUTO_MAX = Math.round((OMR.max - OMR.essayPts) * 10) / 10;
+  var MAX_ATTEMPTS = 3, COOLDOWN_MIN = 5, STORAGE_KEY = OMR.key;
+  var TITLE = '[김현석 약술 논술 ' + OMR.round + '회 결과]';
+
+  function blankState() {
+    var a = [], m = [], i;
+    for (i = 0; i < TOTAL; i++) a.push('');
+    for (i = 0; i < ITEMS.length; i++) m.push('');
+    return { answers: a, attemptCount: 0, cooldownUntil: 0, name: '', lastResult: null, marks: m, totalTime: '' };
+  }
+  var state = blankState();
+  var timerInterval = null;
+
+  function normalize(str, keepHyphen) {
+    var s = String(str || '').replace(/^\s+|\s+$/g, '').toLowerCase();
+    s = s.replace(/[‐-―－・·‧\/]/g, '-');
+    s = s.replace(/\s+/g, '');
+    s = s.replace(/[\[\]\(\)\{\}<>《》「」『』.,'"“”‘’:;!?~…·]/g, '');
+    if (!keepHyphen) s = s.replace(/-/g, '');
+    return s;
+  }
+  function inList(list, v, kh) {
+    if (!list || !v) return false;
+    for (var i = 0; i < list.length; i++) if (normalize(list[i], kh) === v) return true;
+    return false;
+  }
+  function noSpaceLen(s) { return String(s || '').replace(/\s+/g, '').length; }
+
+  function buildQuestions() {
+    var html = '', slot = 0;
+    each(ITEMS, function (it, qi) {
+      var cnt = it.score && it.score.mode === 'count';
+      html += '<div class="q-card"><div class="q-top">';
+      html += '<div class="q-num">' + it.n + '번</div>';
+      html += '<div class="q-tag" style="background:' + (UC[it.univ] || '#555') + ';color:#fff">' + it.univ + ' 변형</div>';
+      html += '<div class="q-tag">' + it.area + ' · ' + it.pts + '점</div>';
+      html += '<div class="mark-buttons">'
+        + '<button class="mark-btn" data-mark="o" data-qi="' + qi + '">○</button>'
+        + '<button class="mark-btn" data-mark="t" data-qi="' + qi + '">△</button>'
+        + '<button class="mark-btn" data-mark="x" data-qi="' + qi + '">✕</button></div>';
+      html += '<div class="q-src">' + it.src + (cnt ? ' · 맞힌 칸 수로 채점(' + it.score.table.slice(1).join('·') + '점)' : '') + '</div>';
+      html += '</div>';
+      each(it.blanks, function (b) {
+        if (b.essay) {
+          html += '<div class="blank-row" style="align-items:flex-start">'
+            + '<div class="blank-label">' + b.label + '<br><span style="font-weight:600;color:#a5808a;font-size:11px">' + b.essay.limit + '자 이내 · ' + b.pts + '점 · 선생님 채점</span></div>'
+            + '<textarea class="ans-input" data-slot="' + slot + '" rows="4" placeholder="한 문장으로 쓰세요 (띄어쓰기 포함 ' + b.essay.limit + '자 이내)" '
+            + 'style="flex:1;padding:11px 12px;border:1.5px solid #d8c8cc;border-radius:14px;font-size:16px;font-family:inherit;min-width:0;resize:vertical"></textarea>'
+            + '</div><div class="cnt" data-cnt="' + slot + '" style="text-align:right;font-size:11px;color:#a5808a;margin:-4px 4px 6px">0 / ' + b.essay.limit + '자</div>';
+        } else {
+          html += '<div class="blank-row">'
+            + '<div class="blank-label">' + b.label + (b.limit ? '<br><span style="font-weight:600;color:#a5808a;font-size:11px">' + b.limit + '자 이내(띄어쓰기 제외)</span>' : '') + '</div>'
+            + '<input type="text" class="ans-input" data-slot="' + slot + '" autocomplete="off" autocorrect="off" '
+            + 'autocapitalize="off" spellcheck="false" placeholder="답 입력" style="flex:1;padding:11px 12px;border:1.5px solid #d8c8cc;border-radius:14px;font-size:16px">'
+            + '<div style="font-size:11px;color:#a5808a;font-weight:700;min-width:30px;text-align:right">' + (cnt ? '' : b.pts) + '</div>'
+            + '</div>';
+        }
+        slot++;
+      });
+      html += '</div>';
+    });
+    $('#quizList').innerHTML = html;
+  }
+
+  function updateCount(inp) {
+    var i = parseInt(inp.getAttribute('data-slot'), 10);
+    var b = SLOTS[i].def;
+    if (!b.essay) return;
+    var el = document.querySelector('[data-cnt="' + i + '"]');
+    var n = String(inp.value || '').replace(/\n/g, '').length;
+    if (el) { el.innerHTML = n + ' / ' + b.essay.limit + '자' + (n > b.essay.limit ? ' · 초과' : ''); el.style.color = n > b.essay.limit ? '#d04141' : '#a5808a'; }
+  }
+
+  function updateUI() {
+    var isLocked = state.attemptCount > 0;
+    each(qsa('.ans-input'), function (inp) {
+      var i = parseInt(inp.getAttribute('data-slot'), 10);
+      if (document.activeElement !== inp) inp.value = state.answers[i] || '';
+      inp.disabled = isLocked;
+      updateCount(inp);
+    });
+    each(qsa('.mark-btn'), function (btn) {
+      var qi = parseInt(btn.getAttribute('data-qi'), 10);
+      if (state.marks[qi] === btn.getAttribute('data-mark')) btn.className = 'mark-btn active'; else btn.className = 'mark-btn';
+    });
+    var tt = $('#totalTime');
+    if (document.activeElement !== tt) tt.value = state.totalTime || '';
+    tt.disabled = isLocked;
+    var answered = 0; each(state.answers, function (v) { if (v && v.replace(/\s/g, '')) answered++; });
+    $('#progressText').innerHTML = answered + '/' + TOTAL;
+  }
+
+  function computeScore() {
+    var correct = 0, pts = 0, wrongs = [], partials = [], base = 0;
+    each(ITEMS, function (it) {
+      var n = it.blanks.length, ok = [], got = [], used = {}, k;
+      for (k = 0; k < n; k++) {
+        var b = it.blanks[k];
+        ok.push(null); got.push(0);
+        if (b.essay) continue;
+        var raw = state.answers[base + k];
+        var v = normalize(raw, !!b.keepHyphen);
+        var hit = !!v && inList(b.accept, v, !!b.keepHyphen);
+        var over = hit && b.limit && noSpaceLen(raw) > b.limit;
+        if (over) hit = false;
+        if (hit && b.dep != null && !ok[b.dep]) hit = false;
+        if (hit && b.set) { used[b.set] = used[b.set] || {}; if (used[b.set][v]) hit = false; else used[b.set][v] = true; }
+        ok[k] = hit;
+        if (hit) got[k] = b.pts || 0;
+        else if (over) { got[k] = Math.max(0, (b.pts || 0) - 2); partials.push(it.n + '-' + b.label + '(글자 수 초과 2점 감점)'); }
+        else if (v && b.alt) {
+          for (var a = 0; a < b.alt.length; a++) if (inList(b.alt[a].accept, v, !!b.keepHyphen)) { got[k] = b.alt[a].pts; partials.push(it.n + '-' + b.label + '(' + b.alt[a].pts + '점 인정)'); break; }
+        }
+        if (!hit && v && got[k] === 0 && inList(b.partial, v, !!b.keepHyphen)) partials.push(it.n + '-' + b.label);
+      }
+      var grpOK = {};
+      for (k = 0; k < n; k++) { var g = it.blanks[k].grp; if (g) grpOK[g] = (grpOK[g] !== false) && ok[k]; }
+      var itemPts = 0, nOK = 0;
+      for (k = 0; k < n; k++) {
+        var bb = it.blanks[k];
+        if (bb.essay) continue;
+        if (ok[k]) { correct++; nOK++; } else wrongs.push(it.n + '-' + bb.label);
+        if (bb.grp) { if (grpOK[bb.grp]) itemPts += bb.pts; }
+        else itemPts += got[k];
+      }
+      if (it.score && it.score.mode === 'count') itemPts = it.score.table[Math.min(nOK, it.score.table.length - 1)];
+      pts += itemPts;
+      base += n;
+    });
+    pts = Math.round(pts * 10) / 10;
+    return { correct: correct, wrongs: wrongs, partials: partials, pts: pts, percent: ((correct / GRADED) * 100).toFixed(1) };
+  }
+
+  function renderScore(r) {
+    $('#scoreBanner').className = 'score-banner show';
+    $('#scoreCorrect').innerHTML = r.pts;
+    $('#scoreTotal').innerHTML = AUTO_MAX + '점';
+    $('#scoreText').innerHTML = '자동 채점 ' + r.correct + ' / ' + GRADED + '칸 (' + r.percent + '%)'
+      + '<br><span style="font-size:11px;">※ 서술형 ' + OMR.essayPts + '점(' + OMR.essayDesc + ')은 선생님이 채점합니다 · 정답은 공개되지 않습니다</span>';
+    $('#wrongList').innerHTML = (r.wrongs && r.wrongs.length) ? '❌ 틀린 칸: ' + r.wrongs.join(', ') + ' (' + r.wrongs.length + '칸)' : '✅ 자동 채점 만점! 축하합니다';
+    $('#partialList').innerHTML = (r.partials && r.partials.length) ? '🔶 부분 정답(선생님 확인): ' + r.partials.join(', ') : '';
+  }
+
+  function updateCooldownUI() {
+    var now = new Date().getTime();
+    var submitBtn = $('#submitBtn'), cd = $('#cooldownTimer');
+    $('#attemptDisplay').innerHTML = '📌 남은 채점 횟수: ' + Math.max(0, MAX_ATTEMPTS - state.attemptCount) + '회';
+    if (state.attemptCount >= MAX_ATTEMPTS) {
+      submitBtn.disabled = true; submitBtn.innerHTML = '채점 횟수 소진';
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+      cd.className = 'timer-text hidden'; updateUI(); return;
+    }
+    if (state.cooldownUntil > now) {
+      var sec = Math.floor((state.cooldownUntil - now) / 1000);
+      cd.className = 'timer-text';
+      cd.innerHTML = '⏳ 다음 채점까지: ' + Math.floor(sec / 60) + '분 ' + (sec % 60) + '초';
+      submitBtn.disabled = true;
+      if (!timerInterval) timerInterval = setInterval(function () {
+        if (new Date().getTime() >= state.cooldownUntil) { clearInterval(timerInterval); timerInterval = null; }
+        updateCooldownUI();
+      }, 1000);
+    } else {
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+      cd.className = 'timer-text hidden';
+      submitBtn.disabled = false; submitBtn.innerHTML = '✅ 채점하기';
+    }
+    updateUI();
+  }
+
+  function getReportText() {
+    var line = '━━━━━━━━━━━━━━━━━━━━━━';
+    var o = [], t = [], x = [];
+    each(state.marks, function (m, qi) { var n = ITEMS[qi].n; if (m === 'o') o.push(n); if (m === 't') t.push(n); if (m === 'x') x.push(n); });
+    var markSection = '📌 [문항 분류 기록]\n• ○ (확신): ' + (o.join(', ') || '없음') + '\n• △ (애매): ' + (t.join(', ') || '없음') + '\n• ✕ (모름): ' + (x.join(', ') || '없음');
+    var timeSection = state.totalTime ? '\n⏱️ 총 소요 시간: ' + state.totalTime + '\n' + line : '';
+    if (!state.lastResult) return TITLE + '\n' + line + '\n👤 이름: ' + (state.name || '미입력') + '\n⚠️ 아직 채점 전입니다.\n' + line;
+    var r = state.lastResult;
+    var essays = [], b0 = 0;
+    each(ITEMS, function (it) {
+      each(it.blanks, function (b, k) { if (b.essay) essays.push('• ' + it.n + '번 ' + b.label + ' (' + b.pts + '점): ' + ((state.answers[b0 + k] || '').replace(/^\s+|\s+$/g, '') || '(미작성)')); });
+      b0 += it.blanks.length;
+    });
+    return TITLE + '\n' + line
+      + '\n👤 이름: ' + state.name
+      + '\n🔥 채점 회차: ' + (state.attemptCount || 1) + '회차'
+      + '\n🎯 자동 채점: ' + r.pts + ' / ' + AUTO_MAX + '점 (' + r.correct + '/' + GRADED + '칸, ' + r.percent + '%)'
+      + '\n❌ ' + (r.wrongs.length ? '오답: ' + r.wrongs.join(', ') + ' (' + r.wrongs.length + '칸)' : '자동 채점 만점! 🎉')
+      + (r.partials && r.partials.length ? '\n🔶 부분 정답(선생님 확인 필요): ' + r.partials.join(', ') : '')
+      + '\n' + line
+      + '\n✍️ [서술형 — 선생님 채점 ' + OMR.essayPts + '점]\n' + essays.join('\n')
+      + '\n' + line + timeSection
+      + '\n' + markSection + '\n' + line
+      + '\n※ 정답은 공개되지 않습니다.';
+  }
+
+  function onSubmit() {
+    var nameVal = $('#studentName').value.replace(/^\s+|\s+$/g, '');
+    if (!nameVal) { alert('이름을 입력하세요'); return; }
+    state.name = nameVal;
+    if (state.attemptCount >= MAX_ATTEMPTS) { alert('채점 횟수를 모두 사용했습니다. 초기화 후 다시 시도하세요.'); return; }
+    var now = new Date().getTime();
+    if (state.cooldownUntil > now) { alert('다음 채점까지 ' + Math.ceil((state.cooldownUntil - now) / 60000) + '분 기다려주세요.'); return; }
+    var answered = 0; each(state.answers, function (v) { if (v && v.replace(/\s/g, '')) answered++; });
+    if (answered < TOTAL && !confirm('미입력 칸이 ' + (TOTAL - answered) + '개 있습니다. 그래도 채점할까요?')) return;
+    state.attemptCount++;
+    state.lastResult = computeScore();
+    renderScore(state.lastResult);
+    state.cooldownUntil = new Date().getTime() + COOLDOWN_MIN * 60 * 1000;
+    $('#studentName').disabled = true;
+    saveToLocal(); updateCooldownUI(); showToast('채점 완료!');
+    window.scrollTo(0, 0);
+  }
+
+  function resetAll() {
+    if (!confirm('모든 답안과 채점 기록이 초기화됩니다. 다시 시작하시겠습니까?')) return;
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    state = blankState();
+    $('#studentName').value = ''; $('#studentName').disabled = false;
+    $('#scoreBanner').className = 'score-banner';
+    $('#cooldownTimer').className = 'timer-text hidden';
+    $('#submitBtn').disabled = false; $('#submitBtn').innerHTML = '✅ 채점하기';
+    each(qsa('.ans-input'), function (i) { i.value = ''; });
+    $('#totalTime').value = '';
+    updateUI(); saveToLocal(); showToast('초기화 완료! 답안을 입력하세요.');
+  }
+
+  function showReportModal() { $('#report-text').value = getReportText(); $('#reportModal').className = 'modal-overlay show'; }
+  function closeModal() { $('#reportModal').className = 'modal-overlay'; }
+  function copyToClipboard(text) {
+    function fallback(t) {
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-9999px';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { ta.setSelectionRange(0, t.length); document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showToast('리포트가 복사되었습니다! 카톡에 붙여넣기 하세요.');
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { showToast('리포트가 복사되었습니다! 카톡에 붙여넣기 하세요.'); }, function () { fallback(text); });
+      } else fallback(text);
+    } catch (e) { fallback(text); }
+  }
+  function showToast(msg) {
+    var t = $('#toast'); t.innerHTML = msg; t.className = 'toast show';
+    setTimeout(function () { t.className = 'toast'; }, 2200);
+  }
+  function saveToLocal() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {} }
+  function loadFromLocal() {
+    var raw = null;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (!raw) return;
+    try {
+      var d = JSON.parse(raw), s = blankState();
+      if (d.answers && d.answers.length === TOTAL) s.answers = d.answers;
+      s.attemptCount = d.attemptCount || 0; s.cooldownUntil = d.cooldownUntil || 0;
+      s.name = d.name || ''; s.lastResult = d.lastResult || null;
+      if (d.marks && d.marks.length === ITEMS.length) s.marks = d.marks;
+      s.totalTime = d.totalTime || '';
+      state = s;
+      $('#studentName').value = state.name;
+      $('#studentName').disabled = state.attemptCount > 0;
+      if (state.lastResult) renderScore(state.lastResult);
+    } catch (e) {}
+  }
+
+  function onAnswerInput(e) {
+    var inp = e.target;
+    if (!inp || (' ' + inp.className + ' ').indexOf(' ans-input ') < 0) return;
+    var i = parseInt(inp.getAttribute('data-slot'), 10);
+    if (state.attemptCount > 0) { inp.value = state.answers[i] || ''; return; }
+    state.answers[i] = inp.value;
+    updateCount(inp);
+    var answered = 0; each(state.answers, function (v) { if (v && v.replace(/\s/g, '')) answered++; });
+    $('#progressText').innerHTML = answered + '/' + TOTAL;
+    saveToLocal();
+  }
+  function onMarkClick(e) {
+    var btn = e.target;
+    if (!btn || (' ' + btn.className + ' ').indexOf(' mark-btn ') < 0) return;
+    var qi = parseInt(btn.getAttribute('data-qi'), 10);
+    state.marks[qi] = (state.marks[qi] === btn.getAttribute('data-mark')) ? '' : btn.getAttribute('data-mark');
+    updateUI(); saveToLocal();
+  }
+
+  function bindEvents() {
+    $('#submitBtn').onclick = onSubmit;
+    $('#resetBtn').onclick = resetAll;
+    $('#kakaoBtn').onclick = showReportModal;
+    $('#copyReportBtn').onclick = function () { copyToClipboard(getReportText()); };
+    $('#closeModalBtn').onclick = closeModal;
+    var ql = $('#quizList');
+    ql.addEventListener('input', onAnswerInput, false);
+    ql.addEventListener('keyup', onAnswerInput, false);
+    ql.addEventListener('click', onMarkClick, false);
+    ql.addEventListener('keydown', function (e) {
+      if (e.keyCode !== 13 || e.target.tagName === 'TEXTAREA') return;
+      e.preventDefault();
+      var list = qsa('.ans-input');
+      for (var i = 0; i < list.length; i++) if (list[i] === e.target && list[i + 1]) { list[i + 1].focus(); break; }
+    }, false);
+    $('#totalTime').addEventListener('input', function (e) { state.totalTime = e.target.value; saveToLocal(); }, false);
+    $('#reportModal').addEventListener('click', function (e) { if (e.target.id === 'reportModal') closeModal(); }, false);
+    var pl = $('#paperLink');
+    if (pl && pl.getAttribute('href') !== '#') pl.style.display = 'inline-block';
+  }
+
+  buildQuestions();
+  loadFromLocal();
+  bindEvents();
+  updateUI();
+  updateCooldownUI();
+  window.__OMR_TEST__ = { state: function () { return state; }, score: computeScore, report: getReportText, slots: SLOTS };
+})();
+
+</script>
+</body>
+</html>
