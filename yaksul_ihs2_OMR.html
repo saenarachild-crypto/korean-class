@@ -260,7 +260,9 @@
 <button id="resetBtn" class="btn btn-warning">🔄 ★ 새로 시작하기 (초기화) ★</button>
 <div class="link-box" style="text-align:center; margin-top:14px;">
   <a id="paperLink" href="yaksul_ihs2_paper.html" target="_blank" rel="noopener" style="display:none;">📄 문제지 보기</a>
-  <a id="solutionLink" href="#" target="_blank" rel="noopener" style="display:none;">📑 해설지 보기</a>
+  <a id="pdfLink" href="pdf/yaksul_ihs2_problem.pdf" target="_blank" rel="noopener" style="display:none;">📥 문제지 PDF</a>
+  <a id="solutionLink" href="pdf/yaksul_ihs2_solution.pdf" target="_blank" rel="noopener" style="display:none;">📑 해설지 보기</a>
+  <div style="font-size:12px;color:#8a6f75;margin-top:6px">해설지는 채점 횟수를 모두 사용하면 열립니다.</div>
 </div>
 <div class="modal-overlay" id="reportModal">
   <div class="modal">
@@ -439,6 +441,8 @@ var OMR = {"round": "임홍석 2", "items": [{"n": 1, "univ": "가천대", "area
     $('#attemptDisplay').innerHTML = '📌 남은 채점 횟수: ' + Math.max(0, MAX_ATTEMPTS - state.attemptCount) + '회';
     if (state.attemptCount >= MAX_ATTEMPTS) {
       submitBtn.disabled = true; submitBtn.innerHTML = '채점 횟수 소진';
+      var sl = $('#solutionLink');
+      if (sl && sl.getAttribute('href') !== '#') sl.style.display = 'inline-block';
       if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
       cd.className = 'timer-text hidden'; updateUI(); return;
     }
@@ -595,6 +599,8 @@ var OMR = {"round": "임홍석 2", "items": [{"n": 1, "univ": "가천대", "area
     $('#reportModal').addEventListener('click', function (e) { if (e.target.id === 'reportModal') closeModal(); }, false);
     var pl = $('#paperLink');
     if (pl && pl.getAttribute('href') !== '#') pl.style.display = 'inline-block';
+    var pp = $('#pdfLink');
+    if (pp && pp.getAttribute('href') !== '#') pp.style.display = 'inline-block';
   }
 
   buildQuestions();

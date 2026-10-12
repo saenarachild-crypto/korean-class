@@ -260,7 +260,9 @@
 <button id="resetBtn" class="btn btn-warning">🔄 ★ 새로 시작하기 (초기화) ★</button>
 <div class="link-box" style="text-align:center; margin-top:14px;">
   <a id="paperLink" href="yaksul23_문제지.html" target="_blank" rel="noopener" style="display:none;">📄 문제지 보기</a>
-  <a id="solutionLink" href="#" target="_blank" rel="noopener" style="display:none;">📑 해설지 보기</a>
+  <a id="pdfLink" href="pdf/yaksul23_problem.pdf" target="_blank" rel="noopener" style="display:none;">📥 문제지 PDF</a>
+  <a id="solutionLink" href="pdf/yaksul23_solution.pdf" target="_blank" rel="noopener" style="display:none;">📑 해설지 보기</a>
+  <div style="font-size:12px;color:#8a6f75;margin-top:6px">해설지는 채점 횟수를 모두 사용하면 열립니다.</div>
 </div>
 <div class="modal-overlay" id="reportModal">
   <div class="modal">
@@ -273,7 +275,7 @@
 <div id="toast" class="toast"></div>
 <div id="jsError" style="display:none;background:#fde8e8;color:#9b1c1c;padding:12px;border-radius:12px;margin-top:12px;font-size:13px">화면이 제대로 나오지 않으면 카카오톡 오른쪽 위 ⋯ → ‘다른 브라우저로 열기’를 눌러 주세요.</div>
 <script>
-var OMR = {"round": 23, "items": [{"n": 1, "univ": "가천대", "area": "화법과 작문", "src": "친환경 창업 아이디어 대회 모의 면접", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["옥수수 껍질", "옥수수껍질"], "partial": ["옥수수", "스티로폼", "특산물"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["지역"], "partial": ["하지만", "또한", "아무래도"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["받았습니다.", "받았습니다"], "partial": ["있습니다.", "사실입니다.", "문의했는데"], "grp": "g1"}]}, {"n": 2, "univ": "가천대", "area": "문법", "src": "부정 극어", "pts": 10, "blanks": [{"label": "①", "pts": 5, "accept": ["절"], "partial": ["문장", "어절", "구"]}, {"label": "②", "pts": 5, "accept": ["약화", "약화된다", "약화되는"], "partial": ["강화", "부정", "유지"]}]}, {"n": 3, "univ": "가천대", "area": "독서", "src": "인지 편향과 주식 투자의 비합리적 경향", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["필터 버블 현상", "필터버블현상", "필터 버블"], "partial": ["확증 편향", "착각 상관", "보수적 편향"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["이는"], "partial": ["그리고", "또한", "특정"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["사례이다.", "사례이다"], "partial": ["것이다.", "경향이다.", "판단한다는"], "grp": "g1"}]}, {"n": 4, "univ": "가천대", "area": "독서", "src": "원-핫 인코딩과 임베딩", "pts": 10, "blanks": [{"label": "①", "pts": 5, "accept": ["워드투벡(Word2Vec)", "워드투벡", "Word2Vec", "워드투벡Word2Vec"], "partial": ["원-핫 인코딩", "임베딩", "학습"]}, {"label": "②", "pts": 5, "accept": ["코사인 유사도", "코사인유사도"], "partial": ["유클리드 거리", "피타고라스의 정리", "유사성"]}]}, {"n": 5, "univ": "가천대", "area": "문학", "src": "박경리, 「불신 시대」", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["위패"], "partial": ["사진", "실과", "바구니"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["진영은"], "partial": ["그래도", "그러나", "상인들은"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["것이었다.", "것이었다"], "partial": ["것이다.", "있다.", "사라지는"], "grp": "g1"}]}, {"n": 6, "univ": "가천대", "area": "문학", "src": "오세영, 「원시」 / 손택수, 「차심」", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["멀어지는 일일 뿐이다.", "멀어지는 일일 뿐이다"], "partial": ["헤어지는 일이 아니라 단지", "이별을 서러워하지 마라,", "머얼리서 바라볼 줄을"]}, {"label": "② ㉡", "pts": 5, "accept": ["금마저 몸의 일부인 양"], "partial": ["아픈 금 속으로 찻물을 내리면서", "갈라진 너와 나 사이에도 그런 빛깔을 우릴 수 있다면", "그릇을 더 단단하게 조여 준다고……"]}]}], "max": 60, "essayPts": 0, "essayDesc": "", "key": "kimhs_yaksul_nonsul_23_omr", "colors": {"국민대": "#1d4f91", "상명대": "#3b3f9c", "가천대": "#12795a", "강남대": "#0b6e99", "한신대": "#8a3b12", "수원대": "#6b2f8f", "성신여대": "#7a1f5c", "을지대": "#2f6b2f", "서경대": "#5c4a12", "홍익대": "#9a2b2b", "수능형 선택": "#7c2c3e"}};
+var OMR = {"round": 23, "items": [{"n": 1, "univ": "가천대", "area": "화법과 작문", "src": "친환경 창업 아이디어 대회 모의 면접", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["옥수수 껍질", "옥수수껍질"], "partial": ["옥수수", "스티로폼", "특산물"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["지역"], "partial": ["하지만", "또한", "아무래도"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["받았습니다.", "받았습니다"], "partial": ["있습니다.", "사실입니다.", "문의했는데"], "grp": "g1"}]}, {"n": 2, "univ": "가천대", "area": "문법", "src": "부정 극어", "pts": 10, "blanks": [{"label": "①", "pts": 5, "accept": ["절"], "partial": ["문장", "어절", "구"]}, {"label": "②", "pts": 5, "accept": ["약화", "약화된다", "약화되는"], "partial": ["강화", "부정", "유지"]}]}, {"n": 3, "univ": "가천대", "area": "독서", "src": "인지 편향과 주식 투자의 비합리적 경향", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["필터 버블 현상", "필터버블현상", "필터 버블"], "partial": ["확증 편향", "착각 상관", "보수적 편향"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["이는"], "partial": ["그리고", "또한", "특정"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["사례이다.", "사례이다"], "partial": ["것이다.", "경향이다.", "판단한다는"], "grp": "g1"}]}, {"n": 4, "univ": "가천대", "area": "독서", "src": "원-핫 인코딩과 임베딩", "pts": 10, "blanks": [{"label": "①", "pts": 5, "accept": ["워드투벡(Word2Vec)", "워드투벡", "Word2Vec", "워드투벡Word2Vec"], "partial": ["원-핫 인코딩", "임베딩", "학습"]}, {"label": "②", "pts": 5, "accept": ["코사인 유사도", "코사인유사도"], "partial": ["유클리드 거리", "피타고라스의 정리", "유사성"]}]}, {"n": 5, "univ": "가천대", "area": "문학", "src": "박경리, 「불신 시대」", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["위패"], "partial": ["사진", "실과", "바구니"]}, {"label": "② 첫 어절", "pts": 2.5, "accept": ["진영은"], "partial": ["그래도", "그러나", "상인들은"], "grp": "g1"}, {"label": "② 마지막 어절", "pts": 2.5, "accept": ["것이었다.", "것이었다"], "partial": ["것이다.", "있다.", "사라지는"], "grp": "g1"}]}, {"n": 6, "univ": "가천대", "area": "문학", "src": "오세영, 「원시」 / 손택수, 「차심」", "pts": 10, "blanks": [{"label": "① ㉠", "pts": 5, "accept": ["멀어지는 일일 뿐이다.", "멀어지는 일일 뿐이다"], "partial": ["헤어지는 일이 아니라 단지", "이별을 서러워하지 마라,", "머얼리서 바라볼 줄을"]}, {"label": "② ㉡", "pts": 5, "accept": ["금마저 몸의 일부인 양"], "partial": ["아픈 금 속으로 찻물을 내리면서", "갈라진 너와 나 사이에도 그런 빛깔을 우릴 수 있다면", "그릇을 더 단단하게 조여 준다고……"]}]}], "max": 60, "essayPts": 0, "essayDesc": "", "key": "kimhs_yaksul_nonsul_23_omr", "colors": {"국민대": "#1d4f91", "상명대": "#3b3f9c", "가천대": "#12795a", "강남대": "#0b6e99", "한신대": "#8a3b12", "수원대": "#6b2f8f", "성신여대": "#7a1f5c", "을지대": "#2f6b2f", "서경대": "#5c4a12", "홍익대": "#9a2b2b", "수능형 선택": "#7c2c3e", "삼육대": "#147a74"}};
 /* 김현석 약술 논술 OMR 공통 스크립트 (ES5 · 구형 iPad Safari 대응)
    설정은 페이지의 var OMR = {round, items, max, essayPts, essayDesc, key, colors} 에서 읽는다.
    칸 속성: accept[] 정답, alt[{accept[],pts}] 감점 인정, partial[] 부분 정답(선생님 확인),
@@ -439,6 +441,8 @@ var OMR = {"round": 23, "items": [{"n": 1, "univ": "가천대", "area": "화법�
     $('#attemptDisplay').innerHTML = '📌 남은 채점 횟수: ' + Math.max(0, MAX_ATTEMPTS - state.attemptCount) + '회';
     if (state.attemptCount >= MAX_ATTEMPTS) {
       submitBtn.disabled = true; submitBtn.innerHTML = '채점 횟수 소진';
+      var sl = $('#solutionLink');
+      if (sl && sl.getAttribute('href') !== '#') sl.style.display = 'inline-block';
       if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
       cd.className = 'timer-text hidden'; updateUI(); return;
     }
@@ -595,6 +599,8 @@ var OMR = {"round": 23, "items": [{"n": 1, "univ": "가천대", "area": "화법�
     $('#reportModal').addEventListener('click', function (e) { if (e.target.id === 'reportModal') closeModal(); }, false);
     var pl = $('#paperLink');
     if (pl && pl.getAttribute('href') !== '#') pl.style.display = 'inline-block';
+    var pp = $('#pdfLink');
+    if (pp && pp.getAttribute('href') !== '#') pp.style.display = 'inline-block';
   }
 
   buildQuestions();
