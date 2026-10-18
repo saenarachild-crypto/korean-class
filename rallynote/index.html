@@ -1,0 +1,2358 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>랠리노트</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="랠리노트">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1923" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:title" content="랠리노트">
+<meta property="og:description" content="코트 뒤 휴대폰 한 대로 찍은 테니스 영상을 분석합니다">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}</style>
+</head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one working column; session view splits into stage (player) + rally rail on wide screens. Scoreboard strip is the signature element. */
+:root{
+  --bg:#eef2f1; --surface:#ffffff; --surface-2:#e3e9e8; --ink:#13283b; --ink-2:#4b5d6c; --rule:#cfd8d9;
+  --court:#2a5c86; --court-deep:#1b3f60; --ball:#c8e636; --ball-ink:#2c3400;
+  --in:#1f8a5a; --out:#c4452c; --warn:#b97a10;
+  --board:#13283b; --board-fg:#f1f4ee;
+  --f-display:"Barlow Condensed","IBM Plex Sans KR",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1923; --surface:#152431; --surface-2:#1c2f3e; --ink:#e4ebe8; --ink-2:#9fb0ba; --rule:#28404f;
+  --court:#3f7fb3; --court-deep:#2b5a83; --ball:#cdeb3c; --ball-ink:#1c2200;
+  --in:#3cb37b; --out:#e2694f; --warn:#e0a53a; --board:#0a131b; --board-fg:#eef2ea; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1923; --surface:#152431; --surface-2:#1c2f3e; --ink:#e4ebe8; --ink-2:#9fb0ba; --rule:#28404f;
+  --court:#3f7fb3; --court-deep:#2b5a83; --ball:#cdeb3c; --ball-ink:#1c2200;
+  --in:#3cb37b; --out:#e2694f; --warn:#e0a53a; --board:#0a131b; --board-fg:#eef2ea; color-scheme:dark}
+html,body{background:var(--bg);color:var(--ink)}
+body{word-break:keep-all;overflow-wrap:anywhere;font-family:var(--f-body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--court);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{display:flex;align-items:center;gap:16px;padding-block:18px 14px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px;cursor:pointer;border:0;background:none;padding:0}
+.brand b{font-family:var(--f-display);font-weight:700;font-size:28px;letter-spacing:.02em;line-height:1}
+.brand span{font-size:12px;color:var(--ink-2);letter-spacing:.06em}
+.mark{width:22px;height:22px;border-radius:50%;background:var(--ball);position:relative;align-self:center;flex:none}
+.mark::before,.mark::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--ball-ink);opacity:.35;clip-path:inset(0 55% 0 0)}
+.mark::after{clip-path:inset(0 0 0 55%)}
+header .grow{flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:500;white-space:nowrap}
+.btn:hover{border-color:var(--ink-2)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.ball{background:var(--ball);color:var(--ball-ink);border-color:var(--ball)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--out)}
+.btn.sm{padding:5px 12px;font-size:13px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,4vw,36px);line-height:1.15;font-weight:700}
+h2{font-size:20px;font-weight:700}
+h3{font-size:16px;font-weight:600}
+p{margin:0}
+.muted{color:var(--ink-2)}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);font-weight:500;white-space:nowrap}
+.chip.in{background:color-mix(in srgb,var(--in) 16%,transparent);color:var(--in)}
+.chip.out{background:color-mix(in srgb,var(--out) 16%,transparent);color:var(--out)}
+.chip.ball{background:var(--ball);color:var(--ball-ink)}
+
+/* Home */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center;padding-block:12px 28px}
+.hero .lede{font-size:16px;color:var(--ink-2);max-width:52ch;margin-top:12px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hero .court-art{aspect-ratio:16/10;max-width:100%;border-radius:var(--r);overflow:hidden;background:var(--court-deep)}
+.hero .court-art canvas{width:100%;height:100%;display:block}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-block:8px 32px}
+.steps li{list-style:none;padding:14px 16px;border-top:2px solid var(--ink)}
+.steps b{font-family:var(--f-display);font-size:22px;display:block;line-height:1}
+.steps p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.steps{padding:0}
+.list-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.sessions{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.scard{padding:14px 16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-align:left}
+.scard:hover{border-color:var(--ink-2)}
+.scard .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.scard .figs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.scard .figs b{font-family:var(--f-display);font-size:24px;display:block;line-height:1}
+.scard .figs span{font-size:11px;color:var(--ink-2)}
+.empty{padding:28px;text-align:left;color:var(--ink-2);border:1px dashed var(--rule);border-radius:var(--r)}
+
+/* Setup */
+.setup{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+.calib-wrap{position:relative;border-radius:var(--r);overflow:hidden;background:#000;touch-action:none;user-select:none}
+.calib-wrap canvas{display:block;width:100%;height:auto}
+.form{padding:18px;display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.seg{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--rule);border-radius:999px;padding:3px;background:var(--surface-2);width:max-content;max-width:100%}
+.seg button{border:0;background:transparent;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--surface);box-shadow:0 1px 2px rgb(0 0 0/.12);font-weight:600}
+.check{display:flex;gap:8px;align-items:center;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--court)}
+.hint{font-size:13px;color:var(--ink-2)}
+.legend-corners{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+.legend-corners i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+
+/* Progress */
+.prog{max-width:640px;margin:20px auto;padding:22px;display:flex;flex-direction:column;gap:14px}
+.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--court);transition:width .2s}
+.prog video,.prog canvas{width:100%;border-radius:8px;background:#000;display:block}
+
+/* Scoreboard */
+.board{background:var(--board);color:var(--board-fg);border-radius:var(--r);display:grid;grid-template-columns:auto 1fr;gap:0;overflow:hidden;font-family:var(--f-display)}
+.board .who{padding:8px 14px;display:flex;flex-direction:column;justify-content:center;gap:2px;font-family:var(--f-body);font-size:14px;font-weight:600}
+.board .who div{display:flex;align-items:center;gap:8px;height:30px}
+.board .who .dot{width:8px;height:8px;border-radius:50%;background:transparent}
+.board .who .dot.on{background:var(--ball)}
+.board .cols{display:flex;justify-content:flex-end;overflow-x:auto}
+.board .col{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:8px 10px;min-width:42px;text-align:center;font-size:24px;font-weight:600;border-left:1px solid rgb(255 255 255/.08)}
+.board .col div{height:30px;line-height:30px}
+.board .col.pt{background:var(--ball);color:var(--ball-ink);min-width:58px}
+.board .col .lose{opacity:.5}
+.board.practice{grid-template-columns:1fr}
+.board .prac{display:flex;gap:22px;padding:10px 16px;align-items:baseline;flex-wrap:wrap}
+.board .prac b{font-size:26px}
+.board .prac span{font-family:var(--f-body);font-size:12px;opacity:.7;margin-left:4px}
+
+/* Session */
+.sess-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-block:6px 14px}
+.sess-head input.title{font-size:22px;font-weight:700;border:0;background:transparent;padding:2px 4px;border-radius:6px;min-width:0;flex:1 1 220px}
+.sess-head input.title:hover,.sess-head input.title:focus{background:var(--surface-2)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--rule);margin-bottom:16px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:10px 14px;cursor:pointer;font-weight:600;color:var(--ink-2);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.review{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+.stage{position:relative;border-radius:var(--r);overflow:hidden;background:#000;max-width:100%}
+.stage video,.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage video{object-fit:fill}
+.stage .reattach{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#f1f4ee;background:rgb(10 19 27/.86);padding:20px;text-align:center}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.controls .time{font-family:var(--f-mono);font-size:13px;color:var(--ink-2);margin-left:auto}
+.timeline{position:relative;height:34px;margin-top:10px;background:var(--surface-2);border-radius:6px;cursor:pointer;overflow:hidden;touch-action:none}
+.timeline .rb{position:absolute;top:6px;bottom:6px;background:var(--court);border-radius:3px;opacity:.75}
+.timeline .rb.cur{background:var(--ball);opacity:1}
+.timeline .ph{position:absolute;top:0;bottom:0;width:2px;background:var(--out)}
+.rail{display:flex;flex-direction:column;gap:12px;min-width:0}
+.rally-card{padding:14px}
+.rally-card header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.rally-card header h3{flex:1}
+.shots{display:flex;flex-direction:column;gap:6px;max-height:360px;overflow:auto;padding-right:2px}
+.shot{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 8px;border-radius:8px;background:var(--surface-2);font-size:14px}
+.shot.now{outline:2px solid var(--ball)}
+.shot .n{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+.shot .who{font-weight:600}
+.shot .meta{font-size:12px;color:var(--ink-2)}
+.shot .acts{display:flex;gap:4px;align-items:center}
+.shot button.type{border:1px dashed var(--rule);background:var(--surface);border-radius:999px;padding:2px 9px;font-size:12px;cursor:pointer}
+.shot button.verdict{border:0;cursor:pointer}
+.shot button.x{border:0;background:none;color:var(--ink-2);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+.winner{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.winner button{border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:5px 12px;cursor:pointer}
+.winner button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.winner .auto{font-size:12px;color:var(--ink-2)}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}
+.cmp{width:100%;border-collapse:collapse;font-size:14px}
+.cmp th,.cmp td{padding:9px 10px;border-bottom:1px solid var(--rule);text-align:right}
+.cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--ink-2);font-weight:500}
+.cmp thead th{font-size:11px;letter-spacing:.1em;color:var(--ink-2);font-weight:600}
+.cmp td b{font-family:var(--f-display);font-size:22px;font-weight:600}
+.cmp td small{color:var(--ink-2);margin-left:3px}
+.depth{display:flex;height:22px;border-radius:5px;overflow:hidden;background:var(--surface-2)}
+.depth i{display:block;height:100%}
+.depth-legend{display:flex;gap:12px;font-size:12px;color:var(--ink-2);margin-top:6px;flex-wrap:wrap}
+.depth-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px}
+.heat svg{width:100%;height:auto;display:block;max-width:420px;margin:0 auto}
+.card-pad{padding:16px;display:flex;flex-direction:column;gap:12px}
+.hist{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:8px}
+.hist div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end;height:100%}
+.hist i{display:block;width:100%;background:var(--court);border-radius:4px 4px 0 0;min-height:2px}
+.hist span{font-size:11px;color:var(--ink-2)}
+.hist b{font-family:var(--f-mono);font-size:12px}
+.coach{white-space:pre-wrap;font-size:14.5px;line-height:1.7}
+.note{font-size:12.5px;color:var(--ink-2)}
+
+/* Rally table */
+.tbl-wrap{overflow-x:auto}
+table.rt{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+table.rt th,table.rt td{padding:9px 10px;border-bottom:1px solid var(--rule);text-align:left}
+table.rt th{font-size:11px;letter-spacing:.1em;color:var(--ink-2)}
+table.rt tr:hover td{background:var(--surface-2);cursor:pointer}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgb(6 12 18/.72);display:flex;align-items:center;justify-content:center;z-index:50;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.modal .box{background:var(--surface);border-radius:14px;max-width:880px;width:100%;max-height:100%;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+.challenge{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start}
+.challenge canvas{width:100%;display:block;border-radius:10px;background:#000}
+.verdict-big{font-family:var(--f-display);font-size:64px;font-weight:700;line-height:1;letter-spacing:.02em}
+.verdict-big.in{color:var(--in)} .verdict-big.out{color:var(--out)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;z-index:60;max-width:calc(100% - 32px)}
+
+@media (max-width:880px){
+  .hero,.setup,.review,.stats-grid,.challenge{grid-template-columns:minmax(0,1fr)}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .hero .court-art{order:-1}
+}
+/* progress: weekly goals + trend small multiples */
+.progress{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.progress .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.progress .est{font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.goals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.goal{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.goal .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.goal .now{font-family:var(--f-display);font-size:30px;font-weight:600;line-height:1}
+.goal .now small{font-size:14px;color:var(--ink-2);margin-left:2px}
+.goal .delta{font-size:12px;color:var(--ink-2)}
+.goal .meter{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.goal .meter i{display:block;height:100%;background:var(--court);border-radius:99px}
+.goal.met .meter i{background:var(--in)}
+.goal .set{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-2)}
+.goal .set input{width:64px;font-size:16px;padding:4px 6px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);text-align:right}
+.trends{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.trend{padding:12px 14px 8px;position:relative}
+.trend h4{margin:0;font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.trend h4 span{color:var(--ink-2);font-weight:400}
+.trend svg{width:100%;height:auto;display:block;margin-top:6px;overflow:visible}
+.trend .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:4px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-120%)}
+@media (max-width:880px){ .goals{grid-template-columns:minmax(0,1fr)} .trends{grid-template-columns:minmax(0,1fr)} }
+/* ---------- app shell: phone first ---------- */
+html{-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+.btn{min-height:44px;justify-content:center}
+.btn.sm{min-height:36px}
+.seg button{min-height:38px}
+input.title{font-size:20px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.tabbar{display:none}
+.summary{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;margin-top:12px}
+.summary .fig{display:flex;flex-direction:column}
+.summary .fig b{font-family:var(--f-display);font-size:24px;line-height:1}
+.summary .fig span{font-size:11px;color:var(--ink-2)}
+.summary .grow{flex:1}
+@media (max-width:880px){
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));font-size:15.5px}
+  header.top{padding-block:10px;gap:10px}
+  header.top .hdr-act{display:none}
+  .brand b{font-size:24px}
+  .brand span{display:none}
+  .hero{gap:16px;padding-block:4px 18px}
+  .hero h1{font-size:26px}
+  .hero .actions label{display:none}
+  .hero .actions .btn{flex:1}
+  .steps{gap:0;margin-block:0 20px}
+  .steps li{padding:12px 0}
+  .tabbar{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:40;background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--rule);padding:8px max(12px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+  .tabbar label,.tabbar button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--ink-2);background:none;border:0;cursor:pointer;min-height:48px;justify-content:center}
+  .tabbar svg{width:24px;height:24px}
+  .tabbar .rec{justify-self:center;width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--bg);margin-top:-26px;box-shadow:0 6px 18px rgb(0 0 0/.22);font-size:10px}
+  .tabbar .rec i{display:block;width:22px;height:22px;border-radius:50%;background:var(--out);border:3px solid var(--bg)}
+  .sess-head{margin-block:4px 10px}
+  .sess-head input.title{font-size:19px;flex-basis:140px}
+  .board{border-radius:12px}
+  .board .col{font-size:22px;min-width:36px;padding:6px 8px}
+  .board .who{padding:6px 12px}
+  .tabs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px);z-index:15;background:var(--bg);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));margin-top:10px!important;margin-bottom:12px}
+  .tabs button{flex:1;padding:12px 4px}
+  .stage{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));border-radius:0;max-width:none}
+  .controls{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
+  .controls .seg{grid-column:1 / -1;width:100%;justify-content:space-between}
+  .controls .seg button{flex:1}
+  .controls .check{justify-content:center}
+  .controls .time{grid-column:1 / -1;margin:0;text-align:center}
+  .timeline{height:40px}
+  .shots{max-height:none}
+  .shot{grid-template-columns:22px minmax(0,1fr);row-gap:8px;padding:10px}
+  .shot .acts{grid-column:2;justify-content:flex-start}
+  .shot button.type{padding:6px 12px;font-size:13px}
+  .shot .verdict{padding:6px 12px;font-size:13px}
+  .shot button.x{margin-left:auto;font-size:20px;padding:4px 10px}
+  .winner button{min-height:40px;padding:6px 18px}
+  .modal{align-items:flex-end;padding:0}
+  .modal .box{border-radius:18px 18px 0 0;max-height:92dvh;padding:18px max(16px,env(safe-area-inset-left,0px)) calc(18px + env(safe-area-inset-bottom,0px))}
+  .verdict-big{font-size:52px}
+  .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  .prog{margin-top:8px;padding:16px}
+  .form{padding:14px}
+  .calib-wrap{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));border-radius:0}
+}
+@media (display-mode: standalone){ header.top{padding-top:4px} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <button class="brand" id="goHome" type="button" aria-label="세션 목록으로"><i class="mark"></i><b>랠리노트</b><span>TENNIS VIDEO NOTES</span></button>
+    <div class="grow"></div>
+    <label class="btn primary hdr-act" for="fileRecord">촬영하기</label>
+    <label class="btn hdr-act" for="fileOpen">영상 불러오기</label>
+    <input id="fileRecord" type="file" accept="video/*" capture="environment" hidden>
+    <input id="fileOpen" type="file" accept="video/*" hidden>
+  </header>
+
+  <!-- HOME -->
+  <section id="vHome">
+    <div class="hero">
+      <div>
+        <span class="label">코트 뒤 휴대폰 한 대로</span>
+        <h1 style="margin-top:8px">찍어 두면 랠리를 잘라 주고, 공이 떨어진 자리를 짚어 줍니다</h1>
+        <p class="lede">펜스나 삼각대에 휴대폰을 올리고 경기를 찍으세요. 영상은 이 기기 안에서만 분석됩니다. 랠리별 리플레이, 라인 판정, 샷 속도, 깊이 분포, 점수까지 한 화면에서 보고 틀린 판정은 한 번에 고칩니다.</p>
+        <div class="actions">
+          <button class="btn ball" id="openDemo" type="button">샘플 경기 열어 보기</button>
+          <label class="btn" for="fileOpen">내 영상 분석하기</label>
+        </div>
+      </div>
+      <div class="court-art"><canvas id="heroArt" width="640" height="400" aria-label="코트 위 공 궤적 그림"></canvas></div>
+    </div>
+    <ol class="steps">
+      <li><b>1 · 거치</b><p>코트 뒤쪽 높은 곳(펜스 2m 이상)에서 양쪽 베이스라인과 사이드라인이 다 보이게 가로로 찍습니다.</p></li>
+      <li><b>2 · 코트 맞추기</b><p>영상의 코트 네 꼭짓점에 점 네 개를 맞춥니다. 이 기준으로 공 위치를 미터 단위로 계산합니다.</p></li>
+      <li><b>3 · 리뷰</b><p>랠리만 이어 보기, 바운스 지점, 인·아웃 챌린지, 통계. 판정과 점수는 탭 한 번으로 수정됩니다.</p></li>
+    </ol>
+    <section id="progress" class="progress" aria-label="이번 주와 실력 변화"></section>
+    <div class="list-head"><h2>내 세션</h2><span class="muted" id="storeNote"></span></div>
+    <p class="hint" style="margin:-4px 0 12px">Claude가 분석해 준 세션 파일(.json)은 <label for="fileSession" style="text-decoration:underline;cursor:pointer">여기서 열기</label><input id="fileSession" type="file" accept=".json,application/json" hidden></p>
+    <div class="sessions" id="sessionList"></div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="vSetup" hidden>
+    <div class="sess-head"><button class="btn ghost sm" data-home type="button">← 목록</button><h2 id="setupName">코트 맞추기</h2></div>
+    <div class="setup">
+      <div>
+        <div class="calib-wrap" id="calibWrap"><canvas id="calibCanvas"></canvas></div>
+        <div class="field" style="margin-top:12px">
+          <label class="hint" for="frameScrub">코트 라인이 잘 보이는 장면으로 옮기세요</label>
+          <input id="frameScrub" type="range" min="0" max="1000" value="30">
+        </div>
+        <div class="legend-corners" id="cornerLegend" style="margin-top:8px"></div>
+        <p class="hint" id="calibWarn" style="margin-top:8px;color:var(--warn)" hidden></p>
+      </div>
+      <div class="panel form">
+        <p class="hint">점 네 개를 코트의 <b>기준점</b>에 끌어다 맞추세요. 끄는 동안 확대경이 뜹니다. 파란 선이 실제 라인과 겹치면 정확합니다.</p>
+        <div class="field"><span class="label">가까운 쪽 기준점</span><div class="seg" id="optRef"><button type="button" data-v="baseline">베이스라인 모서리</button><button type="button" data-v="service">서비스라인 모서리</button></div><span class="hint">카메라 앞 모서리가 화면에 안 걸리면 서비스라인을 고르세요.</span></div>
+        <div class="field"><span class="label">종류</span><div class="seg" id="optMode"><button type="button" data-v="match">경기</button><button type="button" data-v="practice">연습·랠리</button></div></div>
+        <div class="field"><span class="label">판정 기준</span><div class="seg" id="optCourt"><button type="button" data-v="doubles">복식</button><button type="button" data-v="singles">단식</button></div></div>
+        <div class="field"><span class="label">처음에 나는</span><div class="seg" id="optMe"><button type="button" data-v="near">카메라 쪽</button><button type="button" data-v="far">반대편</button></div></div>
+        <div class="field" id="matchOnly">
+          <span class="label">경기 방식</span>
+          <div class="seg" id="optSets"><button type="button" data-v="1">1세트</button><button type="button" data-v="2">3세트(2선승)</button></div>
+          <label class="check"><input type="checkbox" id="optSwap" checked> 홀수 게임 후 코트를 바꿈</label>
+        </div>
+        <div class="field"><span class="label">분석 방식</span><div class="seg" id="optSpeed"><button type="button" data-v="30">정밀 (영상 길이만큼)</button><button type="button" data-v="15">빠르게 (절반)</button></div></div>
+        <button class="btn primary" id="startAnalyze" type="button">분석 시작</button>
+        <p class="hint">분석하는 동안 화면을 켜 두세요. 영상은 서버로 올라가지 않습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYZING -->
+  <section id="vAnalyze" hidden>
+    <div class="panel prog">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2>공을 따라가는 중</h2><span class="num" id="progPct">0%</span></div>
+      <div class="bar"><i id="progBar"></i></div>
+      <p class="hint" id="progText">영상을 재생하며 프레임마다 공을 찾습니다.</p>
+      <canvas id="progCanvas"></canvas>
+      <div style="display:flex;gap:8px"><button class="btn" id="cancelAnalyze" type="button">중단</button></div>
+    </div>
+  </section>
+
+  <!-- SESSION -->
+  <section id="vSession" hidden>
+    <div class="sess-head">
+      <button class="btn ghost sm" data-home type="button">← 목록</button>
+      <input class="title" id="sessTitle" aria-label="세션 이름">
+      <span class="chip" id="sessMode"></span>
+    </div>
+    <div class="board" id="board"></div>
+    <div class="tabs" role="tablist" style="margin-top:16px">
+      <button role="tab" aria-selected="true" data-tab="review" type="button">리뷰</button>
+      <button role="tab" aria-selected="false" data-tab="stats" type="button">통계</button>
+      <button role="tab" aria-selected="false" data-tab="rallies" type="button">랠리 목록</button>
+    </div>
+
+    <div id="tabReview">
+      <div class="review">
+        <div style="min-width:0">
+          <div class="stage" id="stage">
+            <video id="vid" playsinline preload="auto"></video>
+            <canvas id="overlay"></canvas>
+            <div class="reattach" id="reattach" hidden>
+              <b>원본 영상을 다시 연결해 주세요</b>
+              <span style="font-size:13px;opacity:.8" id="reattachName"></span>
+              <label class="btn ball" for="fileReattach">영상 선택</label>
+              <input id="fileReattach" type="file" accept="video/*" hidden>
+              <span style="font-size:12px;opacity:.7">통계와 랠리 목록은 영상 없이도 볼 수 있습니다.</span>
+            </div>
+          </div>
+          <div class="timeline" id="timeline" aria-label="타임라인"></div>
+          <div class="controls">
+            <button class="btn sm" id="btnPrev" type="button">이전 랠리</button>
+            <button class="btn primary sm" id="btnPlay" type="button">재생</button>
+            <button class="btn sm" id="btnNext" type="button">다음 랠리</button>
+            <div class="seg" id="optRate"><button type="button" data-v="0.25">¼</button><button type="button" data-v="0.5">½</button><button type="button" data-v="1">1×</button></div>
+            <label class="check"><input type="checkbox" id="optOnly" checked> 랠리만</label>
+            <label class="check"><input type="checkbox" id="optLines"> 코트 선</label>
+            <span class="time" id="timeLbl">0:00</span>
+          </div>
+          <div class="panel summary" id="playSummary"></div>
+        </div>
+        <div class="rail">
+          <div class="panel rally-card" id="rallyCard"></div>
+          <div class="panel card-pad">
+            <h3>내보내기</h3>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn sm" id="btnHighlights" type="button">경기만 남긴 영상 저장</button>
+              <button class="btn sm" id="btnCsv" type="button">샷 기록 CSV</button>
+            </div>
+            <label class="check"><input type="checkbox" id="optOverlay" checked> 공 궤적·점수 넣기</label>
+            <label class="check"><input type="checkbox" id="optLongOnly"> 4샷 이상 랠리만 담기</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tabStats" hidden>
+      <div class="stats-grid">
+        <div class="panel card-pad">
+          <h3>나와 상대</h3>
+          <table class="cmp" id="cmpTable"></table>
+          <div>
+            <span class="label">들어간 공의 깊이</span>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px" id="depthBars"></div>
+            <div class="depth-legend"><span><i style="background:var(--warn)"></i>짧음(서비스라인 안)</span><span><i style="background:var(--court)"></i>중간</span><span><i style="background:var(--in)"></i>깊음(베이스라인 3m 안)</span></div>
+          </div>
+          <p class="note">속도는 타구 순간부터 바운스까지의 평균 속도 추정치라 레이더 최고 속도보다 낮게 나옵니다. 같은 자리에서 찍은 세션끼리 비교할 때 가장 쓸모 있습니다.</p>
+        </div>
+        <div class="panel card-pad heat">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3>바운스 지도</h3><div class="seg" id="optHeat"><button type="button" data-v="me">내 샷</button><button type="button" data-v="op">상대 샷</button></div></div>
+          <div id="heatSvg"></div>
+        </div>
+        <div class="panel card-pad">
+          <h3>랠리 길이</h3>
+          <div class="hist" id="hist"></div>
+          <p class="note" id="rallyNote"></p>
+        </div>
+        <div class="panel card-pad">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>코칭 노트</h3><button class="btn sm" id="btnCoach" type="button">이 세션 코칭 받기</button></div>
+          <div class="coach muted" id="coachOut">통계를 바탕으로 다음 연습에서 집중할 점 세 가지를 정리해 드립니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tabRallies" hidden>
+      <div class="panel tbl-wrap"><table class="rt" id="rallyTable"></table></div>
+    </div>
+  </section>
+</div>
+
+<nav class="tabbar" aria-label="주요 메뉴">
+  <button type="button" id="tabHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>세션</button>
+  <label class="rec" for="fileRecord" aria-label="촬영하기"><i></i>촬영</label>
+  <label for="fileOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m10 9.5 4.5 2.5-4.5 2.5z"/></svg>불러오기</label>
+</nav>
+<div class="modal" id="modal" hidden><div class="box" id="modalBox"></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* RallyNote core: court geometry, ball detection, tracking, events, stats, scoring, demo scene.
+   Pure functions on RGBA buffers so the same code runs in the page and in tests. */
+(function (root) {
+  'use strict';
+
+  // ---------- Court geometry (meters) ----------
+  // x: across (0 = left doubles sideline as seen from camera), y: depth (0 = near baseline, camera side)
+  const C = {
+    W: 10.97, L: 23.77, NET: 11.885, SGL: 1.37, SGR: 9.6, CX: 5.485,
+    SVC_N: 11.885 - 6.40, SVC_F: 11.885 + 6.40
+  };
+
+  // ---------- Homography ----------
+  function solve(A, b) {
+    const n = b.length;
+    for (let i = 0; i < n; i++) {
+      let p = i;
+      for (let r = i + 1; r < n; r++) if (Math.abs(A[r][i]) > Math.abs(A[p][i])) p = r;
+      [A[i], A[p]] = [A[p], A[i]]; [b[i], b[p]] = [b[p], b[i]];
+      const d = A[i][i]; if (Math.abs(d) < 1e-12) return null;
+      for (let r = 0; r < n; r++) {
+        if (r === i) continue;
+        const f = A[r][i] / d; if (!f) continue;
+        for (let c = i; c < n; c++) A[r][c] -= f * A[i][c];
+        b[r] -= f * b[i];
+      }
+    }
+    return b.map((v, i) => v / A[i][i]);
+  }
+  // maps src points -> dst points (4 pairs)
+  function homography(src, dst) {
+    const A = [], b = [];
+    for (let i = 0; i < 4; i++) {
+      const [x, y] = src[i], [u, v] = dst[i];
+      A.push([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.push(u);
+      A.push([0, 0, 0, x, y, 1, -v * x, -v * y]); b.push(v);
+    }
+    const h = solve(A, b);
+    return h ? [h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], 1] : null;
+  }
+  function applyH(H, x, y) {
+    const w = H[6] * x + H[7] * y + H[8];
+    return [(H[0] * x + H[1] * y + H[2]) / w, (H[3] * x + H[4] * y + H[5]) / w];
+  }
+  // corners in image (any pixel units) ordered: farLeft, farRight, nearRight, nearLeft
+  const COURT_CORNERS = [[0, C.L], [C.W, C.L], [C.W, 0], [0, 0]];
+  function calibrate(corners) {
+    const toCourt = homography(corners, COURT_CORNERS);
+    const toImage = homography(COURT_CORNERS, corners);
+    return toCourt && toImage ? { corners, toCourt, toImage } : null;
+  }
+  function courtLines() {
+    return [
+      [[0, 0], [C.W, 0]], [[0, C.L], [C.W, C.L]],
+      [[0, 0], [0, C.L]], [[C.W, 0], [C.W, C.L]],
+      [[C.SGL, 0], [C.SGL, C.L]], [[C.SGR, 0], [C.SGR, C.L]],
+      [[C.SGL, C.SVC_N], [C.SGR, C.SVC_N]], [[C.SGL, C.SVC_F], [C.SGR, C.SVC_F]],
+      [[C.CX, C.SVC_N], [C.CX, C.SVC_F]],
+      [[C.CX, 0], [C.CX, 0.3]], [[C.CX, C.L], [C.CX, C.L - 0.3]]
+    ];
+  }
+
+  function pointInPoly(x, y, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const [xi, yi] = poly[i], [xj, yj] = poly[j];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  // region where the ball can appear: expanded court plus everything above it in the image
+  function roiMask(w, h, calib, sx, sy) {
+    const p = (cx, cy) => { const [u, v] = applyH(calib.toImage, cx, cy); return [u * sx, v * sy]; };
+    const fl = p(-3.5, C.L + 5), fr = p(C.W + 3.5, C.L + 5), nr = p(C.W + 3.5, -4), nl = p(-3.5, -4);
+    const poly = [[fl[0] - w * 0.15, -1], [fr[0] + w * 0.15, -1], fr, nr, nl, fl];
+    const m = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) m[y * w + x] = pointInPoly(x + 0.5, y + 0.5, poly) ? 1 : 0;
+    return m;
+  }
+
+  // ---------- Ball detection on one frame ----------
+  function createDetector(w, h, mask) {
+    let prev = null, prev2 = null, prgb = null, prgb2 = null;
+    const cand = new Uint8Array(w * h);
+    const mot = new Uint8Array(w * h); // 1 = moving pixel, 3 = part of a large moving body (player)
+    const stack = new Int32Array(w * h);
+    const maxArea = Math.max(40, (w * h) / 1400);
+    return function detect(rgba) {
+      const g = new Uint8Array(w * h);
+      for (let i = 0, j = 0; i < g.length; i++, j += 4) g[i] = (rgba[j] * 3 + rgba[j + 1] * 6 + rgba[j + 2]) / 10;
+      const out = [];
+      if (prev) {
+        cand.fill(0); mot.fill(0);
+        for (let i = 0; i < g.length; i++) {
+          if (mask && !mask[i]) continue;
+          if (Math.abs(g[i] - prev[i]) >= 14) mot[i] = 1;
+        }
+        // label large moving bodies
+        for (let i = 0; i < mot.length; i++) {
+          if (mot[i] !== 1) continue;
+          let sp = 0, area = 0; const start = sp;
+          stack[sp++] = i; mot[i] = 2;
+          const list = [];
+          while (sp) {
+            const k = stack[--sp]; list.push(k); area++;
+            const x = k % w, y = (k / w) | 0;
+            for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+              const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+              const nk = ny * w + nx; if (mot[nk] === 1) { mot[nk] = 2; stack[sp++] = nk; }
+            }
+          }
+          if (area > maxArea * 1.5) for (const k of list) mot[k] = 3;
+          void start;
+        }
+        for (let i = 0, j = 0; i < g.length; i++, j += 4) {
+          if (mask && !mask[i]) continue;
+          if (mot[i] === 3) continue;
+          const d1 = g[i] - prev[i], d2 = prev2 ? g[i] - prev2[i] : d1;
+          if (d1 < 12 && d2 < 12) continue; // the ball makes a pixel brighter than the court behind it
+          const r = rgba[j], gg = rgba[j + 1], b = rgba[j + 2];
+          const mx = Math.max(r, gg, b), mn = Math.min(r, gg, b);
+          if (mx < 90) continue;
+          const s = (mx - mn) / mx;
+          let ok = false;
+          if (s >= 0.28) {
+            let hue;
+            if (mx === r) hue = 60 * (((gg - b) / (mx - mn)) % 6);
+            else if (mx === gg) hue = 60 * ((b - r) / (mx - mn) + 2);
+            else hue = 60 * ((r - gg) / (mx - mn) + 4);
+            if (hue < 0) hue += 360;
+            ok = hue >= 42 && hue <= 88;
+          }
+          if (!ok && s > 0.12) {
+            // small, compressed balls lose their colour; what is left is a change toward yellow
+            const ref = (prev2 && d2 > d1) ? prgb2 : prgb;
+            const dr = r - ref[j], dg = gg - ref[j + 1], db = b - ref[j + 2];
+            ok = dg > 22 && dr > 12 && dg - db > Math.max(18, dg * 0.35) && dr > dg * 0.45 && dr < dg * 1.35 && gg >= r * 0.92; // skin and wood stay redder than the ball
+          }
+          if (ok) cand[i] = 1;
+        }
+        for (let i = 0; i < cand.length; i++) {
+          if (cand[i] !== 1) continue;
+          let sp = 0, area = 0, sx = 0, sy = 0, minx = w, maxx = 0, miny = h, maxy = 0;
+          stack[sp++] = i; cand[i] = 2;
+          while (sp) {
+            const k = stack[--sp], x = k % w, y = (k / w) | 0;
+            area++; sx += x; sy += y;
+            if (x < minx) minx = x; if (x > maxx) maxx = x; if (y < miny) miny = y; if (y > maxy) maxy = y;
+            for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+              const nx = x + dx, ny = y + dy;
+              if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+              const nk = ny * w + nx;
+              if (cand[nk] === 1) { cand[nk] = 2; stack[sp++] = nk; }
+            }
+          }
+          const bw = maxx - minx + 1, bh = maxy - miny + 1;
+          if (area > maxArea || bw > w * 0.06 || bh > h * 0.08) continue;
+          // touching a moving body: a head, hand or shoe rather than the ball
+          let touch = false;
+          for (let y = Math.max(0, miny - 2); y <= Math.min(h - 1, maxy + 2) && !touch; y++) for (let x = Math.max(0, minx - 2); x <= Math.min(w - 1, maxx + 2); x++) if (mot[y * w + x] === 3) { touch = true; break; }
+          if (touch) continue;
+          out.push({ x: sx / area + 0.5, y: sy / area + 0.5, a: area });
+        }
+      }
+      prev2 = prev; prev = g;
+      prgb2 = prgb; prgb = new Uint8ClampedArray(rgba);
+      return out;
+    };
+  }
+
+  // ---------- Tracking ----------
+  // frames: [{t, c:[{x,y,a}]}], coords in processing pixels. Returns pts[] aligned with frames (null when no ball).
+  function track(frames, w) {
+    const pts = new Array(frames.length).fill(null);
+    const gateBase = w * 0.035, startGate = w * 0.07;
+    let cur = null; // {x,y,vx,vy,i,miss}
+    let prevC = [];
+    for (let i = 0; i < frames.length; i++) {
+      const c = frames[i].c;
+      if (cur) {
+        const dt = i - cur.i;
+        const px = cur.x + cur.vx * dt, py = cur.y + cur.vy * dt;
+        const gate = gateBase + Math.hypot(cur.vx, cur.vy) * 0.6 * dt;
+        let best = null, bd = 1e9;
+        for (const k of c) { const d = Math.hypot(k.x - px, k.y - py); if (d < bd) { bd = d; best = k; } }
+        if (best && bd < gate) {
+          const nvx = (best.x - cur.x) / dt, nvy = (best.y - cur.y) / dt;
+          cur = { x: best.x, y: best.y, vx: cur.vx * 0.3 + nvx * 0.7, vy: cur.vy * 0.3 + nvy * 0.7, i, miss: 0 };
+          pts[i] = { x: best.x, y: best.y };
+        } else if (i - cur.i > 6) cur = null;
+      }
+      // a slow track (a player's arm, a shoe) must not hold the tracker while a fast ball shows up elsewhere
+      if (cur && cur.i !== i && Math.hypot(cur.vx, cur.vy) < w * 0.006 && c.length) {
+        outer: for (const k of c) for (const p of prevC) {
+          const d = Math.hypot(k.x - p.x, k.y - p.y);
+          if (d > w * 0.012 && d < startGate && Math.hypot(k.x - cur.x, k.y - cur.y) > w * 0.05) { cur = null; break outer; }
+        }
+      }
+      if (!cur && c.length) {
+        // start only when a candidate continues from a previous-frame candidate
+        let best = null, bd = 1e9, from = null;
+        for (const k of c) for (const p of prevC) {
+          const d = Math.hypot(k.x - p.x, k.y - p.y);
+          if (d > 0.6 && d < startGate && d < bd) { bd = d; best = k; from = p; }
+        }
+        if (best) {
+          cur = { x: best.x, y: best.y, vx: best.x - from.x, vy: best.y - from.y, i, miss: 0 };
+          pts[i] = { x: best.x, y: best.y };
+          if (i > 0 && !pts[i - 1]) pts[i - 1] = { x: from.x, y: from.y };
+        }
+      }
+      prevC = c;
+    }
+    return pts;
+  }
+
+  // split into segments separated by gaps, fill short holes, drop tiny segments
+  function segments(pts, times, gapSec) {
+    const segs = []; let s = null, lastI = -1;
+    for (let i = 0; i < pts.length; i++) {
+      if (!pts[i]) continue;
+      if (s && times[i] - times[lastI] > gapSec) { segs.push(s); s = null; }
+      if (!s) s = { a: i, b: i };
+      s.b = i; lastI = i;
+    }
+    if (s) segs.push(s);
+    // interpolate holes
+    for (const g of segs) {
+      let last = g.a;
+      for (let i = g.a + 1; i <= g.b; i++) {
+        if (!pts[i]) continue;
+        if (i - last > 1) for (let k = last + 1; k < i; k++) {
+          const f = (k - last) / (i - last);
+          pts[k] = { x: pts[last].x + (pts[i].x - pts[last].x) * f, y: pts[last].y + (pts[i].y - pts[last].y) * f, interp: true };
+        }
+        last = i;
+      }
+    }
+    return segs.filter(g => times[g.b] - times[g.a] > 0.35);
+  }
+
+  // ---------- Events: hits and bounces ----------
+  // pts in processing px; scale converts to calibration px (calibration image coords)
+  function findEvents(pts, times, segs, calib, scale) {
+    const events = [];
+    const toCourt = (p) => applyH(calib.toCourt, p.x * scale, p.y * scale);
+    for (const g of segs) {
+      const n = g.b - g.a + 1; if (n < 8) continue;
+      const X = [], Y = [], T = [];
+      for (let i = g.a; i <= g.b; i++) { X.push(pts[i].x); Y.push(pts[i].y); T.push(times[i]); }
+      // light smoothing
+      const sm = (A) => A.map((v, i) => i === 0 || i === A.length - 1 ? v : (A[i - 1] + 2 * v + A[i + 1]) / 4);
+      const SX = sm(X), SY = sm(Y);
+      const dtAvg = (T[n - 1] - T[0]) / (n - 1);
+      const k = Math.max(2, Math.round(0.07 / dtAvg));
+      const CY = SX.map((x, i) => toCourt({ x, y: SY[i] })[1]);
+      const score = new Float64Array(n), kind = new Array(n).fill(null), hside = new Array(n).fill(null);
+      for (let i = k; i < n - k; i++) {
+        const vxb = (SX[i] - SX[i - k]) / (T[i] - T[i - k]), vyb = (SY[i] - SY[i - k]) / (T[i] - T[i - k]);
+        const vxa = (SX[i + k] - SX[i]) / (T[i + k] - T[i]), vya = (SY[i + k] - SY[i]) / (T[i + k] - T[i]);
+        const sp = Math.max(Math.hypot(vxb, vyb), Math.hypot(vxa, vya), 1);
+        const turn = Math.hypot(vxa - vxb, vya - vyb) / sp;
+        // depth trend over a longer window
+        const L = Math.min(Math.max(k * 2, Math.round(0.18 / dtAvg)), i, n - 1 - i);
+        const db = CY[i] - CY[i - L], da = CY[i + L] - CY[i];
+        const cusp = vyb - vya; // + when screen-downward motion turns upward
+        if (turn < 0.4) continue;
+        if (cusp < -sp * 0.4 && CY[i] > C.NET - 3) { score[i] = turn + 1; kind[i] = 'hit'; hside[i] = 'far'; } // far player: ball rising away, then coming back down-screen
+        else if (cusp > sp * 0.4) {
+          if (CY[i] >= C.NET) { score[i] = turn; kind[i] = 'bounce'; }
+          else if (db < -0.3 && da > 0.3) { score[i] = turn + 1; kind[i] = 'hit'; hside[i] = 'near'; } // near player: approaching, then going away
+          else { score[i] = turn; kind[i] = 'bounce'; }
+        }
+      }
+      // non-max suppression
+      const minGap = Math.max(3, Math.round(0.16 / dtAvg));
+      const idx = [];
+      for (let i = 0; i < n; i++) if (kind[i]) idx.push(i);
+      idx.sort((a, b) => score[b] - score[a]);
+      const taken = [];
+      for (const i of idx) {
+        if (taken.some(j => Math.abs(j - i) < minGap)) continue;
+        taken.push(i);
+      }
+      taken.sort((a, b) => a - b);
+      for (let i of taken) {
+        const kd = kind[i], hs = hside[i];
+        let px = SX[i], py = SY[i];
+        if (kd === 'bounce') {
+          // refine: the contact point is the raw sample furthest below the chord across the kink
+          const a = Math.max(0, i - k), b = Math.min(n - 1, i + k);
+          let best = -1e9, bi = i;
+          for (let j = a; j <= b; j++) {
+            const p = pts[g.a + j]; if (!p || p.interp) continue;
+            const f = (T[j] - T[a]) / Math.max(1e-6, T[b] - T[a]);
+            const chordY = Y[a] + (Y[b] - Y[a]) * f, chordX = X[a] + (X[b] - X[a]) * f;
+            const d = (p.y - chordY) - Math.abs(p.x - chordX) * 0.1;
+            if (d > best) { best = d; bi = j; }
+          }
+          i = bi; px = X[i]; py = Y[i];
+        }
+        if (kd === 'hit') {
+          // a real contact sends the ball toward the other half; a ball dribbling on after the point does not
+          let fwd = -1e9, j = i + 1;
+          for (; j < n && T[j] - T[i] < 1.2; j++) fwd = Math.max(fwd, hs === 'near' ? CY[j] - CY[i] : CY[i] - CY[j]);
+          if (T[Math.min(j, n - 1)] - T[i] > 0.4 && fwd < 2.5) continue;
+          if (j - i > 3 && fwd < 1.5) continue; // too little flight to call it a return
+        }
+        const fi = g.a + i;
+        const [cx, cy] = toCourt({ x: px, y: py });
+        if (kd === 'bounce' && (cx < -4 || cx > C.W + 4 || cy < -6 || cy > C.L + 6)) continue; // not on the ground near the court
+        events.push({ type: kd, side: hs, fi, t: T[i], ix: px, iy: py, cx, cy, seg: segs.indexOf(g) });
+      }
+      // segment boundaries: used to infer contacts that happened off-screen or behind a player
+      const si = segs.indexOf(g);
+      const c0 = toCourt({ x: SX[0], y: SY[0] }), c1 = toCourt({ x: SX[n - 1], y: SY[n - 1] });
+      events.push({ type: 'start', fi: g.a, t: T[0], ix: SX[0], iy: SY[0], cx: c0[0], cy: c0[1], seg: si });
+      events.push({ type: 'end', fi: g.b, t: T[n - 1], ix: SX[n - 1], iy: SY[n - 1], cx: c1[0], cy: c1[1], seg: si });
+    }
+    return events;
+  }
+
+  // ---------- Rallies, shots, judgements ----------
+  function judgeBounce(b, shot, opts) {
+    const L = opts.doubles ? 0 : C.SGL, R = opts.doubles ? C.W : C.SGR;
+    let xl = L, xr = R, y0, y1;
+    const fromNear = shot.side === 'near';
+    if (shot.serve) {
+      const deuce = fromNear ? shot.cx >= C.CX : shot.cx <= C.CX;
+      // near server on right (deuce) serves to far court's left half from camera view
+      if (fromNear) { [xl, xr] = shot.cx >= C.CX ? [C.SGL, C.CX] : [C.CX, C.SGR]; y0 = C.NET; y1 = C.SVC_F; }
+      else { [xl, xr] = shot.cx <= C.CX ? [C.CX, C.SGR] : [C.SGL, C.CX]; y0 = C.SVC_N; y1 = C.NET; }
+      void deuce;
+    } else if (fromNear) { y0 = C.NET; y1 = C.L; } else { y0 = 0; y1 = C.NET; }
+    const dx = Math.min(b.cx - xl, xr - b.cx), dy = Math.min(b.cy - y0, y1 - b.cy);
+    const margin = Math.min(dx, dy); // >=0 inside
+    return { in: margin >= 0, margin, box: [xl, y0, xr, y1] };
+  }
+
+  function depthZone(b, side) {
+    const fromNet = side === 'near' ? b.cy - C.NET : C.NET - b.cy;
+    if (fromNet < 6.4) return 'short';
+    if (fromNet < C.NET - 3) return 'mid';
+    return 'deep';
+  }
+
+  function buildRallies(events, segs, times, opts) {
+    const rallies = [];
+    const bySeg = new Map();
+    for (const e of events) { if (!bySeg.has(e.seg)) bySeg.set(e.seg, []); bySeg.get(e.seg).push(e); }
+    let rid = 0;
+    // merge segments that are close in time into one rally
+    const groups = [];
+    for (let s = 0; s < segs.length; s++) {
+      const g = groups[groups.length - 1];
+      if (g && times[segs[s].a] - g.t1 < opts.rallyGap) { g.segs.push(s); g.t1 = times[segs[s].b]; }
+      else groups.push({ segs: [s], t0: times[segs[s].a], t1: times[segs[s].b] });
+    }
+    for (const g of groups) {
+      const ev = g.segs.flatMap(s => bySeg.get(s) || []).sort((a, b) => a.t - b.t || (a.type === 'end' ? -1 : 1));
+      const shots = [];
+      let cur = null, lastEnd = null;
+      const other = (sd) => sd === 'near' ? 'far' : 'near';
+      const half = (cy) => cy < C.NET ? 'near' : 'far';
+      const mk = (o) => { const sh = Object.assign({ id: 's' + rid + '_' + shots.length, bounce: null }, o); shots.push(sh); cur = sh; return sh; };
+      const implied = (side, t, ref) => mk({ t, fi: ref.fi, side, cx: Math.min(Math.max(ref.cx, 0), C.W), cy: side === 'near' ? Math.min(ref.cy, 1) : Math.max(ref.cy, C.L - 1), ix: ref.ix, iy: ref.iy, inferred: true });
+      for (let k = 0; k < ev.length; k++) {
+        const e = ev[k];
+        const nextReal = ev.slice(k + 1).find(x => x.type === 'hit' || x.type === 'bounce');
+        if (e.type === 'start') {
+          const soonHit = nextReal && nextReal.type === 'hit' && nextReal.t - e.t < 0.3;
+          if (!soonHit) {
+            if (!cur) implied(half(e.cy), e.t, e);
+            else if (lastEnd) {
+              // ball vanished and reappeared: if it reappears heading back, someone hit it in the gap
+              const sd = half((lastEnd.cy + e.cy) / 2);
+              if (cur.side !== sd && (cur.bounce || half(lastEnd.cy) === sd)) implied(sd, (lastEnd.t + e.t) / 2, e);
+            }
+          }
+          continue;
+        }
+        if (e.type === 'end') { lastEnd = e; continue; }
+        if (e.type === 'hit') {
+          const side = e.side || half(e.cy);
+          if (cur && cur.side === side && !cur.bounce && e.t - cur.t < 0.8) continue; // same contact detected twice
+          // a "contact" just before the incoming ball lands on that player's half is the descent, not a hit
+          if (cur && cur.side !== side && !cur.bounce && nextReal && nextReal.type === 'bounce' && nextReal.t - e.t < 0.45 && half(nextReal.cy) === side) continue;
+          if (cur && cur.side === side && cur.bounce) implied(other(side), (cur.bounce.t + e.t) / 2, e); // missed the return in between
+          mk({ t: e.t, fi: e.fi, side, cx: e.cx, cy: e.cy, ix: e.ix, iy: e.iy });
+        } else if (e.type === 'bounce') {
+          const bo = { t: e.t, fi: e.fi, cx: e.cx, cy: e.cy, ix: e.ix, iy: e.iy };
+          if (!cur) { implied(other(half(e.cy)), Math.max(g.t0, e.t - 0.6), e); cur.cx = C.CX; cur.bounce = bo; continue; }
+          if (!cur.bounce) { cur.bounce = bo; continue; }
+          // a second bounce: if it is back on the hitter's half, the opponent returned it unseen
+          if (half(e.cy) === cur.side && half(cur.bounce.cy) !== cur.side) { const sh = implied(other(cur.side), (cur.bounce.t + e.t) / 2, e); sh.bounce = bo; }
+        }
+      }
+      // ball that keeps travelling after an out-ball is not a return
+      while (shots.length > 1) {
+        const l = shots[shots.length - 1], pv = shots[shots.length - 2];
+        if (!l.bounce && pv.bounce && (judgeBounce(pv.bounce, pv, opts).in === false) && l.t - pv.bounce.t < 1.2) shots.pop(); else break;
+      }
+      if (!shots.length) continue;
+      shots[0].serve = opts.mode === 'match';
+      for (const s of shots) {
+        s.type = s.serve ? 'serve' : null;
+        if (s.bounce) {
+          const j = judgeBounce(s.bounce, s, opts);
+          s.bounce.in = j.in; s.bounce.margin = j.margin; s.bounce.zone = depthZone(s.bounce, s.side);
+          // speed: average from contact to bounce, contact location clamped to hitter's half
+          const hy = s.side === 'near' ? Math.min(Math.max(s.cy, -4), C.NET - 2) : Math.max(Math.min(s.cy, C.L + 4), C.NET + 2);
+          const hx = Math.min(Math.max(s.cx, -2), C.W + 2);
+          const d = Math.hypot(s.bounce.cx - hx, s.bounce.cy - hy), dt = s.bounce.t - s.t;
+          const kmh = dt > 0.08 ? d / dt * 3.6 : null;
+          s.speed = kmh && kmh > 15 && kmh < 240 ? Math.round(kmh) : null;
+        }
+      }
+      // not play: a ball fed or tossed between points never lands in a court half after a real contact
+      const real = shots.filter(x => !x.inferred);
+      const landed = shots.filter(x => x.bounce && x.bounce.cx > -1.5 && x.bounce.cx < C.W + 1.5 && x.bounce.cy > -2 && x.bounce.cy < C.L + 2);
+      const fast = Math.max(0, ...g.segs.map(k => segs[k].v || 0));
+      if (!landed.length && real.length < 2 && fast < 15) continue;
+      if (g.t1 - g.t0 < 0.8) continue;
+      rallies.push({ id: 'r' + rid++, t0: g.t0, t1: g.t1, shots, winner: null, auto: suggestWinner(shots) });
+    }
+    return rallies;
+  }
+
+  function suggestWinner(shots) {
+    const last = shots[shots.length - 1];
+    if (!last) return null;
+    const other = last.side === 'near' ? 'far' : 'near';
+    if (!last.bounce) return other; // into the net or never landed
+    return last.bounce.in ? last.side : other;
+  }
+
+  // ---------- Scoring ----------
+  const PT = ['0', '15', '30', '40'];
+  function score(rallies, opts) {
+    // returns per-rally snapshot {me, op} after point, and final
+    const st = { sets: [], g: [0, 0], p: [0, 0], tb: false, done: false };
+    const snaps = [];
+    let totalGames = 0;
+    for (const r of rallies) {
+      const w = r.winner ?? (opts.useAuto ? r.auto : null);
+      // which physical side is "me" for this rally
+      const swapped = opts.swapEnds && totalGames % 2 === 1;
+      const meSide = swapped ? (opts.meStart === 'near' ? 'far' : 'near') : opts.meStart;
+      r.meSide = meSide;
+      if (!w || st.done) { snaps.push(null); continue; }
+      const who = w === meSide ? 0 : 1;
+      st.p[who]++;
+      const [a, b] = st.p;
+      let gameWon = -1;
+      if (st.tb) { if ((a >= 7 || b >= 7) && Math.abs(a - b) >= 2) gameWon = a > b ? 0 : 1; }
+      else if ((a >= 4 || b >= 4) && Math.abs(a - b) >= 2) gameWon = a > b ? 0 : 1;
+      if (gameWon >= 0) {
+        st.g[gameWon]++; st.p = [0, 0]; totalGames++;
+        const [x, y] = st.g;
+        if ((x >= 6 || y >= 6) && Math.abs(x - y) >= 2 || st.tb) {
+          st.sets.push([x, y]); st.g = [0, 0]; st.tb = false;
+          const won = st.sets.filter(s => s[0] > s[1]).length, lost = st.sets.length - won;
+          if (won === opts.setsToWin || lost === opts.setsToWin) st.done = true;
+        } else if (x === 6 && y === 6) st.tb = true;
+      }
+      snaps.push({ sets: st.sets.map(s => s.slice()), g: st.g.slice(), p: pointLabel(st), who });
+    }
+    return { snaps, final: { sets: st.sets, g: st.g, p: pointLabel(st), done: st.done } };
+  }
+  function pointLabel(st) {
+    const [a, b] = st.p;
+    if (st.tb) return [String(a), String(b)];
+    if (a >= 3 && b >= 3) { if (a === b) return ['40', '40']; return a > b ? ['AD', '40'] : ['40', 'AD']; }
+    return [PT[Math.min(a, 3)], PT[Math.min(b, 3)]];
+  }
+
+  // ---------- Stats ----------
+  function stats(rallies, side) {
+    const my = [], all = [];
+    for (const r of rallies) for (const s of r.shots) {
+      all.push(s);
+      const owner = side === 'me' ? (r.meSide || 'near') : (r.meSide === 'far' ? 'near' : 'far');
+      if (s.side === owner) my.push(s);
+    }
+    const landed = my.filter(s => s.bounce);
+    const ins = landed.filter(s => s.bounce.in);
+    const speeds = my.map(s => s.speed).filter(Boolean);
+    const zones = { short: 0, mid: 0, deep: 0 };
+    ins.forEach(s => zones[s.bounce.zone]++);
+    const serves = my.filter(s => s.serve);
+    const servesIn = serves.filter(s => s.bounce && s.bounce.in);
+    const lens = rallies.map(r => r.shots.length);
+    return {
+      shots: my.length, landed: landed.length, inPct: landed.length ? Math.round(ins.length / landed.length * 100) : null,
+      avgSpeed: speeds.length ? Math.round(speeds.reduce((a, b) => a + b, 0) / speeds.length) : null,
+      maxSpeed: speeds.length ? Math.max(...speeds) : null,
+      zones, serves: serves.length, servesIn: servesIn.length,
+      rallies: rallies.length, avgRally: lens.length ? +(lens.reduce((a, b) => a + b, 0) / lens.length).toFixed(1) : 0,
+      longest: lens.length ? Math.max(...lens) : 0,
+      byType: my.reduce((m, s) => { if (s.type) m[s.type] = (m[s.type] || 0) + 1; return m; }, {})
+    };
+  }
+
+  // ---------- Demo scene (synthetic camera footage) ----------
+  function makeCamera(w, h, o) {
+    o = o || {};
+    const cam = { pos: o.pos || [C.CX, -12, 7.5], look: o.look || [C.CX, 10.5, 0], f: w * (o.f || 0.92), cx: w / 2, cy: h / 2 };
+    const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+    const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    const norm = (a) => { const l = Math.hypot(...a); return a.map(v => v / l); };
+    const fwd = norm(sub(cam.look, cam.pos));
+    const right = norm(cross(fwd, [0, 0, 1]));
+    const up = cross(right, fwd);
+    cam.project = (X, Y, Z) => {
+      const d = sub([X, Y, Z], cam.pos);
+      const z = d[0] * fwd[0] + d[1] * fwd[1] + d[2] * fwd[2];
+      const x = d[0] * right[0] + d[1] * right[1] + d[2] * right[2];
+      const y = d[0] * up[0] + d[1] * up[1] + d[2] * up[2];
+      return [cam.cx + cam.f * x / z, cam.cy - cam.f * y / z, z];
+    };
+    return cam;
+  }
+
+  function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+
+  // builds a scripted session: ball path keyed by time, plus ground truth
+  function demoScript(seed) {
+    const R = rng(seed || 7), g = 9.81;
+    const path = []; // {t0,t1,fn(t)->[x,y,z]}
+    const truth = { hits: [], bounces: [] };
+    const players = []; // keyframes {t, near:[x,y], far:[x,y]}
+    let t = 1.5;
+    const rallyPlan = [5, 3, 8, 2, 6, 4, 1, 7];
+    const outcomes = ['in', 'out', 'in', 'net', 'out', 'in', 'out', 'in'];
+    let near = [6.5, -1.2], far = [4.5, C.L + 1.2];
+    players.push({ t: 0, near: near.slice(), far: far.slice() });
+    rallyPlan.forEach((nShots, ri) => {
+      let side = ri % 2 === 0 ? 'near' : 'far';
+      const servePos = side === 'near' ? [ri % 4 < 2 ? 6.6 : 4.3, -0.4] : [ri % 4 < 2 ? 4.3 : 6.6, C.L + 0.4];
+      let pos = servePos.slice(), z0 = 2.6;
+      for (let s = 0; s < nShots; s++) {
+        const last = s === nShots - 1;
+        const serve = s === 0;
+        let tx, ty;
+        const fromNear = side === 'near';
+        if (serve) {
+          const left = fromNear ? pos[0] >= C.CX : pos[0] <= C.CX;
+          tx = left ? 2.2 + R() * 2.6 : 6.2 + R() * 2.6;
+          if (!fromNear) tx = left ? 6.2 + R() * 2.6 : 2.2 + R() * 2.6;
+          ty = fromNear ? C.NET + 3.5 + R() * 2.4 : C.NET - 3.5 - R() * 2.4;
+        } else {
+          tx = 2 + R() * 7; const depth = 5 + R() * 6;
+          ty = fromNear ? C.NET + depth : C.NET - depth;
+        }
+        let outcome = 'in';
+        if (last) {
+          outcome = outcomes[ri % outcomes.length];
+          if (outcome === 'out') { if (R() < 0.5) ty = fromNear ? C.L + 0.9 + R() : -0.9 - R(); else tx = R() < 0.5 ? C.SGL - 0.7 : C.SGR + 0.7; }
+        }
+        const T = serve ? 0.62 : 0.95 + R() * 0.35;
+        const p0 = [pos[0], pos[1], z0];
+        truth.hits.push({ t, side });
+        const tshot = { t, side, serve, cx: pos[0], cy: pos[1], bounce: null, last, outcome, rally: ri };
+        (truth.shots = truth.shots || []).push(tshot);
+        if (outcome === 'net') {
+          // ball dies at the net
+          const tNet = T * 0.5;
+          const vx = (tx - p0[0]) / T, vy = (ty - p0[1]) / T;
+          const t0 = t;
+          path.push({ t0, t1: t0 + tNet + 0.25, fn: (tt) => { const u = tt - t0; const k = Math.min(u, tNet); return [p0[0] + vx * k, p0[1] + vy * k, Math.max(0.05, 0.9 - (u > tNet ? (u - tNet) * 3 : 0))]; } });
+          t += tNet + 0.25;
+          break;
+        }
+        const vx = (tx - p0[0]) / T, vy = (ty - p0[1]) / T, vz = (0 - z0 + 0.5 * g * T * T) / T;
+        const t0 = t;
+        path.push({ t0, t1: t0 + T, fn: (tt) => { const u = tt - t0; return [p0[0] + vx * u, p0[1] + vy * u, p0[2] + vz * u - 0.5 * g * u * u]; } });
+        t += T;
+        truth.bounces.push({ t, x: tx, y: ty });
+        tshot.bounce = { t, cx: tx, cy: ty }; tshot.speed = Math.hypot(tx - p0[0], ty - p0[1]) / T * 3.6;
+        // after bounce
+        const vzb = -(vz - g * T) * 0.68, kx = vx * 0.8, ky = vy * 0.8;
+        const otherSide = fromNear ? 'far' : 'near';
+        const hitY = fromNear ? C.L + 0.6 + R() * 1.4 : -0.6 - R() * 1.4;
+        let T2 = (hitY - ty) / ky;
+        if (last || !(T2 > 0.2 && T2 < 1.4)) T2 = Math.min(Math.max(T2, 0.45), 1.1);
+        const b0 = [tx, ty], t1 = t;
+        path.push({ t0: t1, t1: t1 + (last ? 1.1 : T2), fn: (tt) => { const u = tt - t1; return [b0[0] + kx * u, b0[1] + ky * u, Math.max(0.033, vzb * u - 0.5 * g * u * u)]; } });
+        const contact = [b0[0] + kx * T2, b0[1] + ky * T2, Math.max(0.5, vzb * T2 - 0.5 * g * T2 * T2)];
+        players.push({ t: t1 + T2 * 0.6, near: fromNear ? near.slice() : [contact[0] + 0.5, contact[1]], far: fromNear ? [contact[0] - 0.5, contact[1]] : far.slice() });
+        if (fromNear) far = [contact[0] - 0.5, contact[1]]; else near = [contact[0] + 0.5, contact[1]];
+        if (last) { t += 1.1; break; }
+        t += T2; pos = [contact[0], contact[1]]; z0 = Math.min(1.4, Math.max(0.6, contact[2])); side = otherSide;
+      }
+      truth.rallies = (truth.rallies || 0) + 1;
+      t += 4.5 + R() * 2; // dead time
+      near = [6.5 - (ri % 2) * 2, -1.2]; far = [4.5 + (ri % 2) * 2, C.L + 1.2];
+      players.push({ t: t - 1.5, near: near.slice(), far: far.slice() });
+    });
+    return { duration: t, path, truth, players };
+  }
+
+  function lerp(a, b, f) { return a + (b - a) * f; }
+  function playerAt(script, t) {
+    const k = script.players; let i = 0;
+    while (i < k.length - 1 && k[i + 1].t <= t) i++;
+    const a = k[i], b = k[Math.min(i + 1, k.length - 1)];
+    const f = b.t > a.t ? Math.min(1, Math.max(0, (t - a.t) / (b.t - a.t))) : 0;
+    return { near: [lerp(a.near[0], b.near[0], f), lerp(a.near[1], b.near[1], f)], far: [lerp(a.far[0], b.far[0], f), lerp(a.far[1], b.far[1], f)] };
+  }
+  function ballAt(script, t) {
+    for (const p of script.path) if (t >= p.t0 && t < p.t1) return p.fn(t);
+    return null;
+  }
+
+  // renders frame at time t into RGBA buffer (w x h)
+  function renderDemo(buf, w, h, script, cam, t, noiseSeed) {
+    const R = rng(noiseSeed || 1);
+    // background
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      const sky = y < h * 0.18;
+      buf[i] = sky ? 150 : 74; buf[i + 1] = sky ? 168 : 112; buf[i + 2] = sky ? 182 : 92; buf[i + 3] = 255;
+    }
+    const P = (X, Y, Z) => cam.project(X, Y, Z || 0);
+    fillPoly(buf, w, h, [P(-3.6, -5), P(C.W + 3.6, -5), P(C.W + 3.6, C.L + 6.4), P(-3.6, C.L + 6.4)], [60, 104, 138]);
+    fillPoly(buf, w, h, [P(0, 0), P(C.W, 0), P(C.W, C.L), P(0, C.L)], [42, 86, 140]);
+    for (const [a, b] of courtLines()) {
+      const A = P(a[0], a[1]), B = P(b[0], b[1]);
+      line(buf, w, h, A, B, [236, 238, 240], 1.3);
+    }
+    // far player behind net
+    const pl = playerAt(script, t);
+    // doubles partners at the net, shuffling side to side
+    const sway = Math.sin(t * 0.9) * 1.6;
+    drawPlayer(buf, w, h, P, [C.CX - 2 + sway, C.NET + 3.2], [200, 60, 60]);
+    drawPlayer(buf, w, h, P, pl.far, [200, 60, 60]);
+    // net
+    const n0 = P(-0.9, C.NET, 1.07), n1 = P(C.W + 0.9, C.NET, 1.07), n2 = P(C.W + 0.9, C.NET, 0), n3 = P(-0.9, C.NET, 0);
+    fillPoly(buf, w, h, [n0, n1, n2, n3], [40, 46, 50], 0.3);
+    line(buf, w, h, n0, n1, [240, 240, 240], 1.2);
+    const ball = ballAt(script, t);
+    let drewBall = false;
+    if (ball && ball[1] >= C.NET) { drawBall(buf, w, h, P, ball); drewBall = true; }
+    drawPlayer(buf, w, h, P, [C.CX + 2 - sway, C.NET - 3.2], [30, 34, 40]);
+    drawPlayer(buf, w, h, P, pl.near, [30, 34, 40]);
+    if (ball && !drewBall) drawBall(buf, w, h, P, ball);
+    // sensor noise
+    for (let i = 0; i < w * h * 4; i += 4) { const n = (R() - 0.5) * 10; buf[i] += n; buf[i + 1] += n; buf[i + 2] += n; }
+  }
+  function drawBall(buf, w, h, P, b) {
+    const c = P(b[0], b[1], b[2]);
+    const e = P(b[0] + 0.033, b[1], b[2]);
+    const r = Math.max(1.15, Math.abs(e[0] - c[0]));
+    disc(buf, w, h, c[0], c[1], r, [214, 236, 62]);
+    // shadow
+    const s = P(b[0], b[1], 0);
+    if (b[2] > 0.1) disc(buf, w, h, s[0], s[1], r * 0.8, [30, 60, 100], 0.4);
+  }
+  function drawPlayer(buf, w, h, P, p, col) {
+    const [x, y] = p;
+    const a = P(x - 0.3, y, 0), b = P(x + 0.3, y, 0), c = P(x + 0.25, y, 1.8), d = P(x - 0.25, y, 1.8);
+    fillPoly(buf, w, h, [d, c, b, a], col);
+    const head = P(x, y, 1.75), hr = Math.abs(P(x + 0.13, y, 1.75)[0] - head[0]);
+    disc(buf, w, h, head[0], head[1] - hr, hr, [205, 165, 135]);
+  }
+  function fillPoly(buf, w, h, pts, col, alpha) {
+    alpha = alpha == null ? 1 : alpha;
+    let y0 = Math.max(0, Math.floor(Math.min(...pts.map(p => p[1])))), y1 = Math.min(h - 1, Math.ceil(Math.max(...pts.map(p => p[1]))));
+    for (let y = y0; y <= y1; y++) {
+      const xs = [];
+      for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+        const [xi, yi] = pts[i], [xj, yj] = pts[j];
+        if ((yi > y + 0.5) !== (yj > y + 0.5)) xs.push(xi + (y + 0.5 - yi) * (xj - xi) / (yj - yi));
+      }
+      xs.sort((a, b) => a - b);
+      for (let k = 0; k + 1 < xs.length; k += 2) {
+        const xa = Math.max(0, Math.round(xs[k])), xb = Math.min(w - 1, Math.round(xs[k + 1]));
+        for (let x = xa; x <= xb; x++) blend(buf, (y * w + x) * 4, col, alpha);
+      }
+    }
+  }
+  function blend(buf, i, col, a) { buf[i] = buf[i] * (1 - a) + col[0] * a; buf[i + 1] = buf[i + 1] * (1 - a) + col[1] * a; buf[i + 2] = buf[i + 2] * (1 - a) + col[2] * a; }
+  function line(buf, w, h, A, B, col, wd) {
+    const n = Math.ceil(Math.hypot(B[0] - A[0], B[1] - A[1]) * 2) + 1;
+    for (let k = 0; k <= n; k++) {
+      const x = A[0] + (B[0] - A[0]) * k / n, y = A[1] + (B[1] - A[1]) * k / n;
+      const xi = Math.round(x), yi = Math.round(y);
+      for (let dy = 0; dy < Math.max(1, Math.round(wd)); dy++) {
+        if (xi >= 0 && xi < w && yi + dy >= 0 && yi + dy < h) blend(buf, ((yi + dy) * w + xi) * 4, col, 0.9);
+      }
+    }
+  }
+  function disc(buf, w, h, cx, cy, r, col, alpha) {
+    alpha = alpha == null ? 1 : alpha;
+    for (let y = Math.floor(cy - r - 1); y <= Math.ceil(cy + r + 1); y++) for (let x = Math.floor(cx - r - 1); x <= Math.ceil(cx + r + 1); x++) {
+      if (x < 0 || y < 0 || x >= w || y >= h) continue;
+      const d = Math.hypot(x + 0.5 - cx, y + 0.5 - cy);
+      const cov = Math.min(1, Math.max(0, r + 0.5 - d));
+      if (cov > 0) blend(buf, (y * w + x) * 4, col, cov * alpha);
+    }
+  }
+  function demoCorners(cam) {
+    return COURT_CORNERS.map(([x, y]) => { const p = cam.project(x, y, 0); return [p[0], p[1]]; });
+  }
+
+  // ---------- Full pipeline over a list of frames ----------
+  function analyze(frames, w, h, calib, scale, opts) {
+    const times = frames.map(f => f.t);
+    const pts = track(frames, w);
+    const segs = segments(pts, times, 0.45);
+    const events = findEvents(pts, times, segs, calib, scale);
+    const rallies = buildRallies(events, segs, times, opts);
+    return { pts, times, segs, events, rallies };
+  }
+
+  // ball in play moves fast across the court; anything crawling (players, a ball rolling dead) is dropped
+  function dropSlow(pts, times, calib, minSpeed) {
+    const n = pts.length, sp = new Float64Array(n).fill(NaN);
+    const cp = pts.map(p => p ? applyH(calib.toCourt, p.x, p.y) : null);
+    for (let i = 1; i < n; i++) if (cp[i] && cp[i - 1]) sp[i] = Math.hypot(cp[i][0] - cp[i - 1][0], cp[i][1] - cp[i - 1][1]) / Math.max(1e-3, times[i] - times[i - 1]);
+    const keep = new Array(n).fill(true);
+    for (let i = 0; i < n; i++) {
+      if (!pts[i]) continue;
+      const w = [];
+      for (let j = i; j >= 0 && times[i] - times[j] <= 0.3; j--) if (!isNaN(sp[j])) w.push(sp[j]);
+      for (let j = i + 1; j < n && times[j] - times[i] <= 0.3; j++) if (!isNaN(sp[j])) w.push(sp[j]);
+      if (w.length < 3) continue;
+      w.sort((a, b) => a - b);
+      if (w[w.length >> 1] < minSpeed) keep[i] = false;
+    }
+    for (let i = 0; i < n; i++) if (!keep[i]) pts[i] = null;
+    return pts;
+  }
+
+  function analyzeTrack(pts, times, calib, opts) {
+    dropSlow(pts, times, calib, 5);
+    const segs = segments(pts, times, 0.45).filter(g => {
+      // a real flight covers ground; a jittering blob near a player does not
+      let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+      for (let i = g.a; i <= g.b; i++) { if (!pts[i]) continue; const [cx, cy] = applyH(calib.toCourt, pts[i].x, pts[i].y); x0 = Math.min(x0, cx); x1 = Math.max(x1, cx); y0 = Math.min(y0, cy); y1 = Math.max(y1, cy); }
+      const keep = Math.hypot(x1 - x0, y1 - y0) >= 4;
+      const sp = [];
+      for (let i = g.a + 1; i <= g.b; i++) if (pts[i] && pts[i - 1]) { const a = applyH(calib.toCourt, pts[i - 1].x, pts[i - 1].y), b = applyH(calib.toCourt, pts[i].x, pts[i].y); sp.push(Math.hypot(b[0] - a[0], b[1] - a[1]) / Math.max(1e-3, times[i] - times[i - 1])); }
+      sp.sort((a, b) => a - b); g.v = sp.length ? sp[sp.length >> 1] : 0;
+      if (!keep) for (let i = g.a; i <= g.b; i++) pts[i] = null;
+      return keep;
+    });
+    const events = findEvents(pts, times, segs, calib, 1);
+    const rallies = buildRallies(events, segs, times, opts);
+    return { segs, events, rallies };
+  }
+
+  const RN = { C, analyzeTrack, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
+    buildRallies, judgeBounce, suggestWinner, score, stats, makeCamera, demoScript, renderDemo, demoCorners, ballAt, analyze, depthZone };
+  if (typeof module !== 'undefined' && module.exports) module.exports = RN; else root.RN = RN;
+})(typeof self !== 'undefined' ? self : this);
+
+</script>
+<script>
+const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"corners":[[231.05,111.95],[408.95,111.95],[554.78,322.12],[85.22,322.12]],"pts":"45:372.0,226.0;46:359.8,211.4;47:349.0,198.7;48:339.5,188.5;49:330.8,179.5;50:323.5,171.8;51:316.5,165.5;52:310.5,159.8;53:305.2,155.5;54:300.2,151.5;55:295.5,148.0;56:291.5,144.5;57:287.5,142.8;58:283.8,141.5;59:280.6,139.6;60:277.6,138.6;61:274.8,137.5;62:272.5,137.2;63:269.8,136.5;64:267.5,134.8;65:265.6,127.6;66:263.8,121.5;67:262.2,116.5;68:260.5,111.0;69:259.0,106.5;70:257.5,102.5;71:256.0,98.5;72:254.5,95.2;73:253.5,91.8;74:253.8,89.5;75:255.8,88.5;76:258.2,87.5;77:260.5,86.2;78:262.8,85.5;79:265.4,84.6;80:267.8,84.5;81:270.5,83.8;82:273.2,83.5;83:276.2,83.5;84:278.7,84.3;85:281.8,84.5;86:285.0,85.5;87:288.3,86.3;88:291.5,87.2;89:294.8,88.5;90:298.4,90.4;91:302.2,92.5;92:305.8,94.5;93:309.5,97.2;94:313.5,100.2;95:317.8,103.5;96:322.3,106.7;97:326.5,110.8;98:331.5,115.2;99:335.8,119.5;100:340.5,125.0;101:346.0,130.5;102:351.4,136.6;103:356.6,143.4;104:362.5,150.2;105:368.5,158.0;106:374.5,166.0;107:380.7,174.9;108:387.5,184.2;109:394.2,194.5;110:401.5,205.2;111:408.5,215.5;112:415.2,216.5;113:422.0,217.5;114:429.5,218.0;115:436.5,219.2;116:445.0,220.5;117:452.5,222.8;118:461.2,225.5;119:469.8,228.5;120:479.4,231.6;121:488.6,235.6;122:499.1,240.1;123:509.6,245.6;124:520.8,251.5;125:532.5,258.5;126:544.8,265.6;127:557.6,273.8;128:571.3,283.0;129:585.6,293.1;130:600.7,304.3;131:592.3,295.3;132:573.5,277.5;133:555.5,261.5;134:538.7,246.5;135:522.7,233.0;136:507.6,220.6;137:493.4,209.4;138:479.6,198.6;139:467.0,189.5;140:454.5,181.0;141:442.8,173.5;142:431.8,166.5;143:421.3,159.9;144:411.1,154.3;145:401.5,149.2;146:392.3,144.1;147:383.4,140.6;148:375.4,137.4;149:367.5,134.5;150:359.2,131.5;151:351.8,129.5;152:344.8,127.5;153:338.5,126.0;154:331.5,124.8;155:325.5,124.2;156:319.4,123.6;157:313.6,123.4;158:308.2,123.5;159:302.8,123.5;160:297.6,124.4;161:292.5,125.2;162:288.5,126.0;163:283.5,127.2;164:279.2,128.5;165:275.3,130.3;166:271.2,131.5;167:267.0,132.5;168:263.4,135.6;169:259.6,137.6;170:256.5,134.5;171:254.0,129.5;172:251.0,125.0;173:248.0,121.0;174:245.2,117.8;175:242.3,114.1;176:239.7,111.1;177:237.4,108.4;178:234.8,105.5;179:232.4,103.4;180:230.2,101.5;181:227.8,99.5;182:225.5,97.8;183:223.2,96.5;184:221.0,95.0;185:219.0,94.0;186:216.7,93.3;187:214.8,92.5;188:213.0,92.0;189:211.0,91.5;190:209.2,91.5;191:207.4,91.6;192:207.5,91.2;193:209.2,90.5;194:210.6,90.4;195:212.5,89.8;196:214.2,89.5;197:215.9,89.7;198:217.5,90.2;199:219.8,90.5;200:221.8,91.5;201:224.3,92.1;202:226.4,93.4;203:228.6,94.6;204:231.2,96.5;205:233.5,98.2;206:236.5,100.5;207:239.5,103.0;208:242.5,106.0;209:245.5,109.2;210:248.5,111.5;211:252.5,117.0;212:255.5,121.5;213:259.2,126.5;214:263.4,131.6;215:267.5,137.8;216:271.5,144.0;217:276.2,151.5;218:281.0,159.5;219:286.2,167.5;220:291.5,177.2;221:297.2,187.5;222:302.9,198.3;223:309.5,209.8;224:315.8,222.5;225:322.8,236.5;226:329.8,247.5;227:336.2,250.5;228:343.2,254.5;229:350.2,258.5;230:358.0,263.5;231:366.4,269.2;232:375.0,275.5;233:384.4,282.8;234:394.5,291.3;235:405.3,300.5;236:416.9,311.1;237:426.0,316.0;243:399.4,210.6;244:396.3,199.3;245:392.8,188.5;246:390.2,179.5;247:387.5,170.8;248:384.8,163.5;249:382.5,156.8;250:380.4,150.6;251:378.0,144.5;252:376.5,140.8;253:374.5,136.8;254:372.5,132.5;255:370.5,130.0;256:369.4,127.4;257:367.5,124.8;258:366.5,123.0;259:365.2,121.5;260:363.5,120.2;261:362.5,119.2;262:361.4,118.4;263:360.2,117.5;264:359.0,117.5;265:357.8,117.5;266:357.0,117.5;267:356.0,118.0;268:355.0,118.5;269:354.2,119.5;270:353.2,118.4;271:352.8,114.5;272:352.5,110.2;273:351.8,106.5;274:351.5,103.2;275:350.5,100.2;276:350.5,97.2;277:349.8,94.5;278:349.5,92.2;279:348.5,90.0;280:348.5,88.0;281:347.8,86.5;282:347.5,84.8;283:347.0,83.5;284:346.5,82.2;285:346.2,81.3;286:345.7,80.3;287:345.3,79.7;288:344.7,79.3;289:344.3,78.9;290:343.8,78.8;291:343.1,79.3;292:343.1,79.3;293:342.8,79.8;294:342.5,80.0;295:342.0,80.5;296:341.8,79.8;297:341.8,78.5;298:341.7,77.7;299:341.3,76.7;300:340.9,75.7;301:340.9,74.7;302:340.5,74.0;489:301.0,69.0;490:303.5,71.8;491:305.8,74.5;492:308.5,78.2;493:311.5,82.2;494:314.4,86.4;495:317.5,90.8;496:320.5,95.8;497:323.8,101.5;498:327.5,107.5;499:331.5,114.2;500:335.4,121.4;501:339.5,129.2;502:344.2,137.5;504:354.0,157.5;505:359.2,168.5;506:365.0,180.5;507:371.5,194.0;508:377.0,201.5;509:382.8,204.5;510:389.4,207.6;511:395.8,211.5;512:403.2,216.5;513:410.8,221.5;514:419.2,227.5;515:428.5,234.5;516:438.4,242.4;517:448.8,251.4;518:460.5,261.5;519:473.4,273.2;520:487.5,286.5;521:502.9,301.9;522:510.8,306.2;528:454.5,209.0;529:447.2,198.5;530:440.5,188.8;531:434.8,180.5;532:428.7,172.7;533:423.6,166.4;534:418.6,160.4;535:414.2,155.5;536:409.5,150.5;537:405.5,147.0;538:401.3,142.8;539:397.8,139.5;540:394.5,137.2;541:391.5,135.0;542:388.0,132.5;543:384.8,131.5;544:382.2,130.5;545:379.4,129.6;546:376.5,129.0;547:374.4,128.6;548:372.2,128.5;549:369.8,128.5;550:367.5,128.8;551:365.6,129.4;552:363.5,130.0;553:362.4,125.6;554:360.8,121.5;555:359.5,117.2;556:358.3,113.9;557:357.2,109.5;558:355.8,106.5;559:354.6,103.6;560:353.5,100.8;561:352.4,98.4;562:351.5,96.2;563:350.2,94.5;564:349.2,92.5;565:347.5,92.2;566:346.1,92.7;567:344.2,93.8;568:342.2,94.8;569:340.0,96.0;570:338.0,97.5;571:335.7,99.3;572:333.2,101.5;573:330.5,104.0;574:328.0,106.5;575:325.3,110.3;576:322.3,113.9;577:318.5,117.8;578:315.4,122.6;579:311.6,127.6;580:308.0,132.5;581:303.5,140.2;582:299.2,147.5;583:294.2,155.5;584:288.8,164.5;585:283.4,174.6;586:277.2,186.5;587:270.4,198.6;588:263.2,212.5;589:255.3,228.1;590:246.4,246.6;591:236.5,266.5;592:225.5,289.5;593:213.5,315.3;594:200.3,344.7;595:187.5,359.5;809:269.3,218.0;810:277.5,205.3;811:284.5,194.5;812:290.5,185.2;813:296.5,177.2;814:301.5,170.5;815:306.2,164.5;816:310.4,159.6;817:313.8,155.5;818:317.4,152.4;819:320.4,149.4;820:323.5,147.2;821:326.0,144.5;822:328.5,143.5;823:330.6,142.4;824:332.8,141.5;825:334.8,140.5;826:336.8,140.5;827:338.5,140.2;828:339.5,134.8;829:341.5,127.8;830:342.5,122.2;831:343.5,116.8;832:344.5,111.5;833:345.8,107.5;834:346.8,103.2;835:348.0,100.0;836:349.1,96.3;837:350.0,93.0;838:350.5,90.2;839:351.5,87.8;840:350.2,87.5;841:349.1,87.3;842:347.8,87.2;843:346.2,87.8;844:345.0,88.0;845:343.2,88.8;846:342.0,90.0;847:340.0,91.0;848:338.3,92.3;849:336.7,93.7;850:335.2,95.5;851:333.5,98.0;852:331.2,100.5;853:328.8,103.5;854:326.6,106.6;855:324.5,110.5;856:322.2,114.5;857:319.5,119.0;858:316.5,124.2;859:314.0,129.5;860:311.2,135.5;861:308.0,142.5;862:304.5,150.0;863:301.2,157.5;864:297.5,166.5;865:293.5,176.2;866:289.5,186.8;867:284.8,198.5;868:280.5,210.8;869:275.5,224.5;870:270.2,239.5;871:264.5,255.8;872:259.2,262.5;873:253.5,267.2;874:247.6,272.6;875:241.4,279.4;876:234.5,286.5;877:227.4,294.8;878:219.3,304.5;879:210.5,315.3;885:251.6,213.6;886:256.9,202.3;887:261.8,191.5;888:266.4,182.4;889:270.5,174.2;890:274.6,166.6;891:278.5,159.8;892:281.5,153.8;893:285.2,148.5;894:288.5,143.8;895:291.4,139.6;896:293.8,136.5;897:296.5,132.3;898:299.2,130.5;899:301.5,127.8;900:303.3,125.7;901:306.0,124.0;902:308.0,123.0;903:309.8,121.8;904:311.2,120.8;905:313.2,120.2;906:315.0,120.0;907:316.5,120.2;908:317.7,120.3;909:319.4,120.4;910:320.5,120.8;911:322.0,120.5;912:322.8,116.5;913:324.0,113.5;914:325.0,109.0;915:326.1,105.3;916:326.8,102.5;917:327.8,99.5;918:329.0,99.0;919:330.2,98.5;920:331.6,98.6;921:333.0,98.5;922:334.5,98.8;923:335.8,99.5;924:337.5,100.2;925:338.7,101.1;926:340.5,102.2;927:342.2,103.5;928:344.2,105.5;929:346.0,107.5;930:347.8,109.5;931:350.0,111.5;932:352.5,115.2;933:354.2,118.5;934:356.5,122.2;935:359.2,126.5;936:361.5,131.2;937:364.4,136.4;938:367.5,141.8;939:370.2,148.5;940:373.3,155.1;941:376.5,162.8;942:380.0,171.0;943:383.5,179.8;944:387.5,189.8;945:391.5,200.8;946:395.8,212.5;947:400.4,225.4;948:405.2,239.5;949:410.5,254.8;950:415.5,264.5;951:420.6,269.4;952:426.4,274.6;953:432.4,280.8;954:438.6,288.2;955:445.5,296.3;956:452.5,305.5;957:460.5,315.7;958:469.0,327.5;959:478.2,340.8;965:419.9,235.0;966:412.5,222.5;967:405.0,211.5;968:398.4,201.4;969:392.2,192.5;970:386.4,184.4;971:380.5,177.2;972:375.8,170.5;973:370.7,164.7;974:366.5,159.8;975:362.2,155.5;976:358.2,151.5;977:354.5,147.8;978:350.5,144.3;979:347.2,142.5;980:343.8,140.5;981:340.8,138.5;982:337.6,136.6;983:335.2,135.5;984:332.5,135.0;985:329.7,134.9;986:327.5,134.5;987:325.5,134.5;988:323.0,134.5;989:321.5,135.0;990:318.5,135.0;991:317.2,131.5;992:315.5,127.2;993:314.5,123.2;994:312.6,119.4;995:311.4,115.6;996:310.0,111.5;997:308.8,109.5;998:307.5,106.8;999:306.2,104.5;1000:305.0,102.5;1001:303.5,100.2;1002:302.8,98.5;1003:301.5,96.8;1004:300.5,95.8;1005:299.5,94.5;1006:299.3,93.9;1007:300.5,94.3;1008:301.0,94.5;1009:301.7,94.8;1010:302.5,95.5;1011:303.0,96.0;1012:303.7,97.3;1013:304.7,98.3;1014:305.5,99.8;1015:306.4,101.6;1016:307.4,103.6;1017:308.5,106.2;1018:309.5,108.8;1019:310.5,111.3;1020:311.6,115.4;1021:312.5,119.2;1022:314.2,123.5;1023:315.5,128.2;1024:317.0,132.5;1025:318.5,139.2;1026:319.5,144.5;1027:321.8,152.5;1028:323.4,160.4;1029:325.4,168.6;1030:327.5,178.0;1031:329.5,188.2;1032:331.5,199.2;1033:334.0,211.5;1034:336.6,224.6;1035:339.5,239.2;1036:342.2,251.5;1037:344.5,256.2;1038:347.4,261.6;1039:350.5,268.0;1040:353.6,275.4;1041:357.0,283.5;1042:360.5,292.5;1043:365.0,303.0;1044:369.0,315.0;1045:370.0,316.5;1046:364.3,297.5;1047:358.5,280.3;1048:353.5,264.5;1049:348.6,250.2;1050:344.0,237.0;1051:339.5,225.0;1052:335.5,214.0;1053:331.5,204.2;1054:328.4,195.4;1055:324.5,186.8;1056:321.8,179.5;1057:318.5,172.8;1058:315.5,166.8;1059:312.5,161.5;1060:309.8,156.5;1061:307.4,152.4;1062:304.8,148.5;1063:302.5,144.5;1064:300.8,142.5;1065:298.2,140.2;1066:296.2,138.2;1067:294.5,136.3;1068:293.0,135.0;1069:290.7,134.5;1070:289.5,133.3;1071:287.5,132.3;1072:286.3,132.1;1073:284.5,132.3;1074:283.5,132.5;1075:282.0,132.5;1076:280.8,134.7;1077:279.6,135.4;1078:278.4,136.6;1079:277.5,137.8;1080:276.2,139.5;1081:275.4,137.4;1082:274.3,132.1;1083:273.4,128.6;1084:272.5,124.8;1085:271.5,121.2;1086:270.8,117.5;1087:269.8,114.5;1088:269.5,111.5;1089:268.4,109.4;1090:267.5,107.2;1091:266.7,105.3;1092:266.4,103.4;1093:265.5,101.8;1094:264.8,100.5;1095:264.5,99.2;1096:263.5,98.2;1097:262.7,97.3;1098:262.3,96.7;1099:261.7,96.3;1100:260.9,96.3;1101:260.3,96.5;1102:260.1,95.7;1103:259.5,94.5;1104:259.5,94.0;1105:258.9,93.3;1106:258.8,92.5;1107:258.0,92.5;1108:257.5,92.5;1109:256.5,92.5;1110:256.5,93.0;1111:255.8,93.2;1112:255.8,94.2;1113:255.0,95.0;1114:254.5,96.0;1115:254.0,97.0;1116:253.2,99.2;1117:253.0,101.0;1118:252.2,103.2;1119:251.9,106.3;1120:251.0,109.0;1121:250.5,111.5;1122:249.5,116.2;1123:248.2,120.2;1124:249.0,125.0;1125:247.5,129.8;1126:246.8,135.5;1127:245.8,141.5;1128:245.2,148.5;1129:244.4,155.6;1130:243.5,163.8;1131:242.5,172.5;1132:241.5,181.8;1133:240.5,192.2;1134:239.5,203.2;1135:238.5,215.2;1136:237.5,228.0;1137:236.2,242.5;1138:235.0,255.0;1139:233.5,258.0;1140:231.8,261.5;1141:230.4,265.6;1142:228.5,270.5;1143:226.6,275.8;1144:224.6,282.2;1145:222.5,289.3;1146:220.5,297.3;1147:218.0,306.5;1148:215.5,316.7;1149:213.0,328.2;1150:210.0,341.2;1151:206.9,355.9;1329:336.5,71.2;1330:334.2,74.5;1331:332.2,78.5;1332:329.5,82.2;1333:327.2,86.5;1334:324.6,91.6;1335:321.5,97.0;1336:318.7,103.1;1337:315.8,109.5;1338:312.5,116.8;1339:308.8,124.5;1340:305.2,133.2;1341:301.0,143.0;1342:296.8,153.5;1343:292.2,165.5;1344:287.2,177.5;1345:281.5,191.8;1346:275.8,207.5;1347:269.5,219.8;1348:264.2,224.5;1349:258.0,230.5;1350:251.3,236.1;1351:243.5,243.2;1352:235.6,251.4;1353:226.5,260.5;1354:216.8,271.4;1355:205.8,283.6;1356:193.6,298.1;1357:187.1,314.6;1363:231.4,243.6;1364:236.8,234.5;1365:242.2,226.5;1366:247.2,218.5;1367:251.5,211.2;1368:255.6,204.4;1369:259.8,197.5;1370:263.8,191.5;1371:267.5,185.8;1372:270.6,180.4;1373:273.8,175.5;1374:277.2,170.5;1375:279.8,165.5;1376:282.5,161.2;1377:282.8,163.5;1378:282.5,165.8;1379:282.8,168.5;1380:282.8,170.5;1381:283.0,173.5;1382:283.2,175.5;1383:283.5,178.0;1538:372.1,225.9;1539:363.7,212.5;1540:356.5,201.5;1541:350.4,191.6;1542:344.2,183.5;1543:339.2,176.5;1544:334.3,170.7;1545:330.2,165.5;1546:326.4,161.4;1547:322.6,157.6;1548:319.5,154.8;1549:316.5,152.2;1550:313.5,150.2;1551:311.2,148.5;1552:308.8,147.5;1553:306.7,146.9;1554:304.5,146.5;1555:303.0,146.5;1556:301.5,146.5;1557:299.7,142.1;1558:298.1,135.7;1559:297.0,130.0;1560:295.7,124.1;1561:294.5,119.0;1562:293.0,114.0;1563:291.9,109.7;1564:290.8,105.5;1565:289.7,102.3;1566:288.8,98.5;1567:287.8,95.5;1568:287.3,92.7;1569:286.2,90.5;1570:287.5,89.8;1571:289.5,89.8;1572:292.0,90.5;1573:294.5,90.8;1574:296.8,91.5;1575:299.6,92.6;1576:302.4,93.6;1577:305.2,95.5;1578:308.3,96.9;1579:311.5,99.2;1580:314.5,101.5;1581:317.8,104.5;1582:321.5,107.2;1583:325.2,110.5;1584:329.2,114.5;1585:333.5,118.8;1586:337.6,123.6;1587:342.5,129.0;1588:347.5,135.0;1589:352.4,141.4;1590:357.8,148.5;1591:363.6,156.4;1592:369.5,164.8;1593:376.2,174.5;1594:383.2,184.5;1595:390.5,196.2;1596:398.2,208.5;1597:406.5,222.2;1598:415.5,237.2;1599:425.2,253.5;1600:435.5,270.2;1601:444.8,276.5;1602:455.4,282.8;1603:466.4,290.2;1604:478.5,298.5;1605:491.1,308.0;1606:505.5,318.5;1607:520.9,330.9;1608:537.9,344.9;1609:556.1,359.3;1616:584.0,359.2;1617:558.1,329.1;1618:535.7,302.5;1619:515.1,279.1;1620:497.0,258.5;1621:480.5,240.5;1622:465.5,224.5;1623:451.8,210.4;1624:439.4,197.6;1625:428.0,186.5;1626:417.5,176.8;1627:407.5,168.2;1628:398.6,160.4;1629:390.4,153.6;1630:382.5,147.5;1631:375.4,142.4;1632:368.4,137.6;1633:362.0,132.5;1634:356.5,130.0;1635:350.5,126.8;1636:345.4,124.4;1637:340.5,122.2;1638:335.6,120.4;1639:331.5,118.8;1640:327.2,117.5;1641:323.4,116.6;1642:319.5,116.2;1643:315.8,115.5;1644:312.5,115.8;1645:309.5,115.8;1646:306.5,116.2;1647:303.4,116.4;1648:300.5,117.2;1649:297.9,117.7;1650:295.5,118.2;1651:293.5,114.0;1652:291.5,109.5;1653:289.6,105.6;1654:287.5,101.8;1655:285.8,98.5;1656:284.2,95.5;1657:282.5,92.5;1658:280.7,89.9;1659:279.2,87.5;1660:277.8,85.5;1661:276.4,83.4;1662:274.8,81.5;1663:273.5,80.2;1664:273.2,79.5;1665:274.3,79.3;1666:274.9,79.3;1667:275.1,79.7;1668:276.0,80.0;1669:276.3,80.7;1670:277.1,81.7;1671:277.8,82.5;1672:278.5,83.8;1673:279.5,85.2;1674:280.5,86.8;1675:281.0,89.0;1676:281.8,91.5;1677:282.9,94.3;1678:284.2,97.5;1679:285.2,100.5;1680:286.4,104.4;1681:287.5,108.8;1682:289.5,113.5;1683:290.7,118.9;1684:292.0,125.0;1685:294.0,131.0;1686:295.7,138.7;1687:297.5,146.8;1688:299.2,155.5;1689:301.5,165.2;1690:303.5,175.8;1691:306.2,187.5;1692:308.6,200.6;1693:311.5,215.2;1694:314.5,231.2;1695:318.2,248.5;1696:321.8,268.5;1697:325.4,279.8;1698:328.6,287.8;1699:332.6,297.2;1700:337.0,307.7;1701:341.5,319.7;1702:346.8,333.8;1703:352.7,349.5;1715:372.0,337.6;1716:366.0,311.2;1717:360.6,288.2;1718:355.8,268.0;1719:351.1,250.1;1720:347.0,234.3;1721:343.5,220.5;1722:340.0,208.0;1723:336.6,197.4;1724:333.8,187.5;1725:331.3,178.9;1726:328.7,171.3;1727:326.3,164.7;1728:324.2,158.5;1729:322.2,153.5;1730:320.5,149.0;1731:319.0,144.5;1732:317.0,142.0;1733:315.0,139.0;1734:314.0,137.0;1735:312.8,134.8;1736:311.0,133.0;1737:310.0,132.0;1738:309.0,131.0;1739:308.0,130.0;1740:307.0,130.0;1741:306.0,130.0;1742:305.0,130.0;1743:304.0,130.0;1744:303.0,131.0;1745:302.2,131.8;1746:301.3,132.3;1747:301.2,134.2;1748:299.9,131.3;1749:299.3,126.1;1750:298.9,121.7;1751:298.3,117.1;1752:297.8,113.3;1753:297.5,109.8;1754:297.0,106.5;1755:296.5,103.2;1756:296.2,100.5;1757:295.5,97.8;1758:295.2,95.5;1759:294.5,93.2;1760:294.5,91.5;1761:295.3,91.3;1762:296.3,91.3;1763:297.2,91.5;1764:298.2,91.5;1765:299.0,92.5;1766:300.3,93.3;1767:301.5,94.2;1768:302.4,95.4;1769:303.5,96.8;1770:304.8,98.5;1771:306.5,100.8;1772:307.8,103.5;1773:309.4,106.4;1774:310.8,109.5;1775:312.5,113.8;1776:314.2,117.5;1777:316.5,122.2;1778:318.2,127.5;1779:320.5,132.5;1780:322.6,139.6;1781:325.0,147.0;1782:327.5,154.8;1783:330.4,163.6;1784:333.2,173.5;1785:336.5,184.5;1786:339.8,196.5;1787:343.5,209.8;1788:347.5,224.5;1789:351.5,241.0;1790:356.5,259.5;1791:361.5,279.5;1792:367.2,302.4;1793:373.3,327.5;1794:380.0,353.0;1968:300.5,68.8;1969:303.2,71.5;1970:305.5,75.2;1971:308.2,78.5;1972:311.0,82.5;1973:313.8,87.5;1974:316.8,92.5;1975:320.2,97.5;1976:323.5,103.8;1977:327.2,110.5;1978:331.0,117.5;1979:335.2,125.5;1980:339.7,134.9;1981:344.5,144.0;1982:349.2,154.5;1983:354.5,166.2;1984:360.5,179.0;1985:366.5,193.0;1986:373.2,208.5;1987:379.8,218.5;1988:386.5,223.2;1989:393.5,228.0;1990:401.5,234.2;1991:409.8,241.5;1992:419.4,249.4;1993:429.4,258.4;1994:440.5,268.7;1995:453.0,281.0;1996:466.7,294.7;1997:482.1,310.9;1998:488.1,311.9;2004:444.6,215.2;2005:438.8,203.6;2006:433.5,193.8;2007:428.5,184.8;2008:423.8,176.5;2009:419.4,169.4;2010:415.2,162.5;2011:411.0,157.0;2012:407.3,151.7;2013:403.5,147.0;2014:399.9,143.3;2015:396.8,139.5;2016:393.6,136.6;2017:390.5,132.5;2018:387.6,131.6;2019:385.5,130.0;2020:382.5,128.5;2021:380.2,127.5;2022:377.6,126.6;2023:375.5,126.2;2024:373.4,125.6;2025:371.2,125.5;2026:369.3,125.9;2027:367.2,126.5;2028:365.5,127.2;2029:363.5,127.8;2030:361.5,128.8;2031:360.2,130.5;2032:358.5,131.5;2033:357.0,132.5;2034:355.5,129.8;2035:354.8,125.5;2036:353.6,121.4;2037:352.6,117.4;2038:351.5,114.0;2039:350.8,110.5;2040:349.8,107.5;2041:348.8,104.5;2042:348.0,101.5;2043:347.2,99.5;2044:346.2,97.5;2045:345.5,95.5;2046:344.5,93.8;2047:343.8,92.5;2048:343.0,91.5;2049:341.7,90.3;2050:340.7,89.3;2051:338.8,88.2;2052:337.0,88.0;2053:335.5,87.3;2054:334.0,87.0;2055:332.0,87.0;2056:329.9,86.7;2057:328.0,87.5;2058:326.0,87.5;2059:323.8,88.5;2060:321.5,89.2;2061:319.2,90.5;2062:316.9,91.7;2063:314.5,93.8;2064:311.8,95.5;2065:309.3,98.3;2066:306.5,100.8;2067:303.5,103.8;2068:300.4,107.4;2069:297.3,111.1;2070:293.8,115.5;2071:290.2,120.5;2072:286.5,125.5;2073:282.6,131.4;2074:278.6,137.6;2075:274.3,144.1;2076:270.0,152.5;2077:265.4,160.6;2078:260.5,169.8;2079:255.2,179.5;2080:249.8,190.5;2081:244.3,202.3;2082:238.2,214.5;2083:231.7,228.1;2084:224.8,243.5;2085:217.5,259.8;2091:169.0,299.5;2092:158.7,307.0;2093:149.3,315.8;2094:147.7,312.0;2100:218.4,220.4;2101:227.6,209.4;2102:236.5,199.5;2103:245.0,190.5;2104:253.0,182.5;2105:260.5,175.0;2106:267.8,168.5;2107:274.5,162.5;2108:281.2,157.5;2109:287.2,152.5;2110:293.0,148.0;2111:299.0,144.5;2112:304.2,141.5;2113:309.2,138.5;2114:314.2,136.5;2115:318.7,134.9;2116:323.5,132.3;2117:327.4,131.6;2118:331.5,130.8;2119:335.5,130.2;2120:339.0,129.5;2121:342.5,129.8;2122:345.9,129.7;2123:349.2,130.5;2124:352.5,130.8;2125:355.5,131.8;2126:358.5,132.3;2127:361.0,134.5;2128:363.6,135.4;2129:366.5,136.8;2130:368.8,137.5;2131:371.0,134.5;2132:372.5,128.8;2133:374.5,124.8;2134:376.5,120.8;2135:378.5,117.5;2136:380.5,114.2;2137:382.3,111.1;2138:383.7,108.9;2139:385.8,106.2;2140:387.0,104.0;2141:389.0,102.0;2142:390.2,100.2;2143:391.8,98.8;2144:393.2,97.2;2145:395.0,96.0;2146:396.5,95.2;2147:397.6,94.6;2148:399.0,94.0;2149:400.2,93.5;2150:401.5,93.5;2151:402.8,93.5;2152:404.0,93.5;2153:405.0,94.0;2154:406.2,94.5;2155:407.5,95.2;2156:408.5,95.8;2157:409.5,96.8;2158:410.5,96.8;2159:411.5,95.5;2160:412.5,94.8;2161:413.5,93.8;2162:414.8,92.5;2358:270.5,217.3;2359:284.5,197.5;2360:296.4,181.6;2361:305.8,168.5;2362:314.5,157.8;2363:321.5,148.8;2364:327.8,141.5;2365:333.5,135.0;2366:338.2,129.5;2367:342.5,124.8;2368:346.5,121.2;2369:350.2,117.5;2370:353.5,115.2;2371:356.5,111.5;2372:358.5,111.0;2373:361.2,109.5;2374:363.5,108.2;2375:365.5,107.2;2376:367.5,106.5;2377:369.0,101.5;2378:370.5,96.5;2379:371.8,91.5;2380:373.5,87.2;2381:374.5,82.8;2382:375.5,79.2;2383:376.8,75.5;2384:378.0,72.5;2385:378.8,69.2;2386:380.0,67.0;2387:381.1,64.3;2388:381.7,62.3;2389:382.5,60.0;2390:383.3,58.3;2391:384.1,56.7;2392:385.0,55.5;2393:385.7,54.1;2394:386.5,53.2;2395:387.0,52.0;2396:387.7,51.1;2397:388.3,50.5;2398:389.1,50.3;2399:389.5,49.8;2400:390.1,49.3;2401:390.8,49.5;2402:391.3,49.3;2403:391.8,49.5;2404:392.2,50.2;2405:392.5,50.0;2406:393.0,50.5;2407:393.3,49.3;2408:393.5,48.5;2409:393.8,47.3;2604:335.8,70.5;2605:332.5,73.8;2606:328.5,77.2;2607:324.5,81.2;2608:320.5,85.8;2609:316.2,90.5;2610:311.5,95.8;2611:306.2,101.8;2612:301.2,108.5;2613:295.5,115.2;2614:289.7,123.3;2615:283.0,132.0;2616:276.0,141.0;2617:268.8,151.5;2618:261.5,162.8;2619:252.6,175.6;2620:243.6,189.4;2621:233.6,204.6;2622:223.5,219.8;2623:213.5,225.2;2624:202.7,230.9;2625:191.2,236.5;2626:178.6,243.6;2627:164.6,251.6;2628:149.6,261.4;2629:132.7,272.0;2630:114.4,284.4;2631:93.5,298.7;2632:100.7,288.5;2633:117.5,271.0;2634:133.0,255.3;2635:147.8,240.4;2636:162.0,226.9;2637:175.2,214.6;2638:187.5,203.5;2639:199.4,193.4;2640:210.5,184.2;2641:222.0,176.0;2642:231.2,168.5;2643:240.6,161.4;2644:249.6,155.4;2645:258.3,150.1;2646:266.5,144.3;2647:274.5,140.5;2648:281.8,136.5;2649:289.0,132.5;2650:295.8,130.5;2651:302.5,127.8;2652:308.5,125.8;2653:314.5,124.2;2654:320.4,122.6;2655:325.6,121.6;2656:330.7,121.3;2657:335.8,120.5;2658:340.8,120.5;2659:345.2,120.5;2660:349.6,120.6;2661:354.0,121.5;2662:358.3,122.1;2663:362.0,123.0;2664:365.5,124.2;2665:369.4,125.4;2666:372.5,126.8;2667:376.2,128.5;2668:379.4,130.4;2669:382.5,132.0;2670:385.4,130.6;2671:387.7,126.3;2672:390.3,121.8;2673:392.5,118.2;2674:395.2,114.5;2675:397.5,111.0;2676:399.5,108.0;2677:402.0,105.5;2678:403.8,102.8;2679:406.0,100.0;2680:408.0,98.0;2681:410.0,96.0;2682:412.2,94.2;2683:414.0,93.0;2684:416.0,92.0;2685:417.8,90.8;2686:419.7,89.7;2687:421.0,89.0;2688:421.3,88.3;2689:419.9,88.3;2690:419.3,88.5;2691:418.3,88.5;2692:417.5,89.0;2693:416.8,89.2;2694:415.8,90.2;2695:414.5,91.0;2696:413.2,92.2;2697:412.0,94.0;2698:410.8,95.2;2699:409.3,97.1;2700:408.0,99.5;2701:406.6,102.4;2702:405.2,105.5;2703:403.5,108.8;2704:402.0,111.5;2705:399.8,116.5;2706:397.8,121.5;2707:396.1,126.3;2708:393.7,132.1;2709:391.5,138.5;2710:389.3,145.5;2711:386.5,153.0;2712:384.0,161.0;2713:381.0,170.0;2714:378.0,180.0;2715:374.6,190.6;2716:371.4,202.4;2717:367.5,215.2;2718:363.5,228.3;2719:359.5,244.2;2720:355.5,257.2;2721:351.6,261.4;2722:347.6,266.4;2724:339.2,278.5;2725:334.2,285.5;2726:329.0,293.5;2727:323.5,303.3;2728:317.4,306.9;2729:312.8,288.2;2730:308.5,271.5;2731:304.4,256.2;2732:300.5,242.5;2733:297.5,228.5;2734:293.6,218.6;2735:290.8,208.5;2736:288.2,199.5;2737:285.4,191.4;2738:282.7,184.3;2739:280.6,177.4;2740:278.4,171.6;2741:276.4,166.4;2742:274.4,161.6;2743:272.5,157.5;2744:270.5,153.8;2745:269.4,150.6;2746:267.5,148.2;2747:266.0,144.5;2748:264.8,143.5;2749:263.5,142.2;2750:262.5,140.8;2751:261.5,139.8;2752:260.4,139.4;2753:259.2,138.5;2754:258.0,138.5;2755:257.0,138.5;2756:256.1,138.7;2757:255.5,139.5;2758:254.3,138.2;2759:254.0,134.5;2760:253.2,129.5;2761:252.4,125.6;2762:251.5,121.8;2763:250.8,118.5;2764:250.0,115.5;2765:249.5,111.5;2766:249.2,110.5;2767:248.5,108.2;2768:248.0,106.0;2769:247.5,104.0;2770:246.6,102.6;2771:246.4,101.4;2772:245.5,100.2;2773:245.4,99.2;2774:244.7,98.3;2775:244.3,97.9;2776:244.0,97.0;2777:243.5,96.0;2778:243.3,95.5;2779:243.0,95.0;2780:242.2,95.2;2781:241.8,94.8;2782:241.5,95.0;2783:240.8,96.2;2784:240.8,96.2;2785:240.5,97.3;2786:240.0,98.0;2787:239.8,99.8;2788:239.0,101.0;2789:239.0,103.0;2790:238.0,105.0;2791:237.7,107.9;2792:237.2,110.5;2793:236.7,113.9;2794:236.5,117.2;2795:235.5,121.2;2796:235.2,125.5;2797:234.6,130.4;2798:234.2,135.5;2799:233.6,141.4;2800:233.2,147.5;2801:232.6,154.4;2802:231.7,162.3;2803:231.4,170.4;2804:230.6,179.4;2805:230.1,188.7;2806:229.4,199.4;2807:228.5,210.8;2808:228.0,223.5;2809:227.4,236.6;2810:226.2,241.5;2811:225.2,244.5;2812:223.8,248.5;2813:222.6,252.6;2814:221.4,257.6;2815:220.0,263.5;2816:218.5,269.5;2817:217.0,277.0;2818:215.4,285.2;2819:213.7,294.5;2820:212.0,304.5;2821:210.0,316.0;2822:208.0,329.0;2823:208.0,332.3;2829:234.4,222.4;2830:237.5,210.0;2831:240.5,198.8;2832:243.5,189.2;2833:246.5,180.2;2834:248.5,172.2;2835:251.5,165.2;2836:253.4,158.6;2837:255.5,152.8;2838:257.5,147.8;2839:259.0,143.5;2840:261.2,139.8;2841:263.0,136.0;2842:264.5,133.3;2843:266.0,131.0;2844:267.5,128.5;2845:269.0,126.5;2846:270.4,125.4;2847:271.5,124.2;2848:272.8,123.5;2849:273.8,122.5;2850:275.2,122.5;2851:276.2,122.5;2852:277.2,122.5;2853:278.2,122.5;2854:279.2,123.5;2855:280.1,123.7;2856:281.0,124.5;2857:281.7,123.2;2858:282.2,118.5;2859:282.6,114.6;2860:283.5,111.0;2861:284.0,107.5;2862:284.7,104.3;2863:285.0,101.5;2864:285.2,98.5;2865:285.6,96.4;2866:286.2,94.5;2867:286.8,93.5;2868:287.6,92.4;2869:288.3,91.3;2870:288.7,90.9;2871:289.5,90.5;2872:290.3,90.3;2873:291.1,90.3;2874:291.9,90.3;2875:293.0,90.5;2876:293.7,91.3;2877:294.3,91.7;2878:295.1,92.7;2879:296.0,94.0;2880:296.8,95.5;2881:297.8,97.5;2882:299.0,99.5;2883:300.0,101.5;2884:301.3,104.1;2885:302.5,106.8;2886:303.5,110.2;2887:304.5,114.0;2888:305.8,117.5;2889:307.4,122.4;2890:308.5,127.2;2891:310.3,132.1;2892:311.5,138.2;2893:313.3,144.1;2894:314.5,151.2;2895:316.4,158.4;2896:318.4,166.4;2897:319.3,174.5;2898:322.0,183.5;2899:323.8,193.5;2900:325.8,203.5;2901:328.0,215.0;2902:329.8,217.5;2903:331.8,218.5;2904:333.5,219.8;2905:335.8,221.5;2906:338.0,223.5;2907:340.4,226.4;2908:342.5,228.5;2909:345.5,232.8;2910:347.5,237.0;2911:350.5,241.5;2912:353.5,247.2;2913:356.4,253.2;2914:359.5,259.5;2915:362.8,267.4;2916:366.5,275.5;2917:370.1,285.0;2918:374.0,295.0;2919:378.3,306.5;2920:382.6,319.1;2921:387.5,332.7;2922:392.1,347.9"};
+</script>
+<script>
+(function () {
+  'use strict';
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  const C = RN.C;
+  const LS = 'rallynote.sessions.v1';
+  const VIEWS = ['vHome', 'vSetup', 'vAnalyze', 'vSession'];
+  const TYPES = [null, 'forehand', 'backhand', 'volley', 'smash', 'serve'];
+  const TYPE_KO = { serve: '서브', forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시' };
+  const ZONE_KO = { short: '짧음', mid: '중간', deep: '깊음' };
+
+  let sessions = [];
+  let cur = null;           // open session runtime
+  const videoURLs = {};     // session id -> object URL (this page load only)
+
+  // ---------- small helpers ----------
+  function show(v) { VIEWS.forEach(id => { $('#' + id).hidden = id !== v; }); window.scrollTo(0, 0); if (v !== 'vSession') pausePlayer(); }
+  let toastTimer = 0;
+  function toast(msg, ms) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, ms || 2600); }
+  function fmtT(s) { s = Math.max(0, s || 0); const m = Math.floor(s / 60), ss = Math.floor(s % 60); return m + ':' + String(ss).padStart(2, '0'); }
+  function sid() { return 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function esc(s) { return String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function seg(el, val, onChange) {
+    el.querySelectorAll('button').forEach(b => {
+      b.setAttribute('aria-pressed', String(b.dataset.v === String(val)));
+      b.onclick = () => { seg(el, b.dataset.v, onChange); onChange && onChange(b.dataset.v); };
+    });
+  }
+  function segVal(el) { const b = el.querySelector('button[aria-pressed="true"]'); return b ? b.dataset.v : null; }
+  function modal(html) { $('#modalBox').innerHTML = html; $('#modal').hidden = false; }
+  function closeModal() { $('#modal').hidden = true; $('#modalBox').innerHTML = ''; if (challenge) challenge.stop(); }
+  $('#modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#modal').hidden) closeModal(); });
+
+  // ---------- storage ----------
+  const store = {
+    coll: null, mode: 'local',
+    async init() {
+      try {
+        if (!window.claude || !window.claude.use) return;
+        const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+        if (!db || !user) return;
+        const id = await user.id();
+        if (!id) return;
+        this.coll = db.collection('data/users/' + id);
+        this.mode = 'cloud';
+      } catch (e) { /* stay local */ }
+    },
+    localAll() { try { return JSON.parse(localStorage.getItem(LS) || '[]'); } catch (e) { return []; } },
+    localPut(all) { try { localStorage.setItem(LS, JSON.stringify(all)); return true; } catch (e) { return false; } },
+    async list() {
+      if (this.coll) {
+        try { const q = await this.coll.get(); return q.docs.map(d => d.data()).filter(d => d && d.id && d.rallies); } catch (e) { /* fall through */ }
+      }
+      return this.localAll();
+    },
+    async save(doc) {
+      if (this.coll) {
+        try { await this.coll.doc(doc.id).set(JSON.parse(JSON.stringify(doc))); return true; } catch (e) { console.warn('db save', e); }
+      }
+      const all = this.localAll().filter(d => d.id !== doc.id); all.unshift(doc); return this.localPut(all);
+    },
+    async getGoals() {
+      if (this.coll) { try { const d = await this.coll.doc('_goals').get(); if (d.exists) return d.data(); } catch (e) { /* fall through */ } }
+      try { return JSON.parse(localStorage.getItem(LS + '.goals') || 'null'); } catch (e) { return null; }
+    },
+    async saveGoals(g) {
+      if (this.coll) { try { await this.coll.doc('_goals').set(g); return; } catch (e) { /* fall through */ } }
+      try { localStorage.setItem(LS + '.goals', JSON.stringify(g)); } catch (e) { /* ignore */ }
+    },
+    async remove(id) {
+      if (this.coll) { try { await this.coll.doc(id).delete(); return; } catch (e) { /* fall through */ } }
+      this.localPut(this.localAll().filter(d => d.id !== id));
+    }
+  };
+
+  // ---------- track encoding ----------
+  function encTrack(pts, times) {
+    const out = [];
+    for (let i = 0; i < pts.length; i++) { const p = pts[i]; if (p && !p.interp) out.push(times[i].toFixed(3) + ':' + p.x.toFixed(1) + ',' + p.y.toFixed(1)); }
+    let s = out.join(';');
+    while (s.length > 190000) { s = s.split(';').filter((_, i) => i % 2 === 0).join(';'); }
+    return s;
+  }
+  function decTrack(s) {
+    if (!s) return [];
+    return s.split(';').map(x => { const [t, xy] = x.split(':'); const [px, py] = xy.split(','); return { t: +t, x: +px, y: +py }; });
+  }
+
+  // ---------- effective rallies (edits applied) + scoring ----------
+  function effective(doc) {
+    const rs = doc.rallies.map(r => {
+      const shots = r.shots.filter(s => !s.deleted).map(s => {
+        const c = Object.assign({}, s);
+        if (s.bounce) { c.bounce = Object.assign({}, s.bounce); if (s.bounce.override != null) c.bounce.in = s.bounce.override; }
+        return c;
+      });
+      return Object.assign({}, r, { shots, auto: RN.suggestWinner(shots) });
+    }).filter(r => r.shots.length);
+    const o = doc.opts;
+    const sc = RN.score(rs, { useAuto: true, swapEnds: doc.mode === 'match' && o.swapEnds, meStart: o.meStart, setsToWin: o.setsToWin || 1 });
+    return { rallies: rs, score: sc };
+  }
+
+  // ---------- weekly goals + progress (all numbers are estimates until checked on real footage) ----------
+  const GOAL_DEF = [
+    { key: 'sessions', label: '이번 주 세션', unit: '회', def: 2 },
+    { key: 'inPct', label: '내 샷 인 비율', unit: '%', def: 70 },
+    { key: 'deepPct', label: '깊은 공 비율', unit: '%', def: 30 }
+  ];
+  let goals = null;
+  function weekStart(ts) { const d = new Date(ts); const day = (d.getDay() + 6) % 7; d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - day); return d.getTime(); }
+  function sessionMetrics(doc) {
+    const ef = effective(doc);
+    const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
+    return { rs, st: RN.stats(rs, 'me') };
+  }
+  function pooled(docs) {
+    const rs = docs.flatMap(d => sessionMetrics(d).rs);
+    const st = RN.stats(rs, 'me');
+    const ins = st.zones.short + st.zones.mid + st.zones.deep;
+    return { sessions: docs.length, inPct: st.inPct, deepPct: ins ? Math.round(st.zones.deep / ins * 100) : null, avgSpeed: st.avgSpeed, avgRally: rs.length ? st.avgRally : null };
+  }
+  async function renderProgress() {
+    const el = $('#progress');
+    const real = sessions.filter(d => !d.demo);
+    if (!goals) goals = (await store.getGoals()) || Object.fromEntries(GOAL_DEF.map(g => [g.key, g.def]));
+    if (!real.length) {
+      el.innerHTML = `<div class="head"><h2>이번 주</h2></div><div class="empty">영상을 하나 분석하면 이번 주 목표 달성도와 세션별 실력 변화가 여기에 그래프로 쌓입니다.</div>`;
+      return;
+    }
+    const now = Date.now(), w0 = weekStart(now), w1 = w0 - 7 * 864e5;
+    const thisW = pooled(real.filter(d => d.created >= w0)), lastW = pooled(real.filter(d => d.created >= w1 && d.created < w0));
+    const card = (g) => {
+      const v = thisW[g.key], target = +goals[g.key] || g.def, prev = lastW[g.key];
+      const pct = v == null ? 0 : Math.min(100, v / target * 100);
+      const met = v != null && v >= target;
+      const delta = v != null && prev != null ? (v === prev ? '지난주와 같음' : (v > prev ? '▲ ' : '▼ ') + Math.abs(v - prev) + g.unit + ' 지난주 대비') : (prev == null ? '지난주 기록 없음' : '');
+      return `<div class="panel goal${met ? ' met' : ''}">
+        <div class="top"><span class="label">${g.label}</span>${met ? '<span class="chip in">달성</span>' : ''}</div>
+        <div class="now num">${v ?? '–'}<small>${v != null ? g.unit : ''}</small></div>
+        <div class="meter" role="img" aria-label="목표 대비 ${Math.round(pct)}%"><i style="width:${pct.toFixed(0)}%"></i></div>
+        <div class="top"><span class="delta">${delta}</span><label class="set">목표 <input type="number" inputmode="numeric" min="1" max="100" data-goal="${g.key}" value="${esc(target)}" aria-label="${g.label} 목표">${g.unit}</label></div>
+      </div>`;
+    };
+    // trend per session, oldest first
+    const series = real.slice().sort((a, b) => a.created - b.created).slice(-20).map(d => { const m = pooled([d]); return { d, ...m }; });
+    const trend = (key, label, unit, goalKey) => {
+      const pts = series.filter(x => x[key] != null);
+      if (pts.length < 2) return `<div class="panel trend"><h4>${label}<span>세션 2개부터 그래프</span></h4></div>`;
+      const vals = pts.map(x => x[key]), goal = goalKey ? +goals[goalKey] : null;
+      let lo = Math.min(...vals, goal ?? Infinity), hi = Math.max(...vals, goal ?? -Infinity);
+      const pad = Math.max(2, (hi - lo) * 0.15); lo = Math.max(0, Math.floor(lo - pad)); hi = Math.ceil(hi + pad); if (unit === '%') hi = Math.min(100, hi); if (hi <= lo) hi = lo + 1;
+      const Wd = 320, Ht = 110, L = 28, R = 8, T = 8, B = 20;
+      const X = (i) => L + (pts.length === 1 ? 0 : i * (Wd - L - R) / (pts.length - 1)), Y = (v) => T + (1 - (v - lo) / (hi - lo)) * (Ht - T - B);
+      const path = pts.map((x, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(x[key]).toFixed(1)).join(' ');
+      const dt = (ts) => { const d = new Date(ts); return (d.getMonth() + 1) + '/' + d.getDate(); };
+      const last = pts[pts.length - 1];
+      return `<div class="panel trend" data-unit="${unit}"><h4>${label}<span>최근 ${pts.length}세션</span></h4>
+        <svg viewBox="0 0 ${Wd} ${Ht}" role="img" aria-label="${label} 세션별 변화">
+          <line x1="${L}" x2="${Wd - R}" y1="${Y(lo)}" y2="${Y(lo)}" stroke="var(--rule)" stroke-width="1"/>
+          <text x="${L - 6}" y="${Y(hi) + 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">${hi}</text>
+          <text x="${L - 6}" y="${Y(lo) + 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">${lo}</text>
+          ${goal != null ? `<line x1="${L}" x2="${Wd - R}" y1="${Y(goal)}" y2="${Y(goal)}" stroke="var(--in)" stroke-width="1.5" stroke-dasharray="4 4"/><text x="${Wd - R}" y="${Y(goal) - 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">목표 ${goal}${unit}</text>` : ''}
+          <path d="${path}" fill="none" stroke="var(--court)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          ${pts.map((x, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(x[key]).toFixed(1)}" r="${i === pts.length - 1 ? 5 : 3.5}" fill="${i === pts.length - 1 ? 'var(--court)' : 'var(--surface)'}" stroke="var(--court)" stroke-width="2"/>
+            <rect x="${(X(i) - 12).toFixed(1)}" y="0" width="24" height="${Ht}" fill="transparent" data-tip="${dt(x.d.created)} · ${esc(x.d.name)} · ${x[key]}${unit}"/>`).join('')}
+          <text x="${L}" y="${Ht - 4}" font-size="10" fill="var(--ink-2)">${dt(pts[0].d.created)}</text>
+          <text x="${Wd - R}" y="${Ht - 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">${dt(last.d.created)}</text>
+        </svg></div>`;
+    };
+    el.innerHTML = `<div class="head"><h2>이번 주</h2><span class="est">추정치 · 실제 영상 검증 전</span></div>
+      <div class="goals">${GOAL_DEF.map(card).join('')}</div>
+      <div class="head" style="margin-top:8px"><h3>실력 변화</h3><span class="muted" style="font-size:12px">세션마다 한 점 · 점을 누르면 값</span></div>
+      <div class="trends">${trend('inPct', '내 샷 인 비율', '%', 'inPct')}${trend('deepPct', '깊은 공 비율', '%', 'deepPct')}${trend('avgSpeed', '평균 속도', 'km/h', null)}${trend('avgRally', '평균 랠리 길이', '샷', null)}</div>`;
+  }
+  $('#progress').addEventListener('change', async (e) => {
+    const inp = e.target.closest('[data-goal]'); if (!inp) return;
+    const v = Math.max(1, Math.min(100, Math.round(+inp.value || 0)));
+    goals = Object.assign({}, goals, { [inp.dataset.goal]: v });
+    await store.saveGoals(goals); renderProgress(); toast('목표를 바꿨습니다');
+  });
+  (function trendTips() {
+    const show = (e) => {
+      const r = e.target.closest && e.target.closest('rect[data-tip]'); const card = e.target.closest && e.target.closest('.trend');
+      document.querySelectorAll('.trend .tip').forEach(t => t.remove());
+      if (!r || !card) return;
+      const tip = document.createElement('div'); tip.className = 'tip'; tip.textContent = r.dataset.tip;
+      const cb = card.getBoundingClientRect(), rb = r.getBoundingClientRect();
+      tip.style.left = Math.min(cb.width - 70, Math.max(70, rb.left - cb.left + rb.width / 2)) + 'px'; tip.style.top = (rb.top - cb.top + 40) + 'px';
+      card.appendChild(tip);
+    };
+    $('#progress').addEventListener('pointerover', show);
+    $('#progress').addEventListener('click', show);
+    $('#progress').addEventListener('pointerleave', () => document.querySelectorAll('.trend .tip').forEach(t => t.remove()));
+  })();
+
+  // ---------- home ----------
+  async function refreshHome() {
+    sessions = await store.list();
+    sessions.sort((a, b) => (b.created || 0) - (a.created || 0));
+    renderProgress();
+    const el = $('#sessionList');
+    $('#storeNote').textContent = store.mode === 'cloud' ? '내 계정에 저장됨 · 어느 기기에서든 열림' : '이 브라우저에 저장됨';
+    if (!sessions.length) {
+      el.innerHTML = '<div class="empty">아직 분석한 세션이 없습니다. 위의 <b>촬영하기</b>나 <b>영상 불러오기</b>로 시작하거나, 샘플 경기를 먼저 열어 보세요.</div>';
+      return;
+    }
+    el.innerHTML = sessions.map(d => {
+      const ef = effective(d);
+      const me = RN.stats(ef.rallies, 'me');
+      const date = new Date(d.created || Date.now());
+      return `<div class="panel scard" data-id="${esc(d.id)}" role="button" tabindex="0">
+        <div class="row"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.name)}</b><span class="chip">${d.mode === 'match' ? '경기' : '연습'}</span></div>
+        <div class="muted" style="font-size:13px">${date.getMonth() + 1}월 ${date.getDate()}일 · ${fmtT(d.src.duration)} 영상</div>
+        <div class="figs"><div><b>${ef.rallies.length}</b><span>랠리</span></div><div><b>${me.inPct ?? '–'}${me.inPct != null ? '<small style="font-size:13px">%</small>' : ''}</b><span>내 샷 인</span></div><div><b>${me.longest}</b><span>최장 랠리</span></div></div>
+        <div class="row" style="justify-content:flex-end"><button class="btn sm danger" data-del="${esc(d.id)}" type="button">삭제</button></div>
+      </div>`;
+    }).join('');
+  }
+  $('#sessionList').addEventListener('click', async (e) => {
+    const del = e.target.closest('[data-del]');
+    if (del) {
+      e.stopPropagation();
+      if (del.dataset.confirm) { await store.remove(del.dataset.del); toast('세션을 지웠습니다'); refreshHome(); }
+      else { del.dataset.confirm = '1'; del.textContent = '정말 삭제'; setTimeout(() => { if (del.isConnected) { del.textContent = '삭제'; delete del.dataset.confirm; } }, 3000); }
+      return;
+    }
+    const card = e.target.closest('.scard');
+    if (card) { const d = sessions.find(s => s.id === card.dataset.id); if (d) openSession(d); }
+  });
+  $('#sessionList').addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.classList.contains('scard')) e.target.click(); });
+  $$('[data-home]').forEach(b => b.addEventListener('click', () => { cancelAnalysis = true; show('vHome'); refreshHome(); }));
+  $('#goHome').addEventListener('click', () => { cancelAnalysis = true; show('vHome'); refreshHome(); });
+
+  // ---------- demo ----------
+  let demoScene = null;
+  function getDemoScene() {
+    if (!demoScene) demoScene = { script: RN.demoScript(7), cam: RN.makeCamera(DEMO.W, DEMO.H) };
+    return demoScene;
+  }
+  function demoDoc() {
+    const n = DEMO.n, times = new Array(n), pts = new Array(n).fill(null);
+    for (let i = 0; i < n; i++) times[i] = i / DEMO.fps;
+    DEMO.pts.split(';').forEach(x => { const [i, xy] = x.split(':'); const [px, py] = xy.split(','); pts[+i] = { x: +px, y: +py }; });
+    const opts = { mode: 'match', doubles: true, rallyGap: 1.2, meStart: 'near', swapEnds: true, setsToWin: 1 };
+    const calib = RN.calibrate(DEMO.corners);
+    const track = encTrack(pts, times);
+    const { rallies } = RN.analyzeTrack(pts, times, calib, opts);
+    return { id: 'demo', demo: true, name: '샘플 경기 · 8포인트', created: Date.now(), mode: 'match', opts, src: { kind: 'demo', name: 'sample', duration: DEMO.duration }, W: DEMO.W, H: DEMO.H, corners: DEMO.corners, track, rallies };
+  }
+  $('#openDemo').addEventListener('click', () => openSession(demoDoc()));
+
+  // hero illustration: a real demo frame with the tracer drawn over it
+  function drawHero() {
+    const cv = $('#heroArt'), ctx = cv.getContext('2d');
+    const sc = getDemoScene(), W = DEMO.W, H = DEMO.H;
+    const off = document.createElement('canvas'); off.width = W; off.height = H;
+    const oc = off.getContext('2d'); const img = oc.createImageData(W, H);
+    const t = 33.35;
+    RN.renderDemo(img.data, W, H, sc.script, sc.cam, t, 3);
+    oc.putImageData(img, 0, 0);
+    const s = Math.max(cv.width / W, cv.height / H), dx = (cv.width - W * s) / 2, dy = (cv.height - H * s) / 2 - 10;
+    ctx.drawImage(off, dx, dy, W * s, H * s);
+    const pts = DEMO.pts.split(';').map(x => { const [i, xy] = x.split(':'); const [px, py] = xy.split(','); return { t: +i / DEMO.fps, x: +px, y: +py }; }).filter(p => p.t > t - 2.2 && p.t <= t);
+    ctx.lineCap = 'round';
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1], b = pts[i];
+      ctx.strokeStyle = `rgba(205,235,60,${0.15 + 0.85 * i / pts.length})`; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(dx + a.x * s, dy + a.y * s); ctx.lineTo(dx + b.x * s, dy + b.y * s); ctx.stroke();
+    }
+    const calib = RN.calibrate(DEMO.corners);
+    [[5.4, 17.9, true], [6.1, 3.9, true]].forEach(([x, y]) => {
+      const [u, v] = RN.applyH(calib.toImage, x, y);
+      ctx.strokeStyle = '#3cd18a'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(dx + u * s, dy + v * s, 9, 4, 0, 0, Math.PI * 2); ctx.stroke();
+    });
+    const label = 'IN · 라인 안쪽 1.1m · 68km/h';
+    ctx.font = '600 15px "IBM Plex Sans KR", sans-serif';
+    const tw = ctx.measureText(label).width;
+    ctx.fillStyle = 'rgba(10,19,27,.78)'; ctx.fillRect(14, cv.height - 52, tw + 26, 38);
+    ctx.fillStyle = '#eef2ea'; ctx.fillText(label, 27, cv.height - 27);
+  }
+
+  // ---------- new video: setup ----------
+  const setup = { file: null, url: null, video: null, W: 640, H: 360, corners: null, drag: -1, frameT: 1 };
+  function onFile(file) {
+    if (!file) return;
+    if (setup.url) URL.revokeObjectURL(setup.url);
+    setup.file = file; setup.url = URL.createObjectURL(file);
+    const v = setup.video || document.createElement('video');
+    setup.video = v; v.muted = true; v.playsInline = true; v.preload = 'auto';
+    v.setAttribute('playsinline', ''); v.setAttribute('muted', '');
+    // Safari only decodes frames for a video that is in the page
+    if (!v.isConnected) { v.style.cssText = 'position:fixed;left:0;bottom:0;width:4px;height:4px;opacity:0.01;pointer-events:none;z-index:-1'; document.body.appendChild(v); }
+    v.src = setup.url;
+    v.onloadedmetadata = () => {
+      const vw = v.videoWidth || 1280, vh = v.videoHeight || 720;
+      setup.W = 640; setup.H = Math.round(640 * vh / vw / 2) * 2;
+      const W = setup.W, H = setup.H;
+      setup.corners = [[W * 0.37, H * 0.3], [W * 0.63, H * 0.3], [W * 0.9, H * 0.88], [W * 0.1, H * 0.88]];
+      setup.M = { l: W * 0.22, r: W * 0.22, t: H * 0.06, b: H * 0.32 };
+      const cv = $('#calibCanvas'); cv.width = (W + setup.M.l + setup.M.r) * 2; cv.height = (H + setup.M.t + setup.M.b) * 2;
+      $('#setupName').textContent = '코트 맞추기 · ' + file.name;
+      $('#frameScrub').value = 30;
+      show('vSetup');
+      seekSetup(Math.min(1.5, (v.duration || 3) * 0.1));
+    };
+    v.onerror = () => toast('이 영상 형식은 브라우저에서 열 수 없습니다. MP4(H.264)로 저장한 영상을 써 주세요.', 5000);
+  }
+  $('#fileOpen').addEventListener('change', (e) => { onFile(e.target.files[0]); e.target.value = ''; });
+  $('#fileRecord').addEventListener('change', (e) => { onFile(e.target.files[0]); e.target.value = ''; });
+
+  function seekSetup(t) { const v = setup.video; setup.frameT = t; v.currentTime = t; v.onseeked = () => drawCalib(); }
+  $('#frameScrub').addEventListener('input', (e) => { const v = setup.video; if (v && v.duration) seekSetup(v.duration * (+e.target.value / 1000)); });
+
+  const HCOL = ['#ff7a59', '#ffd23f', '#5ad1ff', '#9b8cff'];
+  // which court points the four handles stand for
+  function refCourtPoints() {
+    return setup.ref === 'service'
+      ? [[0, C.L], [C.W, C.L], [C.SGR, C.SVC_N], [C.SGL, C.SVC_N]]
+      : [[0, C.L], [C.W, C.L], [C.W, 0], [0, 0]];
+  }
+  function setupCalib() {
+    const court = refCourtPoints();
+    const toImage = RN.homography(court, setup.corners);
+    if (!toImage) return null;
+    const corners = [[0, C.L], [C.W, C.L], [C.W, 0], [0, 0]].map(([x, y]) => RN.applyH(toImage, x, y));
+    return RN.calibrate(corners);
+  }
+  function drawCalib() {
+    const cv = $('#calibCanvas'), ctx = cv.getContext('2d'), k = 2, M = setup.M;
+    const ox = M.l * k, oy = M.t * k;
+    ctx.fillStyle = '#1b2733'; ctx.fillRect(0, 0, cv.width, cv.height);
+    ctx.drawImage(setup.video, ox, oy, setup.W * k, setup.H * k);
+    ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 2; ctx.strokeRect(ox, oy, setup.W * k, setup.H * k);
+    ctx.fillStyle = 'rgba(255,255,255,.45)'; ctx.font = '600 22px "IBM Plex Sans KR", sans-serif';
+    ctx.fillText('영상 밖 (화면에 안 걸린 모서리는 여기로)', ox, oy + setup.H * k + 40);
+    const cal = setupCalib();
+    const P = (x, y) => { const q = RN.applyH(cal.toImage, x, y); return [ox + q[0] * k, oy + q[1] * k]; };
+    if (cal) {
+      ctx.strokeStyle = 'rgba(90,200,255,.95)'; ctx.lineWidth = 2;
+      for (const [a, b] of RN.courtLines()) {
+        const A = P(a[0], a[1]), B = P(b[0], b[1]);
+        ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
+      }
+      const n0 = P(-0.9, C.NET), n1 = P(C.W + 0.9, C.NET);
+      ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(n0[0], n0[1]); ctx.lineTo(n1[0], n1[1]); ctx.stroke(); ctx.setLineDash([]);
+      // camera placement check
+      const far = RN.applyH(cal.toImage, C.CX, C.L), near = RN.applyH(cal.toImage, C.CX, 0);
+      const span = (near[1] - far[1]) / setup.H;
+      const nearOut = cal.corners.slice(2).some(([x, y]) => x < 0 || x > setup.W || y > setup.H);
+      const warn = $('#calibWarn');
+      if (span < 0.45) { warn.hidden = false; warn.textContent = '카메라가 낮거나 멀어 보입니다. 먼 코트의 바운스를 놓치기 쉬우니, 다음엔 펜스 위 2.5m 이상 높이에서 찍어 보세요.'; }
+      else if (nearOut && setup.ref !== 'service') { warn.hidden = false; warn.textContent = '가까운 쪽 모서리가 화면 밖이면 아래 회색 칸으로 끌어 놓거나, 기준점을 "서비스라인"으로 바꿔 보세요.'; }
+      else warn.hidden = true;
+    }
+    setup.corners.forEach((p, i) => {
+      const x = ox + p[0] * k, y = oy + p[1] * k;
+      ctx.fillStyle = HCOL[i]; ctx.strokeStyle = '#0a131b'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(x, y, 13, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#0a131b'; ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();
+    });
+    if (setup.drag >= 0) {
+      const p = setup.corners[setup.drag], R = 150, Z = 4;
+      const lx = ox + p[0] * k < cv.width / 2 ? cv.width - R - 16 : R + 16, ly = R + 16;
+      ctx.save(); ctx.beginPath(); ctx.arc(lx, ly, R, 0, Math.PI * 2); ctx.clip();
+      ctx.fillStyle = '#1b2733'; ctx.fillRect(lx - R, ly - R, R * 2, R * 2);
+      const sw = (R * 2) / Z / k, vx = setup.video.videoWidth / setup.W, vy = setup.video.videoHeight / setup.H;
+      // draw the visible part of the frame inside the loupe
+      const s0x = p[0] - sw / 2, s0y = p[1] - sw / 2;
+      const cx0 = Math.max(0, s0x), cy0 = Math.max(0, s0y), cx1 = Math.min(setup.W, s0x + sw), cy1 = Math.min(setup.H, s0y + sw);
+      if (cx1 > cx0 && cy1 > cy0) {
+        const sc = (R * 2) / sw;
+        ctx.drawImage(setup.video, cx0 * vx, cy0 * vy, (cx1 - cx0) * vx, (cy1 - cy0) * vy, lx - R + (cx0 - s0x) * sc, ly - R + (cy0 - s0y) * sc, (cx1 - cx0) * sc, (cy1 - cy0) * sc);
+      }
+      ctx.strokeStyle = HCOL[setup.drag]; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(lx - 18, ly); ctx.lineTo(lx + 18, ly); ctx.moveTo(lx, ly - 18); ctx.lineTo(lx, ly + 18); ctx.stroke();
+      ctx.restore();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(lx, ly, R, 0, Math.PI * 2); ctx.stroke();
+    }
+  }
+  (function calibPointer() {
+    const cv = $('#calibCanvas');
+    const toP = (e) => { const r = cv.getBoundingClientRect(), M = setup.M; return [(e.clientX - r.left) / r.width * (setup.W + M.l + M.r) - M.l, (e.clientY - r.top) / r.height * (setup.H + M.t + M.b) - M.t]; };
+    cv.addEventListener('pointerdown', (e) => {
+      if (!setup.corners) return;
+      const p = toP(e), r = cv.getBoundingClientRect(), tol = 28 / r.width * (setup.W + setup.M.l + setup.M.r);
+      let best = -1, bd = 1e9;
+      setup.corners.forEach((c, i) => { const d = Math.hypot(c[0] - p[0], c[1] - p[1]); if (d < bd) { bd = d; best = i; } });
+      if (bd < tol * 1.6) { setup.drag = best; cv.setPointerCapture(e.pointerId); setup.off = [setup.corners[best][0] - p[0], setup.corners[best][1] - p[1]]; drawCalib(); }
+    });
+    cv.addEventListener('pointermove', (e) => {
+      if (setup.drag < 0) return;
+      const p = toP(e);
+      const M = setup.M;
+      setup.corners[setup.drag] = [clamp(p[0] + setup.off[0], -M.l, setup.W + M.r), clamp(p[1] + setup.off[1], -M.t, setup.H + M.b)];
+      drawCalib();
+    });
+    const up = () => { if (setup.drag >= 0) { setup.drag = -1; drawCalib(); } };
+    cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  })();
+
+  setup.ref = 'baseline';
+  const REF_LABELS = { baseline: ['먼 쪽 왼쪽', '먼 쪽 오른쪽', '가까운 쪽 오른쪽', '가까운 쪽 왼쪽'], service: ['먼 쪽 왼쪽(복식)', '먼 쪽 오른쪽(복식)', '가까운 서비스라인 오른쪽(단식)', '가까운 서비스라인 왼쪽(단식)'] };
+  function renderLegend() { $('#cornerLegend').innerHTML = REF_LABELS[setup.ref].map((t, i) => `<span><i style="background:${HCOL[i]}"></i>${t}</span>`).join(''); }
+  seg($('#optRef'), 'baseline', v => {
+    // keep the court where it is: move the two near handles onto the newly chosen points
+    const cal = setupCalib(); setup.ref = v; renderLegend();
+    if (cal && setup.corners) { const pts = refCourtPoints(); setup.corners = pts.map(([x, y]) => RN.applyH(cal.toImage, x, y)); }
+    if (setup.video) drawCalib();
+  });
+  renderLegend();
+  const setupOpts = { mode: 'match', court: 'doubles', me: 'near', sets: '1', speed: '30' };
+  seg($('#optMode'), setupOpts.mode, v => { setupOpts.mode = v; $('#matchOnly').hidden = v !== 'match'; });
+  seg($('#optCourt'), setupOpts.court, v => { setupOpts.court = v; });
+  seg($('#optMe'), setupOpts.me, v => { setupOpts.me = v; });
+  seg($('#optSets'), setupOpts.sets, v => { setupOpts.sets = v; });
+  seg($('#optSpeed'), setupOpts.speed, v => { setupOpts.speed = v; });
+
+  // ---------- analysis ----------
+  let cancelAnalysis = false;
+  $('#cancelAnalyze').addEventListener('click', () => { cancelAnalysis = true; });
+  $('#startAnalyze').addEventListener('click', runAnalysis);
+
+  async function runAnalysis() {
+    const cal = setupCalib();
+    if (!cal) { toast('꼭짓점 네 개가 한 줄로 겹쳤습니다. 코트 모서리에 다시 맞춰 주세요.'); return; }
+    cancelAnalysis = false;
+    show('vAnalyze');
+    const W = setup.W, H = setup.H, v = setup.video, fps = +setupOpts.speed;
+    const pc = $('#progCanvas'); pc.width = W; pc.height = H;
+    const ctx = pc.getContext('2d', { willReadFrequently: true });
+    const det = RN.createDetector(W, H, RN.roiMask(W, H, cal, 1, 1));
+    const frames = [];
+    const started = performance.now();
+    let wake = null;
+    try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
+    const dur = v.duration;
+    const process = (t) => {
+      ctx.drawImage(v, 0, 0, W, H);
+      const c = det(ctx.getImageData(0, 0, W, H).data);
+      frames.push({ t, c });
+      ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2;
+      for (const k of c) { ctx.beginPath(); ctx.arc(k.x, k.y, 6, 0, Math.PI * 2); ctx.stroke(); }
+      const pct = clamp(t / dur, 0, 1);
+      $('#progBar').style.width = (pct * 100).toFixed(1) + '%';
+      $('#progPct').textContent = Math.round(pct * 100) + '%';
+      const el = (performance.now() - started) / 1000, eta = pct > 0.02 ? el / pct - el : null;
+      $('#progText').textContent = `${fmtT(t)} / ${fmtT(dur)} 확인함` + (eta != null ? ` · 남은 시간 약 ${fmtT(eta)}` : '');
+    };
+    // Fast path: play the video and read every presented frame. Safari sometimes never starts or stalls,
+    // so a watchdog drops to stepping through the video by seeking from wherever it got to.
+    let last = -1;
+    const playPass = () => new Promise((resolve, reject) => {
+      if (!('requestVideoFrameCallback' in HTMLVideoElement.prototype)) return resolve('noRvfc');
+      let lastCb = performance.now(), done = false;
+      const finish = (why) => { if (done) return; done = true; clearInterval(dog); v.pause(); v.onended = null; resolve(why); };
+      const cb = (now, meta) => {
+        if (done) return;
+        if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
+        lastCb = performance.now();
+        const t = meta.mediaTime;
+        if (t - last >= 1 / fps - 0.006) { last = t; process(t); }
+        if (!v.ended) v.requestVideoFrameCallback(cb);
+      };
+      const dog = setInterval(() => {
+        if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
+        if (performance.now() - lastCb > 3000) finish('stalled');
+      }, 500);
+      v.onended = () => finish('ended');
+      v.muted = true; v.playbackRate = fps >= 30 ? 1 : 2;
+      v.requestVideoFrameCallback(cb);
+      v.play().catch(() => finish('noplay'));
+    });
+    const seekTo = (t) => new Promise((res) => {
+      let ok = false;
+      const timer = setTimeout(() => { if (!ok) { v.onseeked = null; res(); } }, 4000);
+      v.onseeked = () => { ok = true; clearTimeout(timer); v.onseeked = null; res(); };
+      v.currentTime = t;
+    });
+    try {
+      v.pause(); v.onseeked = null;
+      await seekTo(0);
+      const how = await playPass();
+      if (how !== 'ended' || last < dur - 1) {
+        $('#progText').textContent = '이 브라우저에서는 한 장씩 넘기며 분석합니다…';
+        for (let t = Math.max(0, last + 1 / fps); t < dur; t += 1 / fps) {
+          if (cancelAnalysis) throw new Error('cancel');
+          await seekTo(t);
+          process(t); last = t;
+        }
+      }
+    } catch (e) {
+      try { wake && wake.release(); } catch (_) { /* ignore */ }
+      if (e.message === 'cancel') { toast('분석을 멈췄습니다'); show('vSetup'); drawCalib(); return; }
+      toast('영상을 재생하지 못했습니다: ' + e.message, 5000); show('vSetup'); return;
+    }
+    try { wake && wake.release(); } catch (_) { /* ignore */ }
+    $('#progText').textContent = '랠리와 바운스를 정리하는 중…';
+    await new Promise(r => setTimeout(r, 30));
+    const times = frames.map(f => f.t);
+    const pts = RN.track(frames, W);
+    const opts = { mode: setupOpts.mode, doubles: setupOpts.court === 'doubles', rallyGap: 1.2, meStart: setupOpts.me, swapEnds: $('#optSwap').checked, setsToWin: +setupOpts.sets };
+    const track = encTrack(pts, times);
+    const { rallies } = RN.analyzeTrack(pts, times, cal, opts);
+    const d = new Date();
+    const doc = {
+      id: sid(), name: `${d.getMonth() + 1}월 ${d.getDate()}일 ${opts.mode === 'match' ? '경기' : '연습'}`, created: Date.now(), mode: opts.mode, opts,
+      src: { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track, rallies
+    };
+    videoURLs[doc.id] = setup.url; setup.url = null;
+    const ok = await store.save(doc);
+    if (!ok) toast('저장 공간이 부족해 세션을 저장하지 못했습니다. 이번 화면에서는 볼 수 있습니다.', 5000);
+    if (!rallies.length) toast('공을 찾지 못했습니다. 코트 꼭짓점과 거치 위치를 확인해 주세요.', 6000);
+    openSession(doc);
+  }
+
+  // ---------- session view ----------
+  const vid = $('#vid'), ov = $('#overlay'), stage = $('#stage');
+  const P = { t: 0, playing: false, rate: 1, only: true, lines: false, last: 0, dirty: true, rallyIdx: -1 };
+  let saveTimer = 0;
+  function persist() {
+    if (!cur || cur.doc.demo) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => store.save(cur.doc), 600);
+  }
+
+  function openSession(doc) {
+    pausePlayer();
+    const calib = RN.calibrate(doc.corners);
+    cur = { doc, calib, trail: decTrack(doc.track), eff: null, demo: doc.src.kind === 'demo' ? getDemoScene() : null, heat: 'me' };
+    recompute();
+    $('#sessTitle').value = doc.name;
+    $('#sessMode').textContent = doc.demo ? '샘플 · 경기' : (doc.mode === 'match' ? '경기' : '연습');
+    stage.style.aspectRatio = doc.W + ' / ' + doc.H;
+    P.t = cur.eff.rallies.length ? Math.max(0, cur.eff.rallies[0].t0 - 0.6) : 0; P.rallyIdx = -1; P.dirty = true;
+    // media
+    if (cur.demo) {
+      vid.hidden = true; vid.removeAttribute('src'); vid.load(); $('#reattach').hidden = true;
+      cur.dc = document.createElement('canvas'); cur.dc.width = doc.W; cur.dc.height = doc.H;
+      cur.dctx = cur.dc.getContext('2d'); cur.dimg = cur.dctx.createImageData(doc.W, doc.H);
+    } else {
+      vid.hidden = false;
+      const url = videoURLs[doc.id];
+      if (url) { vid.src = url; $('#reattach').hidden = true; vid.currentTime = P.t; }
+      else { vid.removeAttribute('src'); vid.load(); $('#reattach').hidden = false; $('#reattachName').textContent = doc.src.name; }
+    }
+    selectTab('review');
+    show('vSession');
+    buildTimeline(); renderBoard(); renderRally(true); sizeOverlay(); renderSummary();
+  }
+  $('#fileReattach').addEventListener('change', (e) => {
+    const f = e.target.files[0]; e.target.value = '';
+    if (!f || !cur) return;
+    if (f.name !== cur.doc.src.name || Math.abs(f.size - cur.doc.src.size) > 1024) toast('분석할 때와 다른 파일 같습니다. 화면 위치가 맞지 않을 수 있습니다.', 4000);
+    const url = URL.createObjectURL(f); videoURLs[cur.doc.id] = url; vid.src = url; vid.currentTime = P.t; $('#reattach').hidden = true; P.dirty = true;
+  });
+  $('#sessTitle').addEventListener('change', (e) => { if (!cur) return; cur.doc.name = e.target.value.trim() || cur.doc.name; persist(); });
+
+  function recompute() { cur.eff = effective(cur.doc); }
+  function rallyAt(t) {
+    const rs = cur.eff.rallies;
+    for (let i = 0; i < rs.length; i++) if (t >= rs[i].t0 - 0.8 && t <= rs[i].t1 + 0.8) return i;
+    return -1;
+  }
+  function nearestRally(t) {
+    const rs = cur.eff.rallies; let i = rallyAt(t);
+    if (i >= 0) return i;
+    for (i = 0; i < rs.length; i++) if (rs[i].t0 > t) return i;
+    return rs.length - 1;
+  }
+  function hasMedia() { return cur.demo || !!vid.getAttribute('src'); }
+
+  function seek(t) {
+    P.t = clamp(t, 0, cur.doc.src.duration);
+    if (!cur.demo && hasMedia()) vid.currentTime = P.t;
+    P.dirty = true;
+  }
+  function playPlayer() {
+    if (!cur || !hasMedia()) return;
+    P.playing = true;
+    if (!cur.demo) { vid.playbackRate = P.rate; vid.play().catch(() => { P.playing = false; }); }
+    $('#btnPlay').textContent = '일시정지';
+  }
+  function pausePlayer() {
+    P.playing = false;
+    try { vid.pause(); } catch (e) { /* ignore */ }
+    const b = $('#btnPlay'); if (b) b.textContent = '재생';
+  }
+  $('#btnPlay').addEventListener('click', () => { P.playing ? pausePlayer() : playPlayer(); });
+  $('#btnPrev').addEventListener('click', () => { const i = nearestRally(P.t); const rs = cur.eff.rallies; const j = (rallyAt(P.t) >= 0 && P.t > rs[i].t0) ? i : Math.max(0, i - 1); seek(rs[j].t0 - 0.6); });
+  $('#btnNext').addEventListener('click', () => { const rs = cur.eff.rallies; const i = rs.findIndex(r => r.t0 - 0.6 > P.t + 0.05); if (i >= 0) seek(rs[i].t0 - 0.6); });
+  seg($('#optRate'), '1', v => { P.rate = +v; if (!cur.demo) vid.playbackRate = P.rate; });
+  $('#optOnly').addEventListener('change', e => { P.only = e.target.checked; });
+  $('#optLines').addEventListener('change', e => { P.lines = e.target.checked; P.dirty = true; });
+
+  function sizeOverlay() {
+    const r = stage.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    const w = Math.max(1, Math.round(r.width * dpr)), h = Math.max(1, Math.round(r.height * dpr));
+    if (ov.width !== w || ov.height !== h) { ov.width = w; ov.height = h; P.dirty = true; }
+  }
+  window.addEventListener('resize', () => { if (cur) sizeOverlay(); });
+
+  function tick(ts) {
+    requestAnimationFrame(tick);
+    if (!cur || $('#vSession').hidden) { P.last = ts; return; }
+    const dt = Math.min(0.1, (ts - (P.last || ts)) / 1000); P.last = ts;
+    if (P.playing) {
+      if (cur.demo) P.t += dt * P.rate; else P.t = vid.currentTime;
+      if (P.only) {
+        const rs = cur.eff.rallies;
+        if (rallyAt(P.t) < 0) {
+          const nx = rs.find(r => r.t0 - 0.6 > P.t);
+          if (nx) seek(nx.t0 - 0.6); else { pausePlayer(); }
+        }
+      }
+      if (P.t >= cur.doc.src.duration - 0.02) pausePlayer();
+      P.dirty = true;
+    }
+    if (P.dirty) { P.dirty = false; drawStage(); updatePlayUI(); }
+  }
+  requestAnimationFrame(tick);
+  vid.addEventListener('seeked', () => { P.dirty = true; });
+  vid.addEventListener('loadeddata', () => { P.dirty = true; });
+
+  function demoFrame(t) {
+    RN.renderDemo(cur.dimg.data, cur.doc.W, cur.doc.H, cur.demo.script, cur.demo.cam, t, Math.round(t * 1000));
+    cur.dctx.putImageData(cur.dimg, 0, 0);
+    return cur.dc;
+  }
+
+  // draws tracer, bounce marks, court lines for time t into ctx scaled by k (proc px -> canvas px)
+  function drawOverlays(ctx, t, k, ox, oy, opts) {
+    ox = ox || 0; oy = oy || 0; opts = opts || {};
+    const doc = cur.doc;
+    if (opts.lines) {
+      ctx.strokeStyle = 'rgba(120,210,255,.75)'; ctx.lineWidth = Math.max(1, k * 0.9);
+      for (const [a, b] of RN.courtLines()) {
+        const A = RN.applyH(cur.calib.toImage, a[0], a[1]), B = RN.applyH(cur.calib.toImage, b[0], b[1]);
+        ctx.beginPath(); ctx.moveTo(ox + A[0] * k, oy + A[1] * k); ctx.lineTo(ox + B[0] * k, oy + B[1] * k); ctx.stroke();
+      }
+    }
+    // bounce marks of the rally on screen
+    const ri = rallyAt(t);
+    if (ri >= 0) {
+      const r = cur.eff.rallies[ri];
+      for (const s of r.shots) {
+        const b = s.bounce; if (!b || b.t > t || t - b.t > 2.2) continue;
+        const col = b.in ? '#3cd18a' : '#ff6b4a';
+        const age = (t - b.t) / 2.2;
+        ctx.globalAlpha = 1 - age * 0.7;
+        ctx.strokeStyle = col; ctx.lineWidth = Math.max(2, k * 1.4);
+        ctx.beginPath(); ctx.ellipse(ox + b.ix * k, oy + b.iy * k, 9 * k * 0.9 + 4, 4 * k * 0.9 + 2, 0, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = col; ctx.font = `700 ${Math.round(11 + k * 3)}px "Barlow Condensed", sans-serif`;
+        ctx.fillText(b.in ? 'IN' : 'OUT', ox + b.ix * k + 10 + k * 6, oy + b.iy * k - 4);
+        ctx.globalAlpha = 1;
+      }
+    }
+    // tracer
+    const tr = cur.trail;
+    let lo = 0, hi = tr.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (tr[m].t < t - 0.5) lo = m + 1; else hi = m; }
+    const seg = [];
+    for (let i = lo; i < tr.length && tr[i].t <= t + 0.001; i++) seg.push(tr[i]);
+    if (seg.length) {
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      for (let i = 1; i < seg.length; i++) {
+        const a = seg[i - 1], b = seg[i];
+        if (b.t - a.t > 0.2) continue;
+        const f = 1 - (t - b.t) / 0.5;
+        ctx.strokeStyle = `rgba(205,235,60,${clamp(f, 0, 1) * 0.95})`; ctx.lineWidth = Math.max(2, k * 1.6);
+        ctx.beginPath(); ctx.moveTo(ox + a.x * k, oy + a.y * k); ctx.lineTo(ox + b.x * k, oy + b.y * k); ctx.stroke();
+      }
+      const lp = seg[seg.length - 1];
+      if (t - lp.t < 0.08) {
+        ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(ox + lp.x * k, oy + lp.y * k, 5 + k * 2, 0, Math.PI * 2); ctx.stroke();
+      }
+    }
+  }
+
+  function drawStage() {
+    const ctx = ov.getContext('2d'), doc = cur.doc;
+    sizeOverlay();
+    const k = ov.width / doc.W;
+    ctx.clearRect(0, 0, ov.width, ov.height);
+    if (cur.demo) ctx.drawImage(demoFrame(P.t), 0, 0, ov.width, ov.height);
+    if (!hasMedia()) return;
+    drawOverlays(ctx, P.t, k, 0, 0, { lines: P.lines });
+  }
+
+  function updatePlayUI() {
+    $('#timeLbl').textContent = fmtT(P.t) + ' / ' + fmtT(cur.doc.src.duration);
+    const ph = $('#timeline .ph'); if (ph) ph.style.left = (P.t / cur.doc.src.duration * 100) + '%';
+    const ri = nearestRally(P.t);
+    if (ri !== P.rallyIdx) { P.rallyIdx = ri; renderRally(); $$('#timeline .rb').forEach((el, i) => el.classList.toggle('cur', i === ri)); }
+    // highlight current shot
+    const r = cur.eff.rallies[ri];
+    if (r) $$('#rallyCard .shot').forEach(el => { const s = r.shots.find(x => x.id === el.dataset.id); el.classList.toggle('now', !!s && P.t >= s.t && P.t < (r.shots[r.shots.indexOf(s) + 1]?.t ?? r.t1 + 0.8)); });
+    renderBoardAt();
+  }
+
+  function buildTimeline() {
+    const tl = $('#timeline'), d = cur.doc.src.duration;
+    tl.innerHTML = cur.eff.rallies.map(r => `<div class="rb" style="left:${(r.t0 / d * 100).toFixed(3)}%;width:${Math.max(0.4, (r.t1 - r.t0) / d * 100).toFixed(3)}%"></div>`).join('') + '<div class="ph"></div>';
+  }
+  (function timelinePointer() {
+    const tl = $('#timeline');
+    let down = false;
+    const go = (e) => { const r = tl.getBoundingClientRect(); seek(clamp((e.clientX - r.left) / r.width, 0, 1) * cur.doc.src.duration); };
+    tl.addEventListener('pointerdown', (e) => { if (!cur) return; down = true; tl.setPointerCapture(e.pointerId); go(e); });
+    tl.addEventListener('pointermove', (e) => { if (down) go(e); });
+    tl.addEventListener('pointerup', () => { down = false; });
+  })();
+
+  // ---------- scoreboard ----------
+  let boardKey = '';
+  function renderBoard() { boardKey = ''; renderBoardAt(); }
+  function renderBoardAt() {
+    const ef = cur.eff, doc = cur.doc, el = $('#board');
+    if (doc.mode !== 'match') {
+      const key = 'p' + ef.rallies.length;
+      if (key === boardKey) return; boardKey = key;
+      const me = RN.stats(ef.rallies.map(r => Object.assign({ meSide: doc.opts.meStart }, r)), 'me');
+      el.className = 'board practice';
+      el.innerHTML = `<div class="prac"><div><b>${ef.rallies.length}</b><span>랠리</span></div><div><b>${me.avgRally}</b><span>평균 샷</span></div><div><b>${me.longest}</b><span>최장 랠리</span></div><div><b>${me.inPct ?? '–'}</b><span>내 샷 인 %</span></div><div><b>${me.avgSpeed ?? '–'}</b><span>평균 km/h</span></div></div>`;
+      return;
+    }
+    let snap = null;
+    for (let i = 0; i < ef.rallies.length; i++) { if (ef.rallies[i].t1 + 0.3 <= P.t && ef.score.snaps[i]) snap = ef.score.snaps[i]; }
+    const sets = snap ? snap.sets : [], g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
+    const key = JSON.stringify([sets, g, p]);
+    if (key === boardKey) return; boardKey = key;
+    el.className = 'board';
+    const setCols = sets.map(s => `<div class="col"><div class="${s[0] < s[1] ? 'lose' : ''}">${s[0]}</div><div class="${s[1] < s[0] ? 'lose' : ''}">${s[1]}</div></div>`).join('');
+    el.innerHTML = `<div class="who"><div><i class="dot on"></i>나</div><div><i class="dot"></i>상대</div></div>
+      <div class="cols">${setCols}<div class="col"><div>${g[0]}</div><div>${g[1]}</div></div><div class="col pt"><div>${p[0]}</div><div>${p[1]}</div></div></div>`;
+  }
+
+  // ---------- rally card ----------
+  function whoLabel(r, s) { return s.side === r.meSide ? '나' : '상대'; }
+  function renderRally() {
+    const ef = cur.eff, el = $('#rallyCard');
+    const ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t);
+    const r = ef.rallies[ri];
+    if (!r) { el.innerHTML = '<h3>랠리를 찾지 못했습니다</h3><p class="hint" style="margin-top:8px">공이 잘 보이도록 코트 뒤 높은 곳에서 찍은 영상이 가장 잘 분석됩니다. 코트 꼭짓점을 다시 맞추려면 영상을 다시 불러오세요.</p>'; return; }
+    const raw = cur.doc.rallies.find(x => x.id === r.id);
+    const shotsRaw = raw.shots;
+    const rows = shotsRaw.map((s, i) => {
+      const e = r.shots.find(x => x.id === s.id);
+      if (!e) return `<div class="shot" data-id="${s.id}" style="opacity:.5"><span class="n">${i + 1}</span><span class="muted">삭제한 샷</span><span class="acts"><button class="btn sm ghost" data-restore="${s.id}" type="button">복구</button></span></div>`;
+      const b = e.bounce;
+      const vd = b ? `<button class="chip ${b.in ? 'in' : 'out'} verdict" data-ch="${s.id}" type="button" title="라인 챌린지">${b.in ? 'IN' : 'OUT'}${s.bounce.override != null ? ' ✎' : ''}</button>` : '<span class="chip" title="바운스를 찾지 못함">–</span>';
+      const meta = [e.speed ? e.speed + 'km/h' : null, b && b.in ? ZONE_KO[b.zone] : null, s.inferred ? '추정' : null].filter(Boolean).join(' · ');
+      return `<div class="shot" data-id="${s.id}" data-t="${s.t}"><span class="n">${i + 1}</span><span><span class="who">${whoLabel(r, e)}</span> <span class="meta">${fmtT(s.t)}${meta ? ' · ' + meta : ''}</span></span>
+        <span class="acts"><button class="type" data-type="${s.id}" type="button">${TYPE_KO[e.type] || '샷 종류'}</button>${vd}<button class="x" data-del="${s.id}" type="button" aria-label="샷 삭제">×</button></span></div>`;
+    }).join('');
+    const win = cur.doc.mode === 'match' ? `<div class="winner"><span>포인트</span>
+      <button type="button" data-win="me" aria-pressed="${(raw.winner ?? null) === r.meSide}">나</button>
+      <button type="button" data-win="op" aria-pressed="${raw.winner != null && raw.winner !== r.meSide}">상대</button>
+      <span class="auto">${raw.winner == null ? '자동 판정: ' + (r.auto ? (r.auto === r.meSide ? '나' : '상대') : '없음') : '직접 정함'}</span></div>` : '';
+    el.innerHTML = `<header><h3>랠리 ${ri + 1} <span class="muted" style="font-weight:400">/ ${ef.rallies.length}</span></h3><span class="chip">${r.shots.length}샷</span><span class="chip">${fmtT(r.t0)}</span></header>
+      <div class="shots">${rows}</div>${win}
+      <p class="hint" style="margin-top:10px">샷을 누르면 그 순간으로 이동합니다. IN/OUT을 누르면 슬로 리플레이로 확인하고 판정을 바꿀 수 있습니다.</p>`;
+  }
+  $('#rallyCard').addEventListener('click', (e) => {
+    const doc = cur.doc;
+    const findRaw = (id) => { for (const r of doc.rallies) { const s = r.shots.find(x => x.id === id); if (s) return { r, s }; } return null; };
+    const t = e.target.closest('[data-type]');
+    if (t) { const { s } = findRaw(t.dataset.type); const i = TYPES.indexOf(s.type ?? null); s.type = TYPES[(i + 1) % TYPES.length]; afterEdit(); return; }
+    const d = e.target.closest('[data-del]');
+    if (d) { findRaw(d.dataset.del).s.deleted = true; afterEdit(); return; }
+    const rs = e.target.closest('[data-restore]');
+    if (rs) { findRaw(rs.dataset.restore).s.deleted = false; afterEdit(); return; }
+    const ch = e.target.closest('[data-ch]');
+    if (ch) { openChallenge(ch.dataset.ch); return; }
+    const w = e.target.closest('[data-win]');
+    if (w) {
+      const r = cur.eff.rallies[P.rallyIdx], raw = doc.rallies.find(x => x.id === r.id);
+      const side = w.dataset.win === 'me' ? r.meSide : (r.meSide === 'near' ? 'far' : 'near');
+      raw.winner = raw.winner === side ? null : side; afterEdit(); return;
+    }
+    const row = e.target.closest('.shot[data-t]');
+    if (row) seek(+row.dataset.t - 0.5);
+  });
+  function afterEdit() { recompute(); renderRally(); renderBoard(); buildTimeline(); renderSummary(); P.dirty = true; persist(); if (!$('#tabStats').hidden) renderStats(); }
+
+  // ---------- line challenge ----------
+  let challenge = null;
+  function openChallenge(shotId) {
+    pausePlayer();
+    const r = cur.eff.rallies.find(x => x.shots.some(s => s.id === shotId));
+    const s = r.shots.find(x => x.id === shotId), raw = cur.doc.rallies.find(x => x.id === r.id).shots.find(x => x.id === shotId);
+    const b = s.bounce;
+    const j = RN.judgeBounce(b, s, cur.doc.opts);
+    modal(`<div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h2>라인 챌린지 · ${whoLabel(r, s)}의 ${TYPE_KO[s.type] || '샷'}</h2><button class="btn sm" id="chClose" type="button">닫기</button></div>
+      <div class="challenge"><canvas id="chCanvas" width="720" height="450"></canvas>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="verdict-big ${b.in ? 'in' : 'out'}" id="chVerdict">…</div>
+        <p id="chMargin" class="muted">공이 떨어지는 순간까지 ¼ 속도로 재생합니다.</p>
+        <div id="chMini"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="chAgain" type="button">다시 보기</button><button class="btn sm" id="chFlip" type="button">판정을 ${b.in ? 'OUT' : 'IN'}으로 바꾸기</button>${raw.bounce.override != null ? '<button class="btn sm ghost" id="chReset" type="button">자동 판정으로</button>' : ''}</div>
+        <p class="note">자동 판정 여유: ${(j.margin * 100).toFixed(0)}cm. 30cm 안쪽은 촬영 각도에 따라 틀릴 수 있으니 영상으로 직접 확인하세요.</p>
+      </div></div>`);
+    $('#chMini').innerHTML = miniCourt(s, j);
+    $('#chClose').onclick = closeModal;
+    $('#chFlip').onclick = () => { raw.bounce.override = !b.in; closeModal(); afterEdit(); toast('판정을 바꿨습니다'); };
+    const rs = $('#chReset'); if (rs) rs.onclick = () => { raw.bounce.override = null; closeModal(); afterEdit(); };
+    const cv = $('#chCanvas'), ctx = cv.getContext('2d');
+    const doc = cur.doc;
+    const zw = 150, zh = zw * cv.height / cv.width;
+    const zx = clamp(b.ix - zw / 2, 0, doc.W - zw), zy = clamp(b.iy - zh / 2, 0, doc.H - zh);
+    const k = cv.width / zw;
+    let t = b.t - 1.0, raf = 0, done = false, last = 0;
+    const drawAt = (tt) => {
+      const src = cur.demo ? demoFrame(tt) : vid;
+      const sx = cur.demo ? 1 : vid.videoWidth / doc.W, sy = cur.demo ? 1 : vid.videoHeight / doc.H;
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      if (hasMedia()) ctx.drawImage(src, zx * sx, zy * sy, zw * sx, zh * sy, 0, 0, cv.width, cv.height);
+      else { ctx.fillStyle = '#0a131b'; ctx.fillRect(0, 0, cv.width, cv.height); }
+      ctx.save(); ctx.translate(-zx * k, -zy * k);
+      drawOverlays(ctx, tt, k, 0, 0, { lines: true });
+      ctx.restore();
+    };
+    const finish = () => {
+      done = true; drawAt(b.t);
+      const v = $('#chVerdict'); if (!v) return;
+      v.textContent = b.in ? 'IN' : 'OUT';
+      const m = Math.abs(j.margin * 100);
+      $('#chMargin').textContent = b.in ? `라인 안쪽 ${m.toFixed(0)}cm 지점에 떨어졌습니다.` : `라인 바깥 ${m.toFixed(0)}cm 지점에 떨어졌습니다.`;
+    };
+    const step = (ts) => {
+      if (done) return;
+      if (cur.demo || !hasMedia()) {
+        const dt = Math.min(0.05, (ts - (last || ts)) / 1000); last = ts; t += dt * 0.25;
+        drawAt(t); if (t >= b.t) return finish();
+      } else {
+        t = vid.currentTime; drawAt(t);
+        if (t >= b.t) { vid.pause(); vid.currentTime = b.t; vid.onseeked = () => { vid.onseeked = null; finish(); }; return; }
+      }
+      raf = requestAnimationFrame(step);
+    };
+    const start = () => {
+      done = false; last = 0; t = Math.max(0, b.t - 1.0);
+      $('#chVerdict').textContent = '…';
+      if (!cur.demo && hasMedia()) {
+        vid.currentTime = t; vid.playbackRate = 0.25;
+        vid.onseeked = () => { vid.onseeked = null; vid.play().then(() => { raf = requestAnimationFrame(step); }).catch(finish); };
+      } else if (!hasMedia()) { finish(); }
+      else raf = requestAnimationFrame(step);
+    };
+    $('#chAgain').onclick = () => { cancelAnimationFrame(raf); start(); };
+    challenge = { stop() { cancelAnimationFrame(raf); done = true; try { vid.pause(); vid.playbackRate = P.rate; } catch (e) { /* ignore */ } P.dirty = true; challenge = null; } };
+    start();
+  }
+  function miniCourt(s, j) {
+    // top-down view of the target half with the judged box and the bounce
+    const b = s.bounce;
+    const flip = s.side === 'far';
+    const X = (x) => flip ? C.W - x : x, Y = (y) => flip ? y : C.L - y;
+    const box = j.box;
+    const x0 = Math.min(X(box[0]), X(box[2])), x1 = Math.max(X(box[0]), X(box[2]));
+    const y0 = Math.min(Y(box[1]), Y(box[3])), y1 = Math.max(Y(box[1]), Y(box[3]));
+    const lines = RN.courtLines().map(([a, c]) => `<line x1="${X(a[0])}" y1="${Y(a[1])}" x2="${X(c[0])}" y2="${Y(c[1])}"/>`).join('');
+    const col = b.in ? 'var(--in)' : 'var(--out)';
+    return `<svg viewBox="-2 -2 ${C.W + 4} ${C.L + 4}" style="width:100%;max-width:220px;display:block" role="img" aria-label="코트 위 바운스 위치">
+      <rect x="-2" y="-2" width="${C.W + 4}" height="${C.L + 4}" fill="var(--court-deep)"/>
+      <rect x="0" y="0" width="${C.W}" height="${C.L}" fill="var(--court)"/>
+      <rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" fill="var(--ball)" fill-opacity=".18"/>
+      <g stroke="#fff" stroke-width=".09" fill="none">${lines}</g>
+      <line x1="-1" y1="${C.L - C.NET}" x2="${C.W + 1}" y2="${C.L - C.NET}" stroke="#fff" stroke-width=".18" stroke-dasharray=".4 .3"/>
+      <circle cx="${X(b.cx)}" cy="${Y(b.cy)}" r=".42" fill="${col}" stroke="#fff" stroke-width=".1"/>
+    </svg>`;
+  }
+
+  // ---------- tabs ----------
+  function selectTab(name) {
+    $$('.tabs [data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
+    $('#tabReview').hidden = name !== 'review'; $('#tabStats').hidden = name !== 'stats'; $('#tabRallies').hidden = name !== 'rallies';
+    if (name === 'stats') renderStats();
+    if (name === 'rallies') renderRallyTable();
+    if (name !== 'review') pausePlayer(); else { sizeOverlay(); P.dirty = true; }
+  }
+  $$('.tabs [data-tab]').forEach(b => b.addEventListener('click', () => selectTab(b.dataset.tab)));
+
+  // ---------- stats ----------
+  function renderStats() {
+    const ef = cur.eff, doc = cur.doc;
+    const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
+    const me = RN.stats(rs, 'me'), op = RN.stats(rs, 'op');
+    const won = (side) => rs.filter(r => { const w = (doc.rallies.find(x => x.id === r.id) || {}).winner ?? r.auto; return w && (side === 'me' ? w === r.meSide : w !== r.meSide); }).length;
+    const row = (label, a, b, unit) => `<tr><td>${label}</td><td><b>${a ?? '–'}</b>${a != null && unit ? '<small>' + unit + '</small>' : ''}</td><td><b>${b ?? '–'}</b>${b != null && unit ? '<small>' + unit + '</small>' : ''}</td></tr>`;
+    $('#cmpTable').innerHTML = `<thead><tr><th></th><th>나</th><th>상대</th></tr></thead><tbody>
+      ${row('샷 수', me.shots, op.shots)}
+      ${row('인 비율', me.inPct, op.inPct, '%')}
+      ${row('평균 속도', me.avgSpeed, op.avgSpeed, 'km/h')}
+      ${row('최고 속도', me.maxSpeed, op.maxSpeed, 'km/h')}
+      ${doc.mode === 'match' ? row('서브 인', me.serves ? me.servesIn + '/' + me.serves : null, op.serves ? op.servesIn + '/' + op.serves : null) : ''}
+      ${doc.mode === 'match' ? row('딴 포인트', won('me'), won('op')) : ''}
+    </tbody>`;
+    const bar = (st, who) => {
+      const tot = st.zones.short + st.zones.mid + st.zones.deep;
+      if (!tot) return `<div><span class="hint">${who}: 들어간 공이 아직 없습니다</span></div>`;
+      const pc = (n) => (n / tot * 100).toFixed(0);
+      return `<div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>${who}</span><span class="num muted">깊음 ${pc(st.zones.deep)}%</span></div>
+        <div class="depth"><i style="width:${pc(st.zones.short)}%;background:var(--warn)" title="짧음 ${pc(st.zones.short)}%"></i><i style="width:${pc(st.zones.mid)}%;background:var(--court)" title="중간 ${pc(st.zones.mid)}%"></i><i style="width:${pc(st.zones.deep)}%;background:var(--in)" title="깊음 ${pc(st.zones.deep)}%"></i></div></div>`;
+    };
+    $('#depthBars').innerHTML = bar(me, '나') + bar(op, '상대');
+    seg($('#optHeat'), cur.heat, v => { cur.heat = v; renderHeat(rs); });
+    renderHeat(rs);
+    const buckets = [[1, 2], [3, 4], [5, 6], [7, 9], [10, 999]];
+    const counts = buckets.map(([a, b]) => rs.filter(r => r.shots.length >= a && r.shots.length <= b).length);
+    const mx = Math.max(1, ...counts);
+    $('#hist').innerHTML = counts.map((c, i) => `<div><b>${c}</b><i style="height:${(c / mx * 80).toFixed(0)}%"></i><span>${buckets[i][1] > 99 ? '10+' : buckets[i][0] + '–' + buckets[i][1]}샷</span></div>`).join('');
+    $('#rallyNote').textContent = rs.length ? `랠리 ${rs.length}개 · 평균 ${me.avgRally}샷 · 최장 ${me.longest}샷` : '랠리가 없습니다';
+  }
+  function renderHeat(rs) {
+    const who = cur.heat;
+    const dots = [];
+    for (const r of rs) for (const s of r.shots) {
+      const mine = s.side === r.meSide;
+      if ((who === 'me') !== mine || !s.bounce) continue;
+      // normalize so every shot travels "up" the page
+      const flip = s.side === 'far';
+      const x = flip ? C.W - s.bounce.cx : s.bounce.cx, y = flip ? s.bounce.cy : C.L - s.bounce.cy;
+      dots.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r=".34" fill="${s.bounce.in ? 'var(--in)' : 'var(--out)'}" fill-opacity=".85" stroke="#fff" stroke-width=".06"/>`);
+    }
+    const lines = RN.courtLines().map(([a, c]) => `<line x1="${a[0]}" y1="${C.L - a[1]}" x2="${c[0]}" y2="${C.L - c[1]}"/>`).join('');
+    $('#heatSvg').innerHTML = `<svg viewBox="-3 -3.5 ${C.W + 6} ${C.L + 7}" role="img" aria-label="바운스 위치 지도">
+      <rect x="-3" y="-3.5" width="${C.W + 6}" height="${C.L + 7}" fill="var(--court-deep)" rx=".5"/>
+      <rect x="0" y="0" width="${C.W}" height="${C.L}" fill="var(--court)"/>
+      <g stroke="#fff" stroke-width=".08" fill="none">${lines}</g>
+      <line x1="-.9" y1="${C.L - C.NET}" x2="${C.W + .9}" y2="${C.L - C.NET}" stroke="#fff" stroke-width=".2"/>
+      <text x="${C.W / 2}" y="-1.2" text-anchor="middle" font-size="1" fill="#fff" fill-opacity=".75" font-family="IBM Plex Sans KR, sans-serif">상대 코트 방향</text>
+      ${dots.join('')}
+    </svg><p class="note" style="text-align:center">${who === 'me' ? '내' : '상대'} 샷 ${dots.length}개 · 초록 IN · 빨강 OUT · 아래에서 위로 친 방향으로 맞춰 표시</p>`;
+  }
+
+  // coaching via Claude
+  let sampleApi;
+  (async () => { try { sampleApi = window.claude?.use ? await window.claude.use('sample') : null; } catch (e) { sampleApi = null; } if (!sampleApi) { $('#btnCoach').hidden = true; $('#coachOut').textContent = '코칭 노트는 Claude 앱에서 이 페이지를 열었을 때 쓸 수 있습니다.'; } })();
+  $('#btnCoach').addEventListener('click', async () => {
+    if (!sampleApi || !cur) return;
+    const ef = cur.eff, doc = cur.doc;
+    const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
+    const me = RN.stats(rs, 'me'), op = RN.stats(rs, 'op');
+    const myShots = [];
+    rs.forEach((r, i) => r.shots.forEach(s => { if (s.side === r.meSide) myShots.push({ rally: i + 1, type: s.type || '미지정', kmh: s.speed, in: s.bounce ? s.bounce.in : null, depth: s.bounce ? s.bounce.zone : null, serve: !!s.serve }); }));
+    const out = $('#coachOut'); out.classList.remove('muted'); out.textContent = '생각하는 중…';
+    const btn = $('#btnCoach'); btn.disabled = true;
+    try {
+      const prompt = `당신은 동호인 테니스 코치입니다. 아래는 휴대폰 영상 분석 앱이 한 세션에서 측정한 수치입니다(속도는 타구~바운스 평균 추정치, 단식 기준).
+나: ${JSON.stringify(me)}
+상대: ${JSON.stringify(op)}
+내 샷 목록: ${JSON.stringify(myShots.slice(0, 120))}
+이 수치만 근거로, 다음 연습에서 집중할 점 세 가지를 한국어로 써 주세요. 각 항목은 "제목 한 줄" + 근거 수치 한 문장 + 구체적인 연습 방법 한 문장. 수치가 적어 판단하기 어려우면 그렇게 말하세요. 머리말이나 맺음말 없이 1., 2., 3. 으로만 답하세요.`;
+      await sampleApi(prompt, { onText: ({ text }) => { out.textContent = text; }, cache: false });
+    } catch (e) {
+      out.textContent = e && e.code === 'rate_limited' ? '요청이 많아 잠시 뒤에 다시 시도해 주세요.' : '코칭 노트를 만들지 못했습니다.';
+      if (e && e.code === 'not_granted') btn.hidden = true;
+    } finally { btn.disabled = false; }
+  });
+
+  // ---------- rally table ----------
+  function renderRallyTable() {
+    const ef = cur.eff, doc = cur.doc;
+    const rows = ef.rallies.map((r, i) => {
+      const raw = doc.rallies.find(x => x.id === r.id);
+      const last = r.shots[r.shots.length - 1];
+      const w = raw.winner ?? r.auto;
+      const snap = ef.score.snaps[i];
+      const sc = snap ? `${snap.g[0]}-${snap.g[1]} · ${snap.p[0]}-${snap.p[1]}` : '';
+      return `<tr data-t="${r.t0}"><td class="num">${i + 1}</td><td class="num">${fmtT(r.t0)}</td><td>${r.shots.length}샷</td><td>${last.bounce ? `<span class="chip ${last.bounce.in ? 'in' : 'out'}">${last.bounce.in ? 'IN' : 'OUT'}</span>` : '<span class="chip">네트·미확인</span>'} ${whoLabel(r, last)}</td><td>${doc.mode === 'match' ? (w ? (w === r.meSide ? '나' : '상대') + (raw.winner == null ? ' <span class="muted">(자동)</span>' : '') : '–') : '–'}</td><td class="num">${doc.mode === 'match' ? sc : ''}</td></tr>`;
+    }).join('');
+    $('#rallyTable').innerHTML = `<thead><tr><th>#</th><th>시작</th><th>길이</th><th>마지막 샷</th><th>포인트</th><th>게임 · 점수</th></tr></thead><tbody>${rows || '<tr><td colspan="6" class="muted">랠리가 없습니다</td></tr>'}</tbody>`;
+  }
+  $('#rallyTable').addEventListener('click', (e) => { const tr = e.target.closest('tr[data-t]'); if (!tr) return; selectTab('review'); seek(+tr.dataset.t - 0.6); });
+
+  // ---------- exports ----------
+  let downloadsApi;
+  (async () => { try { downloadsApi = window.claude?.use ? await window.claude.use('downloads') : null; } catch (e) { downloadsApi = null; } })();
+  async function saveFile(filename, data) {
+    if (!downloadsApi) {
+      // standalone page: plain browser download
+      try {
+        const blob = data instanceof Blob ? data : new Blob([data], { type: 'text/csv;charset=utf-8' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename;
+        document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+        return true;
+      } catch (e) { toast('이 화면에서는 파일 저장을 지원하지 않습니다.'); return false; }
+    }
+    try { await downloadsApi.save({ filename, data }); return true; }
+    catch (e) { if (e && e.code === 'declined') return false; toast('저장하지 못했습니다' + (e && e.message ? ': ' + e.message : '')); return false; }
+  }
+  $('#btnCsv').addEventListener('click', () => {
+    const ef = cur.eff; const lines = ['rally,shot,time_s,player,type,speed_kmh,bounce_x_m,bounce_y_m,verdict,margin_cm'];
+    ef.rallies.forEach((r, i) => r.shots.forEach((s, j) => {
+      lines.push([i + 1, j + 1, s.t.toFixed(2), whoLabel(r, s), TYPE_KO[s.type] || '', s.speed || '', s.bounce ? s.bounce.cx.toFixed(2) : '', s.bounce ? s.bounce.cy.toFixed(2) : '', s.bounce ? (s.bounce.in ? 'IN' : 'OUT') : '', s.bounce ? Math.round(s.bounce.margin * 100) : ''].join(','));
+    }));
+    saveFile(cur.doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_샷기록.csv', '﻿' + lines.join('\n'));
+  });
+
+  $('#btnHighlights').addEventListener('click', async () => {
+    if (!hasMedia()) { toast('원본 영상을 먼저 연결해 주세요.'); return; }
+    if (typeof MediaRecorder === 'undefined') { toast('이 브라우저는 영상 저장을 지원하지 않습니다.'); return; }
+    pausePlayer();
+    const longOnly = $('#optLongOnly').checked;
+    const list = cur.eff.rallies.map((r, i) => ({ r, i })).filter(x => !longOnly || x.r.shots.length >= 4);
+    if (!list.length) { toast('담을 랠리가 없습니다.'); return; }
+    const doc = cur.doc;
+    const outW = cur.demo ? 960 : Math.min(1280, vid.videoWidth || 1280);
+    const outH = Math.round(outW * doc.H / doc.W / 2) * 2;
+    const cv = document.createElement('canvas'); cv.width = outW; cv.height = outH;
+    const ctx = cv.getContext('2d');
+    const k = outW / doc.W;
+    const mime = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
+    const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
+    const stream = cv.captureStream(30);
+    const rec = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 6e6 } : undefined);
+    const chunks = []; rec.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+    let stop = false;
+    modal(`<h2>하이라이트 만드는 중</h2><div class="bar"><i id="hlBar"></i></div><p class="hint" id="hlText">랠리 ${list.length}개를 이어 붙이는 중입니다. 실제 재생 시간만큼 걸립니다.</p><div><button class="btn sm" id="hlStop" type="button">중단</button></div>`);
+    $('#hlStop').onclick = () => { stop = true; };
+    const ef = cur.eff;
+    const drawBoard = (ri) => {
+      if (doc.mode !== 'match') return;
+      let snap = null; for (let i = 0; i < ri; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
+      const g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
+      const s = outW / 960;
+      ctx.fillStyle = 'rgba(10,19,27,.82)'; ctx.fillRect(16 * s, 16 * s, 200 * s, 64 * s);
+      ctx.fillStyle = '#cdeb3c'; ctx.fillRect(160 * s, 16 * s, 56 * s, 64 * s);
+      ctx.font = `600 ${18 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = '#eef2ea';
+      ctx.fillText('나', 28 * s, 42 * s); ctx.fillText('상대', 28 * s, 70 * s);
+      ctx.font = `600 ${24 * s}px "Barlow Condensed", sans-serif`;
+      ctx.fillText(String(g[0]), 128 * s, 43 * s); ctx.fillText(String(g[1]), 128 * s, 71 * s);
+      ctx.fillStyle = '#1c2200'; ctx.fillText(p[0], 172 * s, 43 * s); ctx.fillText(p[1], 172 * s, 71 * s);
+    };
+    const withOverlay = $('#optOverlay').checked;
+    const frame = (t, ri) => {
+      if (cur.demo) ctx.drawImage(demoFrame(t), 0, 0, outW, outH); else ctx.drawImage(vid, 0, 0, outW, outH);
+      if (withOverlay) { drawOverlays(ctx, t, k, 0, 0, {}); drawBoard(ri); }
+    };
+    rec.start(500);
+    for (let n = 0; n < list.length && !stop; n++) {
+      const { r, i } = list[n];
+      const a = Math.max(0, r.t0 - 0.8), b = Math.min(doc.src.duration, r.t1 + 0.8);
+      $('#hlBar').style.width = (n / list.length * 100) + '%';
+      $('#hlText').textContent = `랠리 ${n + 1} / ${list.length}`;
+      if (cur.demo) {
+        await new Promise(res => {
+          const t0 = performance.now();
+          const st = () => { if (stop) return res(); const t = a + (performance.now() - t0) / 1000; frame(Math.min(t, b), i); if (t >= b) return res(); requestAnimationFrame(st); };
+          requestAnimationFrame(st);
+        });
+      } else {
+        await new Promise(res => { vid.onseeked = () => { vid.onseeked = null; res(); }; vid.currentTime = a; });
+        vid.playbackRate = 1;
+        await vid.play().catch(() => {});
+        await new Promise(res => {
+          const st = () => { if (stop || vid.currentTime >= b || vid.ended) { vid.pause(); return res(); } frame(vid.currentTime, i); requestAnimationFrame(st); };
+          requestAnimationFrame(st);
+        });
+      }
+    }
+    await new Promise(res => { rec.onstop = res; rec.stop(); });
+    closeModal();
+    if (stop) { toast('하이라이트 저장을 멈췄습니다'); return; }
+    const blob = new Blob(chunks, { type: mime || 'video/webm' });
+    const ok = await saveFile(doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_하이라이트.' + ext, blob);
+    if (ok) toast('하이라이트를 저장했습니다');
+    P.dirty = true;
+  });
+
+  // ---------- play vs. dead time ----------
+  function playWindows() {
+    const d = cur.doc.src.duration, out = [];
+    for (const r of cur.eff.rallies) {
+      const a = Math.max(0, r.t0 - 0.8), b = Math.min(d, r.t1 + 0.8);
+      if (out.length && a <= out[out.length - 1][1]) out[out.length - 1][1] = Math.max(out[out.length - 1][1], b); else out.push([a, b]);
+    }
+    return out;
+  }
+  function renderSummary() {
+    const el = $('#playSummary'); if (!el || !cur) return;
+    const play = playWindows().reduce((n, [a, b]) => n + b - a, 0), total = cur.doc.src.duration;
+    el.innerHTML = `<div class="fig"><b class="num">${fmtT(play)}</b><span>실제 플레이</span></div>
+      <div class="fig"><b class="num" style="color:var(--ink-2)">${fmtT(Math.max(0, total - play))}</b><span>공 줍기·쉬는 시간 (자동 제외)</span></div>
+      <div class="grow"></div><button class="btn sm ball" id="btnPlayOnly" type="button">경기만 남긴 영상 저장</button>`;
+    $('#btnPlayOnly').onclick = () => { $('#optLongOnly').checked = false; $('#btnHighlights').click(); };
+  }
+
+  // ---------- session file import (analysed by Claude) ----------
+  $('#fileSession').addEventListener('change', async (e) => {
+    const f = e.target.files[0]; e.target.value = '';
+    if (!f) return;
+    try {
+      const doc = JSON.parse(await f.text());
+      if (!doc || !doc.id || !doc.rallies || !doc.corners || !doc.src) throw new Error('랠리노트 세션 파일이 아닙니다');
+      await store.save(doc); toast('세션을 불러왔습니다. 영상 파일을 연결하면 리플레이를 볼 수 있어요.', 4000);
+      openSession(doc);
+    } catch (err) { toast('세션 파일을 열지 못했습니다: ' + err.message, 4000); }
+  });
+  $('#tabHome').addEventListener('click', () => { cancelAnalysis = true; show('vHome'); refreshHome(); });
+
+  // ---------- offline (installed web app) ----------
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost') && !location.hostname.endsWith('claude.ai') && !location.hostname.endsWith('claudeusercontent.com')) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+
+  // ---------- boot ----------
+  drawHero();
+  document.fonts && document.fonts.ready.then(() => { drawHero(); });
+  refreshHome();
+  store.init().then(() => refreshHome());
+})();
+
+</script>
+
+</body></html>
