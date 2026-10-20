@@ -234,6 +234,53 @@ table.rt tr:hover td{background:var(--surface-2);cursor:pointer}
 .trend svg{width:100%;height:auto;display:block;margin-top:6px;overflow:visible}
 .trend .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:4px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-120%)}
 @media (max-width:880px){ .goals{grid-template-columns:minmax(0,1fr)} .trends{grid-template-columns:minmax(0,1fr)} }
+/* people: who you played with / against */
+.people{padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;margin-bottom:14px}
+.people .ttl{flex:1 0 100%;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.people .ttl{flex-wrap:wrap}
+.people .ttl b{font-size:14px;white-space:nowrap}
+.people label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink-2);flex:1 1 140px;min-width:0}
+.people input{font-size:16px;padding:7px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);width:100%;min-width:0}
+.people input:focus{outline:2px solid var(--court);outline-offset:0;border-color:var(--court)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.pcard{padding:12px 14px;display:flex;flex-direction:column;gap:8px;text-align:left;cursor:pointer}
+.pcard:hover{border-color:var(--ink-2)}
+.pcard[aria-pressed="true"]{border-color:var(--court);box-shadow:0 0 0 1px var(--court)}
+.pcard .row{display:flex;gap:8px;align-items:center}
+.pcard .row b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pcard .rec{font-size:13px;color:var(--ink-2)}
+.pcard .rec b{color:var(--ink);font-weight:600}
+.pcard .figs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pcard .figs b{font-family:var(--f-display);font-size:22px;display:block;line-height:1}
+.pcard .figs small{font-size:12px;color:var(--ink-2)}
+.pcard .figs span{font-size:11px;color:var(--ink-2)}
+.chip.mate{background:color-mix(in srgb,var(--court) 14%,transparent);color:var(--court)}
+.scard .with{font-size:12px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal .row{display:flex;align-items:center}
+.fcheck{margin-top:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.fcheck .fhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fcheck ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.fcheck li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:13px;line-height:1.45}
+.fcheck li i{font-style:normal;font-size:12px;line-height:1.6;text-align:center}
+.fcheck li div > b{display:block;font-size:13px}
+.fcheck li span{color:var(--ink-2)}
+.fcheck li.good i{color:var(--in)}.fcheck li.warn i{color:var(--warn)}.fcheck li.fix i{color:var(--out)}.fcheck li.info i{color:var(--court)}
+.dl{font-size:11px;font-weight:600;margin-left:6px;font-family:var(--f-body)}
+.dl.up{color:var(--in)}.dl.down{color:var(--out)}.dl.same{color:var(--ink-2)}
+.xhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.xhead h2{margin:0}
+.xpick{max-height:220px;overflow:auto;border:1px solid var(--rule);border-radius:var(--r);padding:8px;margin-top:8px}
+.xr{display:grid;grid-template-columns:22px 40px 48px 44px 1fr;gap:6px;align-items:center;font-size:14px;padding:5px 2px;border-bottom:1px solid var(--rule);cursor:pointer}
+.xr:last-child{border-bottom:0}
+.xr input{width:18px;height:18px;accent-color:var(--court)}
+.xsum{margin:8px 0 0;font-size:14px;font-weight:600}
+.xopts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px 14px}
+.seg button[disabled]{opacity:.4;cursor:not-allowed}
+.xprev{width:100%;max-height:52dvh;background:#000;border-radius:var(--r)}
+.xprev.tall{width:auto;max-width:100%;align-self:center}
+.xshared{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.xshared .hint{margin:0}
+.filter-note{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin:-4px 0 12px}
 /* ---------- app shell: phone first ---------- */
 html{-webkit-text-size-adjust:100%}
 body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
@@ -324,12 +371,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div class="court-art"><canvas id="heroArt" width="640" height="400" aria-label="코트 위 공 궤적 그림"></canvas></div>
     </div>
     <ol class="steps">
-      <li><b>1 · 거치</b><p>코트 뒤쪽 높은 곳(펜스 2m 이상)에서 양쪽 베이스라인과 사이드라인이 다 보이게 가로로 찍습니다.</p></li>
+      <li><b>1 · 거치</b><p>센터마크 바로 뒤, 뒤 펜스 쪽으로 최대한 물러나 스탠드를 최대한 높게 세우고 폰을 <b>가로·0.5배</b>로 찍습니다. 먼 쪽 모서리 두 개와 가까운 쪽 단식 모서리 두 개는 꼭 보여야 합니다. 짐벌은 자동 추적을 끄고 고정해 두세요.</p></li>
       <li><b>2 · 코트 맞추기</b><p>영상의 코트 네 꼭짓점에 점 네 개를 맞춥니다. 이 기준으로 공 위치를 미터 단위로 계산합니다.</p></li>
       <li><b>3 · 리뷰</b><p>랠리만 이어 보기, 바운스 지점, 인·아웃 챌린지, 통계. 판정과 점수는 탭 한 번으로 수정됩니다.</p></li>
     </ol>
     <section id="progress" class="progress" aria-label="이번 주와 실력 변화"></section>
+    <section id="peopleStats" class="progress" aria-label="함께 친 사람"></section>
     <div class="list-head"><h2>내 세션</h2><span class="muted" id="storeNote"></span></div>
+    <div class="filter-note" id="filterNote" hidden></div>
     <p class="hint" style="margin:-4px 0 12px">Claude가 분석해 준 세션 파일(.json)은 <label for="fileSession" style="text-decoration:underline;cursor:pointer">여기서 열기</label><input id="fileSession" type="file" accept=".json,application/json" hidden></p>
     <div class="sessions" id="sessionList"></div>
   </section>
@@ -346,10 +395,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         </div>
         <div class="legend-corners" id="cornerLegend" style="margin-top:8px"></div>
         <p class="hint" id="calibWarn" style="margin-top:8px;color:var(--warn)" hidden></p>
+        <div class="panel fcheck" id="framingCheck" hidden></div>
       </div>
       <div class="panel form">
         <p class="hint">점 네 개를 코트의 <b>기준점</b>에 끌어다 맞추세요. 끄는 동안 확대경이 뜹니다. 파란 선이 실제 라인과 겹치면 정확합니다.</p>
-        <div class="field"><span class="label">가까운 쪽 기준점</span><div class="seg" id="optRef"><button type="button" data-v="baseline">베이스라인 모서리</button><button type="button" data-v="service">서비스라인 모서리</button></div><span class="hint">카메라 앞 모서리가 화면에 안 걸리면 서비스라인을 고르세요.</span></div>
+        <div class="field"><span class="label">가까운 쪽 기준점</span><div class="seg" id="optRef"><button type="button" data-v="baseline">복식 모서리</button><button type="button" data-v="singles">단식 모서리</button><button type="button" data-v="service">서비스라인</button></div><span class="hint">뒤 공간이 짧아 가까운 복식 모서리가 잘리면 <b>단식 모서리</b>(베이스라인과 단식 사이드라인이 만나는 점)를 고르세요. 그것도 잘리면 서비스라인.</span></div>
         <div class="field"><span class="label">종류</span><div class="seg" id="optMode"><button type="button" data-v="match">경기</button><button type="button" data-v="practice">연습·랠리</button></div></div>
         <div class="field"><span class="label">판정 기준</span><div class="seg" id="optCourt"><button type="button" data-v="doubles">복식</button><button type="button" data-v="singles">단식</button></div></div>
         <div class="field"><span class="label">처음에 나는</span><div class="seg" id="optMe"><button type="button" data-v="near">카메라 쪽</button><button type="button" data-v="far">반대편</button></div></div>
@@ -383,7 +433,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <input class="title" id="sessTitle" aria-label="세션 이름">
       <span class="chip" id="sessMode"></span>
     </div>
+    <div class="panel people" id="people" hidden></div>
+    <datalist id="peopleNames"></datalist>
     <div class="board" id="board"></div>
+    <p class="panel" id="moveWarn" hidden style="margin-top:10px;padding:10px 14px;font-size:14px;border-color:color-mix(in srgb,var(--warn) 45%,var(--rule));color:var(--ink)"></p>
     <div class="tabs" role="tablist" style="margin-top:16px">
       <button role="tab" aria-selected="true" data-tab="review" type="button">리뷰</button>
       <button role="tab" aria-selected="false" data-tab="stats" type="button">통계</button>
@@ -421,11 +474,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           <div class="panel card-pad">
             <h3>내보내기</h3>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn sm" id="btnHighlights" type="button">경기만 남긴 영상 저장</button>
+              <button class="btn sm ball" id="btnHighlights" type="button">하이라이트 영상 만들기</button>
               <button class="btn sm" id="btnCsv" type="button">샷 기록 CSV</button>
             </div>
-            <label class="check"><input type="checkbox" id="optOverlay" checked> 공 궤적·점수 넣기</label>
-            <label class="check"><input type="checkbox" id="optLongOnly"> 4샷 이상 랠리만 담기</label>
+            <p class="hint" style="margin:0">랠리 고르기, 포핸드·서브만 모으기, 세로 9:16 릴스, 내 폰으로 에어드롭</p>
           </div>
         </div>
       </div>
@@ -1226,7 +1278,38 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     return { segs, events, rallies };
   }
 
-  const RN = { C, analyzeTrack, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
+  // How well the calibrated court lines still sit on bright line pixels in this frame.
+  // A tracking gimbal that pans the phone makes this collapse.
+  function lineSamples(calib, w, h, sx, sy) {
+    const out = [];
+    for (const [a, b] of courtLines()) {
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      if (len < 2) continue;
+      const n = Math.max(6, Math.round(len * 2));
+      for (let k = 1; k < n; k++) {
+        const f = k / n, cx = a[0] + (b[0] - a[0]) * f, cy = a[1] + (b[1] - a[1]) * f;
+        const [u, v] = applyH(calib.toImage, cx, cy);
+        const [u2, v2] = applyH(calib.toImage, cx + (b[1] - a[1]) / len * 0.4, cy - (b[0] - a[0]) / len * 0.4);
+        const x = u * sx, y = v * sy, nx = (u2 * sx - x), ny = (v2 * sy - y), nl = Math.hypot(nx, ny) || 1;
+        if (x < 3 || y < 3 || x > w - 4 || y > h - 4) continue;
+        out.push([x, y, nx / nl, ny / nl]);
+      }
+    }
+    return out;
+  }
+  function lineScore(rgba, w, h, samples) {
+    if (!samples.length) return null;
+    const L = (x, y) => { x = Math.round(x); y = Math.round(y); if (x < 0 || y < 0 || x >= w || y >= h) return 0; const j = (y * w + x) * 4; return (rgba[j] * 3 + rgba[j + 1] * 6 + rgba[j + 2]) / 10; };
+    let s = 0;
+    for (const [x, y, nx, ny] of samples) {
+      const c = Math.max(L(x, y), L(x + nx, y + ny), L(x - nx, y - ny));
+      const side = Math.min(L(x + nx * 5, y + ny * 5), L(x - nx * 5, y - ny * 5));
+      s += Math.max(0, c - side);
+    }
+    return s / samples.length;
+  }
+
+  const RN = { C, analyzeTrack, lineSamples, lineScore, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
     buildRallies, judgeBounce, suggestWinner, score, stats, makeCamera, demoScript, renderDemo, demoCorners, ballAt, analyze, depthZone };
   if (typeof module !== 'undefined' && module.exports) module.exports = RN; else root.RN = RN;
 })(typeof self !== 'undefined' ? self : this);
@@ -1434,24 +1517,148 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#progress').addEventListener('pointerleave', () => document.querySelectorAll('.trend .tip').forEach(t => t.remove()));
   })();
 
+  // ---------- people: partner / opponents per session, stats per person ----------
+  const ROLE = { partner: '파트너', opp: '상대', mate: '같이 침' };
+  let personFilter = null; // { key, name, role }
+  let peopleAll = false;
+  const normName = (s) => String(s || '').trim().replace(/\s+/g, ' ');
+  const nameKey = (s) => normName(s).toLowerCase();
+  function peopleOf(doc) {
+    // -> [{ name, role }] ; practice sessions list everyone as "mate"
+    const p = doc.people; if (!p) return [];
+    const out = [];
+    if (doc.mode === 'match' && normName(p.partner)) out.push({ name: normName(p.partner), role: 'partner' });
+    (p.opps || []).map(normName).filter(Boolean).forEach(n => out.push({ name: n, role: doc.mode === 'match' ? 'opp' : 'mate' }));
+    return out;
+  }
+  function matchResult(doc) {
+    if (doc.mode !== 'match') return null;
+    const sc = effective(doc).score, snaps = sc.snaps.filter(Boolean), f = sc.final;
+    const pw = snaps.filter(s => s.who === 0).length;
+    const sw = f.sets.filter(s => s[0] > s[1]).length, sl = f.sets.length - sw;
+    const gw = f.sets.reduce((a, s) => a + s[0], 0) + f.g[0], gl = f.sets.reduce((a, s) => a + s[1], 0) + f.g[1];
+    // finished match -> sets decide; partial footage -> sets, then games, then points so far
+    let res = null;
+    if (sw !== sl) res = sw > sl ? 'W' : 'L';
+    else if (gw !== gl) res = gw > gl ? 'W' : 'L';
+    else if (pw * 2 !== snaps.length) res = pw * 2 > snaps.length ? 'W' : 'L';
+    return { res, done: f.done, pw, pl: snaps.length - pw };
+  }
+  function knownNames() {
+    const m = new Map();
+    sessions.filter(d => !d.demo).forEach(d => peopleOf(d).forEach(x => { if (!m.has(nameKey(x.name))) m.set(nameKey(x.name), x.name); }));
+    return [...m.values()].sort((a, b) => a.localeCompare(b, 'ko'));
+  }
+  function personRows() {
+    const m = new Map();
+    for (const d of sessions) {
+      if (d.demo) continue;
+      for (const x of peopleOf(d)) {
+        const k = nameKey(x.name) + '|' + x.role;
+        if (!m.has(k)) m.set(k, { key: k, name: x.name, role: x.role, docs: [] });
+        m.get(k).docs.push(d);
+      }
+    }
+    return [...m.values()].map(r => {
+      const pl = pooled(r.docs);
+      let w = 0, l = 0, pw = 0, pt = 0, partial = 0;
+      r.docs.forEach(d => { const mr = matchResult(d); if (!mr) return; if (mr.res === 'W') w++; else if (mr.res === 'L') l++; if (!mr.done) partial++; pw += mr.pw; pt += mr.pw + mr.pl; });
+      const last = Math.max(...r.docs.map(d => d.created || 0));
+      return Object.assign(r, { n: r.docs.length, w, l, partial, ptPct: pt ? Math.round(pw / pt * 100) : null, inPct: pl.inPct, avgRally: pl.avgRally, last });
+    }).sort((a, b) => b.n - a.n || b.last - a.last);
+  }
+  function renderPeopleStats() {
+    const el = $('#peopleStats');
+    const real = sessions.filter(d => !d.demo);
+    if (!real.length) { el.innerHTML = ''; el.hidden = true; return; }
+    el.hidden = false;
+    const rows = personRows();
+    if (personFilter && !rows.some(r => r.key === personFilter.key)) personFilter = null;
+    const head = `<div class="head"><h2>함께 친 사람</h2>${rows.length ? '<span class="est">추정치 · 실제 영상 검증 전</span>' : ''}</div>`;
+    if (!rows.length) {
+      el.innerHTML = head + `<div class="empty">세션을 열고 맨 위의 <b>함께 친 사람</b>에 파트너와 상대 이름을 적어 두면, 사람별 승패와 내 샷 통계가 여기에 모입니다.</div>`;
+      return;
+    }
+    const card = (r) => {
+      const rec = r.role === 'mate'
+        ? `<b>${r.n}</b>세션 같이 침`
+        : `<b>${r.n}</b>세션 · <b>${r.w}승 ${r.l}패</b>${r.partial ? ` <span title="끝까지 찍지 않은 경기는 찍힌 데까지의 점수로 셉니다">· 중간까지 찍은 경기 ${r.partial}개 포함</span>` : ''}`;
+      const f1 = r.role === 'mate' ? ['평균 랠리', r.avgRally, '샷'] : ['포인트 득점', r.ptPct, '%'];
+      const figs = [f1, ['내 샷 인', r.inPct, '%'], r.role === 'mate' ? ['세션', r.n, '회'] : ['평균 랠리', r.avgRally, '샷']];
+      return `<button type="button" class="panel pcard" data-person="${esc(r.key)}" aria-pressed="${personFilter && personFilter.key === r.key}">
+        <div class="row"><b>${esc(r.name)}</b><span class="chip ${r.role === 'opp' ? '' : 'mate'}">${ROLE[r.role]}</span></div>
+        <div class="rec">${rec}</div>
+        <div class="figs">${figs.map(([lab, v, u]) => `<div><b>${v ?? '–'}${v != null ? `<small>${u}</small>` : ''}</b><span>${lab}</span></div>`).join('')}</div>
+      </button>`;
+    };
+    const LIMIT = 4, list = peopleAll ? rows : rows.filter((r, i) => i < LIMIT || (personFilter && personFilter.key === r.key));
+    const more = rows.length > LIMIT ? `<button class="btn sm" type="button" data-more>${peopleAll ? '접기' : `전체 ${rows.length}명 보기`}</button>` : '';
+    el.innerHTML = head + `<div class="pgrid">${list.map(card).join('')}</div><div class="filter-note" style="margin:0"><span>카드를 누르면 그 사람과 친 세션만 아래에 보입니다.</span>${more}</div>`;
+  }
+  $('#peopleStats').addEventListener('click', (e) => {
+    if (e.target.closest('[data-more]')) { peopleAll = !peopleAll; renderPeopleStats(); return; }
+    const c = e.target.closest('[data-person]'); if (!c) return;
+    const r = personRows().find(x => x.key === c.dataset.person);
+    personFilter = personFilter && personFilter.key === c.dataset.person ? null : (r ? { key: r.key, name: r.name, role: r.role } : null);
+    refreshHome(true);
+    if (personFilter) $('#sessionList').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  $('#filterNote').addEventListener('click', (e) => { if (e.target.closest('[data-clear]')) { personFilter = null; refreshHome(true); } });
+
+  function renderPeople() {
+    const d = cur.doc, el = $('#people');
+    if (d.demo) { el.hidden = true; el.innerHTML = ''; return; }
+    el.hidden = false;
+    const p = d.people || { partner: '', opps: ['', ''] };
+    const match = d.mode === 'match', dbl = !!d.opts.doubles;
+    const f = (k, label, v) => `<label>${label}<input data-pk="${k}" list="peopleNames" value="${esc(v || '')}" placeholder="이름" autocomplete="off" enterkeyhint="done"></label>`;
+    const fields = match
+      ? (dbl ? [f('partner', '내 파트너', p.partner), f('o0', '상대 1', p.opps[0]), f('o1', '상대 2', p.opps[1])] : [f('o0', '상대', p.opps[0])])
+      : [f('o0', '같이 친 사람', p.opps[0]), f('o1', '같이 친 사람 2', p.opps[1])];
+    el.innerHTML = `<div class="ttl"><b>함께 친 사람</b><span class="hint">${match ? (dbl ? '복식' : '단식') + ' 경기 · 적어 두면 사람별 기록이 쌓입니다' : '연습 상대를 적어 두세요'}</span></div>${fields.join('')}`;
+    $('#peopleNames').innerHTML = knownNames().map(n => `<option value="${esc(n)}"></option>`).join('');
+  }
+  $('#people').addEventListener('change', (e) => {
+    const inp = e.target.closest('[data-pk]'); if (!inp || !cur || cur.doc.demo) return;
+    const p = cur.doc.people = cur.doc.people || { partner: '', opps: ['', ''] };
+    const v = normName(inp.value); inp.value = v;
+    // reuse the spelling already on file for the same person
+    const known = knownNames().find(n => nameKey(n) === nameKey(v)); const val = known || v;
+    if (known) inp.value = known;
+    if (inp.dataset.pk === 'partner') p.partner = val; else p.opps[+inp.dataset.pk.slice(1)] = val;
+    persist(); toast(val ? `${val} 님을 기록했습니다` : '이름을 지웠습니다');
+  });
+
   // ---------- home ----------
-  async function refreshHome() {
-    sessions = await store.list();
-    sessions.sort((a, b) => (b.created || 0) - (a.created || 0));
-    renderProgress();
+  async function refreshHome(keep) {
+    if (!keep) {
+      // a save may still be waiting on its debounce; flush it so the list shows the latest edits
+      if (saveTimer && cur && !cur.doc.demo) { clearTimeout(saveTimer); saveTimer = 0; await store.save(cur.doc); }
+      sessions = await store.list();
+      sessions.sort((a, b) => (b.created || 0) - (a.created || 0));
+      renderProgress();
+    }
+    renderPeopleStats();
     const el = $('#sessionList');
     $('#storeNote').textContent = store.mode === 'cloud' ? '내 계정에 저장됨 · 어느 기기에서든 열림' : '이 브라우저에 저장됨';
     if (!sessions.length) {
       el.innerHTML = '<div class="empty">아직 분석한 세션이 없습니다. 위의 <b>촬영하기</b>나 <b>영상 불러오기</b>로 시작하거나, 샘플 경기를 먼저 열어 보세요.</div>';
       return;
     }
-    el.innerHTML = sessions.map(d => {
+    const fn = $('#filterNote');
+    const shown = personFilter ? sessions.filter(d => peopleOf(d).some(x => nameKey(x.name) + '|' + x.role === personFilter.key)) : sessions;
+    fn.hidden = !personFilter;
+    if (personFilter) fn.innerHTML = `<span><b>${esc(personFilter.name)}</b> (${ROLE[personFilter.role]}) 세션 ${shown.length}개만 보는 중</span><button class="btn sm" type="button" data-clear>전체 보기</button>`;
+    el.innerHTML = shown.map(d => {
       const ef = effective(d);
       const me = RN.stats(ef.rallies, 'me');
       const date = new Date(d.created || Date.now());
+      const ppl = peopleOf(d), mates = ppl.filter(x => x.role !== 'opp').map(x => x.name), opps = ppl.filter(x => x.role === 'opp').map(x => x.name);
+      const mr = matchResult(d);
+      const withLine = ppl.length ? `<div class="with">${mr && mr.res ? `<b style="color:var(--${mr.res === 'W' ? 'in' : 'out'})">${mr.res === 'W' ? '승' : '패'}</b> · ` : ''}${mates.length ? (d.mode === 'match' ? '파트너 ' : '같이 ') + esc(mates.join(', ')) : ''}${mates.length && opps.length ? ' · ' : ''}${opps.length ? '상대 ' + esc(opps.join(', ')) : ''}</div>` : '';
       return `<div class="panel scard" data-id="${esc(d.id)}" role="button" tabindex="0">
         <div class="row"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.name)}</b><span class="chip">${d.mode === 'match' ? '경기' : '연습'}</span></div>
-        <div class="muted" style="font-size:13px">${date.getMonth() + 1}월 ${date.getDate()}일 · ${fmtT(d.src.duration)} 영상</div>
+        <div class="muted" style="font-size:13px">${date.getMonth() + 1}월 ${date.getDate()}일 · ${fmtT(d.src.duration)} 영상</div>${withLine}
         <div class="figs"><div><b>${ef.rallies.length}</b><span>랠리</span></div><div><b>${me.inPct ?? '–'}${me.inPct != null ? '<small style="font-size:13px">%</small>' : ''}</b><span>내 샷 인</span></div><div><b>${me.longest}</b><span>최장 랠리</span></div></div>
         <div class="row" style="justify-content:flex-end"><button class="btn sm danger" data-del="${esc(d.id)}" type="button">삭제</button></div>
       </div>`;
@@ -1555,9 +1762,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const HCOL = ['#ff7a59', '#ffd23f', '#5ad1ff', '#9b8cff'];
   // which court points the four handles stand for
   function refCourtPoints() {
-    return setup.ref === 'service'
-      ? [[0, C.L], [C.W, C.L], [C.SGR, C.SVC_N], [C.SGL, C.SVC_N]]
-      : [[0, C.L], [C.W, C.L], [C.W, 0], [0, 0]];
+    if (setup.ref === 'service') return [[0, C.L], [C.W, C.L], [C.SGR, C.SVC_N], [C.SGL, C.SVC_N]];
+    if (setup.ref === 'singles') return [[0, C.L], [C.W, C.L], [C.SGR, 0], [C.SGL, 0]];
+    return [[0, C.L], [C.W, C.L], [C.W, 0], [0, 0]];
   }
   function setupCalib() {
     const court = refCourtPoints();
@@ -1566,6 +1773,52 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const corners = [[0, C.L], [C.W, C.L], [C.W, 0], [0, 0]].map(([x, y]) => RN.applyH(toImage, x, y));
     return RN.calibrate(corners);
   }
+  // ---------- framing check: is this camera position good enough to measure? ----------
+  // Everything is measured in the analysis frame (640 px wide), which is what the detector sees.
+  function framingReport(cal, nearOut) {
+    const W = setup.W, H = setup.H, P = (x, y) => RN.applyH(cal.toImage, x, y), items = [];
+    const deg = (a, b) => Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI;
+    const fl = P(0, C.L), fr = P(C.W, C.L), nl = P(0, 0), nr = P(C.W, 0);
+    const fc = P(C.CX, C.L), nc = P(C.CX, 0);
+    // 1) level
+    const roll = deg(fl, fr);
+    items.push(Math.abs(roll) <= 1.5 ? { ok: 'good', t: '수평', d: `먼 쪽 베이스라인 기울기 ${roll.toFixed(1)}°` }
+      : { ok: 'fix', t: '수평이 기울었습니다', d: `먼 쪽 베이스라인이 ${Math.abs(roll).toFixed(1)}° 기울었어요. 스탠드 다리 길이를 맞추거나 짐벌을 켠 상태로 다시 거치하세요(Flow 2 Pro는 롤을 수평으로 잡아 줍니다).` });
+    // 2) centred behind the court and facing straight down it
+    const lean = (nc[0] - fc[0]) / W, yaw = (fc[0] - W / 2) / W;
+    items.push(Math.abs(lean) <= 0.1 && Math.abs(yaw) <= 0.12 ? { ok: 'good', t: '정중앙', d: '코트 중앙 뒤에서 똑바로 보고 있습니다' }
+      : { ok: 'fix', t: Math.abs(lean) > 0.1 ? '코트 중앙 뒤가 아닙니다' : '폰이 옆을 보고 있습니다', d: Math.abs(lean) > 0.1 ? `스탠드를 ${lean > 0 ? '오른쪽' : '왼쪽'}으로 옮겨 센터마크 바로 뒤에 세워 주세요. 비스듬히 보면 반대쪽 사이드라인 판정이 약해집니다.` : `폰을 ${yaw > 0 ? '오른쪽' : '왼쪽'}으로 조금 돌려 먼 쪽 센터마크가 화면 가운데 오게 해 주세요.` });
+    // 3) does the court fill the width
+    const fill = (nr[0] - nl[0]) / W;
+    if (nearOut && setup.ref === 'baseline') items.push({ ok: 'fix', t: '가까운 모서리가 잘렸습니다', d: '0.5배(초광각)로 찍거나 스탠드를 더 뒤로 빼 주세요. 뒤 공간이 짧다면 기준점을 "단식 모서리"로 바꾸면 이 영상 그대로 분석할 수 있습니다.' });
+    else if (setup.ref === 'baseline' && fill < 0.55) items.push({ ok: 'warn', t: '코트가 작게 찍혔습니다', d: `가까운 베이스라인이 화면 폭의 ${Math.round(fill * 100)}%입니다. 스탠드를 조금 앞으로 당기면 공이 더 크게 잡힙니다(양쪽 모서리가 화면 안에 남는 데까지).` });
+    else items.push({ ok: 'good', t: '화면 폭', d: setup.ref !== 'baseline' ? (setup.ref === 'singles' ? '단식 모서리 기준으로 맞췄습니다(가까운 복식 골목 끝은 화면 밖일 수 있음)' : '서비스라인 기준으로 맞췄습니다') : `가까운 베이스라인이 화면 폭의 ${Math.round(fill * 100)}%` });
+    // 4) headroom for lobs / wasted ground
+    const fy = fc[1] / H, ny = nc[1] / H;
+    if (fy < 0.22) items.push({ ok: 'warn', t: '위쪽 여유가 적습니다', d: '높이 뜬 공이 화면 위로 나갈 수 있어요. 폰을 조금 위로 들어 주세요(먼 베이스라인이 화면 위에서 1/3쯤).' });
+    else if (!nearOut && ny < 0.7 && setup.ref === 'baseline') items.push({ ok: 'warn', t: '아래쪽이 남습니다', d: '폰을 조금 아래로 숙이면 가까운 쪽 바닥이 덜 낭비됩니다(가까운 베이스라인이 화면 아래 끝 근처).' });
+    else items.push({ ok: 'good', t: '위아래 배치', d: '높이 뜬 공과 가까운 바닥이 모두 들어옵니다' });
+    // 5) how finely bounces can be placed, near vs far half (depth direction)
+    const cmPerPx = (y0) => { const a = P(C.CX, y0), b = P(C.CX, y0 + 0.5); const dy = Math.abs(b[1] - a[1]); return dy > 0 ? 50 / dy : Infinity; };
+    const nearCm = cmPerPx(0.5), farCm = cmPerPx(C.L - 1);
+    const farBallPx = Math.hypot(fr[0] - fl[0], fr[1] - fl[1]) * 0.067 / C.W;
+    const mine = setupOpts.me === 'near' ? '가까운' : '먼';
+    items.push({ ok: farCm > 60 ? 'info' : 'good', t: '바운스 정밀도', d: `가까운 쪽 1픽셀 ≈ ${nearCm < 100 ? Math.round(nearCm) + 'cm' : (nearCm / 100).toFixed(1) + 'm'}, 먼 쪽 1픽셀 ≈ ${farCm < 100 ? Math.round(farCm) + 'cm' : (farCm / 100).toFixed(1) + 'm'}.` +
+      (farCm > 60 ? ` 먼 쪽 베이스라인 근처 인/아웃은 참고용입니다. ${setupOpts.me === 'near' ? '내 샷을 재려면 내가 카메라 <b>반대편</b>에서 치세요. 내 공이 정밀한 가까운 쪽에 떨어집니다.' : '지금 설정(나는 반대편)이면 내 샷은 정밀한 가까운 쪽에 떨어집니다.'}` : '') +
+      (farBallPx < 1 ? ` 먼 쪽에서는 공이 분석 화면에서 ${farBallPx.toFixed(1)}픽셀 정도라 멈춰 있는 공은 놓칠 수 있습니다.` : '') });
+    return items;
+  }
+  function renderFraming(cal, nearOut) {
+    const el = $('#framingCheck'); if (!el) return;
+    const items = framingReport(cal, nearOut), bad = items.filter(i => i.ok === 'fix' || i.ok === 'warn').length;
+    const icon = { good: '●', warn: '▲', fix: '■', info: 'ⓘ' };
+    el.hidden = false;
+    el.innerHTML = `<div class="fhead"><b>구도 점검</b><span class="chip ${bad ? 'out' : 'in'}">${bad ? '손볼 곳 ' + bad + '개' : '좋음'}</span></div>
+      <ul>${items.map(i => `<li class="${i.ok}"><i>${icon[i.ok]}</i><div><b>${i.t}</b><span>${i.d}</span></div></li>`).join('')}</ul>
+      <p class="hint" style="margin:0">점을 코트 모서리에 정확히 맞춘 뒤의 값입니다. 손볼 곳은 다음 촬영 때 고치면 되고, 이번 영상도 그대로 분석할 수 있습니다.</p>`;
+  }
+  $('#optMe').addEventListener('click', () => { const cal = setupCalib(); if (cal && setup.video) drawCalib(); });
+
   function drawCalib() {
     const cv = $('#calibCanvas'), ctx = cv.getContext('2d'), k = 2, M = setup.M;
     const ox = M.l * k, oy = M.t * k;
@@ -1585,13 +1838,11 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const n0 = P(-0.9, C.NET), n1 = P(C.W + 0.9, C.NET);
       ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(n0[0], n0[1]); ctx.lineTo(n1[0], n1[1]); ctx.stroke(); ctx.setLineDash([]);
       // camera placement check
-      const far = RN.applyH(cal.toImage, C.CX, C.L), near = RN.applyH(cal.toImage, C.CX, 0);
-      const span = (near[1] - far[1]) / setup.H;
       const nearOut = cal.corners.slice(2).some(([x, y]) => x < 0 || x > setup.W || y > setup.H);
       const warn = $('#calibWarn');
-      if (span < 0.45) { warn.hidden = false; warn.textContent = '카메라가 낮거나 멀어 보입니다. 먼 코트의 바운스를 놓치기 쉬우니, 다음엔 펜스 위 2.5m 이상 높이에서 찍어 보세요.'; }
-      else if (nearOut && setup.ref !== 'service') { warn.hidden = false; warn.textContent = '가까운 쪽 모서리가 화면 밖이면 아래 회색 칸으로 끌어 놓거나, 기준점을 "서비스라인"으로 바꿔 보세요.'; }
+      if (nearOut && setup.ref === 'baseline') { warn.hidden = false; warn.textContent = '가까운 쪽 복식 모서리가 화면 밖이면 기준점을 "단식 모서리"로 바꿔 보세요.'; }
       else warn.hidden = true;
+      renderFraming(cal, nearOut);
     }
     setup.corners.forEach((p, i) => {
       const x = ox + p[0] * k, y = oy + p[1] * k;
@@ -1640,7 +1891,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   })();
 
   setup.ref = 'baseline';
-  const REF_LABELS = { baseline: ['먼 쪽 왼쪽', '먼 쪽 오른쪽', '가까운 쪽 오른쪽', '가까운 쪽 왼쪽'], service: ['먼 쪽 왼쪽(복식)', '먼 쪽 오른쪽(복식)', '가까운 서비스라인 오른쪽(단식)', '가까운 서비스라인 왼쪽(단식)'] };
+  const REF_LABELS = { baseline: ['먼 쪽 왼쪽', '먼 쪽 오른쪽', '가까운 쪽 오른쪽', '가까운 쪽 왼쪽'], singles: ['먼 쪽 왼쪽(복식)', '먼 쪽 오른쪽(복식)', '가까운 베이스라인 × 단식 오른쪽 선', '가까운 베이스라인 × 단식 왼쪽 선'], service: ['먼 쪽 왼쪽(복식)', '먼 쪽 오른쪽(복식)', '가까운 서비스라인 오른쪽(단식)', '가까운 서비스라인 왼쪽(단식)'] };
   function renderLegend() { $('#cornerLegend').innerHTML = REF_LABELS[setup.ref].map((t, i) => `<span><i style="background:${HCOL[i]}"></i>${t}</span>`).join(''); }
   seg($('#optRef'), 'baseline', v => {
     // keep the court where it is: move the two near handles onto the newly chosen points
@@ -1672,13 +1923,20 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const det = RN.createDetector(W, H, RN.roiMask(W, H, cal, 1, 1));
     const frames = [];
     const started = performance.now();
+    // camera-movement check: court lines must stay where they were calibrated
+    const lineSmp = RN.lineSamples(cal, W, H, 1, 1);
+    ctx.drawImage(v, 0, 0, W, H);
+    const refScore = RN.lineScore(ctx.getImageData(0, 0, W, H).data, W, H, lineSmp) || 0;
+    const moveChecks = []; let lastCheck = -9;
     let wake = null;
     try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
     const dur = v.duration;
     const process = (t) => {
       ctx.drawImage(v, 0, 0, W, H);
-      const c = det(ctx.getImageData(0, 0, W, H).data);
+      const img = ctx.getImageData(0, 0, W, H).data;
+      const c = det(img);
       frames.push({ t, c });
+      if (t - lastCheck >= 1) { lastCheck = t; moveChecks.push({ t, s: RN.lineScore(img, W, H, lineSmp) }); }
       ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2;
       for (const k of c) { ctx.beginPath(); ctx.arc(k.x, k.y, 6, 0, Math.PI * 2); ctx.stroke(); }
       const pct = clamp(t / dur, 0, 1);
@@ -1739,13 +1997,21 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     await new Promise(r => setTimeout(r, 30));
     const times = frames.map(f => f.t);
     const pts = RN.track(frames, W);
+    // windows where the camera had moved (tracking gimbal, bumped tripod): drop the ball track there
+    const moved = [];
+    if (refScore > 8) for (const m of moveChecks) {
+      if (m.s >= refScore * 0.45) continue;
+      const a = Math.max(0, m.t - 1), b = m.t + 1;
+      if (moved.length && a <= moved[moved.length - 1][1]) moved[moved.length - 1][1] = b; else moved.push([a, b]);
+    }
+    if (moved.length) for (let i = 0; i < pts.length; i++) if (moved.some(([a, b]) => times[i] >= a && times[i] <= b)) pts[i] = null;
     const opts = { mode: setupOpts.mode, doubles: setupOpts.court === 'doubles', rallyGap: 1.2, meStart: setupOpts.me, swapEnds: $('#optSwap').checked, setsToWin: +setupOpts.sets };
     const track = encTrack(pts, times);
     const { rallies } = RN.analyzeTrack(pts, times, cal, opts);
     const d = new Date();
     const doc = {
       id: sid(), name: `${d.getMonth() + 1}월 ${d.getDate()}일 ${opts.mode === 'match' ? '경기' : '연습'}`, created: Date.now(), mode: opts.mode, opts,
-      src: { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track, rallies
+      src: { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track, rallies, moved: moved.map(w => w.map(v => +v.toFixed(1)))
     };
     videoURLs[doc.id] = setup.url; setup.url = null;
     const ok = await store.save(doc);
@@ -1761,7 +2027,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function persist() {
     if (!cur || cur.doc.demo) return;
     clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => store.save(cur.doc), 600);
+    const d = cur.doc; saveTimer = setTimeout(() => { saveTimer = 0; store.save(d); }, 600);
   }
 
   function openSession(doc) {
@@ -1786,7 +2052,11 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     }
     selectTab('review');
     show('vSession');
-    buildTimeline(); renderBoard(); renderRally(true); sizeOverlay(); renderSummary();
+    const mv = (doc.moved || []).reduce((n, [a, b]) => n + b - a, 0);
+    const mw = $('#moveWarn');
+    if (mv > 2) { mw.hidden = false; mw.textContent = `영상 중 ${fmtT(mv)} 동안 카메라가 움직여서 그 구간은 분석에서 뺐습니다. 짐벌의 자동 추적(Insta360 Flow·DockKit)을 끄고, 촬영 중엔 폰이 고정되게 해 주세요.`; }
+    else mw.hidden = true;
+    renderPeople(); buildTimeline(); renderBoard(); renderRally(true); sizeOverlay(); renderSummary();
   }
   $('#fileReattach').addEventListener('change', (e) => {
     const f = e.target.files[0]; e.target.value = '';
@@ -1972,7 +2242,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (key === boardKey) return; boardKey = key;
     el.className = 'board';
     const setCols = sets.map(s => `<div class="col"><div class="${s[0] < s[1] ? 'lose' : ''}">${s[0]}</div><div class="${s[1] < s[0] ? 'lose' : ''}">${s[1]}</div></div>`).join('');
-    el.innerHTML = `<div class="who"><div><i class="dot on"></i>나</div><div><i class="dot"></i>상대</div></div>
+    const nm = teamNames(doc);
+    el.innerHTML = `<div class="who"><div><i class="dot on"></i>${esc(nm.me)}</div><div><i class="dot"></i>${esc(nm.op)}</div></div>
       <div class="cols">${setCols}<div class="col"><div>${g[0]}</div><div>${g[1]}</div></div><div class="col pt"><div>${p[0]}</div><div>${p[1]}</div></div></div>`;
   }
 
@@ -2128,7 +2399,16 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
     const me = RN.stats(rs, 'me'), op = RN.stats(rs, 'op');
     const won = (side) => rs.filter(r => { const w = (doc.rallies.find(x => x.id === r.id) || {}).winner ?? r.auto; return w && (side === 'me' ? w === r.meSide : w !== r.meSide); }).length;
-    const row = (label, a, b, unit) => `<tr><td>${label}</td><td><b>${a ?? '–'}</b>${a != null && unit ? '<small>' + unit + '</small>' : ''}</td><td><b>${b ?? '–'}</b>${b != null && unit ? '<small>' + unit + '</small>' : ''}</td></tr>`;
+    // change vs. the average of up to 5 earlier sessions (same estimate caveats as everything else)
+    const prevDocs = doc.demo ? [] : sessions.filter(d => !d.demo && d.id !== doc.id && (d.created || 0) < (doc.created || 0)).sort((a, b) => b.created - a.created).slice(0, 5);
+    const pv = prevDocs.length ? RN.stats(prevDocs.flatMap(d => sessionMetrics(d).rs), 'me') : null;
+    const dl = (now, before, unit) => {
+      if (now == null || before == null) return '';
+      const d = Math.round((now - before) * 10) / 10;
+      return d === 0 ? `<span class="dl same">→ 0</span>` : `<span class="dl ${d > 0 ? 'up' : 'down'}" title="이전 ${prevDocs.length}세션 평균 대비">${d > 0 ? '▲' : '▼'}${Math.abs(d)}${unit || ''}</span>`;
+    };
+    const pk = { '인 비율': 'inPct', '평균 속도': 'avgSpeed', '최고 속도': 'maxSpeed' };
+    const row = (label, a, b, unit) => `<tr><td>${label}</td><td><b>${a ?? '–'}</b>${a != null && unit ? '<small>' + unit + '</small>' : ''}${pv && pk[label] ? dl(a, pv[pk[label]], unit === '%' ? '%p' : '') : ''}</td><td><b>${b ?? '–'}</b>${b != null && unit ? '<small>' + unit + '</small>' : ''}</td></tr>`;
     $('#cmpTable').innerHTML = `<thead><tr><th></th><th>나</th><th>상대</th></tr></thead><tbody>
       ${row('샷 수', me.shots, op.shots)}
       ${row('인 비율', me.inPct, op.inPct, '%')}
@@ -2136,7 +2416,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       ${row('최고 속도', me.maxSpeed, op.maxSpeed, 'km/h')}
       ${doc.mode === 'match' ? row('서브 인', me.serves ? me.servesIn + '/' + me.serves : null, op.serves ? op.servesIn + '/' + op.serves : null) : ''}
       ${doc.mode === 'match' ? row('딴 포인트', won('me'), won('op')) : ''}
-    </tbody>`;
+    </tbody>${pv ? `<caption style="caption-side:bottom;text-align:left;font-size:12px;color:var(--ink-2);padding-top:6px">▲▼ 이전 ${prevDocs.length}세션 평균 대비 · 추정치</caption>` : ''}`;
     const bar = (st, who) => {
       const tot = st.zones.short + st.zones.mid + st.zones.deep;
       if (!tot) return `<div><span class="hint">${who}: 들어간 공이 아직 없습니다</span></div>`;
@@ -2239,56 +2519,263 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     saveFile(cur.doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_샷기록.csv', '﻿' + lines.join('\n'));
   });
 
-  $('#btnHighlights').addEventListener('click', async () => {
+  // ---------- highlight export: pick scenes, aspect ratio, overlays, send to phone ----------
+  const XPREF_KEY = 'rallynote.export.v1';
+  const xPref = (() => { try { return Object.assign({ ratio: 'wide', trace: true, board: true, card: true, mini: true }, JSON.parse(localStorage.getItem(XPREF_KEY) || '{}')); } catch (e) { return { ratio: 'wide', trace: true, board: true, card: true, mini: true }; } })();
+  const saveXPref = () => { try { localStorage.setItem(XPREF_KEY, JSON.stringify(xPref)); } catch (e) { /* ignore */ } };
+  const RATIO = { wide: { label: '가로 16:9', r: null }, square: { label: '정사각 1:1', r: 1 }, tall: { label: '세로 9:16', r: 9 / 16 } };
+  const SHOT_SETS = [
+    { v: 'serve', label: '서브', test: s => s.serve || s.type === 'serve' },
+    { v: 'forehand', label: '포핸드', test: s => s.type === 'forehand' },
+    { v: 'backhand', label: '백핸드', test: s => s.type === 'backhand' },
+    { v: 'volley', label: '발리·스매시', test: s => s.type === 'volley' || s.type === 'smash' },
+    { v: 'all', label: '내 모든 샷', test: () => true }
+  ];
+  function teamNames(doc) {
+    const p = doc.people || {}, cut = (s) => s.length > 6 ? s.slice(0, 6) + '…' : s;
+    const opps = (p.opps || []).map(normName).filter(Boolean).map(cut);
+    const me = doc.mode === 'match' && doc.opts.doubles && normName(p.partner) ? '나·' + cut(normName(p.partner)) : '나';
+    return { me, op: opps.length ? opps.join('·') : '상대' };
+  }
+  function rallyScenes(mode, picked) {
+    const d = cur.doc.src.duration;
+    return cur.eff.rallies.map((r, i) => ({ r, i })).filter(({ r, i }) => mode === 'all' || (mode === 'long' && r.shots.length >= 4) || (mode === 'pick' && picked.has(i)))
+      .map(({ r, i }) => ({ a: Math.max(0, r.t0 - 0.8), b: Math.min(d, r.t1 + 0.8), ri: i }));
+  }
+  function shotScenes(setV) {
+    const set = SHOT_SETS.find(x => x.v === setV), d = cur.doc.src.duration, out = [];
+    cur.eff.rallies.forEach((r, i) => r.shots.forEach(s => {
+      if (s.side !== r.meSide || !set.test(s)) return;
+      const end = s.bounce ? s.bounce.t + 0.7 : s.t + 1.4;
+      out.push({ a: Math.max(0, s.t - 1.3), b: Math.min(d, end), ri: i, shot: s });
+    }));
+    return out.map((x, n) => Object.assign(x, { tag: `${set.label} ${n + 1}/${out.length}` }));
+  }
+  const scenesLen = (sc) => sc.reduce((n, x) => n + x.b - x.a, 0);
+
+  function openExport(preset) {
     if (!hasMedia()) { toast('원본 영상을 먼저 연결해 주세요.'); return; }
     if (typeof MediaRecorder === 'undefined') { toast('이 브라우저는 영상 저장을 지원하지 않습니다.'); return; }
     pausePlayer();
-    const longOnly = $('#optLongOnly').checked;
-    const list = cur.eff.rallies.map((r, i) => ({ r, i })).filter(x => !longOnly || x.r.shots.length >= 4);
-    if (!list.length) { toast('담을 랠리가 없습니다.'); return; }
-    const doc = cur.doc;
-    const outW = cur.demo ? 960 : Math.min(1280, vid.videoWidth || 1280);
-    const outH = Math.round(outW * doc.H / doc.W / 2) * 2;
+    const doc = cur.doc, ef = cur.eff, match = doc.mode === 'match';
+    const st = { what: preset || 'all', picked: new Set(ef.rallies.map((_, i) => i)), shot: 'forehand' };
+    const counts = Object.fromEntries(SHOT_SETS.map(s => [s.v, shotScenes(s.v).length]));
+    if (!counts[st.shot]) st.shot = SHOT_SETS.find(s => counts[s.v])?.v || 'all';
+    const rallyRows = ef.rallies.map((r, i) => {
+      const w = (doc.rallies.find(x => x.id === r.id) || {}).winner ?? r.auto;
+      const res = match && w ? (w === r.meSide ? '내 포인트' : '상대 포인트') : '';
+      return `<label class="xr"><input type="checkbox" data-ri="${i}" checked><b class="num">#${i + 1}</b><span>${fmtT(r.t0)}</span><span>${r.shots.length}샷</span><span class="muted">${res}</span></label>`;
+    }).join('');
+    const chk = (id, label, on, extra) => `<label class="check"><input type="checkbox" id="${id}"${on ? ' checked' : ''}${extra || ''}> ${label}</label>`;
+    modal(`<div class="xhead"><h2>하이라이트 영상 만들기</h2><button class="btn ghost sm" type="button" id="xClose">닫기</button></div>
+      <div class="field"><span class="label">담을 장면</span>
+        <div class="seg" id="xWhat"><button type="button" data-v="all">전체 랠리</button><button type="button" data-v="long">4샷 이상</button><button type="button" data-v="pick">직접 고르기</button><button type="button" data-v="shots">샷 모음</button></div>
+        <div id="xPick" class="xpick" hidden><div class="row" style="gap:6px;margin-bottom:6px"><button class="btn sm" type="button" id="xAllOn">모두 선택</button><button class="btn sm" type="button" id="xAllOff">모두 해제</button></div>${rallyRows}</div>
+        <div id="xShots" hidden><div class="seg" id="xShotSet">${SHOT_SETS.map(s => `<button type="button" data-v="${s.v}"${counts[s.v] ? '' : ' disabled'}>${s.label} ${counts[s.v]}</button>`).join('')}</div>
+          <p class="hint" style="margin-top:6px">내 샷마다 치기 직전부터 바운스까지 잘라 이어 붙입니다. 서브 말고는 리뷰 화면에서 샷 종류를 지정한 것만 모입니다.</p></div>
+        <p class="xsum" id="xSum"></p>
+      </div>
+      <div class="field"><span class="label">화면 비율</span>
+        <div class="seg" id="xRatio">${Object.entries(RATIO).map(([k, v]) => `<button type="button" data-v="${k}">${v.label}</button>`).join('')}</div>
+        <span class="hint">정사각·세로는 공을 따라 화면을 옮겨 가며 자릅니다. 인스타 릴스·카톡 프로필엔 세로가 맞습니다.</span>
+      </div>
+      <div class="field"><span class="label">영상에 넣기</span>
+        <div class="xopts">${chk('xTrace', '공 궤적·IN/OUT', xPref.trace)}${chk('xCard', '샷 종류·속도', xPref.card)}${chk('xMini', '미니 코트(볼 마킹)', xPref.mini)}${match ? chk('xBoard', `점수판 (${esc(teamNames(doc).me)} vs ${esc(teamNames(doc).op)})`, xPref.board) : ''}</div>
+      </div>
+      <div class="row" style="gap:8px"><button class="btn primary" type="button" id="xGo">영상 만들기</button><span class="hint">실제 재생 시간만큼 걸립니다. 화면을 켜 두세요.</span></div>`);
+    const scenes = () => st.what === 'shots' ? shotScenes(st.shot) : rallyScenes(st.what, st.picked);
+    const sync = () => {
+      $('#xPick').hidden = st.what !== 'pick'; $('#xShots').hidden = st.what !== 'shots';
+      const sc = scenes(), len = scenesLen(sc);
+      $('#xSum').textContent = sc.length ? `${st.what === 'shots' ? '샷' : '랠리'} ${sc.length}개 · ${fmtT(len)} 영상` : '담을 장면이 없습니다';
+      $('#xGo').disabled = !sc.length;
+    };
+    seg($('#xWhat'), st.what, v => { st.what = v; sync(); });
+    seg($('#xShotSet'), st.shot, v => { st.shot = v; sync(); });
+    seg($('#xRatio'), xPref.ratio, v => { xPref.ratio = v; saveXPref(); });
+    $('#xPick').addEventListener('change', (e) => { const c = e.target.closest('[data-ri]'); if (!c) return; if (c.checked) st.picked.add(+c.dataset.ri); else st.picked.delete(+c.dataset.ri); sync(); });
+    const setAll = (on) => { $$('#xPick [data-ri]').forEach(c => { c.checked = on; }); st.picked = on ? new Set(ef.rallies.map((_, i) => i)) : new Set(); sync(); };
+    $('#xAllOn').onclick = () => setAll(true); $('#xAllOff').onclick = () => setAll(false);
+    $('#xClose').onclick = closeModal;
+    $('#xGo').onclick = () => {
+      ['trace', 'card', 'mini', 'board'].forEach(k => { const el = $('#x' + k[0].toUpperCase() + k.slice(1)); if (el) xPref[k] = el.checked; });
+      saveXPref();
+      const sc = scenes(); if (!sc.length) return;
+      renderExport(sc, { ratio: xPref.ratio, trace: xPref.trace, card: xPref.card, mini: xPref.mini, board: match && xPref.board, label: st.what === 'shots' ? SHOT_SETS.find(s => s.v === st.shot).label + ' 모음' : '하이라이트' });
+    };
+    sync();
+  }
+  $('#btnHighlights').addEventListener('click', () => openExport());
+
+  // ----- overlay pieces for exported video -----
+  function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  function drawScoreBoard(ctx, s, ri, names) {
+    const ef = cur.eff;
+    let snap = null; for (let i = 0; i < ri; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
+    const sets = snap ? snap.sets : [], g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
+    const x = 12 * s, y = 12 * s, rh = 26 * s, pad = 10 * s;
+    ctx.font = `600 ${15 * s}px "IBM Plex Sans KR", sans-serif`;
+    const nameW = Math.max(ctx.measureText(names.me).width, ctx.measureText(names.op).width);
+    const colW = 22 * s, ptW = 38 * s, w = pad + nameW + 12 * s + colW * (sets.length + 1) + ptW;
+    ctx.fillStyle = 'rgba(10,19,27,.84)'; roundRect(ctx, x, y, w, rh * 2 + 8 * s, 6 * s); ctx.fill();
+    ctx.fillStyle = '#cdeb3c'; ctx.fillRect(x + w - ptW, y, ptW, rh * 2 + 8 * s);
+    [names.me, names.op].forEach((n, row) => {
+      const by = y + 4 * s + rh * row + rh * 0.7;
+      ctx.font = `600 ${15 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = '#eef2ea'; ctx.textAlign = 'left';
+      ctx.fillText(n, x + pad, by);
+      ctx.font = `600 ${19 * s}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
+      sets.forEach((st, j) => { ctx.fillStyle = st[row] >= st[1 - row] ? '#eef2ea' : 'rgba(238,242,234,.5)'; ctx.fillText(String(st[row]), x + pad + nameW + 12 * s + colW * j + colW / 2, by); });
+      ctx.fillStyle = '#eef2ea'; ctx.fillText(String(g[row]), x + pad + nameW + 12 * s + colW * sets.length + colW / 2, by);
+      ctx.fillStyle = '#1c2200'; ctx.fillText(p[row], x + w - ptW / 2, by);
+    });
+    ctx.textAlign = 'left';
+  }
+  function currentShot(t, ri) {
+    if (ri < 0) return null;
+    const r = cur.eff.rallies[ri]; let cur0 = null;
+    for (const sh of r.shots) if (sh.t <= t + 0.05) cur0 = sh;
+    if (!cur0 || t - cur0.t > 2.6) return null;
+    return { r, s: cur0 };
+  }
+  function drawShotCard(ctx, s, outW, outH, t, ri, focus) {
+    // in a shot montage only the featured shot gets a card, from the moment it is hit
+    const hit = focus ? (t >= focus.t - 0.05 && t - focus.t <= 2.6 ? { r: cur.eff.rallies[ri], s: focus } : null) : currentShot(t, ri); if (!hit) return;
+    const { r, s: sh } = hit, mine = sh.side === r.meSide;
+    const type = sh.serve ? '서브' : (TYPE_KO[sh.type] || '샷');
+    const l1 = sh.speed ? `${sh.speed}` : type, u1 = sh.speed ? ' km/h' : '';
+    const l2 = `${mine ? '나' : '상대'}${sh.speed ? ' · ' + type : ''}${sh.bounce ? ' · ' + (sh.bounce.in ? 'IN' : 'OUT') : ''}`;
+    ctx.font = `700 ${30 * s}px "Barlow Condensed", sans-serif`; const w1 = ctx.measureText(l1).width;
+    ctx.font = `600 ${15 * s}px "Barlow Condensed", sans-serif`; const wu = ctx.measureText(u1).width;
+    ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`; const w2 = ctx.measureText(l2).width;
+    const w = Math.max(w1 + wu, w2) + 30 * s, h = 62 * s, x = 12 * s, y = outH - h - 14 * s;
+    ctx.globalAlpha = Math.min(1, (2.6 - (t - sh.t)) / 0.4);
+    ctx.fillStyle = 'rgba(10,19,27,.84)'; roundRect(ctx, x, y, w, h, 6 * s); ctx.fill();
+    ctx.fillStyle = mine ? '#cdeb3c' : '#eef2ea'; ctx.fillRect(x, y + 8 * s, 4 * s, h - 16 * s);
+    ctx.fillStyle = '#eef2ea'; ctx.font = `700 ${30 * s}px "Barlow Condensed", sans-serif`; ctx.fillText(l1, x + 16 * s, y + 31 * s);
+    ctx.fillStyle = 'rgba(238,242,234,.7)'; ctx.font = `600 ${15 * s}px "Barlow Condensed", sans-serif`; ctx.fillText(u1, x + 16 * s + w1, y + 31 * s);
+    ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = 'rgba(238,242,234,.85)'; ctx.fillText(l2, x + 16 * s, y + 51 * s);
+    ctx.globalAlpha = 1;
+  }
+  function drawMiniCourt(ctx, s, outW, outH, t, ri, tall) {
+    if (ri < 0) return;
+    const mh = outH * (tall ? 0.2 : 0.32), sc = mh / C.L, mw = C.W * sc, pad = 5 * s;
+    const x = outW - mw - 12 * s - pad, y = 12 * s + pad;
+    ctx.fillStyle = 'rgba(10,19,27,.72)'; roundRect(ctx, x - pad, y - pad, mw + pad * 2, mh + pad * 2, 5 * s); ctx.fill();
+    ctx.fillStyle = 'rgba(42,92,134,.9)'; ctx.fillRect(x, y, mw, mh);
+    const P = (cx, cy) => [x + cx * sc, y + (C.L - cy) * sc];
+    ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = Math.max(1, s);
+    for (const [a, b] of RN.courtLines()) { const A = P(a[0], a[1]), B = P(b[0], b[1]); ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke(); }
+    const n = P(0, C.NET), n2 = P(C.W, C.NET); ctx.lineWidth = 2 * s; ctx.beginPath(); ctx.moveTo(n[0] - 2 * s, n[1]); ctx.lineTo(n2[0] + 2 * s, n2[1]); ctx.stroke();
+    const bs = cur.eff.rallies[ri].shots.map(sh => sh.bounce).filter(b => b && b.t <= t);
+    bs.forEach((b, i) => {
+      const [px, py] = P(clamp(b.cx, -1, C.W + 1), clamp(b.cy, -1.5, C.L + 1.5)), last = i === bs.length - 1;
+      ctx.beginPath(); ctx.arc(px, py, (last ? 4.2 : 3) * s, 0, Math.PI * 2);
+      ctx.fillStyle = b.in ? '#3cd18a' : '#ff6b4a'; ctx.globalAlpha = last ? 1 : 0.75; ctx.fill(); ctx.globalAlpha = 1;
+      if (last) { ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5 * s; ctx.stroke(); }
+    });
+  }
+  function drawTag(ctx, s, outW, text) {
+    ctx.font = `600 ${14 * s}px "IBM Plex Sans KR", sans-serif`;
+    const w = ctx.measureText(text).width + 20 * s, x = (outW - w) / 2, y = 12 * s;
+    ctx.fillStyle = 'rgba(205,235,60,.95)'; roundRect(ctx, x, y, w, 26 * s, 13 * s); ctx.fill();
+    ctx.fillStyle = '#1c2200'; ctx.textAlign = 'center'; ctx.fillText(text, outW / 2, y + 18 * s); ctx.textAlign = 'left';
+  }
+  function drawMark(ctx, s, outW, outH) {
+    ctx.font = `600 ${12 * s}px "IBM Plex Sans KR", sans-serif`; ctx.textAlign = 'right';
+    ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.fillText('랠리노트', outW - 12 * s, outH - 12 * s); ctx.textAlign = 'left';
+  }
+
+  // ----- virtual camera for 1:1 / 9:16 crops -----
+  // Port of CameraPath from tennis_autopan.py: focus -> fill -> median -> zero-phase EMA -> dead zone
+  // -> speed/accel limit (both directions = ease in/out) -> easing EMA. The whole clip is known in advance,
+  // so the path looks ahead instead of lagging behind the ball. No player boxes here, so the focus is the
+  // ball (0.15 s ahead) leaning slightly toward the court centre to keep both ends in view.
+  const CAM = { fps: 30, lead: 0.15, ballW: 0.85, home: 2.0, median: 0.25, ema: 0.3, dead: 0.12, vmax: 1.2, amax: 3.0, ease: 0.08 };
+  function ballXAt(t) {
+    const tr = cur.trail; let lo = 0, hi = tr.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (tr[m].t < t) lo = m + 1; else hi = m; }
+    const A = tr[lo - 1], B = tr[lo];
+    if (A && B && B.t - A.t <= 0.25) return A.x + (B.x - A.x) * (t - A.t) / Math.max(1e-6, B.t - A.t);
+    if (A && t - A.t <= 0.05) return A.x; if (B && B.t - t <= 0.05) return B.x;
+    return NaN;
+  }
+  function planCamera(a, b, W, cw, home) {
+    const fps = CAM.fps, n = Math.max(2, Math.ceil((b - a) * fps) + 1);
+    let x = new Array(n);
+    for (let i = 0; i < n; i++) {
+      const t = a + i / fps; let bx = ballXAt(t + CAM.lead); if (isNaN(bx)) bx = ballXAt(t);
+      x[i] = isNaN(bx) ? NaN : CAM.ballW * bx + (1 - CAM.ballW) * home;
+    }
+    // long blind stretches drift back to the court centre
+    for (let i = 0; i < n;) { if (!isNaN(x[i])) { i++; continue; } let j = i; while (j < n && isNaN(x[j])) j++; if (j - i > CAM.home * fps) x[(i + j) >> 1] = home; i = j; }
+    // fill gaps by linear interpolation
+    const ok = x.map((v, i) => isNaN(v) ? -1 : i).filter(i => i >= 0);
+    if (!ok.length) x.fill(home);
+    else for (let i = 0; i < n; i++) if (isNaN(x[i])) {
+      let p = -1, q = -1; for (const k of ok) { if (k < i) p = k; else { q = k; break; } }
+      x[i] = p < 0 ? x[q] : q < 0 ? x[p] : x[p] + (x[q] - x[p]) * (i - p) / (q - p);
+    }
+    const median = (arr, win) => { win = Math.round(win) | 1; if (win < 3) return arr; const h = win >> 1; return arr.map((_, i) => { const w = []; for (let k = i - h; k <= i + h; k++) w.push(arr[clamp(k, 0, arr.length - 1)]); w.sort((m, o) => m - o); return w[h]; }); };
+    const ema = (arr, al) => { const y = arr.slice(); for (let i = 1; i < y.length; i++) y[i] = al * arr[i] + (1 - al) * y[i - 1]; return y; };
+    const zero = (arr, tau) => { if (tau <= 0) return arr; const al = 1 - Math.exp(-1 / (tau * fps)); return ema(ema(arr, al).reverse(), al).reverse(); };
+    const dead = (arr, half) => { let c = arr[0]; return arr.map(v => { if (v > c + half) c = v - half; else if (v < c - half) c = v + half; return c; }); };
+    const limit = (arr, vmax, amax) => { const one = (src) => { const y = src.slice(); let v = 0; for (let i = 1; i < y.length; i++) { v = clamp(v + clamp((src[i] - y[i - 1]) - v, -amax, amax), -vmax, vmax); y[i] = y[i - 1] + v; } return y; }; return one(one(arr).reverse()).reverse(); };
+    x = median(x, CAM.median * fps);
+    x = zero(x, CAM.ema);
+    x = dead(x, cw * CAM.dead);
+    x = limit(x, CAM.vmax * cw / fps, CAM.amax * cw / fps / fps);
+    x = zero(x, CAM.ease);
+    x = x.map(v => clamp(v, cw / 2, W - cw / 2));
+    return (t) => { const f = clamp((t - a) * fps, 0, n - 1), i = Math.floor(f), j = Math.min(n - 1, i + 1); return x[i] + (x[j] - x[i]) * (f - i); };
+  }
+
+  async function renderExport(scenes, o) {
+    const doc = cur.doc, tall = o.ratio === 'tall';
+    const srcPxW = cur.demo ? doc.W : (vid.videoWidth || doc.W), srcPxH = cur.demo ? doc.H : (vid.videoHeight || doc.H);
+    const sv = srcPxW / doc.W;
+    const rr = RATIO[o.ratio].r;
+    const cw = rr ? Math.min(doc.W, doc.H * rr) : doc.W; // crop width in analysis px
+    let outW, outH;
+    if (!rr) { outW = cur.demo ? 960 : Math.min(1280, srcPxW); outH = Math.round(outW * doc.H / doc.W / 2) * 2; outW = Math.round(outW / 2) * 2; }
+    else if (tall) { outW = 720; outH = 1280; }
+    else { outH = outW = srcPxH >= 1000 ? 1080 : 720; }
     const cv = document.createElement('canvas'); cv.width = outW; cv.height = outH;
     const ctx = cv.getContext('2d');
-    const k = outW / doc.W;
+    const k = outW / cw, s = Math.min(outW, outH) / 540;
+    const courtCx = doc.corners.reduce((n, p) => n + p[0], 0) / doc.corners.length;
+    let camAt = null;
+    const names = teamNames(doc);
     const mime = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
     const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
     const stream = cv.captureStream(30);
     const rec = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 6e6 } : undefined);
     const chunks = []; rec.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
     let stop = false;
-    modal(`<h2>하이라이트 만드는 중</h2><div class="bar"><i id="hlBar"></i></div><p class="hint" id="hlText">랠리 ${list.length}개를 이어 붙이는 중입니다. 실제 재생 시간만큼 걸립니다.</p><div><button class="btn sm" id="hlStop" type="button">중단</button></div>`);
+    modal(`<h2>${esc(o.label)} 만드는 중</h2><div class="bar"><i id="hlBar"></i></div><p class="hint" id="hlText">장면 ${scenes.length}개를 이어 붙이는 중입니다. 실제 재생 시간만큼 걸립니다.</p><div><button class="btn sm" id="hlStop" type="button">중단</button></div>`);
     $('#hlStop').onclick = () => { stop = true; };
-    const ef = cur.eff;
-    const drawBoard = (ri) => {
-      if (doc.mode !== 'match') return;
-      let snap = null; for (let i = 0; i < ri; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
-      const g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
-      const s = outW / 960;
-      ctx.fillStyle = 'rgba(10,19,27,.82)'; ctx.fillRect(16 * s, 16 * s, 200 * s, 64 * s);
-      ctx.fillStyle = '#cdeb3c'; ctx.fillRect(160 * s, 16 * s, 56 * s, 64 * s);
-      ctx.font = `600 ${18 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = '#eef2ea';
-      ctx.fillText('나', 28 * s, 42 * s); ctx.fillText('상대', 28 * s, 70 * s);
-      ctx.font = `600 ${24 * s}px "Barlow Condensed", sans-serif`;
-      ctx.fillText(String(g[0]), 128 * s, 43 * s); ctx.fillText(String(g[1]), 128 * s, 71 * s);
-      ctx.fillStyle = '#1c2200'; ctx.fillText(p[0], 172 * s, 43 * s); ctx.fillText(p[1], 172 * s, 71 * s);
-    };
-    const withOverlay = $('#optOverlay').checked;
-    const frame = (t, ri) => {
-      if (cur.demo) ctx.drawImage(demoFrame(t), 0, 0, outW, outH); else ctx.drawImage(vid, 0, 0, outW, outH);
-      if (withOverlay) { drawOverlays(ctx, t, k, 0, 0, {}); drawBoard(ri); }
+    const frame = (t, sc) => {
+      let x0 = 0;
+      if (rr) x0 = clamp(camAt(t) - cw / 2, 0, doc.W - cw);
+      const src = cur.demo ? demoFrame(t) : vid;
+      const ss = cur.demo ? 1 : sv;
+      ctx.drawImage(src, x0 * ss, 0, cw * ss, doc.H * (cur.demo ? 1 : srcPxH / doc.H), 0, 0, outW, outH);
+      if (o.trace) drawOverlays(ctx, t, k, -x0 * k, 0, {});
+      if (o.board) drawScoreBoard(ctx, s, sc.ri, names);
+      if (o.mini) drawMiniCourt(ctx, s, outW, outH, t, sc.ri, tall);
+      if (o.card) drawShotCard(ctx, s, outW, outH, t, sc.ri, sc.shot);
+      if (sc.tag) drawTag(ctx, s, outW, sc.tag);
+      drawMark(ctx, s, outW, outH);
     };
     rec.start(500);
-    for (let n = 0; n < list.length && !stop; n++) {
-      const { r, i } = list[n];
-      const a = Math.max(0, r.t0 - 0.8), b = Math.min(doc.src.duration, r.t1 + 0.8);
-      $('#hlBar').style.width = (n / list.length * 100) + '%';
-      $('#hlText').textContent = `랠리 ${n + 1} / ${list.length}`;
+    for (let n = 0; n < scenes.length && !stop; n++) {
+      const sc = scenes[n], a = sc.a, b = sc.b;
+      if (rr) camAt = planCamera(a, b, doc.W, cw, courtCx);
+      $('#hlBar').style.width = (n / scenes.length * 100) + '%';
+      $('#hlText').textContent = `장면 ${n + 1} / ${scenes.length}`;
       if (cur.demo) {
         await new Promise(res => {
           const t0 = performance.now();
-          const st = () => { if (stop) return res(); const t = a + (performance.now() - t0) / 1000; frame(Math.min(t, b), i); if (t >= b) return res(); requestAnimationFrame(st); };
+          const st = () => { if (stop) return res(); const t = a + (performance.now() - t0) / 1000; frame(Math.min(t, b), sc); if (t >= b) return res(); requestAnimationFrame(st); };
           requestAnimationFrame(st);
         });
       } else {
@@ -2296,19 +2783,64 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         vid.playbackRate = 1;
         await vid.play().catch(() => {});
         await new Promise(res => {
-          const st = () => { if (stop || vid.currentTime >= b || vid.ended) { vid.pause(); return res(); } frame(vid.currentTime, i); requestAnimationFrame(st); };
+          const st = () => { if (stop || vid.currentTime >= b || vid.ended) { vid.pause(); return res(); } frame(vid.currentTime, sc); requestAnimationFrame(st); };
           requestAnimationFrame(st);
         });
       }
     }
     await new Promise(res => { rec.onstop = res; rec.stop(); });
-    closeModal();
-    if (stop) { toast('하이라이트 저장을 멈췄습니다'); return; }
-    const blob = new Blob(chunks, { type: mime || 'video/webm' });
-    const ok = await saveFile(doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_하이라이트.' + ext, blob);
-    if (ok) toast('하이라이트를 저장했습니다');
     P.dirty = true;
-  });
+    if (stop) { closeModal(); toast('영상 만들기를 멈췄습니다'); return; }
+    const blob = new Blob(chunks, { type: mime || 'video/webm' });
+    const fname = doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_' + o.label.replace(/\s+/g, '') + '_' + o.ratio + '.' + ext;
+    exportDone(blob, fname, { len: scenesLen(scenes), ratio: RATIO[o.ratio].label, n: scenes.length, ext });
+  }
+
+  // ----- finished: preview, send to phone (AirDrop via share sheet), shared-device cleanup -----
+  function canShareFile(f) { try { return !!(navigator.canShare && navigator.canShare({ files: [f] })); } catch (e) { return false; } }
+  async function shareOrSave(file) {
+    if (canShareFile(file)) {
+      try { await navigator.share({ files: [file], title: file.name }); return true; }
+      catch (e) { if (e && e.name === 'AbortError') return false; }
+    }
+    return saveFile(file.name, file);
+  }
+  function exportDone(blob, fname, info) {
+    const doc = cur.doc, url = URL.createObjectURL(blob);
+    const file = new File([blob], fname, { type: blob.type });
+    const share = canShareFile(file);
+    const shared = !doc.demo;
+    modal(`<div class="xhead"><h2>영상이 완성됐습니다</h2><button class="btn ghost sm" type="button" id="xdClose">닫기</button></div>
+      <video class="xprev${info.ratio.startsWith('세로') ? ' tall' : ''}" src="${url}" controls playsinline muted></video>
+      <p class="hint" style="margin:0">${fmtT(info.len)} · 장면 ${info.n}개 · ${info.ratio} · ${info.ext.toUpperCase()} · ${(blob.size / 1048576).toFixed(1)}MB</p>
+      <div class="row" style="gap:8px;flex-wrap:wrap">
+        ${share ? '<button class="btn primary" type="button" id="xdShare">내 폰으로 보내기 (에어드롭·공유)</button>' : ''}
+        <button class="btn${share ? '' : ' primary'}" type="button" id="xdSave">이 기기에 저장</button>
+      </div>
+      ${shared ? `<div class="panel xshared">
+        <b>코트 공용 기기에서 찍었나요?</b>
+        <p class="hint">영상을 보낸 뒤 이 기기에 기록을 남기지 마세요. 세션 파일을 내 폰으로 보내 두면 내 폰의 랠리노트에서 <b>세션 파일 열기</b>로 통계를 그대로 볼 수 있습니다.</p>
+        <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" type="button" id="xdSession">세션 파일 보내기</button><button class="btn sm danger" type="button" id="xdDelete">이 기기에서 세션 지우기</button></div>
+        <p class="hint" style="margin:0">원본 영상은 사진 앱에 남아 있으니 따로 지워 주세요.</p>
+      </div>` : ''}`);
+    const done = () => { URL.revokeObjectURL(url); closeModal(); };
+    $('#xdClose').onclick = done;
+    if (share) $('#xdShare').onclick = async () => { if (await shareOrSave(file)) toast('보냈습니다'); };
+    $('#xdSave').onclick = async () => { if (await saveFile(fname, blob)) toast('저장했습니다'); };
+    if (shared) {
+      $('#xdSession').onclick = async () => {
+        const f = new File([JSON.stringify(doc)], doc.name.replace(/[\\/:*?"<>|]/g, '_') + '.rallynote.json', { type: 'application/json' });
+        if (await shareOrSave(f)) toast('세션 파일을 보냈습니다');
+      };
+      $('#xdDelete').onclick = async (e) => {
+        const b = e.currentTarget;
+        if (!b.dataset.confirm) { b.dataset.confirm = '1'; b.textContent = '정말 지우기 (되돌릴 수 없음)'; setTimeout(() => { if (b.isConnected) { delete b.dataset.confirm; b.textContent = '이 기기에서 세션 지우기'; } }, 4000); return; }
+        clearTimeout(saveTimer); saveTimer = 0;
+        await store.remove(doc.id); delete videoURLs[doc.id];
+        done(); cur = null; show('vHome'); refreshHome(); toast('이 기기에서 세션을 지웠습니다');
+      };
+    }
+  }
 
   // ---------- play vs. dead time ----------
   function playWindows() {
@@ -2324,8 +2856,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const play = playWindows().reduce((n, [a, b]) => n + b - a, 0), total = cur.doc.src.duration;
     el.innerHTML = `<div class="fig"><b class="num">${fmtT(play)}</b><span>실제 플레이</span></div>
       <div class="fig"><b class="num" style="color:var(--ink-2)">${fmtT(Math.max(0, total - play))}</b><span>공 줍기·쉬는 시간 (자동 제외)</span></div>
-      <div class="grow"></div><button class="btn sm ball" id="btnPlayOnly" type="button">경기만 남긴 영상 저장</button>`;
-    $('#btnPlayOnly').onclick = () => { $('#optLongOnly').checked = false; $('#btnHighlights').click(); };
+      <div class="grow"></div><button class="btn sm ball" id="btnPlayOnly" type="button">경기만 남긴 영상 만들기</button>`;
+    $('#btnPlayOnly').onclick = () => openExport('all');
   }
 
   // ---------- session file import (analysed by Claude) ----------
