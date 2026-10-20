@@ -236,6 +236,9 @@ table.rt tr:hover td{background:var(--surface-2);cursor:pointer}
 @media (max-width:880px){ .goals{grid-template-columns:minmax(0,1fr)} .trends{grid-template-columns:minmax(0,1fr)} }
 /* people: who you played with / against */
 .people{padding:12px 14px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;margin-bottom:14px}
+.people .merow{flex:1 0 100%;display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.people .merow .lbl{font-size:14px;font-weight:600}
+.people .merow .hint{flex:1 1 220px;font-size:12px}
 .people .ttl{flex:1 0 100%;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .people .ttl{flex-wrap:wrap}
 .people .ttl b{font-size:14px;white-space:nowrap}
@@ -420,7 +423,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <div class="panel prog">
       <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2>공을 따라가는 중</h2><span class="num" id="progPct">0%</span></div>
       <div class="bar"><i id="progBar"></i></div>
-      <p class="hint" id="progText">영상을 재생하며 프레임마다 공을 찾습니다.</p>
+      <p class="hint" id="progText">영상을 재생하며 프레임마다 공을 찾습니다. 굵은 원은 움직이는 공 후보, 흐린 점은 걸러질 잡음입니다.</p>
       <canvas id="progCanvas"></canvas>
       <div style="display:flex;gap:8px"><button class="btn" id="cancelAnalyze" type="button">중단</button></div>
     </div>
@@ -599,8 +602,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   // region where the ball can appear: expanded court plus everything above it in the image
   function roiMask(w, h, calib, sx, sy) {
     const p = (cx, cy) => { const [u, v] = applyH(calib.toImage, cx, cy); return [u * sx, v * sy]; };
-    const fl = p(-3.5, C.L + 5), fr = p(C.W + 3.5, C.L + 5), nr = p(C.W + 3.5, -4), nl = p(-3.5, -4);
-    const poly = [[fl[0] - w * 0.15, -1], [fr[0] + w * 0.15, -1], fr, nr, nl, fl];
+    // 2 m outside the doubles lines: wide enough for wide balls, short of the next court on most club layouts
+    const fl = p(-2, C.L + 5), fr = p(C.W + 2, C.L + 5), nr = p(C.W + 2, -2.5), nl = p(-2, -2.5);
+    const poly = [[fl[0] - w * 0.05, -1], [fr[0] + w * 0.05, -1], fr, nr, nl, fl];
     const m = new Uint8Array(w * h);
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) m[y * w + x] = pointInPoly(x + 0.5, y + 0.5, poly) ? 1 : 0;
     return m;
@@ -613,10 +617,30 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     const mot = new Uint8Array(w * h); // 1 = moving pixel, 3 = part of a large moving body (player)
     const stack = new Int32Array(w * h);
     const maxArea = Math.max(40, (w * h) / 1400);
-    return function detect(rgba) {
+    // slow background: ground uncovered by a moving leg is no brighter than the background, the ball is
+    let bg = null, pending = null;
+    // spots that keep firing (line edges, flicker, a shoe tapping) are not the ball, which never stays put
+    const CS = 8, gw = Math.ceil(w / CS), heat = new Float32Array(gw * Math.ceil(h / CS));
+    const R = Math.max(3, Math.round(w * 0.012)); // how close to a moving body a candidate may sit
+    let bodies = [], pendingBodies = [];
+    // people: difference from a slow background (about 3 s memory), on a 4x4 grid; catches players standing still too
+    let slowBg = null, lastG = null;
+    const PS = 4, pgw = Math.ceil(w / PS), pgh = Math.ceil(h / PS), pcell = new Uint8Array(pgw * pgh), pstack = new Int32Array(pgw * pgh);
+    const detect = function detect(rgba) {
       const g = new Uint8Array(w * h);
       for (let i = 0, j = 0; i < g.length; i++, j += 4) g[i] = (rgba[j] * 3 + rgba[j + 1] * 6 + rgba[j + 2]) / 10;
+      if (!bg) bg = Float32Array.from(g);
+      if (!slowBg) slowBg = Float32Array.from(g);
+      lastG = g;
+      for (let i = 0; i < heat.length; i++) heat[i] *= 0.97;
+      // Output is for the PREVIOUS frame (one frame of lag): a blob is kept only if it is gone again in this
+      // frame. The ball moves on; ground uncovered by a leg, or a line edge, stays bright.
       const out = [];
+      if (pending && prev) for (const c of pending) {
+        let s = 0; for (const k of c.px) s += prev[k] - g[k];
+        if (s / c.px.length >= 5) out.push({ x: c.x, y: c.y, a: c.a });
+      }
+      const found = [];
       if (prev) {
         cand.fill(0); mot.fill(0);
         for (let i = 0; i < g.length; i++) {
@@ -637,7 +661,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
               const nk = ny * w + nx; if (mot[nk] === 1) { mot[nk] = 2; stack[sp++] = nk; }
             }
           }
-          if (area > maxArea * 1.5) for (const k of list) mot[k] = 3;
+          if (area > maxArea * 1.5) {
+            let bx0 = w, bx1 = 0, by0 = h, by1 = 0;
+            for (const k of list) { mot[k] = 3; const x = k % w, y = (k / w) | 0; if (x < bx0) bx0 = x; if (x > bx1) bx1 = x; if (y < by0) by0 = y; if (y > by1) by1 = y; }
+            bodies.push({ x0: bx0, x1: bx1, y0: by0, y1: by1, a: area });
+          }
           void start;
         }
         for (let i = 0, j = 0; i < g.length; i++, j += 4) {
@@ -645,6 +673,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           if (mot[i] === 3) continue;
           const d1 = g[i] - prev[i], d2 = prev2 ? g[i] - prev2[i] : d1;
           if (d1 < 12 && d2 < 12) continue; // the ball makes a pixel brighter than the court behind it
+          if (g[i] - bg[i] < 14) continue; // ...and brighter than what normally sits there
           const r = rgba[j], gg = rgba[j + 1], b = rgba[j + 2];
           const mx = Math.max(r, gg, b), mn = Math.min(r, gg, b);
           if (mx < 90) continue;
@@ -669,10 +698,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         for (let i = 0; i < cand.length; i++) {
           if (cand[i] !== 1) continue;
           let sp = 0, area = 0, sx = 0, sy = 0, minx = w, maxx = 0, miny = h, maxy = 0;
+          const px = [];
           stack[sp++] = i; cand[i] = 2;
           while (sp) {
             const k = stack[--sp], x = k % w, y = (k / w) | 0;
-            area++; sx += x; sy += y;
+            area++; sx += x; sy += y; if (px.length < 400) px.push(k);
             if (x < minx) minx = x; if (x > maxx) maxx = x; if (y < miny) miny = y; if (y > maxy) maxy = y;
             for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
               const nx = x + dx, ny = y + dy;
@@ -683,17 +713,62 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           }
           const bw = maxx - minx + 1, bh = maxy - miny + 1;
           if (area > maxArea || bw > w * 0.06 || bh > h * 0.08) continue;
-          // touching a moving body: a head, hand or shoe rather than the ball
+          // near a moving body: a head, hand, racquet or shoe rather than the ball
           let touch = false;
-          for (let y = Math.max(0, miny - 2); y <= Math.min(h - 1, maxy + 2) && !touch; y++) for (let x = Math.max(0, minx - 2); x <= Math.min(w - 1, maxx + 2); x++) if (mot[y * w + x] === 3) { touch = true; break; }
+          for (let y = Math.max(0, miny - R); y <= Math.min(h - 1, maxy + R) && !touch; y++) for (let x = Math.max(0, minx - R); x <= Math.min(w - 1, maxx + R); x++) if (mot[y * w + x] === 3) { touch = true; break; }
           if (touch) continue;
-          out.push({ x: sx / area + 0.5, y: sy / area + 0.5, a: area });
+          const cx = sx / area + 0.5, cy = sy / area + 0.5, cell = ((cy / CS) | 0) * gw + ((cx / CS) | 0);
+          const hot = heat[cell] > 10;
+          heat[cell] += 1;
+          if (hot) continue;
+          found.push({ x: cx, y: cy, a: area, px });
         }
       }
+      for (let i = 0; i < g.length; i++) { bg[i] += (g[i] - bg[i]) * (mot[i] ? 0.01 : 0.05); slowBg[i] += (g[i] - slowBg[i]) * 0.012; }
+      pending = found;
+      // people: merge pieces of the same body (legs, torso) and keep the feet position; lagged like the candidates
+      const merged = [];
+      for (const b of bodies.sort((p, q) => q.a - p.a)) {
+        const m = merged.find(q => b.x0 <= q.x1 + w * 0.02 && b.x1 >= q.x0 - w * 0.02 && b.y0 <= q.y1 + h * 0.05 && b.y1 >= q.y0 - h * 0.05);
+        if (m) { m.x0 = Math.min(m.x0, b.x0); m.x1 = Math.max(m.x1, b.x1); m.y0 = Math.min(m.y0, b.y0); m.y1 = Math.max(m.y1, b.y1); m.a += b.a; }
+        else merged.push(Object.assign({}, b));
+      }
+      detect.bodies = pendingBodies;
+      pendingBodies = merged.map(b => ({ x: (b.x0 + b.x1) / 2, y: b.y1, h: b.y1 - b.y0, a: b.a }));
+      bodies = [];
       prev2 = prev; prev = g;
       prgb2 = prgb; prgb = new Uint8ClampedArray(rgba);
       return out;
     };
+    detect.bodies = [];
+    detect.people = function () {
+      if (!lastG) return [];
+      pcell.fill(0);
+      const cnt = new Uint8Array(pgw * pgh);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const i = y * w + x; if (mask && !mask[i]) continue;
+        if (Math.abs(lastG[i] - slowBg[i]) > 22) cnt[((y / PS) | 0) * pgw + ((x / PS) | 0)]++;
+      }
+      for (let i = 0; i < cnt.length; i++) if (cnt[i] >= 5) pcell[i] = 1;
+      const out = [];
+      for (let i = 0; i < pcell.length; i++) {
+        if (pcell[i] !== 1) continue;
+        let sp = 0, n = 0, x0 = pgw, x1 = 0, y0 = pgh, y1 = 0; pstack[sp++] = i; pcell[i] = 2;
+        while (sp) {
+          const k = pstack[--sp], x = k % pgw, y = (k / pgw) | 0; n++;
+          if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+          for (let dy = -2; dy <= 2; dy++) for (let dx = -1; dx <= 1; dx++) { // bridge small gaps between legs and torso
+            const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= pgw || ny >= pgh) continue;
+            const nk = ny * pgw + nx; if (pcell[nk] === 1) { pcell[nk] = 2; pstack[sp++] = nk; }
+          }
+        }
+        const bw = x1 - x0 + 1, bh = y1 - y0 + 1;
+        // a person is taller than wide and not tiny; long flat strips are lighting or net shadows
+        if (n >= 4 && bh >= 3 && bh >= bw * 0.8 && bw <= pgw * 0.25) out.push({ x: (x0 + x1 + 1) / 2 * PS, y: (y1 + 1) * PS, h: bh * PS, a: n });
+      }
+      return out.sort((p, q) => q.a - p.a);
+    };
+    return detect;
   }
 
   // ---------- Tracking ----------
@@ -1310,7 +1385,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   }
 
   const RN = { C, analyzeTrack, lineSamples, lineScore, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
-    buildRallies, judgeBounce, suggestWinner, score, stats, makeCamera, demoScript, renderDemo, demoCorners, ballAt, analyze, depthZone };
+    buildRallies, judgeBounce, suggestWinner, score, stats, makeCamera, demoScript, renderDemo, demoCorners, ballAt, playerAt, analyze, depthZone };
   if (typeof module !== 'undefined' && module.exports) module.exports = RN; else root.RN = RN;
 })(typeof self !== 'undefined' ? self : this);
 
@@ -1403,6 +1478,17 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     let s = out.join(';');
     while (s.length > 190000) { s = s.split(';').filter((_, i) => i % 2 === 0).join(';'); }
     return s;
+  }
+  // people positions, sampled 5 times a second: "t:x,y,h|x,y,h;..." in analysis pixels (feet point + height)
+  function encBodies(list) {
+    const out = list.map(e => e.t.toFixed(1) + ':' + e.b.map(b => Math.round(b.x) + ',' + Math.round(b.y) + ',' + Math.round(b.h)).join('|'));
+    let s = out.join(';');
+    while (s.length > 120000) { s = s.split(';').filter((_, i) => i % 2 === 0).join(';'); }
+    return s;
+  }
+  function decBodies(s) {
+    if (!s) return [];
+    return s.split(';').map(x => { const [t, rest] = x.split(':'); return { t: +t, b: rest ? rest.split('|').map(q => { const [bx, by, bh] = q.split(',').map(Number); return { x: bx, y: by, h: bh }; }) : [] }; });
   }
   function decTrack(s) {
     if (!s) return [];
@@ -1607,16 +1693,24 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
 
   function renderPeople() {
     const d = cur.doc, el = $('#people');
-    if (d.demo) { el.hidden = true; el.innerHTML = ''; return; }
     el.hidden = false;
+    const meRow = `<div class="merow"><span class="lbl">나는 처음에</span><div class="seg" id="optMeSess"><button type="button" data-v="near">카메라 쪽</button><button type="button" data-v="far">반대편</button></div><span class="hint">${d.mode === 'match' && d.opts.swapEnds ? '홀수 게임마다 코트를 바꾼 것으로 계산합니다. ' : ''}잘못 골랐으면 여기서 바꾸세요. 점수·서브권·통계가 다시 계산됩니다.</span></div>`;
+    if (d.demo) { el.innerHTML = meRow; seg($('#optMeSess'), d.opts.meStart, onMeSide); return; }
     const p = d.people || { partner: '', opps: ['', ''] };
     const match = d.mode === 'match', dbl = !!d.opts.doubles;
     const f = (k, label, v) => `<label>${label}<input data-pk="${k}" list="peopleNames" value="${esc(v || '')}" placeholder="이름" autocomplete="off" enterkeyhint="done"></label>`;
     const fields = match
       ? (dbl ? [f('partner', '내 파트너', p.partner), f('o0', '상대 1', p.opps[0]), f('o1', '상대 2', p.opps[1])] : [f('o0', '상대', p.opps[0])])
       : [f('o0', '같이 친 사람', p.opps[0]), f('o1', '같이 친 사람 2', p.opps[1])];
-    el.innerHTML = `<div class="ttl"><b>함께 친 사람</b><span class="hint">${match ? (dbl ? '복식' : '단식') + ' 경기 · 적어 두면 사람별 기록이 쌓입니다' : '연습 상대를 적어 두세요'}</span></div>${fields.join('')}`;
+    el.innerHTML = meRow + `<div class="ttl"><b>함께 친 사람</b><span class="hint">${match ? (dbl ? '복식' : '단식') + ' 경기 · 적어 두면 사람별 기록이 쌓입니다' : '연습 상대를 적어 두세요'}</span></div>${fields.join('')}`;
+    seg($('#optMeSess'), d.opts.meStart, onMeSide);
     $('#peopleNames').innerHTML = knownNames().map(n => `<option value="${esc(n)}"></option>`).join('');
+  }
+  function onMeSide(v) {
+    if (!cur || cur.doc.opts.meStart === v) return;
+    cur.doc.opts.meStart = v;
+    afterEdit();
+    toast(v === 'near' ? '처음에 카메라 쪽이 나로 바꿨습니다' : '처음에 반대편이 나로 바꿨습니다');
   }
   $('#people').addEventListener('change', (e) => {
     const inp = e.target.closest('[data-pk]'); if (!inp || !cur || cur.doc.demo) return;
@@ -1693,7 +1787,12 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const calib = RN.calibrate(DEMO.corners);
     const track = encTrack(pts, times);
     const { rallies } = RN.analyzeTrack(pts, times, calib, opts);
-    return { id: 'demo', demo: true, name: '샘플 경기 · 8포인트', created: Date.now(), mode: 'match', opts, src: { kind: 'demo', name: 'sample', duration: DEMO.duration }, W: DEMO.W, H: DEMO.H, corners: DEMO.corners, track, rallies };
+    const sc = getDemoScene(), bl = [];
+    for (let t = 0; t < DEMO.duration; t += 0.2) {
+      const pl = RN.playerAt(sc.script, t);
+      bl.push({ t, b: [pl.near, pl.far].map(([x, y]) => { const f = sc.cam.project(x, y, 0), hd = sc.cam.project(x, y, 1.8); return { x: f[0], y: f[1], h: f[1] - hd[1] }; }) });
+    }
+    return { id: 'demo', demo: true, bodies: encBodies(bl), name: '샘플 경기 · 8포인트', created: Date.now(), mode: 'match', opts, src: { kind: 'demo', name: 'sample', duration: DEMO.duration }, W: DEMO.W, H: DEMO.H, corners: DEMO.corners, track, rallies };
   }
   $('#openDemo').addEventListener('click', () => openSession(demoDoc()));
 
@@ -1803,6 +1902,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const nearCm = cmPerPx(0.5), farCm = cmPerPx(C.L - 1);
     const farBallPx = Math.hypot(fr[0] - fl[0], fr[1] - fl[1]) * 0.067 / C.W;
     const mine = setupOpts.me === 'near' ? '가까운' : '먼';
+    if (farCm > 200) items.push({ ok: 'warn', t: '카메라가 낮습니다', d: `먼 쪽 코트가 눌려서 1픽셀이 ${(farCm / 100).toFixed(1)}m나 됩니다. 스탠드를 끝까지 올려 렌즈가 1.8m쯤 되게 하세요. 낮으면 가까운 선수에게 화면이 자주 가려지고 바운스를 놓칩니다.` });
     items.push({ ok: farCm > 60 ? 'info' : 'good', t: '바운스 정밀도', d: `가까운 쪽 1픽셀 ≈ ${nearCm < 100 ? Math.round(nearCm) + 'cm' : (nearCm / 100).toFixed(1) + 'm'}, 먼 쪽 1픽셀 ≈ ${farCm < 100 ? Math.round(farCm) + 'cm' : (farCm / 100).toFixed(1) + 'm'}.` +
       (farCm > 60 ? ` 먼 쪽 베이스라인 근처 인/아웃은 참고용입니다. ${setupOpts.me === 'near' ? '내 샷을 재려면 내가 카메라 <b>반대편</b>에서 치세요. 내 공이 정밀한 가까운 쪽에 떨어집니다.' : '지금 설정(나는 반대편)이면 내 샷은 정밀한 가까운 쪽에 떨어집니다.'}` : '') +
       (farBallPx < 1 ? ` 먼 쪽에서는 공이 분석 화면에서 ${farBallPx.toFixed(1)}픽셀 정도라 멈춰 있는 공은 놓칠 수 있습니다.` : '') });
@@ -1920,25 +2020,40 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const W = setup.W, H = setup.H, v = setup.video, fps = +setupOpts.speed;
     const pc = $('#progCanvas'); pc.width = W; pc.height = H;
     const ctx = pc.getContext('2d', { willReadFrequently: true });
-    const det = RN.createDetector(W, H, RN.roiMask(W, H, cal, 1, 1));
+    const roi = RN.roiMask(W, H, cal, 1, 1);
+    const det = RN.createDetector(W, H, roi);
     const frames = [];
     const started = performance.now();
     // camera-movement check: court lines must stay where they were calibrated
     const lineSmp = RN.lineSamples(cal, W, H, 1, 1);
     ctx.drawImage(v, 0, 0, W, H);
     const refScore = RN.lineScore(ctx.getImageData(0, 0, W, H).data, W, H, lineSmp) || 0;
-    const moveChecks = []; let lastCheck = -9;
+    const moveChecks = []; let lastCheck = -9, lastT = null, lastBodyT = -9; const bodySamples = [];
     let wake = null;
     try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
     const dur = v.duration;
     const process = (t) => {
       ctx.drawImage(v, 0, 0, W, H);
       const img = ctx.getImageData(0, 0, W, H).data;
-      const c = det(img);
-      frames.push({ t, c });
+      const c = det(img); // candidates of the previous processed frame (detector lags one frame)
+      if (lastT != null) {
+        frames.push({ t: lastT, c });
+        if (lastT - lastBodyT >= 0.2) {
+          lastBodyT = lastT;
+          const ppl = det.people().filter(b => roi[(Math.min(H - 1, b.y | 0)) * W + (b.x | 0)] && b.h > H * 0.04).sort((p, q) => q.a - p.a).slice(0, 4);
+          bodySamples.push({ t: lastT, b: ppl });
+        }
+      }
+      lastT = t;
       if (t - lastCheck >= 1) { lastCheck = t; moveChecks.push({ t, s: RN.lineScore(img, W, H, lineSmp) }); }
-      ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2;
-      for (const k of c) { ctx.beginPath(); ctx.arc(k.x, k.y, 6, 0, Math.PI * 2); ctx.stroke(); }
+      // a bold ring only where a candidate continues from the last frame (how the tracker starts a ball); the rest is faint noise
+      const pc = frames.length > 1 ? frames[frames.length - 2].c : [];
+      for (const k of c) {
+        const moving = pc.some(q => { const d = Math.hypot(k.x - q.x, k.y - q.y); return d > 0.6 && d < W * 0.07; });
+        ctx.beginPath();
+        if (moving) { ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2.5; ctx.arc(k.x, k.y, 7, 0, Math.PI * 2); ctx.stroke(); }
+        else { ctx.fillStyle = 'rgba(205,235,60,.45)'; ctx.arc(k.x, k.y, 2, 0, Math.PI * 2); ctx.fill(); }
+      }
       const pct = clamp(t / dur, 0, 1);
       $('#progBar').style.width = (pct * 100).toFixed(1) + '%';
       $('#progPct').textContent = Math.round(pct * 100) + '%';
@@ -2011,7 +2126,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const d = new Date();
     const doc = {
       id: sid(), name: `${d.getMonth() + 1}월 ${d.getDate()}일 ${opts.mode === 'match' ? '경기' : '연습'}`, created: Date.now(), mode: opts.mode, opts,
-      src: { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track, rallies, moved: moved.map(w => w.map(v => +v.toFixed(1)))
+      src: { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track, bodies: encBodies(bodySamples), rallies, moved: moved.map(w => w.map(v => +v.toFixed(1)))
     };
     videoURLs[doc.id] = setup.url; setup.url = null;
     const ok = await store.save(doc);
@@ -2033,7 +2148,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function openSession(doc) {
     pausePlayer();
     const calib = RN.calibrate(doc.corners);
-    cur = { doc, calib, trail: decTrack(doc.track), eff: null, demo: doc.src.kind === 'demo' ? getDemoScene() : null, heat: 'me' };
+    cur = { doc, calib, trail: decTrack(doc.track), people: decBodies(doc.bodies), eff: null, demo: doc.src.kind === 'demo' ? getDemoScene() : null, heat: 'me' };
     recompute();
     $('#sessTitle').value = doc.name;
     $('#sessMode').textContent = doc.demo ? '샘플 · 경기' : (doc.mode === 'match' ? '경기' : '연습');
@@ -2521,7 +2636,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
 
   // ---------- highlight export: pick scenes, aspect ratio, overlays, send to phone ----------
   const XPREF_KEY = 'rallynote.export.v1';
-  const xPref = (() => { try { return Object.assign({ ratio: 'wide', trace: true, board: true, card: true, mini: true }, JSON.parse(localStorage.getItem(XPREF_KEY) || '{}')); } catch (e) { return { ratio: 'wide', trace: true, board: true, card: true, mini: true }; } })();
+  const xPref = (() => { try { return Object.assign({ ratio: 'wide', follow: true, trace: true, board: true, card: true, mini: true }, JSON.parse(localStorage.getItem(XPREF_KEY) || '{}')); } catch (e) { return { ratio: 'wide', follow: true, trace: true, board: true, card: true, mini: true }; } })();
   const saveXPref = () => { try { localStorage.setItem(XPREF_KEY, JSON.stringify(xPref)); } catch (e) { /* ignore */ } };
   const RATIO = { wide: { label: '가로 16:9', r: null }, square: { label: '정사각 1:1', r: 1 }, tall: { label: '세로 9:16', r: 9 / 16 } };
   const SHOT_SETS = [
@@ -2577,7 +2692,10 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       </div>
       <div class="field"><span class="label">화면 비율</span>
         <div class="seg" id="xRatio">${Object.entries(RATIO).map(([k, v]) => `<button type="button" data-v="${k}">${v.label}</button>`).join('')}</div>
-        <span class="hint">정사각·세로는 공을 따라 화면을 옮겨 가며 자릅니다. 인스타 릴스·카톡 프로필엔 세로가 맞습니다.</span>
+        <span class="hint">인스타 릴스·카톡 프로필엔 세로가 맞습니다.</span>
+        ${chk('xFollow', '카메라가 공과 사람을 따라가기', xPref.follow)}
+        <div class="row" style="gap:8px;flex-wrap:wrap;align-items:center"><span class="hint">카메라 중심</span><div class="seg" id="xCenter"><button type="button" data-v="hitter">치는 사람</button><button type="button" data-v="me">나 위주</button></div></div>
+        <span class="hint" style="margin-top:-2px">코트가 화면을 채우도록 확대하고 화면을 옮겨 가며 따라갑니다. 치는 사람: 공을 칠 사람을 따라감 · 나 위주: 내 쪽 코트를 중심으로.${cur.people && cur.people.length ? '' : ' 이 세션은 사람 위치 기록이 없어 공 위주로 따라갑니다(새로 분석하면 사람도 따라감).'}</span>
       </div>
       <div class="field"><span class="label">영상에 넣기</span>
         <div class="xopts">${chk('xTrace', '공 궤적·IN/OUT', xPref.trace)}${chk('xCard', '샷 종류·속도', xPref.card)}${chk('xMini', '미니 코트(볼 마킹)', xPref.mini)}${match ? chk('xBoard', `점수판 (${esc(teamNames(doc).me)} vs ${esc(teamNames(doc).op)})`, xPref.board) : ''}</div>
@@ -2593,15 +2711,16 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     seg($('#xWhat'), st.what, v => { st.what = v; sync(); });
     seg($('#xShotSet'), st.shot, v => { st.shot = v; sync(); });
     seg($('#xRatio'), xPref.ratio, v => { xPref.ratio = v; saveXPref(); });
+    seg($('#xCenter'), xPref.center || 'hitter', v => { xPref.center = v; saveXPref(); });
     $('#xPick').addEventListener('change', (e) => { const c = e.target.closest('[data-ri]'); if (!c) return; if (c.checked) st.picked.add(+c.dataset.ri); else st.picked.delete(+c.dataset.ri); sync(); });
     const setAll = (on) => { $$('#xPick [data-ri]').forEach(c => { c.checked = on; }); st.picked = on ? new Set(ef.rallies.map((_, i) => i)) : new Set(); sync(); };
     $('#xAllOn').onclick = () => setAll(true); $('#xAllOff').onclick = () => setAll(false);
     $('#xClose').onclick = closeModal;
     $('#xGo').onclick = () => {
-      ['trace', 'card', 'mini', 'board'].forEach(k => { const el = $('#x' + k[0].toUpperCase() + k.slice(1)); if (el) xPref[k] = el.checked; });
+      ['trace', 'card', 'mini', 'board', 'follow'].forEach(k => { const el = $('#x' + k[0].toUpperCase() + k.slice(1)); if (el) xPref[k] = el.checked; });
       saveXPref();
       const sc = scenes(); if (!sc.length) return;
-      renderExport(sc, { ratio: xPref.ratio, trace: xPref.trace, card: xPref.card, mini: xPref.mini, board: match && xPref.board, label: st.what === 'shots' ? SHOT_SETS.find(s => s.v === st.shot).label + ' 모음' : '하이라이트' });
+      renderExport(sc, { ratio: xPref.ratio, follow: xPref.follow, center: xPref.center || 'hitter', trace: xPref.trace, card: xPref.card, mini: xPref.mini, board: match && xPref.board, label: st.what === 'shots' ? SHOT_SETS.find(s => s.v === st.shot).label + ' 모음' : '하이라이트' });
     };
     sync();
   }
@@ -2609,24 +2728,32 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
 
   // ----- overlay pieces for exported video -----
   function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  // broadcast-style overlay, laid out like SwingVision: score top-left, mini court top-right with the shot card under it
+  const OV = { panel: 'rgba(12,16,20,.72)', line: 'rgba(255,255,255,.88)', text: '#f2f4f2', dim: 'rgba(242,244,242,.62)', type: '#7fe0a0', inC: '#3cd18a', outC: '#ff6b4a', last: '#4aa8ff' };
   function drawScoreBoard(ctx, s, ri, names) {
     const ef = cur.eff;
     let snap = null; for (let i = 0; i < ri; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
     const sets = snap ? snap.sets : [], g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
-    const x = 12 * s, y = 12 * s, rh = 26 * s, pad = 10 * s;
-    ctx.font = `600 ${15 * s}px "IBM Plex Sans KR", sans-serif`;
+    // who serves this point: the first shot of the rally
+    const r = ri >= 0 ? ef.rallies[ri] : null, first = r && r.shots[0];
+    const server = first ? (first.side === r.meSide ? 0 : 1) : -1;
+    const x = 12 * s, y = 12 * s, rh = 24 * s, padX = 10 * s;
+    ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`;
     const nameW = Math.max(ctx.measureText(names.me).width, ctx.measureText(names.op).width);
-    const colW = 22 * s, ptW = 38 * s, w = pad + nameW + 12 * s + colW * (sets.length + 1) + ptW;
-    ctx.fillStyle = 'rgba(10,19,27,.84)'; roundRect(ctx, x, y, w, rh * 2 + 8 * s, 6 * s); ctx.fill();
-    ctx.fillStyle = '#cdeb3c'; ctx.fillRect(x + w - ptW, y, ptW, rh * 2 + 8 * s);
+    const colW = 22 * s, ptW = 30 * s, dotW = 12 * s;
+    const w = padX + nameW + dotW + colW * (sets.length + 1) + ptW + padX * 0.6, hh = rh * 2 + 6 * s;
+    ctx.fillStyle = OV.panel; roundRect(ctx, x, y, w, hh, 6 * s); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = Math.max(1, s * 0.8);
+    ctx.beginPath(); ctx.moveTo(x + padX * 0.6, y + hh / 2); ctx.lineTo(x + w - padX * 0.6, y + hh / 2); ctx.stroke();
     [names.me, names.op].forEach((n, row) => {
-      const by = y + 4 * s + rh * row + rh * 0.7;
-      ctx.font = `600 ${15 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = '#eef2ea'; ctx.textAlign = 'left';
-      ctx.fillText(n, x + pad, by);
-      ctx.font = `600 ${19 * s}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center';
-      sets.forEach((st, j) => { ctx.fillStyle = st[row] >= st[1 - row] ? '#eef2ea' : 'rgba(238,242,234,.5)'; ctx.fillText(String(st[row]), x + pad + nameW + 12 * s + colW * j + colW / 2, by); });
-      ctx.fillStyle = '#eef2ea'; ctx.fillText(String(g[row]), x + pad + nameW + 12 * s + colW * sets.length + colW / 2, by);
-      ctx.fillStyle = '#1c2200'; ctx.fillText(p[row], x + w - ptW / 2, by);
+      const by = y + 3 * s + rh * row + rh * 0.68, cx0 = x + padX + nameW + dotW;
+      ctx.textAlign = 'left'; ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.text;
+      ctx.fillText(n, x + padX, by);
+      if (server === row) { ctx.beginPath(); ctx.arc(x + padX + nameW + dotW * 0.55, by - 4.5 * s, 2.4 * s, 0, Math.PI * 2); ctx.fillStyle = OV.text; ctx.fill(); }
+      ctx.textAlign = 'center'; ctx.font = `600 ${16 * s}px "Barlow Condensed", sans-serif`;
+      sets.forEach((st, j) => { ctx.fillStyle = st[row] >= st[1 - row] ? OV.text : OV.dim; ctx.fillText(String(st[row]), cx0 + colW * j + colW / 2, by); });
+      ctx.fillStyle = OV.text; ctx.fillText(String(g[row]), cx0 + colW * sets.length + colW / 2, by);
+      ctx.fillText(p[row], cx0 + colW * (sets.length + 1) + ptW / 2, by);
     });
     ctx.textAlign = 'left';
   }
@@ -2637,42 +2764,47 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (!cur0 || t - cur0.t > 2.6) return null;
     return { r, s: cur0 };
   }
-  function drawShotCard(ctx, s, outW, outH, t, ri, focus) {
+  // right column geometry shared by the mini court and the shot card
+  function rightColumn(s, outW, outH, tall) {
+    const mh = outH * (tall ? 0.19 : 0.34), sc = mh / C.L, mw = C.W * sc, pad = 7 * s;
+    const pw = Math.max(mw + pad * 2, 118 * s), x = outW - pw - 12 * s, y = 12 * s;
+    return { x, y, pw, ph: mh + pad * 2, mw, mh, sc, pad };
+  }
+  function drawMiniCourt(ctx, s, outW, outH, t, ri, tall) {
+    if (ri < 0) return;
+    const L = rightColumn(s, outW, outH, tall);
+    ctx.fillStyle = OV.panel; roundRect(ctx, L.x, L.y, L.pw, L.ph, 6 * s); ctx.fill();
+    const cx = L.x + (L.pw - L.mw) / 2, cy = L.y + L.pad;
+    const P = (px, py) => [cx + px * L.sc, cy + (C.L - py) * L.sc];
+    ctx.strokeStyle = OV.line; ctx.lineWidth = Math.max(1, s * 0.9);
+    for (const [a, b] of RN.courtLines()) { const A = P(a[0], a[1]), B = P(b[0], b[1]); ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke(); }
+    const n = P(-0.4, C.NET), n2 = P(C.W + 0.4, C.NET); ctx.lineWidth = 1.8 * s; ctx.beginPath(); ctx.moveTo(n[0], n[1]); ctx.lineTo(n2[0], n2[1]); ctx.stroke();
+    const bs = cur.eff.rallies[ri].shots.map(sh => sh.bounce).filter(b => b && b.t <= t);
+    bs.forEach((b, i) => {
+      const [px, py] = P(clamp(b.cx, -1, C.W + 1), clamp(b.cy, -1.5, C.L + 1.5)), last = i === bs.length - 1;
+      ctx.beginPath(); ctx.arc(px, py, (last ? 3.6 : 2.6) * s, 0, Math.PI * 2);
+      ctx.fillStyle = last ? OV.last : (b.in ? OV.inC : OV.outC); ctx.globalAlpha = last ? 1 : 0.7; ctx.fill(); ctx.globalAlpha = 1;
+    });
+  }
+  function drawShotCard(ctx, s, outW, outH, t, ri, focus, tall, withMini) {
     // in a shot montage only the featured shot gets a card, from the moment it is hit
     const hit = focus ? (t >= focus.t - 0.05 && t - focus.t <= 2.6 ? { r: cur.eff.rallies[ri], s: focus } : null) : currentShot(t, ri); if (!hit) return;
     const { r, s: sh } = hit, mine = sh.side === r.meSide;
     const type = sh.serve ? '서브' : (TYPE_KO[sh.type] || '샷');
-    const l1 = sh.speed ? `${sh.speed}` : type, u1 = sh.speed ? ' km/h' : '';
-    const l2 = `${mine ? '나' : '상대'}${sh.speed ? ' · ' + type : ''}${sh.bounce ? ' · ' + (sh.bounce.in ? 'IN' : 'OUT') : ''}`;
-    ctx.font = `700 ${30 * s}px "Barlow Condensed", sans-serif`; const w1 = ctx.measureText(l1).width;
-    ctx.font = `600 ${15 * s}px "Barlow Condensed", sans-serif`; const wu = ctx.measureText(u1).width;
-    ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`; const w2 = ctx.measureText(l2).width;
-    const w = Math.max(w1 + wu, w2) + 30 * s, h = 62 * s, x = 12 * s, y = outH - h - 14 * s;
+    const who = mine ? teamNames(cur.doc).me : teamNames(cur.doc).op;
+    const L = rightColumn(s, outW, outH, tall), h = 42 * s, x = L.x, y = withMini ? L.y + L.ph + 6 * s : L.y, w = L.pw;
     ctx.globalAlpha = Math.min(1, (2.6 - (t - sh.t)) / 0.4);
-    ctx.fillStyle = 'rgba(10,19,27,.84)'; roundRect(ctx, x, y, w, h, 6 * s); ctx.fill();
-    ctx.fillStyle = mine ? '#cdeb3c' : '#eef2ea'; ctx.fillRect(x, y + 8 * s, 4 * s, h - 16 * s);
-    ctx.fillStyle = '#eef2ea'; ctx.font = `700 ${30 * s}px "Barlow Condensed", sans-serif`; ctx.fillText(l1, x + 16 * s, y + 31 * s);
-    ctx.fillStyle = 'rgba(238,242,234,.7)'; ctx.font = `600 ${15 * s}px "Barlow Condensed", sans-serif`; ctx.fillText(u1, x + 16 * s + w1, y + 31 * s);
-    ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = 'rgba(238,242,234,.85)'; ctx.fillText(l2, x + 16 * s, y + 51 * s);
+    ctx.fillStyle = OV.panel; roundRect(ctx, x, y, w, h, 6 * s); ctx.fill();
+    ctx.textAlign = 'left';
+    ctx.font = `600 ${12.5 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.type; ctx.fillText(type + (sh.bounce ? (sh.bounce.in ? ' · IN' : ' · OUT') : ''), x + 9 * s, y + 18 * s);
+    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(who, x + 9 * s, y + 34 * s);
+    if (sh.speed) {
+      ctx.textAlign = 'right';
+      ctx.font = `700 ${20 * s}px "Barlow Condensed", sans-serif`; ctx.fillStyle = OV.text; ctx.fillText(String(sh.speed), x + w - 9 * s, y + 21 * s);
+      ctx.font = `600 ${10 * s}px "Barlow Condensed", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText('KM/H', x + w - 9 * s, y + 34 * s);
+      ctx.textAlign = 'left';
+    }
     ctx.globalAlpha = 1;
-  }
-  function drawMiniCourt(ctx, s, outW, outH, t, ri, tall) {
-    if (ri < 0) return;
-    const mh = outH * (tall ? 0.2 : 0.32), sc = mh / C.L, mw = C.W * sc, pad = 5 * s;
-    const x = outW - mw - 12 * s - pad, y = 12 * s + pad;
-    ctx.fillStyle = 'rgba(10,19,27,.72)'; roundRect(ctx, x - pad, y - pad, mw + pad * 2, mh + pad * 2, 5 * s); ctx.fill();
-    ctx.fillStyle = 'rgba(42,92,134,.9)'; ctx.fillRect(x, y, mw, mh);
-    const P = (cx, cy) => [x + cx * sc, y + (C.L - cy) * sc];
-    ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = Math.max(1, s);
-    for (const [a, b] of RN.courtLines()) { const A = P(a[0], a[1]), B = P(b[0], b[1]); ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke(); }
-    const n = P(0, C.NET), n2 = P(C.W, C.NET); ctx.lineWidth = 2 * s; ctx.beginPath(); ctx.moveTo(n[0] - 2 * s, n[1]); ctx.lineTo(n2[0] + 2 * s, n2[1]); ctx.stroke();
-    const bs = cur.eff.rallies[ri].shots.map(sh => sh.bounce).filter(b => b && b.t <= t);
-    bs.forEach((b, i) => {
-      const [px, py] = P(clamp(b.cx, -1, C.W + 1), clamp(b.cy, -1.5, C.L + 1.5)), last = i === bs.length - 1;
-      ctx.beginPath(); ctx.arc(px, py, (last ? 4.2 : 3) * s, 0, Math.PI * 2);
-      ctx.fillStyle = b.in ? '#3cd18a' : '#ff6b4a'; ctx.globalAlpha = last ? 1 : 0.75; ctx.fill(); ctx.globalAlpha = 1;
-      if (last) { ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5 * s; ctx.stroke(); }
-    });
   }
   function drawTag(ctx, s, outW, text) {
     ctx.font = `600 ${14 * s}px "IBM Plex Sans KR", sans-serif`;
@@ -2681,8 +2813,10 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     ctx.fillStyle = '#1c2200'; ctx.textAlign = 'center'; ctx.fillText(text, outW / 2, y + 18 * s); ctx.textAlign = 'left';
   }
   function drawMark(ctx, s, outW, outH) {
-    ctx.font = `600 ${12 * s}px "IBM Plex Sans KR", sans-serif`; ctx.textAlign = 'right';
-    ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.fillText('랠리노트', outW - 12 * s, outH - 12 * s); ctx.textAlign = 'left';
+    ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,.8)';
+    ctx.font = `500 ${10 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillText('Shots tracked by', outW - 12 * s, outH - 26 * s);
+    ctx.font = `700 ${14 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillText('랠리노트', outW - 12 * s, outH - 11 * s);
+    ctx.textAlign = 'left';
   }
 
   // ----- virtual camera for 1:1 / 9:16 crops -----
@@ -2690,7 +2824,48 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   // -> speed/accel limit (both directions = ease in/out) -> easing EMA. The whole clip is known in advance,
   // so the path looks ahead instead of lagging behind the ball. No player boxes here, so the focus is the
   // ball (0.15 s ahead) leaning slightly toward the court centre to keep both ends in view.
-  const CAM = { fps: 30, lead: 0.15, ballW: 0.85, home: 2.0, median: 0.25, ema: 0.3, dead: 0.12, vmax: 1.2, amax: 3.0, ease: 0.08 };
+  // ballW: share of the ball when people are known (tennis_autopan.py default); ballOnly: ball vs court centre otherwise
+  const CAM = { fps: 30, lead: 0.15, ballW: 0.6, ballOnly: 0.85, hitter: 2.0, home: 2.0, median: 0.25, ema: 0.3, dead: 0.12, vmax: 1.2, amax: 3.0, ease: 0.08 };
+  function ballYAt(t) {
+    const tr = cur.trail; let lo = 0, hi = tr.length;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (tr[m].t < t) lo = m + 1; else hi = m; }
+    const A = tr[lo - 1], B = tr[lo];
+    if (A && B && B.t - A.t <= 0.25) return A.y + (B.y - A.y) * (t - A.t) / Math.max(1e-6, B.t - A.t);
+    if (A && t - A.t <= 0.05) return A.y; if (B && B.t - t <= 0.05) return B.y;
+    return NaN;
+  }
+  function peopleAt(t) {
+    const L = cur.people; if (!L || !L.length) return null;
+    let lo = 0, hi = L.length; while (lo < hi) { const m = (lo + hi) >> 1; if (L[m].t < t) lo = m + 1; else hi = m; }
+    const c = [L[lo - 1], L[lo]].filter(Boolean).sort((p, q) => Math.abs(p.t - t) - Math.abs(q.t - t))[0];
+    return c && Math.abs(c.t - t) <= 0.35 ? c.b : [];
+  }
+  // where the shot should look at time t: the ball a moment ahead, pulled toward the players, most toward the one about to hit
+  let camCenter = 'hitter'; // 'hitter' | 'me'
+  function meSideAt(t) {
+    const rs = cur.eff.rallies; let side = cur.doc.opts.meStart;
+    for (const r of rs) { if (r.t0 - 1 <= t) side = r.meSide || side; else break; }
+    return side;
+  }
+  function focusAt(t, home) {
+    const W = cur.doc.W;
+    let bx = ballXAt(t + CAM.lead); if (isNaN(bx)) bx = ballXAt(t);
+    const by = ballYAt(t);
+    const ppl = peopleAt(t);
+    if (ppl === null) return isNaN(bx) ? NaN : CAM.ballOnly * bx + (1 - CAM.ballOnly) * home; // older sessions: no people recorded
+    let ws = 0, xs = 0;
+    for (const p of ppl) {
+      const c = RN.applyH(cur.calib.toCourt, p.x, p.y);
+      let w = (c[0] > -2.5 && c[0] < C.W + 2.5 && c[1] > -3.5 && c[1] < C.L + 3.5) ? 1 : 0.05; // on this court, not the next one
+      w *= clamp(Math.min(p.x, W - p.x) / (W * 0.08), 0.2, 1);
+      if (camCenter === 'me') { const mine = (c[1] < C.NET) === (meSideAt(t) === 'near'); w *= mine ? 4 : 0.5; }
+      else if (!isNaN(bx)) { const d = Math.hypot(p.x - bx, (p.y - p.h * 0.6) - (isNaN(by) ? p.y : by)) / (W * 0.15); w *= 1 + CAM.hitter * Math.exp(-d * d); }
+      ws += w; xs += w * p.x;
+    }
+    const px = ws > 0 ? xs / ws : NaN;
+    if (!isNaN(bx) && !isNaN(px)) { const bw = camCenter === 'me' ? 0.35 : CAM.ballW; return bw * bx + (1 - bw) * px; }
+    return !isNaN(bx) ? bx : px;
+  }
   function ballXAt(t) {
     const tr = cur.trail; let lo = 0, hi = tr.length;
     while (lo < hi) { const m = (lo + hi) >> 1; if (tr[m].t < t) lo = m + 1; else hi = m; }
@@ -2703,8 +2878,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const fps = CAM.fps, n = Math.max(2, Math.ceil((b - a) * fps) + 1);
     let x = new Array(n);
     for (let i = 0; i < n; i++) {
-      const t = a + i / fps; let bx = ballXAt(t + CAM.lead); if (isNaN(bx)) bx = ballXAt(t);
-      x[i] = isNaN(bx) ? NaN : CAM.ballW * bx + (1 - CAM.ballW) * home;
+      x[i] = focusAt(a + i / fps, home);
     }
     // long blind stretches drift back to the court centre
     for (let i = 0; i < n;) { if (!isNaN(x[i])) { i++; continue; } let j = i; while (j < n && isNaN(x[j])) j++; if (j - i > CAM.home * fps) x[(i + j) >> 1] = home; i = j; }
@@ -2734,7 +2908,16 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const srcPxW = cur.demo ? doc.W : (vid.videoWidth || doc.W), srcPxH = cur.demo ? doc.H : (vid.videoHeight || doc.H);
     const sv = srcPxW / doc.W;
     const rr = RATIO[o.ratio].r;
-    const cw = rr ? Math.min(doc.W, doc.H * rr) : doc.W; // crop width in analysis px
+    // keep the far baseline in the upper part (room for lobs) and the near baseline in frame
+    const yFar = RN.applyH(cur.calib.toImage, C.CX, C.L)[1], yNear = RN.applyH(cur.calib.toImage, C.CX, 0)[1];
+    // follow = zoom so the court fills the shot (a low camera leaves the court a thin band) and pan like a camera operator
+    const band = Math.max(1, yNear - yFar);
+    const zoom = o.follow ? clamp(doc.H / (band * 2.6), rr ? 1 : 1.35, rr ? 2.2 : 2) : 1;
+    const chh = doc.H / zoom; // crop height
+    const cw = rr ? Math.min(doc.W, chh * rr) : doc.W / zoom; // crop width in analysis px
+    let y0 = chh < doc.H ? clamp(yFar - chh * 0.42, 0, doc.H - chh) : 0;
+    if (chh < doc.H && yNear > y0 + chh * 0.94) y0 = clamp(yNear - chh * 0.94, 0, doc.H - chh);
+    const pans = !!rr || zoom > 1;
     let outW, outH;
     if (!rr) { outW = cur.demo ? 960 : Math.min(1280, srcPxW); outH = Math.round(outW * doc.H / doc.W / 2) * 2; outW = Math.round(outW / 2) * 2; }
     else if (tall) { outW = 720; outH = 1280; }
@@ -2744,6 +2927,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const k = outW / cw, s = Math.min(outW, outH) / 540;
     const courtCx = doc.corners.reduce((n, p) => n + p[0], 0) / doc.corners.length;
     let camAt = null;
+    camCenter = o.center === 'me' ? 'me' : 'hitter';
     const names = teamNames(doc);
     const mime = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
     const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
@@ -2755,21 +2939,21 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#hlStop').onclick = () => { stop = true; };
     const frame = (t, sc) => {
       let x0 = 0;
-      if (rr) x0 = clamp(camAt(t) - cw / 2, 0, doc.W - cw);
+      if (pans) x0 = clamp((o.follow ? camAt(t) : courtCx) - cw / 2, 0, doc.W - cw);
       const src = cur.demo ? demoFrame(t) : vid;
-      const ss = cur.demo ? 1 : sv;
-      ctx.drawImage(src, x0 * ss, 0, cw * ss, doc.H * (cur.demo ? 1 : srcPxH / doc.H), 0, 0, outW, outH);
-      if (o.trace) drawOverlays(ctx, t, k, -x0 * k, 0, {});
+      const ss = cur.demo ? 1 : sv, sy = cur.demo ? 1 : srcPxH / doc.H;
+      ctx.drawImage(src, x0 * ss, y0 * sy, cw * ss, chh * sy, 0, 0, outW, outH);
+      if (o.trace) drawOverlays(ctx, t, k, -x0 * k, -y0 * k, {});
       if (o.board) drawScoreBoard(ctx, s, sc.ri, names);
       if (o.mini) drawMiniCourt(ctx, s, outW, outH, t, sc.ri, tall);
-      if (o.card) drawShotCard(ctx, s, outW, outH, t, sc.ri, sc.shot);
+      if (o.card) drawShotCard(ctx, s, outW, outH, t, sc.ri, sc.shot, tall, o.mini && sc.ri >= 0);
       if (sc.tag) drawTag(ctx, s, outW, sc.tag);
       drawMark(ctx, s, outW, outH);
     };
     rec.start(500);
     for (let n = 0; n < scenes.length && !stop; n++) {
       const sc = scenes[n], a = sc.a, b = sc.b;
-      if (rr) camAt = planCamera(a, b, doc.W, cw, courtCx);
+      if (pans) camAt = planCamera(a, b, doc.W, cw, courtCx);
       $('#hlBar').style.width = (n / scenes.length * 100) + '%';
       $('#hlText').textContent = `장면 ${n + 1} / ${scenes.length}`;
       if (cur.demo) {
