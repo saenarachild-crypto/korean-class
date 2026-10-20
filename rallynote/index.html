@@ -85,6 +85,19 @@ p{margin:0}
 .steps b{font-family:var(--f-display);font-size:22px;display:block;line-height:1}
 .steps p{font-size:14px;color:var(--ink-2);margin-top:6px}
 .steps{padding:0}
+.shoot{margin:-16px 0 28px;padding:0 16px}
+.shoot summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;min-height:52px}
+.shoot summary::-webkit-details-marker{display:none}
+.shoot summary span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.shoot summary b{font-size:16px}
+.shoot summary small{font-size:12px;color:var(--ink-2)}
+.shoot summary i{font-style:normal;font-family:var(--f-display);font-size:26px;line-height:1;color:var(--ink-2)}
+.shoot[open] summary i{transform:rotate(45deg)}
+.shoot-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;padding-bottom:14px;border-top:1px solid var(--rule)}
+.shoot-body h4{margin:12px 0 4px;font-size:14px}
+.shoot-body ol{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px;color:var(--ink-2)}
+.shoot-body ol b{color:var(--ink)}
+@media (max-width:880px){ .shoot-body{grid-template-columns:minmax(0,1fr)} .shoot{margin-top:-8px} }
 .list-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
 .sessions{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .scard{padding:14px 16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-align:left}
@@ -374,10 +387,35 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div class="court-art"><canvas id="heroArt" width="640" height="400" aria-label="코트 위 공 궤적 그림"></canvas></div>
     </div>
     <ol class="steps">
-      <li><b>1 · 거치</b><p>센터마크 바로 뒤, 뒤 펜스 쪽으로 최대한 물러나 스탠드를 최대한 높게 세우고 폰을 <b>가로·0.5배</b>로 찍습니다. 먼 쪽 모서리 두 개와 가까운 쪽 단식 모서리 두 개는 꼭 보여야 합니다. 짐벌은 자동 추적을 끄고 고정해 두세요.</p></li>
+      <li><b>1 · 거치</b><p>센터마크 바로 뒤, 뒤 펜스 쪽으로 최대한 물러나 스탠드를 최대한 높게 세우고 폰을 <b>가로·0.5배</b>로 찍습니다. 먼 쪽 모서리 두 개와 가까운 쪽 단식 모서리 두 개는 꼭 보여야 합니다. 짐벌 세팅은 아래 <b>촬영 전 체크리스트</b>를 펼쳐 보세요.</p></li>
       <li><b>2 · 코트 맞추기</b><p>영상의 코트 네 꼭짓점에 점 네 개를 맞춥니다. 이 기준으로 공 위치를 미터 단위로 계산합니다.</p></li>
       <li><b>3 · 리뷰</b><p>랠리만 이어 보기, 바운스 지점, 인·아웃 챌린지, 통계. 판정과 점수는 탭 한 번으로 수정됩니다.</p></li>
     </ol>
+    <details class="panel shoot" id="shootGuide">
+      <summary><span><b>촬영 전 체크리스트</b><small>스탠드 · Flow 2 Pro 짐벌 · 아이폰 카메라 · 약 3분</small></span><i aria-hidden="true">+</i></summary>
+      <div class="shoot-body">
+        <section><h4>1 · 자리와 스탠드</h4><ol>
+          <li>가까운 베이스라인 <b>센터마크에서 뒤로 곧장</b>, 뒤 펜스에 최대한 붙여 세웁니다.</li>
+          <li>다리 세 개를 같은 길이로 넓게 펴고 <b>끝까지 올립니다</b> (렌즈 약 1.8m). 낮으면 먼 쪽 바운스를 놓칩니다.</li>
+        </ol></section>
+        <section><h4>2 · Flow 2 Pro 짐벌</h4><ol>
+          <li>폰을 <b>가로로</b> 끼우고 짐벌 <b>전원을 켭니다</b>. 꺼 두면 모터가 풀려 폰이 처집니다.</li>
+          <li><b>M 버튼</b>을 눌러 <b>PF(팬 팔로우)</b>로 둡니다. 순서는 Auto → F → PF → FPV. PF는 수평과 위아래 각도를 고정합니다. 못 찾겠으면 Auto도 괜찮고, <b>FPV만 피하세요</b>.</li>
+          <li>카메라 앱을 연 뒤 <b>트리거를 한 번</b> 눌러 <b>자동 추적을 끕니다</b>. 표시등이 초록으로 깜빡이면 아직 추적 중입니다.</li>
+          <li>확인: 폰 앞을 걸어 지나가 보세요. <b>폰이 따라 돌지 않으면 OK</b>. 추적이 켜진 채 찍으면 그 구간은 분석에서 빠집니다.</li>
+          <li>구도는 폰을 손으로 비틀지 말고 <b>조이스틱</b>으로 조금씩 맞추면 편합니다.</li>
+        </ol></section>
+        <section><h4>3 · 아이폰 카메라</h4><ol>
+          <li>비디오 → <b>0.5배</b> → 오른쪽 위 <b>4K · 60</b> 확인 (HDR 비디오는 설정에서 끔).</li>
+          <li>먼 쪽 모서리 2개와 가까운 쪽 <b>단식 모서리 2개</b>가 화면에 보이고, 센터라인이 화면 한가운데 오게 합니다.</li>
+          <li>먼 쪽 서비스라인 근처를 <b>길게 눌러 AE/AF 잠금</b>. 녹화를 시작하면 끝날 때까지 건드리지 않습니다.</li>
+        </ol></section>
+        <section><h4>4 · 랠리노트에서</h4><ol>
+          <li>영상 불러오기 → 기준점 <b>단식 모서리</b> → 점 4개 → <b>구도 점검</b> 확인.</li>
+          <li><b>처음에 나는</b> 카메라 쪽/반대편을 고릅니다. 틀렸으면 세션 화면 맨 위에서 나중에 바꿀 수 있습니다. 내 샷을 재는 날은 반대편에서 치면 더 정확합니다.</li>
+        </ol></section>
+      </div>
+    </details>
     <section id="progress" class="progress" aria-label="이번 주와 실력 변화"></section>
     <section id="peopleStats" class="progress" aria-label="함께 친 사람"></section>
     <div class="list-head"><h2>내 세션</h2><span class="muted" id="storeNote"></span></div>
