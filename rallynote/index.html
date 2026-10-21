@@ -2078,6 +2078,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       $('#setupName').textContent = '코트 맞추기 · ' + file.name;
       $('#frameScrub').value = 30;
       show('vSetup');
+      drawCalib(); // handles and court outline right away, even before a frame is ready
       prime.then(() => seekSetup(Math.min(1.5, (v.duration || 3) * 0.1)));
     };
     v.onerror = () => toast('이 영상 형식은 브라우저에서 열 수 없습니다. MP4(H.264)로 저장한 영상을 써 주세요.', 5000);
@@ -2113,7 +2114,13 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         w.textContent = '이 영상의 화면을 읽지 못했습니다. 아래 막대를 조금 움직여 보세요. 계속 검게 나오면 사진 앱에서 영상을 열고 공유 → 옵션에서 "가장 호환성 높음"으로 저장한 영상을 불러오거나, 아이폰 설정 → 카메라 → 포맷 → "높은 호환성"으로 찍어 주세요.';
       }
     };
-    v.onseeked = done;
+    v.onseeked = () => { clearTimeout(setup.seekDog); done(); };
+    // iPhone may never answer a seek on a video it has not started: nudge it with a short play
+    clearTimeout(setup.seekDog);
+    setup.seekDog = setTimeout(() => {
+      if (setup.video !== v) return;
+      Promise.resolve(v.play()).catch(() => {}).then(() => setTimeout(() => { v.pause(); done(); }, 300));
+    }, 1500);
     v.currentTime = t;
   }
   $('#frameScrub').addEventListener('input', (e) => { const v = setup.video; setup.blackTries = 0; if (v && v.duration) seekSetup(v.duration * (+e.target.value / 1000)); });
