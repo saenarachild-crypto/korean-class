@@ -2062,7 +2062,10 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     v.setAttribute('playsinline', ''); v.setAttribute('muted', '');
     // Safari only decodes frames for a video that is in the page
     if (!v.isConnected) { v.style.cssText = 'position:fixed;left:0;bottom:0;width:4px;height:4px;opacity:0.01;pointer-events:none;z-index:-1'; document.body.appendChild(v); }
-    v.src = setup.url;
+    v.src = setup.url; v._primed = false; setup.blackTries = 0;
+    // iPhone Safari draws no frames to a canvas until the video has played once: start it now,
+    // while the file picker's tap still counts as a user gesture, and stop it a moment later
+    const prime = primeVideo(v);
     v.onloadedmetadata = () => {
       const vw = v.videoWidth || 1280, vh = v.videoHeight || 720;
       setup.W = 640; setup.H = Math.round(640 * vh / vw / 2) * 2;
@@ -2075,15 +2078,45 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       $('#setupName').textContent = '코트 맞추기 · ' + file.name;
       $('#frameScrub').value = 30;
       show('vSetup');
-      seekSetup(Math.min(1.5, (v.duration || 3) * 0.1));
+      prime.then(() => seekSetup(Math.min(1.5, (v.duration || 3) * 0.1)));
     };
     v.onerror = () => toast('이 영상 형식은 브라우저에서 열 수 없습니다. MP4(H.264)로 저장한 영상을 써 주세요.', 5000);
   }
   $('#fileOpen').addEventListener('change', (e) => { onFile(e.target.files[0]); e.target.value = ''; });
   $('#fileRecord').addEventListener('change', (e) => { onFile(e.target.files[0]); e.target.value = ''; });
 
-  function seekSetup(t) { const v = setup.video; setup.frameT = t; v.currentTime = t; v.onseeked = () => drawCalib(); }
-  $('#frameScrub').addEventListener('input', (e) => { const v = setup.video; if (v && v.duration) seekSetup(v.duration * (+e.target.value / 1000)); });
+  function primeVideo(v) {
+    if (v._primed) return Promise.resolve();
+    v.muted = true;
+    let p; try { p = v.play(); } catch (e) { p = null; }
+    return Promise.resolve(p).then(() => new Promise(r => setTimeout(r, 150))).then(() => { v.pause(); v._primed = true; }).catch(() => { v._primed = false; });
+  }
+  // a frame that reads back as (almost) black means the browser has not decoded it yet
+  function frameBlack(v) {
+    try {
+      const c = frameBlack.c || (frameBlack.c = Object.assign(document.createElement('canvas'), { width: 32, height: 18 }));
+      const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(v, 0, 0, 32, 18);
+      const d = x.getImageData(0, 0, 32, 18).data; let s = 0; for (let i = 0; i < d.length; i += 4) s += d[i] + d[i + 1] + d[i + 2];
+      return s / (d.length / 4) / 3 < 4;
+    } catch (e) { return false; }
+  }
+  function seekSetup(t) {
+    const v = setup.video; setup.frameT = t;
+    const done = () => {
+      drawCalib();
+      if (!frameBlack(v)) { setup.blackTries = 0; $('#calibWarn').hidden = true; return; }
+      // still black: let it play a split second so Safari decodes, then come back to this frame
+      if ((setup.blackTries = (setup.blackTries || 0) + 1) <= 3) {
+        Promise.resolve(v.play()).catch(() => {}).then(() => setTimeout(() => { v.pause(); v.currentTime = t; v.onseeked = done; }, 250));
+      } else {
+        const w = $('#calibWarn'); w.hidden = false;
+        w.textContent = '이 영상의 화면을 읽지 못했습니다. 아래 막대를 조금 움직여 보세요. 계속 검게 나오면 사진 앱에서 영상을 열고 공유 → 옵션에서 "가장 호환성 높음"으로 저장한 영상을 불러오거나, 아이폰 설정 → 카메라 → 포맷 → "높은 호환성"으로 찍어 주세요.';
+      }
+    };
+    v.onseeked = done;
+    v.currentTime = t;
+  }
+  $('#frameScrub').addEventListener('input', (e) => { const v = setup.video; setup.blackTries = 0; if (v && v.duration) seekSetup(v.duration * (+e.target.value / 1000)); });
 
   const HCOL = ['#ff7a59', '#ffd23f', '#5ad1ff', '#9b8cff'];
   // which court points the four handles stand for
