@@ -221,6 +221,10 @@ body.theater-on .tabbar{display:none}
 .shot.focus{outline:2px solid var(--ball);outline-offset:-2px}
 .shot .flag{grid-column:1 / -1;display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--warn)}
 .shot .type.auto{font-style:italic}
+.shot .type.spin{font-size:12px}
+.cmp.mix td,.cmp.mix th{font-size:13px;padding:6px 4px}
+.cmp.mix .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.cmp.mix .spins{white-space:nowrap;color:var(--ink-2)}
 .shot .x.pin{font-size:13px}
 .winner.flagged{box-shadow:inset 3px 0 0 var(--warn);padding-left:8px}
 .etools,.rtools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
@@ -641,6 +645,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <div class="panel card-pad heat">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3>샷 배치</h3><div class="seg" id="optHeat"><button type="button" data-v="me">내 샷</button><button type="button" data-v="op">상대 샷</button></div></div>
           <div id="heatSvg"></div>
+        </div>
+        <div class="panel card-pad">
+          <h3>샷 구성</h3>
+          <div id="mixTable"></div>
+          <p class="note">샷 종류와 스핀은 자동 추정입니다. 리뷰에서 샷 종류·스핀 버튼을 눌러 고칠 수 있고, 고친 내용은 바로 반영됩니다.</p>
         </div>
         <div class="panel card-pad">
           <h3>랠리 길이</h3>
@@ -1227,7 +1236,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     }
     const landed = my.filter(s => s.bounce);
     const ins = landed.filter(s => s.bounce.in);
-    const speeds = my.map(s => s.speed).filter(Boolean);
+    const speeds = my.filter(s => s.type !== 'feed').map(s => s.speed).filter(Boolean);
     const zones = { short: 0, mid: 0, deep: 0 };
     ins.forEach(s => zones[s.bounce.zone]++);
     const serves = my.filter(s => s.serve);
@@ -1240,7 +1249,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       zones, serves: serves.length, servesIn: servesIn.length,
       rallies: rallies.length, avgRally: lens.length ? +(lens.reduce((a, b) => a + b, 0) / lens.length).toFixed(1) : 0,
       longest: lens.length ? Math.max(...lens) : 0,
-      byType: my.reduce((m, s) => { if (s.type) m[s.type] = (m[s.type] || 0) + 1; return m; }, {})
+      byType: my.reduce((m, s) => { if (s.type) m[s.type] = (m[s.type] || 0) + 1; return m; }, {}),
+      bySpin: my.reduce((m, s) => { if (s.spin) m[s.spin] = (m[s.spin] || 0) + 1; return m; }, {})
     };
   }
 
@@ -1580,8 +1590,12 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const C = RN.C;
   const LS = 'rallynote.sessions.v1';
   const VIEWS = ['vHome', 'vSetup', 'vLive', 'vAnalyze', 'vSession'];
-  const TYPES = [null, 'forehand', 'backhand', 'volley', 'smash', 'serve'];
-  const TYPE_KO = { serve: '서브', forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시' };
+  const TYPES = [null, 'forehand', 'backhand', 'volley', 'smash', 'serve', 'feed'];
+  const TYPE_KO = { serve: '서브', forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시', feed: '피드' };
+  // spin, like SwingVision's shot card: topspin / flat / slice (volleys have none)
+  const SPINS = [null, 'top', 'flat', 'slice'];
+  const SPIN_KO = { top: '탑스핀', flat: '플랫', slice: '슬라이스' };
+  const SPIN_MARK = { top: '▲', flat: '■', slice: '◗' };
   const ZONE_KO = { short: '짧음', mid: '중간', deep: '깊음' };
 
   let sessions = [];
@@ -2277,7 +2291,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       id: sid(), name: `${d.getMonth() + 1}월 ${d.getDate()}일 ${opts.mode === 'match' ? '경기' : '연습'}`, created: Date.now(), mode: opts.mode, opts,
       src, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track: encTrack(res.pts, res.times), bodies: encBodies(col.bodySamples), rallies: res.rallies, moved: res.moved.map(w => w.map(v => +v.toFixed(1)))
     };
-    autoTypes(doc, decBodies(doc.bodies), cal);
+    autoLabels(doc, decBodies(doc.bodies), cal, res.pts.map((p, i) => p && !p.interp ? { t: res.times[i], x: p.x, y: p.y } : null).filter(Boolean));
     return doc;
   }
 
@@ -2377,6 +2391,35 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   // From where the ball was met relative to the hitter's body: a right-hander with their back to the camera
   // (near side) hits forehands on their right = screen right; a far-side player faces the camera, so it flips.
   // Met close to the net = volley, met above the head = overhead. Estimates only; one tap on the shot changes it.
+  // spin from how the ball comes off the bounce: ground speed just after vs just before it lands.
+  // Topspin grips and keeps going (high ratio), slice checks up (low), flat sits between.
+  // Rough: one camera, a ball still in the air projects a little off the court plane. Tap to correct.
+  const SPIN_TH = { top: 0.74, slice: 0.52 };
+  function spinOf(s, trail, cal) {
+    const b = s.bounce; if (!b || !trail || !trail.length) return null;
+    const win = (a, z) => { const o = []; for (const p of trail) { if (p.t > z) break; if (p.t >= a) o.push(p); } return o; };
+    const speed = (pts) => {
+      if (pts.length < 2) return null;
+      const A = RN.applyH(cal.toCourt, pts[0].x, pts[0].y), B = RN.applyH(cal.toCourt, pts[pts.length - 1].x, pts[pts.length - 1].y);
+      const dt = pts[pts.length - 1].t - pts[0].t; return dt > 0.03 ? Math.hypot(B[0] - A[0], B[1] - A[1]) / dt : null;
+    };
+    const pre = speed(win(b.t - 0.14, b.t - 0.01)), post = speed(win(b.t + 0.01, b.t + 0.14));
+    // ball speeds outside 3..70 m/s near the ground mean the track there is not trustworthy: leave it blank
+    if (!pre || !post || pre < 3 || pre > 70 || post > 70) return null;
+    const k = post / pre;
+    return k >= SPIN_TH.top ? 'top' : k <= SPIN_TH.slice ? 'slice' : 'flat';
+  }
+  function autoLabels(doc, people, cal, trail) {
+    if (!cal) return;
+    for (const r of doc.rallies) {
+      const real = r.shots.filter(x => !x.inferred && !x.deleted).sort((a, b) => a.t - b.t);
+      // practice: the ball that starts a drill is fed (SwingVision's "피드"), slow and usually from the coach's hand or racket
+      if (doc.mode !== 'match' && real[0] && !real[0].type && (real[0].speed == null || real[0].speed < 45)) { real[0].type = 'feed'; real[0].autoType = true; }
+      for (const x of r.shots) if (x.spin == null && !x.spinEdited && x.type !== 'volley') { const sp = spinOf(x, trail, cal); if (sp) { x.spin = sp; x.autoSpin = true; } }
+    }
+    autoTypes(doc, people, cal);
+    doc.typed = 2;
+  }
   function autoTypes(doc, people, cal) {
     if (!people || !people.length || !cal) return;
     const meById = {}; try { effective(doc).rallies.forEach(r => { meById[r.id] = r.meSide; }); } catch (e) { /* keep empty */ }
@@ -2405,9 +2448,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
           type = dx * fh > 0 ? 'forehand' : 'backhand';
         }
       }
-      if (type) { s.type = type; s.autoType = true; }
+      if (type) { s.type = type; s.autoType = true; if (type === 'volley') s.spin = null; }
     }
-    doc.typed = 1;
   }
 
   // ---------- remembered court position (same mount, same court: no re-fitting) ----------
@@ -2772,7 +2814,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#btnOrig').hidden = !(doc.src.kind === 'live');
     vid.style.transform = '';
     // sessions analysed before stroke types were guessed
-    if (!doc.typed && !doc.demo && cur.people.length) { autoTypes(doc, cur.people, calib); recompute(); persist(); }
+    if ((doc.typed || 0) < 2 && !doc.demo) { autoLabels(doc, cur.people, calib, cur.trail); recompute(); persist(); }
     selectTab('review');
     show('vSession');
     const mv = (doc.moved || []).reduce((n, [a, b]) => n + b - a, 0);
@@ -3067,7 +3109,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const meta = [e.speed ? e.speed + 'km/h' : null, b && b.in ? ZONE_KO[b.zone] : null, s.inferred && !s.added ? '추정' : null, s.added ? '직접 추가' : null].filter(Boolean).join(' · ');
       const flag = e.flags.length ? `<div class="flag"><span>⚠ ${esc(e.flags.join(' · '))}</span><button class="btn sm" data-ok="${s.id}" type="button">맞음</button></div>` : '';
       return `<div class="shot${e.flags.length ? ' flagged' : ''}" data-id="${s.id}" data-t="${s.t}"><span class="n">${n}</span><span><button class="who" data-side="${s.id}" type="button" title="치는 사람 바꾸기">${whoLabel(r, e)}</button> <span class="meta">${fmtT(s.t)}${meta ? ' · ' + meta : ''}</span></span>
-        <span class="acts"><button class="type${e.autoType ? ' auto' : ''}" data-type="${s.id}" type="button">${TYPE_KO[e.type] || '샷 종류'}</button>${vd}<button class="x pin" data-pin="${s.id}" type="button" title="바운스 위치를 영상에서 찍기">📍</button><button class="x" data-del="${s.id}" type="button" aria-label="샷 삭제">×</button></span>${flag}</div>`;
+        <span class="acts"><button class="type${e.autoType ? ' auto' : ''}" data-type="${s.id}" type="button">${TYPE_KO[e.type] || '샷 종류'}</button>${e.type === 'volley' ? '' : `<button class="type spin${e.autoSpin ? ' auto' : ''}" data-spin="${s.id}" type="button" title="스핀 바꾸기">${e.spin ? SPIN_MARK[e.spin] + ' ' + SPIN_KO[e.spin] : '스핀'}</button>`}${vd}<button class="x pin" data-pin="${s.id}" type="button" title="바운스 위치를 영상에서 찍기">📍</button><button class="x" data-del="${s.id}" type="button" aria-label="샷 삭제">×</button></span>${flag}</div>`;
     }).join('');
     const noWin = cur.doc.mode === 'match' && raw.winner == null && !r.auto;
     const win = cur.doc.mode === 'match' ? `<div class="winner${noWin ? ' flagged' : ''}"><span>포인트</span>
@@ -3150,7 +3192,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       return;
     }
     const t = e.target.closest('[data-type]');
-    if (t) { const { s } = findRaw(t.dataset.type); return edit(() => { const i = TYPES.indexOf(s.type ?? null); s.type = TYPES[(i + 1) % TYPES.length]; s.autoType = false; s.typeEdited = true; }); }
+    if (t) { const { s } = findRaw(t.dataset.type); return edit(() => { const i = TYPES.indexOf(s.type ?? null); s.type = TYPES[(i + 1) % TYPES.length]; s.autoType = false; s.typeEdited = true; if (s.type === 'volley') s.spin = null; }); }
+    const sp = e.target.closest('[data-spin]');
+    if (sp) { const { s } = findRaw(sp.dataset.spin); return edit(() => { const i = SPINS.indexOf(s.spin ?? null); s.spin = SPINS[(i + 1) % SPINS.length]; s.autoSpin = false; s.spinEdited = true; }); }
     const sd = e.target.closest('[data-side]');
     if (sd) { const { s } = findRaw(sd.dataset.side); return edit(() => { s.side = other(s.side); s.edited = true; s.ok = true; }, '치는 사람을 바꿨습니다'); }
     const ok = e.target.closest('[data-ok]');
@@ -3260,8 +3304,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   $('#btnTruth').addEventListener('click', async () => {
     if (!cur) return;
     const doc = cur.doc, ef = cur.eff;
-    const shots = ef.rallies.flatMap((r, ri) => r.shots.map(s => ({ rally: ri + 1, t: s.t, side: s.side, me: s.side === r.meSide, type: s.type || null, serve: !!s.serve, contact: s.ix != null ? [s.ix, s.iy] : null, bounce: s.bounce ? { t: s.bounce.t, img: [s.bounce.ix, s.bounce.iy], court: [s.bounce.cx, s.bounce.cy], in: s.bounce.in } : null,
-      checked: !!s.ok, edited: !!(s.edited || s.typeEdited || s.added || (s.bounce && s.bounce.override != null)), added: !!s.added })));
+    const shots = ef.rallies.flatMap((r, ri) => r.shots.map(s => ({ rally: ri + 1, t: s.t, side: s.side, me: s.side === r.meSide, type: s.type || null, spin: s.spin || null, serve: !!s.serve, contact: s.ix != null ? [s.ix, s.iy] : null, bounce: s.bounce ? { t: s.bounce.t, img: [s.bounce.ix, s.bounce.iy], court: [s.bounce.cx, s.bounce.cy], in: s.bounce.in } : null,
+      checked: !!s.ok, edited: !!(s.edited || s.typeEdited || s.spinEdited || s.added || (s.bounce && s.bounce.override != null)), added: !!s.added })));
     const out = { app: 'rallynote', kind: 'truth', version: 1, video: doc.src, W: doc.W, H: doc.H, corners: doc.corners, opts: doc.opts, track: doc.track, bodies: doc.bodies,
       rallies: ef.rallies.map((r, i) => ({ n: i + 1, t0: r.t0, t1: r.t1, winner: (doc.rallies.find(x => x.id === r.id) || {}).winner ?? null, edited: !!r.edited })), shots,
       summary: { shots: shots.length, edited: shots.filter(x => x.edited).length, checked: shots.filter(x => x.checked).length, open: reviewItems().length } };
@@ -3401,7 +3445,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         <div class="depth"><i style="width:${pc(st.zones.short)}%;background:var(--warn)" title="짧음 ${pc(st.zones.short)}%"></i><i style="width:${pc(st.zones.mid)}%;background:var(--court)" title="중간 ${pc(st.zones.mid)}%"></i><i style="width:${pc(st.zones.deep)}%;background:var(--in)" title="깊음 ${pc(st.zones.deep)}%"></i></div></div>`;
     };
     $('#depthBars').innerHTML = bar(me, '나') + bar(op, '상대');
-    seg($('#optHeat'), cur.heat, v => { cur.heat = v; renderHeat(rs); });
+    renderMix(rs);
+    seg($('#optHeat'), cur.heat, v => { cur.heat = v; renderHeat(rs); renderMix(rs); });
     renderHeat(rs);
     const buckets = [[1, 2], [3, 4], [5, 6], [7, 9], [10, 999]];
     const counts = buckets.map(([a, b]) => rs.filter(r => r.shots.length >= a && r.shots.length <= b).length);
@@ -3409,9 +3454,32 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#hist').innerHTML = counts.map((c, i) => `<div><b>${c}</b><i style="height:${(c / mx * 80).toFixed(0)}%"></i><span>${buckets[i][1] > 99 ? '10+' : buckets[i][0] + '–' + buckets[i][1]}샷</span></div>`).join('');
     $('#rallyNote').textContent = rs.length ? `랠리 ${rs.length}개 · 평균 ${me.avgRally}샷 · 최장 ${me.longest}샷` : '랠리가 없습니다';
   }
+  // stroke x spin table: count, in %, average speed (SwingVision's per-stroke breakdown)
+  function renderMix(rs) {
+    const rows = [], who = cur.heat;
+    const mine = [];
+    for (const r of rs) for (const s of r.shots) if ((s.side === r.meSide) === (who === 'me')) mine.push(s);
+    const order = ['serve', 'forehand', 'backhand', 'volley', 'smash', 'feed', null];
+    for (const ty of order) {
+      const g = mine.filter(s => (s.serve ? 'serve' : (s.type || null)) === ty);
+      if (!g.length) continue;
+      const landed = g.filter(s => s.bounce), ins = landed.filter(s => s.bounce.in), sp = g.map(s => s.speed).filter(Boolean);
+      const spin = ['top', 'flat', 'slice'].map(k => [k, g.filter(s => s.spin === k).length]).filter(([, n]) => n);
+      rows.push(`<tr><td><i class="dot" style="background:${TYPE_COL[ty || 'none']}"></i>${ty ? TYPE_KO[ty] : '미분류'}</td><td><b>${g.length}</b></td><td>${landed.length ? Math.round(ins.length / landed.length * 100) + '%' : '–'}</td><td>${sp.length ? Math.round(sp.reduce((a, b) => a + b, 0) / sp.length) : '–'}</td><td class="spins">${spin.map(([k, n]) => `<span title="${SPIN_KO[k]}">${SPIN_MARK[k]}${n}</span>`).join(' ') || '–'}</td></tr>`);
+    }
+    $('#mixTable').innerHTML = rows.length ? `<table class="cmp mix"><thead><tr><th>${who === 'me' ? '내 샷' : '상대 샷'}</th><th>개수</th><th>인</th><th>km/h</th><th>스핀 ▲탑 ■플랫 ◗슬라</th></tr></thead><tbody>${rows.join('')}</tbody></table>` : '<p class="hint">샷이 없습니다</p>';
+  }
   // shot placement, laid out like SwingVision: colour = stroke, filled = in, ring = out,
   // share of in-balls short/deep of the service line and across three lanes of the singles court
-  const TYPE_COL = { forehand: '#2fb35a', backhand: '#ff8a2a', volley: '#f5c518', smash: '#22b8d0', serve: '#8f7cff', none: '#9aa6ad' };
+  const TYPE_COL = { forehand: '#2fb35a', backhand: '#ff8a2a', volley: '#f5c518', smash: '#22b8d0', serve: '#8f7cff', feed: '#e6eaec', none: '#9aa6ad' };
+  function mark(sp, x, y, attrs) {
+    const X = x.toFixed(2), Y = y.toFixed(2);
+    if (sp === 'top') return `<path d="M${X} ${(y - 0.42).toFixed(2)}l.42 .72h-.84z" ${attrs}/>`;
+    if (sp === 'flat') return `<rect x="${(x - 0.32).toFixed(2)}" y="${(y - 0.32).toFixed(2)}" width=".64" height=".64" ${attrs}/>`;
+    if (sp === 'slice') return `<path d="M${X} ${(y - 0.38).toFixed(2)}a.38 .38 0 1 1 0 .76a.24 .38 0 1 0 0 -.76z" ${attrs}/>`;
+    return `<circle cx="${X}" cy="${Y}" r="${attrs.includes('fill="none"') ? '.3' : '.36'}" ${attrs}/>`;
+  }
+  $('#heatSvg').addEventListener('change', (e) => { if (e.target.id === 'spinView' && cur) { cur.spinView = e.target.checked; renderStats(); } });
   function renderHeat(rs) {
     const who = cur.heat;
     const dots = [], cnt = {}; let inN = 0, deep = 0, lanes = [0, 0, 0];
@@ -3421,16 +3489,17 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       // normalize so every shot travels "up" the page
       const flip = s.side === 'far';
       const x = flip ? C.W - s.bounce.cx : s.bounce.cx, y = flip ? s.bounce.cy : C.L - s.bounce.cy;
-      const ty = s.serve ? 'serve' : (s.type || 'none'), col = TYPE_COL[ty] || TYPE_COL.none;
+      const ty = s.serve ? 'serve' : (s.type || 'none'), col = TYPE_COL[ty] || TYPE_COL.none, sh = cur.spinView && s.spin;
       cnt[ty] = (cnt[ty] || 0) + 1;
       if (s.bounce.in) {
         inN++;
         if (y < C.L - C.NET - 6.4) deep++;
         const lx = (x - C.SGL) / (C.SGR - C.SGL); lanes[lx < 1 / 3 ? 0 : lx < 2 / 3 ? 1 : 2]++;
-        dots.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r=".36" fill="${col}" stroke="#fff" stroke-width=".07"/>`);
-      } else dots.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r=".3" fill="none" stroke="${col}" stroke-width=".16"/>`);
+        dots.push(mark(sh, x, y, `fill="${col}" stroke="#fff" stroke-width=".07"`));
+      } else dots.push(mark(sh, x, y, `fill="none" stroke="${col}" stroke-width=".16"`));
     }
     const pct = (n) => inN ? Math.round(n / inN * 100) + '%' : '–';
+    const spinSwitch = `<label class="check" style="justify-content:center;margin-top:6px"><input type="checkbox" id="spinView"${cur.spinView ? ' checked' : ''}> 스핀 모양으로 보기 (▲탑스핀 ■플랫 ◗슬라이스)</label>`;
     const yS = C.L - C.NET - 6.4, xA = C.SGL + (C.SGR - C.SGL) / 3, xB = C.SGL + (C.SGR - C.SGL) * 2 / 3;
     const lines = RN.courtLines().map(([a, c]) => `<line x1="${a[0]}" y1="${C.L - a[1]}" x2="${c[0]}" y2="${C.L - c[1]}"/>`).join('');
     const T = (x, y, t, anchor) => `<text x="${x}" y="${y}" text-anchor="${anchor || 'middle'}" font-size=".95" fill="#fff" fill-opacity=".8" font-family="Barlow Condensed, sans-serif" font-weight="600">${t}</text>`;
@@ -3445,7 +3514,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       ${T((C.SGL + xA) / 2, -1.3, pct(lanes[0]))}${T((xA + xB) / 2, -1.3, pct(lanes[1]))}${T((xB + C.SGR) / 2, -1.3, pct(lanes[2]))}
       ${dots.join('')}
     </svg><div class="chart-legend">${legend}<span><i style="background:var(--ink-2)"></i>인</span><span><i style="border:2px solid var(--ink-2);background:none;width:7px;height:7px"></i>아웃</span></div>
-    <p class="note" style="text-align:center">${who === 'me' ? '내' : '상대'} 샷 ${dots.length}개 · 위 숫자는 왼쪽·가운데·오른쪽, 옆 숫자는 깊은 공·짧은 공 비율(들어간 공 기준) · 샷 종류는 자동 추정이라 리뷰에서 탭해 고칠 수 있습니다</p>`;
+    ${spinSwitch}<p class="note" style="text-align:center">${who === 'me' ? '내' : '상대'} 샷 ${dots.length}개 · 위 숫자는 왼쪽·가운데·오른쪽, 옆 숫자는 깊은 공·짧은 공 비율(들어간 공 기준) · 샷 종류는 자동 추정이라 리뷰에서 탭해 고칠 수 있습니다</p>`;
   }
 
   // coaching via Claude
@@ -3457,7 +3526,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
     const me = RN.stats(rs, 'me'), op = RN.stats(rs, 'op');
     const myShots = [];
-    rs.forEach((r, i) => r.shots.forEach(s => { if (s.side === r.meSide) myShots.push({ rally: i + 1, type: s.type || '미지정', kmh: s.speed, in: s.bounce ? s.bounce.in : null, depth: s.bounce ? s.bounce.zone : null, serve: !!s.serve }); }));
+    rs.forEach((r, i) => r.shots.forEach(s => { if (s.side === r.meSide) myShots.push({ rally: i + 1, type: s.type || '미지정', spin: SPIN_KO[s.spin] || null, kmh: s.speed, in: s.bounce ? s.bounce.in : null, depth: s.bounce ? s.bounce.zone : null, serve: !!s.serve }); }));
     const out = $('#coachOut'); out.classList.remove('muted'); out.textContent = '생각하는 중…';
     const btn = $('#btnCoach'); btn.disabled = true;
     try {
@@ -3505,9 +3574,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     catch (e) { if (e && e.code === 'declined') return false; toast('저장하지 못했습니다' + (e && e.message ? ': ' + e.message : '')); return false; }
   }
   $('#btnCsv').addEventListener('click', () => {
-    const ef = cur.eff; const lines = ['rally,shot,time_s,player,type,speed_kmh,bounce_x_m,bounce_y_m,verdict,margin_cm'];
+    const ef = cur.eff; const lines = ['rally,shot,time_s,player,type,spin,speed_kmh,bounce_x_m,bounce_y_m,verdict,margin_cm'];
     ef.rallies.forEach((r, i) => r.shots.forEach((s, j) => {
-      lines.push([i + 1, j + 1, s.t.toFixed(2), whoLabel(r, s), TYPE_KO[s.type] || '', s.speed || '', s.bounce ? s.bounce.cx.toFixed(2) : '', s.bounce ? s.bounce.cy.toFixed(2) : '', s.bounce ? (s.bounce.in ? 'IN' : 'OUT') : '', s.bounce ? Math.round(s.bounce.margin * 100) : ''].join(','));
+      lines.push([i + 1, j + 1, s.t.toFixed(2), whoLabel(r, s), TYPE_KO[s.type] || '', SPIN_KO[s.spin] || '', s.speed || '', s.bounce ? s.bounce.cx.toFixed(2) : '', s.bounce ? s.bounce.cy.toFixed(2) : '', s.bounce ? (s.bounce.in ? 'IN' : 'OUT') : '', s.bounce ? Math.round(s.bounce.margin * 100) : ''].join(','));
     }));
     saveFile(cur.doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_샷기록.csv', '﻿' + lines.join('\n'));
   });
@@ -3661,21 +3730,25 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     bs.forEach((b, i) => {
       const [px, py] = P(clamp(b.cx, -1, C.W + 1), clamp(b.cy, -1.5, C.L + 1.5)), last = i === bs.length - 1;
       ctx.beginPath(); ctx.arc(px, py, (last ? 3.6 : 2.6) * s, 0, Math.PI * 2);
-      ctx.fillStyle = last ? OV.last : (b.in ? OV.inC : OV.outC); ctx.globalAlpha = last ? 1 : 0.7; ctx.fill(); ctx.globalAlpha = 1;
+      const sh = cur.eff.rallies[ri].shots.find(x => x.bounce === b), tc = sh && (TYPE_COL[sh.serve ? 'serve' : sh.type]);
+      if (b.in) { ctx.fillStyle = tc || (last ? OV.last : OV.inC); ctx.globalAlpha = last ? 1 : 0.75; ctx.fill(); }
+      else { ctx.strokeStyle = tc || OV.outC; ctx.lineWidth = 1.4 * s; ctx.globalAlpha = last ? 1 : 0.75; ctx.stroke(); }
+      ctx.globalAlpha = 1;
     });
   }
   function drawShotCard(ctx, s, outW, outH, t, ri, focus, tall, withMini) {
     // in a shot montage only the featured shot gets a card, from the moment it is hit
     const hit = focus ? (t >= focus.t - 0.05 && t - focus.t <= 2.6 ? { r: cur.eff.rallies[ri], s: focus } : null) : currentShot(t, ri); if (!hit) return;
     const { r, s: sh } = hit, mine = sh.side === r.meSide;
-    const type = sh.serve ? '서브' : (TYPE_KO[sh.type] || '샷');
+    const type = (sh.spin ? SPIN_KO[sh.spin] + ' ' : '') + (sh.serve ? '서브' : (TYPE_KO[sh.type] || '샷'));
+    const tcol = TYPE_COL[sh.serve ? 'serve' : sh.type] || OV.type;
     const who = mine ? teamNames(cur.doc).me : teamNames(cur.doc).op;
     const L = rightColumn(s, outW, outH, tall), h = 42 * s, x = L.x, y = withMini ? L.y + L.ph + 6 * s : L.y, w = L.pw;
     ctx.globalAlpha = Math.min(1, (2.6 - (t - sh.t)) / 0.4);
     ctx.fillStyle = OV.panel; roundRect(ctx, x, y, w, h, 6 * s); ctx.fill();
     ctx.textAlign = 'left';
-    ctx.font = `600 ${12.5 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.type; ctx.fillText(type + (sh.bounce ? (sh.bounce.in ? ' · IN' : ' · OUT') : ''), x + 9 * s, y + 18 * s);
-    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(who, x + 9 * s, y + 34 * s);
+    ctx.font = `600 ${12.5 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = tcol; ctx.fillText(type, x + 9 * s, y + 18 * s);
+    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(who + (sh.bounce ? (sh.bounce.in ? ' · IN' : ' · OUT') : ''), x + 9 * s, y + 34 * s);
     if (sh.speed) {
       ctx.textAlign = 'right';
       ctx.font = `700 ${20 * s}px "Barlow Condensed", sans-serif`; ctx.fillStyle = OV.text; ctx.fillText(String(sh.speed), x + w - 9 * s, y + 21 * s);
