@@ -155,7 +155,50 @@ input[type=range]{width:100%;accent-color:var(--court)}
 .review{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
 .stage{position:relative;border-radius:var(--r);overflow:hidden;background:#000;max-width:100%}
 .stage video,.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.stage video{object-fit:fill}
+.stage video{object-fit:fill;transform-origin:0 0}
+#player.theater{position:fixed;inset:0;z-index:70;background:#05080b;color:#eef2ee;display:flex;flex-direction:column;justify-content:center;overflow:auto;padding:max(6px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(6px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+#player.theater>*{flex:none;width:min(100%,calc((100dvh - 150px) * var(--ar,1.78)));margin-inline:auto}
+#player.theater .stage{margin-inline:auto;max-width:100%}
+#player.theater .controls{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}
+#player.theater .controls .seg{width:auto;grid-column:auto}
+#player.theater .controls .seg button{min-height:30px;padding:2px 10px;font-size:13px;color:var(--ink);white-space:nowrap}
+#player.theater .controls .btn{min-height:32px;padding:4px 12px;font-size:13px}
+#player.theater .controls .btn:not(.primary){color:var(--ink)}
+#player.theater .controls .time{display:none}
+#player.theater .check{font-size:13px}
+#player.theater .stage{border-radius:6px}
+#player.theater .summary{display:none}
+#player.theater .timeline{margin-top:6px;height:24px;background:#1b252e}
+#player.theater .controls{margin-top:6px;gap:6px}
+#player.theater .controls .time,#player.theater .rscrub,#player.theater .check{color:#c9d2cc}
+body.theater-on .tabbar{display:none}
+.rscrub{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:13px;color:var(--ink-2)}
+.rscrub input{flex:1;accent-color:#ff9f2e}
+.rscrub .num{min-width:64px;text-align:right;font-family:var(--f-mono);font-size:12px}
+.recover{padding:12px 14px;margin-bottom:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px}
+.live{position:fixed;inset:0;z-index:80;background:#000;color:#fff;overflow:hidden;touch-action:none}
+.live-stage{position:absolute;inset:0}
+.live-stage video{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain;opacity:1!important;z-index:0!important}
+.live-stage canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.live-top{position:absolute;z-index:2;top:max(14px,env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));display:flex;gap:10px;align-items:center}
+.live .rec{display:inline-flex;align-items:center;gap:8px;background:rgb(0 0 0/.55);padding:6px 12px;border-radius:999px;font-size:17px}
+.live .rec i{width:11px;height:11px;border-radius:50%;background:#ff3b30;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.live-chip{background:rgb(0 0 0/.55);padding:6px 12px;border-radius:999px;font-size:13px;color:rgb(255 255 255/.8)}
+.live-chip.on{color:#cdeb3c}
+.live-score{position:absolute;z-index:2;top:max(14px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));background:rgb(12 16 20/.72);border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.45;min-width:120px}
+.live-score:empty{display:none}
+.live-score b{font-family:"Barlow Condensed",sans-serif;font-size:20px}
+.live-score small{display:block;color:rgb(255 255 255/.6);font-size:11px}
+.live-bottom{position:absolute;z-index:2;left:0;right:0;bottom:max(16px,env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 max(16px,env(safe-area-inset-left,0px))}
+.live-btn{justify-self:start;background:rgb(0 0 0/.55);color:#fff;border:0;border-radius:999px;padding:10px 16px;font:inherit;font-size:14px}
+.live-btn.ghost{justify-self:end;background:none;font-size:12px;color:rgb(255 255 255/.65);text-align:right}
+.live-stop{width:74px;height:74px;border-radius:50%;border:4px solid #fff;background:transparent;display:grid;place-items:center;cursor:pointer}
+.live-stop i{width:28px;height:28px;border-radius:6px;background:#ff3b30}
+.live-dim{position:absolute;inset:0;z-index:5;background:#000;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;color:rgb(255 255 255/.55);font-size:14px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:12.5px;color:var(--ink-2);margin-top:6px}
+.chart-legend span{display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
 .stage .reattach{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#f1f4ee;background:rgb(10 19 27/.86);padding:20px;text-align:center}
 .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .controls .time{font-family:var(--f-mono);font-size:13px;color:var(--ink-2);margin-left:auto}
@@ -366,7 +409,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <header class="top">
     <button class="brand" id="goHome" type="button" aria-label="세션 목록으로"><i class="mark"></i><b>랠리노트</b><span>TENNIS VIDEO NOTES</span></button>
     <div class="grow"></div>
-    <label class="btn primary hdr-act" for="fileRecord">촬영하기</label>
+    <button class="btn primary hdr-act" id="hdrRec" type="button">촬영하기</button>
     <label class="btn hdr-act" for="fileOpen">영상 불러오기</label>
     <input id="fileRecord" type="file" accept="video/*" capture="environment" hidden>
     <input id="fileOpen" type="file" accept="video/*" hidden>
@@ -378,18 +421,19 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div>
         <span class="label">코트 뒤 휴대폰 한 대로</span>
         <h1 style="margin-top:8px">찍어 두면 랠리를 잘라 주고, 공이 떨어진 자리를 짚어 줍니다</h1>
-        <p class="lede">펜스나 삼각대에 휴대폰을 올리고 경기를 찍으세요. 영상은 이 기기 안에서만 분석됩니다. 랠리별 리플레이, 라인 판정, 샷 속도, 깊이 분포, 점수까지 한 화면에서 보고 틀린 판정은 한 번에 고칩니다.</p>
+        <p class="lede"><b>코트에서 촬영 시작</b>을 누르면 찍는 동안 바로 분석해서, 녹화를 끝내자마자 랠리만 이어 붙인 영상과 통계가 열립니다. 펜스나 삼각대에 휴대폰을 올리고 경기를 찍으세요. 영상은 이 기기 안에서만 분석됩니다. 랠리별 리플레이, 라인 판정, 샷 속도, 깊이 분포, 점수까지 한 화면에서 보고 틀린 판정은 한 번에 고칩니다.</p>
         <div class="actions">
+          <button class="btn primary" id="liveGo" type="button">코트에서 촬영 시작</button>
           <button class="btn ball" id="openDemo" type="button">샘플 경기 열어 보기</button>
-          <label class="btn" for="fileOpen">내 영상 분석하기</label>
+          <label class="btn" for="fileOpen">찍어 둔 영상 분석</label>
         </div>
       </div>
       <div class="court-art"><canvas id="heroArt" width="640" height="400" aria-label="코트 위 공 궤적 그림"></canvas></div>
     </div>
     <ol class="steps">
       <li><b>1 · 거치</b><p>센터마크 바로 뒤, 뒤 펜스 쪽으로 최대한 물러나 스탠드를 최대한 높게 세우고 폰을 <b>가로·0.5배</b>로 찍습니다. 먼 쪽 모서리 두 개와 가까운 쪽 단식 모서리 두 개는 꼭 보여야 합니다. 짐벌 세팅은 아래 <b>촬영 전 체크리스트</b>를 펼쳐 보세요.</p></li>
-      <li><b>2 · 코트 맞추기</b><p>영상의 코트 네 꼭짓점에 점 네 개를 맞춥니다. 이 기준으로 공 위치를 미터 단위로 계산합니다.</p></li>
-      <li><b>3 · 리뷰</b><p>랠리만 이어 보기, 바운스 지점, 인·아웃 챌린지, 통계. 판정과 점수는 탭 한 번으로 수정됩니다.</p></li>
+      <li><b>2 · 코트 맞추고 녹화</b><p><b>코트에서 촬영 시작</b> → 점 네 개를 대충 놓고 <b>선에 자동 맞춤</b> → 녹화. 다음부터는 지난 위치를 기억합니다. 찍는 동안 공을 따라가며 랠리와 점수를 셉니다.</p></li>
+      <li><b>3 · 끝나자마자 리뷰</b><p>녹화를 끝내면 바로 랠리만 이어 붙인 영상이 중계 그래픽과 함께 재생됩니다. 샷 배치·속도·인 비율 통계, 판정 수정, 하이라이트 내보내기.</p></li>
     </ol>
     <details class="panel shoot" id="shootGuide">
       <summary><span><b>촬영 전 체크리스트</b><small>스탠드 · Flow 2 Pro 짐벌 · 아이폰 카메라 · 약 3분</small></span><i aria-hidden="true">+</i></summary>
@@ -416,6 +460,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         </ol></section>
       </div>
     </details>
+    <div class="panel recover" id="recoverNote" hidden></div>
     <section id="progress" class="progress" aria-label="이번 주와 실력 변화"></section>
     <section id="peopleStats" class="progress" aria-label="함께 친 사람"></section>
     <div class="list-head"><h2>내 세션</h2><span class="muted" id="storeNote"></span></div>
@@ -430,7 +475,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <div class="setup">
       <div>
         <div class="calib-wrap" id="calibWrap"><canvas id="calibCanvas"></canvas></div>
-        <div class="field" style="margin-top:12px">
+        <div class="field" id="scrubField" style="margin-top:12px">
           <label class="hint" for="frameScrub">코트 라인이 잘 보이는 장면으로 옮기세요</label>
           <input id="frameScrub" type="range" min="0" max="1000" value="30">
         </div>
@@ -439,20 +484,44 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <div class="panel fcheck" id="framingCheck" hidden></div>
       </div>
       <div class="panel form">
+        <div class="field live-only" id="liveCamField" hidden><span class="label">카메라</span>
+          <select id="liveCam"></select>
+          <div class="row" id="liveZoomRow" hidden style="gap:8px;align-items:center"><span class="hint">줌</span><input type="range" id="liveZoom" step="0.1" style="flex:1"><b class="num" id="liveZoomLbl"></b></div>
+          <span class="hint" id="liveCamInfo"></span>
+        </div>
+        <div class="row" style="gap:8px;align-items:center;flex-wrap:wrap"><button class="btn sm" id="autoFit" type="button">선에 자동 맞춤</button><span class="hint" id="autoFitMsg">점을 대충 맞춘 뒤 누르면 흰 선에 딱 붙입니다.</span></div>
         <p class="hint">점 네 개를 코트의 <b>기준점</b>에 끌어다 맞추세요. 끄는 동안 확대경이 뜹니다. 파란 선이 실제 라인과 겹치면 정확합니다.</p>
         <div class="field"><span class="label">가까운 쪽 기준점</span><div class="seg" id="optRef"><button type="button" data-v="baseline">복식 모서리</button><button type="button" data-v="singles">단식 모서리</button><button type="button" data-v="service">서비스라인</button></div><span class="hint">뒤 공간이 짧아 가까운 복식 모서리가 잘리면 <b>단식 모서리</b>(베이스라인과 단식 사이드라인이 만나는 점)를 고르세요. 그것도 잘리면 서비스라인.</span></div>
         <div class="field"><span class="label">종류</span><div class="seg" id="optMode"><button type="button" data-v="match">경기</button><button type="button" data-v="practice">연습·랠리</button></div></div>
         <div class="field"><span class="label">판정 기준</span><div class="seg" id="optCourt"><button type="button" data-v="doubles">복식</button><button type="button" data-v="singles">단식</button></div></div>
         <div class="field"><span class="label">처음에 나는</span><div class="seg" id="optMe"><button type="button" data-v="near">카메라 쪽</button><button type="button" data-v="far">반대편</button></div></div>
+        <div class="field"><span class="label">내 손</span><div class="seg" id="optHand"><button type="button" data-v="R">오른손</button><button type="button" data-v="L">왼손</button></div><span class="hint">포핸드·백핸드 자동 구분에 씁니다.</span></div>
+        <label class="check live-only" hidden><input type="checkbox" id="optVoice"> 포인트마다 점수 읽어 주기 (자동 추정)</label>
         <div class="field" id="matchOnly">
           <span class="label">경기 방식</span>
           <div class="seg" id="optSets"><button type="button" data-v="1">1세트</button><button type="button" data-v="2">3세트(2선승)</button></div>
           <label class="check"><input type="checkbox" id="optSwap" checked> 홀수 게임 후 코트를 바꿈</label>
         </div>
-        <div class="field"><span class="label">분석 방식</span><div class="seg" id="optSpeed"><button type="button" data-v="30">정밀 (영상 길이만큼)</button><button type="button" data-v="15">빠르게 (절반)</button></div></div>
+        <div class="field" id="speedField"><span class="label">분석 방식</span><div class="seg" id="optSpeed"><button type="button" data-v="30">정밀 (영상 길이만큼)</button><button type="button" data-v="15">빠르게 (절반)</button></div></div>
         <button class="btn primary" id="startAnalyze" type="button">분석 시작</button>
-        <p class="hint">분석하는 동안 화면을 켜 두세요. 영상은 서버로 올라가지 않습니다.</p>
+        <p class="hint" id="startHint">분석하는 동안 화면을 켜 두세요. 영상은 서버로 올라가지 않습니다.</p>
+        <p class="hint live-only" hidden>녹화 중엔 랠리노트 화면을 켜 두세요. 홈으로 나가거나 화면이 꺼지면 아이폰이 카메라를 멈춥니다. <b>화면 어둡게</b>로 배터리를 아낄 수 있습니다. 애플워치로 시작·종료하려면 아이폰 카메라 앱으로 찍고 나중에 <b>찍어 둔 영상 분석</b>을 쓰세요.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- LIVE RECORDING -->
+  <section id="vLive" hidden>
+    <div class="live" id="live">
+      <div class="live-stage" id="liveStage"><canvas id="liveHud"></canvas></div>
+      <div class="live-top"><span class="rec"><i></i><b class="num" id="liveTime">0:00</b></span><span class="live-chip" id="liveBall">공 찾는 중</span></div>
+      <div class="live-score" id="liveScore"></div>
+      <div class="live-bottom">
+        <button class="live-btn" id="liveDim" type="button">화면 어둡게</button>
+        <button class="live-stop" id="liveStop" type="button" aria-label="녹화 종료"><i></i></button>
+        <span class="live-btn ghost" id="liveInfo"></span>
+      </div>
+      <div class="live-dim" id="liveDimLayer" hidden><span class="rec"><i></i><b class="num" id="liveTime2">0:00</b></span><span>녹화 중 · 화면을 탭하면 돌아옵니다</span></div>
     </div>
   </section>
 
@@ -486,7 +555,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
     <div id="tabReview">
       <div class="review">
-        <div style="min-width:0">
+        <div style="min-width:0" id="player">
           <div class="stage" id="stage">
             <video id="vid" playsinline preload="auto"></video>
             <canvas id="overlay"></canvas>
@@ -499,6 +568,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             </div>
           </div>
           <div class="timeline" id="timeline" aria-label="타임라인"></div>
+          <div class="rscrub"><span>현재 랠리</span><input type="range" id="rallyScrub" min="0" max="1000" value="0" aria-label="현재 랠리 안에서 이동"><span class="num" id="rallyScrubLbl"></span></div>
           <div class="controls">
             <button class="btn sm" id="btnPrev" type="button">이전 랠리</button>
             <button class="btn primary sm" id="btnPlay" type="button">재생</button>
@@ -506,6 +576,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <div class="seg" id="optRate"><button type="button" data-v="0.25">¼</button><button type="button" data-v="0.5">½</button><button type="button" data-v="1">1×</button></div>
             <label class="check"><input type="checkbox" id="optOnly" checked> 랠리만</label>
             <label class="check"><input type="checkbox" id="optLines"> 코트 선</label>
+            <label class="check"><input type="checkbox" id="optBroad"> 중계 그래픽</label>
+            <label class="check"><input type="checkbox" id="optFollow"> 따라가기</label>
+            <button class="btn sm" id="btnTheater" type="button">전체 화면</button>
             <span class="time" id="timeLbl">0:00</span>
           </div>
           <div class="panel summary" id="playSummary"></div>
@@ -517,6 +590,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <button class="btn sm ball" id="btnHighlights" type="button">하이라이트 영상 만들기</button>
               <button class="btn sm" id="btnCsv" type="button">샷 기록 CSV</button>
+              <button class="btn sm" id="btnOrig" type="button" hidden>원본 영상 저장</button>
             </div>
             <p class="hint" style="margin:0">랠리 고르기, 포핸드·서브만 모으기, 세로 9:16 릴스, 내 폰으로 에어드롭</p>
           </div>
@@ -537,7 +611,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           <p class="note">속도는 타구 순간부터 바운스까지의 평균 속도 추정치라 레이더 최고 속도보다 낮게 나옵니다. 같은 자리에서 찍은 세션끼리 비교할 때 가장 쓸모 있습니다.</p>
         </div>
         <div class="panel card-pad heat">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3>바운스 지도</h3><div class="seg" id="optHeat"><button type="button" data-v="me">내 샷</button><button type="button" data-v="op">상대 샷</button></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3>샷 배치</h3><div class="seg" id="optHeat"><button type="button" data-v="me">내 샷</button><button type="button" data-v="op">상대 샷</button></div></div>
           <div id="heatSvg"></div>
         </div>
         <div class="panel card-pad">
@@ -560,7 +634,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <nav class="tabbar" aria-label="주요 메뉴">
   <button type="button" id="tabHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>세션</button>
-  <label class="rec" for="fileRecord" aria-label="촬영하기"><i></i>촬영</label>
+  <button type="button" class="rec" id="tabRec" aria-label="촬영하기"><i></i>촬영</button>
   <label for="fileOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m10 9.5 4.5 2.5-4.5 2.5z"/></svg>불러오기</label>
 </nav>
 <div class="modal" id="modal" hidden><div class="box" id="modalBox"></div></div>
@@ -1422,7 +1496,46 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     return s / samples.length;
   }
 
-  const RN = { C, analyzeTrack, lineSamples, lineScore, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
+  // Snap the four calibration handles onto the painted lines: coordinate descent on the 8 handle
+  // coordinates, maximising how bright the projected court lines are against their surroundings.
+  // refPts are the court points (metres) the handles stand for. Starts coarse with a wide tolerance so
+  // a handle a few pixels off still "sees" its line, then tightens.
+  function refineCorners(rgba, w, h, handles, refPts) {
+    const lum = new Float32Array(w * h);
+    for (let i = 0, j = 0; i < lum.length; i++, j += 4) lum[i] = (rgba[j] * 3 + rgba[j + 1] * 6 + rgba[j + 2]) / 10;
+    const L = (x, y) => { x = Math.round(x); y = Math.round(y); return x < 0 || y < 0 || x >= w || y >= h ? 0 : lum[y * w + x]; };
+    const score = (hs, tol) => {
+      const toImage = homography(refPts, hs); if (!toImage) return -1;
+      const cal = calibrate(COURT_CORNERS.map(([x, y]) => applyH(toImage, x, y))); if (!cal) return -1;
+      const smp = lineSamples(cal, w, h, 1, 1); if (smp.length < 40) return -1;
+      let s = 0;
+      for (const [x, y, nx, ny] of smp) {
+        let c = 0; for (let o = -tol; o <= tol; o++) c = Math.max(c, L(x + nx * o, y + ny * o));
+        const side = Math.min(L(x + nx * (tol + 4), y + ny * (tol + 4)), L(x - nx * (tol + 4), y - ny * (tol + 4)));
+        s += Math.max(0, c - side);
+      }
+      return { s: s / smp.length, n: smp.length };
+    };
+    let cur = handles.map(p => p.slice());
+    const n0 = (score(cur, 1) || {}).n || 0;
+    const before = score(cur, 1).s;
+    for (const [step, tol] of [[8, 4], [4, 3], [2, 2], [1, 1], [0.5, 1]]) {
+      let best = score(cur, tol).s;
+      for (let round = 0; round < 6; round++) {
+        let moved = false;
+        for (let k = 0; k < 8; k++) for (const d of [step, -step]) {
+          const trial = cur.map(p => p.slice()); trial[k >> 1][k & 1] += d;
+          const r = score(trial, tol);
+          if (r !== -1 && r.n >= n0 * 0.7 && r.s > best + 1e-3) { best = r.s; cur = trial; moved = true; }
+        }
+        if (!moved) break;
+      }
+    }
+    const after = score(cur, 1).s;
+    return { corners: cur, before, after, shift: Math.max(...cur.map((p, i) => Math.hypot(p[0] - handles[i][0], p[1] - handles[i][1]))) };
+  }
+
+  const RN = { C, refineCorners, analyzeTrack, lineSamples, lineScore, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
     buildRallies, judgeBounce, suggestWinner, score, stats, makeCamera, demoScript, renderDemo, demoCorners, ballAt, playerAt, analyze, depthZone };
   if (typeof module !== 'undefined' && module.exports) module.exports = RN; else root.RN = RN;
 })(typeof self !== 'undefined' ? self : this);
@@ -1438,7 +1551,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const $$ = (s) => [...document.querySelectorAll(s)];
   const C = RN.C;
   const LS = 'rallynote.sessions.v1';
-  const VIEWS = ['vHome', 'vSetup', 'vAnalyze', 'vSession'];
+  const VIEWS = ['vHome', 'vSetup', 'vLive', 'vAnalyze', 'vSession'];
   const TYPES = [null, 'forehand', 'backhand', 'volley', 'smash', 'serve'];
   const TYPE_KO = { serve: '서브', forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시' };
   const ZONE_KO = { short: '짧음', mid: '중간', deep: '깊음' };
@@ -1448,7 +1561,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const videoURLs = {};     // session id -> object URL (this page load only)
 
   // ---------- small helpers ----------
-  function show(v) { VIEWS.forEach(id => { $('#' + id).hidden = id !== v; }); window.scrollTo(0, 0); if (v !== 'vSession') pausePlayer(); }
+  function show(v) { VIEWS.forEach(id => { $('#' + id).hidden = id !== v; }); window.scrollTo(0, 0); if (v !== 'vSession') { pausePlayer(); if (document.body.classList.contains('theater-on')) theater(false); } }
   let toastTimer = 0;
   function toast(msg, ms) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, ms || 2600); }
   function fmtT(s) { s = Math.max(0, s || 0); const m = Math.floor(s / 60), ss = Math.floor(s % 60); return m + ':' + String(ss).padStart(2, '0'); }
@@ -1800,7 +1913,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const del = e.target.closest('[data-del]');
     if (del) {
       e.stopPropagation();
-      if (del.dataset.confirm) { await store.remove(del.dataset.del); toast('세션을 지웠습니다'); refreshHome(); }
+      if (del.dataset.confirm) { const d = sessions.find(x => x.id === del.dataset.del); if (d) await removeSession(d); else await store.remove(del.dataset.del); toast('세션을 지웠습니다'); refreshHome(); }
       else { del.dataset.confirm = '1'; del.textContent = '정말 삭제'; setTimeout(() => { if (del.isConnected) { del.textContent = '삭제'; delete del.dataset.confirm; } }, 3000); }
       return;
     }
@@ -1808,8 +1921,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (card) { const d = sessions.find(s => s.id === card.dataset.id); if (d) openSession(d); }
   });
   $('#sessionList').addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.classList.contains('scard')) e.target.click(); });
-  $$('[data-home]').forEach(b => b.addEventListener('click', () => { cancelAnalysis = true; show('vHome'); refreshHome(); }));
-  $('#goHome').addEventListener('click', () => { cancelAnalysis = true; show('vHome'); refreshHome(); });
+  const goHome = () => { cancelAnalysis = true; if (live.rec) return; if (setup.live) { stopStream(); setLiveUI(false); } show('vHome'); refreshHome(); };
+  $$('[data-home]').forEach(b => b.addEventListener('click', goHome));
+  $('#goHome').addEventListener('click', goHome);
 
   // ---------- demo ----------
   let demoScene = null;
@@ -1830,7 +1944,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const pl = RN.playerAt(sc.script, t);
       bl.push({ t, b: [pl.near, pl.far].map(([x, y]) => { const f = sc.cam.project(x, y, 0), hd = sc.cam.project(x, y, 1.8); return { x: f[0], y: f[1], h: f[1] - hd[1] }; }) });
     }
-    return { id: 'demo', demo: true, bodies: encBodies(bl), name: '샘플 경기 · 8포인트', created: Date.now(), mode: 'match', opts, src: { kind: 'demo', name: 'sample', duration: DEMO.duration }, W: DEMO.W, H: DEMO.H, corners: DEMO.corners, track, rallies };
+    const doc = { id: 'demo', demo: true, bodies: encBodies(bl), name: '샘플 경기 · 8포인트', created: Date.now(), mode: 'match', opts, src: { kind: 'demo', name: 'sample', duration: DEMO.duration }, W: DEMO.W, H: DEMO.H, corners: DEMO.corners, track, rallies };
+    return doc;
   }
   $('#openDemo').addEventListener('click', () => openSession(demoDoc()));
 
@@ -1868,6 +1983,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const setup = { file: null, url: null, video: null, W: 640, H: 360, corners: null, drag: -1, frameT: 1 };
   function onFile(file) {
     if (!file) return;
+    if (live.rec) return;
+    if (setup.live) stopStream();
+    setLiveUI(false);
     if (setup.url) URL.revokeObjectURL(setup.url);
     setup.file = file; setup.url = URL.createObjectURL(file);
     const v = setup.video || document.createElement('video');
@@ -1880,7 +1998,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const vw = v.videoWidth || 1280, vh = v.videoHeight || 720;
       setup.W = 640; setup.H = Math.round(640 * vh / vw / 2) * 2;
       const W = setup.W, H = setup.H;
-      setup.corners = [[W * 0.37, H * 0.3], [W * 0.63, H * 0.3], [W * 0.9, H * 0.88], [W * 0.1, H * 0.88]];
+      const last = loadLastCal();
+      if (last) { applyRef(last.ref); setup.corners = last.c.map(([x, y]) => [x * W, y * H]); }
+      else setup.corners = [[W * 0.37, H * 0.3], [W * 0.63, H * 0.3], [W * 0.9, H * 0.88], [W * 0.1, H * 0.88]];
       setup.M = { l: W * 0.22, r: W * 0.22, t: H * 0.06, b: H * 0.32 };
       const cv = $('#calibCanvas'); cv.width = (W + setup.M.l + setup.M.r) * 2; cv.height = (H + setup.M.t + setup.M.b) * 2;
       $('#setupName').textContent = '코트 맞추기 · ' + file.name;
@@ -2031,63 +2151,102 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   setup.ref = 'baseline';
   const REF_LABELS = { baseline: ['먼 쪽 왼쪽', '먼 쪽 오른쪽', '가까운 쪽 오른쪽', '가까운 쪽 왼쪽'], singles: ['먼 쪽 왼쪽(복식)', '먼 쪽 오른쪽(복식)', '가까운 베이스라인 × 단식 오른쪽 선', '가까운 베이스라인 × 단식 왼쪽 선'], service: ['먼 쪽 왼쪽(복식)', '먼 쪽 오른쪽(복식)', '가까운 서비스라인 오른쪽(단식)', '가까운 서비스라인 왼쪽(단식)'] };
   function renderLegend() { $('#cornerLegend').innerHTML = REF_LABELS[setup.ref].map((t, i) => `<span><i style="background:${HCOL[i]}"></i>${t}</span>`).join(''); }
-  seg($('#optRef'), 'baseline', v => {
+  function refChanged(v) {
     // keep the court where it is: move the two near handles onto the newly chosen points
-    const cal = setupCalib(); setup.ref = v; renderLegend();
+    const cal = setup.corners ? setupCalib() : null; setup.ref = v; renderLegend();
     if (cal && setup.corners) { const pts = refCourtPoints(); setup.corners = pts.map(([x, y]) => RN.applyH(cal.toImage, x, y)); }
     if (setup.video) drawCalib();
-  });
+  }
+  seg($('#optRef'), 'baseline', refChanged);
   renderLegend();
-  const setupOpts = { mode: 'match', court: 'doubles', me: 'near', sets: '1', speed: '30' };
+  const setupOpts = { mode: 'match', court: 'doubles', me: 'near', sets: '1', speed: '30', hand: (() => { try { return localStorage.getItem('rallynote.hand') || 'R'; } catch (e) { return 'R'; } })() };
   seg($('#optMode'), setupOpts.mode, v => { setupOpts.mode = v; $('#matchOnly').hidden = v !== 'match'; });
   seg($('#optCourt'), setupOpts.court, v => { setupOpts.court = v; });
   seg($('#optMe'), setupOpts.me, v => { setupOpts.me = v; });
   seg($('#optSets'), setupOpts.sets, v => { setupOpts.sets = v; });
   seg($('#optSpeed'), setupOpts.speed, v => { setupOpts.speed = v; });
+  seg($('#optHand'), setupOpts.hand, v => { setupOpts.hand = v; try { localStorage.setItem('rallynote.hand', v); } catch (e) { /* ignore */ } });
 
   // ---------- analysis ----------
   let cancelAnalysis = false;
   $('#cancelAnalyze').addEventListener('click', () => { cancelAnalysis = true; });
-  $('#startAnalyze').addEventListener('click', runAnalysis);
+  $('#startAnalyze').addEventListener('click', () => { if (setup.live) beginRecording(); else runAnalysis(); });
+
+  // Frame collector shared by file analysis and live recording: draws a source frame at analysis size,
+  // runs the ball detector, samples people 5x a second and checks the court lines once a second.
+  function createCollector(cal, W, H) {
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    const roi = RN.roiMask(W, H, cal, 1, 1), det = RN.createDetector(W, H, roi), lineSmp = RN.lineSamples(cal, W, H, 1, 1);
+    const col = { canvas: cv, frames: [], bodySamples: [], moveChecks: [], refScore: null, lastT: null, lastBodyT: -9, lastCheck: -9 };
+    col.step = (src, t) => {
+      ctx.drawImage(src, 0, 0, W, H);
+      const img = ctx.getImageData(0, 0, W, H).data;
+      if (col.refScore == null) col.refScore = RN.lineScore(img, W, H, lineSmp) || 0;
+      const c = det(img); // candidates of the previous processed frame (detector lags one frame)
+      if (col.lastT != null) {
+        col.frames.push({ t: col.lastT, c });
+        if (col.lastT - col.lastBodyT >= 0.2) {
+          col.lastBodyT = col.lastT;
+          const ppl = det.people().filter(b => roi[(Math.min(H - 1, b.y | 0)) * W + (b.x | 0)] && b.h > H * 0.04).sort((p, q) => q.a - p.a).slice(0, 4);
+          col.bodySamples.push({ t: col.lastT, b: ppl });
+        }
+      }
+      col.lastT = t;
+      if (t - col.lastCheck >= 1) { col.lastCheck = t; col.moveChecks.push({ t, s: RN.lineScore(img, W, H, lineSmp) }); }
+      return c;
+    };
+    // ball track + rallies from everything collected so far (cheap: ~130 ms for 30 min of play on a laptop)
+    col.finish = (opts) => {
+      const times = col.frames.map(f => f.t);
+      const pts = RN.track(col.frames, W);
+      // windows where the camera had moved (tracking gimbal, bumped tripod): drop the ball track there
+      const moved = [];
+      if (col.refScore > 8) for (const m of col.moveChecks) {
+        if (m.s >= col.refScore * 0.45) continue;
+        const a = Math.max(0, m.t - 1), b = m.t + 1;
+        if (moved.length && a <= moved[moved.length - 1][1]) moved[moved.length - 1][1] = b; else moved.push([a, b]);
+      }
+      if (moved.length) for (let i = 0; i < pts.length; i++) if (moved.some(([a, b]) => times[i] >= a && times[i] <= b)) pts[i] = null;
+      const { rallies } = RN.analyzeTrack(pts, times, cal, opts);
+      return { pts, times, moved, rallies };
+    };
+    return col;
+  }
+  function analysisOpts() {
+    return { mode: setupOpts.mode, doubles: setupOpts.court === 'doubles', rallyGap: 1.2, meStart: setupOpts.me, swapEnds: $('#optSwap').checked, setsToWin: +setupOpts.sets, hand: setupOpts.hand };
+  }
+  function makeDoc(cal, W, H, res, col, src, opts) {
+    const d = new Date();
+    const doc = {
+      id: sid(), name: `${d.getMonth() + 1}월 ${d.getDate()}일 ${opts.mode === 'match' ? '경기' : '연습'}`, created: Date.now(), mode: opts.mode, opts,
+      src, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track: encTrack(res.pts, res.times), bodies: encBodies(col.bodySamples), rallies: res.rallies, moved: res.moved.map(w => w.map(v => +v.toFixed(1)))
+    };
+    autoTypes(doc, decBodies(doc.bodies), cal);
+    return doc;
+  }
 
   async function runAnalysis() {
     const cal = setupCalib();
     if (!cal) { toast('꼭짓점 네 개가 한 줄로 겹쳤습니다. 코트 모서리에 다시 맞춰 주세요.'); return; }
+    saveLastCal();
     cancelAnalysis = false;
     show('vAnalyze');
     const W = setup.W, H = setup.H, v = setup.video, fps = +setupOpts.speed;
     const pc = $('#progCanvas'); pc.width = W; pc.height = H;
-    const ctx = pc.getContext('2d', { willReadFrequently: true });
-    const roi = RN.roiMask(W, H, cal, 1, 1);
-    const det = RN.createDetector(W, H, roi);
-    const frames = [];
+    const ctx = pc.getContext('2d');
+    const col = createCollector(cal, W, H);
     const started = performance.now();
-    // camera-movement check: court lines must stay where they were calibrated
-    const lineSmp = RN.lineSamples(cal, W, H, 1, 1);
-    ctx.drawImage(v, 0, 0, W, H);
-    const refScore = RN.lineScore(ctx.getImageData(0, 0, W, H).data, W, H, lineSmp) || 0;
-    const moveChecks = []; let lastCheck = -9, lastT = null, lastBodyT = -9; const bodySamples = [];
     let wake = null;
     try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
     const dur = v.duration;
     const process = (t) => {
-      ctx.drawImage(v, 0, 0, W, H);
-      const img = ctx.getImageData(0, 0, W, H).data;
-      const c = det(img); // candidates of the previous processed frame (detector lags one frame)
-      if (lastT != null) {
-        frames.push({ t: lastT, c });
-        if (lastT - lastBodyT >= 0.2) {
-          lastBodyT = lastT;
-          const ppl = det.people().filter(b => roi[(Math.min(H - 1, b.y | 0)) * W + (b.x | 0)] && b.h > H * 0.04).sort((p, q) => q.a - p.a).slice(0, 4);
-          bodySamples.push({ t: lastT, b: ppl });
-        }
-      }
-      lastT = t;
-      if (t - lastCheck >= 1) { lastCheck = t; moveChecks.push({ t, s: RN.lineScore(img, W, H, lineSmp) }); }
+      const c = col.step(v, t);
+      ctx.drawImage(col.canvas, 0, 0);
       // a bold ring only where a candidate continues from the last frame (how the tracker starts a ball); the rest is faint noise
-      const pc = frames.length > 1 ? frames[frames.length - 2].c : [];
+      const fr = col.frames, pc0 = fr.length > 1 ? fr[fr.length - 2].c : [];
       for (const k of c) {
-        const moving = pc.some(q => { const d = Math.hypot(k.x - q.x, k.y - q.y); return d > 0.6 && d < W * 0.07; });
+        const moving = pc0.some(q => { const d = Math.hypot(k.x - q.x, k.y - q.y); return d > 0.6 && d < W * 0.07; });
         ctx.beginPath();
         if (moving) { ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2.5; ctx.arc(k.x, k.y, 7, 0, Math.PI * 2); ctx.stroke(); }
         else { ctx.fillStyle = 'rgba(205,235,60,.45)'; ctx.arc(k.x, k.y, 2, 0, Math.PI * 2); ctx.fill(); }
@@ -2148,29 +2307,372 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     try { wake && wake.release(); } catch (_) { /* ignore */ }
     $('#progText').textContent = '랠리와 바운스를 정리하는 중…';
     await new Promise(r => setTimeout(r, 30));
-    const times = frames.map(f => f.t);
-    const pts = RN.track(frames, W);
-    // windows where the camera had moved (tracking gimbal, bumped tripod): drop the ball track there
-    const moved = [];
-    if (refScore > 8) for (const m of moveChecks) {
-      if (m.s >= refScore * 0.45) continue;
-      const a = Math.max(0, m.t - 1), b = m.t + 1;
-      if (moved.length && a <= moved[moved.length - 1][1]) moved[moved.length - 1][1] = b; else moved.push([a, b]);
-    }
-    if (moved.length) for (let i = 0; i < pts.length; i++) if (moved.some(([a, b]) => times[i] >= a && times[i] <= b)) pts[i] = null;
-    const opts = { mode: setupOpts.mode, doubles: setupOpts.court === 'doubles', rallyGap: 1.2, meStart: setupOpts.me, swapEnds: $('#optSwap').checked, setsToWin: +setupOpts.sets };
-    const track = encTrack(pts, times);
-    const { rallies } = RN.analyzeTrack(pts, times, cal, opts);
-    const d = new Date();
-    const doc = {
-      id: sid(), name: `${d.getMonth() + 1}월 ${d.getDate()}일 ${opts.mode === 'match' ? '경기' : '연습'}`, created: Date.now(), mode: opts.mode, opts,
-      src: { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, W, H, corners: cal.corners.map(p => p.map(v => +v.toFixed(2))), track, bodies: encBodies(bodySamples), rallies, moved: moved.map(w => w.map(v => +v.toFixed(1)))
-    };
+    const opts = analysisOpts();
+    const res = col.finish(opts);
+    const doc = makeDoc(cal, W, H, res, col, { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, opts);
+    const rallies = res.rallies;
     videoURLs[doc.id] = setup.url; setup.url = null;
     const ok = await store.save(doc);
     if (!ok) toast('저장 공간이 부족해 세션을 저장하지 못했습니다. 이번 화면에서는 볼 수 있습니다.', 5000);
     if (!rallies.length) toast('공을 찾지 못했습니다. 코트 꼭짓점과 거치 위치를 확인해 주세요.', 6000);
     openSession(doc);
+  }
+
+  // ---------- automatic stroke type (forehand / backhand / volley / overhead) ----------
+  // From where the ball was met relative to the hitter's body: a right-hander with their back to the camera
+  // (near side) hits forehands on their right = screen right; a far-side player faces the camera, so it flips.
+  // Met close to the net = volley, met above the head = overhead. Estimates only; one tap on the shot changes it.
+  function autoTypes(doc, people, cal) {
+    if (!people || !people.length || !cal) return;
+    const meById = {}; try { effective(doc).rallies.forEach(r => { meById[r.id] = r.meSide; }); } catch (e) { /* keep empty */ }
+    const hand = (doc.opts && doc.opts.hand) || 'R';
+    const near = (t) => { let lo = 0, hi = people.length; while (lo < hi) { const m = (lo + hi) >> 1; if (people[m].t < t) lo = m + 1; else hi = m; } const c = [people[lo - 1], people[lo]].filter(Boolean).sort((a, b) => Math.abs(a.t - t) - Math.abs(b.t - t))[0]; return c && Math.abs(c.t - t) <= 0.3 ? c.b : []; };
+    for (const r of doc.rallies) for (const s of r.shots) {
+      if (s.type || s.serve || s.inferred || s.ix == null) continue;
+      let best = null, bd = 1e9;
+      for (const p of near(s.t)) {
+        if (!p.h) continue;
+        const c = RN.applyH(cal.toCourt, p.x, p.y);
+        if ((c[1] < C.NET ? 'near' : 'far') !== s.side) continue;
+        const d = Math.hypot(s.ix - p.x, s.iy - (p.y - p.h * 0.55));
+        if (d < p.h * 1.2 && d < bd) { bd = d; best = { p, c }; }
+      }
+      if (!best) continue;
+      const { p, c } = best;
+      let type = null;
+      if (s.iy < p.y - p.h * 1.1) type = 'smash';
+      else if (Math.abs(c[1] - C.NET) < 5) type = 'volley';
+      else {
+        const dx = (s.ix - p.x) / p.h;
+        if (Math.abs(dx) >= 0.25) {
+          const righty = (s.side === meById[r.id] ? hand : 'R') === 'R';
+          const fh = (s.side === 'near' ? 1 : -1) * (righty ? 1 : -1);
+          type = dx * fh > 0 ? 'forehand' : 'backhand';
+        }
+      }
+      if (type) { s.type = type; s.autoType = true; }
+    }
+    doc.typed = 1;
+  }
+
+  // ---------- remembered court position (same mount, same court: no re-fitting) ----------
+  const LASTCAL = 'rallynote.lastcal.v1';
+  function saveLastCal() {
+    try { localStorage.setItem(LASTCAL, JSON.stringify({ ref: setup.ref, c: setup.corners.map(([x, y]) => [x / setup.W, y / setup.H]), a: setup.W / setup.H })); } catch (e) { /* ignore */ }
+  }
+  function loadLastCal() {
+    try { const o = JSON.parse(localStorage.getItem(LASTCAL) || 'null'); if (o && Math.abs(o.a - setup.W / setup.H) < 0.02 && o.c && o.c.length === 4) return o; } catch (e) { /* ignore */ }
+    return null;
+  }
+  function applyRef(v) { setup.ref = v; seg($('#optRef'), v, refChanged); renderLegend(); }
+
+  // snap the handles onto the painted lines of the current frame
+  $('#autoFit').addEventListener('click', () => {
+    if (!setup.video || !setup.corners) return;
+    const W = setup.W, H = setup.H, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(setup.video, 0, 0, W, H);
+    const out = RN.refineCorners(ctx.getImageData(0, 0, W, H).data, W, H, setup.corners, refCourtPoints());
+    const msg = $('#autoFitMsg');
+    if (!(out.after > out.before * 1.05) || out.shift > W * 0.06) { msg.textContent = '선을 찾지 못했습니다. 점을 선 가까이 옮긴 뒤 다시 눌러 보세요.'; return; }
+    // keep the handles where the user put them if they were off-screen (no line to snap to there)
+    setup.corners = out.corners; drawCalib();
+    msg.textContent = `흰 선에 맞췄습니다 (최대 ${out.shift.toFixed(1)}px 이동). 파란 선이 라인과 겹치는지 확인하세요.`;
+  });
+
+  // ---------- recorded video kept on this device (IndexedDB, in 2-second pieces) ----------
+  const media = {
+    db: null,
+    open() {
+      if (!this.db) this.db = new Promise((res, rej) => { const r = indexedDB.open('rallynote-media', 1); r.onupgradeneeded = () => r.result.createObjectStore('chunks'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+      return this.db;
+    },
+    range(id) { return IDBKeyRange.bound(id + ':', id + ':￿'); },
+    async put(id, i, blob) {
+      const db = await this.open();
+      return new Promise((res, rej) => { const t = db.transaction('chunks', 'readwrite'); t.objectStore('chunks').put(blob, id + ':' + String(i).padStart(6, '0')); t.oncomplete = () => res(); t.onerror = () => rej(t.error); t.onabort = () => rej(t.error); });
+    },
+    async load(id) {
+      const db = await this.open();
+      return new Promise((res, rej) => { const r = db.transaction('chunks').objectStore('chunks').getAll(this.range(id)); r.onsuccess = () => res(r.result || []); r.onerror = () => rej(r.error); });
+    },
+    async del(id) {
+      if (!id) return;
+      try { const db = await this.open(); await new Promise((res) => { const t = db.transaction('chunks', 'readwrite'); t.objectStore('chunks').delete(this.range(id)); t.oncomplete = res; t.onerror = res; t.onabort = res; }); } catch (e) { /* ignore */ }
+    }
+  };
+  async function removeSession(doc) {
+    await store.remove(doc.id);
+    if (doc.src && doc.src.media) media.del(doc.src.media);
+    if (videoURLs[doc.id]) { URL.revokeObjectURL(videoURLs[doc.id]); delete videoURLs[doc.id]; }
+  }
+
+  // ---------- live: record in the app and analyse while recording ----------
+  const PENDING = 'rallynote.pendingrec.v1';
+  const live = { stream: null, video: null, rec: null };
+  const canLive = () => !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && typeof MediaRecorder !== 'undefined');
+  function stopStream() {
+    if (live.stream) live.stream.getTracks().forEach(t => t.stop());
+    live.stream = null;
+    if (live.video) { live.video.srcObject = null; live.video.remove(); live.video = null; }
+    if (setup.live) { setup.live = false; setup.video = null; }
+  }
+  async function openCamera(deviceId) {
+    const v = { width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: { ideal: 60 } };
+    if (deviceId) v.deviceId = { exact: deviceId }; else v.facingMode = { ideal: 'environment' };
+    let stream;
+    try { stream = await navigator.mediaDevices.getUserMedia({ video: v, audio: true }); }
+    catch (e) { stream = await navigator.mediaDevices.getUserMedia({ video: v, audio: false }); }
+    if (live.stream) live.stream.getTracks().forEach(t => t.stop());
+    live.stream = stream;
+    const el = live.video || document.createElement('video');
+    live.video = el; el.muted = true; el.playsInline = true; el.autoplay = true;
+    el.setAttribute('playsinline', ''); el.setAttribute('muted', '');
+    if (!el.isConnected) { el.style.cssText = 'position:fixed;left:0;bottom:0;width:4px;height:4px;opacity:0.01;pointer-events:none;z-index:-1'; document.body.appendChild(el); }
+    el.srcObject = stream;
+    await new Promise((res) => { if (el.readyState >= 1 && el.videoWidth) return res(); el.onloadedmetadata = () => res(); setTimeout(res, 4000); });
+    try { await el.play(); } catch (e) { /* muted inline video plays without a gesture */ }
+    return stream;
+  }
+  function liveTrack() { return live.stream && live.stream.getVideoTracks()[0]; }
+  async function fillCameraList() {
+    const sel = $('#liveCam'), tr = liveTrack();
+    let devs = [];
+    try { devs = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'videoinput'); } catch (e) { devs = []; }
+    const curId = tr && tr.getSettings ? tr.getSettings().deviceId : '';
+    sel.innerHTML = devs.map((d, i) => `<option value="${esc(d.deviceId)}"${d.deviceId === curId ? ' selected' : ''}>${esc(d.label || '카메라 ' + (i + 1))}</option>`).join('');
+    sel.parentElement.hidden = devs.length < 1;
+    return devs;
+  }
+  function describeCamera() {
+    const tr = liveTrack(); if (!tr) return;
+    const st = tr.getSettings ? tr.getSettings() : {};
+    const fps = Math.round(st.frameRate || 0);
+    $('#liveCamInfo').innerHTML = `${st.width || live.video.videoWidth}×${st.height || live.video.videoHeight}${fps ? ' · ' + fps + 'fps' : ''}` +
+      (fps && fps < 50 ? ' · <b>60fps가 안 나옵니다.</b> 이 카메라로는 빠른 공이 끊겨 보일 수 있습니다.' : '') +
+      (live.video.videoHeight > live.video.videoWidth ? ' · <b style="color:var(--warn)">폰을 가로로 돌려 주세요.</b>' : '');
+    const caps = tr.getCapabilities ? tr.getCapabilities() : {};
+    const zr = $('#liveZoomRow');
+    if (caps.zoom && caps.zoom.max > caps.zoom.min) {
+      zr.hidden = false; const z = $('#liveZoom'); z.min = caps.zoom.min; z.max = Math.min(caps.zoom.max, caps.zoom.min + 4); z.value = st.zoom || caps.zoom.min;
+      $('#liveZoomLbl').textContent = (+z.value).toFixed(1) + '×';
+    } else zr.hidden = true;
+  }
+  $('#liveZoom').addEventListener('input', async (e) => {
+    const tr = liveTrack(); if (!tr) return;
+    $('#liveZoomLbl').textContent = (+e.target.value).toFixed(1) + '×';
+    try { await tr.applyConstraints({ advanced: [{ zoom: +e.target.value }] }); } catch (err) { /* not supported */ }
+  });
+  $('#liveCam').addEventListener('change', async (e) => {
+    try { await openCamera(e.target.value); try { localStorage.setItem('rallynote.cam', e.target.value); } catch (_) { /* ignore */ } prepLiveSetup(); }
+    catch (err) { toast('이 카메라를 열 수 없습니다.'); }
+  });
+  // ultra-wide first: from behind the baseline 1x does not hold the whole court
+  async function pickWideCamera() {
+    let saved = null; try { saved = localStorage.getItem('rallynote.cam'); } catch (e) { saved = null; }
+    const devs = await fillCameraList();
+    const curId = liveTrack()?.getSettings?.().deviceId;
+    const want = devs.find(d => d.deviceId === saved) || devs.find(d => /ultra ?wide|초광각/i.test(d.label));
+    if (want && want.deviceId !== curId) { try { await openCamera(want.deviceId); } catch (e) { /* keep the default camera */ } }
+    await fillCameraList();
+  }
+  function prepLiveSetup() {
+    const v = live.video, vw = v.videoWidth || 1280, vh = v.videoHeight || 720;
+    setup.live = true; setup.video = v; setup.file = null;
+    setup.W = 640; setup.H = Math.round(640 * vh / vw / 2) * 2;
+    const W = setup.W, H = setup.H;
+    const last = loadLastCal();
+    if (last) { applyRef(last.ref); setup.corners = last.c.map(([x, y]) => [x * W, y * H]); }
+    else if (!setup.corners || setup.cornersFor !== W + 'x' + H) setup.corners = [[W * 0.37, H * 0.3], [W * 0.63, H * 0.3], [W * 0.9, H * 0.88], [W * 0.1, H * 0.88]];
+    setup.cornersFor = W + 'x' + H;
+    setup.M = { l: W * 0.22, r: W * 0.22, t: H * 0.06, b: H * 0.32 };
+    const cv = $('#calibCanvas'); cv.width = (W + setup.M.l + setup.M.r) * 2; cv.height = (H + setup.M.t + setup.M.b) * 2;
+    describeCamera();
+    $('#autoFitMsg').textContent = last ? '지난번 위치를 불러왔습니다. 폰을 옮겼다면 점을 대충 맞추고 누르세요.' : '점을 대충 맞춘 뒤 누르면 흰 선에 딱 붙입니다.';
+  }
+  function setLiveUI(on) {
+    $$('.live-only').forEach(el => { el.hidden = !on; });
+    $('#scrubField').hidden = on; $('#speedField').hidden = on; $('#startHint').hidden = on;
+    $('#startAnalyze').textContent = on ? '● 녹화 시작' : '분석 시작';
+  }
+  async function startLive() {
+    if (!canLive()) { $('#fileRecord').click(); return; }
+    try { await openCamera(null); }
+    catch (e) {
+      toast(e && e.name === 'NotAllowedError' ? '카메라 권한이 필요합니다. 설정 → Safari(또는 랠리노트) → 카메라를 허용해 주세요.' : '카메라를 열 수 없어 아이폰 카메라로 찍습니다.', 5000);
+      if (!(e && e.name === 'NotAllowedError')) $('#fileRecord').click();
+      return;
+    }
+    await pickWideCamera();
+    prepLiveSetup();
+    setLiveUI(true);
+    $('#setupName').textContent = '코트 맞추기 · 실시간';
+    show('vSetup');
+    const loop = () => { if (!setup.live || $('#vSetup').hidden) return; if (setup.drag < 0) drawCalib(); setTimeout(() => requestAnimationFrame(loop), 90); };
+    loop();
+    live.video.onresize = () => { if (setup.live && !live.rec) { prepLiveSetup(); } };
+  }
+  $('#liveGo').addEventListener('click', startLive);
+  $('#tabRec').addEventListener('click', startLive);
+  $('#hdrRec').addEventListener('click', startLive);
+
+  // recording
+  const pickMime = () => ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
+  async function beginRecording() {
+    const cal = setupCalib();
+    if (!cal) { toast('꼭짓점 네 개가 한 줄로 겹쳤습니다. 코트 모서리에 다시 맞춰 주세요.'); return; }
+    if (live.video.videoHeight > live.video.videoWidth) { toast('폰을 가로로 돌린 뒤 시작해 주세요.'); return; }
+    saveLastCal();
+    const W = setup.W, H = setup.H, opts = analysisOpts();
+    const mime = pickMime();
+    let rec;
+    try { rec = new MediaRecorder(live.stream, mime ? { mimeType: mime, videoBitsPerSecond: 10e6 } : undefined); }
+    catch (e) { try { rec = new MediaRecorder(live.stream); } catch (e2) { toast('이 브라우저에서는 녹화할 수 없습니다.'); return; } }
+    Object.assign(live, { rec, cal, opts, W, H, mime: rec.mimeType || mime, col: createCollector(cal, W, H), recId: 'r' + Date.now().toString(36), n: 0, puts: [], mem: new Map(),
+      t0: 0, lastT: -1, stopping: false, bg: 0, hudN: -1, hudAt: 0, hudCost: 0, spoken: 0, voice: $('#optVoice').checked, size: 0 });
+    rec.ondataavailable = (e) => {
+      if (!e.data || !e.data.size) return;
+      const i = live.n++; live.size += e.data.size;
+      live.puts.push(media.put(live.recId, i, e.data).catch(() => { live.mem.set(i, e.data); }));
+    };
+    try { localStorage.setItem(PENDING, JSON.stringify({ id: live.recId, mime: live.mime, at: Date.now() })); } catch (e) { /* ignore */ }
+    // the preview moves into the full-screen recording view
+    const st = $('#liveStage'); st.insertBefore(live.video, st.firstChild); live.video.style.cssText = '';
+    live.video.play().catch(() => {});
+    show('vLive'); $('#liveDimLayer').hidden = true; $('#liveScore').innerHTML = ''; $('#liveInfo').textContent = '';
+    try { live.wake = await navigator.wakeLock?.request('screen'); } catch (e) { live.wake = null; }
+    await new Promise((res) => { rec.onstart = res; rec.start(2000); setTimeout(res, 1500); });
+    live.t0 = performance.now();
+    liveTrack().onended = () => { if (live.rec && !live.stopping) stopRecording('ended'); };
+    live.clock = setInterval(liveClock, 500);
+    const useRvfc = 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
+    const frame = (now) => {
+      if (!live.rec || live.stopping) return;
+      const t = ((now || performance.now()) - live.t0) / 1000;
+      if (t >= 0 && t - live.lastT >= 1 / 30 - 0.006 && live.video.readyState >= 2) {
+        live.lastT = t;
+        const c = live.col.step(live.video, t);
+        drawLiveHud(c);
+      }
+      if (useRvfc) live.video.requestVideoFrameCallback(frame); else requestAnimationFrame(frame);
+    };
+    if (useRvfc) live.video.requestVideoFrameCallback(frame); else requestAnimationFrame(frame);
+  }
+  function liveClock() {
+    if (!live.rec) return;
+    const t = (performance.now() - live.t0) / 1000;
+    $('#liveTime').textContent = fmtT(t); $('#liveTime2').textContent = fmtT(t);
+    $('#liveInfo').textContent = live.size ? (live.size / 1048576).toFixed(0) + 'MB' : '';
+    // re-read the whole match every few seconds: rally count, score, last shot (cheap enough to keep up)
+    if (performance.now() - live.hudAt > Math.max(4000, live.hudCost * 15)) {
+      live.hudAt = performance.now();
+      const a = performance.now();
+      try {
+        const res = live.col.finish(live.opts);
+        const tmp = { rallies: res.rallies, opts: live.opts, mode: live.opts.mode };
+        renderLiveScore(effective(tmp), t);
+      } catch (e) { /* keep recording */ }
+      live.hudCost = performance.now() - a;
+    }
+  }
+  function renderLiveScore(ef, t) {
+    const rs = ef.rallies, el = $('#liveScore');
+    let lastShot = null; for (const r of rs) for (const s of r.shots) if (s.speed) lastShot = s;
+    // only count a point once the ball has been dead for a moment
+    const done = rs.filter(r => r.t1 < t - 2);
+    if (live.opts.mode === 'match') {
+      let snap = null; for (let i = 0; i < done.length; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
+      const g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
+      el.innerHTML = `<small>자동 추정 점수 · 나 / 상대</small><b>${g[0]}-${g[1]}</b> &nbsp;<b>${esc(p[0])}:${esc(p[1])}</b><small>랠리 ${done.length}개${lastShot ? ' · 최근 샷 ' + lastShot.speed + 'km/h' : ''}</small>`;
+      if (live.voice && done.length > live.spoken && 'speechSynthesis' in window) {
+        live.spoken = done.length;
+        const say = (x) => ({ '0': '러브', AD: '어드밴티지' }[x] || x);
+        try { speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(`${say(p[0])} ${say(p[1])}`), { lang: 'ko-KR', rate: 1 })); } catch (e) { /* ignore */ }
+      }
+    } else {
+      const longest = Math.max(0, ...done.map(r => r.shots.length));
+      el.innerHTML = `<small>랠리</small><b>${done.length}</b><small>최장 ${longest}샷${lastShot ? ' · 최근 ' + lastShot.speed + 'km/h' : ''}</small>`;
+    }
+  }
+  function drawLiveHud(c) {
+    if (!$('#liveDimLayer').hidden) return;
+    const cv = $('#liveHud'), r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    const w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+    const ctx = cv.getContext('2d'); ctx.clearRect(0, 0, w, h);
+    // same box as object-fit: contain
+    const sc = Math.min(w / live.W, h / live.H), ox = (w - live.W * sc) / 2, oy = (h - live.H * sc) / 2;
+    ctx.strokeStyle = 'rgba(120,210,255,.35)'; ctx.lineWidth = 1.5 * dpr;
+    for (const [a, b] of RN.courtLines()) { const A = RN.applyH(live.cal.toImage, a[0], a[1]), B = RN.applyH(live.cal.toImage, b[0], b[1]); ctx.beginPath(); ctx.moveTo(ox + A[0] * sc, oy + A[1] * sc); ctx.lineTo(ox + B[0] * sc, oy + B[1] * sc); ctx.stroke(); }
+    const fr = live.col.frames, pc = fr.length > 1 ? fr[fr.length - 2].c : [];
+    let seen = false;
+    for (const k of c) {
+      const moving = pc.some(q => { const d = Math.hypot(k.x - q.x, k.y - q.y); return d > 0.6 && d < live.W * 0.07; });
+      if (!moving) continue; seen = true;
+      ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2.5 * dpr; ctx.beginPath(); ctx.arc(ox + k.x * sc, oy + k.y * sc, 9 * dpr, 0, Math.PI * 2); ctx.stroke();
+    }
+    if (seen) live.seenAt = performance.now();
+    const on = performance.now() - (live.seenAt || 0) < 1500, chip = $('#liveBall');
+    chip.classList.toggle('on', on); chip.textContent = on ? '● 공 추적 중' : '공 찾는 중';
+  }
+  $('#liveDim').addEventListener('click', () => { $('#liveDimLayer').hidden = false; });
+  $('#liveDimLayer').addEventListener('click', () => { $('#liveDimLayer').hidden = true; });
+  $('#liveStop').addEventListener('click', () => stopRecording('user'));
+  document.addEventListener('visibilitychange', () => { if (document.hidden && live.rec && !live.stopping) live.bg++; });
+
+  async function stopRecording(why) {
+    if (!live.rec || live.stopping) return;
+    live.stopping = true;
+    const dur = Math.max(0.5, (performance.now() - live.t0) / 1000);
+    clearInterval(live.clock);
+    try { live.wake && live.wake.release(); } catch (e) { /* ignore */ }
+    show('vAnalyze');
+    $('#progBar').style.width = '100%'; $('#progPct').textContent = '';
+    $('#progText').textContent = '촬영 끝 · 랠리와 점수를 정리하는 중…';
+    await new Promise((res) => { const r = live.rec; if (r.state === 'inactive') return res(); r.onstop = res; try { r.stop(); } catch (e) { res(); } setTimeout(res, 4000); });
+    await Promise.allSettled(live.puts);
+    const { cal, W, H, opts, col, recId } = live;
+    const mime = (live.mime || 'video/mp4').split(';')[0];
+    live.rec = null;
+    stopStream(); setLiveUI(false);
+    await new Promise(r => setTimeout(r, 20));
+    const res = col.finish(opts);
+    let parts = [];
+    try { const stored = await media.load(recId); parts = stored; } catch (e) { parts = []; }
+    if (live.mem.size) { // pieces that could not be stored stay in memory: rebuild in order
+      const all = []; let si = 0;
+      for (let i = 0; i < live.n; i++) all.push(live.mem.has(i) ? live.mem.get(i) : parts[si++]);
+      parts = all.filter(Boolean);
+    }
+    const blob = new Blob(parts, { type: mime });
+    const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}_${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}`;
+    const doc = makeDoc(cal, W, H, res, col, { kind: 'live', name: `랠리노트_${stamp}.${mime.includes('mp4') ? 'mp4' : 'webm'}`, size: blob.size, duration: dur, media: live.mem.size ? null : recId, bg: live.bg || 0, stopped: why }, opts);
+    try { localStorage.removeItem(PENDING); } catch (e) { /* ignore */ }
+    videoURLs[doc.id] = URL.createObjectURL(blob);
+    const ok = await store.save(doc);
+    if (!ok) toast('저장 공간이 부족해 세션을 저장하지 못했습니다. 원본 영상 저장을 눌러 영상을 보관하세요.', 6000);
+    openSession(doc);
+    const play = playWindows().reduce((n, [a, b]) => n + b - a, 0);
+    const note = why === 'ended' ? '카메라가 중간에 멈췄습니다(화면이 꺼졌거나 다른 앱으로 나감). 그 전까지 분석했습니다. ' : '';
+    toast(res.rallies.length ? `${note}촬영 ${fmtT(dur)} · 랠리 ${res.rallies.length}개 · 실제 플레이 ${fmtT(play)}만 이어서 보여 드립니다` : `${note}공을 찾지 못했습니다. 코트 점 위치와 거치 높이를 확인해 주세요.`, 6000);
+    if (res.rallies.length) { P.only = true; $('#optOnly').checked = true; seek(cur.eff.rallies[0].t0 - 0.6); playPlayer(); }
+    // like SwingVision: land straight on the edited playback, full screen when the phone is held sideways
+    if (window.innerWidth > window.innerHeight && window.innerHeight < 600) theater(true); else $('#stage').scrollIntoView({ block: 'start' });
+  }
+
+  // a recording cut off by a crash or a closed app: the pieces are still on the device
+  async function checkRecover() {
+    let p = null; try { p = JSON.parse(localStorage.getItem(PENDING) || 'null'); } catch (e) { p = null; }
+    const el = $('#recoverNote');
+    if (!p || (live.rec && live.recId === p.id)) { el.hidden = true; return; }
+    let parts = []; try { parts = await media.load(p.id); } catch (e) { parts = []; }
+    if (!parts.length) { try { localStorage.removeItem(PENDING); } catch (e) { /* ignore */ } el.hidden = true; return; }
+    const blob = new Blob(parts, { type: (p.mime || 'video/mp4').split(';')[0] });
+    el.hidden = false;
+    el.innerHTML = `<span style="flex:1;min-width:200px"><b>끊긴 촬영이 있습니다</b> · ${(blob.size / 1048576).toFixed(0)}MB. 영상을 저장한 뒤 <b>찍어 둔 영상 분석</b>으로 열 수 있습니다.</span><button class="btn sm primary" type="button" id="recSave">영상 저장</button><button class="btn sm" type="button" id="recDrop">지우기</button>`;
+    const name = `랠리노트_복구_${new Date(p.at).toISOString().slice(0, 16).replace(/[-:T]/g, '')}.${blob.type.includes('mp4') ? 'mp4' : 'webm'}`;
+    $('#recSave').onclick = async () => { if (await shareOrSave(new File([blob], name, { type: blob.type }))) toast('저장했습니다'); };
+    $('#recDrop').onclick = async () => { await media.del(p.id); try { localStorage.removeItem(PENDING); } catch (e) { /* ignore */ } el.hidden = true; toast('지웠습니다'); };
   }
 
   // ---------- session view ----------
@@ -2201,8 +2703,20 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       vid.hidden = false;
       const url = videoURLs[doc.id];
       if (url) { vid.src = url; $('#reattach').hidden = true; vid.currentTime = P.t; }
-      else { vid.removeAttribute('src'); vid.load(); $('#reattach').hidden = false; $('#reattachName').textContent = doc.src.name; }
+      else {
+        vid.removeAttribute('src'); vid.load(); $('#reattach').hidden = false; $('#reattachName').textContent = doc.src.name;
+        // recorded in the app: the video is kept on this device
+        if (doc.src.media) media.load(doc.src.media).then(parts => {
+          if (!parts.length || !cur || cur.doc !== doc) return;
+          const u = URL.createObjectURL(new Blob(parts, { type: doc.src.name.endsWith('.webm') ? 'video/webm' : 'video/mp4' }));
+          videoURLs[doc.id] = u; vid.src = u; vid.currentTime = P.t; $('#reattach').hidden = true; P.dirty = true;
+        }).catch(() => {});
+      }
     }
+    $('#btnOrig').hidden = !(doc.src.kind === 'live');
+    vid.style.transform = '';
+    // sessions analysed before stroke types were guessed
+    if (!doc.typed && !doc.demo && cur.people.length) { autoTypes(doc, cur.people, calib); recompute(); persist(); }
     selectTab('review');
     show('vSession');
     const mv = (doc.moved || []).reduce((n, [a, b]) => n + b - a, 0);
@@ -2219,7 +2733,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   });
   $('#sessTitle').addEventListener('change', (e) => { if (!cur) return; cur.doc.name = e.target.value.trim() || cur.doc.name; persist(); });
 
-  function recompute() { cur.eff = effective(cur.doc); }
+  function recompute() { cur.eff = effective(cur.doc); cur.view = null; }
   function rallyAt(t) {
     const rs = cur.eff.rallies;
     for (let i = 0; i < rs.length; i++) if (t >= rs[i].t0 - 0.8 && t <= rs[i].t1 + 0.8) return i;
@@ -2255,6 +2769,28 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   seg($('#optRate'), '1', v => { P.rate = +v; if (!cur.demo) vid.playbackRate = P.rate; });
   $('#optOnly').addEventListener('change', e => { P.only = e.target.checked; });
   $('#optLines').addEventListener('change', e => { P.lines = e.target.checked; P.dirty = true; });
+  function theater(on) {
+    const el = $('#player'); el.classList.toggle('theater', on); document.body.classList.toggle('theater-on', on);
+    $('#btnTheater').textContent = on ? '✕ 닫기' : '전체 화면';
+    if (cur) el.style.setProperty('--ar', (cur.doc.W / cur.doc.H).toFixed(3));
+    requestAnimationFrame(() => { sizeOverlay(); P.dirty = true; });
+  }
+  $('#btnTheater').addEventListener('click', () => theater(!$('#player').classList.contains('theater')));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && $('#player').classList.contains('theater')) theater(false); });
+  const VIEWPREF = 'rallynote.view.v1';
+  (() => { let v = {}; try { v = JSON.parse(localStorage.getItem(VIEWPREF) || '{}'); } catch (e) { v = {}; } P.broad = v.broad !== false; P.follow = !!v.follow; $('#optBroad').checked = P.broad; $('#optFollow').checked = P.follow; })();
+  const saveView = () => { try { localStorage.setItem(VIEWPREF, JSON.stringify({ broad: P.broad, follow: P.follow })); } catch (e) { /* ignore */ } };
+  $('#optBroad').addEventListener('change', e => { P.broad = e.target.checked; P.dirty = true; saveView(); });
+  $('#optFollow').addEventListener('change', e => { P.follow = e.target.checked; P.dirty = true; saveView(); });
+  // second slider: position inside the current rally (like a trimming handle)
+  const rallyWin = (i) => { const r = cur.eff.rallies[i]; return r ? [Math.max(0, r.t0 - 0.8), Math.min(cur.doc.src.duration, r.t1 + 0.8)] : null; };
+  $('#rallyScrub').addEventListener('input', (e) => { if (!cur) return; const w = rallyWin(nearestRally(P.t)); if (w) seek(w[0] + (w[1] - w[0]) * (+e.target.value / 1000)); });
+  $('#btnOrig').addEventListener('click', async () => {
+    if (!cur || !videoURLs[cur.doc.id]) { toast('영상을 아직 불러오는 중입니다'); return; }
+    const blob = await fetch(videoURLs[cur.doc.id]).then(r => r.blob());
+    const f = new File([blob], cur.doc.src.name, { type: blob.type || 'video/mp4' });
+    if (await shareOrSave(f)) toast('원본 영상을 저장했습니다');
+  });
 
   function sizeOverlay() {
     const r = stage.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -2341,18 +2877,51 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     }
   }
 
+  // review camera: zoom so the court fills the player and pan along each rally (same path as the exported video)
+  function viewCam() {
+    const doc = cur.doc;
+    if (!P.follow) return { z: 1, x0: 0, y0: 0 };
+    if (!cur.view) {
+      const yFar = RN.applyH(cur.calib.toImage, C.CX, C.L)[1], yNear = RN.applyH(cur.calib.toImage, C.CX, 0)[1];
+      const z = clamp(doc.H / (Math.max(1, yNear - yFar) * 2.6), 1.35, 2), chh = doc.H / z, cw = doc.W / z;
+      let y0 = clamp(yFar - chh * 0.42, 0, doc.H - chh);
+      if (yNear > y0 + chh * 0.94) y0 = clamp(yNear - chh * 0.94, 0, doc.H - chh);
+      cur.view = { z, cw, y0, cx: doc.corners.reduce((n, p) => n + p[0], 0) / 4, plans: {} };
+    }
+    const v = cur.view, ri = rallyAt(P.t);
+    let cx = v.cx;
+    if (ri >= 0) {
+      if (!v.plans[ri]) { const r = cur.eff.rallies[ri]; camCenter = 'hitter'; v.plans[ri] = planCamera(Math.max(0, r.t0 - 0.8), r.t1 + 0.8, doc.W, v.cw, v.cx); }
+      cx = v.plans[ri](P.t);
+    }
+    return { z: v.z, x0: clamp(cx - v.cw / 2, 0, doc.W - v.cw), y0: v.y0 };
+  }
   function drawStage() {
     const ctx = ov.getContext('2d'), doc = cur.doc;
     sizeOverlay();
-    const k = ov.width / doc.W;
+    const cam = viewCam(), k = ov.width / doc.W * cam.z, ox = -cam.x0 * k, oy = -cam.y0 * k;
     ctx.clearRect(0, 0, ov.width, ov.height);
-    if (cur.demo) ctx.drawImage(demoFrame(P.t), 0, 0, ov.width, ov.height);
+    if (cur.demo) ctx.drawImage(demoFrame(P.t), cam.x0, cam.y0, doc.W / cam.z, doc.H / cam.z, 0, 0, ov.width, ov.height);
+    else { const kc = stage.clientWidth / doc.W * cam.z; vid.style.transform = cam.z > 1 ? `translate(${(-cam.x0 * kc).toFixed(1)}px,${(-cam.y0 * kc).toFixed(1)}px) scale(${cam.z})` : ''; }
     if (!hasMedia()) return;
-    drawOverlays(ctx, P.t, k, 0, 0, { lines: P.lines });
+    drawOverlays(ctx, P.t, k, ox, oy, { lines: P.lines });
+    if (P.broad) {
+      const s = clamp(Math.min(ov.width, ov.height) / 540, 0.55, 1.6), ri = rallyAt(P.t);
+      if (doc.mode === 'match') drawScoreBoard(ctx, s, ri, teamNames(doc));
+      drawMiniCourt(ctx, s, ov.width, ov.height, P.t, ri, false);
+      drawShotCard(ctx, s, ov.width, ov.height, P.t, ri, null, false, ri >= 0);
+    }
   }
 
   function updatePlayUI() {
-    $('#timeLbl').textContent = fmtT(P.t) + ' / ' + fmtT(cur.doc.src.duration);
+    if (P.only && cur.eff.rallies.length) {
+      // edited time: only the played stretches count, like the trimmed video
+      const ws = playWindows(); let done = 0, tot = 0;
+      for (const [a, b] of ws) { tot += b - a; if (P.t >= b) done += b - a; else if (P.t > a) done += P.t - a; }
+      $('#timeLbl').textContent = '플레이 ' + fmtT(done) + ' / ' + fmtT(tot);
+    } else $('#timeLbl').textContent = fmtT(P.t) + ' / ' + fmtT(cur.doc.src.duration);
+    { const i = nearestRally(P.t), w = i >= 0 ? rallyWin(i) : null, rs = $('#rallyScrub');
+      if (w) { if (document.activeElement !== rs) rs.value = Math.round(clamp((P.t - w[0]) / (w[1] - w[0]), 0, 1) * 1000); $('#rallyScrubLbl').textContent = `#${i + 1} ${fmtT(Math.max(0, P.t - w[0]))}/${fmtT(w[1] - w[0])}`; } }
     const ph = $('#timeline .ph'); if (ph) ph.style.left = (P.t / cur.doc.src.duration * 100) + '%';
     const ri = nearestRally(P.t);
     if (ri !== P.rallyIdx) { P.rallyIdx = ri; renderRally(); $$('#timeline .rb').forEach((el, i) => el.classList.toggle('cur', i === ri)); }
@@ -2586,26 +3155,43 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#hist').innerHTML = counts.map((c, i) => `<div><b>${c}</b><i style="height:${(c / mx * 80).toFixed(0)}%"></i><span>${buckets[i][1] > 99 ? '10+' : buckets[i][0] + '–' + buckets[i][1]}샷</span></div>`).join('');
     $('#rallyNote').textContent = rs.length ? `랠리 ${rs.length}개 · 평균 ${me.avgRally}샷 · 최장 ${me.longest}샷` : '랠리가 없습니다';
   }
+  // shot placement, laid out like SwingVision: colour = stroke, filled = in, ring = out,
+  // share of in-balls short/deep of the service line and across three lanes of the singles court
+  const TYPE_COL = { forehand: '#2fb35a', backhand: '#ff8a2a', volley: '#f5c518', smash: '#22b8d0', serve: '#8f7cff', none: '#9aa6ad' };
   function renderHeat(rs) {
     const who = cur.heat;
-    const dots = [];
+    const dots = [], cnt = {}; let inN = 0, deep = 0, lanes = [0, 0, 0];
     for (const r of rs) for (const s of r.shots) {
       const mine = s.side === r.meSide;
       if ((who === 'me') !== mine || !s.bounce) continue;
       // normalize so every shot travels "up" the page
       const flip = s.side === 'far';
       const x = flip ? C.W - s.bounce.cx : s.bounce.cx, y = flip ? s.bounce.cy : C.L - s.bounce.cy;
-      dots.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r=".34" fill="${s.bounce.in ? 'var(--in)' : 'var(--out)'}" fill-opacity=".85" stroke="#fff" stroke-width=".06"/>`);
+      const ty = s.serve ? 'serve' : (s.type || 'none'), col = TYPE_COL[ty] || TYPE_COL.none;
+      cnt[ty] = (cnt[ty] || 0) + 1;
+      if (s.bounce.in) {
+        inN++;
+        if (y < C.L - C.NET - 6.4) deep++;
+        const lx = (x - C.SGL) / (C.SGR - C.SGL); lanes[lx < 1 / 3 ? 0 : lx < 2 / 3 ? 1 : 2]++;
+        dots.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r=".36" fill="${col}" stroke="#fff" stroke-width=".07"/>`);
+      } else dots.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r=".3" fill="none" stroke="${col}" stroke-width=".16"/>`);
     }
+    const pct = (n) => inN ? Math.round(n / inN * 100) + '%' : '–';
+    const yS = C.L - C.NET - 6.4, xA = C.SGL + (C.SGR - C.SGL) / 3, xB = C.SGL + (C.SGR - C.SGL) * 2 / 3;
     const lines = RN.courtLines().map(([a, c]) => `<line x1="${a[0]}" y1="${C.L - a[1]}" x2="${c[0]}" y2="${C.L - c[1]}"/>`).join('');
-    $('#heatSvg').innerHTML = `<svg viewBox="-3 -3.5 ${C.W + 6} ${C.L + 7}" role="img" aria-label="바운스 위치 지도">
-      <rect x="-3" y="-3.5" width="${C.W + 6}" height="${C.L + 7}" fill="var(--court-deep)" rx=".5"/>
+    const T = (x, y, t, anchor) => `<text x="${x}" y="${y}" text-anchor="${anchor || 'middle'}" font-size=".95" fill="#fff" fill-opacity=".8" font-family="Barlow Condensed, sans-serif" font-weight="600">${t}</text>`;
+    const legend = Object.entries({ forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시', serve: '서브', none: '미분류' }).filter(([k]) => cnt[k]).map(([k, l]) => `<span><i style="background:${TYPE_COL[k]}"></i>${l} ${cnt[k]}</span>`).join('');
+    $('#heatSvg').innerHTML = `<svg viewBox="-3.6 -3.5 ${C.W + 7.2} ${C.L + 8.2}" role="img" aria-label="샷 배치">
+      <rect x="-3.6" y="-3.5" width="${C.W + 7.2}" height="${C.L + 8.2}" fill="var(--court-deep)" rx=".5"/>
       <rect x="0" y="0" width="${C.W}" height="${C.L}" fill="var(--court)"/>
       <g stroke="#fff" stroke-width=".08" fill="none">${lines}</g>
       <line x1="-.9" y1="${C.L - C.NET}" x2="${C.W + .9}" y2="${C.L - C.NET}" stroke="#fff" stroke-width=".2"/>
-      <text x="${C.W / 2}" y="-1.2" text-anchor="middle" font-size="1" fill="#fff" fill-opacity=".75" font-family="IBM Plex Sans KR, sans-serif">상대 코트 방향</text>
+      <g stroke="#fff" stroke-opacity=".45" stroke-width=".06" stroke-dasharray=".35 .3"><line x1="-2.8" y1="${yS}" x2="${C.W + 2.8}" y2="${yS}"/><line x1="${xA}" y1="0" x2="${xA}" y2="${C.L - C.NET + 0.6}"/><line x1="${xB}" y1="0" x2="${xB}" y2="${C.L - C.NET + 0.6}"/></g>
+      ${T(-0.7, yS / 2 + 0.35, pct(deep), 'end')}${T(-0.7, (yS + C.L - C.NET) / 2 + 0.35, pct(inN - deep), 'end')}
+      ${T((C.SGL + xA) / 2, -1.3, pct(lanes[0]))}${T((xA + xB) / 2, -1.3, pct(lanes[1]))}${T((xB + C.SGR) / 2, -1.3, pct(lanes[2]))}
       ${dots.join('')}
-    </svg><p class="note" style="text-align:center">${who === 'me' ? '내' : '상대'} 샷 ${dots.length}개 · 초록 IN · 빨강 OUT · 아래에서 위로 친 방향으로 맞춰 표시</p>`;
+    </svg><div class="chart-legend">${legend}<span><i style="background:var(--ink-2)"></i>인</span><span><i style="border:2px solid var(--ink-2);background:none;width:7px;height:7px"></i>아웃</span></div>
+    <p class="note" style="text-align:center">${who === 'me' ? '내' : '상대'} 샷 ${dots.length}개 · 위 숫자는 왼쪽·가운데·오른쪽, 옆 숫자는 깊은 공·짧은 공 비율(들어간 공 기준) · 샷 종류는 자동 추정이라 리뷰에서 탭해 고칠 수 있습니다</p>`;
   }
 
   // coaching via Claude
@@ -3058,7 +3644,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         const b = e.currentTarget;
         if (!b.dataset.confirm) { b.dataset.confirm = '1'; b.textContent = '정말 지우기 (되돌릴 수 없음)'; setTimeout(() => { if (b.isConnected) { delete b.dataset.confirm; b.textContent = '이 기기에서 세션 지우기'; } }, 4000); return; }
         clearTimeout(saveTimer); saveTimer = 0;
-        await store.remove(doc.id); delete videoURLs[doc.id];
+        await removeSession(doc);
         done(); cur = null; show('vHome'); refreshHome(); toast('이 기기에서 세션을 지웠습니다');
       };
     }
@@ -3105,6 +3691,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   document.fonts && document.fonts.ready.then(() => { drawHero(); });
   refreshHome();
   store.init().then(() => refreshHome());
+  checkRecover();
 })();
 
 </script>
