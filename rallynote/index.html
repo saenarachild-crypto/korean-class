@@ -206,6 +206,7 @@ body.theater-on .tabbar{display:none}
 .timeline .rb{position:absolute;top:6px;bottom:6px;background:var(--court);border-radius:3px;opacity:.75}
 .timeline .rb.cur{background:var(--ball);opacity:1}
 .timeline .ph{position:absolute;top:0;bottom:0;width:2px;background:var(--out)}
+.timeline.edited .rb{top:4px;bottom:4px;border-radius:2px;opacity:.9;box-shadow:inset -2px 0 0 var(--surface-2)}
 .rail{display:flex;flex-direction:column;gap:12px;min-width:0}
 .rally-card{padding:14px}
 .rally-card header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
@@ -2767,7 +2768,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   $('#btnPrev').addEventListener('click', () => { const i = nearestRally(P.t); const rs = cur.eff.rallies; const j = (rallyAt(P.t) >= 0 && P.t > rs[i].t0) ? i : Math.max(0, i - 1); seek(rs[j].t0 - 0.6); });
   $('#btnNext').addEventListener('click', () => { const rs = cur.eff.rallies; const i = rs.findIndex(r => r.t0 - 0.6 > P.t + 0.05); if (i >= 0) seek(rs[i].t0 - 0.6); });
   seg($('#optRate'), '1', v => { P.rate = +v; if (!cur.demo) vid.playbackRate = P.rate; });
-  $('#optOnly').addEventListener('change', e => { P.only = e.target.checked; });
+  $('#optOnly').addEventListener('change', e => { P.only = e.target.checked; if (cur) { buildTimeline(); if (P.only && rallyAt(P.t) < 0) { const nx = cur.eff.rallies.find(r => r.t0 - 0.6 > P.t) || cur.eff.rallies[0]; if (nx) seek(nx.t0 - 0.6); } P.dirty = true; } });
   $('#optLines').addEventListener('change', e => { P.lines = e.target.checked; P.dirty = true; });
   function theater(on) {
     const el = $('#player'); el.classList.toggle('theater', on); document.body.classList.toggle('theater-on', on);
@@ -2922,7 +2923,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     } else $('#timeLbl').textContent = fmtT(P.t) + ' / ' + fmtT(cur.doc.src.duration);
     { const i = nearestRally(P.t), w = i >= 0 ? rallyWin(i) : null, rs = $('#rallyScrub');
       if (w) { if (document.activeElement !== rs) rs.value = Math.round(clamp((P.t - w[0]) / (w[1] - w[0]), 0, 1) * 1000); $('#rallyScrubLbl').textContent = `#${i + 1} ${fmtT(Math.max(0, P.t - w[0]))}/${fmtT(w[1] - w[0])}`; } }
-    const ph = $('#timeline .ph'); if (ph) ph.style.left = (P.t / cur.doc.src.duration * 100) + '%';
+    const ph = $('#timeline .ph'); if (ph) ph.style.left = (timeFrac(P.t) * 100) + '%';
     const ri = nearestRally(P.t);
     if (ri !== P.rallyIdx) { P.rallyIdx = ri; renderRally(); $$('#timeline .rb').forEach((el, i) => el.classList.toggle('cur', i === ri)); }
     // highlight current shot
@@ -2931,14 +2932,36 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     renderBoardAt();
   }
 
+  // edited timeline: with "랠리만" on, the bar holds only the played stretches back to back (dead time cut out)
+  function edited() { return P.only && cur.eff.rallies.length > 0; }
+  function editMap() {
+    const ws = playWindows(); let acc = 0;
+    const segs = ws.map(([a, b]) => { const o = { a, b, e: acc }; acc += b - a; return o; });
+    return { segs, total: acc };
+  }
+  function realToEdit(t) {
+    const m = editMap();
+    for (const sg of m.segs) { if (t < sg.a) return sg.e; if (t <= sg.b) return sg.e + t - sg.a; }
+    return m.total;
+  }
+  function editToReal(e) {
+    const m = editMap();
+    for (const sg of m.segs) if (e <= sg.e + (sg.b - sg.a)) return sg.a + Math.max(0, e - sg.e);
+    const l = m.segs[m.segs.length - 1]; return l ? l.b : 0;
+  }
+  function timeFrac(t) { return edited() ? realToEdit(t) / Math.max(1e-6, editMap().total) : t / cur.doc.src.duration; }
   function buildTimeline() {
-    const tl = $('#timeline'), d = cur.doc.src.duration;
-    tl.innerHTML = cur.eff.rallies.map(r => `<div class="rb" style="left:${(r.t0 / d * 100).toFixed(3)}%;width:${Math.max(0.4, (r.t1 - r.t0) / d * 100).toFixed(3)}%"></div>`).join('') + '<div class="ph"></div>';
+    const tl = $('#timeline'), d = cur.doc.src.duration, ed = edited(), tot = ed ? editMap().total : d;
+    tl.classList.toggle('edited', ed);
+    tl.innerHTML = cur.eff.rallies.map(r => {
+      const a = ed ? realToEdit(Math.max(0, r.t0 - 0.8)) : r.t0, b = ed ? realToEdit(Math.min(d, r.t1 + 0.8)) : r.t1;
+      return `<div class="rb" style="left:${(a / tot * 100).toFixed(3)}%;width:${Math.max(0.4, (b - a) / tot * 100).toFixed(3)}%"></div>`;
+    }).join('') + '<div class="ph"></div>';
   }
   (function timelinePointer() {
     const tl = $('#timeline');
     let down = false;
-    const go = (e) => { const r = tl.getBoundingClientRect(); seek(clamp((e.clientX - r.left) / r.width, 0, 1) * cur.doc.src.duration); };
+    const go = (e) => { const r = tl.getBoundingClientRect(), f = clamp((e.clientX - r.left) / r.width, 0, 1); seek(edited() ? editToReal(f * editMap().total) : f * cur.doc.src.duration); };
     tl.addEventListener('pointerdown', (e) => { if (!cur) return; down = true; tl.setPointerCapture(e.pointerId); go(e); });
     tl.addEventListener('pointermove', (e) => { if (down) go(e); });
     tl.addEventListener('pointerup', () => { down = false; });
