@@ -75,6 +75,9 @@ p{margin:0}
 .chip.ball{background:var(--ball);color:var(--ball-ink)}
 
 /* Home */
+.intro{padding-block:8px 20px}
+.intro h1{font-size:clamp(22px,4.4vw,30px);line-height:1.3;max-width:28ch}
+.intro .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center;padding-block:12px 28px}
 .hero .lede{font-size:16px;color:var(--ink-2);max-width:52ch;margin-top:12px}
 .hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
@@ -443,24 +446,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
   <!-- HOME -->
   <section id="vHome">
-    <div class="hero">
-      <div>
-        <span class="label">코트 뒤 휴대폰 한 대로</span>
-        <h1 style="margin-top:8px">찍어 두면 랠리를 잘라 주고, 공이 떨어진 자리를 짚어 줍니다</h1>
-        <p class="lede"><b>코트에서 촬영 시작</b>을 누르면 찍는 동안 바로 분석해서, 녹화를 끝내자마자 랠리만 이어 붙인 영상과 통계가 열립니다. 펜스나 삼각대에 휴대폰을 올리고 경기를 찍으세요. 영상은 이 기기 안에서만 분석됩니다. 랠리별 리플레이, 라인 판정, 샷 속도, 깊이 분포, 점수까지 한 화면에서 보고 틀린 판정은 한 번에 고칩니다.</p>
-        <div class="actions">
-          <button class="btn primary" id="liveGo" type="button">코트에서 촬영 시작</button>
-          <button class="btn ball" id="openDemo" type="button">샘플 경기 열어 보기</button>
-          <label class="btn" for="fileOpen">찍어 둔 영상 분석</label>
-        </div>
+    <div class="intro">
+      <h1>테니스 영상을 넣으면 공 궤적·샷 종류·속도·낙하지점을 보여 줍니다</h1>
+      <div class="actions">
+        <label class="btn primary" for="fileOpen">영상 불러와 분석</label>
+        <button class="btn" id="liveGo" type="button">코트에서 촬영하며 분석</button>
       </div>
-      <div class="court-art"><canvas id="heroArt" width="640" height="400" aria-label="코트 위 공 궤적 그림"></canvas></div>
     </div>
-    <ol class="steps">
-      <li><b>1 · 거치</b><p>센터마크 바로 뒤, 뒤 펜스 쪽으로 최대한 물러나 스탠드를 최대한 높게 세우고 폰을 <b>가로·0.5배</b>로 찍습니다. 먼 쪽 모서리 두 개와 가까운 쪽 단식 모서리 두 개는 꼭 보여야 합니다. 짐벌 세팅은 아래 <b>촬영 전 체크리스트</b>를 펼쳐 보세요.</p></li>
-      <li><b>2 · 코트 맞추고 녹화</b><p><b>코트에서 촬영 시작</b> → 점 네 개를 대충 놓고 <b>선에 자동 맞춤</b> → 녹화. 다음부터는 지난 위치를 기억합니다. 찍는 동안 공을 따라가며 랠리와 점수를 셉니다.</p></li>
-      <li><b>3 · 끝나자마자 리뷰</b><p>녹화를 끝내면 바로 랠리만 이어 붙인 영상이 중계 그래픽과 함께 재생됩니다. 샷 배치·속도·인 비율 통계, 판정 수정, 하이라이트 내보내기.</p></li>
-    </ol>
     <details class="panel shoot" id="shootGuide">
       <summary><span><b>촬영 전 체크리스트</b><small>스탠드 · Flow 2 Pro 짐벌 · 아이폰 카메라 · 약 3분</small></span><i aria-hidden="true">+</i></summary>
       <div class="shoot-body">
@@ -487,11 +479,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       </div>
     </details>
     <div class="panel recover" id="recoverNote" hidden></div>
-    <section id="progress" class="progress" aria-label="이번 주와 실력 변화"></section>
-    <section id="peopleStats" class="progress" aria-label="함께 친 사람"></section>
     <div class="list-head"><h2>내 세션</h2><span class="muted" id="storeNote"></span></div>
-    <div class="filter-note" id="filterNote" hidden></div>
-    <p class="hint" style="margin:-4px 0 12px">Claude가 분석해 준 세션 파일(.json)은 <label for="fileSession" style="text-decoration:underline;cursor:pointer">여기서 열기</label><input id="fileSession" type="file" accept=".json,application/json" hidden></p>
     <div class="sessions" id="sessionList"></div>
   </section>
 
@@ -518,16 +506,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <div class="row" style="gap:8px;align-items:center;flex-wrap:wrap"><button class="btn sm" id="autoFit" type="button">선에 자동 맞춤</button><span class="hint" id="autoFitMsg">점을 대충 맞춘 뒤 누르면 흰 선에 딱 붙입니다.</span></div>
         <p class="hint">점 네 개를 코트의 <b>기준점</b>에 끌어다 맞추세요. 끄는 동안 확대경이 뜹니다. 파란 선이 실제 라인과 겹치면 정확합니다.</p>
         <div class="field"><span class="label">가까운 쪽 기준점</span><div class="seg" id="optRef"><button type="button" data-v="baseline">복식 모서리</button><button type="button" data-v="singles">단식 모서리</button><button type="button" data-v="service">서비스라인</button></div><span class="hint">뒤 공간이 짧아 가까운 복식 모서리가 잘리면 <b>단식 모서리</b>(베이스라인과 단식 사이드라인이 만나는 점)를 고르세요. 그것도 잘리면 서비스라인.</span></div>
-        <div class="field"><span class="label">종류</span><div class="seg" id="optMode"><button type="button" data-v="match">경기</button><button type="button" data-v="practice">연습·랠리</button></div></div>
+        <div class="field"><span class="label">종류</span><div class="seg" id="optMode"><button type="button" data-v="match">경기</button><button type="button" data-v="practice">연습·랠리</button></div><span class="hint">경기는 랠리 첫 샷을 서브로, 연습은 피드로 봅니다.</span></div>
         <div class="field"><span class="label">판정 기준</span><div class="seg" id="optCourt"><button type="button" data-v="doubles">복식</button><button type="button" data-v="singles">단식</button></div></div>
-        <div class="field"><span class="label">처음에 나는</span><div class="seg" id="optMe"><button type="button" data-v="near">카메라 쪽</button><button type="button" data-v="far">반대편</button></div></div>
-        <div class="field"><span class="label">내 손</span><div class="seg" id="optHand"><button type="button" data-v="R">오른손</button><button type="button" data-v="L">왼손</button></div><span class="hint">포핸드·백핸드 자동 구분에 씁니다.</span></div>
-        <label class="check live-only" hidden><input type="checkbox" id="optVoice"> 포인트마다 점수 읽어 주기 (자동 추정)</label>
-        <div class="field" id="matchOnly">
-          <span class="label">경기 방식</span>
-          <div class="seg" id="optSets"><button type="button" data-v="1">1세트</button><button type="button" data-v="2">3세트(2선승)</button></div>
-          <label class="check"><input type="checkbox" id="optSwap" checked> 홀수 게임 후 코트를 바꿈</label>
-        </div>
+
         <div class="field" id="speedField"><span class="label">분석 방식</span><div class="seg" id="optSpeed"><button type="button" data-v="30">정밀 (영상 길이만큼)</button><button type="button" data-v="15">빠르게 (절반)</button></div></div>
         <button class="btn primary" id="startAnalyze" type="button">분석 시작</button>
         <p class="hint" id="startHint">분석하는 동안 화면을 켜 두세요. 영상은 서버로 올라가지 않습니다.</p>
@@ -569,15 +550,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <input class="title" id="sessTitle" aria-label="세션 이름">
       <span class="chip" id="sessMode"></span>
     </div>
-    <div class="panel people" id="people" hidden></div>
-    <datalist id="peopleNames"></datalist>
-    <div class="board" id="board"></div>
     <p class="panel" id="moveWarn" hidden style="margin-top:10px;padding:10px 14px;font-size:14px;border-color:color-mix(in srgb,var(--warn) 45%,var(--rule));color:var(--ink)"></p>
-    <div class="tabs" role="tablist" style="margin-top:16px">
-      <button role="tab" aria-selected="true" data-tab="review" type="button">리뷰</button>
-      <button role="tab" aria-selected="false" data-tab="stats" type="button">통계</button>
-      <button role="tab" aria-selected="false" data-tab="rallies" type="button">랠리 목록</button>
-    </div>
 
     <div id="tabReview">
       <div class="review">
@@ -585,8 +558,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           <div class="stage" id="stage">
             <video id="vid" playsinline preload="auto"></video>
             <canvas id="overlay"></canvas>
-            <div class="rvhud" id="rvHud" hidden><span id="rvWhy"></span><button class="btn sm" data-h="ok" type="button">맞음</button><button class="btn sm primary" data-h="next" type="button">다음 ▶</button><button class="btn sm ghost" data-h="x" type="button" aria-label="확인 끝내기">✕</button></div>
-            <div class="pinbar" id="pinBar" hidden><span></span><button class="btn sm" id="pinNone" type="button">바운스 없음</button><button class="btn sm" id="pinCancel" type="button">취소</button></div>
             <div class="reattach" id="reattach" hidden>
               <b>원본 영상을 다시 연결해 주세요</b>
               <span style="font-size:13px;opacity:.8" id="reattachName"></span>
@@ -596,76 +567,30 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             </div>
           </div>
           <div class="timeline" id="timeline" aria-label="타임라인"></div>
-          <div class="rscrub"><span>현재 랠리</span><input type="range" id="rallyScrub" min="0" max="1000" value="0" aria-label="현재 랠리 안에서 이동"><span class="num" id="rallyScrubLbl"></span></div>
           <div class="controls">
-            <button class="btn sm" id="btnFrameB" type="button" title="한 프레임 뒤로 (←)">◀︎ 1</button>
             <button class="btn sm" id="btnPrev" type="button">이전 랠리</button>
             <button class="btn primary sm" id="btnPlay" type="button">재생</button>
             <button class="btn sm" id="btnNext" type="button">다음 랠리</button>
-            <button class="btn sm" id="btnFrameF" type="button" title="한 프레임 앞으로 (→)">1 ▶︎</button>
             <div class="seg" id="optRate"><button type="button" data-v="0.25">¼</button><button type="button" data-v="0.5">½</button><button type="button" data-v="1">1×</button></div>
             <label class="check"><input type="checkbox" id="optOnly" checked> 랠리만</label>
-            <label class="check"><input type="checkbox" id="optLines"> 코트 선</label>
-            <label class="check"><input type="checkbox" id="optBroad"> 중계 그래픽</label>
-            <label class="check"><input type="checkbox" id="optFollow"> 따라가기</label>
             <button class="btn sm" id="btnTheater" type="button">전체 화면</button>
             <span class="time" id="timeLbl">0:00</span>
           </div>
-          <div class="panel summary" id="playSummary"></div>
         </div>
         <div class="rail">
-          <div class="panel reviewbar" id="reviewBar"></div>
           <div class="panel rally-card" id="rallyCard"></div>
           <div class="panel card-pad">
-            <h3>내보내기</h3>
+            <h3>영상 저장</h3>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <button class="btn sm ball" id="btnHighlights" type="button">하이라이트 영상 만들기</button>
-              <button class="btn sm" id="btnCsv" type="button">샷 기록 CSV</button>
               <button class="btn sm" id="btnOrig" type="button" hidden>원본 영상 저장</button>
-              <button class="btn sm" id="btnTruth" type="button" title="고친 내용을 담은 파일 · 공 추적 AI 학습 재료">학습용 정답 파일</button>
             </div>
-            <p class="hint" style="margin:0">랠리 고르기, 포핸드·서브만 모으기, 세로 9:16 릴스, 내 폰으로 에어드롭</p>
+            <p class="hint" style="margin:0">공 궤적·샷 종류·속도·낙하지점을 넣은 영상 · 랠리만 / 샷 종류별 모음 · 가로·정사각·세로</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="tabStats" hidden>
-      <div class="stats-grid">
-        <div class="panel card-pad">
-          <h3>나와 상대</h3>
-          <table class="cmp" id="cmpTable"></table>
-          <div>
-            <span class="label">들어간 공의 깊이</span>
-            <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px" id="depthBars"></div>
-            <div class="depth-legend"><span><i style="background:var(--warn)"></i>짧음(서비스라인 안)</span><span><i style="background:var(--court)"></i>중간</span><span><i style="background:var(--in)"></i>깊음(베이스라인 3m 안)</span></div>
-          </div>
-          <p class="note">속도는 타구 순간부터 바운스까지의 평균 속도 추정치라 레이더 최고 속도보다 낮게 나옵니다. 같은 자리에서 찍은 세션끼리 비교할 때 가장 쓸모 있습니다.</p>
-        </div>
-        <div class="panel card-pad heat">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h3>샷 배치</h3><div class="seg" id="optHeat"><button type="button" data-v="me">내 샷</button><button type="button" data-v="op">상대 샷</button></div></div>
-          <div id="heatSvg"></div>
-        </div>
-        <div class="panel card-pad">
-          <h3>샷 구성</h3>
-          <div id="mixTable"></div>
-          <p class="note">샷 종류와 스핀은 자동 추정입니다. 리뷰에서 샷 종류·스핀 버튼을 눌러 고칠 수 있고, 고친 내용은 바로 반영됩니다.</p>
-        </div>
-        <div class="panel card-pad">
-          <h3>랠리 길이</h3>
-          <div class="hist" id="hist"></div>
-          <p class="note" id="rallyNote"></p>
-        </div>
-        <div class="panel card-pad">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>코칭 노트</h3><button class="btn sm" id="btnCoach" type="button">이 세션 코칭 받기</button></div>
-          <div class="coach muted" id="coachOut">통계를 바탕으로 다음 연습에서 집중할 점 세 가지를 정리해 드립니다.</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tabRallies" hidden>
-      <div class="panel tbl-wrap"><table class="rt" id="rallyTable"></table></div>
-    </div>
   </section>
 </div>
 
@@ -1590,13 +1515,12 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const C = RN.C;
   const LS = 'rallynote.sessions.v1';
   const VIEWS = ['vHome', 'vSetup', 'vLive', 'vAnalyze', 'vSession'];
-  const TYPES = [null, 'forehand', 'backhand', 'volley', 'smash', 'serve', 'feed'];
   const TYPE_KO = { serve: '서브', forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시', feed: '피드' };
   // spin, like SwingVision's shot card: topspin / flat / slice (volleys have none)
-  const SPINS = [null, 'top', 'flat', 'slice'];
   const SPIN_KO = { top: '탑스핀', flat: '플랫', slice: '슬라이스' };
-  const SPIN_MARK = { top: '▲', flat: '■', slice: '◗' };
   const ZONE_KO = { short: '짧음', mid: '중간', deep: '깊음' };
+  // stroke colours, as on SwingVision's shot card
+  const TYPE_COL = { forehand: '#2fb35a', backhand: '#ff8a2a', volley: '#f5c518', smash: '#22b8d0', serve: '#8f7cff', feed: '#e6eaec', none: '#9aa6ad' };
 
   let sessions = [];
   let cur = null;           // open session runtime
@@ -1616,9 +1540,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       b.onclick = () => { seg(el, b.dataset.v, onChange); onChange && onChange(b.dataset.v); };
     });
   }
-  function segVal(el) { const b = el.querySelector('button[aria-pressed="true"]'); return b ? b.dataset.v : null; }
   function modal(html) { $('#modalBox').innerHTML = html; $('#modal').hidden = false; }
-  function closeModal() { $('#modal').hidden = true; $('#modalBox').innerHTML = ''; if (challenge) challenge.stop(); }
+  function closeModal() { $('#modal').hidden = true; $('#modalBox').innerHTML = ''; P.dirty = true; }
   $('#modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#modal').hidden) closeModal(); });
 
@@ -1730,219 +1653,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     return { rallies: rs, score: sc };
   }
 
-  // ---------- weekly goals + progress (all numbers are estimates until checked on real footage) ----------
-  const GOAL_DEF = [
-    { key: 'sessions', label: '이번 주 세션', unit: '회', def: 2 },
-    { key: 'inPct', label: '내 샷 인 비율', unit: '%', def: 70 },
-    { key: 'deepPct', label: '깊은 공 비율', unit: '%', def: 30 }
-  ];
-  let goals = null;
-  function weekStart(ts) { const d = new Date(ts); const day = (d.getDay() + 6) % 7; d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - day); return d.getTime(); }
-  function sessionMetrics(doc) {
-    const ef = effective(doc);
-    const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
-    return { rs, st: RN.stats(rs, 'me') };
-  }
-  function pooled(docs) {
-    const rs = docs.flatMap(d => sessionMetrics(d).rs);
-    const st = RN.stats(rs, 'me');
-    const ins = st.zones.short + st.zones.mid + st.zones.deep;
-    return { sessions: docs.length, inPct: st.inPct, deepPct: ins ? Math.round(st.zones.deep / ins * 100) : null, avgSpeed: st.avgSpeed, avgRally: rs.length ? st.avgRally : null };
-  }
-  async function renderProgress() {
-    const el = $('#progress');
-    const real = sessions.filter(d => !d.demo);
-    if (!goals) goals = (await store.getGoals()) || Object.fromEntries(GOAL_DEF.map(g => [g.key, g.def]));
-    if (!real.length) {
-      el.innerHTML = `<div class="head"><h2>이번 주</h2></div><div class="empty">영상을 하나 분석하면 이번 주 목표 달성도와 세션별 실력 변화가 여기에 그래프로 쌓입니다.</div>`;
-      return;
-    }
-    const now = Date.now(), w0 = weekStart(now), w1 = w0 - 7 * 864e5;
-    const thisW = pooled(real.filter(d => d.created >= w0)), lastW = pooled(real.filter(d => d.created >= w1 && d.created < w0));
-    const card = (g) => {
-      const v = thisW[g.key], target = +goals[g.key] || g.def, prev = lastW[g.key];
-      const pct = v == null ? 0 : Math.min(100, v / target * 100);
-      const met = v != null && v >= target;
-      const delta = v != null && prev != null ? (v === prev ? '지난주와 같음' : (v > prev ? '▲ ' : '▼ ') + Math.abs(v - prev) + g.unit + ' 지난주 대비') : (prev == null ? '지난주 기록 없음' : '');
-      return `<div class="panel goal${met ? ' met' : ''}">
-        <div class="top"><span class="label">${g.label}</span>${met ? '<span class="chip in">달성</span>' : ''}</div>
-        <div class="now num">${v ?? '–'}<small>${v != null ? g.unit : ''}</small></div>
-        <div class="meter" role="img" aria-label="목표 대비 ${Math.round(pct)}%"><i style="width:${pct.toFixed(0)}%"></i></div>
-        <div class="top"><span class="delta">${delta}</span><label class="set">목표 <input type="number" inputmode="numeric" min="1" max="100" data-goal="${g.key}" value="${esc(target)}" aria-label="${g.label} 목표">${g.unit}</label></div>
-      </div>`;
-    };
-    // trend per session, oldest first
-    const series = real.slice().sort((a, b) => a.created - b.created).slice(-20).map(d => { const m = pooled([d]); return { d, ...m }; });
-    const trend = (key, label, unit, goalKey) => {
-      const pts = series.filter(x => x[key] != null);
-      if (pts.length < 2) return `<div class="panel trend"><h4>${label}<span>세션 2개부터 그래프</span></h4></div>`;
-      const vals = pts.map(x => x[key]), goal = goalKey ? +goals[goalKey] : null;
-      let lo = Math.min(...vals, goal ?? Infinity), hi = Math.max(...vals, goal ?? -Infinity);
-      const pad = Math.max(2, (hi - lo) * 0.15); lo = Math.max(0, Math.floor(lo - pad)); hi = Math.ceil(hi + pad); if (unit === '%') hi = Math.min(100, hi); if (hi <= lo) hi = lo + 1;
-      const Wd = 320, Ht = 110, L = 28, R = 8, T = 8, B = 20;
-      const X = (i) => L + (pts.length === 1 ? 0 : i * (Wd - L - R) / (pts.length - 1)), Y = (v) => T + (1 - (v - lo) / (hi - lo)) * (Ht - T - B);
-      const path = pts.map((x, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(x[key]).toFixed(1)).join(' ');
-      const dt = (ts) => { const d = new Date(ts); return (d.getMonth() + 1) + '/' + d.getDate(); };
-      const last = pts[pts.length - 1];
-      return `<div class="panel trend" data-unit="${unit}"><h4>${label}<span>최근 ${pts.length}세션</span></h4>
-        <svg viewBox="0 0 ${Wd} ${Ht}" role="img" aria-label="${label} 세션별 변화">
-          <line x1="${L}" x2="${Wd - R}" y1="${Y(lo)}" y2="${Y(lo)}" stroke="var(--rule)" stroke-width="1"/>
-          <text x="${L - 6}" y="${Y(hi) + 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">${hi}</text>
-          <text x="${L - 6}" y="${Y(lo) + 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">${lo}</text>
-          ${goal != null ? `<line x1="${L}" x2="${Wd - R}" y1="${Y(goal)}" y2="${Y(goal)}" stroke="var(--in)" stroke-width="1.5" stroke-dasharray="4 4"/><text x="${Wd - R}" y="${Y(goal) - 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">목표 ${goal}${unit}</text>` : ''}
-          <path d="${path}" fill="none" stroke="var(--court)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-          ${pts.map((x, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(x[key]).toFixed(1)}" r="${i === pts.length - 1 ? 5 : 3.5}" fill="${i === pts.length - 1 ? 'var(--court)' : 'var(--surface)'}" stroke="var(--court)" stroke-width="2"/>
-            <rect x="${(X(i) - 12).toFixed(1)}" y="0" width="24" height="${Ht}" fill="transparent" data-tip="${dt(x.d.created)} · ${esc(x.d.name)} · ${x[key]}${unit}"/>`).join('')}
-          <text x="${L}" y="${Ht - 4}" font-size="10" fill="var(--ink-2)">${dt(pts[0].d.created)}</text>
-          <text x="${Wd - R}" y="${Ht - 4}" text-anchor="end" font-size="10" fill="var(--ink-2)">${dt(last.d.created)}</text>
-        </svg></div>`;
-    };
-    el.innerHTML = `<div class="head"><h2>이번 주</h2><span class="est">추정치 · 실제 영상 검증 전</span></div>
-      <div class="goals">${GOAL_DEF.map(card).join('')}</div>
-      <div class="head" style="margin-top:8px"><h3>실력 변화</h3><span class="muted" style="font-size:12px">세션마다 한 점 · 점을 누르면 값</span></div>
-      <div class="trends">${trend('inPct', '내 샷 인 비율', '%', 'inPct')}${trend('deepPct', '깊은 공 비율', '%', 'deepPct')}${trend('avgSpeed', '평균 속도', 'km/h', null)}${trend('avgRally', '평균 랠리 길이', '샷', null)}</div>`;
-  }
-  $('#progress').addEventListener('change', async (e) => {
-    const inp = e.target.closest('[data-goal]'); if (!inp) return;
-    const v = Math.max(1, Math.min(100, Math.round(+inp.value || 0)));
-    goals = Object.assign({}, goals, { [inp.dataset.goal]: v });
-    await store.saveGoals(goals); renderProgress(); toast('목표를 바꿨습니다');
-  });
-  (function trendTips() {
-    const show = (e) => {
-      const r = e.target.closest && e.target.closest('rect[data-tip]'); const card = e.target.closest && e.target.closest('.trend');
-      document.querySelectorAll('.trend .tip').forEach(t => t.remove());
-      if (!r || !card) return;
-      const tip = document.createElement('div'); tip.className = 'tip'; tip.textContent = r.dataset.tip;
-      const cb = card.getBoundingClientRect(), rb = r.getBoundingClientRect();
-      tip.style.left = Math.min(cb.width - 70, Math.max(70, rb.left - cb.left + rb.width / 2)) + 'px'; tip.style.top = (rb.top - cb.top + 40) + 'px';
-      card.appendChild(tip);
-    };
-    $('#progress').addEventListener('pointerover', show);
-    $('#progress').addEventListener('click', show);
-    $('#progress').addEventListener('pointerleave', () => document.querySelectorAll('.trend .tip').forEach(t => t.remove()));
-  })();
-
-  // ---------- people: partner / opponents per session, stats per person ----------
-  const ROLE = { partner: '파트너', opp: '상대', mate: '같이 침' };
-  let personFilter = null; // { key, name, role }
-  let peopleAll = false;
-  const normName = (s) => String(s || '').trim().replace(/\s+/g, ' ');
-  const nameKey = (s) => normName(s).toLowerCase();
-  function peopleOf(doc) {
-    // -> [{ name, role }] ; practice sessions list everyone as "mate"
-    const p = doc.people; if (!p) return [];
-    const out = [];
-    if (doc.mode === 'match' && normName(p.partner)) out.push({ name: normName(p.partner), role: 'partner' });
-    (p.opps || []).map(normName).filter(Boolean).forEach(n => out.push({ name: n, role: doc.mode === 'match' ? 'opp' : 'mate' }));
-    return out;
-  }
-  function matchResult(doc) {
-    if (doc.mode !== 'match') return null;
-    const sc = effective(doc).score, snaps = sc.snaps.filter(Boolean), f = sc.final;
-    const pw = snaps.filter(s => s.who === 0).length;
-    const sw = f.sets.filter(s => s[0] > s[1]).length, sl = f.sets.length - sw;
-    const gw = f.sets.reduce((a, s) => a + s[0], 0) + f.g[0], gl = f.sets.reduce((a, s) => a + s[1], 0) + f.g[1];
-    // finished match -> sets decide; partial footage -> sets, then games, then points so far
-    let res = null;
-    if (sw !== sl) res = sw > sl ? 'W' : 'L';
-    else if (gw !== gl) res = gw > gl ? 'W' : 'L';
-    else if (pw * 2 !== snaps.length) res = pw * 2 > snaps.length ? 'W' : 'L';
-    return { res, done: f.done, pw, pl: snaps.length - pw };
-  }
-  function knownNames() {
-    const m = new Map();
-    sessions.filter(d => !d.demo).forEach(d => peopleOf(d).forEach(x => { if (!m.has(nameKey(x.name))) m.set(nameKey(x.name), x.name); }));
-    return [...m.values()].sort((a, b) => a.localeCompare(b, 'ko'));
-  }
-  function personRows() {
-    const m = new Map();
-    for (const d of sessions) {
-      if (d.demo) continue;
-      for (const x of peopleOf(d)) {
-        const k = nameKey(x.name) + '|' + x.role;
-        if (!m.has(k)) m.set(k, { key: k, name: x.name, role: x.role, docs: [] });
-        m.get(k).docs.push(d);
-      }
-    }
-    return [...m.values()].map(r => {
-      const pl = pooled(r.docs);
-      let w = 0, l = 0, pw = 0, pt = 0, partial = 0;
-      r.docs.forEach(d => { const mr = matchResult(d); if (!mr) return; if (mr.res === 'W') w++; else if (mr.res === 'L') l++; if (!mr.done) partial++; pw += mr.pw; pt += mr.pw + mr.pl; });
-      const last = Math.max(...r.docs.map(d => d.created || 0));
-      return Object.assign(r, { n: r.docs.length, w, l, partial, ptPct: pt ? Math.round(pw / pt * 100) : null, inPct: pl.inPct, avgRally: pl.avgRally, last });
-    }).sort((a, b) => b.n - a.n || b.last - a.last);
-  }
-  function renderPeopleStats() {
-    const el = $('#peopleStats');
-    const real = sessions.filter(d => !d.demo);
-    if (!real.length) { el.innerHTML = ''; el.hidden = true; return; }
-    el.hidden = false;
-    const rows = personRows();
-    if (personFilter && !rows.some(r => r.key === personFilter.key)) personFilter = null;
-    const head = `<div class="head"><h2>함께 친 사람</h2>${rows.length ? '<span class="est">추정치 · 실제 영상 검증 전</span>' : ''}</div>`;
-    if (!rows.length) {
-      el.innerHTML = head + `<div class="empty">세션을 열고 맨 위의 <b>함께 친 사람</b>에 파트너와 상대 이름을 적어 두면, 사람별 승패와 내 샷 통계가 여기에 모입니다.</div>`;
-      return;
-    }
-    const card = (r) => {
-      const rec = r.role === 'mate'
-        ? `<b>${r.n}</b>세션 같이 침`
-        : `<b>${r.n}</b>세션 · <b>${r.w}승 ${r.l}패</b>${r.partial ? ` <span title="끝까지 찍지 않은 경기는 찍힌 데까지의 점수로 셉니다">· 중간까지 찍은 경기 ${r.partial}개 포함</span>` : ''}`;
-      const f1 = r.role === 'mate' ? ['평균 랠리', r.avgRally, '샷'] : ['포인트 득점', r.ptPct, '%'];
-      const figs = [f1, ['내 샷 인', r.inPct, '%'], r.role === 'mate' ? ['세션', r.n, '회'] : ['평균 랠리', r.avgRally, '샷']];
-      return `<button type="button" class="panel pcard" data-person="${esc(r.key)}" aria-pressed="${personFilter && personFilter.key === r.key}">
-        <div class="row"><b>${esc(r.name)}</b><span class="chip ${r.role === 'opp' ? '' : 'mate'}">${ROLE[r.role]}</span></div>
-        <div class="rec">${rec}</div>
-        <div class="figs">${figs.map(([lab, v, u]) => `<div><b>${v ?? '–'}${v != null ? `<small>${u}</small>` : ''}</b><span>${lab}</span></div>`).join('')}</div>
-      </button>`;
-    };
-    const LIMIT = 4, list = peopleAll ? rows : rows.filter((r, i) => i < LIMIT || (personFilter && personFilter.key === r.key));
-    const more = rows.length > LIMIT ? `<button class="btn sm" type="button" data-more>${peopleAll ? '접기' : `전체 ${rows.length}명 보기`}</button>` : '';
-    el.innerHTML = head + `<div class="pgrid">${list.map(card).join('')}</div><div class="filter-note" style="margin:0"><span>카드를 누르면 그 사람과 친 세션만 아래에 보입니다.</span>${more}</div>`;
-  }
-  $('#peopleStats').addEventListener('click', (e) => {
-    if (e.target.closest('[data-more]')) { peopleAll = !peopleAll; renderPeopleStats(); return; }
-    const c = e.target.closest('[data-person]'); if (!c) return;
-    const r = personRows().find(x => x.key === c.dataset.person);
-    personFilter = personFilter && personFilter.key === c.dataset.person ? null : (r ? { key: r.key, name: r.name, role: r.role } : null);
-    refreshHome(true);
-    if (personFilter) $('#sessionList').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-  $('#filterNote').addEventListener('click', (e) => { if (e.target.closest('[data-clear]')) { personFilter = null; refreshHome(true); } });
-
-  function renderPeople() {
-    const d = cur.doc, el = $('#people');
-    el.hidden = false;
-    const meRow = `<div class="merow"><span class="lbl">나는 처음에</span><div class="seg" id="optMeSess"><button type="button" data-v="near">카메라 쪽</button><button type="button" data-v="far">반대편</button></div><span class="hint">${d.mode === 'match' && d.opts.swapEnds ? '홀수 게임마다 코트를 바꾼 것으로 계산합니다. ' : ''}잘못 골랐으면 여기서 바꾸세요. 점수·서브권·통계가 다시 계산됩니다.</span></div>`;
-    if (d.demo) { el.innerHTML = meRow; seg($('#optMeSess'), d.opts.meStart, onMeSide); return; }
-    const p = d.people || { partner: '', opps: ['', ''] };
-    const match = d.mode === 'match', dbl = !!d.opts.doubles;
-    const f = (k, label, v) => `<label>${label}<input data-pk="${k}" list="peopleNames" value="${esc(v || '')}" placeholder="이름" autocomplete="off" enterkeyhint="done"></label>`;
-    const fields = match
-      ? (dbl ? [f('partner', '내 파트너', p.partner), f('o0', '상대 1', p.opps[0]), f('o1', '상대 2', p.opps[1])] : [f('o0', '상대', p.opps[0])])
-      : [f('o0', '같이 친 사람', p.opps[0]), f('o1', '같이 친 사람 2', p.opps[1])];
-    el.innerHTML = meRow + `<div class="ttl"><b>함께 친 사람</b><span class="hint">${match ? (dbl ? '복식' : '단식') + ' 경기 · 적어 두면 사람별 기록이 쌓입니다' : '연습 상대를 적어 두세요'}</span></div>${fields.join('')}`;
-    seg($('#optMeSess'), d.opts.meStart, onMeSide);
-    $('#peopleNames').innerHTML = knownNames().map(n => `<option value="${esc(n)}"></option>`).join('');
-  }
-  function onMeSide(v) {
-    if (!cur || cur.doc.opts.meStart === v) return;
-    cur.doc.opts.meStart = v;
-    afterEdit();
-    toast(v === 'near' ? '처음에 카메라 쪽이 나로 바꿨습니다' : '처음에 반대편이 나로 바꿨습니다');
-  }
-  $('#people').addEventListener('change', (e) => {
-    const inp = e.target.closest('[data-pk]'); if (!inp || !cur || cur.doc.demo) return;
-    const p = cur.doc.people = cur.doc.people || { partner: '', opps: ['', ''] };
-    const v = normName(inp.value); inp.value = v;
-    // reuse the spelling already on file for the same person
-    const known = knownNames().find(n => nameKey(n) === nameKey(v)); const val = known || v;
-    if (known) inp.value = known;
-    if (inp.dataset.pk === 'partner') p.partner = val; else p.opps[+inp.dataset.pk.slice(1)] = val;
-    persist(); toast(val ? `${val} 님을 기록했습니다` : '이름을 지웠습니다');
-  });
-
   // ---------- home ----------
   async function refreshHome(keep) {
     if (!keep) {
@@ -1950,30 +1660,17 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       if (saveTimer && cur && !cur.doc.demo) { clearTimeout(saveTimer); saveTimer = 0; await store.save(cur.doc); }
       sessions = await store.list();
       sessions.sort((a, b) => (b.created || 0) - (a.created || 0));
-      renderProgress();
     }
-    renderPeopleStats();
     const el = $('#sessionList');
-    $('#storeNote').textContent = store.mode === 'cloud' ? '내 계정에 저장됨 · 어느 기기에서든 열림' : '이 브라우저에 저장됨';
-    if (!sessions.length) {
-      el.innerHTML = '<div class="empty">아직 분석한 세션이 없습니다. 위의 <b>촬영하기</b>나 <b>영상 불러오기</b>로 시작하거나, 샘플 경기를 먼저 열어 보세요.</div>';
-      return;
-    }
-    const fn = $('#filterNote');
-    const shown = personFilter ? sessions.filter(d => peopleOf(d).some(x => nameKey(x.name) + '|' + x.role === personFilter.key)) : sessions;
-    fn.hidden = !personFilter;
-    if (personFilter) fn.innerHTML = `<span><b>${esc(personFilter.name)}</b> (${ROLE[personFilter.role]}) 세션 ${shown.length}개만 보는 중</span><button class="btn sm" type="button" data-clear>전체 보기</button>`;
-    el.innerHTML = shown.map(d => {
-      const ef = effective(d);
-      const me = RN.stats(ef.rallies, 'me');
-      const date = new Date(d.created || Date.now());
-      const ppl = peopleOf(d), mates = ppl.filter(x => x.role !== 'opp').map(x => x.name), opps = ppl.filter(x => x.role === 'opp').map(x => x.name);
-      const mr = matchResult(d);
-      const withLine = ppl.length ? `<div class="with">${mr && mr.res ? `<b style="color:var(--${mr.res === 'W' ? 'in' : 'out'})">${mr.res === 'W' ? '승' : '패'}</b> · ` : ''}${mates.length ? (d.mode === 'match' ? '파트너 ' : '같이 ') + esc(mates.join(', ')) : ''}${mates.length && opps.length ? ' · ' : ''}${opps.length ? '상대 ' + esc(opps.join(', ')) : ''}</div>` : '';
+    $('#storeNote').textContent = store.mode === 'cloud' ? '내 계정에 저장됨' : '이 기기에 저장됨';
+    if (!sessions.length) { el.innerHTML = '<div class="empty">아직 분석한 영상이 없습니다. <b>영상 불러와 분석</b>으로 시작하세요.</div>'; return; }
+    el.innerHTML = sessions.map(d => {
+      const ef = effective(d), shots = ef.rallies.flatMap(r => r.shots);
+      const sp = shots.map(x => x.speed).filter(Boolean), date = new Date(d.created || Date.now());
       return `<div class="panel scard" data-id="${esc(d.id)}" role="button" tabindex="0">
         <div class="row"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.name)}</b><span class="chip">${d.mode === 'match' ? '경기' : '연습'}</span></div>
-        <div class="muted" style="font-size:13px">${date.getMonth() + 1}월 ${date.getDate()}일 · ${fmtT(d.src.duration)} 영상</div>${withLine}
-        <div class="figs"><div><b>${ef.rallies.length}</b><span>랠리</span></div><div><b>${me.inPct ?? '–'}${me.inPct != null ? '<small style="font-size:13px">%</small>' : ''}</b><span>내 샷 인</span></div><div><b>${me.longest}</b><span>최장 랠리</span></div></div>
+        <div class="muted" style="font-size:13px">${date.getMonth() + 1}월 ${date.getDate()}일 · ${fmtT(d.src.duration)} 영상</div>
+        <div class="figs"><div><b>${ef.rallies.length}</b><span>랠리</span></div><div><b>${shots.length}</b><span>샷</span></div><div><b>${sp.length ? Math.max(...sp) : '–'}</b><span>최고 km/h</span></div></div>
         <div class="row" style="justify-content:flex-end"><button class="btn sm danger" data-del="${esc(d.id)}" type="button">삭제</button></div>
       </div>`;
     }).join('');
@@ -2016,37 +1713,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const doc = { id: 'demo', demo: true, bodies: encBodies(bl), name: '샘플 경기 · 8포인트', created: Date.now(), mode: 'match', opts, src: { kind: 'demo', name: 'sample', duration: DEMO.duration }, W: DEMO.W, H: DEMO.H, corners: DEMO.corners, track, rallies };
     return doc;
   }
-  $('#openDemo').addEventListener('click', () => openSession(demoDoc()));
 
-  // hero illustration: a real demo frame with the tracer drawn over it
-  function drawHero() {
-    const cv = $('#heroArt'), ctx = cv.getContext('2d');
-    const sc = getDemoScene(), W = DEMO.W, H = DEMO.H;
-    const off = document.createElement('canvas'); off.width = W; off.height = H;
-    const oc = off.getContext('2d'); const img = oc.createImageData(W, H);
-    const t = 33.35;
-    RN.renderDemo(img.data, W, H, sc.script, sc.cam, t, 3);
-    oc.putImageData(img, 0, 0);
-    const s = Math.max(cv.width / W, cv.height / H), dx = (cv.width - W * s) / 2, dy = (cv.height - H * s) / 2 - 10;
-    ctx.drawImage(off, dx, dy, W * s, H * s);
-    const pts = DEMO.pts.split(';').map(x => { const [i, xy] = x.split(':'); const [px, py] = xy.split(','); return { t: +i / DEMO.fps, x: +px, y: +py }; }).filter(p => p.t > t - 2.2 && p.t <= t);
-    ctx.lineCap = 'round';
-    for (let i = 1; i < pts.length; i++) {
-      const a = pts[i - 1], b = pts[i];
-      ctx.strokeStyle = `rgba(205,235,60,${0.15 + 0.85 * i / pts.length})`; ctx.lineWidth = 2.5;
-      ctx.beginPath(); ctx.moveTo(dx + a.x * s, dy + a.y * s); ctx.lineTo(dx + b.x * s, dy + b.y * s); ctx.stroke();
-    }
-    const calib = RN.calibrate(DEMO.corners);
-    [[5.4, 17.9, true], [6.1, 3.9, true]].forEach(([x, y]) => {
-      const [u, v] = RN.applyH(calib.toImage, x, y);
-      ctx.strokeStyle = '#3cd18a'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(dx + u * s, dy + v * s, 9, 4, 0, 0, Math.PI * 2); ctx.stroke();
-    });
-    const label = 'IN · 라인 안쪽 1.1m · 68km/h';
-    ctx.font = '600 15px "IBM Plex Sans KR", sans-serif';
-    const tw = ctx.measureText(label).width;
-    ctx.fillStyle = 'rgba(10,19,27,.78)'; ctx.fillRect(14, cv.height - 52, tw + 26, 38);
-    ctx.fillStyle = '#eef2ea'; ctx.fillText(label, 27, cv.height - 27);
-  }
 
   // ---------- new video: setup ----------
   const setup = { file: null, url: null, video: null, W: 640, H: 360, corners: null, drag: -1, frameT: 1 };
@@ -2168,10 +1835,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const cmPerPx = (y0) => { const a = P(C.CX, y0), b = P(C.CX, y0 + 0.5); const dy = Math.abs(b[1] - a[1]); return dy > 0 ? 50 / dy : Infinity; };
     const nearCm = cmPerPx(0.5), farCm = cmPerPx(C.L - 1);
     const farBallPx = Math.hypot(fr[0] - fl[0], fr[1] - fl[1]) * 0.067 / C.W;
-    const mine = setupOpts.me === 'near' ? '가까운' : '먼';
     if (farCm > 200) items.push({ ok: 'warn', t: '카메라가 낮습니다', d: `먼 쪽 코트가 눌려서 1픽셀이 ${(farCm / 100).toFixed(1)}m나 됩니다. 스탠드를 끝까지 올려 렌즈가 1.8m쯤 되게 하세요. 낮으면 가까운 선수에게 화면이 자주 가려지고 바운스를 놓칩니다.` });
     items.push({ ok: farCm > 60 ? 'info' : 'good', t: '바운스 정밀도', d: `가까운 쪽 1픽셀 ≈ ${nearCm < 100 ? Math.round(nearCm) + 'cm' : (nearCm / 100).toFixed(1) + 'm'}, 먼 쪽 1픽셀 ≈ ${farCm < 100 ? Math.round(farCm) + 'cm' : (farCm / 100).toFixed(1) + 'm'}.` +
-      (farCm > 60 ? ` 먼 쪽 베이스라인 근처 인/아웃은 참고용입니다. ${setupOpts.me === 'near' ? '내 샷을 재려면 내가 카메라 <b>반대편</b>에서 치세요. 내 공이 정밀한 가까운 쪽에 떨어집니다.' : '지금 설정(나는 반대편)이면 내 샷은 정밀한 가까운 쪽에 떨어집니다.'}` : '') +
+      (farCm > 60 ? ' 먼 쪽 베이스라인 근처 낙하지점은 참고용입니다. 카메라 쪽 코트에 떨어지는 공이 더 정확합니다.' : '') +
       (farBallPx < 1 ? ` 먼 쪽에서는 공이 분석 화면에서 ${farBallPx.toFixed(1)}픽셀 정도라 멈춰 있는 공은 놓칠 수 있습니다.` : '') });
     return items;
   }
@@ -2184,7 +1850,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       <ul>${items.map(i => `<li class="${i.ok}"><i>${icon[i.ok]}</i><div><b>${i.t}</b><span>${i.d}</span></div></li>`).join('')}</ul>
       <p class="hint" style="margin:0">점을 코트 모서리에 정확히 맞춘 뒤의 값입니다. 손볼 곳은 다음 촬영 때 고치면 되고, 이번 영상도 그대로 분석할 수 있습니다.</p>`;
   }
-  $('#optMe').addEventListener('click', () => { const cal = setupCalib(); if (cal && setup.video) drawCalib(); });
 
   function drawCalib() {
     const cv = $('#calibCanvas'), ctx = cv.getContext('2d'), k = 2, M = setup.M;
@@ -2269,12 +1934,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   seg($('#optRef'), 'baseline', refChanged);
   renderLegend();
   const setupOpts = { mode: 'match', court: 'doubles', me: 'near', sets: '1', speed: '30', hand: (() => { try { return localStorage.getItem('rallynote.hand') || 'R'; } catch (e) { return 'R'; } })() };
-  seg($('#optMode'), setupOpts.mode, v => { setupOpts.mode = v; $('#matchOnly').hidden = v !== 'match'; });
+  seg($('#optMode'), setupOpts.mode, v => { setupOpts.mode = v; });
   seg($('#optCourt'), setupOpts.court, v => { setupOpts.court = v; });
-  seg($('#optMe'), setupOpts.me, v => { setupOpts.me = v; });
-  seg($('#optSets'), setupOpts.sets, v => { setupOpts.sets = v; });
   seg($('#optSpeed'), setupOpts.speed, v => { setupOpts.speed = v; });
-  seg($('#optHand'), setupOpts.hand, v => { setupOpts.hand = v; try { localStorage.setItem('rallynote.hand', v); } catch (e) { /* ignore */ } });
 
   // ---------- analysis ----------
   let cancelAnalysis = false;
@@ -2323,7 +1985,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     return col;
   }
   function analysisOpts() {
-    return { mode: setupOpts.mode, doubles: setupOpts.court === 'doubles', rallyGap: 1.2, meStart: setupOpts.me, swapEnds: $('#optSwap').checked, setsToWin: +setupOpts.sets, hand: setupOpts.hand };
+    return { mode: setupOpts.mode, doubles: setupOpts.court === 'doubles', rallyGap: 1.2, meStart: setupOpts.me, swapEnds: true, setsToWin: +setupOpts.sets, hand: setupOpts.hand };
   }
   function makeDoc(cal, W, H, res, col, src, opts) {
     const d = new Date();
@@ -2666,7 +2328,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     try { rec = new MediaRecorder(live.stream, mime ? { mimeType: mime, videoBitsPerSecond: 10e6 } : undefined); }
     catch (e) { try { rec = new MediaRecorder(live.stream); } catch (e2) { toast('이 브라우저에서는 녹화할 수 없습니다.'); return; } }
     Object.assign(live, { rec, cal, opts, W, H, mime: rec.mimeType || mime, col: createCollector(cal, W, H), recId: 'r' + Date.now().toString(36), n: 0, puts: [], mem: new Map(),
-      t0: 0, lastT: -1, stopping: false, bg: 0, hudN: -1, hudAt: 0, hudCost: 0, spoken: 0, voice: $('#optVoice').checked, size: 0 });
+      t0: 0, lastT: -1, stopping: false, bg: 0, hudN: -1, hudAt: 0, hudCost: 0, spoken: 0, voice: false, size: 0 });
     rec.ondataavailable = (e) => {
       if (!e.data || !e.data.size) return;
       const i = live.n++; live.size += e.data.size;
@@ -2713,23 +2375,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     }
   }
   function renderLiveScore(ef, t) {
-    const rs = ef.rallies, el = $('#liveScore');
-    let lastShot = null; for (const r of rs) for (const s of r.shots) if (s.speed) lastShot = s;
-    // only count a point once the ball has been dead for a moment
-    const done = rs.filter(r => r.t1 < t - 2);
-    if (live.opts.mode === 'match') {
-      let snap = null; for (let i = 0; i < done.length; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
-      const g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
-      el.innerHTML = `<small>자동 추정 점수 · 나 / 상대</small><b>${g[0]}-${g[1]}</b> &nbsp;<b>${esc(p[0])}:${esc(p[1])}</b><small>랠리 ${done.length}개${lastShot ? ' · 최근 샷 ' + lastShot.speed + 'km/h' : ''}</small>`;
-      if (live.voice && done.length > live.spoken && 'speechSynthesis' in window) {
-        live.spoken = done.length;
-        const say = (x) => ({ '0': '러브', AD: '어드밴티지' }[x] || x);
-        try { speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(`${say(p[0])} ${say(p[1])}`), { lang: 'ko-KR', rate: 1 })); } catch (e) { /* ignore */ }
-      }
-    } else {
-      const longest = Math.max(0, ...done.map(r => r.shots.length));
-      el.innerHTML = `<small>랠리</small><b>${done.length}</b><small>최장 ${longest}샷${lastShot ? ' · 최근 ' + lastShot.speed + 'km/h' : ''}</small>`;
-    }
+    const done = ef.rallies.filter(r => r.t1 < t - 2);
+    let last = null; for (const r of ef.rallies) for (const s of r.shots) if (s.speed) last = s;
+    $('#liveScore').innerHTML = `<small>랠리</small><b>${done.length}</b><small>${last ? '최근 샷 ' + (TYPE_KO[last.type] ? TYPE_KO[last.type] + ' ' : '') + last.speed + 'km/h' : '샷을 찾는 중'}</small>`;
   }
   function drawLiveHud(c) {
     if (!$('#liveDimLayer').hidden) return;
@@ -2825,7 +2473,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function openSession(doc) {
     pausePlayer();
     const calib = RN.calibrate(doc.corners);
-    hist.undo = []; hist.redo = []; if (pinShot) endPin(); P.review = null; P.reviewT = null; $('#rvHud').hidden = true;
     cur = { doc, calib, trail: decTrack(doc.track), people: decBodies(doc.bodies), eff: null, demo: doc.src.kind === 'demo' ? getDemoScene() : null, heat: 'me' };
     recompute();
     $('#sessTitle').value = doc.name;
@@ -2855,13 +2502,12 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     vid.style.transform = '';
     // sessions analysed before stroke types were guessed
     if ((doc.typed || 0) < 2 && !doc.demo) { autoLabels(doc, cur.people, calib, cur.trail); recompute(); persist(); }
-    selectTab('review');
     show('vSession');
     const mv = (doc.moved || []).reduce((n, [a, b]) => n + b - a, 0);
     const mw = $('#moveWarn');
     if (mv > 2) { mw.hidden = false; mw.textContent = `영상 중 ${fmtT(mv)} 동안 카메라가 움직여서 그 구간은 분석에서 뺐습니다. 짐벌의 자동 추적(Insta360 Flow·DockKit)을 끄고, 촬영 중엔 폰이 고정되게 해 주세요.`; }
     else mw.hidden = true;
-    renderPeople(); buildTimeline(); renderBoard(); renderRally(true); sizeOverlay(); renderSummary();
+    buildTimeline(); renderRally(true); sizeOverlay(); P.dirty = true;
   }
   $('#fileReattach').addEventListener('change', (e) => {
     const f = e.target.files[0]; e.target.value = '';
@@ -2906,7 +2552,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   $('#btnNext').addEventListener('click', () => { const rs = cur.eff.rallies; const i = rs.findIndex(r => r.t0 - 0.6 > P.t + 0.05); if (i >= 0) seek(rs[i].t0 - 0.6); });
   seg($('#optRate'), '1', v => { P.rate = +v; if (!cur.demo) vid.playbackRate = P.rate; });
   $('#optOnly').addEventListener('change', e => { P.only = e.target.checked; if (cur) { buildTimeline(); if (P.only && rallyAt(P.t) < 0) { const nx = cur.eff.rallies.find(r => r.t0 - 0.6 > P.t) || cur.eff.rallies[0]; if (nx) seek(nx.t0 - 0.6); } P.dirty = true; } });
-  $('#optLines').addEventListener('change', e => { P.lines = e.target.checked; P.dirty = true; });
   function theater(on) {
     const el = $('#player'); el.classList.toggle('theater', on); document.body.classList.toggle('theater-on', on);
     $('#btnTheater').textContent = on ? '✕ 닫기' : '전체 화면';
@@ -2915,14 +2560,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
   $('#btnTheater').addEventListener('click', () => theater(!$('#player').classList.contains('theater')));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && $('#player').classList.contains('theater')) theater(false); });
-  const VIEWPREF = 'rallynote.view.v1';
-  (() => { let v = {}; try { v = JSON.parse(localStorage.getItem(VIEWPREF) || '{}'); } catch (e) { v = {}; } P.broad = v.broad !== false; P.follow = !!v.follow; $('#optBroad').checked = P.broad; $('#optFollow').checked = P.follow; })();
-  const saveView = () => { try { localStorage.setItem(VIEWPREF, JSON.stringify({ broad: P.broad, follow: P.follow })); } catch (e) { /* ignore */ } };
-  $('#optBroad').addEventListener('change', e => { P.broad = e.target.checked; P.dirty = true; saveView(); });
-  $('#optFollow').addEventListener('change', e => { P.follow = e.target.checked; P.dirty = true; saveView(); });
-  // second slider: position inside the current rally (like a trimming handle)
-  const rallyWin = (i) => { const r = cur.eff.rallies[i]; return r ? [Math.max(0, r.t0 - 0.8), Math.min(cur.doc.src.duration, r.t1 + 0.8)] : null; };
-  $('#rallyScrub').addEventListener('input', (e) => { if (!cur) return; const w = rallyWin(nearestRally(P.t)); if (w) seek(w[0] + (w[1] - w[0]) * (+e.target.value / 1000)); });
+  P.broad = true; P.follow = false;
   $('#btnOrig').addEventListener('click', async () => {
     if (!cur || !videoURLs[cur.doc.id]) { toast('영상을 아직 불러오는 중입니다'); return; }
     const blob = await fetch(videoURLs[cur.doc.id]).then(r => r.blob());
@@ -3045,7 +2683,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     drawOverlays(ctx, P.t, k, ox, oy, { lines: P.lines });
     if (P.broad) {
       const s = clamp(Math.min(ov.width, ov.height) / 540, 0.55, 1.6), ri = rallyAt(P.t);
-      if (doc.mode === 'match') drawScoreBoard(ctx, s, ri, teamNames(doc));
       drawMiniCourt(ctx, s, ov.width, ov.height, P.t, ri, false);
       drawShotCard(ctx, s, ov.width, ov.height, P.t, ri, null, false, ri >= 0);
     }
@@ -3058,15 +2695,12 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       for (const [a, b] of ws) { tot += b - a; if (P.t >= b) done += b - a; else if (P.t > a) done += P.t - a; }
       $('#timeLbl').textContent = '플레이 ' + fmtT(done) + ' / ' + fmtT(tot);
     } else $('#timeLbl').textContent = fmtT(P.t) + ' / ' + fmtT(cur.doc.src.duration);
-    { const i = nearestRally(P.t), w = i >= 0 ? rallyWin(i) : null, rs = $('#rallyScrub');
-      if (w) { if (document.activeElement !== rs) rs.value = Math.round(clamp((P.t - w[0]) / (w[1] - w[0]), 0, 1) * 1000); $('#rallyScrubLbl').textContent = `#${i + 1} ${fmtT(Math.max(0, P.t - w[0]))}/${fmtT(w[1] - w[0])}`; } }
     const ph = $('#timeline .ph'); if (ph) ph.style.left = (timeFrac(P.t) * 100) + '%';
     const ri = nearestRally(P.t);
     if (ri !== P.rallyIdx) { P.rallyIdx = ri; renderRally(); $$('#timeline .rb').forEach((el, i) => el.classList.toggle('cur', i === ri)); }
     // highlight current shot
     const r = cur.eff.rallies[ri];
     if (r) $$('#rallyCard .shot').forEach(el => { const s = r.shots.find(x => x.id === el.dataset.id); el.classList.toggle('now', !!s && P.t >= s.t && P.t < (r.shots[r.shots.indexOf(s) + 1]?.t ?? r.t1 + 0.8)); });
-    renderBoardAt();
   }
 
   // edited timeline: with "랠리만" on, the bar holds only the played stretches back to back (dead time cut out)
@@ -3104,498 +2738,24 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     tl.addEventListener('pointerup', () => { down = false; });
   })();
 
-  // ---------- scoreboard ----------
-  let boardKey = '';
-  function renderBoard() { boardKey = ''; renderBoardAt(); }
-  function renderBoardAt() {
-    const ef = cur.eff, doc = cur.doc, el = $('#board');
-    if (doc.mode !== 'match') {
-      const key = 'p' + ef.rallies.length;
-      if (key === boardKey) return; boardKey = key;
-      const me = RN.stats(ef.rallies.map(r => Object.assign({ meSide: doc.opts.meStart }, r)), 'me');
-      el.className = 'board practice';
-      el.innerHTML = `<div class="prac"><div><b>${ef.rallies.length}</b><span>랠리</span></div><div><b>${me.avgRally}</b><span>평균 샷</span></div><div><b>${me.longest}</b><span>최장 랠리</span></div><div><b>${me.inPct ?? '–'}</b><span>내 샷 인 %</span></div><div><b>${me.avgSpeed ?? '–'}</b><span>평균 km/h</span></div></div>`;
-      return;
-    }
-    let snap = null;
-    for (let i = 0; i < ef.rallies.length; i++) { if (ef.rallies[i].t1 + 0.3 <= P.t && ef.score.snaps[i]) snap = ef.score.snaps[i]; }
-    const sets = snap ? snap.sets : [], g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
-    const key = JSON.stringify([sets, g, p]);
-    if (key === boardKey) return; boardKey = key;
-    el.className = 'board';
-    const setCols = sets.map(s => `<div class="col"><div class="${s[0] < s[1] ? 'lose' : ''}">${s[0]}</div><div class="${s[1] < s[0] ? 'lose' : ''}">${s[1]}</div></div>`).join('');
-    const nm = teamNames(doc);
-    el.innerHTML = `<div class="who"><div><i class="dot on"></i>${esc(nm.me)}</div><div><i class="dot"></i>${esc(nm.op)}</div></div>
-      <div class="cols">${setCols}<div class="col"><div>${g[0]}</div><div>${g[1]}</div></div><div class="col pt"><div>${p[0]}</div><div>${p[1]}</div></div></div>`;
-  }
-
-  // ---------- rally card ----------
-  function whoLabel(r, s) { return s.side === r.meSide ? '나' : '상대'; }
+  // ---------- shots of the rally on screen: type, speed, landing ----------
   function renderRally() {
     const ef = cur.eff, el = $('#rallyCard');
     const ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t);
     const r = ef.rallies[ri];
-    const tools = `<div class="etools"><button class="btn sm" data-act="undo" type="button" ${hist.undo.length ? '' : 'disabled'} title="되돌리기 (Ctrl+Z)">↶ 되돌리기</button><button class="btn sm" data-act="redo" type="button" ${hist.redo.length ? '' : 'disabled'} title="다시 하기">↷</button><span class="grow"></span><button class="btn sm" data-act="addRally" type="button" title="멈춘 위치에 새 랠리">＋ 랠리</button></div>`;
-    if (!r) { el.innerHTML = tools + '<h3>랠리를 찾지 못했습니다</h3><p class="hint" style="margin-top:8px">공이 잘 보이도록 코트 뒤 높은 곳에서 찍은 영상이 가장 잘 분석됩니다. 영상을 멈추고 <b>＋ 랠리</b>로 직접 추가할 수도 있습니다.</p>'; renderReviewBar(); return; }
-    const raw = cur.doc.rallies.find(x => x.id === r.id);
-    const shotsRaw = raw.shots.slice().sort((a, b) => a.t - b.t);
-    let n = 0;
-    const rows = shotsRaw.map((s) => {
-      const e = r.shots.find(x => x.id === s.id);
-      if (!e) return `<div class="shot" data-id="${s.id}" style="opacity:.5"><span class="n">–</span><span class="muted">삭제한 샷</span><span class="acts"><button class="btn sm ghost" data-restore="${s.id}" type="button">복구</button></span></div>`;
-      n++;
-      const b = e.bounce;
-      const vd = b ? `<button class="chip ${b.in ? 'in' : 'out'} verdict" data-ch="${s.id}" type="button" title="라인 챌린지">${b.in ? 'IN' : 'OUT'}${s.bounce.override != null ? ' ✎' : ''}</button>` : '<span class="chip" title="바운스를 찾지 못함">–</span>';
-      const meta = [e.speed ? e.speed + 'km/h' : null, b && b.in ? ZONE_KO[b.zone] : null, s.inferred && !s.added ? '추정' : null, s.added ? '직접 추가' : null].filter(Boolean).join(' · ');
-      const flag = e.flags.length ? `<div class="flag"><span>⚠ ${esc(e.flags.join(' · '))}</span><button class="btn sm" data-ok="${s.id}" type="button">맞음</button></div>` : '';
-      return `<div class="shot${e.flags.length ? ' flagged' : ''}" data-id="${s.id}" data-t="${s.t}"><span class="n">${n}</span><span><button class="who" data-side="${s.id}" type="button" title="치는 사람 바꾸기">${whoLabel(r, e)}</button> <span class="meta">${fmtT(s.t)}${meta ? ' · ' + meta : ''}</span></span>
-        <span class="acts"><button class="type${e.autoType ? ' auto' : ''}" data-type="${s.id}" type="button">${TYPE_KO[e.type] || '샷 종류'}</button>${e.type === 'volley' ? '' : `<button class="type spin${e.autoSpin ? ' auto' : ''}" data-spin="${s.id}" type="button" title="스핀 바꾸기">${e.spin ? SPIN_MARK[e.spin] + ' ' + SPIN_KO[e.spin] : '스핀'}</button>`}${vd}<button class="x pin" data-pin="${s.id}" type="button" title="바운스 위치를 영상에서 찍기">📍</button><button class="x" data-del="${s.id}" type="button" aria-label="샷 삭제">×</button></span>${flag}</div>`;
+    if (!r) { el.innerHTML = '<h3>랠리를 찾지 못했습니다</h3><p class="hint" style="margin-top:8px">공이 잘 보이도록 코트 뒤 높은 곳에서 고정해서 찍은 영상이 가장 잘 분석됩니다. 코트 꼭짓점을 다시 맞추려면 영상을 다시 불러오세요.</p>'; return; }
+    const rows = r.shots.map((s, i) => {
+      const b = s.bounce;
+      const type = (s.spin ? SPIN_KO[s.spin] + ' ' : '') + (s.serve ? '서브' : (TYPE_KO[s.type] || '샷'));
+      const land = b ? `<span class="chip ${b.in ? 'in' : 'out'}">${b.in ? 'IN' : 'OUT'}</span> <span class="meta">${b.in ? ZONE_KO[b.zone] : Math.round(Math.abs(b.margin) * 100) + 'cm 밖'}</span>` : '<span class="meta">낙하지점 없음</span>';
+      return `<div class="shot" data-id="${s.id}" data-t="${s.t}"><span class="n">${i + 1}</span><span><b class="ty" style="color:${TYPE_COL[s.serve ? 'serve' : (s.type || 'none')]}">${type}</b> <span class="meta">${fmtT(s.t)}</span></span>
+        <span class="acts"><b class="num">${s.speed ? s.speed + '<small> km/h</small>' : '–'}</b> ${land}</span></div>`;
     }).join('');
-    const noWin = cur.doc.mode === 'match' && raw.winner == null && !r.auto;
-    const win = cur.doc.mode === 'match' ? `<div class="winner${noWin ? ' flagged' : ''}"><span>포인트</span>
-      <button type="button" data-win="me" aria-pressed="${(raw.winner ?? null) === r.meSide}">나</button>
-      <button type="button" data-win="op" aria-pressed="${raw.winner != null && raw.winner !== r.meSide}">상대</button>
-      <span class="auto">${raw.winner == null ? '자동 판정: ' + (r.auto ? (r.auto === r.meSide ? '나' : '상대') : '없음 ⚠') : '직접 정함'}</span></div>` : '';
-    el.innerHTML = `${tools}<header><h3>랠리 ${ri + 1} <span class="muted" style="font-weight:400">/ ${ef.rallies.length}</span></h3><span class="chip">${r.shots.length}샷</span><span class="chip">${fmtT(r.t0)}–${fmtT(r.t1)}</span></header>
-      <div class="rtools"><button class="btn sm" data-act="start" type="button" title="멈춘 위치를 이 랠리의 시작으로">시작 ⇤ 여기</button><button class="btn sm" data-act="end" type="button" title="멈춘 위치를 이 랠리의 끝으로">끝 ⇥ 여기</button><button class="btn sm" data-act="split" type="button" title="멈춘 위치에서 두 랠리로">여기서 나누기</button><button class="btn sm" data-act="merge" type="button" ${ri < ef.rallies.length - 1 ? '' : 'disabled'}>다음과 합치기</button><button class="btn sm danger" data-act="delRally" type="button">랠리 삭제</button></div>
+    el.innerHTML = `<header><h3>랠리 ${ri + 1} <span class="muted" style="font-weight:400">/ ${ef.rallies.length}</span></h3><span class="chip">${r.shots.length}샷</span><span class="chip">${fmtT(r.t0)}</span></header>
       <div class="shots">${rows}</div>
-      <button class="btn sm addshot" data-act="addShot" type="button">＋ 멈춘 위치에 샷 추가</button>${win}
-      <p class="hint" style="margin-top:10px">샷을 누르면 그 순간으로 이동합니다. <b>나/상대</b>를 누르면 치는 사람이, 샷 종류를 누르면 종류가 바뀝니다. 📍를 누르고 영상에서 공이 떨어진 곳을 탭하면 바운스 위치가 고쳐집니다. 키보드: 스페이스 재생, ←/→ 한 프레임, Ctrl+Z 되돌리기.</p>`;
-    renderReviewBar();
+      <p class="hint" style="margin-top:10px">샷을 누르면 그 순간으로 이동합니다. 속도는 친 순간부터 땅에 닿을 때까지의 평균이라 레이더보다 조금 낮게 나옵니다.</p>`;
   }
-
-  // ---------- edit history (undo / redo) ----------
-  const hist = { undo: [], redo: [] };
-  function edit(fn, msg) {
-    hist.undo.push(JSON.stringify(cur.doc.rallies)); if (hist.undo.length > 60) hist.undo.shift();
-    hist.redo = [];
-    fn(); afterEdit(); if (msg) toast(msg);
-  }
-  function undoRedo(from, to, label) {
-    if (!from.length) return;
-    to.push(JSON.stringify(cur.doc.rallies));
-    cur.doc.rallies = JSON.parse(from.pop());
-    afterEdit(); toast(label);
-  }
-  const findRaw = (id) => { for (const r of cur.doc.rallies) { const s = r.shots.find(x => x.id === id); if (s) return { r, s }; } return null; };
-  const rawRally = (ri) => { const r = cur.eff.rallies[ri]; return r ? cur.doc.rallies.find(x => x.id === r.id) : null; };
-  const uid = (p) => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
-  const other = (side) => side === 'near' ? 'far' : 'near';
-  // ball position near time t from the stored track (image px) -> court metres
-  function trackAt(t) {
-    const tr = cur.trail; let best = null, bd = 0.25;
-    for (const p of tr) { const d = Math.abs(p.t - t); if (d < bd) { bd = d; best = p; } }
-    if (!best) return null;
-    const c = RN.applyH(cur.calib.toCourt, best.x, best.y);
-    return { ix: best.x, iy: best.y, cx: c[0], cy: c[1] };
-  }
-  function needPause() { if (P.playing) pausePlayer(); }
-
-  $('#rallyCard').addEventListener('click', (e) => {
-    const doc = cur.doc;
-    const act = e.target.closest('[data-act]');
-    if (act) {
-      const a = act.dataset.act, ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t), raw = rawRally(ri), t = +P.t.toFixed(3);
-      if (a === 'undo') return undoRedo(hist.undo, hist.redo, '되돌렸습니다');
-      if (a === 'redo') return undoRedo(hist.redo, hist.undo, '다시 했습니다');
-      needPause();
-      if (a === 'addRally') {
-        if (rallyAt(t) >= 0 && cur.eff.rallies[rallyAt(t)].t0 <= t && cur.eff.rallies[rallyAt(t)].t1 >= t) { toast('이미 랠리 안입니다. 빈 곳에서 멈춘 뒤 누르세요.'); return; }
-        const id = uid('u'), b = trackAt(t);
-        const side = b ? (b.cy < C.NET ? 'near' : 'far') : 'near';
-        return edit(() => doc.rallies.push({ id, t0: t, t1: +(t + 4).toFixed(3), shots: [Object.assign({ id: uid('a'), t, side, cx: C.CX, cy: side === 'near' ? 0 : C.L, ix: null, iy: null, bounce: null, added: true, inferred: true, edited: true, ok: true }, b ? { cx: b.cx, cy: b.cy, ix: b.ix, iy: b.iy } : {})], winner: null, added: true }), '새 랠리를 만들었습니다. 끝 위치를 맞추고 샷을 추가하세요.');
-      }
-      if (!raw) return;
-      if (a === 'start') { if (t >= raw.t1) return toast('끝보다 앞에서 멈춰 주세요'); return edit(() => { raw.t0 = t; raw.edited = true; }, '시작 위치를 바꿨습니다'); }
-      if (a === 'end') { if (t <= raw.t0) return toast('시작보다 뒤에서 멈춰 주세요'); return edit(() => { raw.t1 = t; raw.edited = true; }, '끝 위치를 바꿨습니다'); }
-      if (a === 'split') {
-        const after = raw.shots.filter(s => s.t >= t);
-        if (t <= raw.t0 || t >= raw.t1 || !after.length || after.length === raw.shots.length) return toast('두 랠리 사이 공백에서 멈춘 뒤 누르세요 (양쪽에 샷이 있어야 합니다)');
-        return edit(() => {
-          raw.shots = raw.shots.filter(s => s.t < t);
-          doc.rallies.push({ id: uid('u'), t0: t, t1: raw.t1, shots: after, winner: null, edited: true });
-          raw.t1 = t; raw.winner = null; raw.edited = true;
-        }, '두 랠리로 나눴습니다');
-      }
-      if (a === 'merge') {
-        const nx = rawRally(ri + 1); if (!nx) return;
-        return edit(() => { raw.shots = raw.shots.concat(nx.shots); raw.t1 = Math.max(raw.t1, nx.t1); raw.winner = nx.winner; raw.edited = true; nx.deleted = true; nx.shots = []; }, '다음 랠리와 합쳤습니다');
-      }
-      if (a === 'delRally') return edit(() => { raw.deleted = true; }, '랠리를 지웠습니다 (되돌리기 가능)');
-      if (a === 'addShot') {
-        if (t < raw.t0 - 0.8 || t > raw.t1 + 0.8) return toast('랠리 안에서 멈춘 뒤 누르세요');
-        const prev = cur.eff.rallies[ri].shots.filter(s => s.t < t).pop();
-        const b = trackAt(t);
-        const side = b ? (b.cy < C.NET ? 'near' : 'far') : (prev ? other(prev.side) : 'near');
-        return edit(() => raw.shots.push(Object.assign({ id: uid('a'), t, side, cx: C.CX, cy: side === 'near' ? 0 : C.L, ix: null, iy: null, bounce: null, added: true, edited: true, ok: true }, b || {})), '샷을 추가했습니다. 📍로 바운스 위치를 찍어 주세요.');
-      }
-      return;
-    }
-    const t = e.target.closest('[data-type]');
-    if (t) { const { s } = findRaw(t.dataset.type); return edit(() => { const i = TYPES.indexOf(s.type ?? null); s.type = TYPES[(i + 1) % TYPES.length]; s.autoType = false; s.typeEdited = true; if (s.type === 'volley') s.spin = null; }); }
-    const sp = e.target.closest('[data-spin]');
-    if (sp) { const { s } = findRaw(sp.dataset.spin); return edit(() => { const i = SPINS.indexOf(s.spin ?? null); s.spin = SPINS[(i + 1) % SPINS.length]; s.autoSpin = false; s.spinEdited = true; }); }
-    const sd = e.target.closest('[data-side]');
-    if (sd) { const { s } = findRaw(sd.dataset.side); return edit(() => { s.side = other(s.side); s.edited = true; s.ok = true; }, '치는 사람을 바꿨습니다'); }
-    const ok = e.target.closest('[data-ok]');
-    if (ok) { const { s } = findRaw(ok.dataset.ok); return edit(() => { s.ok = true; }); }
-    const pin = e.target.closest('[data-pin]');
-    if (pin) { startPin(pin.dataset.pin); return; }
-    const d = e.target.closest('[data-del]');
-    if (d) return edit(() => { findRaw(d.dataset.del).s.deleted = true; }, '샷을 지웠습니다');
-    const rs = e.target.closest('[data-restore]');
-    if (rs) return edit(() => { findRaw(rs.dataset.restore).s.deleted = false; });
-    const ch = e.target.closest('[data-ch]');
-    if (ch) { openChallenge(ch.dataset.ch); return; }
-    const w = e.target.closest('[data-win]');
-    if (w) {
-      const r = cur.eff.rallies[P.rallyIdx], raw = doc.rallies.find(x => x.id === r.id);
-      const side = w.dataset.win === 'me' ? r.meSide : (r.meSide === 'near' ? 'far' : 'near');
-      return edit(() => { raw.winner = raw.winner === side ? null : side; });
-    }
-    const row = e.target.closest('.shot[data-t]');
-    if (row) seek(+row.dataset.t - 0.5);
-  });
-
-  // ---------- bounce spot by tapping the video ----------
-  let pinShot = null;
-  function startPin(id) {
-    needPause();
-    const { s } = findRaw(id);
-    pinShot = id;
-    // jump to the bounce if there is one, else a moment after the hit
-    seek(s.bounce ? s.bounce.t : s.t + 0.6);
-    stage.classList.add('pinning');
-    $('#pinBar').hidden = false;
-    $('#pinBar span').textContent = '공이 땅에 닿는 프레임으로 옮긴 뒤(←/→ 한 프레임) 영상에서 그 자리를 탭하세요.';
-  }
-  function endPin() { pinShot = null; stage.classList.remove('pinning'); $('#pinBar').hidden = true; P.dirty = true; }
-  $('#pinCancel').addEventListener('click', endPin);
-  $('#pinNone').addEventListener('click', () => { if (!pinShot) return; const { s } = findRaw(pinShot); endPin(); edit(() => { s.bounce = null; s.edited = true; s.ok = true; }, '바운스 없음으로 바꿨습니다'); });
-  ov.addEventListener('click', (e) => {
-    if (!pinShot || !cur) return;
-    const r = ov.getBoundingClientRect(), doc = cur.doc, cam = viewCam();
-    // screen -> analysis px (undo the follow-camera zoom)
-    const ix = cam.x0 + (e.clientX - r.left) / r.width * doc.W / cam.z, iy = cam.y0 + (e.clientY - r.top) / r.height * doc.H / cam.z;
-    const c = RN.applyH(cur.calib.toCourt, ix, iy), { s } = findRaw(pinShot), t = +P.t.toFixed(3);
-    if (t <= s.t) { toast('공을 친 순간보다 뒤 프레임에서 찍어 주세요'); return; }
-    endPin();
-    edit(() => { s.bounce = { t, ix: +ix.toFixed(1), iy: +iy.toFixed(1), cx: +c[0].toFixed(2), cy: +c[1].toFixed(2), override: null, manual: true }; s.edited = true; s.ok = true; }, '바운스 위치를 고쳤습니다');
-  });
-
-  // ---------- review: the unsure spots, one after another ----------
-  function reviewItems() {
-    const out = [];
-    cur.eff.rallies.forEach((r, ri) => {
-      r.shots.forEach(s => { if (s.flags.length) out.push({ t: s.t, ri, id: s.id, why: s.flags.join(' · ') }); });
-      const raw = cur.doc.rallies.find(x => x.id === r.id);
-      if (cur.doc.mode === 'match' && raw.winner == null && !r.auto) out.push({ t: r.t1, ri, why: '포인트 판정 없음' });
-    });
-    return out.sort((a, b) => a.t - b.t);
-  }
-  function renderReviewBar() {
-    const el = $('#reviewBar'); if (!el || !cur) return;
-    const items = reviewItems();
-    el.innerHTML = items.length ? `<span>⚠ 확인할 곳 <b>${items.length}</b>개 <small>(애매한 판정만 모음)</small></span><button class="btn sm" data-rv="prev" type="button">◀ 이전</button><button class="btn sm primary" data-rv="next" type="button">다음 확인 ▶</button>`
-      : '<span>✓ 확인할 곳이 없습니다. 틀린 곳이 보이면 바로 고치면 됩니다.</span>';
-  }
-  function reviewGo(dir) {
-    const items = reviewItems();
-    if (!items.length) { closeReview(); toast('확인할 곳을 모두 봤습니다'); return; }
-    needPause();
-    const now = P.reviewT ?? -1;
-    const it = dir === 'next' ? (items.find(x => x.t > now + 0.01) || items[0]) : ([...items].reverse().find(x => x.t < now - 0.01) || items[items.length - 1]);
-    P.reviewT = it.t; P.review = it;
-    seek(Math.max(0, it.t - 0.8));
-    P.rallyIdx = -1; updatePlayUI(); renderRally();
-    const row = it.id && $(`#rallyCard .shot[data-id="${it.id}"]`); if (row) row.classList.add('focus');
-    // on top of the video, so a phone shows the spot and the question together
-    $('#rvHud').hidden = false;
-    $('#rvWhy').textContent = `⚠ ${it.why} · 남은 ${items.length}곳`;
-    $('#rvHud [data-h="ok"]').hidden = !it.id;
-    if (window.innerWidth <= 880) { let off = 6; for (const el of [document.querySelector('header.top'), document.querySelector('#vSession .tabs')]) if (el && getComputedStyle(el).position === 'sticky') off = Math.max(off, (parseFloat(getComputedStyle(el).top) || 0) + el.offsetHeight + 6); window.scrollTo(0, $('#stage').getBoundingClientRect().top + window.scrollY - off); }
-    else if (row) row.scrollIntoView({ block: 'nearest' });
-  }
-  function closeReview() { P.review = null; $('#rvHud').hidden = true; }
-  $('#reviewBar').addEventListener('click', (e) => { const b = e.target.closest('[data-rv]'); if (b) reviewGo(b.dataset.rv); });
-  $('#rvHud').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-h]'); if (!b) return;
-    if (b.dataset.h === 'x') return closeReview();
-    if (b.dataset.h === 'ok' && P.review && P.review.id) { const f = findRaw(P.review.id); if (f) edit(() => { f.s.ok = true; }); }
-    reviewGo('next');
-  });
-
-  // ---------- frame stepping + keys ----------
-  const FRAME = 1 / 30;
-  function stepFrame(n) { if (!cur) return; needPause(); seek(P.t + n * FRAME); }
-  $('#btnFrameB').addEventListener('click', () => stepFrame(-1));
-  $('#btnFrameF').addEventListener('click', () => stepFrame(1));
-  document.addEventListener('keydown', (e) => {
-    if (!cur || $('#vSession').hidden || !$('#modal').hidden) return;
-    if (e.target.closest && e.target.closest('input,textarea,select')) return;
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); if (e.shiftKey) undoRedo(hist.redo, hist.undo, '다시 했습니다'); else undoRedo(hist.undo, hist.redo, '되돌렸습니다'); return; }
-    if (e.key === 'ArrowLeft' || e.key === ',') { e.preventDefault(); stepFrame(e.shiftKey ? -10 : -1); }
-    else if (e.key === 'ArrowRight' || e.key === '.') { e.preventDefault(); stepFrame(e.shiftKey ? 10 : 1); }
-    else if (e.key === ' ') { e.preventDefault(); P.playing ? pausePlayer() : playPlayer(); }
-    else if (e.key === 'Escape' && pinShot) endPin();
-  });
-
-  // ---------- ground truth for training: the session with every hand correction marked ----------
-  $('#btnTruth').addEventListener('click', async () => {
-    if (!cur) return;
-    const doc = cur.doc, ef = cur.eff;
-    const shots = ef.rallies.flatMap((r, ri) => r.shots.map(s => ({ rally: ri + 1, t: s.t, side: s.side, me: s.side === r.meSide, type: s.type || null, spin: s.spin || null, serve: !!s.serve, contact: s.ix != null ? [s.ix, s.iy] : null, bounce: s.bounce ? { t: s.bounce.t, img: [s.bounce.ix, s.bounce.iy], court: [s.bounce.cx, s.bounce.cy], in: s.bounce.in } : null,
-      checked: !!s.ok, edited: !!(s.edited || s.typeEdited || s.spinEdited || s.added || (s.bounce && s.bounce.override != null)), added: !!s.added })));
-    const out = { app: 'rallynote', kind: 'truth', version: 1, video: doc.src, W: doc.W, H: doc.H, corners: doc.corners, opts: doc.opts, track: doc.track, bodies: doc.bodies,
-      rallies: ef.rallies.map((r, i) => ({ n: i + 1, t0: r.t0, t1: r.t1, winner: (doc.rallies.find(x => x.id === r.id) || {}).winner ?? null, edited: !!r.edited })), shots,
-      summary: { shots: shots.length, edited: shots.filter(x => x.edited).length, checked: shots.filter(x => x.checked).length, open: reviewItems().length } };
-    const f = new File([JSON.stringify(out)], doc.name.replace(/[\\/:*?"<>|]/g, '_') + '.truth.json', { type: 'application/json' });
-    if (await shareOrSave(f)) toast(`정답 파일을 저장했습니다 · 샷 ${out.summary.shots}개 중 고친 것 ${out.summary.edited}개`);
-  });
-
-  function afterEdit() { recompute(); renderRally(); renderBoard(); buildTimeline(); renderSummary(); P.dirty = true; persist(); if (!$('#tabStats').hidden) renderStats(); }
-
-  // ---------- line challenge ----------
-  let challenge = null;
-  function openChallenge(shotId) {
-    pausePlayer();
-    const r = cur.eff.rallies.find(x => x.shots.some(s => s.id === shotId));
-    const s = r.shots.find(x => x.id === shotId), raw = cur.doc.rallies.find(x => x.id === r.id).shots.find(x => x.id === shotId);
-    const b = s.bounce;
-    const j = RN.judgeBounce(b, s, cur.doc.opts);
-    modal(`<div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h2>라인 챌린지 · ${whoLabel(r, s)}의 ${TYPE_KO[s.type] || '샷'}</h2><button class="btn sm" id="chClose" type="button">닫기</button></div>
-      <div class="challenge"><canvas id="chCanvas" width="720" height="450"></canvas>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="verdict-big ${b.in ? 'in' : 'out'}" id="chVerdict">…</div>
-        <p id="chMargin" class="muted">공이 떨어지는 순간까지 ¼ 속도로 재생합니다.</p>
-        <div id="chMini"></div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="chAgain" type="button">다시 보기</button><button class="btn sm" id="chFlip" type="button">판정을 ${b.in ? 'OUT' : 'IN'}으로 바꾸기</button>${raw.bounce.override != null ? '<button class="btn sm ghost" id="chReset" type="button">자동 판정으로</button>' : ''}</div>
-        <p class="note">자동 판정 여유: ${(j.margin * 100).toFixed(0)}cm. 30cm 안쪽은 촬영 각도에 따라 틀릴 수 있으니 영상으로 직접 확인하세요.</p>
-      </div></div>`);
-    $('#chMini').innerHTML = miniCourt(s, j);
-    $('#chClose').onclick = closeModal;
-    $('#chFlip').onclick = () => { closeModal(); edit(() => { raw.bounce.override = !b.in; raw.ok = true; }, '판정을 바꿨습니다'); };
-    const rs = $('#chReset'); if (rs) rs.onclick = () => { closeModal(); edit(() => { raw.bounce.override = null; }); };
-    const cv = $('#chCanvas'), ctx = cv.getContext('2d');
-    const doc = cur.doc;
-    const zw = 150, zh = zw * cv.height / cv.width;
-    const zx = clamp(b.ix - zw / 2, 0, doc.W - zw), zy = clamp(b.iy - zh / 2, 0, doc.H - zh);
-    const k = cv.width / zw;
-    let t = b.t - 1.0, raf = 0, done = false, last = 0;
-    const drawAt = (tt) => {
-      const src = cur.demo ? demoFrame(tt) : vid;
-      const sx = cur.demo ? 1 : vid.videoWidth / doc.W, sy = cur.demo ? 1 : vid.videoHeight / doc.H;
-      ctx.clearRect(0, 0, cv.width, cv.height);
-      if (hasMedia()) ctx.drawImage(src, zx * sx, zy * sy, zw * sx, zh * sy, 0, 0, cv.width, cv.height);
-      else { ctx.fillStyle = '#0a131b'; ctx.fillRect(0, 0, cv.width, cv.height); }
-      ctx.save(); ctx.translate(-zx * k, -zy * k);
-      drawOverlays(ctx, tt, k, 0, 0, { lines: true });
-      ctx.restore();
-    };
-    const finish = () => {
-      done = true; drawAt(b.t);
-      const v = $('#chVerdict'); if (!v) return;
-      v.textContent = b.in ? 'IN' : 'OUT';
-      const m = Math.abs(j.margin * 100);
-      $('#chMargin').textContent = b.in ? `라인 안쪽 ${m.toFixed(0)}cm 지점에 떨어졌습니다.` : `라인 바깥 ${m.toFixed(0)}cm 지점에 떨어졌습니다.`;
-    };
-    const step = (ts) => {
-      if (done) return;
-      if (cur.demo || !hasMedia()) {
-        const dt = Math.min(0.05, (ts - (last || ts)) / 1000); last = ts; t += dt * 0.25;
-        drawAt(t); if (t >= b.t) return finish();
-      } else {
-        t = vid.currentTime; drawAt(t);
-        if (t >= b.t) { vid.pause(); vid.currentTime = b.t; vid.onseeked = () => { vid.onseeked = null; finish(); }; return; }
-      }
-      raf = requestAnimationFrame(step);
-    };
-    const start = () => {
-      done = false; last = 0; t = Math.max(0, b.t - 1.0);
-      $('#chVerdict').textContent = '…';
-      if (!cur.demo && hasMedia()) {
-        vid.currentTime = t; vid.playbackRate = 0.25;
-        vid.onseeked = () => { vid.onseeked = null; vid.play().then(() => { raf = requestAnimationFrame(step); }).catch(finish); };
-      } else if (!hasMedia()) { finish(); }
-      else raf = requestAnimationFrame(step);
-    };
-    $('#chAgain').onclick = () => { cancelAnimationFrame(raf); start(); };
-    challenge = { stop() { cancelAnimationFrame(raf); done = true; try { vid.pause(); vid.playbackRate = P.rate; } catch (e) { /* ignore */ } P.dirty = true; challenge = null; } };
-    start();
-  }
-  function miniCourt(s, j) {
-    // top-down view of the target half with the judged box and the bounce
-    const b = s.bounce;
-    const flip = s.side === 'far';
-    const X = (x) => flip ? C.W - x : x, Y = (y) => flip ? y : C.L - y;
-    const box = j.box;
-    const x0 = Math.min(X(box[0]), X(box[2])), x1 = Math.max(X(box[0]), X(box[2]));
-    const y0 = Math.min(Y(box[1]), Y(box[3])), y1 = Math.max(Y(box[1]), Y(box[3]));
-    const lines = RN.courtLines().map(([a, c]) => `<line x1="${X(a[0])}" y1="${Y(a[1])}" x2="${X(c[0])}" y2="${Y(c[1])}"/>`).join('');
-    const col = b.in ? 'var(--in)' : 'var(--out)';
-    return `<svg viewBox="-2 -2 ${C.W + 4} ${C.L + 4}" style="width:100%;max-width:220px;display:block" role="img" aria-label="코트 위 바운스 위치">
-      <rect x="-2" y="-2" width="${C.W + 4}" height="${C.L + 4}" fill="var(--court-deep)"/>
-      <rect x="0" y="0" width="${C.W}" height="${C.L}" fill="var(--court)"/>
-      <rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" fill="var(--ball)" fill-opacity=".18"/>
-      <g stroke="#fff" stroke-width=".09" fill="none">${lines}</g>
-      <line x1="-1" y1="${C.L - C.NET}" x2="${C.W + 1}" y2="${C.L - C.NET}" stroke="#fff" stroke-width=".18" stroke-dasharray=".4 .3"/>
-      <circle cx="${X(b.cx)}" cy="${Y(b.cy)}" r=".42" fill="${col}" stroke="#fff" stroke-width=".1"/>
-    </svg>`;
-  }
-
-  // ---------- tabs ----------
-  function selectTab(name) {
-    $$('.tabs [data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
-    $('#tabReview').hidden = name !== 'review'; $('#tabStats').hidden = name !== 'stats'; $('#tabRallies').hidden = name !== 'rallies';
-    if (name === 'stats') renderStats();
-    if (name === 'rallies') renderRallyTable();
-    if (name !== 'review') pausePlayer(); else { sizeOverlay(); P.dirty = true; }
-  }
-  $$('.tabs [data-tab]').forEach(b => b.addEventListener('click', () => selectTab(b.dataset.tab)));
-
-  // ---------- stats ----------
-  function renderStats() {
-    const ef = cur.eff, doc = cur.doc;
-    const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
-    const me = RN.stats(rs, 'me'), op = RN.stats(rs, 'op');
-    const won = (side) => rs.filter(r => { const w = (doc.rallies.find(x => x.id === r.id) || {}).winner ?? r.auto; return w && (side === 'me' ? w === r.meSide : w !== r.meSide); }).length;
-    // change vs. the average of up to 5 earlier sessions (same estimate caveats as everything else)
-    const prevDocs = doc.demo ? [] : sessions.filter(d => !d.demo && d.id !== doc.id && (d.created || 0) < (doc.created || 0)).sort((a, b) => b.created - a.created).slice(0, 5);
-    const pv = prevDocs.length ? RN.stats(prevDocs.flatMap(d => sessionMetrics(d).rs), 'me') : null;
-    const dl = (now, before, unit) => {
-      if (now == null || before == null) return '';
-      const d = Math.round((now - before) * 10) / 10;
-      return d === 0 ? `<span class="dl same">→ 0</span>` : `<span class="dl ${d > 0 ? 'up' : 'down'}" title="이전 ${prevDocs.length}세션 평균 대비">${d > 0 ? '▲' : '▼'}${Math.abs(d)}${unit || ''}</span>`;
-    };
-    const pk = { '인 비율': 'inPct', '평균 속도': 'avgSpeed', '최고 속도': 'maxSpeed' };
-    const row = (label, a, b, unit) => `<tr><td>${label}</td><td><b>${a ?? '–'}</b>${a != null && unit ? '<small>' + unit + '</small>' : ''}${pv && pk[label] ? dl(a, pv[pk[label]], unit === '%' ? '%p' : '') : ''}</td><td><b>${b ?? '–'}</b>${b != null && unit ? '<small>' + unit + '</small>' : ''}</td></tr>`;
-    $('#cmpTable').innerHTML = `<thead><tr><th></th><th>나</th><th>상대</th></tr></thead><tbody>
-      ${row('샷 수', me.shots, op.shots)}
-      ${row('인 비율', me.inPct, op.inPct, '%')}
-      ${row('평균 속도', me.avgSpeed, op.avgSpeed, 'km/h')}
-      ${row('최고 속도', me.maxSpeed, op.maxSpeed, 'km/h')}
-      ${doc.mode === 'match' ? row('서브 인', me.serves ? me.servesIn + '/' + me.serves : null, op.serves ? op.servesIn + '/' + op.serves : null) : ''}
-      ${doc.mode === 'match' ? row('딴 포인트', won('me'), won('op')) : ''}
-    </tbody>${pv ? `<caption style="caption-side:bottom;text-align:left;font-size:12px;color:var(--ink-2);padding-top:6px">▲▼ 이전 ${prevDocs.length}세션 평균 대비 · 추정치</caption>` : ''}`;
-    const bar = (st, who) => {
-      const tot = st.zones.short + st.zones.mid + st.zones.deep;
-      if (!tot) return `<div><span class="hint">${who}: 들어간 공이 아직 없습니다</span></div>`;
-      const pc = (n) => (n / tot * 100).toFixed(0);
-      return `<div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>${who}</span><span class="num muted">깊음 ${pc(st.zones.deep)}%</span></div>
-        <div class="depth"><i style="width:${pc(st.zones.short)}%;background:var(--warn)" title="짧음 ${pc(st.zones.short)}%"></i><i style="width:${pc(st.zones.mid)}%;background:var(--court)" title="중간 ${pc(st.zones.mid)}%"></i><i style="width:${pc(st.zones.deep)}%;background:var(--in)" title="깊음 ${pc(st.zones.deep)}%"></i></div></div>`;
-    };
-    $('#depthBars').innerHTML = bar(me, '나') + bar(op, '상대');
-    renderMix(rs);
-    seg($('#optHeat'), cur.heat, v => { cur.heat = v; renderHeat(rs); renderMix(rs); });
-    renderHeat(rs);
-    const buckets = [[1, 2], [3, 4], [5, 6], [7, 9], [10, 999]];
-    const counts = buckets.map(([a, b]) => rs.filter(r => r.shots.length >= a && r.shots.length <= b).length);
-    const mx = Math.max(1, ...counts);
-    $('#hist').innerHTML = counts.map((c, i) => `<div><b>${c}</b><i style="height:${(c / mx * 80).toFixed(0)}%"></i><span>${buckets[i][1] > 99 ? '10+' : buckets[i][0] + '–' + buckets[i][1]}샷</span></div>`).join('');
-    $('#rallyNote').textContent = rs.length ? `랠리 ${rs.length}개 · 평균 ${me.avgRally}샷 · 최장 ${me.longest}샷` : '랠리가 없습니다';
-  }
-  // stroke x spin table: count, in %, average speed (SwingVision's per-stroke breakdown)
-  function renderMix(rs) {
-    const rows = [], who = cur.heat;
-    const mine = [];
-    for (const r of rs) for (const s of r.shots) if ((s.side === r.meSide) === (who === 'me')) mine.push(s);
-    const order = ['serve', 'forehand', 'backhand', 'volley', 'smash', 'feed', null];
-    for (const ty of order) {
-      const g = mine.filter(s => (s.serve ? 'serve' : (s.type || null)) === ty);
-      if (!g.length) continue;
-      const landed = g.filter(s => s.bounce), ins = landed.filter(s => s.bounce.in), sp = g.map(s => s.speed).filter(Boolean);
-      const spin = ['top', 'flat', 'slice'].map(k => [k, g.filter(s => s.spin === k).length]).filter(([, n]) => n);
-      rows.push(`<tr><td><i class="dot" style="background:${TYPE_COL[ty || 'none']}"></i>${ty ? TYPE_KO[ty] : '미분류'}</td><td><b>${g.length}</b></td><td>${landed.length ? Math.round(ins.length / landed.length * 100) + '%' : '–'}</td><td>${sp.length ? Math.round(sp.reduce((a, b) => a + b, 0) / sp.length) : '–'}</td><td class="spins">${spin.map(([k, n]) => `<span title="${SPIN_KO[k]}">${SPIN_MARK[k]}${n}</span>`).join(' ') || '–'}</td></tr>`);
-    }
-    $('#mixTable').innerHTML = rows.length ? `<table class="cmp mix"><thead><tr><th>${who === 'me' ? '내 샷' : '상대 샷'}</th><th>개수</th><th>인</th><th>km/h</th><th>스핀 ▲탑 ■플랫 ◗슬라</th></tr></thead><tbody>${rows.join('')}</tbody></table>` : '<p class="hint">샷이 없습니다</p>';
-  }
-  // shot placement, laid out like SwingVision: colour = stroke, filled = in, ring = out,
-  // share of in-balls short/deep of the service line and across three lanes of the singles court
-  const TYPE_COL = { forehand: '#2fb35a', backhand: '#ff8a2a', volley: '#f5c518', smash: '#22b8d0', serve: '#8f7cff', feed: '#e6eaec', none: '#9aa6ad' };
-  function mark(sp, x, y, attrs) {
-    const X = x.toFixed(2), Y = y.toFixed(2);
-    if (sp === 'top') return `<path d="M${X} ${(y - 0.42).toFixed(2)}l.42 .72h-.84z" ${attrs}/>`;
-    if (sp === 'flat') return `<rect x="${(x - 0.32).toFixed(2)}" y="${(y - 0.32).toFixed(2)}" width=".64" height=".64" ${attrs}/>`;
-    if (sp === 'slice') return `<path d="M${X} ${(y - 0.38).toFixed(2)}a.38 .38 0 1 1 0 .76a.24 .38 0 1 0 0 -.76z" ${attrs}/>`;
-    return `<circle cx="${X}" cy="${Y}" r="${attrs.includes('fill="none"') ? '.3' : '.36'}" ${attrs}/>`;
-  }
-  $('#heatSvg').addEventListener('change', (e) => { if (e.target.id === 'spinView' && cur) { cur.spinView = e.target.checked; renderStats(); } });
-  function renderHeat(rs) {
-    const who = cur.heat;
-    const dots = [], cnt = {}; let inN = 0, deep = 0, lanes = [0, 0, 0];
-    for (const r of rs) for (const s of r.shots) {
-      const mine = s.side === r.meSide;
-      if ((who === 'me') !== mine || !s.bounce) continue;
-      // normalize so every shot travels "up" the page
-      const flip = s.side === 'far';
-      const x = flip ? C.W - s.bounce.cx : s.bounce.cx, y = flip ? s.bounce.cy : C.L - s.bounce.cy;
-      const ty = s.serve ? 'serve' : (s.type || 'none'), col = TYPE_COL[ty] || TYPE_COL.none, sh = cur.spinView && s.spin;
-      cnt[ty] = (cnt[ty] || 0) + 1;
-      if (s.bounce.in) {
-        inN++;
-        if (y < C.L - C.NET - 6.4) deep++;
-        const lx = (x - C.SGL) / (C.SGR - C.SGL); lanes[lx < 1 / 3 ? 0 : lx < 2 / 3 ? 1 : 2]++;
-        dots.push(mark(sh, x, y, `fill="${col}" stroke="#fff" stroke-width=".07"`));
-      } else dots.push(mark(sh, x, y, `fill="none" stroke="${col}" stroke-width=".16"`));
-    }
-    const pct = (n) => inN ? Math.round(n / inN * 100) + '%' : '–';
-    const spinSwitch = `<label class="check" style="justify-content:center;margin-top:6px"><input type="checkbox" id="spinView"${cur.spinView ? ' checked' : ''}> 스핀 모양으로 보기 (▲탑스핀 ■플랫 ◗슬라이스)</label>`;
-    const yS = C.L - C.NET - 6.4, xA = C.SGL + (C.SGR - C.SGL) / 3, xB = C.SGL + (C.SGR - C.SGL) * 2 / 3;
-    const lines = RN.courtLines().map(([a, c]) => `<line x1="${a[0]}" y1="${C.L - a[1]}" x2="${c[0]}" y2="${C.L - c[1]}"/>`).join('');
-    const T = (x, y, t, anchor) => `<text x="${x}" y="${y}" text-anchor="${anchor || 'middle'}" font-size=".95" fill="#fff" fill-opacity=".8" font-family="Barlow Condensed, sans-serif" font-weight="600">${t}</text>`;
-    const legend = Object.entries({ forehand: '포핸드', backhand: '백핸드', volley: '발리', smash: '스매시', serve: '서브', none: '미분류' }).filter(([k]) => cnt[k]).map(([k, l]) => `<span><i style="background:${TYPE_COL[k]}"></i>${l} ${cnt[k]}</span>`).join('');
-    $('#heatSvg').innerHTML = `<svg viewBox="-3.6 -3.5 ${C.W + 7.2} ${C.L + 8.2}" role="img" aria-label="샷 배치">
-      <rect x="-3.6" y="-3.5" width="${C.W + 7.2}" height="${C.L + 8.2}" fill="var(--court-deep)" rx=".5"/>
-      <rect x="0" y="0" width="${C.W}" height="${C.L}" fill="var(--court)"/>
-      <g stroke="#fff" stroke-width=".08" fill="none">${lines}</g>
-      <line x1="-.9" y1="${C.L - C.NET}" x2="${C.W + .9}" y2="${C.L - C.NET}" stroke="#fff" stroke-width=".2"/>
-      <g stroke="#fff" stroke-opacity=".45" stroke-width=".06" stroke-dasharray=".35 .3"><line x1="-2.8" y1="${yS}" x2="${C.W + 2.8}" y2="${yS}"/><line x1="${xA}" y1="0" x2="${xA}" y2="${C.L - C.NET + 0.6}"/><line x1="${xB}" y1="0" x2="${xB}" y2="${C.L - C.NET + 0.6}"/></g>
-      ${T(-0.7, yS / 2 + 0.35, pct(deep), 'end')}${T(-0.7, (yS + C.L - C.NET) / 2 + 0.35, pct(inN - deep), 'end')}
-      ${T((C.SGL + xA) / 2, -1.3, pct(lanes[0]))}${T((xA + xB) / 2, -1.3, pct(lanes[1]))}${T((xB + C.SGR) / 2, -1.3, pct(lanes[2]))}
-      ${dots.join('')}
-    </svg><div class="chart-legend">${legend}<span><i style="background:var(--ink-2)"></i>인</span><span><i style="border:2px solid var(--ink-2);background:none;width:7px;height:7px"></i>아웃</span></div>
-    ${spinSwitch}<p class="note" style="text-align:center">${who === 'me' ? '내' : '상대'} 샷 ${dots.length}개 · 위 숫자는 왼쪽·가운데·오른쪽, 옆 숫자는 깊은 공·짧은 공 비율(들어간 공 기준) · 샷 종류는 자동 추정이라 리뷰에서 탭해 고칠 수 있습니다</p>`;
-  }
-
-  // coaching via Claude
-  let sampleApi;
-  (async () => { try { sampleApi = window.claude?.use ? await window.claude.use('sample') : null; } catch (e) { sampleApi = null; } if (!sampleApi) { $('#btnCoach').hidden = true; $('#coachOut').textContent = '코칭 노트는 Claude 앱에서 이 페이지를 열었을 때 쓸 수 있습니다.'; } })();
-  $('#btnCoach').addEventListener('click', async () => {
-    if (!sampleApi || !cur) return;
-    const ef = cur.eff, doc = cur.doc;
-    const rs = ef.rallies.map(r => doc.mode === 'match' ? r : Object.assign({}, r, { meSide: doc.opts.meStart }));
-    const me = RN.stats(rs, 'me'), op = RN.stats(rs, 'op');
-    const myShots = [];
-    rs.forEach((r, i) => r.shots.forEach(s => { if (s.side === r.meSide) myShots.push({ rally: i + 1, type: s.type || '미지정', spin: SPIN_KO[s.spin] || null, kmh: s.speed, in: s.bounce ? s.bounce.in : null, depth: s.bounce ? s.bounce.zone : null, serve: !!s.serve }); }));
-    const out = $('#coachOut'); out.classList.remove('muted'); out.textContent = '생각하는 중…';
-    const btn = $('#btnCoach'); btn.disabled = true;
-    try {
-      const prompt = `당신은 동호인 테니스 코치입니다. 아래는 휴대폰 영상 분석 앱이 한 세션에서 측정한 수치입니다(속도는 타구~바운스 평균 추정치, 단식 기준).
-나: ${JSON.stringify(me)}
-상대: ${JSON.stringify(op)}
-내 샷 목록: ${JSON.stringify(myShots.slice(0, 120))}
-이 수치만 근거로, 다음 연습에서 집중할 점 세 가지를 한국어로 써 주세요. 각 항목은 "제목 한 줄" + 근거 수치 한 문장 + 구체적인 연습 방법 한 문장. 수치가 적어 판단하기 어려우면 그렇게 말하세요. 머리말이나 맺음말 없이 1., 2., 3. 으로만 답하세요.`;
-      await sampleApi(prompt, { onText: ({ text }) => { out.textContent = text; }, cache: false });
-    } catch (e) {
-      out.textContent = e && e.code === 'rate_limited' ? '요청이 많아 잠시 뒤에 다시 시도해 주세요.' : '코칭 노트를 만들지 못했습니다.';
-      if (e && e.code === 'not_granted') btn.hidden = true;
-    } finally { btn.disabled = false; }
-  });
-
-  // ---------- rally table ----------
-  function renderRallyTable() {
-    const ef = cur.eff, doc = cur.doc;
-    const rows = ef.rallies.map((r, i) => {
-      const raw = doc.rallies.find(x => x.id === r.id);
-      const last = r.shots[r.shots.length - 1];
-      const w = raw.winner ?? r.auto;
-      const snap = ef.score.snaps[i];
-      const sc = snap ? `${snap.g[0]}-${snap.g[1]} · ${snap.p[0]}-${snap.p[1]}` : '';
-      return `<tr data-t="${r.t0}"><td class="num">${i + 1}</td><td class="num">${fmtT(r.t0)}</td><td>${r.shots.length}샷</td><td>${last.bounce ? `<span class="chip ${last.bounce.in ? 'in' : 'out'}">${last.bounce.in ? 'IN' : 'OUT'}</span>` : '<span class="chip">네트·미확인</span>'} ${whoLabel(r, last)}</td><td>${doc.mode === 'match' ? (w ? (w === r.meSide ? '나' : '상대') + (raw.winner == null ? ' <span class="muted">(자동)</span>' : '') : '–') : '–'}</td><td class="num">${doc.mode === 'match' ? sc : ''}</td></tr>`;
-    }).join('');
-    $('#rallyTable').innerHTML = `<thead><tr><th>#</th><th>시작</th><th>길이</th><th>마지막 샷</th><th>포인트</th><th>게임 · 점수</th></tr></thead><tbody>${rows || '<tr><td colspan="6" class="muted">랠리가 없습니다</td></tr>'}</tbody>`;
-  }
-  $('#rallyTable').addEventListener('click', (e) => { const tr = e.target.closest('tr[data-t]'); if (!tr) return; selectTab('review'); seek(+tr.dataset.t - 0.6); });
+  $('#rallyCard').addEventListener('click', (e) => { const row = e.target.closest('.shot[data-t]'); if (row) seek(+row.dataset.t - 0.5); });
 
   // ---------- exports ----------
   let downloadsApi;
@@ -3613,14 +2773,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     try { await downloadsApi.save({ filename, data }); return true; }
     catch (e) { if (e && e.code === 'declined') return false; toast('저장하지 못했습니다' + (e && e.message ? ': ' + e.message : '')); return false; }
   }
-  $('#btnCsv').addEventListener('click', () => {
-    const ef = cur.eff; const lines = ['rally,shot,time_s,player,type,spin,speed_kmh,bounce_x_m,bounce_y_m,verdict,margin_cm'];
-    ef.rallies.forEach((r, i) => r.shots.forEach((s, j) => {
-      lines.push([i + 1, j + 1, s.t.toFixed(2), whoLabel(r, s), TYPE_KO[s.type] || '', SPIN_KO[s.spin] || '', s.speed || '', s.bounce ? s.bounce.cx.toFixed(2) : '', s.bounce ? s.bounce.cy.toFixed(2) : '', s.bounce ? (s.bounce.in ? 'IN' : 'OUT') : '', s.bounce ? Math.round(s.bounce.margin * 100) : ''].join(','));
-    }));
-    saveFile(cur.doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_샷기록.csv', '﻿' + lines.join('\n'));
-  });
-
   // ---------- highlight export: pick scenes, aspect ratio, overlays, send to phone ----------
   const XPREF_KEY = 'rallynote.export.v1';
   const xPref = (() => { try { return Object.assign({ ratio: 'wide', follow: true, trace: true, board: true, card: true, mini: true }, JSON.parse(localStorage.getItem(XPREF_KEY) || '{}')); } catch (e) { return { ratio: 'wide', follow: true, trace: true, board: true, card: true, mini: true }; } })();
@@ -3633,12 +2785,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     { v: 'volley', label: '발리·스매시', test: s => s.type === 'volley' || s.type === 'smash' },
     { v: 'all', label: '내 모든 샷', test: () => true }
   ];
-  function teamNames(doc) {
-    const p = doc.people || {}, cut = (s) => s.length > 6 ? s.slice(0, 6) + '…' : s;
-    const opps = (p.opps || []).map(normName).filter(Boolean).map(cut);
-    const me = doc.mode === 'match' && doc.opts.doubles && normName(p.partner) ? '나·' + cut(normName(p.partner)) : '나';
-    return { me, op: opps.length ? opps.join('·') : '상대' };
-  }
   function rallyScenes(mode, picked) {
     const d = cur.doc.src.duration;
     return cur.eff.rallies.map((r, i) => ({ r, i })).filter(({ r, i }) => mode === 'all' || (mode === 'long' && r.shots.length >= 4) || (mode === 'pick' && picked.has(i)))
@@ -3647,7 +2793,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function shotScenes(setV) {
     const set = SHOT_SETS.find(x => x.v === setV), d = cur.doc.src.duration, out = [];
     cur.eff.rallies.forEach((r, i) => r.shots.forEach(s => {
-      if (s.side !== r.meSide || !set.test(s)) return;
+      if (!set.test(s)) return;
       const end = s.bounce ? s.bounce.t + 0.7 : s.t + 1.4;
       out.push({ a: Math.max(0, s.t - 1.3), b: Math.min(d, end), ri: i, shot: s });
     }));
@@ -3664,9 +2810,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const counts = Object.fromEntries(SHOT_SETS.map(s => [s.v, shotScenes(s.v).length]));
     if (!counts[st.shot]) st.shot = SHOT_SETS.find(s => counts[s.v])?.v || 'all';
     const rallyRows = ef.rallies.map((r, i) => {
-      const w = (doc.rallies.find(x => x.id === r.id) || {}).winner ?? r.auto;
-      const res = match && w ? (w === r.meSide ? '내 포인트' : '상대 포인트') : '';
-      return `<label class="xr"><input type="checkbox" data-ri="${i}" checked><b class="num">#${i + 1}</b><span>${fmtT(r.t0)}</span><span>${r.shots.length}샷</span><span class="muted">${res}</span></label>`;
+      const top = Math.max(0, ...r.shots.map(x => x.speed || 0));
+      return `<label class="xr"><input type="checkbox" data-ri="${i}" checked><b class="num">#${i + 1}</b><span>${fmtT(r.t0)}</span><span>${r.shots.length}샷</span><span class="muted">${top ? '최고 ' + top + 'km/h' : ''}</span></label>`;
     }).join('');
     const chk = (id, label, on, extra) => `<label class="check"><input type="checkbox" id="${id}"${on ? ' checked' : ''}${extra || ''}> ${label}</label>`;
     modal(`<div class="xhead"><h2>하이라이트 영상 만들기</h2><button class="btn ghost sm" type="button" id="xClose">닫기</button></div>
@@ -3674,18 +2819,17 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         <div class="seg" id="xWhat"><button type="button" data-v="all">전체 랠리</button><button type="button" data-v="long">4샷 이상</button><button type="button" data-v="pick">직접 고르기</button><button type="button" data-v="shots">샷 모음</button></div>
         <div id="xPick" class="xpick" hidden><div class="row" style="gap:6px;margin-bottom:6px"><button class="btn sm" type="button" id="xAllOn">모두 선택</button><button class="btn sm" type="button" id="xAllOff">모두 해제</button></div>${rallyRows}</div>
         <div id="xShots" hidden><div class="seg" id="xShotSet">${SHOT_SETS.map(s => `<button type="button" data-v="${s.v}"${counts[s.v] ? '' : ' disabled'}>${s.label} ${counts[s.v]}</button>`).join('')}</div>
-          <p class="hint" style="margin-top:6px">내 샷마다 치기 직전부터 바운스까지 잘라 이어 붙입니다. 서브 말고는 리뷰 화면에서 샷 종류를 지정한 것만 모입니다.</p></div>
+          <p class="hint" style="margin-top:6px">고른 종류의 샷마다 치기 직전부터 바운스까지 잘라 이어 붙입니다.</p></div>
         <p class="xsum" id="xSum"></p>
       </div>
       <div class="field"><span class="label">화면 비율</span>
         <div class="seg" id="xRatio">${Object.entries(RATIO).map(([k, v]) => `<button type="button" data-v="${k}">${v.label}</button>`).join('')}</div>
         <span class="hint">인스타 릴스·카톡 프로필엔 세로가 맞습니다.</span>
         ${chk('xFollow', '카메라가 공과 사람을 따라가기', xPref.follow)}
-        <div class="row" style="gap:8px;flex-wrap:wrap;align-items:center"><span class="hint">카메라 중심</span><div class="seg" id="xCenter"><button type="button" data-v="hitter">치는 사람</button><button type="button" data-v="me">나 위주</button></div></div>
-        <span class="hint" style="margin-top:-2px">코트가 화면을 채우도록 확대하고 화면을 옮겨 가며 따라갑니다. 치는 사람: 공을 칠 사람을 따라감 · 나 위주: 내 쪽 코트를 중심으로.${cur.people && cur.people.length ? '' : ' 이 세션은 사람 위치 기록이 없어 공 위주로 따라갑니다(새로 분석하면 사람도 따라감).'}</span>
+        <span class="hint" style="margin-top:-2px">코트가 화면을 채우도록 확대하고, 공과 칠 사람을 따라 화면을 옮깁니다.${cur.people && cur.people.length ? '' : ' 이 세션은 사람 위치 기록이 없어 공 위주로 따라갑니다(새로 분석하면 사람도 따라감).'}</span>
       </div>
       <div class="field"><span class="label">영상에 넣기</span>
-        <div class="xopts">${chk('xTrace', '공 궤적·IN/OUT', xPref.trace)}${chk('xCard', '샷 종류·속도', xPref.card)}${chk('xMini', '미니 코트(볼 마킹)', xPref.mini)}${match ? chk('xBoard', `점수판 (${esc(teamNames(doc).me)} vs ${esc(teamNames(doc).op)})`, xPref.board) : ''}</div>
+        <div class="xopts">${chk('xTrace', '공 궤적·IN/OUT', xPref.trace)}${chk('xCard', '샷 종류·속도', xPref.card)}${chk('xMini', '미니 코트(볼 마킹)', xPref.mini)}</div>
       </div>
       <div class="row" style="gap:8px"><button class="btn primary" type="button" id="xGo">영상 만들기</button><span class="hint">실제 재생 시간만큼 걸립니다. 화면을 켜 두세요.</span></div>`);
     const scenes = () => st.what === 'shots' ? shotScenes(st.shot) : rallyScenes(st.what, st.picked);
@@ -3698,16 +2842,15 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     seg($('#xWhat'), st.what, v => { st.what = v; sync(); });
     seg($('#xShotSet'), st.shot, v => { st.shot = v; sync(); });
     seg($('#xRatio'), xPref.ratio, v => { xPref.ratio = v; saveXPref(); });
-    seg($('#xCenter'), xPref.center || 'hitter', v => { xPref.center = v; saveXPref(); });
     $('#xPick').addEventListener('change', (e) => { const c = e.target.closest('[data-ri]'); if (!c) return; if (c.checked) st.picked.add(+c.dataset.ri); else st.picked.delete(+c.dataset.ri); sync(); });
     const setAll = (on) => { $$('#xPick [data-ri]').forEach(c => { c.checked = on; }); st.picked = on ? new Set(ef.rallies.map((_, i) => i)) : new Set(); sync(); };
     $('#xAllOn').onclick = () => setAll(true); $('#xAllOff').onclick = () => setAll(false);
     $('#xClose').onclick = closeModal;
     $('#xGo').onclick = () => {
-      ['trace', 'card', 'mini', 'board', 'follow'].forEach(k => { const el = $('#x' + k[0].toUpperCase() + k.slice(1)); if (el) xPref[k] = el.checked; });
+      ['trace', 'card', 'mini', 'follow'].forEach(k => { const el = $('#x' + k[0].toUpperCase() + k.slice(1)); if (el) xPref[k] = el.checked; });
       saveXPref();
       const sc = scenes(); if (!sc.length) return;
-      renderExport(sc, { ratio: xPref.ratio, follow: xPref.follow, center: xPref.center || 'hitter', trace: xPref.trace, card: xPref.card, mini: xPref.mini, board: match && xPref.board, label: st.what === 'shots' ? SHOT_SETS.find(s => s.v === st.shot).label + ' 모음' : '하이라이트' });
+      renderExport(sc, { ratio: xPref.ratio, follow: xPref.follow, center: 'hitter', trace: xPref.trace, card: xPref.card, mini: xPref.mini, label: st.what === 'shots' ? SHOT_SETS.find(s => s.v === st.shot).label + ' 모음' : '하이라이트' });
     };
     sync();
   }
@@ -3717,33 +2860,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
   // broadcast-style overlay, laid out like SwingVision: score top-left, mini court top-right with the shot card under it
   const OV = { panel: 'rgba(12,16,20,.72)', line: 'rgba(255,255,255,.88)', text: '#f2f4f2', dim: 'rgba(242,244,242,.62)', type: '#7fe0a0', inC: '#3cd18a', outC: '#ff6b4a', last: '#4aa8ff' };
-  function drawScoreBoard(ctx, s, ri, names) {
-    const ef = cur.eff;
-    let snap = null; for (let i = 0; i < ri; i++) if (ef.score.snaps[i]) snap = ef.score.snaps[i];
-    const sets = snap ? snap.sets : [], g = snap ? snap.g : [0, 0], p = snap ? snap.p : ['0', '0'];
-    // who serves this point: the first shot of the rally
-    const r = ri >= 0 ? ef.rallies[ri] : null, first = r && r.shots[0];
-    const server = first ? (first.side === r.meSide ? 0 : 1) : -1;
-    const x = 12 * s, y = 12 * s, rh = 24 * s, padX = 10 * s;
-    ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`;
-    const nameW = Math.max(ctx.measureText(names.me).width, ctx.measureText(names.op).width);
-    const colW = 22 * s, ptW = 30 * s, dotW = 12 * s;
-    const w = padX + nameW + dotW + colW * (sets.length + 1) + ptW + padX * 0.6, hh = rh * 2 + 6 * s;
-    ctx.fillStyle = OV.panel; roundRect(ctx, x, y, w, hh, 6 * s); ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = Math.max(1, s * 0.8);
-    ctx.beginPath(); ctx.moveTo(x + padX * 0.6, y + hh / 2); ctx.lineTo(x + w - padX * 0.6, y + hh / 2); ctx.stroke();
-    [names.me, names.op].forEach((n, row) => {
-      const by = y + 3 * s + rh * row + rh * 0.68, cx0 = x + padX + nameW + dotW;
-      ctx.textAlign = 'left'; ctx.font = `500 ${13 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.text;
-      ctx.fillText(n, x + padX, by);
-      if (server === row) { ctx.beginPath(); ctx.arc(x + padX + nameW + dotW * 0.55, by - 4.5 * s, 2.4 * s, 0, Math.PI * 2); ctx.fillStyle = OV.text; ctx.fill(); }
-      ctx.textAlign = 'center'; ctx.font = `600 ${16 * s}px "Barlow Condensed", sans-serif`;
-      sets.forEach((st, j) => { ctx.fillStyle = st[row] >= st[1 - row] ? OV.text : OV.dim; ctx.fillText(String(st[row]), cx0 + colW * j + colW / 2, by); });
-      ctx.fillStyle = OV.text; ctx.fillText(String(g[row]), cx0 + colW * sets.length + colW / 2, by);
-      ctx.fillText(p[row], cx0 + colW * (sets.length + 1) + ptW / 2, by);
-    });
-    ctx.textAlign = 'left';
-  }
   function currentShot(t, ri) {
     if (ri < 0) return null;
     const r = cur.eff.rallies[ri]; let cur0 = null;
@@ -3779,16 +2895,15 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function drawShotCard(ctx, s, outW, outH, t, ri, focus, tall, withMini) {
     // in a shot montage only the featured shot gets a card, from the moment it is hit
     const hit = focus ? (t >= focus.t - 0.05 && t - focus.t <= 2.6 ? { r: cur.eff.rallies[ri], s: focus } : null) : currentShot(t, ri); if (!hit) return;
-    const { r, s: sh } = hit, mine = sh.side === r.meSide;
+    const { s: sh } = hit;
     const type = (sh.spin ? SPIN_KO[sh.spin] + ' ' : '') + (sh.serve ? '서브' : (TYPE_KO[sh.type] || '샷'));
     const tcol = TYPE_COL[sh.serve ? 'serve' : sh.type] || OV.type;
-    const who = mine ? teamNames(cur.doc).me : teamNames(cur.doc).op;
     const L = rightColumn(s, outW, outH, tall), h = 42 * s, x = L.x, y = withMini ? L.y + L.ph + 6 * s : L.y, w = L.pw;
     ctx.globalAlpha = Math.min(1, (2.6 - (t - sh.t)) / 0.4);
     ctx.fillStyle = OV.panel; roundRect(ctx, x, y, w, h, 6 * s); ctx.fill();
     ctx.textAlign = 'left';
     ctx.font = `600 ${12.5 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = tcol; ctx.fillText(type, x + 9 * s, y + 18 * s);
-    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(who + (sh.bounce ? (sh.bounce.in ? ' · IN' : ' · OUT') : ''), x + 9 * s, y + 34 * s);
+    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(sh.bounce ? (sh.bounce.in ? 'IN' : 'OUT') + (sh.bounce.in && sh.bounce.zone ? ' · ' + ZONE_KO[sh.bounce.zone] : '') : '', x + 9 * s, y + 34 * s);
     if (sh.speed) {
       ctx.textAlign = 'right';
       ctx.font = `700 ${20 * s}px "Barlow Condensed", sans-serif`; ctx.fillStyle = OV.text; ctx.fillText(String(sh.speed), x + w - 9 * s, y + 21 * s);
@@ -3919,7 +3034,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const courtCx = doc.corners.reduce((n, p) => n + p[0], 0) / doc.corners.length;
     let camAt = null;
     camCenter = o.center === 'me' ? 'me' : 'hitter';
-    const names = teamNames(doc);
     const mime = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
     const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
     const stream = cv.captureStream(30);
@@ -3935,7 +3049,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const ss = cur.demo ? 1 : sv, sy = cur.demo ? 1 : srcPxH / doc.H;
       ctx.drawImage(src, x0 * ss, y0 * sy, cw * ss, chh * sy, 0, 0, outW, outH);
       if (o.trace) drawOverlays(ctx, t, k, -x0 * k, -y0 * k, {});
-      if (o.board) drawScoreBoard(ctx, s, sc.ri, names);
       if (o.mini) drawMiniCourt(ctx, s, outW, outH, t, sc.ri, tall);
       if (o.card) drawShotCard(ctx, s, outW, outH, t, sc.ri, sc.shot, tall, o.mini && sc.ri >= 0);
       if (sc.tag) drawTag(ctx, s, outW, sc.tag);
@@ -3984,7 +3097,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const doc = cur.doc, url = URL.createObjectURL(blob);
     const file = new File([blob], fname, { type: blob.type });
     const share = canShareFile(file);
-    const shared = !doc.demo;
     modal(`<div class="xhead"><h2>영상이 완성됐습니다</h2><button class="btn ghost sm" type="button" id="xdClose">닫기</button></div>
       <video class="xprev${info.ratio.startsWith('세로') ? ' tall' : ''}" src="${url}" controls playsinline muted></video>
       <p class="hint" style="margin:0">${fmtT(info.len)} · 장면 ${info.n}개 · ${info.ratio} · ${info.ext.toUpperCase()} · ${(blob.size / 1048576).toFixed(1)}MB</p>
@@ -3992,29 +3104,11 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         ${share ? '<button class="btn primary" type="button" id="xdShare">내 폰으로 보내기 (에어드롭·공유)</button>' : ''}
         <button class="btn${share ? '' : ' primary'}" type="button" id="xdSave">이 기기에 저장</button>
       </div>
-      ${shared ? `<div class="panel xshared">
-        <b>코트 공용 기기에서 찍었나요?</b>
-        <p class="hint">영상을 보낸 뒤 이 기기에 기록을 남기지 마세요. 세션 파일을 내 폰으로 보내 두면 내 폰의 랠리노트에서 <b>세션 파일 열기</b>로 통계를 그대로 볼 수 있습니다.</p>
-        <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" type="button" id="xdSession">세션 파일 보내기</button><button class="btn sm danger" type="button" id="xdDelete">이 기기에서 세션 지우기</button></div>
-        <p class="hint" style="margin:0">원본 영상은 사진 앱에 남아 있으니 따로 지워 주세요.</p>
-      </div>` : ''}`);
+`);
     const done = () => { URL.revokeObjectURL(url); closeModal(); };
     $('#xdClose').onclick = done;
     if (share) $('#xdShare').onclick = async () => { if (await shareOrSave(file)) toast('보냈습니다'); };
     $('#xdSave').onclick = async () => { if (await saveFile(fname, blob)) toast('저장했습니다'); };
-    if (shared) {
-      $('#xdSession').onclick = async () => {
-        const f = new File([JSON.stringify(doc)], doc.name.replace(/[\\/:*?"<>|]/g, '_') + '.rallynote.json', { type: 'application/json' });
-        if (await shareOrSave(f)) toast('세션 파일을 보냈습니다');
-      };
-      $('#xdDelete').onclick = async (e) => {
-        const b = e.currentTarget;
-        if (!b.dataset.confirm) { b.dataset.confirm = '1'; b.textContent = '정말 지우기 (되돌릴 수 없음)'; setTimeout(() => { if (b.isConnected) { delete b.dataset.confirm; b.textContent = '이 기기에서 세션 지우기'; } }, 4000); return; }
-        clearTimeout(saveTimer); saveTimer = 0;
-        await removeSession(doc);
-        done(); cur = null; show('vHome'); refreshHome(); toast('이 기기에서 세션을 지웠습니다');
-      };
-    }
   }
 
   // ---------- play vs. dead time ----------
@@ -4026,26 +3120,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     }
     return out;
   }
-  function renderSummary() {
-    const el = $('#playSummary'); if (!el || !cur) return;
-    const play = playWindows().reduce((n, [a, b]) => n + b - a, 0), total = cur.doc.src.duration;
-    el.innerHTML = `<div class="fig"><b class="num">${fmtT(play)}</b><span>실제 플레이</span></div>
-      <div class="fig"><b class="num" style="color:var(--ink-2)">${fmtT(Math.max(0, total - play))}</b><span>공 줍기·쉬는 시간 (자동 제외)</span></div>
-      <div class="grow"></div><button class="btn sm ball" id="btnPlayOnly" type="button">경기만 남긴 영상 만들기</button>`;
-    $('#btnPlayOnly').onclick = () => openExport('all');
-  }
-
-  // ---------- session file import (analysed by Claude) ----------
-  $('#fileSession').addEventListener('change', async (e) => {
-    const f = e.target.files[0]; e.target.value = '';
-    if (!f) return;
-    try {
-      const doc = JSON.parse(await f.text());
-      if (!doc || !doc.id || !doc.rallies || !doc.corners || !doc.src) throw new Error('랠리노트 세션 파일이 아닙니다');
-      await store.save(doc); toast('세션을 불러왔습니다. 영상 파일을 연결하면 리플레이를 볼 수 있어요.', 4000);
-      openSession(doc);
-    } catch (err) { toast('세션 파일을 열지 못했습니다: ' + err.message, 4000); }
-  });
   $('#tabHome').addEventListener('click', () => { cancelAnalysis = true; show('vHome'); refreshHome(); });
 
   // ---------- offline (installed web app) ----------
@@ -4054,8 +3128,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
 
   // ---------- boot ----------
-  drawHero();
-  document.fonts && document.fonts.ready.then(() => { drawHero(); });
   refreshHome();
   store.init().then(() => refreshHome());
   checkRecover();
