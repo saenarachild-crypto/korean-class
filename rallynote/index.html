@@ -76,7 +76,7 @@ p{margin:0}
 
 /* Home */
 .beta{font-style:normal;font-size:11px;font-weight:700;background:var(--warn);color:#fff;border-radius:999px;padding:2px 7px;vertical-align:2px;margin-left:4px}
-.pick2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.pick2{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
 .pickc{display:flex;flex-direction:column;gap:6px;text-align:left;padding:16px;border-radius:14px;border:1px solid var(--rule);background:var(--surface-2);cursor:pointer;font:inherit;color:var(--ink)}
 .pickc b{font-size:17px}.pickc span{font-size:14px;color:var(--ink)}.pickc small{font-size:12px;color:var(--ink-2)}
 .pickc:hover{border-color:var(--ink)}
@@ -704,6 +704,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   }
 
   // ---------- Ball detection on one frame ----------
+  function inv3(m) {
+    const [a, b, c, d, e, f, g, h, i] = m;
+    const A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g, det = a * A + b * B + c * C;
+    return [A / det, -(b * i - c * h) / det, (b * f - c * e) / det, B / det, (a * i - c * g) / det, -(a * f - c * d) / det, C / det, -(a * h - b * g) / det, (a * e - b * d) / det];
+  }
   function createDetector(w, h, mask) {
     let prev = null, prev2 = null, prgb = null, prgb2 = null;
     const cand = new Uint8Array(w * h);
@@ -719,9 +724,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     // people: difference from a slow background (about 3 s memory), on a 4x4 grid; catches players standing still too
     let slowBg = null, lastG = null;
     const PS = 4, pgw = Math.ceil(w / PS), pgh = Math.ceil(h / PS), pcell = new Uint8Array(pgw * pgh), pstack = new Int32Array(pgw * pgh);
+    let valid = null; // after a camera move: 0 where the previous frames saw nothing (newly in view)
     const detect = function detect(rgba) {
       const g = new Uint8Array(w * h);
       for (let i = 0, j = 0; i < g.length; i++, j += 4) g[i] = (rgba[j] * 3 + rgba[j + 1] * 6 + rgba[j + 2]) / 10;
+      if (valid) for (let i = 0, j = 0; i < g.length; i++, j += 4) if (!valid[i]) {
+        // nothing to compare with here yet: pretend it looked like this all along
+        if (prev) prev[i] = g[i]; if (prev2) prev2[i] = g[i]; if (bg) bg[i] = g[i]; if (slowBg) slowBg[i] = g[i];
+        if (prgb) { prgb[j] = rgba[j]; prgb[j + 1] = rgba[j + 1]; prgb[j + 2] = rgba[j + 2]; }
+        if (prgb2) { prgb2[j] = rgba[j]; prgb2[j + 1] = rgba[j + 1]; prgb2[j + 2] = rgba[j + 2]; }
+      }
+      valid = null;
       if (!bg) bg = Float32Array.from(g);
       if (!slowBg) slowBg = Float32Array.from(g);
       lastG = g;
@@ -834,6 +847,57 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       return out;
     };
     detect.bodies = [];
+    // Camera moved (a gimbal following the player): bring everything remembered from earlier frames into the
+    // current view before the next frame is compared. Hinv maps a pixel of the NEW frame to where the same
+    // point of the court sat in the previous frame (a homography; the court is a plane, the camera only turns).
+    detect.warp = function (Hinv) {
+      if (!prev) return;
+      const fx = new Float32Array(w * h), fy = new Float32Array(w * h), ok = new Uint8Array(w * h);
+      for (let y = 0, i = 0; y < h; y++) for (let x = 0; x < w; x++, i++) {
+        const z = Hinv[6] * x + Hinv[7] * y + Hinv[8];
+        const sx = (Hinv[0] * x + Hinv[1] * y + Hinv[2]) / z, sy = (Hinv[3] * x + Hinv[4] * y + Hinv[5]) / z;
+        fx[i] = sx; fy[i] = sy; ok[i] = sx >= 0 && sy >= 0 && sx <= w - 1.001 && sy <= h - 1.001 ? 1 : 0;
+      }
+      const bil = (src) => {
+        const out = new (src.constructor)(w * h);
+        for (let i = 0; i < out.length; i++) {
+          if (!ok[i]) continue;
+          const x = fx[i], y = fy[i], x0 = x | 0, y0 = y | 0, ax = x - x0, ay = y - y0, k = y0 * w + x0;
+          out[i] = (src[k] * (1 - ax) + src[k + 1] * ax) * (1 - ay) + (src[k + w] * (1 - ax) + src[k + w + 1] * ax) * ay;
+        }
+        return out;
+      };
+      const near4 = (src) => {
+        const out = new Uint8ClampedArray(w * h * 4);
+        for (let i = 0; i < w * h; i++) { if (!ok[i]) continue; const k = ((fy[i] + 0.5) | 0) * w + ((fx[i] + 0.5) | 0); out[i * 4] = src[k * 4]; out[i * 4 + 1] = src[k * 4 + 1]; out[i * 4 + 2] = src[k * 4 + 2]; out[i * 4 + 3] = 255; }
+        return out;
+      };
+      prev = bil(prev); if (prev2) prev2 = bil(prev2);
+      if (bg) bg = bil(bg); if (slowBg) slowBg = bil(slowBg);
+      if (prgb) prgb = near4(prgb); if (prgb2) prgb2 = near4(prgb2);
+      // hot spots and the blobs waiting for confirmation move with the picture
+      const nh = new Float32Array(heat.length);
+      for (let cy = 0; cy < Math.ceil(h / CS); cy++) for (let cx = 0; cx < gw; cx++) {
+        const i = Math.min(h - 1, cy * CS + CS / 2) * w + Math.min(w - 1, cx * CS + CS / 2);
+        if (ok[i]) nh[cy * gw + cx] = heat[((fy[i] / CS) | 0) * gw + ((fx[i] / CS) | 0)];
+      }
+      heat.set(nh);
+      if (pending) {
+        // forward map: the blob's pixels in the new view (nearest pixel whose source falls on the old one)
+        const H = inv3(Hinv);
+        pending = pending.map(c => {
+          const z = H[6] * c.x + H[7] * c.y + H[8], nx = (H[0] * c.x + H[1] * c.y + H[2]) / z, ny = (H[3] * c.x + H[4] * c.y + H[5]) / z;
+          if (nx < 1 || ny < 1 || nx > w - 2 || ny > h - 2) return null;
+          const r = Math.max(1, Math.round(Math.sqrt(c.a / Math.PI))), px = [];
+          for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) if (dx * dx + dy * dy <= r * r) { const X = Math.round(nx + dx), Y = Math.round(ny + dy); if (X >= 0 && Y >= 0 && X < w && Y < h) px.push(Y * w + X); }
+          return { x: nx, y: ny, a: c.a, px };
+        }).filter(Boolean);
+      }
+      valid = ok;
+    };
+    detect.setMask = function (m) { mask = m; };
+    // lost the camera's motion (a jump cut, a whip pan): forget the history and start comparing afresh
+    detect.reset = function () { prev = prev2 = prgb = prgb2 = bg = slowBg = null; pending = null; valid = null; heat.fill(0); };
     detect.people = function () {
       if (!lastG) return [];
       pcell.fill(0);
@@ -1517,7 +1581,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     return { corners: cur, before, after, shift: Math.max(...cur.map((p, i) => Math.hypot(p[0] - handles[i][0], p[1] - handles[i][1]))) };
   }
 
-  const RN = { C, refineCorners, analyzeTrack, lineSamples, lineScore, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
+  const RN = { C, inv3, refineCorners, analyzeTrack, lineSamples, lineScore, dropSlow, homography, applyH, calibrate, courtLines, roiMask, createDetector, track, segments, findEvents,
     buildRallies, judgeBounce, suggestWinner, score, stats, makeCamera, demoScript, renderDemo, demoCorners, ballAt, playerAt, analyze, depthZone };
   if (typeof module !== 'undefined' && module.exports) module.exports = RN; else root.RN = RN;
 })(typeof self !== 'undefined' ? self : this);
@@ -1746,9 +1810,10 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
 
   // ---------- new video: setup ----------
   const setup = { file: null, url: null, video: null, W: 640, H: 360, corners: null, drag: -1, frameT: 1 };
-  function setupFixed(file) {
+  function setupFixed(file, cam) {
     if (!file) return;
     if (live.rec) return;
+    setup.cam = cam || 'fixed';
     if (setup.live) stopStream();
     setLiveUI(false);
     if (setup.url) URL.revokeObjectURL(setup.url);
@@ -2026,16 +2091,136 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     return doc;
   }
 
+  // ---------- gimbal-tracked video: measure how the camera turned, frame to frame ----------
+  // Points on the floor are followed with optical flow (OpenCV.js) and a homography is fitted with RANSAC;
+  // the court is a plane, so that one 3x3 matrix moves the whole court. With it the ball detector compares
+  // like with like, and every candidate is put back into the view the court was fitted on (the reference).
+  const CV_URL = window.__cvUrl || 'https://cdn.jsdelivr.net/npm/@techstark/opencv-js@4.10.0-release.1/dist/opencv.js';
+  let cvReady = null;
+  function loadCV() {
+    if (cvReady) return cvReady;
+    cvReady = new Promise((res, rej) => {
+      // poll rather than await cv.then: the module is itself "thenable", and resolving a promise with it can loop
+      const done = () => { const cv = window.cv; if (cv && cv.Mat && cv.getBuildInformation) { res({ cv }); return true; } return false; };
+      const sc = document.createElement('script'); sc.src = CV_URL; sc.async = true;
+      sc.onload = () => { const t0 = Date.now(); const chk = () => { if (done()) return; if (Date.now() - t0 > 60000) return rej(new Error('timeout')); setTimeout(chk, 100); }; chk(); };
+      sc.onerror = () => { cvReady = null; rej(new Error('load')); };
+      document.head.appendChild(sc);
+    });
+    return cvReady;
+  }
+  const mul3 = (A, B) => [0, 1, 2].flatMap(r => [0, 1, 2].map(c => A[r * 3] * B[c] + A[r * 3 + 1] * B[3 + c] + A[r * 3 + 2] * B[6 + c]));
+  function createMotion(cv, W, H) {
+    let prev = null, pts = null;
+    const win = new cv.Size(21, 21), crit = new cv.TermCriteria(cv.TermCriteria_COUNT | cv.TermCriteria_EPS, 20, 0.03);
+    const maskMat = new cv.Mat(H, W, cv.CV_8UC1);
+    // gray: Uint8Array w*h; floor: Uint8Array w*h (1 = court and its surroundings) -> prev->cur homography or null
+    return {
+      step(gray, floor) {
+        const img = cv.matFromArray(H, W, cv.CV_8UC1, gray);
+        let Hm = null;
+        if (prev) {
+          if (!pts || pts.rows < 150) {
+            if (pts) pts.delete();
+            maskMat.data.set(floor ? floor.map(v => v ? 255 : 0) : new Uint8Array(W * H).fill(255));
+            pts = new cv.Mat(); cv.goodFeaturesToTrack(prev, pts, 400, 0.01, 8, maskMat);
+          }
+          if (pts.rows >= 16) {
+            const nxt = new cv.Mat(), st = new cv.Mat(), er = new cv.Mat();
+            cv.calcOpticalFlowPyrLK(prev, img, pts, nxt, st, er, win, 3, crit);
+            const A = [], B = [];
+            for (let k = 0; k < st.rows; k++) if (st.data[k]) { A.push(pts.data32F[k * 2], pts.data32F[k * 2 + 1]); B.push(nxt.data32F[k * 2], nxt.data32F[k * 2 + 1]); }
+            if (A.length >= 32) {
+              const sa = cv.matFromArray(A.length / 2, 1, cv.CV_32FC2, A), sb = cv.matFromArray(B.length / 2, 1, cv.CV_32FC2, B), msk = new cv.Mat();
+              const Hc = cv.findHomography(sa, sb, cv.RANSAC, 1.5, msk);
+              let inl = 0; const keep = [];
+              for (let k = 0; k < msk.rows; k++) if (msk.data[k]) { inl++; const x = B[k * 2], y = B[k * 2 + 1]; if (x > 2 && y > 2 && x < W - 3 && y < H - 3 && (!floor || floor[(y | 0) * W + (x | 0)])) keep.push(x, y); }
+              if (Hc.rows === 3 && inl >= 24) Hm = Array.from(Hc.data64F);
+              pts.delete(); pts = keep.length >= 300 ? cv.matFromArray(keep.length / 2, 1, cv.CV_32FC2, keep) : null;
+              sa.delete(); sb.delete(); msk.delete(); Hc.delete();
+            } else { pts.delete(); pts = null; }
+            nxt.delete(); st.delete(); er.delete();
+          } else { pts.delete(); pts = null; }
+          prev.delete();
+        }
+        prev = img;
+        return Hm;
+      },
+      free() { if (prev) prev.delete(); if (pts) pts.delete(); maskMat.delete(); prev = pts = null; }
+    };
+  }
+  // Collector for a moving camera: like createCollector, but every frame is first brought into line with the
+  // previous one, the court region follows the camera, and candidates are stored in reference-view pixels.
+  // handles/refPts: the four points the user placed on the reference frame and the court points they stand for.
+  function createMovingCollector(cv, cal, W, H, refPts, handles) {
+    const col = createCollector(cal, W, H);
+    const cv2d = col.canvas.getContext('2d', { willReadFrequently: true });
+    const motion = createMotion(cv, W, H);
+    const det = RN.createDetector(W, H, null);
+    let G = [1, 0, 0, 0, 1, 0, 0, 0, 1], Gprev = G;   // this frame -> reference view
+    let mask = null, n = 0, lostRun = 0;
+    const xf = []; // [t, 9 numbers] per frame, for drawing the trail back onto the moving picture
+    const gray = new Uint8Array(W * H);
+    const calAt = (Gm) => { const back = RN.inv3(Gm); return RN.calibrate(cal.corners.map(([x, y]) => RN.applyH(back, x, y))); };
+    col.step = (src, t) => {
+      cv2d.drawImage(src, 0, 0, W, H);
+      const img = cv2d.getImageData(0, 0, W, H).data;
+      for (let i = 0, j = 0; i < gray.length; i++, j += 4) gray[i] = (img[j] * 3 + img[j + 1] * 6 + img[j + 2]) / 10;
+      const Hm = motion.step(gray, mask);
+      Gprev = G;
+      if (n > 0) {
+        if (Hm) { G = mul3(G, RN.inv3(Hm)); det.warp(RN.inv3(Hm)); lostRun = 0; }
+        else { det.reset(); lostRun++; } // keep the last known placement; the detector starts over
+      }
+      n++;
+      // the court region where the camera now looks (refreshed every 3rd frame; it moves little in 0.1 s)
+      if (!mask || n % 3 === 1) { const c = calAt(G); mask = c ? RN.roiMask(W, H, c, 1, 1) : null; det.setMask(mask); }
+      // once a second: snap the court back onto the painted lines so small errors do not pile up
+      if (n % 30 === 0 && lostRun === 0) {
+        const back = RN.inv3(G), pred = handles.map(([x, y]) => RN.applyH(back, x, y));
+        if (pred.every(([x, y]) => x > -W && x < 2 * W && y > -H && y < 2 * H)) {
+          const r = RN.refineCorners(img, W, H, pred, refPts);
+          if (r.after > r.before * 1.08 && r.shift < 6) { const Gn = RN.homography(r.corners, handles); if (Gn) G = Gn; }
+        }
+      }
+      const c = det(img); // candidates of the previous frame
+      if (col.lastT != null) {
+        const toRef = (x, y) => RN.applyH(G, x, y); // the detector already moved last frame's blobs into this view
+        col.frames.push({ t: col.lastT, c: lostRun > 1 ? [] : c.map(k => { const [x, y] = toRef(k.x, k.y); return { x, y, a: k.a, sx: k.x, sy: k.y }; }) });
+        if (col.lastT - col.lastBodyT >= 0.2) {
+          col.lastBodyT = col.lastT;
+          const ppl = det.people().filter(b => mask && mask[(Math.min(H - 1, b.y | 0)) * W + (b.x | 0)] && b.h > H * 0.04).sort((p, q) => q.a - p.a).slice(0, 4)
+            .map(b => { const [x, y] = toRef(b.x, b.y), [, y2] = toRef(b.x, b.y - b.h); return { x, y, h: y - y2, a: b.a }; });
+          col.bodySamples.push({ t: col.lastT, b: ppl });
+        }
+        xf.push([+col.lastT.toFixed(3), ...Gprev.map(v => +v.toPrecision(7))]);
+      }
+      col.lastT = t;
+      return c; // screen-space candidates, for the progress view
+    };
+    col.xf = xf;
+    col.refScore = 0; // camera moves by design: no "camera moved" windows
+    col.free = () => motion.free();
+    return col;
+  }
+
   async function runAnalysis() {
     const cal = setupCalib();
     if (!cal) { toast('꼭짓점 네 개가 한 줄로 겹쳤습니다. 코트 모서리에 다시 맞춰 주세요.'); return; }
     saveLastCal();
     cancelAnalysis = false;
     show('vAnalyze'); $('#anaTitle').textContent = '공을 따라가는 중';
-    const W = setup.W, H = setup.H, v = setup.video, fps = +setupOpts.speed;
+    const W = setup.W, H = setup.H, v = setup.video, moving = setup.cam === 'moving', fps = moving ? 30 : +setupOpts.speed;
     const pc = $('#progCanvas'); pc.width = W; pc.height = H;
     const ctx = pc.getContext('2d');
-    const col = createCollector(cal, W, H);
+    let col;
+    if (moving) {
+      $('#progText').textContent = '카메라 움직임을 계산하는 도구를 준비하는 중… (처음 한 번 약 10MB를 내려받습니다)';
+      let cv; try { cv = (await loadCV()).cv; } catch (e) { toast('카메라 움직임 계산 도구를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', 6000); show('vSetup'); drawCalib(); return; }
+      col = createMovingCollector(cv, cal, W, H, refCourtPoints(), setup.corners.map(p => p.slice()));
+    } else col = createCollector(cal, W, H);
+    // a moving camera is followed from the frame the court was fitted on
+    const start = moving ? Math.max(0, setup.frameT || 0) : 0;
     const started = performance.now();
     let wake = null;
     try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
@@ -2043,15 +2228,15 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const process = (t) => {
       const c = col.step(v, t);
       ctx.drawImage(col.canvas, 0, 0);
-      // a bold ring only where a candidate continues from the last frame (how the tracker starts a ball); the rest is faint noise
-      const fr = col.frames, pc0 = fr.length > 1 ? fr[fr.length - 2].c : [];
+      // a ring only where a candidate carries on from the last two frames, like a flying ball; single specks are not shown
+      const fr = col.frames, f1 = fr.length > 1 ? fr[fr.length - 2].c : [], f2 = fr.length > 2 ? fr[fr.length - 3].c : [];
+      const sxy = (q) => q.sx != null ? [q.sx, q.sy] : [q.x, q.y];
+      const near = (k, list) => list.some(q => { const [qx, qy] = sxy(q), d = Math.hypot(k.x - qx, k.y - qy); return d > 0.6 && d < W * 0.07; });
       for (const k of c) {
-        const moving = pc0.some(q => { const d = Math.hypot(k.x - q.x, k.y - q.y); return d > 0.6 && d < W * 0.07; });
-        ctx.beginPath();
-        if (moving) { ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2.5; ctx.arc(k.x, k.y, 7, 0, Math.PI * 2); ctx.stroke(); }
-        else { ctx.fillStyle = 'rgba(205,235,60,.45)'; ctx.arc(k.x, k.y, 2, 0, Math.PI * 2); ctx.fill(); }
+        if (!(near(k, f1) && near(k, f2))) continue;
+        ctx.beginPath(); ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2.5; ctx.arc(k.x, k.y, 7, 0, Math.PI * 2); ctx.stroke();
       }
-      const pct = clamp(t / dur, 0, 1);
+      const pct = clamp((t - start) / Math.max(0.1, dur - start), 0, 1);
       $('#progBar').style.width = (pct * 100).toFixed(1) + '%';
       $('#progPct').textContent = Math.round(pct * 100) + '%';
       const el = (performance.now() - started) / 1000, eta = pct > 0.02 ? el / pct - el : null;
@@ -2059,7 +2244,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     };
     // Fast path: play the video and read every presented frame. Safari sometimes never starts or stalls,
     // so a watchdog drops to stepping through the video by seeking from wherever it got to.
-    let last = -1;
+    let last = start - 1, cost_ = 0, n_ = 0, t0_ = null;
     const playPass = () => new Promise((resolve, reject) => {
       if (!('requestVideoFrameCallback' in HTMLVideoElement.prototype)) return resolve('noRvfc');
       let lastCb = performance.now(), done = false;
@@ -2069,12 +2254,20 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
         lastCb = performance.now();
         const t = meta.mediaTime;
-        if (t - last >= 1 / fps - 0.006) { last = t; process(t); }
+        if (t - last >= 1 / fps - 0.006) {
+          last = t; n_++; if (t0_ == null) t0_ = t;
+          const a0 = performance.now(); process(t); const cost = performance.now() - a0;
+          // keep up: slow the video down when a frame takes longer than its share of real time
+          cost_ = cost_ ? cost_ * 0.9 + cost * 0.1 : cost;
+          const want = clamp((1000 / fps) / Math.max(1, cost_ * 1.25), 0.1, fps >= 30 ? 1 : 2);
+          if (Math.abs(v.playbackRate - want) > 0.05) v.playbackRate = want;
+          if (t - t0_ > 3 && n_ / (t - t0_) < fps * 0.6) { finish('slow'); return; }
+        }
         if (!v.ended) v.requestVideoFrameCallback(cb);
       };
       const dog = setInterval(() => {
         if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
-        if (performance.now() - lastCb > 3000) finish('stalled');
+        if (performance.now() - lastCb > 6000) finish('stalled');
       }, 500);
       v.onended = () => finish('ended');
       v.muted = true; v.playbackRate = fps >= 30 ? 1 : 2;
@@ -2089,11 +2282,11 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     });
     try {
       v.pause(); v.onseeked = null;
-      await seekTo(0);
+      await seekTo(start);
       const how = await playPass();
       if (how !== 'ended' || last < dur - 1) {
         $('#progText').textContent = '이 브라우저에서는 한 장씩 넘기며 분석합니다…';
-        for (let t = Math.max(0, last + 1 / fps); t < dur; t += 1 / fps) {
+        for (let t = Math.max(start, last + 1 / fps); t < dur; t += 1 / fps) {
           if (cancelAnalysis) throw new Error('cancel');
           await seekTo(t);
           process(t); last = t;
@@ -2111,6 +2304,13 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const res = col.finish(opts);
     const doc = makeDoc(cal, W, H, res, col, { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, opts);
     const rallies = res.rallies;
+    if (moving) {
+      // where the camera looked, frame by frame: needed to draw the trail on the moving picture
+      doc.cam = 'moving'; doc.src.start = +start.toFixed(2);
+      const buf = new Float32Array(col.xf.length * 10); col.xf.forEach((r, i) => buf.set(r, i * 10));
+      try { await media.put('xf_' + doc.id, 0, new Blob([buf.buffer])); doc.src.xf = 'xf_' + doc.id; } catch (e) { /* replay without the trail */ }
+      col.free();
+    }
     videoURLs[doc.id] = setup.url; setup.url = null;
     const ok = await store.save(doc);
     if (!ok) toast('저장 공간이 부족해 세션을 저장하지 못했습니다. 이번 화면에서는 볼 수 있습니다.', 5000);
@@ -2233,6 +2433,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     await store.remove(doc.id);
     if (doc.src && doc.src.media) media.del(doc.src.media);
     if (doc.src && doc.src.poses) media.del(doc.src.poses);
+    if (doc.src && doc.src.xf) media.del(doc.src.xf);
     if (videoURLs[doc.id]) { URL.revokeObjectURL(videoURLs[doc.id]); delete videoURLs[doc.id]; }
   }
 
@@ -2323,6 +2524,10 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $$('.live-only').forEach(el => { el.hidden = !on; });
     $('#scrubField').hidden = on; $('#speedField').hidden = on; $('#startHint').hidden = on;
     $('#startAnalyze').textContent = on ? '● 녹화 시작' : '분석 시작';
+    if (on) setup.cam = 'fixed';
+    const mv = !on && setup.cam === 'moving';
+    $('#startHint').innerHTML = mv ? '<b>짐벌 영상:</b> 지금 보이는 장면부터 끝까지 분석합니다. 코트 라인이 잘 보이고 경기가 시작되기 직전 장면으로 옮긴 뒤 점을 맞추세요. 분석은 영상 길이보다 오래 걸릴 수 있습니다.' : '분석하는 동안 화면을 켜 두세요. 영상은 서버로 올라가지 않습니다.';
+    $('#speedField').hidden = on || mv;
   }
   async function startLive() {
     if (!canLive()) { $('#fileRecord').click(); return; }
@@ -2627,12 +2832,14 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (!file || live.rec) return;
     modal(`<div class="xhead"><h2>어떻게 찍은 영상인가요?</h2><button class="btn ghost sm" type="button" id="pkClose">닫기</button></div>
       <div class="pick2">
-        <button class="pickc" type="button" id="pkForm"><b>짐벌이 나를 따라감 <em class="beta">시험판</em></b><span>스윙 폼 · 발 움직임 분석</span><small>코트 맞추기 없이 바로 시작 · 내 몸 전체가 보이게, 짐벌이 나만 따라가게 찍은 영상 · 아직 정확도를 맞추는 중입니다</small></button>
+        <button class="pickc" type="button" id="pkForm"><b>짐벌이 나를 따라감 · 폼 분석 <em class="beta">시험판</em></b><span>스윙 폼 · 발 움직임 분석</span><small>코트 맞추기 없이 바로 시작 · 내 몸 전체가 보이게, 짐벌이 나만 따라가게 찍은 영상 · 아직 정확도를 맞추는 중입니다</small></button>
+        <button class="pickc" type="button" id="pkMoving"><b>짐벌이 나를 따라감 · 공 분석</b><span>공 궤적 · 샷 종류 · 속도 · 낙하지점</span><small>카메라가 돌아도 매 장면 코트 위치를 다시 계산합니다 · 코트 점 4개를 한 번 맞춥니다</small></button>
         <button class="pickc" type="button" id="pkFixed"><b>카메라 고정 · 코트 전체</b><span>공 궤적 · 샷 종류 · 속도 · 낙하지점</span><small>코트 모서리 4점을 한 번 맞춥니다</small></button>
       </div>`);
     $('#pkClose').onclick = closeModal;
     $('#pkForm').onclick = () => { closeModal(); runFormAnalysis(file); };
-    $('#pkFixed').onclick = () => { closeModal(); setupFixed(file); };
+    $('#pkFixed').onclick = () => { closeModal(); setupFixed(file, 'fixed'); };
+    $('#pkMoving').onclick = () => { closeModal(); setupFixed(file, 'moving'); };
   }
 
   const pickMain = (r, prevX) => {
@@ -2878,6 +3085,11 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       }
     }
     $('#btnOrig').hidden = !(doc.src.kind === 'live');
+    if (doc.cam === 'moving' && doc.src.xf) media.load(doc.src.xf).then(async parts => {
+      if (!parts.length || !cur || cur.doc !== doc) return;
+      const f = new Float32Array(await new Blob(parts).arrayBuffer()), n = f.length / 10;
+      cur.xf = { n, t: Float32Array.from({ length: n }, (_, i) => f[i * 10]), m: Float32Array.from({ length: n * 9 }, (_, j) => f[Math.floor(j / 9) * 10 + 1 + (j % 9)]) }; P.dirty = true;
+    }).catch(() => {});
     vid.style.transform = '';
     // sessions analysed before stroke types were guessed
     if ((doc.typed || 0) < 2 && !doc.demo) { autoLabels(doc, cur.people, calib, cur.trail); recompute(); persist(); }
@@ -2983,13 +3195,24 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
 
   // draws tracer, bounce marks, court lines for time t into ctx scaled by k (proc px -> canvas px)
+  // moving camera: reference-view pixels -> pixels of the frame shown at time t (null = not known there)
+  function refToScreen(t) {
+    const x = cur.xf; if (!x) return null;
+    let lo = 0, hi = x.n - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (x.t[m] < t) lo = m + 1; else hi = m; }
+    const i = lo > 0 && Math.abs(x.t[lo - 1] - t) < Math.abs(x.t[lo] - t) ? lo - 1 : lo;
+    if (Math.abs(x.t[i] - t) > 0.1) return null;
+    return RN.inv3(Array.from(x.m.subarray(i * 9, i * 9 + 9)));
+  }
   function drawOverlays(ctx, t, k, ox, oy, opts) {
     ox = ox || 0; oy = oy || 0; opts = opts || {};
     const doc = cur.doc;
+    const M = cur.xf ? refToScreen(t) : null;
+    if (cur.xf && !M) return; // before the analysed part, or the camera was lost there
+    const S = (x, y) => M ? RN.applyH(M, x, y) : [x, y];
     if (opts.lines) {
       ctx.strokeStyle = 'rgba(120,210,255,.75)'; ctx.lineWidth = Math.max(1, k * 0.9);
       for (const [a, b] of RN.courtLines()) {
-        const A = RN.applyH(cur.calib.toImage, a[0], a[1]), B = RN.applyH(cur.calib.toImage, b[0], b[1]);
+        const A = S(...RN.applyH(cur.calib.toImage, a[0], a[1])), B = S(...RN.applyH(cur.calib.toImage, b[0], b[1]));
         ctx.beginPath(); ctx.moveTo(ox + A[0] * k, oy + A[1] * k); ctx.lineTo(ox + B[0] * k, oy + B[1] * k); ctx.stroke();
       }
     }
@@ -3003,9 +3226,10 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         const age = (t - b.t) / 2.2;
         ctx.globalAlpha = 1 - age * 0.7;
         ctx.strokeStyle = col; ctx.lineWidth = Math.max(2, k * 1.4);
-        ctx.beginPath(); ctx.ellipse(ox + b.ix * k, oy + b.iy * k, 9 * k * 0.9 + 4, 4 * k * 0.9 + 2, 0, 0, Math.PI * 2); ctx.stroke();
+        const [bx, by] = S(b.ix, b.iy);
+        ctx.beginPath(); ctx.ellipse(ox + bx * k, oy + by * k, 9 * k * 0.9 + 4, 4 * k * 0.9 + 2, 0, 0, Math.PI * 2); ctx.stroke();
         ctx.fillStyle = col; ctx.font = `700 ${Math.round(11 + k * 3)}px "Barlow Condensed", sans-serif`;
-        ctx.fillText(b.in ? 'IN' : 'OUT', ox + b.ix * k + 10 + k * 6, oy + b.iy * k - 4);
+        ctx.fillText(b.in ? 'IN' : 'OUT', ox + bx * k + 10 + k * 6, oy + by * k - 4);
         ctx.globalAlpha = 1;
       }
     }
@@ -3022,12 +3246,14 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         if (b.t - a.t > 0.2) continue;
         const f = 1 - (t - b.t) / 0.5;
         ctx.strokeStyle = `rgba(205,235,60,${clamp(f, 0, 1) * 0.95})`; ctx.lineWidth = Math.max(2, k * 1.6);
-        ctx.beginPath(); ctx.moveTo(ox + a.x * k, oy + a.y * k); ctx.lineTo(ox + b.x * k, oy + b.y * k); ctx.stroke();
+        const [ax, ay] = S(a.x, a.y), [bx, by] = S(b.x, b.y);
+        ctx.beginPath(); ctx.moveTo(ox + ax * k, oy + ay * k); ctx.lineTo(ox + bx * k, oy + by * k); ctx.stroke();
       }
       const lp = seg[seg.length - 1];
       if (t - lp.t < 0.08) {
+        const [lx, ly] = S(lp.x, lp.y);
         ctx.strokeStyle = '#cdeb3c'; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(ox + lp.x * k, oy + lp.y * k, 5 + k * 2, 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(ox + lx * k, oy + ly * k, 5 + k * 2, 0, Math.PI * 2); ctx.stroke();
       }
     }
   }
@@ -3391,6 +3617,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
 
   async function renderExport(scenes, o) {
+    if (cur.doc.cam === 'moving') o = Object.assign({}, o, { follow: false }); // the gimbal already followed the play
     const doc = cur.doc, tall = o.ratio === 'tall';
     const srcPxW = cur.demo ? doc.W : (vid.videoWidth || doc.W), srcPxH = cur.demo ? doc.H : (vid.videoHeight || doc.H);
     const sv = srcPxW / doc.W;
@@ -3412,7 +3639,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const cv = document.createElement('canvas'); cv.width = outW; cv.height = outH;
     const ctx = cv.getContext('2d');
     const k = outW / cw, s = Math.min(outW, outH) / 540;
-    const courtCx = doc.corners.reduce((n, p) => n + p[0], 0) / doc.corners.length;
+    const courtCx = doc.cam === 'moving' ? doc.W / 2 : doc.corners.reduce((n, p) => n + p[0], 0) / doc.corners.length;
     let camAt = null;
     camCenter = o.center === 'me' ? 'me' : 'hitter';
     const mime = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
