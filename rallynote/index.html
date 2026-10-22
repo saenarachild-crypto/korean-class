@@ -75,6 +75,24 @@ p{margin:0}
 .chip.ball{background:var(--ball);color:var(--ball-ink)}
 
 /* Home */
+.pick2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.pickc{display:flex;flex-direction:column;gap:6px;text-align:left;padding:16px;border-radius:14px;border:1px solid var(--rule);background:var(--surface-2);cursor:pointer;font:inherit;color:var(--ink)}
+.pickc b{font-size:17px}.pickc span{font-size:14px;color:var(--ink)}.pickc small{font-size:12px;color:var(--ink-2)}
+.pickc:hover{border-color:var(--ink)}
+@media (max-width:560px){.pick2{grid-template-columns:1fr}}
+.mixline{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--ink-2);margin:8px 0}
+.mixline i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.swing-now{background:var(--surface-2);border-radius:10px;padding:10px 12px;margin:6px 0 12px}
+.swing-now header{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.swing-now .chk{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.swing-now .chk span{font-size:12.5px;padding:3px 8px;border-radius:999px;background:var(--surface)}
+.swing-now .chk .ok{color:var(--in)}.swing-now .chk .no{color:var(--out)}
+.ci-title{font-size:14px;margin:4px 0 6px}
+.coach-item{border-top:1px solid var(--rule);padding:10px 0}
+.coach-item .ci-h{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.coach-item .ci-n{font-size:12.5px;color:var(--ink-2);margin-top:3px}
+.coach-item p{font-size:13.5px;margin-top:6px;line-height:1.55}
+.ci-good{font-size:13px;color:var(--in);border-top:1px solid var(--rule);padding-top:8px}
 .intro{padding-block:8px 20px}
 .intro h1{font-size:clamp(22px,4.4vw,30px);line-height:1.3;max-width:28ch}
 .intro .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
@@ -535,7 +553,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <!-- ANALYZING -->
   <section id="vAnalyze" hidden>
     <div class="panel prog">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2>공을 따라가는 중</h2><span class="num" id="progPct">0%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2 id="anaTitle">공을 따라가는 중</h2><span class="num" id="progPct">0%</span></div>
       <div class="bar"><i id="progBar"></i></div>
       <p class="hint" id="progText">영상을 재생하며 프레임마다 공을 찾습니다. 굵은 원은 움직이는 공 후보, 흐린 점은 걸러질 잡음입니다.</p>
       <canvas id="progCanvas"></canvas>
@@ -572,14 +590,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <button class="btn primary sm" id="btnPlay" type="button">재생</button>
             <button class="btn sm" id="btnNext" type="button">다음 랠리</button>
             <div class="seg" id="optRate"><button type="button" data-v="0.25">¼</button><button type="button" data-v="0.5">½</button><button type="button" data-v="1">1×</button></div>
-            <label class="check"><input type="checkbox" id="optOnly" checked> 랠리만</label>
+            <label class="check"><input type="checkbox" id="optOnly" checked> <span id="onlyLbl">랠리만</span></label>
             <button class="btn sm" id="btnTheater" type="button">전체 화면</button>
             <span class="time" id="timeLbl">0:00</span>
           </div>
         </div>
         <div class="rail">
           <div class="panel rally-card" id="rallyCard"></div>
-          <div class="panel card-pad">
+          <div id="exportPanel" class="panel card-pad">
             <h3>영상 저장</h3>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <button class="btn sm ball" id="btnHighlights" type="button">하이라이트 영상 만들기</button>
@@ -1631,6 +1649,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     return f;
   }
   function effective(doc) {
+    if (doc.kind === 'form') return { rallies: formRallies(doc), score: { snaps: [] } };
     const o0 = doc.opts || {};
     const jopts = { doubles: o0.doubles, mode: doc.mode };
     const rs = doc.rallies.filter(r => !r.deleted).map(r => {
@@ -1665,6 +1684,15 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#storeNote').textContent = store.mode === 'cloud' ? '내 계정에 저장됨' : '이 기기에 저장됨';
     if (!sessions.length) { el.innerHTML = '<div class="empty">아직 분석한 영상이 없습니다. <b>영상 불러와 분석</b>으로 시작하세요.</div>'; return; }
     el.innerHTML = sessions.map(d => {
+      if (d.kind === 'form') {
+        const sw = d.form.swings, date = new Date(d.created || Date.now()), co = formCoach(d.form);
+        return `<div class="panel scard" data-id="${esc(d.id)}" role="button" tabindex="0">
+        <div class="row"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.name)}</b><span class="chip">폼·발</span></div>
+        <div class="muted" style="font-size:13px">${date.getMonth() + 1}월 ${date.getDate()}일 · ${fmtT(d.src.duration)} 영상</div>
+        <div class="figs"><div><b>${sw.length}</b><span>스윙</span></div><div><b>${sw.filter(x => x.type === 'forehand').length}/${sw.filter(x => x.type === 'backhand').length}</b><span>포/백</span></div><div><b>${co.fix.length}</b><span>개선할 점</span></div></div>
+        <div class="row" style="justify-content:flex-end"><button class="btn sm danger" data-del="${esc(d.id)}" type="button">삭제</button></div>
+      </div>`;
+      }
       const ef = effective(d), shots = ef.rallies.flatMap(r => r.shots);
       const sp = shots.map(x => x.speed).filter(Boolean), date = new Date(d.created || Date.now());
       return `<div class="panel scard" data-id="${esc(d.id)}" role="button" tabindex="0">
@@ -1717,7 +1745,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
 
   // ---------- new video: setup ----------
   const setup = { file: null, url: null, video: null, W: 640, H: 360, corners: null, drag: -1, frameT: 1 };
-  function onFile(file) {
+  function setupFixed(file) {
     if (!file) return;
     if (live.rec) return;
     if (setup.live) stopStream();
@@ -2002,7 +2030,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (!cal) { toast('꼭짓점 네 개가 한 줄로 겹쳤습니다. 코트 모서리에 다시 맞춰 주세요.'); return; }
     saveLastCal();
     cancelAnalysis = false;
-    show('vAnalyze');
+    show('vAnalyze'); $('#anaTitle').textContent = '공을 따라가는 중';
     const W = setup.W, H = setup.H, v = setup.video, fps = +setupOpts.speed;
     const pc = $('#progCanvas'); pc.width = W; pc.height = H;
     const ctx = pc.getContext('2d');
@@ -2203,6 +2231,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   async function removeSession(doc) {
     await store.remove(doc.id);
     if (doc.src && doc.src.media) media.del(doc.src.media);
+    if (doc.src && doc.src.poses) media.del(doc.src.poses);
     if (videoURLs[doc.id]) { URL.revokeObjectURL(videoURLs[doc.id]); delete videoURLs[doc.id]; }
   }
 
@@ -2460,6 +2489,337 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     $('#recDrop').onclick = async () => { await media.del(p.id); try { localStorage.removeItem(PENDING); } catch (e) { /* ignore */ } el.hidden = true; toast('지웠습니다'); };
   }
 
+  // ---------- form & footwork analysis (the gimbal follows me) ----------
+  // Body pose per frame (MediaPipe Pose Landmarker, in the browser) -> swings from the racket-hand wrist speed
+  // -> stroke type and form checks per swing. Everything is measured in body-centred 3D coordinates
+  // (metres, origin between the hips), so a camera that pans and tilts with the player does not matter.
+  const MP = {
+    lib: window.__mpLib || 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14',
+    model: window.__mpModel || 'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task'
+  };
+  let poseLm = null;
+  async function getPose() {
+    if (poseLm) return poseLm;
+    const { PoseLandmarker, FilesetResolver } = await import(MP.lib + '/vision_bundle.mjs');
+    const fs = await FilesetResolver.forVisionTasks(MP.lib + '/wasm');
+    const mk = (delegate) => PoseLandmarker.createFromOptions(fs, { baseOptions: { modelAssetPath: MP.model, delegate }, runningMode: 'VIDEO', numPoses: 3, minPoseDetectionConfidence: 0.4, minPosePresenceConfidence: 0.4, minTrackingConfidence: 0.4 });
+    try { poseLm = await mk('GPU'); } catch (e) { poseLm = await mk('CPU'); }
+    return poseLm;
+  }
+  const FORM_FPS = 15;
+  const STROKE_KO = { forehand: '포핸드', backhand: '백핸드', volley: '발리', overhead: '서브·스매시' };
+  const STROKE_COL = { forehand: '#2fb35a', backhand: '#ff8a2a', volley: '#f5c518', overhead: '#22b8d0' };
+
+  // what to look at, how to read it, and what good looks like (club-coach rules of thumb)
+  const CHECKS = {
+    knee: { label: '무릎 굽힘', unit: '°', good: (v) => v <= 150, fmt: (v) => Math.round(v) + '°', target: '150° 이하',
+      tip: '공을 치는 순간 무릎이 거의 펴져 있습니다. 공이 오기 전에 미리 낮게 앉고, 다리로 밀어 올리며 치세요. 연습: 칠 때마다 "앉고-밀기"를 소리 내어 세기.' },
+    rot: { label: '어깨 회전', unit: '°', good: (v) => v >= 50, fmt: (v) => Math.round(v) + '°', target: '50° 이상',
+      tip: '테이크백에서 어깨가 충분히 돌지 않습니다. 공이 네트를 넘어오는 순간 왼쪽 어깨(오른손잡이)를 턱 밑으로 돌려 등이 상대에게 보이게 준비하세요.' },
+    front: { label: '타점 (몸 앞)', unit: 'cm', good: (v) => v >= 0.2, fmt: (v) => Math.round(v * 100) + 'cm', target: '앞쪽 20cm 이상',
+      tip: '공을 몸 옆이나 뒤에서 맞히고 있습니다. 준비를 한 박자 일찍 하고, 앞발보다 앞에서 맞힌다는 느낌으로 치세요. 연습: 느린 랠리에서 타점만 의식하기.' },
+    finish: { label: '피니시 높이', unit: '', good: (v) => v < 0, fmt: (v) => v < 0 ? '어깨 위' : '어깨 아래', target: '반대쪽 어깨 위',
+      tip: '스윙이 중간에 멈춥니다. 라켓을 반대쪽 어깨 위까지 끝까지 감아 올리세요(포핸드는 라켓 목이 어깨에 닿게).' },
+    head: { label: '머리 고정', unit: 'cm', good: (v) => v <= 0.09, fmt: (v) => Math.round(v * 100) + 'cm', target: '9cm 이하 움직임',
+      tip: '치는 순간 머리가 따라 움직입니다. 공이 라켓에 맞는 자리를 맞힌 뒤에도 0.5초 더 보고 있는다는 느낌으로 머리를 고정하세요.' },
+    base: { label: '스탠스 넓이', unit: '×', good: (v) => v >= 1.5, fmt: (v) => v.toFixed(1) + '×', target: '골반 폭의 1.5배 이상',
+      tip: '발이 좁게 붙은 채 칩니다. 치기 직전 마지막 걸음을 넓게 디뎌 어깨보다 넓은 스탠스를 만드세요.' },
+    split: { label: '스플릿 스텝', unit: '', good: (v) => v, fmt: (v) => v ? '했음' : '없음', target: '매 샷 전에',
+      tip: '상대가 치기 직전 작은 점프(스플릿 스텝)가 잘 안 보입니다. 상대 라켓에 공이 닿는 순간 양발로 살짝 뛰어 착지하면서 출발하세요.' }
+  };
+  const CHECKS_FOR = { forehand: ['knee', 'rot', 'front', 'finish', 'head', 'base', 'split'], backhand: ['knee', 'rot', 'front', 'finish', 'head', 'base', 'split'], volley: ['knee', 'front', 'head', 'split'], overhead: ['head'] };
+
+  function hv(v) { const n = Math.hypot(v[0], v[2]); return n > 0 ? [v[0] / n, 0, v[2] / n] : [0, 0, 0]; }
+  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2];
+  const nrm = (a) => Math.hypot(a[0], a[1], a[2]);
+  function angAt(a, b, c) { const u = sub(a, b), v = sub(c, b); return Math.acos(clamp(dot(u, v) / (nrm(u) * nrm(v) + 1e-9), -1, 1)) * 180 / Math.PI; }
+
+  // frames: [{t, img: Float32Array(33*3) x,y,visibility | null, wld: Float32Array(33*3) | null}]
+  function formAnalyze(frames) {
+    const N = frames.length; if (N < 10) return { swings: [], hops: [], seen: 0 };
+    const T = frames.map(f => f.t), fps = 1 / ((T[N - 1] - T[0]) / (N - 1));
+    const seen = frames.map(f => !!f.wld);
+    // world joints, gaps filled, lightly smoothed (3-frame mean)
+    const J = (i, j) => { const w = frames[i].wld; return [w[j * 3], w[j * 3 + 1], w[j * 3 + 2]]; };
+    const W = new Array(N);
+    let last = -1;
+    for (let i = 0; i < N; i++) if (seen[i]) { W[i] = Array.from({ length: 33 }, (_, j) => J(i, j)); if (last >= 0 && i - last > 1) for (let k = last + 1; k < i; k++) { const f = (k - last) / (i - last); W[k] = W[last].map((p, j) => p.map((v, c) => v + (W[i][j][c] - v) * f)); } last = i; }
+    const first = seen.indexOf(true); if (first < 0) return { swings: [], hops: [], seen: 0 };
+    for (let i = 0; i < first; i++) W[i] = W[first];
+    for (let i = last + 1; i < N; i++) W[i] = W[last];
+    const S = W.map((_, i) => W[i].map((p, j) => { const a = W[Math.max(0, i - 1)][j], b = W[Math.min(N - 1, i + 1)][j]; return [(a[0] + p[0] + b[0]) / 3, (a[1] + p[1] + b[1]) / 3, (a[2] + p[2] + b[2]) / 3]; }));
+    const spd = (j) => S.map((_, i) => i ? nrm(sub(S[i][j], S[i - 1][j])) * fps : 0);
+    const sR = spd(16), sL = spd(15);
+    const pct = (a, q) => { const b = a.filter((v, i) => seen[i]).sort((x, y) => x - y); return b.length ? b[Math.floor((b.length - 1) * q)] : 0; };
+    const dom = pct(sR, 0.97) >= pct(sL, 0.97) ? 16 : 15, hand = dom === 16 ? 'R' : 'L';
+    const sd = dom === 16 ? sR : sL;
+    const thr = Math.max(3.5, pct(sd, 0.9));
+    const peaks = [];
+    for (let i = 1; i < N - 1; i++) {
+      if (!(sd[i] >= thr && sd[i] >= sd[i - 1] && sd[i] >= sd[i + 1] && seen[i])) continue;
+      if (peaks.length && T[i] - T[peaks[peaks.length - 1]] < 0.9) { if (sd[i] > sd[peaks[peaks.length - 1]]) peaks[peaks.length - 1] = i; }
+      else peaks.push(i);
+    }
+    // split steps: both feet briefly above where they usually are (image space, relative to body height)
+    const bodyH = frames.map(f => { if (!f.img) return NaN; let lo = 9, hi = -9; for (let j = 0; j < 33; j++) { const y = f.img[j * 3 + 1]; if (y < lo) lo = y; if (y > hi) hi = y; } return hi - lo; });
+    const ank = frames.map(f => f.img ? (f.img[27 * 3 + 1] + f.img[28 * 3 + 1]) / 2 : NaN);
+    const half = Math.floor(fps * 0.6);
+    const med = (a, i) => { const w = []; for (let k = Math.max(0, i - half); k <= Math.min(N - 1, i + half); k++) if (!isNaN(a[k])) w.push(a[k]); w.sort((x, y) => x - y); return w.length ? w[w.length >> 1] : NaN; };
+    const hops = [];
+    const up = ank.map((v, i) => isNaN(v) || !(bodyH[i] > 0) ? NaN : (med(ank, i) - v) / bodyH[i]);
+    for (let i = 1; i < N - 1; i++) {
+      if (!(up[i] > 0.035 && up[i] >= up[i - 1] && up[i] >= up[i + 1])) continue;
+      const f = frames[i].img; if (Math.abs(f[27 * 3 + 1] - f[28 * 3 + 1]) / bodyH[i] >= 0.05) continue;
+      if (!hops.length || T[i] - hops[hops.length - 1] > 0.6) hops.push(T[i]);
+    }
+    const swings = peaks.map(p => {
+      const w = S[p];
+      const lat = hv(sub(w[12], w[11])), face = hv(sub(w[0], mid(w[7], w[8])));
+      const a = Math.max(0, p - 2), b = Math.min(N - 1, p + 2);
+      const side = dot(hv(sub(S[b][dom], S[a][dom])), lat);
+      let amp = 0; for (let k = Math.max(0, p - Math.round(0.5 * fps)); k < Math.min(N - 1, p + Math.round(0.3 * fps)); k++) amp += nrm(sub(S[k + 1][dom], S[k][dom]));
+      let type;
+      if (w[dom][1] < w[0][1] - 0.05) type = 'overhead';
+      else if (amp < 0.9) type = 'volley';
+      else type = (hand === 'R' ? side < 0 : side > 0) ? 'forehand' : 'backhand';
+      let knee = 999; for (let k = Math.max(0, p - 2); k < Math.min(N, p + 2); k++) knee = Math.min(knee, angAt(S[k][23], S[k][25], S[k][27]), angAt(S[k][24], S[k][26], S[k][28]));
+      const k0 = Math.max(0, p - Math.round(0.8 * fps)), shNow = hv(sub(S[p][12], S[p][11]));
+      let rot = 0; for (let k = k0; k <= p; k++) rot = Math.max(rot, Math.acos(clamp(dot(hv(sub(S[k][12], S[k][11])), shNow), -1, 1)) * 180 / Math.PI);
+      const front = dot(sub(w[dom], mid(w[23], w[24])), face);
+      const opp = dom === 16 ? 11 : 12;
+      let finish = 9; for (let k = p; k < Math.min(N, p + Math.round(0.7 * fps)); k++) finish = Math.min(finish, S[k][dom][1] - S[k][opp][1]);
+      const base = nrm(sub(w[27], w[28])) / Math.max(0.15, nrm(sub(w[23], w[24])));
+      let head = 0; for (let k = Math.max(0, p - 2); k < Math.min(N, p + 3); k++) head = Math.max(head, nrm(sub(S[k][0], S[p][0])));
+      const split = hops.some(h => T[p] - h > 0.25 && T[p] - h < 1.6);
+      return { t: +T[p].toFixed(2), type, speed: +(sd[p] * 3.6).toFixed(0), knee: +knee.toFixed(0), rot: +rot.toFixed(0), front: +front.toFixed(2), finish: +finish.toFixed(2), base: +base.toFixed(2), head: +head.toFixed(2), split };
+    });
+    return { hand, fps: +fps.toFixed(1), seen: +(seen.filter(Boolean).length / N).toFixed(3), swings, hops: hops.map(h => +h.toFixed(2)) };
+  }
+
+  // the three things to work on: checks failed most often (by stroke), with the worst example to watch
+  function formCoach(form) {
+    const rows = [];
+    for (const type of ['forehand', 'backhand', 'volley', 'overhead']) {
+      const g = form.swings.filter(s => s.type === type); if (g.length < 3) continue;
+      for (const key of CHECKS_FOR[type]) {
+        const c = CHECKS[key], vals = g.map(s => s[key]).filter(v => v != null && !(typeof v === 'number' && isNaN(v)));
+        if (!vals.length) continue;
+        const ok = g.filter(s => c.good(s[key])).length, rate = ok / g.length;
+        const num = vals.filter(v => typeof v === 'number').sort((a, b) => a - b);
+        rows.push({ type, key, n: g.length, ok, rate, median: num.length ? num[num.length >> 1] : null, worst: g.find(s => !c.good(s[key])) });
+      }
+    }
+    const fix = rows.filter(r => r.rate < 0.6).sort((a, b) => a.rate - b.rate || b.n - a.n).slice(0, 3);
+    const good = rows.filter(r => r.rate >= 0.75).sort((a, b) => b.rate - a.rate).slice(0, 3);
+    return { fix, good, rows };
+  }
+
+  // pick the analysis by how the video was shot
+  function onFile(file) {
+    if (!file || live.rec) return;
+    modal(`<div class="xhead"><h2>어떻게 찍은 영상인가요?</h2><button class="btn ghost sm" type="button" id="pkClose">닫기</button></div>
+      <div class="pick2">
+        <button class="pickc" type="button" id="pkForm"><b>짐벌이 나를 따라감</b><span>스윙 폼 · 발 움직임 분석</span><small>코트 맞추기 없이 바로 시작 · 내 몸 전체가 보이게 찍은 영상</small></button>
+        <button class="pickc" type="button" id="pkFixed"><b>카메라 고정 · 코트 전체</b><span>공 궤적 · 샷 종류 · 속도 · 낙하지점</span><small>코트 모서리 4점을 한 번 맞춥니다</small></button>
+      </div>`);
+    $('#pkClose').onclick = closeModal;
+    $('#pkForm').onclick = () => { closeModal(); runFormAnalysis(file); };
+    $('#pkFixed').onclick = () => { closeModal(); setupFixed(file); };
+  }
+
+  const pickMain = (r, prevX) => {
+    let best = -1, bs = -1e9;
+    (r.landmarks || []).forEach((lm, k) => {
+      let lo = 9, hi = -9; for (const q of lm) { if (q.y < lo) lo = q.y; if (q.y > hi) hi = q.y; }
+      const cx = (lm[23].x + lm[24].x) / 2, sc = (hi - lo) - (prevX != null ? Math.abs(cx - prevX) * 0.5 : 0);
+      if (sc > bs) { bs = sc; best = k; }
+    });
+    return best;
+  };
+  async function runFormAnalysis(file) {
+    cancelAnalysis = false;
+    const url = URL.createObjectURL(file);
+    const v = document.createElement('video');
+    v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('playsinline', ''); v.setAttribute('muted', '');
+    v.style.cssText = 'position:fixed;left:0;bottom:0;width:4px;height:4px;opacity:0.01;pointer-events:none;z-index:-1';
+    document.body.appendChild(v); v.src = url;
+    const prime = primeVideo(v);
+    show('vAnalyze');
+    $('#anaTitle').textContent = '자세를 읽는 중'; $('#progPct').textContent = ''; $('#progBar').style.width = '0%';
+    $('#progText').textContent = '자세 인식 AI를 준비하는 중… (처음 한 번 약 10MB를 내려받습니다)';
+    const cleanup = () => { v.pause(); v.removeAttribute('src'); v.load(); v.remove(); };
+    try { await new Promise((res, rej) => { if (v.readyState >= 1) return res(); v.onloadedmetadata = res; v.onerror = () => rej(new Error('이 영상 형식은 열 수 없습니다')); }); }
+    catch (e) { cleanup(); toast(e.message, 5000); show('vHome'); return; }
+    await prime;
+    let lm;
+    try { lm = await getPose(); } catch (e) { cleanup(); toast('자세 인식 AI를 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.', 6000); show('vHome'); return; }
+    const vw = v.videoWidth || 1280, vh = v.videoHeight || 720, dur = v.duration;
+    const pc = $('#progCanvas'); pc.width = 480; pc.height = Math.round(480 * vh / vw); const ctx = pc.getContext('2d');
+    let wake = null; try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
+    const frames = []; let lastTs = -1, prevX = null; const started = performance.now();
+    const process = (t) => {
+      const ts = Math.round(t * 1000); if (ts <= lastTs) return; lastTs = ts;
+      let r; try { r = lm.detectForVideo(v, ts); } catch (e) { r = null; }
+      const k = r ? pickMain(r, prevX) : -1;
+      if (k < 0) { frames.push({ t, img: null, wld: null }); }
+      else {
+        const L = r.landmarks[k], Wl = r.worldLandmarks[k];
+        const img = new Float32Array(99), wld = new Float32Array(99);
+        for (let j = 0; j < 33; j++) { img[j * 3] = L[j].x; img[j * 3 + 1] = L[j].y; img[j * 3 + 2] = L[j].visibility ?? 1; wld[j * 3] = Wl[j].x; wld[j * 3 + 1] = Wl[j].y; wld[j * 3 + 2] = Wl[j].z; }
+        prevX = (L[23].x + L[24].x) / 2;
+        frames.push({ t, img, wld });
+      }
+      if (frames.length % 2 === 0) {
+        ctx.drawImage(v, 0, 0, pc.width, pc.height);
+        const f = frames[frames.length - 1]; if (f.img) drawSkeleton(ctx, f.img, pc.width, pc.height, 2, '#cdeb3c');
+      }
+      const pct = clamp(t / dur, 0, 1);
+      $('#progBar').style.width = (pct * 100).toFixed(1) + '%'; $('#progPct').textContent = Math.round(pct * 100) + '%';
+      const el = (performance.now() - started) / 1000, eta = pct > 0.02 ? el / pct - el : null;
+      $('#progText').textContent = `${fmtT(t)} / ${fmtT(dur)} 확인함` + (eta != null ? ` · 남은 시간 약 ${fmtT(eta)}` : '');
+    };
+    try { await scanVideo(v, FORM_FPS, process); }
+    catch (e) {
+      try { wake && wake.release(); } catch (_) { /* ignore */ }
+      cleanup(); URL.revokeObjectURL(url);
+      if (e.message === 'cancel') { toast('분석을 멈췄습니다'); show('vHome'); return; }
+      toast('영상을 재생하지 못했습니다: ' + e.message, 5000); show('vHome'); return;
+    }
+    try { wake && wake.release(); } catch (_) { /* ignore */ }
+    $('#progText').textContent = '스윙을 찾고 폼을 재는 중…';
+    await new Promise(r => setTimeout(r, 30));
+    const form = formAnalyze(frames);
+    const d = new Date();
+    const doc = { id: sid(), kind: 'form', name: `${d.getMonth() + 1}월 ${d.getDate()}일 폼 분석`, created: Date.now(), mode: 'form', opts: {}, rallies: [],
+      src: { kind: 'video', name: file.name, size: file.size, duration: dur }, W: 640, H: Math.round(640 * vh / vw / 2) * 2, form };
+    // skeletons for replay: t + 33 x (x, y, visibility) per analysed frame, kept on this device
+    const buf = new Float32Array(frames.length * 100);
+    frames.forEach((f, i) => { buf[i * 100] = f.t; for (let j = 0; j < 99; j++) buf[i * 100 + 1 + j] = f.img ? f.img[j] : NaN; });
+    try { await media.put('pose_' + doc.id, 0, new Blob([buf.buffer])); doc.src.poses = 'pose_' + doc.id; } catch (e) { /* replay without skeletons */ }
+    cleanup();
+    videoURLs[doc.id] = url;
+    const ok = await store.save(doc);
+    if (!ok) toast('저장 공간이 부족해 세션을 저장하지 못했습니다. 이번 화면에서는 볼 수 있습니다.', 5000);
+    if (!form.swings.length) toast(form.seen < 0.3 ? '사람을 거의 찾지 못했습니다. 머리부터 발까지 크게 보이게 찍은 영상을 넣어 주세요.' : '스윙을 찾지 못했습니다.', 6000);
+    openSession(doc);
+    if (form.swings.length) { P.only = true; $('#optOnly').checked = true; seek(Math.max(0, form.swings[0].t - 1.0)); }
+  }
+  // play the video and hand every 1/fps of media time to process(t); fall back to seeking when playback stalls
+  async function scanVideo(v, fps, process) {
+    let last = -1;
+    const dur = v.duration;
+    const playPass = () => new Promise((resolve, reject) => {
+      if (!('requestVideoFrameCallback' in HTMLVideoElement.prototype)) return resolve('noRvfc');
+      let lastCb = performance.now(), done = false;
+      const finish = (why) => { if (done) return; done = true; clearInterval(dog); v.pause(); v.onended = null; resolve(why); };
+      const cb = (now, meta) => {
+        if (done) return;
+        if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
+        lastCb = performance.now();
+        const t = meta.mediaTime;
+        if (t - last >= 1 / fps - 0.006) { last = t; process(t); }
+        if (!v.ended) v.requestVideoFrameCallback(cb);
+      };
+      const dog = setInterval(() => {
+        if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
+        if (performance.now() - lastCb > 3000) finish('stalled');
+      }, 500);
+      v.onended = () => finish('ended');
+      v.playbackRate = 1;
+      v.requestVideoFrameCallback(cb);
+      v.play().catch(() => finish('noplay'));
+    });
+    const seekTo = (t) => new Promise((res) => {
+      let ok = false; const timer = setTimeout(() => { if (!ok) { v.onseeked = null; res(); } }, 4000);
+      v.onseeked = () => { ok = true; clearTimeout(timer); v.onseeked = null; res(); };
+      v.currentTime = t;
+    });
+    v.pause(); await seekTo(0);
+    const how = await playPass();
+    if (how !== 'ended' || last < dur - 1) {
+      $('#progText').textContent = '이 브라우저에서는 한 장씩 넘기며 분석합니다…';
+      for (let t = Math.max(0, last + 1 / fps); t < dur; t += 1 / fps) {
+        if (cancelAnalysis) throw new Error('cancel');
+        await seekTo(t); process(t); last = t;
+      }
+    }
+  }
+  const BONES = [[11, 12], [11, 13], [13, 15], [12, 14], [14, 16], [11, 23], [12, 24], [23, 24], [23, 25], [25, 27], [24, 26], [26, 28], [27, 31], [28, 32]];
+  function drawSkeleton(ctx, img, w, h, lw, col, ox, oy) {
+    ox = ox || 0; oy = oy || 0;
+    ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.lineCap = 'round';
+    for (const [a, b] of BONES) {
+      if (img[a * 3 + 2] < 0.3 || img[b * 3 + 2] < 0.3) continue;
+      ctx.beginPath(); ctx.moveTo(ox + img[a * 3] * w, oy + img[a * 3 + 1] * h); ctx.lineTo(ox + img[b * 3] * w, oy + img[b * 3 + 1] * h); ctx.stroke();
+    }
+  }
+
+  // ---------- form session: replay with skeleton, coach notes, swing by swing ----------
+  function formRallies(doc) {
+    return doc.form.swings.map((s, i) => ({ id: 'w' + i, t0: Math.max(0, s.t - 1.0), t1: s.t + 0.7, shots: [], swing: s }));
+  }
+  function openForm(doc) {
+    pausePlayer();
+    cur = { doc, form: true, calib: null, trail: [], people: [], eff: null, demo: null, poses: null, coach: formCoach(doc.form) };
+    recompute();
+    $('#sessTitle').value = doc.name; $('#sessMode').textContent = '폼 · 발 분석';
+    stage.style.aspectRatio = doc.W + ' / ' + doc.H;
+    P.t = cur.eff.rallies.length ? Math.max(0, cur.eff.rallies[0].t0) : 0; P.rallyIdx = -1; P.dirty = true;
+    vid.hidden = false; vid.style.transform = '';
+    const url = videoURLs[doc.id];
+    if (url) { vid.src = url; $('#reattach').hidden = true; vid.currentTime = P.t; }
+    else { vid.removeAttribute('src'); vid.load(); $('#reattach').hidden = false; $('#reattachName').textContent = doc.src.name; }
+    if (doc.src.poses) media.load(doc.src.poses).then(async parts => {
+      if (!parts.length || !cur || cur.doc !== doc) return;
+      const f = new Float32Array(await new Blob(parts).arrayBuffer()), n = f.length / 100;
+      cur.poses = { n, t: Float32Array.from({ length: n }, (_, i) => f[i * 100]), f }; P.dirty = true;
+    }).catch(() => {});
+    $('#btnOrig').hidden = true; $('#exportPanel').hidden = true; $('#moveWarn').hidden = true;
+    $('#onlyLbl').textContent = '스윙만';
+    show('vSession');
+    buildTimeline(); renderRally(); sizeOverlay();
+  }
+  function poseAt(t) {
+    const p = cur.poses; if (!p) return null;
+    let lo = 0, hi = p.n - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (p.t[m] < t) lo = m + 1; else hi = m; }
+    const i = lo > 0 && Math.abs(p.t[lo - 1] - t) < Math.abs(p.t[lo] - t) ? lo - 1 : lo;
+    if (Math.abs(p.t[i] - t) > 0.12 || isNaN(p.f[i * 100 + 1])) return null;
+    return p.f.subarray(i * 100 + 1, i * 100 + 100);
+  }
+  const checkMarks = (s) => (CHECKS_FOR[s.type] || []).map(k => ({ k, ok: !!CHECKS[k].good(s[k]) }));
+  function drawForm(ctx) {
+    const W = ov.width, H = ov.height, sc = clamp(Math.min(W, H) / 540, 0.6, 1.6);
+    const img = poseAt(P.t);
+    const ri = rallyAt(P.t), sw = ri >= 0 ? cur.eff.rallies[ri].swing : null, near = sw && Math.abs(P.t - sw.t) < 0.35;
+    if (img) drawSkeleton(ctx, img, W, H, Math.max(2, 3 * sc), near ? (STROKE_COL[sw.type] || '#cdeb3c') : 'rgba(205,235,60,.85)');
+    if (sw && P.t >= sw.t - 0.6) {
+      const marks = checkMarks(sw);
+      const lines = [[STROKE_KO[sw.type] + ' · 손목 ' + sw.speed + 'km/h', STROKE_COL[sw.type]], ...marks.map(m => [(m.ok ? '✓ ' : '✗ ') + CHECKS[m.k].label + ' ' + CHECKS[m.k].fmt(sw[m.k]), m.ok ? '#7fe0a0' : '#ff8a7a'])];
+      ctx.font = `600 ${13 * sc}px "IBM Plex Sans KR", sans-serif`;
+      const bw = Math.max(...lines.map(l => ctx.measureText(l[0]).width)) + 18 * sc, bh = lines.length * 18 * sc + 10 * sc;
+      ctx.fillStyle = 'rgba(12,16,20,.74)'; roundRect(ctx, 10 * sc, 10 * sc, bw, bh, 7 * sc); ctx.fill();
+      lines.forEach(([txt, col], i) => { ctx.fillStyle = col; ctx.fillText(txt, 19 * sc, 10 * sc + 20 * sc + i * 18 * sc); });
+    }
+  }
+  function renderForm() {
+    const el = $('#rallyCard'), f = cur.doc.form, co = cur.coach;
+    const ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t), sw = cur.eff.rallies[ri] && cur.eff.rallies[ri].swing;
+    const count = (t) => f.swings.filter(s => s.type === t).length;
+    const fixHtml = co.fix.length ? co.fix.map((r, i) => `<div class="coach-item"><div class="ci-h"><b>${i + 1}. ${STROKE_KO[r.type]} · ${CHECKS[r.key].label}</b>${r.worst ? `<button class="btn sm" data-see="${r.worst.t}" type="button">장면 보기</button>` : ''}</div>
+        <div class="ci-n">${r.ok}/${r.n}샷만 기준 충족${r.median != null ? ` · 내 평균 ${CHECKS[r.key].fmt(r.median)}` : ''} · 목표 ${CHECKS[r.key].target}</div><p>${CHECKS[r.key].tip}</p></div>`).join('')
+      : '<p class="hint">샷이 충분히 모이면(종류별 3개 이상) 개선할 점을 골라 드립니다.</p>';
+    const goodHtml = co.good.length ? `<div class="ci-good">잘하고 있는 점: ${co.good.map(r => `${STROKE_KO[r.type]} ${CHECKS[r.key].label}`).join(' · ')}</div>` : '';
+    const cur1 = sw ? `<div class="swing-now"><header><b style="color:${STROKE_COL[sw.type]}">${STROKE_KO[sw.type]}</b><span class="meta">${fmtT(sw.t)} · ${ri + 1}/${f.swings.length}번째 스윙 · 손목 ${sw.speed}km/h</span></header>
+        <div class="chk">${checkMarks(sw).map(m => `<span class="${m.ok ? 'ok' : 'no'}">${m.ok ? '✓' : '✗'} ${CHECKS[m.k].label} <small>${CHECKS[m.k].fmt(sw[m.k])}</small></span>`).join('')}</div></div>` : '';
+    el.innerHTML = `<header><h3>코치 노트</h3><span class="chip">스윙 ${f.swings.length}</span></header>
+      <div class="mixline">${['forehand', 'backhand', 'volley', 'overhead'].map(t => count(t) ? `<span><i style="background:${STROKE_COL[t]}"></i>${STROKE_KO[t]} ${count(t)}</span>` : '').join('')}<span>스플릿 스텝 ${f.swings.length ? Math.round(f.swings.filter(s => s.split).length / f.swings.length * 100) : 0}%</span></div>
+      ${cur1}<h4 class="ci-title">개선할 점</h4>${fixHtml}${goodHtml}
+      <p class="hint" style="margin-top:10px">${f.hand === 'L' ? '왼손잡이로 인식했습니다. ' : ''}자동 측정이라 각도·거리는 대략값입니다. 같은 방식으로 찍은 영상끼리 비교할 때 가장 정확합니다.</p>`;
+  }
+  $('#rallyCard').addEventListener('click', (e) => { const b = e.target.closest('[data-see]'); if (!b || !cur || !cur.form) return; const t = +b.dataset.see; P.rate = 0.5; vid.playbackRate = 0.5; seg($('#optRate'), '0.5', v => { P.rate = +v; vid.playbackRate = P.rate; }); seek(Math.max(0, t - 1.2)); playPlayer(); if (window.innerWidth <= 880) $('#stage').scrollIntoView({ block: 'center' }); });
+
   // ---------- session view ----------
   const vid = $('#vid'), ov = $('#overlay'), stage = $('#stage');
   const P = { t: 0, playing: false, rate: 1, only: true, lines: false, last: 0, dirty: true, rallyIdx: -1 };
@@ -2471,6 +2831,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
 
   function openSession(doc) {
+    if (doc.kind === 'form') return openForm(doc);
+    $('#exportPanel').hidden = false; $('#onlyLbl').textContent = '랠리만';
     pausePlayer();
     const calib = RN.calibrate(doc.corners);
     cur = { doc, calib, trail: decTrack(doc.track), people: decBodies(doc.bodies), eff: null, demo: doc.src.kind === 'demo' ? getDemoScene() : null, heat: 'me' };
@@ -2680,6 +3042,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (cur.demo) ctx.drawImage(demoFrame(P.t), cam.x0, cam.y0, doc.W / cam.z, doc.H / cam.z, 0, 0, ov.width, ov.height);
     else { const kc = stage.clientWidth / doc.W * cam.z; vid.style.transform = cam.z > 1 ? `translate(${(-cam.x0 * kc).toFixed(1)}px,${(-cam.y0 * kc).toFixed(1)}px) scale(${cam.z})` : ''; }
     if (!hasMedia()) return;
+    if (cur.form) { drawForm(ctx); return; }
     drawOverlays(ctx, P.t, k, ox, oy, { lines: P.lines });
     if (P.broad) {
       const s = clamp(Math.min(ov.width, ov.height) / 540, 0.55, 1.6), ri = rallyAt(P.t);
@@ -2726,7 +3089,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     tl.classList.toggle('edited', ed);
     tl.innerHTML = cur.eff.rallies.map(r => {
       const a = ed ? realToEdit(Math.max(0, r.t0 - 0.8)) : r.t0, b = ed ? realToEdit(Math.min(d, r.t1 + 0.8)) : r.t1;
-      return `<div class="rb" style="left:${(a / tot * 100).toFixed(3)}%;width:${Math.max(0.4, (b - a) / tot * 100).toFixed(3)}%"></div>`;
+      return `<div class="rb" style="left:${(a / tot * 100).toFixed(3)}%;width:${Math.max(0.4, (b - a) / tot * 100).toFixed(3)}%${r.swing ? ';background:' + STROKE_COL[r.swing.type] : ''}"></div>`;
     }).join('') + '<div class="ph"></div>';
   }
   (function timelinePointer() {
@@ -2740,6 +3103,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
 
   // ---------- shots of the rally on screen: type, speed, landing ----------
   function renderRally() {
+    if (cur.form) return renderForm();
     const ef = cur.eff, el = $('#rallyCard');
     const ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t);
     const r = ef.rallies[ri];
