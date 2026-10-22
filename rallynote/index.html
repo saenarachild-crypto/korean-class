@@ -75,6 +75,7 @@ p{margin:0}
 .chip.ball{background:var(--ball);color:var(--ball-ink)}
 
 /* Home */
+.beta{font-style:normal;font-size:11px;font-weight:700;background:var(--warn);color:#fff;border-radius:999px;padding:2px 7px;vertical-align:2px;margin-left:4px}
 .pick2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
 .pickc{display:flex;flex-direction:column;gap:6px;text-align:left;padding:16px;border-radius:14px;border:1px solid var(--rule);background:var(--surface-2);cursor:pointer;font:inherit;color:var(--ink)}
 .pickc b{font-size:17px}.pickc span{font-size:14px;color:var(--ink)}.pickc small{font-size:12px;color:var(--ink-2)}
@@ -2527,7 +2528,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     split: { label: '스플릿 스텝', unit: '', good: (v) => v, fmt: (v) => v ? '했음' : '없음', target: '매 샷 전에',
       tip: '상대가 치기 직전 작은 점프(스플릿 스텝)가 잘 안 보입니다. 상대 라켓에 공이 닿는 순간 양발로 살짝 뛰어 착지하면서 출발하세요.' }
   };
-  const CHECKS_FOR = { forehand: ['knee', 'rot', 'front', 'finish', 'head', 'base', 'split'], backhand: ['knee', 'rot', 'front', 'finish', 'head', 'base', 'split'], volley: ['knee', 'front', 'head', 'split'], overhead: ['head'] };
+  const CHECKS_FOR = { forehand: ['knee', 'rot', 'front', 'finish', 'base', 'split'], backhand: ['knee', 'rot', 'front', 'finish', 'base', 'split'], volley: ['knee', 'front', 'split'], overhead: ['knee'] };
 
   function hv(v) { const n = Math.hypot(v[0], v[2]); return n > 0 ? [v[0] / n, 0, v[2] / n] : [0, 0, 0]; }
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
@@ -2553,8 +2554,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const spd = (j) => S.map((_, i) => i ? nrm(sub(S[i][j], S[i - 1][j])) * fps : 0);
     const sR = spd(16), sL = spd(15);
     const pct = (a, q) => { const b = a.filter((v, i) => seen[i]).sort((x, y) => x - y); return b.length ? b[Math.floor((b.length - 1) * q)] : 0; };
-    const dom = pct(sR, 0.97) >= pct(sL, 0.97) ? 16 : 15, hand = dom === 16 ? 'R' : 'L';
-    const sd = dom === 16 ? sR : sL;
+    const hand = 'R';
+    const sd = sR.map((v, i) => Math.max(v, sL[i])); // either hand: in back views the model can swap left and right
     const thr = Math.max(3.5, pct(sd, 0.9));
     const peaks = [];
     for (let i = 1; i < N - 1; i++) {
@@ -2576,14 +2577,18 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     }
     const swings = peaks.map(p => {
       const w = S[p];
-      const lat = hv(sub(w[12], w[11])), face = hv(sub(w[0], mid(w[7], w[8])));
-      const a = Math.max(0, p - 2), b = Math.min(N - 1, p + 2);
-      const side = dot(hv(sub(S[b][dom], S[a][dom])), lat);
+      const face = hv(sub(w[0], mid(w[7], w[8])));
+      // racket hand = the wrist that travelled further through this swing
+      let m16 = 0, m15 = 0; for (let k = Math.max(0, p - Math.round(0.5 * fps)); k < Math.min(N - 1, p + Math.round(0.2 * fps)); k++) { m16 += nrm(sub(S[k + 1][16], S[k][16])); m15 += nrm(sub(S[k + 1][15], S[k][15])); }
+      const dom = m16 >= m15 ? 16 : 15;
       let amp = 0; for (let k = Math.max(0, p - Math.round(0.5 * fps)); k < Math.min(N - 1, p + Math.round(0.3 * fps)); k++) amp += nrm(sub(S[k + 1][dom], S[k][dom]));
+      let high = 9; for (let k = Math.max(0, p - Math.round(0.4 * fps)); k <= p; k++) high = Math.min(high, S[k][dom][1] - S[k][0][1]);
+      let side = 0, ns = 0; for (let k = Math.max(0, p - 3); k <= p; k++) { side += dot(hv(sub(S[k][dom], mid(S[k][11], S[k][12]))), hv(sub(S[k][12], S[k][11]))); ns++; }
+      side /= ns;
       let type;
-      if (w[dom][1] < w[0][1] - 0.05) type = 'overhead';
+      if (high < -0.10) type = 'overhead';
       else if (amp < 0.9) type = 'volley';
-      else type = (hand === 'R' ? side < 0 : side > 0) ? 'forehand' : 'backhand';
+      else type = (side > 0) === (dom === 16) ? 'forehand' : 'backhand'; // racket hand on its own side = forehand
       let knee = 999; for (let k = Math.max(0, p - 2); k < Math.min(N, p + 2); k++) knee = Math.min(knee, angAt(S[k][23], S[k][25], S[k][27]), angAt(S[k][24], S[k][26], S[k][28]));
       const k0 = Math.max(0, p - Math.round(0.8 * fps)), shNow = hv(sub(S[p][12], S[p][11]));
       let rot = 0; for (let k = k0; k <= p; k++) rot = Math.max(rot, Math.acos(clamp(dot(hv(sub(S[k][12], S[k][11])), shNow), -1, 1)) * 180 / Math.PI);
@@ -2593,7 +2598,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const base = nrm(sub(w[27], w[28])) / Math.max(0.15, nrm(sub(w[23], w[24])));
       let head = 0; for (let k = Math.max(0, p - 2); k < Math.min(N, p + 3); k++) head = Math.max(head, nrm(sub(S[k][0], S[p][0])));
       const split = hops.some(h => T[p] - h > 0.25 && T[p] - h < 1.6);
-      return { t: +T[p].toFixed(2), type, speed: +(sd[p] * 3.6).toFixed(0), knee: +knee.toFixed(0), rot: +rot.toFixed(0), front: +front.toFixed(2), finish: +finish.toFixed(2), base: +base.toFixed(2), head: +head.toFixed(2), split };
+      const sdp = nrm(sub(S[p][dom], S[Math.max(0, p - 1)][dom])) * fps;
+      return { t: +T[p].toFixed(2), type, speed: +(sdp * 3.6).toFixed(0), knee: +knee.toFixed(0), rot: +rot.toFixed(0), front: +front.toFixed(2), finish: +finish.toFixed(2), base: +base.toFixed(2), head: +head.toFixed(2), split };
     });
     return { hand, fps: +fps.toFixed(1), seen: +(seen.filter(Boolean).length / N).toFixed(3), swings, hops: hops.map(h => +h.toFixed(2)) };
   }
@@ -2621,7 +2627,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     if (!file || live.rec) return;
     modal(`<div class="xhead"><h2>어떻게 찍은 영상인가요?</h2><button class="btn ghost sm" type="button" id="pkClose">닫기</button></div>
       <div class="pick2">
-        <button class="pickc" type="button" id="pkForm"><b>짐벌이 나를 따라감</b><span>스윙 폼 · 발 움직임 분석</span><small>코트 맞추기 없이 바로 시작 · 내 몸 전체가 보이게 찍은 영상</small></button>
+        <button class="pickc" type="button" id="pkForm"><b>짐벌이 나를 따라감 <em class="beta">시험판</em></b><span>스윙 폼 · 발 움직임 분석</span><small>코트 맞추기 없이 바로 시작 · 내 몸 전체가 보이게, 짐벌이 나만 따라가게 찍은 영상 · 아직 정확도를 맞추는 중입니다</small></button>
         <button class="pickc" type="button" id="pkFixed"><b>카메라 고정 · 코트 전체</b><span>공 궤적 · 샷 종류 · 속도 · 낙하지점</span><small>코트 모서리 4점을 한 번 맞춥니다</small></button>
       </div>`);
     $('#pkClose').onclick = closeModal;
@@ -2680,6 +2686,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const el = (performance.now() - started) / 1000, eta = pct > 0.02 ? el / pct - el : null;
       $('#progText').textContent = `${fmtT(t)} / ${fmtT(dur)} 확인함` + (eta != null ? ` · 남은 시간 약 ${fmtT(eta)}` : '');
     };
+    // the first detection builds the model's graph and can take seconds: do it before the clock starts
+    $('#progText').textContent = '자세 인식 AI를 깨우는 중…';
+    try { await new Promise(r => setTimeout(r, 30)); lm.detectForVideo(v, 0); lastTs = 0; } catch (e) { /* first real frame will try again */ }
     try { await scanVideo(v, FORM_FPS, process); }
     catch (e) {
       try { wake && wake.release(); } catch (_) { /* ignore */ }
@@ -2708,7 +2717,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
   // play the video and hand every 1/fps of media time to process(t); fall back to seeking when playback stalls
   async function scanVideo(v, fps, process) {
-    let last = -1;
+    let last = -1, cost_ = 0, n_ = 0, t0_ = null;
     const dur = v.duration;
     const playPass = () => new Promise((resolve, reject) => {
       if (!('requestVideoFrameCallback' in HTMLVideoElement.prototype)) return resolve('noRvfc');
@@ -2719,12 +2728,20 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
         if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
         lastCb = performance.now();
         const t = meta.mediaTime;
-        if (t - last >= 1 / fps - 0.006) { last = t; process(t); }
+        if (t - last >= 1 / fps - 0.006) {
+          last = t; n_++; if (t0_ == null) t0_ = t; const a0 = performance.now(); process(t); const cost = performance.now() - a0;
+          // slow the video down when one frame takes longer than its share of real time
+          cost_ = cost_ ? cost_ * 0.9 + cost * 0.1 : cost;
+          const want = clamp((1000 / fps) / Math.max(1, cost_ * 1.25), 0.1, 1);
+          if (Math.abs(v.playbackRate - want) > 0.05) v.playbackRate = want;
+          // too slow to keep even the slowest playback fed: step through frame by frame instead
+          if (t - t0_ > 3 && n_ / (t - t0_) < fps * 0.6) { finish('slow'); return; }
+        }
         if (!v.ended) v.requestVideoFrameCallback(cb);
       };
       const dog = setInterval(() => {
         if (cancelAnalysis) { done = true; clearInterval(dog); v.pause(); reject(new Error('cancel')); return; }
-        if (performance.now() - lastCb > 3000) finish('stalled');
+        if (performance.now() - lastCb > 6000) finish('stalled');
       }, 500);
       v.onended = () => finish('ended');
       v.playbackRate = 1;
@@ -2816,7 +2833,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     el.innerHTML = `<header><h3>코치 노트</h3><span class="chip">스윙 ${f.swings.length}</span></header>
       <div class="mixline">${['forehand', 'backhand', 'volley', 'overhead'].map(t => count(t) ? `<span><i style="background:${STROKE_COL[t]}"></i>${STROKE_KO[t]} ${count(t)}</span>` : '').join('')}<span>스플릿 스텝 ${f.swings.length ? Math.round(f.swings.filter(s => s.split).length / f.swings.length * 100) : 0}%</span></div>
       ${cur1}<h4 class="ci-title">개선할 점</h4>${fixHtml}${goodHtml}
-      <p class="hint" style="margin-top:10px">${f.hand === 'L' ? '왼손잡이로 인식했습니다. ' : ''}자동 측정이라 각도·거리는 대략값입니다. 같은 방식으로 찍은 영상끼리 비교할 때 가장 정확합니다.</p>`;
+      <p class="hint beta-note" style="margin-top:10px"><b>시험판</b> · 스윙 찾기와 포핸드·백핸드 구분을 아직 맞추는 중이라 걷는 동작이나 다른 사람의 스윙이 섞일 수 있습니다. 각도·거리는 대략값입니다. 짐벌이 나만 따라가게, 옆에서, 머리부터 발까지 찍으면 가장 정확합니다.</p>`;
   }
   $('#rallyCard').addEventListener('click', (e) => { const b = e.target.closest('[data-see]'); if (!b || !cur || !cur.form) return; const t = +b.dataset.see; P.rate = 0.5; vid.playbackRate = 0.5; seg($('#optRate'), '0.5', v => { P.rate = +v; vid.playbackRate = P.rate; }); seek(Math.max(0, t - 1.2)); playPlayer(); if (window.innerWidth <= 880) $('#stage').scrollIntoView({ block: 'center' }); });
 
