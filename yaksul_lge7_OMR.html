@@ -226,12 +226,12 @@
 <body>
 <div class="header">
   <h2>김현석 약술 논술 이가은 7회</h2>
-  <div style="font-size: 12px; margin-top:4px;">대학 실전형 4문항(12칸) · 40점 · 시험 시간 70분 · 최대 3회 채점 · 채점 간 5분 대기</div>
+  <div style="font-size: 12px; margin-top:4px;">대학 실전형 8문항(24칸) · 80점 · 시험 시간 100분 · 최대 3회 채점 · 채점 간 5분 대기</div>
   <div style="font-size: 11px; margin-top:4px; opacity:.9">서경대 변형 · 제출 기한 ○월 ○일(○) 밤 11시</div>
 </div>
 <div class="score-banner" id="scoreBanner">
   <div class="attempt-text" id="attemptDisplay">📌 남은 채점 횟수: 3회</div>
-  <div style="font-size: 32px; font-weight:800;"><span id="scoreCorrect">0</span>/<span id="scoreTotal">40</span></div>
+  <div style="font-size: 32px; font-weight:800;"><span id="scoreCorrect">0</span>/<span id="scoreTotal">80</span></div>
   <div id="scoreText">정답률 0%</div>
   <div id="wrongList" style="color:#d04141; margin-top:6px; font-size:13px;"></div>
   <div id="partialList" style="color:#c47b1a; margin-top:4px; font-size:13px;"></div>
@@ -244,15 +244,15 @@
 <div class="notice">
   ✏️ <b>답안 작성 안내</b><br>
   · 칸 오른쪽 숫자가 배점입니다. 띄어쓰기, 괄호, 마침표 차이는 채점에 반영되지 않습니다.<br>
-  · 이 회차는 이가은 학생의 지원 대학(서경대) 약술형 논술 대비 맞춤 회차입니다. 문항마다 10점이며, 문항 머리의 ‘○○대 변형’ 배지가 채점 방식을 알려 줍니다.<br>· 제시문에서 찾아 쓰라는 문항은 제시문의 표현을 그대로 씁니다. 임의로 바꾸어 쓰면 오답 처리됩니다.<br>· 실제 서경대 시험의 국어 4문항 구성(출제 범위 독서·문학, 문항당 10점)을 그대로 따랐습니다.<br>· 서경대 변형: (1) 찾아 쓰기 각 3점, (2) 짧은 서술 4점(글자 수 초과·두 문장 이상이면 1점 감점).<br>
-  · 서술형(1-(2) 4점, 2-(2) 4점, 3-(2) 4점, 4-(2) 4점)은 자동 채점에서 빠지고, 답안이 리포트에 실려 선생님이 채점합니다.
+  · 이 회차는 이가은 학생의 지원 대학(서경대) 약술형 논술 대비 맞춤 회차입니다. 문항마다 10점이며, 문항 머리의 ‘○○대 변형’ 배지가 채점 방식을 알려 줍니다.<br>· 제시문에서 찾아 쓰라는 문항은 제시문의 표현을 그대로 씁니다. 임의로 바꾸어 쓰면 오답 처리됩니다.<br>· 실제 서경대 시험의 국어 4문항(독서 2 · 문학 2, 문항당 10점) 구성을 한 세트로 하여, 이 회차는 두 세트(1~4번 · 5~8번)로 냈습니다.<br>· 서경대 변형: (1) 찾아 쓰기 각 3점, (2) 짧은 서술 4점(글자 수 초과·두 문장 이상이면 1점 감점).<br>
+  · 서술형(1-(2) 4점, 2-(2) 4점, 3-(2) 4점, 4-(2) 4점, 5-(2) 4점, 6-(2) 4점, 7-(2) 4점, 8-(2) 4점)은 자동 채점에서 빠지고, 답안이 리포트에 실려 선생님이 채점합니다.
 </div>
 <div class="time-box">
   <label style="font-weight:700; color:#7c2c3e; display:block; margin-bottom:8px;">⏱️ 총 소요 시간 기록 (선택)</label>
   <input type="text" id="totalTime" placeholder="예: 60분">
 </div>
 <div class="section">
-  <div class="section-header">대학 실전형 문항 (1~4) <span id="progressText">0/12</span></div>
+  <div class="section-header">대학 실전형 문항 (1~8) <span id="progressText">0/24</span></div>
   <div id="quizList"></div>
 </div>
 <button id="submitBtn" class="btn btn-primary">✅ 채점하기</button>
@@ -275,7 +275,7 @@
 <div id="toast" class="toast"></div>
 <div id="jsError" style="display:none;background:#fde8e8;color:#9b1c1c;padding:12px;border-radius:12px;margin-top:12px;font-size:13px">화면이 제대로 나오지 않으면 카카오톡 오른쪽 위 ⋯ → ‘다른 브라우저로 열기’를 눌러 주세요.</div>
 <script>
-var OMR = {"round": "이가은 7", "items": [{"n": 1, "univ": "서경대", "area": "독서", "src": "폐포의 표면 장력과 계면 활성제", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["얇은 액체층", "액체층"]}, {"label": "(1) ②", "pts": 3, "accept": ["계면 활성제의 농도", "계면 활성제 농도"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 2, "univ": "서경대", "area": "독서", "src": "인클루시브 디자인", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["기능, 사용성, 상징성", "기능 사용성 상징성"]}, {"label": "(1) ②", "pts": 3, "accept": ["설계 접근법"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 3, "univ": "서경대", "area": "문학", "src": "박완서, 「세상에서 제일 무거운 틀니」", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["백금"]}, {"label": "(1) ②", "pts": 3, "accept": ["그 남자", "‘그 남자’"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 4, "univ": "서경대", "area": "문학", "src": "김수영, 「그 방을 생각하며」 / 황동규, 「달밤」", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["역사"]}, {"label": "(1) ②", "pts": 3, "accept": ["고의춤"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}], "max": 40, "essayPts": 16, "essayDesc": "1-(2) 4점, 2-(2) 4점, 3-(2) 4점, 4-(2) 4점", "key": "kimhs_yaksul_nonsul_lge7_omr", "colors": {"국민대": "#1d4f91", "상명대": "#3b3f9c", "가천대": "#12795a", "강남대": "#0b6e99", "한신대": "#8a3b12", "수원대": "#6b2f8f", "성신여대": "#7a1f5c", "을지대": "#2f6b2f", "서경대": "#5c4a12", "홍익대": "#9a2b2b", "수능형 선택": "#7c2c3e", "삼육대": "#147a74"}};
+var OMR = {"round": "이가은 7", "items": [{"n": 1, "univ": "서경대", "area": "독서", "src": "롤스와 매킨타이어의 정의관", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["합리적 개인들", "합리적 개인"]}, {"label": "(1) ②", "pts": 3, "accept": ["비판적 사고 및 진보", "전통에 대한 비판적 사고 및 진보"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 2, "univ": "서경대", "area": "독서", "src": "폐포의 표면 장력과 계면 활성제", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["얇은 액체층", "액체층"]}, {"label": "(1) ②", "pts": 3, "accept": ["계면 활성제의 농도", "계면 활성제 농도"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 3, "univ": "서경대", "area": "문학", "src": "김민정, 「길삼봉뎐」", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["충정"]}, {"label": "(1) ②", "pts": 3, "accept": ["동인 백정", "동인백정"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 4, "univ": "서경대", "area": "문학", "src": "「만전춘별사」 / 김삼현의 시조 / 사설시조", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["경경(耿耿) 고침상(孤枕上)", "경경 고침상"]}, {"label": "(1) ②", "pts": 3, "accept": ["남 향한 마음"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 5, "univ": "서경대", "area": "독서", "src": "인클루시브 디자인", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["기능, 사용성, 상징성", "기능 사용성 상징성"]}, {"label": "(1) ②", "pts": 3, "accept": ["설계 접근법"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 6, "univ": "서경대", "area": "독서", "src": "인클루시브 디자인", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["더 많은 사람이 더 쉽게 접근하고 동시에 포용되는 미래"]}, {"label": "(1) ②", "pts": 3, "accept": ["기술적 기반"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 7, "univ": "서경대", "area": "문학", "src": "박완서, 「세상에서 제일 무거운 틀니」", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["백금"]}, {"label": "(1) ②", "pts": 3, "accept": ["그 남자", "‘그 남자’"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}, {"n": 8, "univ": "서경대", "area": "문학", "src": "김수영, 「그 방을 생각하며」 / 황동규, 「달밤」", "pts": 10, "blanks": [{"label": "(1) ①", "pts": 3, "accept": ["역사"]}, {"label": "(1) ②", "pts": 3, "accept": ["고의춤"]}, {"label": "(2) 서술", "pts": 4, "essay": {"limit": 50}}]}], "max": 80, "essayPts": 32, "essayDesc": "1-(2) 4점, 2-(2) 4점, 3-(2) 4점, 4-(2) 4점, 5-(2) 4점, 6-(2) 4점, 7-(2) 4점, 8-(2) 4점", "key": "kimhs_yaksul_nonsul_lge7_omr", "colors": {"국민대": "#1d4f91", "상명대": "#3b3f9c", "가천대": "#12795a", "강남대": "#0b6e99", "한신대": "#8a3b12", "수원대": "#6b2f8f", "성신여대": "#7a1f5c", "을지대": "#2f6b2f", "서경대": "#5c4a12", "홍익대": "#9a2b2b", "수능형 선택": "#7c2c3e", "삼육대": "#147a74"}};
 /* 김현석 약술 논술 OMR 공통 스크립트 (ES5 · 구형 iPad Safari 대응)
    설정은 페이지의 var OMR = {round, items, max, essayPts, essayDesc, key, colors} 에서 읽는다.
    칸 속성: accept[] 정답, alt[{accept[],pts}] 감점 인정, partial[] 부분 정답(선생님 확인),
