@@ -2754,10 +2754,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   const CHECKS_FOR = { forehand: ['low', 'hinge', 'rot', 'finish'], backhand: ['low', 'hinge', 'rot', 'finish'], volley: ['hinge'], overhead: ['trophy', 'reach'] };
   const hasVal = (s, k) => s[k] != null && !(typeof s[k] === 'number' && isNaN(s[k]));
 
-  function hv(v) { const n = Math.hypot(v[0], v[2]); return n > 0 ? [v[0] / n, 0, v[2] / n] : [0, 0, 0]; }
-  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
-  const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2];
   const nrm = (a) => Math.hypot(a[0], a[1], a[2]);
   const sub2 = (a, b) => [a[0] - b[0], a[1] - b[1]];
 
@@ -2794,9 +2791,6 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     // the model sometimes swaps left and right mid-swing: these do not rely on which hand is which
     const lowW = (k) => Math.max(I[k][15][1], I[k][16][1]), highW = (k) => Math.min(I[k][15][1], I[k][16][1]);
     const bodyLen = (k) => d2(shC(k), m2(I[k][27], I[k][28])) + d2(I[k][0], shC(k)) * 0.6; // shoulders-to-feet + head: ~ standing height
-    const spd = (j) => S.map((_, i) => i ? nrm(sub(S[i][j], S[i - 1][j])) * fps : 0);
-    const sR = spd(16), sL = spd(15);
-    const pct = (a, q) => { const b = a.filter((v, i) => seen[i]).sort((x, y) => x - y); return b.length ? b[Math.floor((b.length - 1) * q)] : 0; };
     const hand = 'R';
     // swing speed: either wrist, on screen, relative to the hips, in body heights per second (the model's 3D speeds
     // shrink when the player is small or few frames could be read). Either hand: the model can swap left and right
@@ -2835,24 +2829,32 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const bh = (() => { let s = 0, n = 0; for (let k = k0; k <= k1; k++) { s += bodyLen(k); n++; } return s / n; })();
       // a stroke sweeps the racket hand across the body; fixing the cap, bouncing the ball or walking does not
       let xl = 9, xh = -9; for (let k = k0; k <= k1; k++) { const x = (I[k][dom][0] - hipC(k)[0]) / bh; xl = Math.min(xl, x); xh = Math.max(xh, x); }
-      let amp = 0; for (let k = k0; k < k1; k++) amp += d2(rel(k + 1, dom), rel(k, dom)) / bh; // on-screen hand path, body heights
-      const volley = amp < 0.9;
       // walking with the racket swings the arm too, but the hands stay low: in a stroke one hand gets up to the
       // shoulders in the backswing or the finish
       let top = -9; for (let k = Math.max(0, p - Math.round(0.8 * fps)); k <= Math.min(N - 1, p + Math.round(0.8 * fps)); k++) top = Math.max(top, (shC(k)[1] - highW(k)) / bh);
-      if (xh - xl < 0.42 || top < -0.05) { if (opts.debug) opts.debug.push({ t: T[p], lat: +(xh - xl).toFixed(2), top: +top.toFixed(2), amp: +amp.toFixed(2) }); continue; }
+      if (xh - xl < 0.42 || top < -0.05) { if (opts.debug) opts.debug.push({ t: T[p], lat: +(xh - xl).toFixed(2), top: +top.toFixed(2) }); continue; }
       let high = 9; for (let k = Math.max(0, p - Math.round(0.4 * fps)); k <= p; k++) high = Math.min(high, (I[k][dom][1] - I[k][0][1]) / bh);
-      const over = high < -0.05; // racket hand went above the head
+      // ...and a hand was already up well before contact: the toss arm (serve) or the pointing arm (smash).
+      // A one-handed backhand that finishes high has no such arm
+      let pre = 9; for (let k = Math.max(0, p - Math.round(1.5 * fps)); k <= Math.max(0, p - Math.round(0.35 * fps)); k++) pre = Math.min(pre, (highW(k) - I[k][0][1]) / bh);
+      const over = high < -0.05 && pre < -0.05;
       // the wrist is fastest just after the ball: contact is about 0.3 s (groundstroke) / 0.2 s (serve) before that
       const c = Math.max(0, p - Math.round((over ? 0.2 : 0.3) * fps));
       let type;
       if (over) type = 'overhead';
-      else if (volley) type = 'volley';
       else {
-        // which side of the body the racket hand was on during the backswing
-        let side = 0; const ax = sub(S[c][12], S[c][11]);
-        for (let k = Math.max(0, c - Math.round(0.4 * fps)); k <= c; k++) side += dot(hv(sub(S[k][dom], mid(S[k][11], S[k][12]))), hv(ax));
-        type = (side > 0) === (dom === 16) ? 'forehand' : 'backhand';
+        // Which side of the body both hands are on while the racket is taken back: right of the hips for a
+        // right-hander's forehand, left for the backhand (one- or two-handed, the other hand is on the racket).
+        // Facing the camera or turned away decides which screen side is the player's right; the model's own
+        // left/right labels are reliable over a couple of seconds of ready position, though not mid-swing.
+        // Checked on 81 hand-labelled strokes filmed from behind and from in front: all right.
+        let away = 0, nf = 0;
+        for (let k = Math.max(0, c - Math.round(2.5 * fps)); k <= Math.max(0, c - Math.round(0.8 * fps)); k++) if (seen[k]) { nf++; if (I[k][12][0] > I[k][11][0]) away++; }
+        const sgn = nf && away / nf > 0.5 ? 1 : -1;
+        let side = 0, ns = 0;
+        for (let k = Math.max(0, c - Math.round(0.6 * fps)); k <= Math.max(0, c - Math.round(0.15 * fps)); k++) { side += sgn * ((I[k][15][0] + I[k][16][0]) / 2 - hipC(k)[0]) / blen[k]; ns++; }
+        const onRight = (ns ? side / ns : 0) > -0.045;
+        type = onRight === ((opts.hand || 'R') === 'R') ? 'forehand' : 'backhand';
       }
       const r0 = c - Math.round(3 * fps), r1 = c + Math.round(1.5 * fps);
       const torsoRef = q90(k => d2(shC(k), hipC(k)), r0, r1), legRef = q90(k => d2(hipC(k), m2(I[k][27], I[k][28])), r0, r1), shRef = q90(k => d2(I[k][11], I[k][12]), r0, r1);
@@ -3157,7 +3159,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     el.innerHTML = `<header><h3>코치 노트</h3><span class="chip">스윙 ${f.swings.length}</span></header>${editHtml}
       <div class="mixline">${['forehand', 'backhand', 'volley', 'overhead'].map(t => count(t) ? `<span><i style="background:${STROKE_COL[t]}"></i>${STROKE_KO[t]} ${count(t)}</span>` : '').join('')}</div>
       ${cur1}<h4 class="ci-title">개선할 점</h4>${fixHtml}${goodHtml}
-      <p class="hint beta-note" style="margin-top:10px"><b>시험판</b> · 포핸드와 서브는 실제 연습 영상 15개 스윙으로 맞췄습니다(15개 모두 찾고 종류도 맞음). 백핸드·발리는 아직 맞춰 보지 못해 덜 정확하고, 발리는 잘 못 찾습니다. 높이·각도는 대략값입니다. 머리부터 발까지 다 보이게 찍어 주세요.</p>`;
+      <p class="hint beta-note" style="margin-top:10px"><b>시험판</b> · 포핸드와 서브는 실제 연습 영상 15개 스윙으로 맞췄습니다(15개 모두 찾고 종류도 맞음). 포핸드·한손 백핸드 구분은 앞·뒤에서 찍은 81개 스윙으로 맞췄습니다(81개 모두 맞음). 발리는 아직 따로 구분하지 않습니다. 높이·각도는 대략값입니다. 머리부터 발까지 다 보이게 찍어 주세요.</p>`;
   }
   $('#rallyCard').addEventListener('click', (e) => { if (e.target.closest('#formExport') && cur && cur.form) exportForm(); });
   async function exportForm() {
