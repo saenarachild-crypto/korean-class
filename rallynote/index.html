@@ -1106,6 +1106,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     } else if (fromNear) { y0 = C.NET; y1 = C.L; } else { y0 = 0; y1 = C.NET; }
     const dx = Math.min(b.cx - xl, xr - b.cx), dy = Math.min(b.cy - y0, y1 - b.cy);
     const margin = Math.min(dx, dy); // >=0 inside
+    // closer to the line than the camera can tell apart there (one pixel can be a metre on the far court
+    // when the phone is low): no call rather than a wrong one
+    if (b.err != null && Math.abs(margin) < b.err * 1.5) return { in: null, margin, box: [xl, y0, xr, y1] };
     return { in: margin >= 0, margin, box: [xl, y0, xr, y1] };
   }
 
@@ -1160,7 +1163,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           if (cur && cur.side === side && cur.bounce) implied(other(side), (cur.bounce.t + e.t) / 2, e); // missed the return in between
           mk({ t: e.t, fi: e.fi, side, cx: e.cx, cy: e.cy, ix: e.ix, iy: e.iy });
         } else if (e.type === 'bounce') {
-          const bo = { t: e.t, fi: e.fi, cx: e.cx, cy: e.cy, ix: e.ix, iy: e.iy };
+          const bo = { t: e.t, fi: e.fi, cx: e.cx, cy: e.cy, ix: e.ix, iy: e.iy, err: e.err };
           if (!cur) { implied(other(half(e.cy)), Math.max(g.t0, e.t - 0.6), e); cur.cx = C.CX; cur.bounce = bo; continue; }
           if (!cur.bounce) { cur.bounce = bo; continue; }
           // a second bounce: if it is back on the hitter's half, the opponent returned it unseen
@@ -1203,6 +1206,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     if (!last) return null;
     const other = last.side === 'near' ? 'far' : 'near';
     if (!last.bounce) return other; // into the net or never landed
+    if (last.bounce.in == null) return null; // too close to the line to call from this camera
     return last.bounce.in ? last.side : other;
   }
 
@@ -1254,7 +1258,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       const owner = side === 'me' ? (r.meSide || 'near') : (r.meSide === 'far' ? 'near' : 'far');
       if (s.side === owner) my.push(s);
     }
-    const landed = my.filter(s => s.bounce);
+    const landed = my.filter(s => s.bounce && s.bounce.in != null);
     const ins = landed.filter(s => s.bounce.in);
     const speeds = my.filter(s => s.type !== 'feed').map(s => s.speed).filter(Boolean);
     const zones = { short: 0, mid: 0, deep: 0 };
@@ -1519,6 +1523,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       return keep;
     });
     const events = findEvents(pts, times, segs, calib, 1);
+    // ground size of one analysis pixel where each bounce was seen (the bounce point is only known to about that)
+    for (const e of events) if (e.type === 'bounce' && e.ix != null) {
+      const a = applyH(calib.toCourt, e.ix, e.iy), b = applyH(calib.toCourt, e.ix, e.iy + 1), c = applyH(calib.toCourt, e.ix + 1, e.iy);
+      e.err = +Math.max(Math.hypot(b[0] - a[0], b[1] - a[1]), Math.hypot(c[0] - a[0], c[1] - a[1])).toFixed(2);
+    }
     const rallies = buildRallies(events, segs, times, opts);
     return { segs, events, rallies };
   }
@@ -1941,7 +1950,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const cmPerPx = (y0) => { const a = P(C.CX, y0), b = P(C.CX, y0 + 0.5); const dy = Math.abs(b[1] - a[1]); return dy > 0 ? 50 / dy : Infinity; };
     const nearCm = cmPerPx(0.5), farCm = cmPerPx(C.L - 1);
     const farBallPx = Math.hypot(fr[0] - fl[0], fr[1] - fl[1]) * 0.067 / C.W;
-    if (farCm > 200) items.push({ ok: 'warn', t: '카메라가 낮습니다', d: `먼 쪽 코트가 눌려서 1픽셀이 ${(farCm / 100).toFixed(1)}m나 됩니다. 스탠드를 끝까지 올려 렌즈가 1.8m쯤 되게 하세요. 낮으면 가까운 선수에게 화면이 자주 가려지고 바운스를 놓칩니다.` });
+    if (farCm > 50) items.push({ ok: 'warn', t: '카메라가 낮습니다', d: `먼 쪽 코트가 눌려서 1픽셀이 ${(farCm / 100).toFixed(1)}m나 됩니다. 내가 친 공이 떨어지는 먼 쪽 코트의 낙하지점과 인·아웃은 라인 근처면 "판정 불가"로 나옵니다. 렌즈를 2.5m 이상(펜스 위 등) 높이 두면 정확해집니다. 손에 들거나 짐벌을 눈높이에 두면 이렇게 됩니다.` });
     items.push({ ok: farCm > 60 ? 'info' : 'good', t: '바운스 정밀도', d: `가까운 쪽 1픽셀 ≈ ${nearCm < 100 ? Math.round(nearCm) + 'cm' : (nearCm / 100).toFixed(1) + 'm'}, 먼 쪽 1픽셀 ≈ ${farCm < 100 ? Math.round(farCm) + 'cm' : (farCm / 100).toFixed(1) + 'm'}.` +
       (farCm > 60 ? ' 먼 쪽 베이스라인 근처 낙하지점은 참고용입니다. 카메라 쪽 코트에 떨어지는 공이 더 정확합니다.' : '') +
       (farBallPx < 1 ? ` 먼 쪽에서는 공이 분석 화면에서 ${farBallPx.toFixed(1)}픽셀 정도라 멈춰 있는 공은 놓칠 수 있습니다.` : '') });
@@ -2237,8 +2246,17 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     let wake = null;
     try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
     const dur = v.duration;
+    // the near player's pose alongside the ball (about 15 times a second), for the stroke types
+    let pose = null, pn = 0;
+    try {
+      $('#progText').textContent = '자세 인식 AI를 준비하는 중… (처음 한 번 약 10MB를 내려받습니다)';
+      const lm = await getPose(); let li = null; try { li = await getPoseImg(); } catch (e) { li = null; }
+      pose = makePoseReader(lm, li, v, v.videoWidth || W, v.videoHeight || H);
+      try { pose.warm(); } catch (e) { /* the first real frame will try again */ }
+    } catch (e) { pose = null; } // no pose AI (offline): stroke types from the ball and body outlines only
     const process = (t) => {
       const c = col.step(v, t);
+      if (pose && pn++ % (fps >= 30 ? 2 : 1) === 0) pose.step(t);
       ctx.drawImage(col.canvas, 0, 0);
       // a ring only where a candidate carries on from the last two frames, like a flying ball; single specks are not shown
       const fr = col.frames, f1 = fr.length > 1 ? fr[fr.length - 2].c : [], f2 = fr.length > 2 ? fr[fr.length - 3].c : [];
@@ -2315,6 +2333,11 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const opts = analysisOpts();
     const res = col.finish(opts);
     const doc = makeDoc(cal, W, H, res, col, { kind: 'video', name: setup.file.name, size: setup.file.size, duration: dur }, opts);
+    if (pose && pose.frames.filter(f => f.img).length > 30) {
+      $('#progText').textContent = '샷 종류를 자세로 확인하는 중…';
+      await new Promise(r => setTimeout(r, 30));
+      try { const vw = v.videoWidth || W, vh = v.videoHeight || H; poseRefine(doc, formAnalyze(pose.frames, { hand: setupOpts.hand || 'R', aspect: vw / vh }), pose.frames, cal, W, H); } catch (e) { /* keep the ball-based types */ }
+    }
     const rallies = res.rallies;
     if (moving) {
       // where the camera looked, frame by frame: needed to draw the trail on the moving picture
@@ -2932,6 +2955,87 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     });
     return best;
   };
+  // Body pose of the main player, frame by frame. A player across the court is small in the frame and the model
+  // then misses them about half the time: after the first sighting only a square around the body (about 2x the
+  // body height) is handed to the model, and the square stays put until the player nears its edge so the model's
+  // own tracking keeps working. A frame video mode misses is looked at again from scratch (image mode).
+  function makePoseReader(lm, lmImg, v, vw, vh) {
+    const frames = []; let lastTs = -1, prevX = null, box = null;
+    const crop = document.createElement('canvas'); crop.width = crop.height = 512;
+    const cctx = crop.getContext('2d', { willReadFrequently: true });
+    const step = (t) => {
+      const ts = Math.round(t * 1000); if (ts <= lastTs) return false; lastTs = ts;
+      let sx = 0, sy = 0, sw = vw, sh = vh, src = v;
+      if (box) { sw = sh = box.s; sx = clamp(box.x - box.s / 2, 0, vw - box.s); sy = clamp(box.y - box.s / 2, 0, vh - box.s); cctx.drawImage(v, sx, sy, sw, sh, 0, 0, 512, 512); src = crop; }
+      let r; try { r = lm.detectForVideo(src, ts); } catch (e) { r = null; }
+      if ((!r || !r.landmarks.length) && lmImg) { try { r = lmImg.detect(src); } catch (e) { r = null; } }
+      const k = r ? pickMain(r, box ? null : prevX) : -1;
+      if (k < 0) { frames.push({ t, img: null, wld: null }); box = null; return true; }
+      const L = r.landmarks[k], Wl = r.worldLandmarks[k];
+      const img = new Float32Array(99), wld = new Float32Array(99);
+      let x0 = 9e9, x1 = -9e9, y0 = 9e9, y1 = -9e9;
+      for (let j = 0; j < 33; j++) {
+        const x = (sx + L[j].x * sw) / vw, y = (sy + L[j].y * sh) / vh;
+        img[j * 3] = x; img[j * 3 + 1] = y; img[j * 3 + 2] = L[j].visibility ?? 1; wld[j * 3] = Wl[j].x; wld[j * 3 + 1] = Wl[j].y; wld[j * 3 + 2] = Wl[j].z;
+        x0 = Math.min(x0, x * vw); x1 = Math.max(x1, x * vw); y0 = Math.min(y0, y * vh); y1 = Math.max(y1, y * vh);
+      }
+      prevX = (img[69] + img[72]) / 2;
+      frames.push({ t, img, wld });
+      const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, side = clamp((y1 - y0) * 2.2, 256, Math.min(vw, vh));
+      if (side >= Math.min(vw, vh) * 0.95) box = null; // already big in the frame: the whole picture is fine
+      else if (!box || Math.abs(cx - box.x) > box.s * 0.18 || Math.abs(cy - box.y) > box.s * 0.18 || Math.abs(side / box.s - 1) > 0.25) box = { x: cx, y: cy, s: side };
+      return true;
+    };
+    // the first detection builds the model's graph and can take seconds: do it before the clock starts
+    const warm = () => { lm.detectForVideo(v, 0); lastTs = 0; };
+    return { frames, step, warm };
+  }
+
+  // The near player's pose corrects the ball-only reading (checked on 79 hand-labelled strokes of a practice video):
+  // - stroke types come from the pose (the ball alone could not tell forehand from backhand: 0 of 34 right before)
+  // - a swing the ball track missed becomes a shot; a "hit" by the near player while they were clearly seen and
+  //   did not swing was the ball passing near them, not a shot
+  // - practice: a "rally" in which the near player never swung was picking balls up or walking about, not play
+  function poseRefine(doc, form, frames, cal, W, H) {
+    if (!form || !frames.length) return;
+    const sw = form.swings;
+    const seenAt = (t) => { let n = 0, s = 0; for (const f of frames) if (Math.abs(f.t - t) <= 0.5) { n++; if (f.img) s++; } return n ? s / n : 0; };
+    const feetAt = (t) => { let best = null, bd = 0.3; for (const f of frames) { const d = Math.abs(f.t - t); if (f.img && d < bd) { bd = d; best = f; } } if (!best) return null; const i = best.img; return [(i[27 * 3] + i[28 * 3]) / 2 * W, Math.max(i[29 * 3 + 1], i[30 * 3 + 1], i[27 * 3 + 1], i[28 * 3 + 1]) * H]; };
+    const typeOf = (w, s) => w.type === 'overhead' ? (s.serve ? 'serve' : 'smash') : w.type;
+    const used = new Set();
+    for (const r of doc.rallies) {
+      r.shots = r.shots.filter(s => {
+        if (s.inferred || s.side !== 'near' || s.type === 'feed') return true;
+        let best = null, bd = 0.55; for (const w of sw) { const d = Math.abs(w.t - s.t); if (d < bd && !used.has(w)) { bd = d; best = w; } }
+        if (best) { used.add(best); s.type = typeOf(best, s); s.autoType = true; s.poseType = true; if (s.type === 'serve' || s.type === 'smash') s.spin = null; return true; }
+        if (sw.some(w => used.has(w) && Math.abs(w.t - s.t) < 0.55)) return false; // the same swing read twice from the ball
+        return !(seenAt(s.t) >= 0.8 && !sw.some(w => Math.abs(w.t - s.t) < 0.9)); // seen, no swing near: not a shot
+      });
+    }
+    // swings in stretches the ball track missed altogether: a rally of their own (swings within 8 s of each other)
+    const lone = sw.filter(w => !used.has(w) && !doc.rallies.some(q => w.t >= q.t0 - 0.6 && w.t <= q.t1 + 0.6));
+    for (const w of lone) {
+      const last = doc.rallies.filter(q => q.fromPose).pop();
+      if (last && w.t - last.t1 < 8 - 0.8) { last.t1 = w.t + 0.8; continue; }
+      doc.rallies.push({ id: 'rp' + Math.round(w.t * 10), t0: Math.max(0, w.t - 1.5), t1: w.t + 0.8, shots: [], winner: null, auto: null, fromPose: true });
+    }
+    doc.rallies.sort((a, b) => a.t0 - b.t0);
+    for (const w of sw) {
+      if (used.has(w)) continue;
+      const r = doc.rallies.find(q => w.t >= q.t0 - 0.6 && w.t <= q.t1 + 0.6); if (!r) continue;
+      const ft = feetAt(w.t); let cx = C.CX, cy = 0, ix = null, iy = null;
+      if (ft && cal) { [cx, cy] = RN.applyH(cal.toCourt, ft[0], ft[1]); ix = ft[0]; iy = ft[1]; }
+      const sh = { id: r.id + '_p' + Math.round(w.t * 10), t: w.t, side: 'near', cx, cy, ix, iy, bounce: null, speed: null, type: null, autoType: true, poseType: true, fromPose: true };
+      sh.type = typeOf(w, sh);
+      r.shots.push(sh); r.shots.sort((a, b) => a.t - b.t);
+      r.t0 = Math.min(r.t0, w.t - 0.5); r.t1 = Math.max(r.t1, w.t + (r.fromPose ? 2.0 : 0.8));
+    }
+    if (doc.mode !== 'match') doc.rallies = doc.rallies.filter(r => r.shots.some(s => s.poseType) || seenFrac(r) < 0.6);
+    function seenFrac(r) { let n = 0, s = 0; for (const f of frames) if (f.t >= r.t0 && f.t <= r.t1) { n++; if (f.img) s++; } return n ? s / n : 0; }
+    for (const r of doc.rallies) if (!r.shots.length) r.dead = true;
+    doc.rallies = doc.rallies.filter(r => !r.dead);
+  }
+
   async function runFormAnalysis(file) {
     cancelAnalysis = false;
     const url = URL.createObjectURL(file);
@@ -2953,36 +3057,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const pc = $('#progCanvas'); pc.width = 480; pc.height = Math.round(480 * vh / vw); const ctx = pc.getContext('2d');
     let wake = null; try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
     let lmImg = null; try { lmImg = await getPoseImg(); } catch (e) { lmImg = null; }
-    const frames = []; let lastTs = -1, prevX = null; const started = performance.now();
-    // A player across the court is small in the frame and the model then misses them about half the time.
-    // After the first sighting, only a square around the body is handed to the model (about 2x the body height),
-    // and the square stays put until the player nears its edge, so the model's own tracking keeps working.
-    const crop = document.createElement('canvas'); crop.width = crop.height = 512;
-    const cctx = crop.getContext('2d', { willReadFrequently: true });
-    let box = null;
+    const reader = makePoseReader(lm, lmImg, v, vw, vh), frames = reader.frames; const started = performance.now();
     const process = (t) => {
-      const ts = Math.round(t * 1000); if (ts <= lastTs) return; lastTs = ts;
-      let sx = 0, sy = 0, sw = vw, sh = vh, src = v;
-      if (box) { sw = sh = box.s; sx = clamp(box.x - box.s / 2, 0, vw - box.s); sy = clamp(box.y - box.s / 2, 0, vh - box.s); cctx.drawImage(v, sx, sy, sw, sh, 0, 0, 512, 512); src = crop; }
-      let r; try { r = lm.detectForVideo(src, ts); } catch (e) { r = null; }
-      if ((!r || !r.landmarks.length) && lmImg) { try { r = lmImg.detect(src); } catch (e) { r = null; } }
-      const k = r ? pickMain(r, box ? null : prevX) : -1;
-      if (k < 0) { frames.push({ t, img: null, wld: null }); box = null; }
-      else {
-        const L = r.landmarks[k], Wl = r.worldLandmarks[k];
-        const img = new Float32Array(99), wld = new Float32Array(99);
-        let x0 = 9, x1 = -9, y0 = 9, y1 = -9;
-        for (let j = 0; j < 33; j++) {
-          const x = (sx + L[j].x * sw) / vw, y = (sy + L[j].y * sh) / vh;
-          img[j * 3] = x; img[j * 3 + 1] = y; img[j * 3 + 2] = L[j].visibility ?? 1; wld[j * 3] = Wl[j].x; wld[j * 3 + 1] = Wl[j].y; wld[j * 3 + 2] = Wl[j].z;
-          x0 = Math.min(x0, x * vw); x1 = Math.max(x1, x * vw); y0 = Math.min(y0, y * vh); y1 = Math.max(y1, y * vh);
-        }
-        prevX = (img[69] + img[72]) / 2;
-        frames.push({ t, img, wld });
-        const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, side = clamp((y1 - y0) * 2.2, 256, Math.min(vw, vh));
-        if (side >= Math.min(vw, vh) * 0.95) box = null; // already big in the frame: the whole picture is fine
-        else if (!box || Math.abs(cx - box.x) > box.s * 0.18 || Math.abs(cy - box.y) > box.s * 0.18 || Math.abs(side / box.s - 1) > 0.25) box = { x: cx, y: cy, s: side };
-      }
+      if (!reader.step(t)) return;
       if (frames.length % 2 === 0) {
         ctx.drawImage(v, 0, 0, pc.width, pc.height);
         const f = frames[frames.length - 1]; if (f.img) drawSkeleton(ctx, f.img, pc.width, pc.height, 2, '#cdeb3c');
@@ -2994,7 +3071,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     };
     // the first detection builds the model's graph and can take seconds: do it before the clock starts
     $('#progText').textContent = '자세 인식 AI를 깨우는 중…';
-    try { await new Promise(r => setTimeout(r, 30)); lm.detectForVideo(v, 0); lastTs = 0; } catch (e) { /* first real frame will try again */ }
+    try { await new Promise(r => setTimeout(r, 30)); reader.warm(); } catch (e) { /* first real frame will try again */ }
     try { await scanVideo(v, FORM_FPS, process); }
     catch (e) {
       try { wake && wake.release(); } catch (_) { /* ignore */ }
@@ -3181,12 +3258,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     for (let n = 0; n < scenes.length && !stop; n++) {
       const a = scenes[n].t0, b = Math.min(scenes[n].t1, vid.duration || scenes[n].t1);
       $('#hlBar').style.width = (n / scenes.length * 100) + '%'; $('#hlText').textContent = `구간 ${n + 1} / ${scenes.length}`;
-      await new Promise(res => { vid.onseeked = () => { vid.onseeked = null; res(); }; vid.currentTime = a; });
-      vid.playbackRate = 1; await vid.play().catch(() => {});
-      await new Promise(res => {
-        const st = () => { if (stop || vid.currentTime >= b || vid.ended) { vid.pause(); return res(); } ctx.drawImage(vid, 0, 0, cv.width, cv.height); requestAnimationFrame(st); };
-        requestAnimationFrame(st);
-      });
+      await playSpan(a, b, () => ctx.drawImage(vid, 0, 0, cv.width, cv.height), () => stop, rec);
     }
     await new Promise(res => { rec.onstop = res; rec.stop(); });
     P.dirty = true;
@@ -3375,14 +3447,14 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       const r = cur.eff.rallies[ri];
       for (const s of r.shots) {
         const b = s.bounce; if (!b || b.t > t || t - b.t > 2.2) continue;
-        const col = b.in ? '#3cd18a' : '#ff6b4a';
+        const col = b.in == null ? '#c9d1d6' : b.in ? '#3cd18a' : '#ff6b4a';
         const age = (t - b.t) / 2.2;
         ctx.globalAlpha = 1 - age * 0.7;
         ctx.strokeStyle = col; ctx.lineWidth = Math.max(2, k * 1.4);
         const [bx, by] = S(b.ix, b.iy);
         ctx.beginPath(); ctx.ellipse(ox + bx * k, oy + by * k, 9 * k * 0.9 + 4, 4 * k * 0.9 + 2, 0, 0, Math.PI * 2); ctx.stroke();
         ctx.fillStyle = col; ctx.font = `700 ${Math.round(11 + k * 3)}px "Barlow Condensed", sans-serif`;
-        ctx.fillText(b.in ? 'IN' : 'OUT', ox + bx * k + 10 + k * 6, oy + by * k - 4);
+        ctx.fillText(b.in == null ? '?' : b.in ? 'IN' : 'OUT', ox + bx * k + 10 + k * 6, oy + by * k - 4);
         ctx.globalAlpha = 1;
       }
     }
@@ -3507,7 +3579,8 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     const rows = r.shots.map((s, i) => {
       const b = s.bounce;
       const type = (s.spin ? SPIN_KO[s.spin] + ' ' : '') + (s.serve ? '서브' : (TYPE_KO[s.type] || '샷'));
-      const land = b ? `<span class="chip ${b.in ? 'in' : 'out'}">${b.in ? 'IN' : 'OUT'}</span> <span class="meta">${b.in ? ZONE_KO[b.zone] : Math.round(Math.abs(b.margin) * 100) + 'cm 밖'}</span>` : '<span class="meta">낙하지점 없음</span>';
+      const land = !b ? '<span class="meta">낙하지점 없음</span>' : b.in == null ? `<span class="chip">IN/OUT ?</span> <span class="meta">라인 근처 · 이 카메라 높이로는 판정 불가 (±${Math.round(b.err * 100)}cm)</span>`
+        : `<span class="chip ${b.in ? 'in' : 'out'}">${b.in ? 'IN' : 'OUT'}</span> <span class="meta">${b.in ? ZONE_KO[b.zone] : Math.round(Math.abs(b.margin) * 100) + 'cm 밖'}</span>`;
       return `<div class="shot" data-id="${s.id}" data-t="${s.t}"><span class="n">${i + 1}</span><span><b class="ty" style="color:${TYPE_COL[s.serve ? 'serve' : (s.type || 'none')]}">${type}</b> <span class="meta">${fmtT(s.t)}</span></span>
         <span class="acts"><b class="num">${s.speed ? s.speed + '<small> km/h</small>' : '–'}</b> ${land}</span></div>`;
     }).join('');
@@ -3648,7 +3721,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       ctx.beginPath(); ctx.arc(px, py, (last ? 3.6 : 2.6) * s, 0, Math.PI * 2);
       const sh = cur.eff.rallies[ri].shots.find(x => x.bounce === b), tc = sh && (TYPE_COL[sh.serve ? 'serve' : sh.type]);
       if (b.in) { ctx.fillStyle = tc || (last ? OV.last : OV.inC); ctx.globalAlpha = last ? 1 : 0.75; ctx.fill(); }
-      else { ctx.strokeStyle = tc || OV.outC; ctx.lineWidth = 1.4 * s; ctx.globalAlpha = last ? 1 : 0.75; ctx.stroke(); }
+      else { ctx.strokeStyle = b.in == null ? 'rgba(220,226,230,.8)' : (tc || OV.outC); ctx.lineWidth = 1.4 * s; ctx.globalAlpha = last ? 1 : 0.75; ctx.stroke(); }
       ctx.globalAlpha = 1;
     });
   }
@@ -3663,7 +3736,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     ctx.fillStyle = OV.panel; roundRect(ctx, x, y, w, h, 6 * s); ctx.fill();
     ctx.textAlign = 'left';
     ctx.font = `600 ${12.5 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = tcol; ctx.fillText(type, x + 9 * s, y + 18 * s);
-    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(sh.bounce ? (sh.bounce.in ? 'IN' : 'OUT') + (sh.bounce.in && sh.bounce.zone ? ' · ' + ZONE_KO[sh.bounce.zone] : '') : '', x + 9 * s, y + 34 * s);
+    ctx.font = `500 ${11 * s}px "IBM Plex Sans KR", sans-serif`; ctx.fillStyle = OV.dim; ctx.fillText(sh.bounce ? (sh.bounce.in == null ? 'IN/OUT ?' : sh.bounce.in ? 'IN' : 'OUT') + (sh.bounce.in && sh.bounce.zone ? ' · ' + ZONE_KO[sh.bounce.zone] : '') : '', x + 9 * s, y + 34 * s);
     if (sh.speed) {
       ctx.textAlign = 'right';
       ctx.font = `700 ${20 * s}px "Barlow Condensed", sans-serif`; ctx.fillStyle = OV.text; ctx.fillText(String(sh.speed), x + w - 9 * s, y + 21 * s);
@@ -3769,6 +3842,41 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
     return (t) => { const f = clamp((t - a) * fps, 0, n - 1), i = Math.floor(f), j = Math.min(n - 1, i + 1); return x[i] + (x[j] - x[i]) * (f - i); };
   }
 
+  // Play the session video from a to b and hand every NEW picture to draw(t). Phones sometimes stop handing
+  // over fresh pictures while the clock runs on (the video sits under the progress window): drawing on a timer
+  // then records one frozen picture for many seconds. Here only presented frames are drawn, the recorder is
+  // paused while nothing new arrives, and a stall of 0.8 s is broken by asking for the same moment again.
+  async function playSpan(a, b, draw, isStop, rec) {
+    await new Promise(res => { const tm = setTimeout(res, 4000); vid.onseeked = () => { clearTimeout(tm); vid.onseeked = null; res(); }; vid.currentTime = a; });
+    vid.playbackRate = 1; await vid.play().catch(() => {});
+    const rv = 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
+    await new Promise(res => {
+      let last = performance.now(), done = false, kicks = 0, paused = false;
+      const finish = () => { if (done) return; done = true; clearInterval(dog); vid.pause(); if (paused && rec.state === 'paused') rec.resume(); res(); };
+      const onFrame = (now, meta) => {
+        if (done) return;
+        const t = meta ? meta.mediaTime : vid.currentTime;
+        if (isStop() || t >= b || vid.ended) return finish();
+        last = performance.now(); kicks = 0;
+        if (paused && rec.state === 'paused') { rec.resume(); paused = false; }
+        draw(t);
+        if (rv) vid.requestVideoFrameCallback(onFrame); else requestAnimationFrame(() => onFrame());
+      };
+      const dog = setInterval(() => {
+        if (done) return;
+        if (isStop() || vid.currentTime >= b || vid.ended) return finish();
+        if (performance.now() - last > 800) {
+          if (!paused && rec.state === 'recording') { rec.pause(); paused = true; }
+          if (++kicks > 6) return finish(); // still nothing after ~5 s: go on with the next scene
+          const t = vid.currentTime; vid.currentTime = t + 0.001; if (vid.paused) vid.play().catch(() => {});
+          last = performance.now();
+          if (rv) vid.requestVideoFrameCallback(onFrame);
+        }
+      }, 250);
+      if (rv) vid.requestVideoFrameCallback(onFrame); else requestAnimationFrame(() => onFrame());
+    });
+  }
+
   async function renderExport(scenes, o) {
     if (cur.doc.cam === 'moving') o = Object.assign({}, o, { follow: false }); // the gimbal already followed the play
     const doc = cur.doc, tall = o.ratio === 'tall';
@@ -3828,13 +3936,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
           requestAnimationFrame(st);
         });
       } else {
-        await new Promise(res => { vid.onseeked = () => { vid.onseeked = null; res(); }; vid.currentTime = a; });
-        vid.playbackRate = 1;
-        await vid.play().catch(() => {});
-        await new Promise(res => {
-          const st = () => { if (stop || vid.currentTime >= b || vid.ended) { vid.pause(); return res(); } frame(vid.currentTime, sc); requestAnimationFrame(st); };
-          requestAnimationFrame(st);
-        });
+        await playSpan(a, b, (t) => frame(t, sc), () => stop, rec);
       }
     }
     await new Promise(res => { rec.onstop = res; rec.stop(); });
