@@ -83,6 +83,7 @@ p{margin:0}
 @media (max-width:560px){.pick2{grid-template-columns:1fr}}
 .mixline{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--ink-2);margin:8px 0}
 .mixline i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.play-edit{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface-2);border-radius:10px;padding:10px 12px;margin:6px 0 10px}
 .swing-now{background:var(--surface-2);border-radius:10px;padding:10px 12px;margin:6px 0 12px}
 .swing-now header{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
 .swing-now .chk{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -830,6 +831,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           found.push({ x: cx, y: cy, a: area, px });
         }
       }
+      // shoes: a white shoe that steps or pivots while the leg hardly moves looks like a small bright moving
+      // spot. Nothing round and bright at a player's feet is taken for the ball (people are found against the
+      // slow background, so a player standing still counts too)
+      if (found.length) {
+        // ...and legs moving fast right now (the slow-background outline lags behind a quick step)
+        const feet = detect.people().concat(bodies.filter(b => b.y1 - b.y0 > h * 0.06).map(b => ({ x: (b.x0 + b.x1) / 2, y: b.y1, h: b.y1 - b.y0, w: b.x1 - b.x0 })));
+        if (feet.length) for (let k = found.length - 1; k >= 0; k--) {
+          const c = found[k];
+          if (feet.some(p => Math.abs(c.x - p.x) <= Math.max(p.w * 0.75, p.h * 0.35) && c.y >= p.y - p.h * 0.22 && c.y <= p.y + p.h * 0.1)) found.splice(k, 1);
+        }
+      }
       for (let i = 0; i < g.length; i++) { bg[i] += (g[i] - bg[i]) * (mot[i] ? 0.01 : 0.05); slowBg[i] += (g[i] - slowBg[i]) * 0.012; }
       pending = found;
       // people: merge pieces of the same body (legs, torso) and keep the feet position; lagged like the candidates
@@ -921,7 +933,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         }
         const bw = x1 - x0 + 1, bh = y1 - y0 + 1;
         // a person is taller than wide and not tiny; long flat strips are lighting or net shadows
-        if (n >= 4 && bh >= 3 && bh >= bw * 0.8 && bw <= pgw * 0.25) out.push({ x: (x0 + x1 + 1) / 2 * PS, y: (y1 + 1) * PS, h: bh * PS, a: n });
+        if (n >= 4 && bh >= 3 && bh >= bw * 0.8 && bw <= pgw * 0.25) out.push({ x: (x0 + x1 + 1) / 2 * PS, y: (y1 + 1) * PS, h: bh * PS, w: bw * PS, a: n });
       }
       return out.sort((p, q) => q.a - p.a);
     };
@@ -3066,8 +3078,23 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
 
   // ---------- form session: replay with skeleton, coach notes, swing by swing ----------
+  // play stretches: swings that follow each other within 8 s belong to one rally (one player swings every
+  // 2-5 s while the ball is in play); picking balls up, walking back and resting fall in the longer gaps and are cut
+  const PLAY_GAP = 8, PLAY_PRE = 2.0, PLAY_POST = 2.5;
   function formRallies(doc) {
-    return doc.form.swings.map((s, i) => ({ id: 'w' + i, t0: Math.max(0, s.t - 1.0), t1: s.t + 0.7, shots: [], swing: s }));
+    const out = [], sw = doc.form.swings;
+    for (const s of sw) {
+      const g = out[out.length - 1];
+      if (g && s.t - g.last <= PLAY_GAP) { g.swings.push(s); g.last = s.t; g.t1 = s.t + PLAY_POST; }
+      else out.push({ id: 'p' + out.length, t0: Math.max(0, s.t - PLAY_PRE), t1: s.t + PLAY_POST, last: s.t, shots: [], swings: [s] });
+    }
+    return out;
+  }
+  // the swing being shown: the closest one to t, if any is within a second
+  function swingNear(t) {
+    let best = null, bd = 1.0;
+    for (const s of cur.doc.form.swings) { const d = Math.abs(s.t - t); if (d < bd) { bd = d; best = s; } }
+    return best;
   }
   function openForm(doc) {
     pausePlayer();
@@ -3086,7 +3113,7 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
       cur.poses = { n, t: Float32Array.from({ length: n }, (_, i) => f[i * 100]), f }; P.dirty = true;
     }).catch(() => {});
     $('#btnOrig').hidden = true; $('#exportPanel').hidden = true; $('#moveWarn').hidden = true;
-    $('#onlyLbl').textContent = '스윙만';
+    $('#onlyLbl').textContent = '플레이만';
     show('vSession');
     buildTimeline(); renderRally(); sizeOverlay();
   }
@@ -3101,9 +3128,9 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   function drawForm(ctx) {
     const W = ov.width, H = ov.height, sc = clamp(Math.min(W, H) / 540, 0.6, 1.6);
     const img = poseAt(P.t);
-    const ri = rallyAt(P.t), sw = ri >= 0 ? cur.eff.rallies[ri].swing : null, near = sw && Math.abs(P.t - sw.t) < 0.35;
+    const sw = swingNear(P.t), near = sw && Math.abs(P.t - sw.t) < 0.35;
     if (img) drawSkeleton(ctx, img, W, H, Math.max(2, 3 * sc), near ? (STROKE_COL[sw.type] || '#cdeb3c') : 'rgba(205,235,60,.85)');
-    if (sw && P.t >= sw.t - 0.6) {
+    if (sw && P.t >= sw.t - 0.6 && P.t <= sw.t + 0.9) {
       const marks = checkMarks(sw);
       const lines = [[STROKE_KO[sw.type], STROKE_COL[sw.type]], ...marks.map(m => [(m.ok ? '✓ ' : '✗ ') + CHECKS[m.k].label + ' ' + CHECKS[m.k].fmt(sw[m.k]), m.ok ? '#7fe0a0' : '#ff8a7a'])];
       ctx.font = `600 ${13 * sc}px "IBM Plex Sans KR", sans-serif`;
@@ -3114,18 +3141,57 @@ const DEMO = {"W":640,"H":360,"fps":30,"n":3096,"duration":103.18977864910244,"c
   }
   function renderForm() {
     const el = $('#rallyCard'), f = cur.doc.form, co = cur.coach;
-    const ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t), sw = cur.eff.rallies[ri] && cur.eff.rallies[ri].swing;
+    const ri = P.rallyIdx >= 0 ? P.rallyIdx : nearestRally(P.t), seg = cur.eff.rallies[ri];
+    const sw = swingNear(P.t) || (seg && seg.swings[0]), si = sw ? f.swings.indexOf(sw) : -1;
+    const playLen = cur.eff.rallies.reduce((n, r) => n + r.t1 - r.t0, 0);
     const count = (t) => f.swings.filter(s => s.type === t).length;
     const fixHtml = co.fix.length ? co.fix.map((r, i) => `<div class="coach-item"><div class="ci-h"><b>${i + 1}. ${STROKE_KO[r.type]} · ${CHECKS[r.key].label}</b>${r.worst ? `<button class="btn sm" data-see="${r.worst.t}" type="button">장면 보기</button>` : ''}</div>
         <div class="ci-n">${r.ok}/${r.n}샷만 기준 충족${r.median != null ? ` · 내 평균 ${CHECKS[r.key].fmt(r.median)}` : ''} · 목표 ${CHECKS[r.key].target}</div><p>${CHECKS[r.key].tip}</p></div>`).join('')
       : '<p class="hint">샷이 충분히 모이면(종류별 3개 이상) 개선할 점을 골라 드립니다.</p>';
     const goodHtml = co.good.length ? `<div class="ci-good">잘하고 있는 점: ${co.good.map(r => `${STROKE_KO[r.type]} ${CHECKS[r.key].label}`).join(' · ')}</div>` : '';
-    const cur1 = sw ? `<div class="swing-now"><header><b style="color:${STROKE_COL[sw.type]}">${STROKE_KO[sw.type]}</b><span class="meta">${fmtT(sw.t)} · ${ri + 1}/${f.swings.length}번째 스윙</span></header>
+    const cur1 = sw ? `<div class="swing-now"><header><b style="color:${STROKE_COL[sw.type]}">${STROKE_KO[sw.type]}</b><span class="meta">${fmtT(sw.t)} · ${si + 1}/${f.swings.length}번째 스윙</span></header>
         <div class="chk">${checkMarks(sw).map(m => `<span class="${m.ok ? 'ok' : 'no'}">${m.ok ? '✓' : '✗'} ${CHECKS[m.k].label} <small>${CHECKS[m.k].fmt(sw[m.k])}</small></span>`).join('')}</div></div>` : '';
-    el.innerHTML = `<header><h3>코치 노트</h3><span class="chip">스윙 ${f.swings.length}</span></header>
+    const dur = cur.doc.src.duration || 0;
+    const editHtml = cur.eff.rallies.length ? `<div class="play-edit"><div><b>플레이 구간 ${cur.eff.rallies.length}개 · ${fmtT(playLen)}</b>${dur ? `<span class="meta"> / 전체 ${fmtT(dur)} · 공 줍기·쉬는 시간 ${fmtT(Math.max(0, dur - playLen))} 뺌</span>` : ''}</div>
+        <button class="btn sm primary" type="button" id="formExport">플레이만 영상으로 저장</button></div>` : '';
+    el.innerHTML = `<header><h3>코치 노트</h3><span class="chip">스윙 ${f.swings.length}</span></header>${editHtml}
       <div class="mixline">${['forehand', 'backhand', 'volley', 'overhead'].map(t => count(t) ? `<span><i style="background:${STROKE_COL[t]}"></i>${STROKE_KO[t]} ${count(t)}</span>` : '').join('')}</div>
       ${cur1}<h4 class="ci-title">개선할 점</h4>${fixHtml}${goodHtml}
       <p class="hint beta-note" style="margin-top:10px"><b>시험판</b> · 포핸드와 서브는 실제 연습 영상 15개 스윙으로 맞췄습니다(15개 모두 찾고 종류도 맞음). 백핸드·발리는 아직 맞춰 보지 못해 덜 정확하고, 발리는 잘 못 찾습니다. 높이·각도는 대략값입니다. 머리부터 발까지 다 보이게 찍어 주세요.</p>`;
+  }
+  $('#rallyCard').addEventListener('click', (e) => { if (e.target.closest('#formExport') && cur && cur.form) exportForm(); });
+  async function exportForm() {
+    const doc = cur.doc, scenes = cur.eff.rallies;
+    if (!scenes.length) return;
+    if (!vid.src || vid.readyState < 1) { toast('먼저 원본 영상을 다시 연결해 주세요', 4000); return; }
+    const vw = vid.videoWidth || doc.W, vh = vid.videoHeight || doc.H, sc = Math.min(1, 1280 / Math.max(vw, vh));
+    const cv = document.createElement('canvas'); cv.width = Math.round(vw * sc / 2) * 2; cv.height = Math.round(vh * sc / 2) * 2;
+    const ctx = cv.getContext('2d');
+    const mime = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
+    const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
+    const rec = new MediaRecorder(cv.captureStream(30), mime ? { mimeType: mime, videoBitsPerSecond: 6e6 } : undefined);
+    const chunks = []; rec.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+    let stop = false;
+    pausePlayer();
+    modal(`<h2>플레이 구간만 이어 붙이는 중</h2><div class="bar"><i id="hlBar"></i></div><p class="hint" id="hlText">구간 ${scenes.length}개 · 실제 재생 시간만큼 걸립니다.</p><div><button class="btn sm" id="hlStop" type="button">중단</button></div>`);
+    $('#hlStop').onclick = () => { stop = true; };
+    rec.start(500);
+    for (let n = 0; n < scenes.length && !stop; n++) {
+      const a = scenes[n].t0, b = Math.min(scenes[n].t1, vid.duration || scenes[n].t1);
+      $('#hlBar').style.width = (n / scenes.length * 100) + '%'; $('#hlText').textContent = `구간 ${n + 1} / ${scenes.length}`;
+      await new Promise(res => { vid.onseeked = () => { vid.onseeked = null; res(); }; vid.currentTime = a; });
+      vid.playbackRate = 1; await vid.play().catch(() => {});
+      await new Promise(res => {
+        const st = () => { if (stop || vid.currentTime >= b || vid.ended) { vid.pause(); return res(); } ctx.drawImage(vid, 0, 0, cv.width, cv.height); requestAnimationFrame(st); };
+        requestAnimationFrame(st);
+      });
+    }
+    await new Promise(res => { rec.onstop = res; rec.stop(); });
+    P.dirty = true;
+    if (stop) { closeModal(); toast('영상 만들기를 멈췄습니다'); return; }
+    const blob = new Blob(chunks, { type: mime || 'video/webm' });
+    const fname = doc.name.replace(/[\\/:*?"<>|]/g, '_') + '_플레이만.' + ext;
+    exportDone(blob, fname, { len: scenes.reduce((s, r) => s + r.t1 - r.t0, 0), ratio: '원본 비율', n: scenes.length, ext });
   }
   $('#rallyCard').addEventListener('click', (e) => { const b = e.target.closest('[data-see]'); if (!b || !cur || !cur.form) return; const t = +b.dataset.see; P.rate = 0.5; vid.playbackRate = 0.5; seg($('#optRate'), '0.5', v => { P.rate = +v; vid.playbackRate = P.rate; }); seek(Math.max(0, t - 1.2)); playPlayer(); if (window.innerWidth <= 880) $('#stage').scrollIntoView({ block: 'center' }); });
 
