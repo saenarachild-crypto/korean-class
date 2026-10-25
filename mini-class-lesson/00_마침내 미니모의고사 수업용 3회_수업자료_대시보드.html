@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 3회 · 수업자료 대시보드</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container"><div class="header"><h1>📚 마침내 미니모의고사 수업용 3회 · 수업자료 대시보드</h1><p>공통 17문항 · 지문 4세트 · 지문별 상세 자료</p></div><div style="padding:28px;"><table style="width:100%;border-collapse:collapse;font-size:15px;" border="1" cellpadding="8"><thead><tr style="background:#1e466e;color:#1e293b;"><th>지문</th><th>문항</th><th>영역</th><th>제재/작품</th><th>자료</th></tr></thead><tbody><tr><td>독서1</td><td>1~3</td><td>독서론</td><td>실용적 목적을 고려한 약관 읽기</td><td><a href="마침내 미니모의고사 수업용 3회 독서1 1-3 (상세).html">열기</a></td></tr><tr><td>독서2</td><td>4~7</td><td>과학·기술</td><td>정수형 자료형과 2의 보수법</td><td><a href="마침내 미니모의고사 수업용 3회 독서2 4-7 (상세).html">열기</a></td></tr><tr><td>문학1</td><td>8~13</td><td>갈래 복합</td><td>박두진, 「달과 말」 / 오세영, 「원시」 / 정지순, 「겸재 정선 산수화론」</td><td><a href="마침내 미니모의고사 수업용 3회 문학1 8-13 (상세).html">열기</a></td></tr><tr><td>문학2</td><td>14~17</td><td>평설·현대시</td><td>(가) 평설 / 이성부, 「누룩」 / 김선우, 「빌려줄 몸 한 채」</td><td><a href="마침내 미니모의고사 수업용 3회 문학2 14-17 (상세).html">열기</a></td></tr></tbody></table><p style="margin-top:14px;font-size:13px;color:#475569;">함께 쓰는 자료: mini-class-r3-student.pdf(문제지) · mini-class-r3-teacher.pdf(해설지) · self-mini-class3.html(셀프해설지+OMR)</p></div></div></body></html>

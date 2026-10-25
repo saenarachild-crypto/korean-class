@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 2회 독서1 1~3 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 2회 · 독서1 1~3 (독서론)</h1><p>요약의 인지적 관점과 사회구성주의 관점 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">요약의 인지적 관점과 사회구성주의 관점</p>
+<p>독자는 글에 담긴 방대한 정보 중 의미 있는 내용을 선별하여 자신의 지식 구조로 통합한다. 하지만 인간의 작업 기억 용량에는 한계가 있어 글의 모든 세부 정보를 동시에 처리할 수 없다. 따라서 정보 과부하를 막고 개별 정보를 압축해 글 전체의 거시 구조로 재편하기 위해 요약이라는 인지 전략이 필요하다.<span class="para-note">← 작업 기억의 한계 → 요약이라는 인지 전략</span></p>
+<p>언어학자 판데이크는 글의 정보를 참과 거짓을 따질 수 있는 최소 진술 단위인 명제로 보고, 미시적 명제들로부터 거시적 명제를 도출하는 과정을 삭제, 선택, 일반화, 구성이라는 거시 규칙으로 체계화했다. 삭제는 글 이해에 필수적이지 않은 정보를 지우는 것으로, 삭제되는 정보는 이어지는 내용 해석에 논리적 전제가 되지 않아야 한다. 다음으로 선택은 여러 명제 중 다른 명제를 포괄하거나 글의 주제를 뒷받침하는 핵심 명제를 찾아내는 것이고, 일반화는 구체적인 하위 개념들을 보다 포괄적인 상위 개념으로 묶어서 대체하는 것이다. 마지막으로 구성은 글에 나열된 일련의 사건들을 바탕으로 기존에 없던 새로운 명제를 만드는 것이다. 이처럼 인지적 관점에서 요약은 글 내부의 논리적 위계에 따라 객관적인 정보의 중요도를 판별하는 과정이다.<span class="para-note">← 판데이크의 거시 규칙 4가지 — 인지적 관점(글 내부의 위계)</span></p>
+<p>그런데 요약은 단순히 개인의 정보 처리 과정에 국한되지 않는다. 사회구성주의 독서관에서는 독자를 지식과 관습 등을 공유하는 담화 공동체의 일원으로 본다. 이에 따르면 정보의 중요도는 글 내부에 고정된 것이 아니라 독자가 속한 공동체의 관습에 의해 새롭게 부여되는 것이다. 이에 따르면 요약은 글의 기계적 축소가 아니라 사회적 관습에 따라 글의 의미를 재구성하는 사회적 행위가 된다.<span class="para-note">← 사회구성주의 — 중요도는 공동체의 관습이 부여, 요약 = 사회적 행위</span></p>
+<p>따라서 거시 규칙이 적용되는 양상 역시 담화 공동체에 따라 달라진다. 인지적 관점은 글의 구조적 위계를 삭제와 선택의 절대적 기준으로 삼지만, 사회구성주의 관점은 담화 공동체의 관습도 그 기준에 포함한다. 예컨대 인공지능 기술을 다룬 하나의 글을 읽더라도, 공학자는 기술적 원리와 관련된 명제를, 사회 운동가는 윤리적 쟁점과 관련된 명제를 선택하고 나머지를 삭제할 확률이 높다. 요약은 개인의 인지적 처리인 동시에, 공동체의 관습이 개입하는 사회적 행위라는 것이다.<span class="para-note">← 삭제·선택의 기준에 공동체의 관습 포함 — 공학자 vs 사회 운동가</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 독서론 · <strong>난도</strong> 중 · <strong>목표 시간</strong> 4분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 작업 기억의 한계 → 요약 필요 → 판데이크의 거시 규칙(삭제·선택·일반화·구성) = 인지적 관점 → 사회구성주의: 중요도는 공동체 관습이 부여 → 거시 규칙의 적용도 공동체에 따라 달라짐</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>거시 규칙</b>: 삭제(후속 해석의 전제가 아닌 정보) · 선택(포괄하는 핵심 명제) · 일반화(하위 → 상위 개념) · 구성(사건들 → 새 명제).</li><li><b>두 관점의 차이</b>: 인지적 = 글 내부의 논리적 위계 / 사회구성주의 = 위계 + 공동체의 관습.</li><li>사회구성주의도 거시 규칙을 버리지 않음 — 규칙을 적용하는 <b>기준</b>이 달라질 뿐.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>작업 기억의 한계 → 요약이라는 인지 전략</li><li>판데이크의 거시 규칙 4가지 — 인지적 관점(글 내부의 위계)</li><li>사회구성주의 — 중요도는 공동체의 관습이 부여, 요약 = 사회적 행위</li><li>삭제·선택의 기준에 공동체의 관습 포함 — 공학자 vs 사회 운동가</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>1번 ④</b>: 중요도는 글 내부에 고정되지 않고 공동체의 관습이 부여.</li><li><b>2번 ④</b>: ⓓ의 ‘유출이 심각’은 ‘비밀번호를 바꿔야’의 논리적 전제 — 삭제 조건에 어긋남.</li><li><b>3번 ③</b>: 강희의 추력 정보 삭제 = 공동체 관습에 따른 사회적 행위.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 4분 · 난도 중 · 시간이 새는 자리: 삭제 규칙의 조건(“이어지는 내용 해석에 전제가 되지 않아야”)을 놓치면 2번 ④를 적절하다고 넘긴다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 작업 기억의 한계 → 요약 필요 → 판데이크의 거시 규칙(삭제·선택·일반화·구성) = 인지적 관점 → 사회구성주의: 중요도는 공동체 관습이 부여 → 거시 규칙의 적용도 공동체에 따라 달라짐</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [1~3]</h2>
+<div class="question-full"><div class="q-num">1</div><span class="q-type">[유형] 내용 일치 · 요약의 두 관점 · 예상 오답률(분석 추정) 12%</span>
+<div class="question-stem">윗글의 내용과 일치하지 <strong>않는</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 인지적 관점에서는 글 내부의 구조적 위계가 정보의 중요도를 판단하는 기준이 된다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 인지적 관점 = 글 내부의 논리적 위계로 중요도 판별.</div></div>
+<div class="choice-item"><div class="choice-text">② 독자는 작업 기억 용량의 한계로 인해 글에 제시된 모든 정보를 동시에 처리할 수 없다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 작업 기억 용량 한계로 모든 세부 정보를 동시에 처리할 수 없음.</div></div>
+<div class="choice-item"><div class="choice-text">③ 판데이크에 따르면 요약은 글의 미시적 명제들로부터 거시적 명제를 도출해 내는 논리적 과정이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 미시적 명제 → 거시적 명제 도출 과정을 체계화.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 사회구성주의 독서관은 글 속 정보의 중요도가 독자가 글을 읽기 이전부터 글 내부에 고정되어 있다고 본다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 중요도는 글 내부에 고정된 것이 아니라 공동체의 관습이 새롭게 부여.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 사회구성주의 관점에서 요약은 원문의 기계적 축소가 아니라 공동체의 관습에 따라 의미를 재구성하는 행위이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 기계적 축소가 아니라 관습에 따른 의미 재구성.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 내용 일치</div></div>
+<div class="question-full"><div class="q-num">2</div><span class="q-type">[유형] 구체적 사례 적용 · ⓐ~ⓓ 거시 규칙 · 예상 오답률(분석 추정) 33%</span>
+<div class="question-stem">윗글을 바탕으로 학생이 다음과 같이 원문에 대한 요약을 수행했다고 할 때, ⓐ～ⓓ에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box">
+<p>ⓐ 수영장에는 튜브, 비치볼, 물총이 둥둥 떠다녔다.<br>→수영장에는 물놀이 용품이 떠다녔다.</p>
+<p>ⓑ 정부는 복지 예산을 확대했는데, 특히 아동 복지비를 늘렸다.<br>→정부는 복지 예산을 확대했다.</p>
+<p>ⓒ 민수는 기차역에 가서 표를 사고 열차에 올라 좌석에 앉았다.<br>→민수는 기차 여행을 시작했다.</p>
+<p>ⓓ 개인정보 유출이 심각하므로, 비밀번호를 자주 바꿔 줘야 한다.<br>→비밀번호를 자주 바꿔 줘야 한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① ⓐ는 구체적인 하위 개념들을 포괄하는 상위 개념으로 대체했으므로 ‘일반화’를 적용한 것이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 튜브·비치볼·물총 → 물놀이 용품: 일반화.</div></div>
+<div class="choice-item"><div class="choice-text">② ⓑ는 두 명제 중에서 다른 명제를 포괄하는 핵심 명제를 남겼으므로 ‘선택’을 적용한 것이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 복지 예산 확대가 아동 복지비 증액을 포괄: 선택.</div></div>
+<div class="choice-item"><div class="choice-text">③ ⓒ는 나열된 일련의 사건들을 바탕으로 원문에 없는 새로운 명제를 만들었으므로 ‘구성’을 적용한 것이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 역에 가다·표를 사다·좌석에 앉다 → 기차 여행 시작: 구성.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ⓓ는 이어지는 내용 해석에 논리적 전제가 되지 않는 정보를 지웠으므로 ‘삭제’를 적용한 것이다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – ‘유출이 심각’은 ‘비밀번호를 바꿔야’의 논리적 전제 — 전제가 아닌 정보를 지운 것이 아님.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓐ～ⓓ는 모두 미시적 명제들에서 거시적 명제를 도출하여 인지적 한계를 극복하려는 전략에 해당한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 모두 미시 명제에서 거시 명제를 도출해 정보 과부하를 막는 전략.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 구체적 사례 적용</div></div>
+<div class="question-full"><div class="q-num">3</div><span class="q-type">[유형] &lt;보기&gt; 사례 적용 · 진주·강희의 요약문 · 예상 오답률(분석 추정) 38%</span>
+<div class="question-stem">윗글을 읽고 &lt;보기&gt;를 분석한 내용으로 가장 적절한 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p><b>[신문 기사]</b> A국이 새로운 우주 발사체 ‘누리스타’ 발사에 성공했다. 이것은 추력을 기존 대비 30% 향상한 신형 엔진을 탑재하여 궤도 진입의 안정성을 높였다. 이번 성공으로 수조 원에 달하는 경제적 파급 효과가 예상되며 관련 주식 시장도 요동치고 있다.</p>
+<p><b>[학생들의 요약문]</b></p>
+<p>○ 진주(우주 공학 동아리 소속): A국이 신형 엔진을 탑재하여 추력을 30% 향상시킨 ‘누리스타’ 발사에 성공하여 궤도 진입 안정성을 높였다.</p>
+<p>○ 강희(경제 투자 동아리 소속): A국의 발사체 개발 성공으로 큰 경제적 파급 효과가 예상되며 관련 주식도 영향받고 있다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 두 학생이 같은 기사를 다르게 요약한 것은, 기사 원문 자체에 논리적 위계가 명확하게 고정되어 있지 않기 때문이군.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 요약이 달라진 것은 공동체의 관습 때문 — 원문에 위계가 없어서가 아님.</div></div>
+<div class="choice-item"><div class="choice-text">② 진주가 경제적 파급 효과에 대한 내용을 요약문에서 제외한 것은, 그것이 자신이 속한 동아리의 관습에 비추어 볼 때 이어지는 내용의 해석에 전제가 된다고 판단했기 때문이군.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 삭제한 정보는 후속 해석의 전제가 되지 않는다고 판단한 것 — ‘전제가 된다’는 거꾸로.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 강희가 로켓 엔진의 추력과 관련된 내용을 요약문에서 제외한 것은, 자신이 속한 동아리의 관습에 따라 특정 정보를 삭제하는 사회적 행위의 결과이겠군.</div><div class="choice-analysis">✅ <strong>정답</strong> – 경제 투자 동아리의 관습에 따라 기술 정보 삭제 — 사회적 행위.</div></div>
+<div class="choice-item"><div class="choice-text">④ 강희와 달리 진주는 인지적 관점에서 정보의 객관적 중요도를 기준으로 글의 거시 구조를 도출했다고 할 수 있겠군.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 진주도 우주 공학 동아리의 관습을 기준으로 삼음 — 객관적 중요도만의 요약 아님.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 진주와 달리 강희는 자신이 속한 공동체의 관습을 우선시했기 때문에, 인간의 정보 처리 한계를 극복하기 위한 네 가지 거시 규칙을 의도적으로 사용하지 않았군.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 강희도 삭제·선택 등 거시 규칙을 활용함.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] &lt;보기&gt; 사례 적용</div></div>
+</div></div></body></html>

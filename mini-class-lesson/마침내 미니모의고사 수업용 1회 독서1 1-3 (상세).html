@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 1회 독서1 1~3 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 1회 · 독서1 1~3 (독서론)</h1><p>에피스테믹 인지 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">에피스테믹 인지</p>
+<p>성숙한 독자는 독서 과정에서 텍스트의 내용을 이해하는 것 이외에도 그 내용이 타당하여 신뢰할 만한지를 판단하는 데에 인지적 노력을 기울인다. 독서 인지 이론에서는 이러한 사고 과정을 ㉠ <span class="underline-phrase">에피스테믹 인지(epistemic cognition)</span>라고 한다.<span class="para-note">← 에피스테믹 인지 — 내용의 타당성·신뢰성 판단</span></p>
+<p>에피스테믹 인지는 메타 인지와 비교할 때 그 성격이 보다 명확해진다. ㉡ <span class="underline-phrase">메타 인지</span>는 독자가 텍스트를 수용하는 과정에서 자신의 인지 과정을 점검하는 것으로, 텍스트에 대한 자신의 이해가 충분한지, 텍스트를 수용하는 자신의 태도가 편향되지는 않는지 등을 살피는 것이 이에 해당한다. 이에 비해 에피스테믹 인지는 텍스트에 제시된 주장이나 지식이 충분히 정당화될 수 있는지를 판단하는 것이다.<span class="para-note">← 메타 인지(자기 인지 점검) vs 에피스테믹 인지(텍스트 주장의 정당화 판단)</span></p>
+<p>에피스테믹 인지는 내적 평가와 외적 평가를 균형 있게 활용할 때 보다 타당하게 이루어질 수 있다. 내적 평가는 텍스트에 제시된 내용의 정합성, 일관성, 충분성을 판단하는 것이다. 텍스트의 논리 전개 과정이 비합리적이어서 정합성을 확보하지 못하였거나, 정보들 사이의 모순이 있어 일관성이 결여되었거나, 주장을 뒷받침하는 근거가 부족해 충분성이 확보되지 못한 경우에는 텍스트의 신뢰성을 확신하기 어렵다. 외적 평가는 독자가 지닌 배경지식, 해당 텍스트에 대한 다른 독자들의 평가, 텍스트의 출처가 지니는 권위, 필자의 이력 등에 의거하여 텍스트의 신뢰성을 판단하는 것이다. 내적 평가의 결과와 외적 평가의 결과가 상충하는 경우, 독자는 메타 인지를 통해 자신의 사고 과정을 재점검하거나 외적 평가의 근거로 활용한 요소들의 신뢰성을 다시 검토하게 된다.<span class="para-note">← 내적 평가 3기준 / 외적 평가 요소 → 상충 시 메타 인지로 재점검</span></p>
+<p>에피스테믹 인지는 동일한 사안에 대해 서로 다른 주장을 전개하는 복수의 텍스트를 읽을 때 더욱 활발하게 이루어진다. 이때 독자는 각 텍스트의 신뢰도를 판단한 후 양립하기 어려운 두 주장 중 하나를 선택하여 수용하기도 한다. 그러나 판단에 필요한 근거가 충분하지 않다고 여기는 경우에는 특정 주장의 수용을 유보하고 외적 평가를 면밀히 수행하기 위해 필요한 정보를 추가적으로 탐색하기도 한다. 이는 에피스테믹 인지의 과정이 독자의 독서 경험을 연쇄적으로 확장하는 계기가 될 수 있음을 의미한다.<span class="para-note">← 복수 텍스트 → 선택 수용 또는 유보·추가 탐색 → 독서 경험 확장</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 독서론 · <strong>난도</strong> 중 · <strong>목표 시간</strong> 4분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 에피스테믹 인지 정의 → 메타 인지와의 차이(판단 대상) → 내적 평가(정합성·일관성·충분성)·외적 평가(배경지식·타 독자·출처·필자) → 복수 텍스트에서 활발 → 수용 유보·정보 탐색 → 독서 경험 확장</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>판단 대상</b>: 메타 인지 = 자신의 사고(이해 충분성·태도 편향) / 에피스테믹 인지 = 텍스트 내용(주장·지식의 정당화).</li><li><b>내적 평가</b>: 정합성(논리 전개) · 일관성(정보 간 모순) · 충분성(근거).</li><li><b>외적 평가</b>: 배경지식 · 다른 독자의 평가 · 출처의 권위 · 필자의 이력.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>에피스테믹 인지 — 내용의 타당성·신뢰성 판단</li><li>메타 인지(자기 인지 점검) vs 에피스테믹 인지(텍스트 주장의 정당화 판단)</li><li>내적 평가 3기준 / 외적 평가 요소 → 상충 시 메타 인지로 재점검</li><li>복수 텍스트 → 선택 수용 또는 유보·추가 탐색 → 독서 경험 확장</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>1번 ⑤</b>: 복수 텍스트일 때 에피스테믹 인지가 ‘더욱 활발’ — ‘어렵다’는 반대.</li><li><b>2번 ②</b>: 메타 인지 = 자신의 태도가 편향되지 않는지 살피기 포함.</li><li><b>3번 ②</b>: 학생 1은 자기 평가의 모순을 발견한 것이 아님 — 댓글 의견만 걸러 냄.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 4분 · 난도 중 · 시간이 새는 자리: 두 인지의 판단 대상(자기 사고 / 텍스트 내용)을 먼저 갈라 두지 않으면 2번 ⑤와 3번 ②에서 둘을 섞는다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 에피스테믹 인지 정의 → 메타 인지와의 차이(판단 대상) → 내적 평가(정합성·일관성·충분성)·외적 평가(배경지식·타 독자·출처·필자) → 복수 텍스트에서 활발 → 수용 유보·정보 탐색 → 독서 경험 확장</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [1~3]</h2>
+<div class="question-full"><div class="q-num">1</div><span class="q-type">[유형] 내용 일치 · 에피스테믹 인지 · 예상 오답률(분석 추정) 12%</span>
+<div class="question-stem">윗글의 내용과 일치하지 <strong>않는</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 독자는 독서의 과정에서 자신의 인지 과정에 대해 생각하기도 한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 메타 인지 = 자신의 인지 과정 점검.</div></div>
+<div class="choice-item"><div class="choice-text">② 성숙한 독자는 텍스트에 제시된 내용의 타당성을 판단하기 위해 노력한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 내용이 타당하여 신뢰할 만한지 판단하는 데 노력.</div></div>
+<div class="choice-item"><div class="choice-text">③ 텍스트의 신뢰성에 대한 독자의 평가는 자신의 사고 과정에 대해 살펴보는 방향으로 전개될 수 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 내·외적 평가가 상충하면 메타 인지로 자신의 사고 과정 재점검.</div></div>
+<div class="choice-item"><div class="choice-text">④ 텍스트에 대한 외적 평가를 보다 면밀히 수행하기 위한 정보의 탐색은 독서 경험을 확장시키는 계기가 될 수 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 수용 유보 후 정보 추가 탐색 → 독서 경험 연쇄 확장.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 동일한 사안에 대해 양립하기 어려운 주장을 담은 복수의 텍스트를 읽을 때는 에피스테믹 인지가 이루어지기 어렵다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 복수 텍스트를 읽을 때 에피스테믹 인지는 더욱 활발 — ‘이루어지기 어렵다’는 반대.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 내용 일치</div></div>
+<div class="question-full"><div class="q-num">2</div><span class="q-type">[유형] 핵심 개념 비교 · ㉠ 에피스테믹 인지 / ㉡ 메타 인지 · 예상 오답률(분석 추정) 24%</span>
+<div class="question-stem">㉠, ㉡에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 텍스트의 내용을 이해하기 위해 수행하는 사고 과정이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ① 위치 왜곡</span> – ㉠은 내용 이해가 아니라 타당성·신뢰성을 판단하는 과정.</div></div>
+<div class="choice-item correct"><div class="choice-text">② ㉡은 텍스트를 수용하는 자신의 태도를 점검하는 것을 포함한다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 메타 인지는 텍스트를 수용하는 자신의 태도가 편향되지 않는지 살피는 것을 포함.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉠과 달리 ㉡은 텍스트에 담긴 주장의 수용을 유보하는 태도로 이어질 수 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 수용 유보는 ㉠(에피스테믹 인지)의 특징 — 주체가 바뀜.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉡과 달리 ㉠은 독서를 마친 후에 선택적으로 이루어진다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – ㉠·㉡ 모두 독서 과정에서 이루어짐 — 독서 후 선택적이라는 근거 없음.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉠과 ㉡은 모두 텍스트의 주장이나 지식이 충분히 정당화될 수 있는지에 대해 판단하는 것이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 주장·지식의 정당화 판단은 ㉠만 — ㉡은 자신의 이해·태도 점검.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 핵심 개념 비교</div></div>
+<div class="question-full"><div class="q-num">3</div><span class="q-type">[유형] &lt;보기&gt; 사례 적용 · 두 학생의 내·외적 평가 · 예상 오답률(분석 추정) 43%</span>
+<div class="question-stem">윗글을 바탕으로 &lt;보기&gt;에 제시된 ‘학생 1’과 ‘학생 2’의 대화를 분석한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>• ××× 감독의 신작 영화 ‘□□’에 대한 두 비평문</p>
+<table><tr><td>영화 전문지 ‘가’에 실린 평론가 A의 비평문</td><td>온라인 신문 ‘나’에 실린 평론가 B의 기고문</td></tr><tr><td>×××의 집념과 패기<br>‘□□’는 압도적인 이미지와 속도감으로 …….</td><td>×××의 공허한 겉치레<br>‘□□’는 빈약한 서사를 현란한 시각효과로 채우는 …….</td></tr></table>
+<p>• A와 B의 비평문에 대한 학생 1과 학생 2의 대화</p>
+<p><b>학생 1</b> : A는 영화의 시각적 효과만을 근거로 □□를 호평하고 있어. 또 □□가 기존 오락 영화의 관습을 탈피했다고 하면서도 전형적인 오락 영화라고 평가하고 있어서 신뢰하기 어려워. 오히려 나는 타당한 논리를 전개한 B의 기고문이 믿을 만하다고 봐. ‘나’의 댓글 창에는 B의 평가에 동의하지 않는다는 의견이 많았지만, 그것들은 대부분 ××× 감독의 권위를 맹목적으로 신뢰하는 사람들이 쓴 것처럼 보였어.</p>
+<p><b>학생 2</b> : 내 생각은 달라. □□는 그 형식적 완성도만으로도 관람할 가치가 있다는 A의 논리 전개는 충분히 합리적이라고 생각해. 또 ‘가’는 지나치게 주관적이거나 수준이 낮은 비평을 배제해서 독자들의 신망이 높기로 유명한 영화 전문지거든. 그리고 ××× 감독은 이미 여러 번 해외 영화제에서 감독상을 수상한 바 있는데 그때마다 B는 ××× 감독의 수상 가능성을 부정적으로 평가해 왔어. 나는 □□를 큰 화면으로 관람할 가치가 있다고 봐.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① ‘학생 1’은 충분성과 일관성을 기준으로 A의 비평문에 대한 내적 평가를 수행하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 시각적 효과만 근거(충분성 부족), 관습 탈피와 전형적 오락 영화(일관성 결여) — 내적 평가.</div></div>
+<div class="choice-item correct"><div class="choice-text">② ‘학생 1’은 자신의 평가에서 모순을 발견하고 외적 평가의 근거로 활용한 요소의 신뢰성을 검토하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 학생 1은 자기 평가의 모순을 발견한 적 없음 — 댓글 의견을 처음부터 신뢰성 낮다고 걸러 냈을 뿐.</div></div>
+<div class="choice-item"><div class="choice-text">③ ‘학생 2’는 텍스트의 출처가 지니는 권위에 의거하여 A의 비평문에 대해 평가하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘가’는 신망이 높기로 유명한 영화 전문지 — 출처의 권위에 의거한 외적 평가.</div></div>
+<div class="choice-item"><div class="choice-text">④ ‘학생 2’는 정합성을 기준으로 A의 비평문에 대한 내적 평가를 수행하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 형식적 완성도만으로도 관람 가치가 있다는 논리 전개가 합리적 — 정합성 기준 내적 평가.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ‘학생 1’은 B의 기고문에 대한 다른 독자들의 평가를, ‘학생 2’는 B의 과거 평가 이력을 외적 평가의 요소로 활용하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 학생 1은 ‘나’ 댓글 창의 다른 독자 평가, 학생 2는 B의 과거 예측 이력을 외적 평가 요소로 활용.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] &lt;보기&gt; 사례 적용</div></div>
+</div></div></body></html>
