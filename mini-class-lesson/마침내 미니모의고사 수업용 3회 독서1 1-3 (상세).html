@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 3회 독서1 1~3 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 3회 · 독서1 1~3 (독서론)</h1><p>실용적 목적을 고려한 약관 읽기 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">실용적 목적을 고려한 약관 읽기</p>
+<p>사업자가 여러 고객과 동일한 내용의 계약을 맺기 위해 마련해 둔 계약 조건을 약관이라 한다. 약관은 사용자인 고객이 읽고 나서 그 내용에 대한 동의 여부를 결정하는 것이 기본적 목적이라는 점에서 현실적 효용을 독서의 목적으로 삼는 실용문에 해당한다. 일반적으로 약관은 번호가 붙은 조항이 순차적으로 나열된 형태를 띠는데, 각 조항의 의미가 모두 독립적인 것은 아니다. 한 조항의 뜻이 다른 조항에 의해 정의되기도 하고, ‘다만’과 같은 표현으로 시작되는 단서에 의해 앞 조항에 대한 예외적 내용이 덧붙는 조항도 있다. 그러므로 약관은 단일 조항만 읽으면 전체 내용을 잘못 이해할 수 있다. 하지만 대다수가 알고 있는 상식적 내용이나 약관의 요건을 갖추기 위한 형식적 내용을 포함하기도 하므로 약관 전체를 통독하는 것은 비효율적일 수 있다.<span class="para-note">← 약관 = 동일 계약용 계약 조건, 실용문 / 조항이 서로 연관(정의·단서) → 단일 조항만 읽으면 오해, 그러나 통독은 비효율</span></p>
+<p><span class="boxed">실용적 목적을 고려한 약관 읽기</span>는 세 단계에 걸쳐 수행할 수 있다. 첫째, 사용자의 관점에서 계약의 대상이 되는 재화나 서비스를 이용할 때 생길 법한 의문들을 정리한다. 이를 통해 관련 조항을 읽을 때 해당 조항의 내용에 집중할 수 있다. 둘째, 각 조항의 제목을 먼저 훑어봄으로써 약관의 전체 구성을 미리 파악하고 앞서 정리한 의문과 관련이 있는 부분을 골라 읽는다. 이때 해당 조항에 붙은 단서 조항이나 관련 있는 다른 조항을 함께 확인하고 사용자에게 불리하게 작용할 수 있는 영역의 의문을 해소해 두어야 약관 동의 시 발생할 수 있는 불이익을 피하거나 대비할 수 있다. 셋째, 읽은 약관의 내용에 대한 자신의 이해 수준을 점검하고 조정한다. 중요하다고 판단한 조항을 자기 말로 표현해 볼 때 막히는 부분이 있다면 해당 내용을 명확히 이해하지 못했을 가능성이 크다. 이러한 조항은 다시 꼼꼼히 읽어 이해를 보완한다.<span class="para-note">← 3단계: ① 사용자 관점의 의문 정리 ② 제목 훑기 → 골라 읽기 + 단서·관련 조항 확인 ③ 자기 말로 표현해 이해 점검 → 다시 꼼꼼히</span></p>
+<p>약관을 읽을 때 여러 전략을 활용할 수 있다. 그 하나로 구체적 사례를 조항에 대입해 보는 전략이 있다. 가령 선지급 구독 서비스의 중도 탈퇴 조항을 읽을 때, ‘1년 치 구독료를 미리 결제했으나 사용 넉 달째에 탈퇴하면 얼마를 환급받을 수 있는지’와 같은 사례를 대입해 보면 조항의 의미가 명료해진다. 서비스 해지 조항처럼 절차를 설명한 조항은 도형과 기호를 활용하여 그 절차를 순서도로 그려 보는 전략이 유용하다. 한편 내용을 이해하거나 동의 여부를 결정하기 어려운 조항이 있다면 동일 업종의 표준 약관이나 공공기관에서 제공하는 해설 등의 자료를 찾아 읽는 전략이 효과적이다.<span class="para-note">← 전략: 사례 대입(환급 계산) / 절차는 순서도로 직접 / 어려우면 표준 약관·공공기관 해설</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 독서론 · <strong>난도</strong> 중하 · <strong>목표 시간</strong> 4분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 약관의 정의와 특성(실용문, 조항 간 연관, 통독은 비효율) → 실용적 목적을 고려한 약관 읽기 3단계(의문 정리 → 제목 훑고 골라 읽기·단서 확인 → 이해 점검·조정) → 읽기 전략(사례 대입, 순서도, 표준 약관·공공기관 해설)</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>단계와 전략을 분리</b>: 3단계(의문 → 골라 읽기 → 점검)는 순서, 전략(사례·순서도·외부 자료)은 도구.</li><li><b>‘전체를 순서대로’는 오답 신호</b>: 통독은 비효율 — 의문과 관련된 조항을 골라 읽되 단서·관련 조항은 함께 확인.</li><li><b>순서도는 ‘직접 그리는’ 것</b>: 약관에 첨부된 것이 아님.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>약관 = 동일 계약용 계약 조건, 실용문 / 조항이 서로 연관(정의·단서) → 단일 조항만 읽으면 오해, 그러나 통독은 비효율</li><li>3단계: ① 사용자 관점의 의문 정리 ② 제목 훑기 → 골라 읽기 + 단서·관련 조항 확인 ③ 자기 말로 표현해 이해 점검 → 다시 꼼꼼히</li><li>전략: 사례 대입(환급 계산) / 절차는 순서도로 직접 / 어려우면 표준 약관·공공기관 해설</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>1번 ④</b>: 조항의 의미가 모두 독립적인 것은 아님 — ‘모두 별개’는 단정.</li><li><b>3번 ④</b>: 학생은 순서도를 직접 그림 — ‘첨부된 순서도’는 위치 왜곡.</li><li><b>3번 ⑤</b>: 단서와 관련된 다른 별도 조항은 ‘없음’을 확인 — 정반대.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 4분 · 난도 중하 · 시간이 새는 자리: &lt;보기&gt; 일기가 길다. 문장마다 단계·전략 이름(의문 정리 / 골라 읽기 / 사례 대입 / 순서도 / 단서 확인)을 붙여 두면 선지 판정이 바로 끝난다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 약관의 정의와 특성(실용문, 조항 간 연관, 통독은 비효율) → 실용적 목적을 고려한 약관 읽기 3단계(의문 정리 → 제목 훑고 골라 읽기·단서 확인 → 이해 점검·조정) → 읽기 전략(사례 대입, 순서도, 표준 약관·공공기관 해설)</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [1~3]</h2>
+<div class="question-full"><div class="q-num">1</div><span class="q-type">[유형] 내용 일치 · 약관의 특성 · 예상 오답률(분석 추정) 12%</span>
+<div class="question-stem">윗글의 내용과 일치하지 <strong>않는</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 약관은 현실적 효용을 독서의 목적으로 삼는다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 현실적 효용을 독서의 목적으로 삼는 실용문.</div></div>
+<div class="choice-item"><div class="choice-text">② 약관은 여러 고객과 동일한 계약을 맺기 위한 글이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 여러 고객과 동일한 내용의 계약을 맺기 위해 마련한 계약 조건.</div></div>
+<div class="choice-item"><div class="choice-text">③ 약관은 대개 조항이 번호순으로 나열된 형식을 지닌다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 번호가 붙은 조항이 순차적으로 나열된 형태.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 약관은 조항 간의 내용이 모두 별개가 되도록 작성된다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 각 조항의 의미가 모두 독립적인 것은 아님 — 다른 조항이 정의하거나 단서가 덧붙음.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 약관은 업종에 따라 표준 형식이 제공되는 경우가 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 동일 업종의 표준 약관이 있음.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 내용 일치</div></div>
+<div class="question-full"><div class="q-num">2</div><span class="q-type">[유형] 핵심 개념 이해 · 실용적 목적을 고려한 약관 읽기 · 예상 오답률(분석 추정) 20%</span>
+<div class="question-stem"><span class="boxed">실용적 목적을 고려한 약관 읽기</span>에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 약관의 요건을 갖추기 위한 형식적 내용이 포함된 조항부터 먼저 읽는다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ① 위치 왜곡</span> – 형식적 내용부터가 아니라 의문과 관련된 조항을 골라 읽음.</div></div>
+<div class="choice-item"><div class="choice-text">② 동의 여부를 정확히 결정하려면 조항에 붙은 단서를 포함한 모든 내용을 약관이 제시하는 순서대로 읽는다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 전체를 순서대로가 아니라 골라 읽되 단서·관련 조항을 함께 확인.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 먼저 의문점을 정리하고 약관의 전체 흐름을 개괄한 다음 앞서 정리한 의문과 관련 있는 부분을 찾아 읽는다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 의문 정리 → 제목을 훑어 전체 구성 파악 → 관련 부분 골라 읽기.</div></div>
+<div class="choice-item"><div class="choice-text">④ 이해 수준을 조정할 때 외부 자료를 참조하지 않고 약관 자체의 설명만으로 조항의 의미를 온전히 이해하려고 한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 어려운 조항은 표준 약관·공공기관 해설 등 외부 자료를 찾아 읽음.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 중요하게 읽은 조항의 내용을 자기 말로 표현하기 어려우면 해당 내용이 기억날 때까지 그 조항을 다시 읽지 않는다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 자기 말로 표현이 막히면 다시 꼼꼼히 읽어 보완.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 핵심 개념 이해</div></div>
+<div class="question-full"><div class="q-num">3</div><span class="q-type">[유형] &lt;보기&gt; 사례 적용 · 전자책 구독 약관을 읽은 학생의 일기 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">&lt;보기&gt;는 학생이 쓴 일기의 일부이다. 윗글을 바탕으로 &lt;보기&gt;를 이해한 내용으로 가장 적절한 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>한 전자책 구독 월정액 서비스에 가입하기 위해 해당 서비스의 약관을 읽어야겠다고 생각하였다. 읽기 전에 ‘결제 월에 서비스를 중도 해지하면 언제까지 서비스를 이용할 수 있는지’, ‘중도 해지 시 결제금은 어떻게 환급되는지’ 등의 의문을 정리해 두었다. 이후 약관의 목차를 훑어보고 ‘해지’와 ‘환급’ 관련 조항을 골라 읽었다. 그중 ‘해지 즉시 서비스를 이용할 수 없으며 미사용 기간이 남아 있으면 일 단위로 이용료를 산정해 반환한다.’라는 조항을 읽으면서 앞서 정리했던 의문의 일부를 해소하였다. 다만 ‘일 단위 산정’이라는 표현이 잘 이해되지 않아 1일에 한 달 이용료를 결제하고 10일에 서비스를 해지하는 경우를 가정해 환급금을 계산해 보고 그 조항의 의미를 확실히 이해하였다. 한편 환급 절차를 밝힌 조항을 읽을 때는 환급 절차를 직접 순서도로 그려 보면서 내가 이해한 내용이 적절한지 점검하였다. 그리고 해당 조항 뒤에 ‘단, 월별 결제일로부터 15일이 지난 이후에 해지하는 경우 해당 월의 이용료는 반환하지 않는다.’라는 단서 조항이 붙어 있음을 읽을 때는 그와 관련된 다른 별도 조항은 없음을 확인하였다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 골라 읽을 조항을 정하는 과정에서, 알고 있는 내용을 담은 조항부터 제외한 후 읽을 필요가 있는 조항을 선별하였다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 알고 있는 조항을 제외한 것이 아니라 의문과 관련된 조항을 선별.</div></div>
+<div class="choice-item"><div class="choice-text">② 미리 정리한 의문과 관련한 조항을 골라 읽는 과정에서, 공공기관에서 제공하는 해설 자료를 찾아 함께 읽었다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 공공기관 해설을 읽지 않음 — 조항을 읽으며 의문 일부를 해소.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 내용 이해가 어려운 조항을 읽는 과정에서, 구체적 사례를 대입해 봄으로써 해당 조항의 의미를 명확히 이해하였다.</div><div class="choice-analysis">✅ <strong>정답</strong> – ‘일 단위 산정’을 1일 결제·10일 해지 사례로 계산해 명확히 이해.</div></div>
+<div class="choice-item"><div class="choice-text">④ 특정 사안에 대한 절차를 설명하는 조항을 읽는 과정에서, 약관에 첨부된 순서도를 보고 이해를 보완하였다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ① 위치 왜곡</span> – 순서도는 학생이 직접 그림 — 약관에 첨부된 것 아님.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 특정 단서 조항을 읽는 과정에서, 그 단서 조항과 관련된 다른 조항이 있음을 확인하여 해당 조항을 함께 읽었다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 관련된 다른 별도 조항은 없음을 확인.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] &lt;보기&gt; 사례 적용</div></div>
+</div></div></body></html>

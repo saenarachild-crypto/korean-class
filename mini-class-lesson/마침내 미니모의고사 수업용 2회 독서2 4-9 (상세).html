@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 2회 독서2 4~9 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 2회 · 독서2 4~9 (인문)</h1><p>주제 통합 — (가) 야스퍼스의 죄책 / (나) 정신분석학·심리학의 죄책감 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">주제 통합 — (가) 야스퍼스의 죄책 / (나) 정신분석학·심리학의 죄책감</p>
+<span class="sub-label">(가)</span>
+<p>일반적으로 죄책이란 규범을 위반한 행위에 따른 책임을 뜻한다. 그런데 실존주의 철학자 야스퍼스는 죄책을 이보다 넓은 차원에서 이해하였다. 그에 따르면 인간은 자신이 처한 현실적 조건에 대한 지식만으로는 자기 존재를 온전히 해명할 수 없다. 이러한 인간의 존재적 한계는 자신의 의지로는 피할 수 없는 상황, 즉 죽음, 고통, 죄책과 같은 한계상황에 직면할 때 비로소 분명하게 자각된다. 야스퍼스는 이러한 한계상황이 인간을 좌절시키는 동시에 자신의 존재 의의를 새롭게 ⓐ <span class="underline-phrase">조명하는</span> 계기가 된다고 보았다.<span class="para-note">← (가) 한계상황(죽음·고통·죄책) → 존재적 한계 자각 + 존재 의의를 새로 조명하는 계기</span></p>
+<p>야스퍼스는 죄책의 유형을 범죄적 죄책, 정치적 죄책, 도덕적 죄책, 형이상학적 죄책으로 구분하였다. 범죄적 죄책은 법규의 위반에 대한 것으로, 법원 등의 공적 기관에 의해 판단되며 신체나 재산에 대한 처벌이 따른다. 정치적 죄책은 국가의 행위와 그 결과에 대해 국가의 구성원인 시민이 지는 책임으로, 패전국의 시민이 상대국에 대한 배상을 부담하거나, 국가에 의해 특정한 정치 주체의 권리가 제한되는 등의 양상으로 나타난다. 도덕적 죄책은 법적·정치적 판단과 별개로 자신의 양심 및 타인과의 실존적 소통을 통해 그 의미가 ⓑ <span class="underline-phrase">규명된다</span>. 이때 실존적 소통이란 타인의 죄책을 외부에서 규정하거나 심판하지 않고, 서로를 실존적 주체로 인정하면서 각자가 자신의 양심에 따라 자신의 행위와 책임에 대해 ⓒ <span class="underline-phrase">고찰하도록</span> 유도하는 것을 말한다. 그러므로 도덕적 죄책은 외적 처벌이 아닌, 내적 성찰을 통한 자기 쇄신으로 이어진다. 한편 형이상학적 죄책은 자신과 직접적인 관련이 없는 타인의 고통을 알면서도 이를 막기 위한 행동에 나서지 못했을 때 유발된다. 이는 인간들 사이에 근원적 연대성이 존재함을 전제한다.<span class="para-note">← 죄책 4유형: 범죄적(공적 기관·처벌) / 정치적(시민의 책임) / 도덕적(양심·실존적 소통 → 자기 쇄신) / 형이상학적(근원적 연대성)</span></p>
+<p>야스퍼스에 따르면 형이상학적 죄책에 직면한 인간은 자신이 타인의 모든 고통을 막을 수 없는 유한한 존재임에도 타인에 대한 근원적 책임에서 벗어날 수 없다는 사실을 깨닫게 된다. 그러나 이러한 책임은 법적·정치적 의무가 될 수 없고, 도덕적 의무로 규정되기도 어려우므로 인간과 사회는 형이상학적 죄책의 심판 주체가 될 수 없다. 이에 야스퍼스는 형이상학적 죄책을, 인간이 온전히 인식할 수 없는 궁극의 존재인 ‘초월자’와 마주하며 경험하는 것으로 이해하였다. 초월자 앞에서 인간은 자신의 존재를 숨김없이 드러내게 되는데, 이때 느끼는 ㉠ <span class="underline-phrase">수치심</span>은 타인의 시선에서 비롯되는 심리적 감정이 아니라, 자신의 근원적 책임을 자각할 때 나타나는 실존적 경험이다. 따라서 인간은 형이상학적 죄책을 통해 타인의 죄책을 심판하는 대신 초월자 앞에서 자신의 존재와 책임을 성찰하게 되며, 바로 이러한 실존적 성찰 속에서 ㉮ <span class="underline-phrase">자신의 새로운 가능성</span>을 발견하게 된다.<span class="para-note">← 형이상학적 죄책: 인간·사회는 심판 주체 ✕ → 초월자 앞 수치심 = 실존적 경험 → 실존적 성찰 → 새로운 가능성</span></p>
+<span class="sub-label">(나)</span>
+<p>죄책은 정신분석학과 심리학에서도 주목해 온 주제로, 이들 학문은 특히 죄책감이라는 정서적 현상에 관심을 기울인다. 정신분석학에서는 죄책감이 내적 심리 구조를 이루는 요소들 사이의 갈등에서 비롯된다고 보며, 심리학에서는 죄책감이 사회화 과정에서 형성된 기준에 의거한 자기평가의 결과라고 본다.<span class="para-note">← (나) 정신분석학: 내적 심리 구조의 갈등 / 심리학: 사회화 기준에 따른 자기평가</span></p>
+<p>정신분석학에서 다루는 죄책감은 의식적으로 인정되는 잘못이나 책임의 문제에 ⓓ <span class="underline-phrase">한정되지</span> 않는다. 프로이트에 따르면 인간의 마음은 이드, 초자아, 자아라는 세 요소로 이루어진다. 이드는 본능적 욕구를 추구하고, 초자아는 내면화된 도덕 기준에 따라 이드의 욕구를 억제하며, 자아는 외부 현실에 적응하기 위해 이드와 초자아 사이를 조정한다. 프로이트는 죄책감이 자아와 초자아 사이의 긴장에서 발생하는 것으로 보았다. 또한 그는 이러한 긴장이 의식적으로 파악되지 못할 경우, 죄책감은 불안을 비롯한 신경증적 증상으로 나타날 수 있다고 진단하였다. 가령 강한 초자아의 압력에 맞서 자아가 자신을 지키려는 과정에서 강박증이 나타날 수 있으며, 반대로 자아가 초자아의 요구를 전적으로 수용하며 고통을 감수하는 경우 우울증이 발생하기도 한다는 것이다.<span class="para-note">← 프로이트: 자아-초자아 긴장 → 파악 못 하면 신경증(강박증: 자아가 맞섬 / 우울증: 전적 수용)</span></p>
+<p>심리학자 루이스에 따르면 인간은 성장 과정에서 공동체의 규범을 배우고, 그 규범을 위반하거나 자신에게 요구되는 행동을 ⓔ <span class="underline-phrase">수행하지</span> 못했을 때 죄책감을 경험한다. 이러한 죄책감은 자신의 행위에 대한 타인의 비난 가능성을 의식한 결과일 뿐 아니라 자신이 내면화한 기준에 비추어 자신의 행위를 평가한 결과이기도 하다. 루이스는 보다 감정적 차원의 반응인 수치심과 비교하여 죄책감의 성격을 구체화하였다. 그에 따르면 ㉡ <span class="underline-phrase">수치심</span>이 자신의 인격 전체를 부정적 평가의 대상으로 삼는 반면, 죄책감은 부정적 평가의 대상을 특정한 행위로 한정한다. 이러한 차이는 서로 다른 행동 양상으로 이어질 수 있다. 수치심을 느끼는 사람은 부정적으로 평가된 자기 자신에 주목하여 타인의 시선을 회피하려는 경향을 보인다. 이와 달리 죄책감을 느끼는 사람은 자신의 잘못을 인정하고 이를 바로잡기 위해 사과나 보상과 같은 회복 행동을 시도한다. 이는 죄책감이 건강한 사회화 과정에서 수반되는 정서임을 시사한다.<span class="para-note">← 루이스: 수치심(인격 전체·시선 회피) vs 죄책감(특정 행위·사과·보상 = 회복 행동)</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 인문 · <strong>난도</strong> 중상 · <strong>목표 시간</strong> 9분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> (가) 야스퍼스: 한계상황과 죄책 → 죄책의 네 유형(범죄적·정치적·도덕적·형이상학적) → 형이상학적 죄책과 초월자 앞의 수치심·실존적 성찰 / (나) 정신분석학·심리학의 죄책감 → 프로이트(이드·초자아·자아, 강박증·우울증) → 루이스(죄책감 vs 수치심, 회복 행동)</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>두 개의 ‘수치심’</b>: ㉠ 야스퍼스 = 초월자 앞, 근원적 책임 자각의 실존적 경험(타인의 시선 ✕) / ㉡ 루이스 = 인격 전체에 대한 부정적 평가, 시선 회피.</li><li><b>죄책 유형 표</b>: 판단 주체·결과를 칸으로 — 범죄적(공적 기관·처벌), 정치적(국가 행위 → 시민 책임), 도덕적(양심·소통 → 쇄신), 형이상학적(초월자 앞 성찰).</li><li><b>프로이트의 방향</b>: 강박증 = 자아가 초자아에 맞섬, 우울증 = 자아가 초자아를 전적으로 수용. 주어(누가 누구에게)를 바꾸는 선지에 주의.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>(가) 한계상황(죽음·고통·죄책) → 존재적 한계 자각 + 존재 의의를 새로 조명하는 계기</li><li>죄책 4유형: 범죄적(공적 기관·처벌) / 정치적(시민의 책임) / 도덕적(양심·실존적 소통 → 자기 쇄신) / 형이상학적(근원적 연대성)</li><li>형이상학적 죄책: 인간·사회는 심판 주체 ✕ → 초월자 앞 수치심 = 실존적 경험 → 실존적 성찰 → 새로운 가능성</li><li>(나) 정신분석학: 내적 심리 구조의 갈등 / 심리학: 사회화 기준에 따른 자기평가</li><li>프로이트: 자아-초자아 긴장 → 파악 못 하면 신경증(강박증: 자아가 맞섬 / 우울증: 전적 수용)</li><li>루이스: 수치심(인격 전체·시선 회피) vs 죄책감(특정 행위·사과·보상 = 회복 행동)</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>4번 ③</b>: 실존적 소통은 타인의 죄책을 외부에서 규정하지 않는다 — ‘타인을 통해 규정’은 정반대.</li><li><b>5번 ②·③</b>: 압박하는 쪽은 초자아, 맞서는 쪽은 자아. 주어를 뒤바꾼 선지.</li><li><b>8번 ②</b>: 초월자의 의지를 자각해서 성찰하는 것이 아님 — 지문에 없는 연결.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 9분 · 난도 중상 · 시간이 새는 자리: ㉠과 ㉡이 같은 단어라 7번에서 두 개념을 섞기 쉽다. 각 수치심의 ‘대상’(근원적 책임 / 인격 전체)과 ‘결과’(성찰 / 회피)를 먼저 표시해 둔다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : (가) 야스퍼스: 한계상황과 죄책 → 죄책의 네 유형(범죄적·정치적·도덕적·형이상학적) → 형이상학적 죄책과 초월자 앞의 수치심·실존적 성찰 / (나) 정신분석학·심리학의 죄책감 → 프로이트(이드·초자아·자아, 강박증·우울증) → 루이스(죄책감 vs 수치심, 회복 행동)</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [4~9]</h2>
+<div class="question-full"><div class="q-num">4</div><span class="q-type">[유형] 추론 · (가) 야스퍼스의 죄책 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">(가)를 바탕으로 추론한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 죽음은 인간을 좌절시키는 한계상황에 해당하므로, 죽음에 직면한 인간은 자기 존재에 대한 지식의 한계를 자각하게 된다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 죽음은 한계상황 — 직면할 때 현실적 조건에 대한 지식만으로 존재를 해명할 수 없음을 자각.</div></div>
+<div class="choice-item"><div class="choice-text">② 정치적 죄책을 묻는 상황에서는 죄책을 유발한 행위의 주체와 죄책에 대한 책임을 부담하는 주체가 상이할 수 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 국가의 행위에 대해 시민이 책임 — 행위 주체와 책임 주체가 다를 수 있음.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 실존적 소통을 통해 자신의 행위와 책임에 대해 판단하려면 자신의 죄책이 타인을 통해 규정될 수 있음을 인정해야 한다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 실존적 소통은 타인의 죄책을 외부에서 규정·심판하지 않음 — 타인을 통해 규정된다는 전제는 정반대.</div></div>
+<div class="choice-item"><div class="choice-text">④ 인간과 사회를 형이상학적 죄책의 심판 주체로 인식하려면, 타인의 고통을 막기 위한 행동을 사회적, 도덕적 의무로 규정하여야 한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 책임이 법적·정치적·도덕적 의무가 될 수 없어 심판 주체가 될 수 없다 → 의무로 규정되어야 심판 주체로 인식 가능.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 범죄적 죄책에 대한 처벌은 공적 기관의 판단에 따라, 도덕적 죄책에 대한 자기 쇄신은 당사자의 양심적 판단에 따라 달라질 수 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 범죄적 죄책은 공적 기관이 판단, 도덕적 죄책은 양심과 실존적 소통으로 그 의미가 규명.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 추론</div></div>
+<div class="question-full"><div class="q-num">5</div><span class="q-type">[유형] 세부 정보 · (나) 프로이트·루이스 · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">(나)에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 정신분석학에서는 심리학에서와 달리 사회화 과정에서 형성되는 자기평가의 기준에 관심을 둔다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 사회화 과정에서 형성된 자기평가 기준은 심리학 쪽의 관심.</div></div>
+<div class="choice-item"><div class="choice-text">② 프로이트에 따르면 인간의 본능적 욕구가 자아의 압박에 저항할 때 강박증이 나타날 수 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 강박증은 초자아의 압력에 맞서 자아가 자신을 지킬 때 — 본능적 욕구·자아의 압박이 아님.</div></div>
+<div class="choice-item"><div class="choice-text">③ 프로이트에 따르면 우울증은 자아가 내면화된 도덕 기준을 수용하지 못할 때 발생하는 심리적 고통이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 우울증은 자아가 초자아의 요구를 전적으로 수용할 때 — ‘수용하지 못할 때’는 반대.</div></div>
+<div class="choice-item"><div class="choice-text">④ 루이스에 따르면 공동체의 규범을 위반한 구성원에게는 그에 대한 처벌로서 회복 행동이 요구된다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 회복 행동은 죄책감을 느낀 사람이 스스로 시도하는 것 — 처벌로 요구되는 것 아님.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 루이스에 따르면 인간은 사회화의 과정에서 규범을 위반하는 행위에 대한 타인의 비난 가능성을 의식한다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 죄책감은 타인의 비난 가능성을 의식한 결과이기도 함.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 세부 정보</div></div>
+<div class="question-full"><div class="q-num">6</div><span class="q-type">[유형] 의미 추론 · ㉮ 자신의 새로운 가능성 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">㉮의 의미에 해당하는 내용으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 인간의 유한성을 자각하고 형이상학적 죄책의 심판을 타인에게 맡길 가능성</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 인간과 사회는 형이상학적 죄책의 심판 주체가 될 수 없음 — 타인에게 맡기는 것 아님.</div></div>
+<div class="choice-item"><div class="choice-text">② 타인이 사회적, 도덕적 의무를 실천할 수 있도록 하는 실존적 소통에 나설 가능성</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 실존적 소통은 도덕적 죄책의 차원 — 형이상학적 죄책의 가능성과 무관.</div></div>
+<div class="choice-item"><div class="choice-text">③ 벗어날 수 없는 인간의 근원적 책임을 수용하고 그것을 법적·정치적 의무로 인식할 가능성</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 근원적 책임은 법적·정치적 의무가 될 수 없음.</div></div>
+<div class="choice-item"><div class="choice-text">④ 신체나 재산에 대한 처벌을 두려워하지 않고 국가의 구성원에게 부여된 책임을 이행할 가능성</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 신체·재산 처벌은 범죄적 죄책, 구성원의 책임은 정치적 죄책.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 자신이 타인과 무관한 존재가 아님을 의식하며 타인에 대한 자신의 근원적 책임을 실천할 가능성</div><div class="choice-analysis">✅ <strong>정답</strong> – 근원적 연대성 전제 — 타인과 무관하지 않음을 의식하고 근원적 책임을 성찰·실천.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 의미 추론</div></div>
+<div class="question-full"><div class="q-num">7</div><span class="q-type">[유형] 개념 비교 · ㉠ 야스퍼스의 수치심 / ㉡ 루이스의 수치심 · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">㉠과 ㉡에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 외부의 시선에서 비롯되는 심리적 상태가 심화되어 나타나는 실존적 경험이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – ㉠은 타인의 시선에서 비롯되는 심리적 감정이 아님.</div></div>
+<div class="choice-item correct"><div class="choice-text">② ㉡은 자신의 인격 전체를 부정적으로 평가한 결과 다른 이들에게 자신을 드러내지 않는 행동을 유도한다.</div><div class="choice-analysis">✅ <strong>정답</strong> – ㉡은 인격 전체를 부정적으로 평가 → 타인의 시선을 회피.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉡과 달리, ㉠은 인간의 내적 심리 구조에서 갈등이 발생할 때 나타나는 정서적 현상이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 내적 심리 구조의 갈등은 정신분석학의 죄책감 설명.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉠과 달리, ㉡은 자신의 잘못에 대한 사과나 보상을 시도함으로써 해소할 수 있는 감정이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 사과·보상 같은 회복 행동은 죄책감의 행동 양상 — ㉡이 아님.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉠은 궁극의 존재 앞에서 자신의 존재를 온전히 드러내지 못하는 것에서, ㉡은 자신의 특정 행위가 공동체의 요구에 부합하지 않는다고 느끼는 것에서 발생한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – ㉠은 존재를 숨김없이 드러낼 때, ㉡은 특정 행위가 아니라 인격 전체를 평가할 때.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 개념 비교</div></div>
+<div class="question-full"><div class="q-num">8</div><span class="q-type">[유형] &lt;보기&gt; 비교 적용 · 키르케고르의 불안과 실존적 결단 · 예상 오답률(분석 추정) 50%</span>
+<div class="question-stem">(가)와 (나)를 읽은 학생이 &lt;보기&gt;에 대해 보인 반응으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>키르케고르는 인간을 정해진 방식대로 살아가는 존재가 아니라 스스로 삶의 방식을 선택하는 자유로운 존재로 보았다. 그에 따르면 인간은 자신에게 주어진 자유를 의식하면서 불안을 경험한다. 이때 불안은 특정한 외적 실체가 유발하는 두려움과 달리, 자신에게 여러 가능성이 열려 있으며 그중 하나를 스스로 선택해야 한다는 사실을 자각할 때 발생하는 실존적 경험이다. 인간은 이러한 불안을 통해 자신의 선택에 대한 책임을 타인이나 사회적 조건에 전가할 수 없음을 깨닫는다. 키르케고르에 따르면 인간은 이처럼 자신의 자유와 책임을 받아들임으로써 신 앞에 홀로 선 단독자로서 자신이 어떠한 선택을 할 것인지에 대한 실존적 결단을 하게 된다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① (가)의 야스퍼스가 실존적 경험을 인간의 의지로는 피할 수 없는 상황과 관련지은 것과 달리, 〈보기〉의 키르케고르는 실존적 경험을 인간이 자신의 삶을 선택할 수 있는 상황과 관련지었군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 야스퍼스는 피할 수 없는 한계상황, 키르케고르는 여러 가능성 중 하나를 선택해야 하는 상황.</div></div>
+<div class="choice-item correct"><div class="choice-text">② (가)의 야스퍼스가 언급한 실존적 성찰이 ‘초월자’의 의지를 자각할 때 이루어지는 것과 달리, 〈보기〉의 키르케고르가 언급한 실존적 결단은 ‘신’의 개입 없이 이루어지겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 실존적 성찰은 초월자 앞에서 자신의 존재와 책임을 성찰하는 것 — 초월자의 의지를 자각할 때가 아님.</div></div>
+<div class="choice-item"><div class="choice-text">③ (나)의 프로이트가 불안을 신경증적 증상의 일환으로 인식한 것과 달리, 〈보기〉의 키르케고르는 불안을 자신의 선택이 지니는 의미를 깨닫게 하는 실존적 경험으로 인식하였군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 프로이트: 긴장이 파악되지 못하면 신경증적 증상 / 키르케고르: 선택을 자각할 때의 실존적 경험.</div></div>
+<div class="choice-item"><div class="choice-text">④ (나)의 프로이트가 불안을 심리적 요소들 사이의 긴장이 파악되지 않을 때 발생한다고 본 것과 달리, 〈보기〉의 키르케고르는 불안을 자신의 자유를 의식할 때 발생하는 것으로 보았군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 프로이트: 파악되지 못한 자아-초자아 긴장 / 키르케고르: 자유를 의식하면서 불안 경험.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (나)의 루이스가 언급한 죄책감이 공동체의 규범을 인지한 후에 발생하는 것과 달리, 〈보기〉의 키르케고르가 언급한 불안은 특정한 외적 실체와 무관하게 발생하는 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 루이스: 규범을 배우고 위반할 때 죄책감 / 키르케고르: 외적 실체가 유발하는 두려움과 다른 불안.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] &lt;보기&gt; 비교 적용</div></div>
+<div class="question-full"><div class="q-num">9</div><span class="q-type">[유형] 어휘(바꿔 쓰기) · ⓐ~ⓔ · 예상 오답률(분석 추정) 15%</span>
+<div class="question-stem">문맥상 ⓐ～ⓔ와 바꿔 쓰기에 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item correct"><div class="choice-text">① ⓐ: 고치는</div><div class="choice-analysis">✅ <strong>정답</strong> – ‘조명하다’는 일정한 관점으로 바라보다 — ‘고치다’와 바꿔 쓸 수 없음.</div></div>
+<div class="choice-item"><div class="choice-text">② ⓑ: 밝혀진다</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 규정되다(밝혀져 정해지다) = 밝혀지다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ⓒ: 살펴보도록</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 고찰하다 = 살펴보다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ⓓ: 그치지</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 한정되다 = (더 진전 없이) 그치다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓔ: 해내지</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 수행하다 = 해내다.</div></div>
+<div class="correct-badge">📍 ①번이 정답. [유형] 어휘(바꿔 쓰기)</div></div>
+</div></div></body></html>

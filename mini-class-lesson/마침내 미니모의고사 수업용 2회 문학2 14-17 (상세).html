@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 2회 문학2 14~17 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📜 마침내 미니모의고사 수업용 2회 · 문학2 14~17 (고전소설)</h1><p>작자 미상, 「옹고집전」 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">작자 미상, 「옹고집전」</p>
+<p>허옹가가 허허 웃으며 하는 말이,</p>
+<p>“너도 이 집 옹가라 하고 나도 이 집 옹가라 하여 흑백을 분별하기 어려우니, 우리 성주가 명관이니 <b>송사</b>하여 보자.”<span class="para-note">← 허옹가: 흑백을 가리기 어려우니 송사하자 → 실옹가 수락</span></p>
+<p>하니, 실옹가 대답하되,</p>
+<p>“그리하자.”</p>
+<p>하고 원정(冤情)을 지어 손에 쥐고 관문에 들어가서 실옹가 ㉠ <span class="underline-phrase">소지(所志)</span>를 올리니, 형방이 이를 받아 고할 때,</p>
+<p>“삼가 뜻하는 바를 펴고자 하는 것은, 본 백성이 본래 맹랑촌에 거처하여 다른 사람과 시비를 아니하였는데, 천만의외에 어떤 모르는 사람이 며칠 전에 안마당에 갑자기 들어왔거늘, 그 용모를 보고 그 목소리를 들으니 제 <b>얼굴</b>과 같고 제 모양과 같기에 그 성명을 물으니, 대답하여 말하기를 옹고집이라 하고 저의 세간을 탈취하오니, 이런 흉악한 놈이 있사오리까? 원통하게 누명을 쓰게 된 억울함을 이기지 못하여 감히 원님께 소를 올리게 되었습니다. 엎드려 빌건대 원님께서는 두터운 덕으로 잘 처리하여, 흉악한 죄를 엄하게 다스려 불쌍한 백성으로 하여금 목숨과 세간을 보존할 수 있게 하옵기를 우러러 바라고 바라옵나이다.”<span class="para-note">← ㉠ 실옹가의 소지 — 얼굴·모양이 같은 자가 세간을 탈취, 엄히 다스려 목숨과 세간을 보존하게 해 달라</span></p>
+<p>형방이 보고하니 원님이 분부하되,</p>
+<p>“너도 옹가요 저도 옹가라 하니, 저놈 보고 이놈 보니 아무리 본들 알 길이 없다.”<span class="para-note">← 원님: 아무리 봐도 알 길이 없다</span></p>
+<p>하실 때, 허옹가 또 ㉡ <span class="underline-phrase">소지</span>를 올리니 하였으되,</p>
+<p>“삼가 뜻을 펼쳐 보이게 된 것은, 고금천지간에 <b>성명생년과 생월생시</b>가 같사와 비록 분간하기 어려우나, 저는 맹랑촌에서 여러 대에 걸쳐 살았고, 저 옹가는 근본이 없는 사람이니 어찌 헛되이 화를 당하지 않겠습니까? 위로는 밝은 하늘이 있고 아래로는 명관이 있으니, 엎드려 바라건대 덕이 두터우신 원님께서 원통한 사정을 분간하옵고, 저놈을 더 한층 엄한 형벌로 다스리시어 저의 분한 일을 풀어 주옵소서.”<span class="para-note">← ㉡ 허옹가의 소지 — 성명생년·생월생시가 같으나 저 옹가는 근본 없는 사람, 더 엄한 형벌을</span></p>
+<p>하였거늘, 형방이 다 고한 후에 허옹가가 여쭙되,</p>
+<p>“제 소지에도 하였거니와 이 ⓐ <span class="underline-phrase">일</span>이 답답하옵고 애닯사오니 밝게 처분하여 사실을 밝혀 주옵소서.”</p>
+<p>원님이 분부하되,</p>
+<p>“자세히 조사할 길이 없다. 너희는 각각 집에 돌아가라.”<span class="para-note">← 원님: 조사할 길 없으니 각각 돌아가라</span></p>
+<p>하고,</p>
+<p>“다시 이러한 일이 있으면 각별히 엄하게 다스리리라.”</p>
+<p>실옹가 이 말을 듣고 말하기를,</p>
+<p>“비나이다 비나이다. 성주는 백성의 부모요, 백성의 하늘이니, 분명하게 처리하여 주시옵소서.”<span class="para-note">← 실옹가의 간청 → 원님이 결정을 거두어들임</span></p>
+<p>원님이 분부하되,</p>
+<p>“너희 원정을 보고 너희 모양을 보니 옥석을 분간하기 어렵도다. 너희 집 <b>세간</b>을 각각 <b>외워 바치라</b>.”<span class="para-note">← 세간을 외워 바치라 — 집안 살림을 누가 더 아는지로 진위 판별</span></p>
+<p style="text-align:center">(중략)</p>
+<p>실옹가는 하릴없이 <b>세간·처자 빼앗기고</b> 팔자 없는 <b>곤장 맞고</b> 세상에 살아 무엇 하랴. 애고애고, 내 팔자야. 죽장망혜 단표자로 만첩청산 들어가니 산은 높아 천봉이요, 골은 깊어 만학이라. 인적은 고요하고 수목은 삼렬(森列)한데, 때마침 삼춘이라. 출림비조(出林飛鳥) 산새들은 쌍거쌍래 날아들 제, 슬피 우는 저 두견은 나의 심회 자아내어 화총에 눈물 뿌려 점점이 맺어 두고 불여귀(不如歸)를 일을 삼으니, 슬프다. 이런 사람 없는 산속에 아무리 철석간장이라도 아니 울고 못 하리라. 이렇듯 슬피 울 제 한 곳을 바라보니 층암절벽상에 백발 도사 높이 앉아 청려장을 옆에 끼고 반송 가지를 휘어잡고 노래로 하는 말이,<span class="para-note">← 판결 결과: 세간·처자 빼앗기고 곤장 → 산속에서 신세 한탄 → 백발 도사의 노래</span></p>
+<p>“후회막급이로다. 하늘이 주신 죄를 누구를 원망한단 말가.”</p>
+<p>실옹가 듣기를 다하여, 천방지방 도사 앞에 급히 나아가 합장 배례하며 공손히 하는 말이,</p>
+<p>“이놈의 죄를 생각하면 천만번 죽어도 억울하지 않으나, 명령하신 도덕하에 제발 살려 주오. 당상의 늙은 모친, 규중의 어린 처자 다시 보게 하옵소서. 본 후에는 돌아가도 여한이 없을까 하나이다. 제발 살려 주옵소서.”<span class="para-note">← 실옹가: 모친·처자를 다시 보게 해 달라 애걸</span></p>
+<p>갖은 방법으로 애걸하니 도사 하는 말이,</p>
+<p>“천지간에 몹쓸 놈아, 인제도 팔십 당년 늙은 <b>모친</b> 냉돌방에 <b>구박</b>할까. 불도를 능멸할까. 너 같은 몹쓸 놈은 응당 죽일 것이로되, 정상이 가긍하고 너의 처자 불쌍한 고로 방송하나니, 돌아가 개과천선하라.”<span class="para-note">← 도사: 모친 구박·불도 능멸을 꾸짖되 처자가 불쌍해 방송, 돌아가 개과천선하라</span></p>
+<p>하며, 부적을 써 주며 가로되,</p>
+<p>“이 부적을 몸에 붙이고 네 집에 돌아가면 괴이한 ⓑ <span class="underline-phrase">일</span>이 있으리라.”<span class="para-note">← 부적을 붙이고 돌아가면 ⓑ 괴이한 일이 있으리라</span></p>
+<p>하고 문득 간데없거늘, 실옹가 재빨리 돌아와서 제집 문전 다다르니, 고루거각 높은 집에 청풍명월 맑은 경은 옛 놀던 풍경이라. 담장 안에 홍련화는 나를 보고 반기는 듯, 영산홍아 잘 있더냐, 자산홍아 무사하냐. 옛일을 생각하니 각금시이작비(覺今是而昨非)*로 옛집을 다시 찾아오니 죽을 마음 전혀 없다.</p>
+<p>“가소롭다 허옹가야, 이제도 네가 옹가라 장담할까?”</p>
+<p>하며 들어가니, 마누라 이 거동을 보고 심히 대경실색하여 하는 말이,</p>
+<p>“애고애고 좌수님, 저놈 액운을 맞았는지 또 와서 지랄하고 들어오니, 이 ⓒ <span class="underline-phrase">일</span>을 어찌하리까.”<span class="para-note">← 마누라는 실옹가를 ‘저놈’으로 여기고 대경실색 — ⓒ</span></p>
+<p>이러할 즈음에 방에 있던 옹가 간데없고 짚 한 묶음이 놓여 있고, 허옹가의 자식들도 문득 허수아비 되니, 가중 제인이 박장대소하더라.<span class="para-note">← 허옹가는 짚 한 묶음, 자식들은 허수아비 → 가중 제인 박장대소</span></p>
+<p style="text-align:right;font-size:13.5px">- 작자 미상, 「옹고집전」 -</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 각금시이작비 : 지금은 옳고 지난날은 그릇되었음을 깨달았다는 뜻.</p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 고전소설 · <strong>난도</strong> 중 · <strong>목표 시간</strong> 7분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 허옹가의 송사 제안 → 실옹가의 소지 ㉠ → 허옹가의 소지 ㉡ → 원님: 분간 불가, 돌려보내려 함 → 실옹가의 간청 → 세간을 외워 바치라 / (중략) 쫓겨난 실옹가 → 산속 백발 도사에게 애걸 → 부적 → 귀가 → 허옹가는 짚 한 묶음, 자식들은 허수아비</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>진가쟁주</b>: 외모·성명생년으로는 구분 불가 → 공적 판단(송사) → 판별 기준은 ‘세간을 외우는 것’.</li><li><b>두 소지 비교</b>: ㉠ 재산(세간) 탈취를 명시 / ㉡ 근본 없는 사람이라 화를 당할 것 — 둘 다 엄한 처벌 요구.</li><li><b>‘일’ 세 개</b>: ⓐ 분간 못 할 존재가 나타난 일 / ⓑ 가짜 옹고집이 사라질 일 / ⓒ 쫓겨난 이가 다시 들어온 일(마누라 시점).</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>허옹가: 흑백을 가리기 어려우니 송사하자 → 실옹가 수락</li><li>㉠ 실옹가의 소지 — 얼굴·모양이 같은 자가 세간을 탈취, 엄히 다스려 목숨과 세간을 보존하게 해 달라</li><li>원님: 아무리 봐도 알 길이 없다</li><li>㉡ 허옹가의 소지 — 성명생년·생월생시가 같으나 저 옹가는 근본 없는 사람, 더 엄한 형벌을</li><li>원님: 조사할 길 없으니 각각 돌아가라</li><li>실옹가의 간청 → 원님이 결정을 거두어들임</li><li>세간을 외워 바치라 — 집안 살림을 누가 더 아는지로 진위 판별</li><li>판결 결과: 세간·처자 빼앗기고 곤장 → 산속에서 신세 한탄 → 백발 도사의 노래</li><li>실옹가: 모친·처자를 다시 보게 해 달라 애걸</li><li>도사: 모친 구박·불도 능멸을 꾸짖되 처자가 불쌍해 방송, 돌아가 개과천선하라</li><li>부적을 붙이고 돌아가면 ⓑ 괴이한 일이 있으리라</li><li>마누라는 실옹가를 ‘저놈’으로 여기고 대경실색 — ⓒ</li><li>허옹가는 짚 한 묶음, 자식들은 허수아비 → 가중 제인 박장대소</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>14번 ⑤</b>: 도사는 ‘돌아가 개과천선하라’ — 개과천선을 이미 인정한 것이 아님.</li><li><b>15번 ⑤</b>: 엄한 처벌 요구는 ㉠·㉡ 모두에 있음 — ‘달리’가 함정.</li><li><b>17번 ③</b>: 세간 외우기는 살림 정보로 진위를 가리는 것 — ‘원만한 관계 형성’과 무관.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 7분 · 난도 중 · 시간이 새는 자리: 소지 두 편이 길어 대조에 시간이 샌다. 각 소지의 ‘무엇을 침해당했나 / 무엇을 요구하나’ 두 칸만 표시하고 넘어간다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 허옹가의 송사 제안 → 실옹가의 소지 ㉠ → 허옹가의 소지 ㉡ → 원님: 분간 불가, 돌려보내려 함 → 실옹가의 간청 → 세간을 외워 바치라 / (중략) 쫓겨난 실옹가 → 산속 백발 도사에게 애걸 → 부적 → 귀가 → 허옹가는 짚 한 묶음, 자식들은 허수아비</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [14~17]</h2>
+<div class="question-full"><div class="q-num">14</div><span class="q-type">[유형] 내용 이해 · 인물과 사건 · 예상 오답률(분석 추정) 25%</span>
+<div class="question-stem">윗글에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 실옹가는 송사로 시비를 가려 보자는 허옹가의 제안을 받아들였다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 허옹가의 송사 제안에 “그리하자.”</div></div>
+<div class="choice-item"><div class="choice-text">② 원님은 실옹가의 말을 듣고 양측을 집에 돌려보내려던 결정을 거두어들였다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 돌아가라던 원님이 실옹가의 간청 뒤 세간을 외워 바치라고 함.</div></div>
+<div class="choice-item"><div class="choice-text">③ 실옹가는 인적 없는 산속에서 자신의 처지와 관련된 노래를 부르는 이를 만났다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 사람 없는 산속에서 ‘후회막급’ 노래를 부르는 도사를 만남.</div></div>
+<div class="choice-item"><div class="choice-text">④ 실옹가는 자신이 죽기 전에 가족들을 다시 보게 해 달라고 백발 도사에게 애원했다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 모친·처자를 다시 보게 해 달라, 본 후에는 여한이 없겠다.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 도사는 실옹가가 개과천선했다는 사실을 인정하며 그를 집으로 돌아가게 해 주었다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 처자가 불쌍해 돌려보내며 ‘돌아가 개과천선하라’ — 개과천선을 인정한 것 아님.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 내용 이해</div></div>
+<div class="question-full"><div class="q-num">15</div><span class="q-type">[유형] 소재 비교 · ㉠ 실옹가의 소지 / ㉡ 허옹가의 소지 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">㉠과 ㉡에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 ㉡의 작성자가 숨겨 온 정체를 폭로하기 위해 작성되었다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – ㉠은 세간을 탈취한 자를 엄히 다스려 목숨과 세간을 보존하려는 글 — 정체 폭로가 목적 아님.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 ㉠의 작성자로 인해 훼손된 가문의 명예를 회복하려는 목적에서 작성되었다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – ㉡은 근본 없는 자로 인한 화를 풀어 달라는 글 — 가문의 명예 회복 아님.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉠과 ㉡의 수신자는, ㉠과 ㉡에 절차적 정당성이 결여되어 있음을 문제 삼았다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 원님은 누가 진짜인지 알 길이 없다고 했을 뿐 절차적 정당성을 문제 삼지 않음.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ㉠에서는 ㉡과 달리, 상대가 자신의 재산을 침해한 사실이 있다는 점을 명시하였다.</div><div class="choice-analysis">✅ <strong>정답</strong> – ㉠은 ‘저의 세간을 탈취’ 명시, ㉡은 ‘화를 당하지 않겠습니까’뿐.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉡에서는 ㉠과 달리, 상대에 대한 엄한 처벌을 요구하였다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 엄한 처벌 요구는 ㉠·㉡ 모두에 있음.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 소재 비교</div></div>
+<div class="question-full"><div class="q-num">16</div><span class="q-type">[유형] 사건 전개 · ⓐ~ⓒ ‘일’ · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">ⓐ～ⓒ를 중심으로 윗글을 이해한 내용으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 옹가의 마누라는 집안의 액운이 ⓐ와 ⓑ를 초래했다고 생각했다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 마누라는 들어오는 옹가를 ‘저놈’이라 했을 뿐 액운이 ⓐ·ⓑ를 초래했다고 하지 않음.</div></div>
+<div class="choice-item"><div class="choice-text">② 실옹가는 ⓐ의 처분 결과로 인해 한탄하다가 ⓑ를 실행하기 위해 도사를 찾아갔다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – ⓑ는 도사가 부적을 주며 알려 준 것 — ⓑ를 실행하려고 도사를 찾아간 것 아님.</div></div>
+<div class="choice-item"><div class="choice-text">③ 가중 제인들은 ⓐ의 원인을 알고 있었기 때문에 ⓒ를 보고 박장대소했다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 가중 제인이 ⓐ의 원인을 알았는지 드러나지 않음, 웃음은 짚·허수아비 때문.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 옹가의 마누라는 ⓐ의 처분 결과에 따라 생활하던 중에 ⓒ가 일어나자 몹시 놀랐다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 판결에 따라 허옹가를 남편으로 여기며 지내다가 실옹가가 들어오자 대경실색.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 실옹가는 ⓑ로 말미암아 ⓒ가 발생할 것을 예상하고 있었다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – ⓒ는 부적 때문이 아니라 실옹가가 돌아온 일 — ⓑ로 ⓒ를 예상한 것도 아님.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 사건 전개</div></div>
+<div class="question-full"><div class="q-num">17</div><span class="q-type">[유형] &lt;보기&gt; 외적 준거 감상 · 진가쟁주와 공동체의 인정 · 예상 오답률(분석 추정) 50%</span>
+<div class="question-stem">&lt;보기&gt;를 참고하여 윗글을 감상한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>이 작품에는 진짜와 가짜가 대립하여 누가 진짜인지를 다투는 ‘진가쟁주’ 모티프가 나타난다. 작자는 ‘나’가 ‘나’임을 증명하기 위해서는 같은 향촌 공동체에 속한 타인의 인정이 필수적이라는 점을 보여 줌으로써 내가 진정한 ‘나’로 인정받을 수 있는 조건이 무엇인지를 독자들에게 성찰하게 한다. 이를 통해 사회적 관계 속에서 윤리적 가치를 존중하고 실천해야 참된 ‘나’로 인정받고 가장의 지위를 유지할 수 있다는 작자의 인식을 확인할 수 있다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 실옹가와 허옹가가 ‘송사’를 하게 되는 것에서, 진가쟁주라는 문제가 집안 내부에서 해소되지 못하여 공적 판단을 통해 시비를 가리고자 하는 상황으로 전개되고 있음을 확인할 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 집안에서 해소되지 못해 송사라는 공적 판단으로.</div></div>
+<div class="choice-item"><div class="choice-text">② 실옹가와 허옹가를 ‘얼굴’이나 ‘성명생년’, ‘생월생시’로는 구분할 수 없다는 것에서, 외모나 신상 정보는 내가 진정한 ‘나’임을 증명하는 수단이 되기 어렵다는 점을 확인할 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 얼굴·성명생년·생월생시로 구분 불가 → 외모·신상 정보는 증명 수단이 되기 어려움.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 원님이 ‘세간’을 ‘외워 바치라’는 것에서, 내가 ‘나’로 인정받고 가장의 지위를 유지하기 위해서는 향촌 공동체 내에서의 원만한 관계 형성이 필요하다는 점을 확인할 수 있군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 세간 외우기는 살림 정보로 진위를 확인하려는 것 — 원만한 관계 형성이 필요하다는 근거가 아님.</div></div>
+<div class="choice-item"><div class="choice-text">④ 실옹가가 ‘세간·처자 빼앗기고’ ‘곤장 맞고’ 쫓겨난 것에서, 같은 공동체에 속한 타인에게 진정한 ‘나’로 인정받지 못하여 공동체에서 축출되었음을 확인할 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 원님에게 진정한 ‘나’로 인정받지 못해 공동체에서 축출.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 도사가 ‘모친’을 ‘구박’했던 실옹가의 행실을 지적하는 것에서, 공동체 내에서 윤리적 가치를 존중하고 실천해야 참된 ‘나’로 인정받을 수 있다는 작자의 인식을 확인할 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 모친 구박을 꾸짖음 → 윤리적 가치를 실천해야 참된 ‘나’.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] &lt;보기&gt; 외적 준거 감상</div></div>
+</div></div></body></html>

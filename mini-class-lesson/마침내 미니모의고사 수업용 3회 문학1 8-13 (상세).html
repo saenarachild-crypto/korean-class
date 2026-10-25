@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 3회 문학1 8~13 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📜 마침내 미니모의고사 수업용 3회 · 문학1 8~13 (갈래 복합)</h1><p>박두진, 「달과 말」 / 오세영, 「원시」 / 정지순, 「겸재 정선 산수화론」 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">박두진, 「달과 말」 / 오세영, 「원시」 / 정지순, 「겸재 정선 산수화론」</p>
+<span class="sub-label">(가)</span>
+<p>말이 운다. 여섯 필 은빛 말이 달을 보고 운다. 달 아래 흘러가는 강을 보고 운다. 산을 보고, 들을 보고, 저잘 보고 운다.<span class="para-note">← (가) 1연: 달·강·산·들·저자를 보고 우는 말 — 애상</span></p>
+<p>우, 우, 우, 오, 호, 호, 호, 호! <b>말이 서로 크게 울면, 열두 겹 산골짝</b>이 쩌르러릉 운다. 산 위에 혼자 걸린 <b>푸른 달</b>이 흔들린다. <b>강</b>이 가다 흔들린다. 뻑국새가 자다 깬다. 펄펄펄펄 만발했던 산벚꽃이 진다. 철쭉꽃이 진다.<span class="para-note">← 2연: 의성어 울음 → 산골짝이 울고 달·강이 흔들림(깊은 절망)</span></p>
+<p>여섯 필 은빛 말이 볼을 서로 ㉠ <span class="underline-phrase">비비댄다</span>. 여섯 필 은빛 말은 어느 나랄 쫓겼는가. <b>수말은 어미 말</b>이, <b>어미 말</b>은 망아지가, <b>보릿골을 따라오던 망아지가 그립다</b>. 열두 알 푸른 눈에 <b>이슬들</b>이 <b>어린다</b>. <b>푸른 달</b>이 어린다. <b>푸른 별</b>이 어린다. 후룩, 투 루 루 루 루, 콧구멍이 시다. 자다 깬 뻑국새가 뻑 뻑 구욱 울고 간다.<span class="para-note">← 3연: ㉠ 볼을 비비댐(동질감·위로), 쫓겨 온 말들, 서로 그리움(이산) → 눈에 어리는 이슬·달·별</span></p>
+<p>여섯 필 은빛 말이 절정으로 오른다. <b>기우는 달빛 밤을 절정으로 오른다.</b> 푸른 잎 달 그늘에 은빛 등이 젖는다. <b>수풀 하나밖에마다 하나씩의 달이 있다.</b> ―절정으로 올라서면 해가 솟는가. 막 모두 새로 날뛸 해가 ㉡ <span class="underline-phrase">솟는가</span>. …… 절정과 한바다와 새로 솟는 태양과. …… 여섯 필 은빛 말이 솟구치며 운다. 달을 보고, 별을 보고, 솟구치며 운다.<span class="para-note">← 4연: 기우는 달빛 밤에 절정으로 → ㉡ 해가 솟는가(새 상황 예감)</span></p>
+<p style="text-align:right;font-size:13.5px">- 박두진, 「달과 말」 -</p>
+<span class="sub-label">(나)</span>
+<p>멀리 있는 것은<br>아름답다.<br><b>무지개</b>나 별이나 벼랑에 피는 꽃이나<br>멀리 있는 것은<br><b>손에 닿을 수 없</b>는 까닭에<br>아름답다.<br>사랑하는 사람아,<br><b>이별</b>을 ㉢ <span class="underline-phrase">서러워하지 마라</span>,<br>내 나이의 이별이란<br>헤어지는 일이 아니라 단지<br><b>멀어지는 일</b>일 뿐이다.<br>네가 보낸 마지막 편지를 읽기 위해선<br>이제<br><b>돋보기가 필요한 나이</b>,<br>늙는다는 것은<br>사랑하는 사람을 멀리 보낸다는<br>것이다.<br>머얼리서 바라볼 줄을<br>안다는 것이다.<span class="para-note">← (나) 멀리 있는 것 = 아름다움 → 이별은 멀어지는 일일 뿐(㉢ 서러워 마라) → 돋보기 나이, 늙음 = 멀리서 바라볼 줄 앎</span></p>
+<p style="text-align:right;font-size:13.5px">- 오세영, 「원시」 -</p>
+<span class="sub-label">(다)</span>
+<p><b>무형의 것으로 유형의 것을 만들어도 이치에 어긋나지 않는 것</b>으로 <b>그림</b>보다 나은 예술이 없고, 변화를 극도로 추구해도 자연스럽게 근본 원리를 벗어나지 않는 것으로 그림만큼 오묘한 예술도 없다. 요새 사람들은 산수와 초목을 즐겨 그리면서 간단하고 빠른 붓질로 쉽게 높은 수준에 도달할 수 있다고 생각한다. 반면 눈과 귀에 친숙한 인물과 짐승, 누정과 일상용품은 늘 그리기 어렵다고 생각한다. 이는 인물과 짐승, 누정과 일상용품 같은 부류는 모두 정해진 형상이 있어서 비록 조금 잘못 그리더라도 대상과의 닮음을 훼손하지 않지만, 구름과 안개가 끼며 변화해 가는 산수와 초목의 생태는 정해진 형상이 없어 그 이치를 잃기 쉽다는 사실을 모르는 ㉣ <span class="underline-phrase">탓이다</span>.<span class="para-note">← (다) 통념 비판: 산수는 정해진 형상이 없어 이치를 잃기 쉬움 → 오히려 더 어렵다(㉣)</span></p>
+<p>그림은 송나라, 명나라보다 더 융성했던 때가 없다. 인물과 짐승, 누정과 일상용품을 정교하게 잘 그리는 <b>화가들</b>은 다들 <b>화원(畫院)에 모</b>여 있었으나, 구름과 안개가 끼며 변화해 가는 산수와 초목의 생태는 <b>고인(高人) 일사(逸士)</b>*의 손에서 많이 나왔다. 비록 간단하고 빠른 붓질로 그려도 운치가 빼어난 경지는 정교한 솜씨로 그리기보다 훨씬 더 어려워서 평범하고 속된 자들이 잘할 수 있는 영역이 아니다. …(중략)… 옛날 소철(蘇轍)은 이렇게 말했다.<span class="para-note">← 화원의 화가(정교한 솜씨) vs 고인 일사(산수의 운치) — 운치는 속인이 못 함</span></p>
+<p>“그림에서 소중한 것은 그림이 실물과 비슷하다는 점이다. 비슷하기만 해도 귀한데 더구나 실물임에랴! 내가 도회지와 들판을 다니며 본 사람과 사물은 모두 내 그림 상자 안에 다 있다. 보지 못한 것은 귀신뿐이다.”<span class="para-note">← 소철: 그림은 실물과 닮은 것이 소중</span></p>
+<p>소철은 그림을 즐기지 않았기 때문에 홀로 저와 같이 말했을 뿐이다. 그림에서는 보지 못한 사물을 그리기 쉽다고들 한다. 허나 귀신과 같은 사물은 도리어 그리기 쉽지 않거니와 그것을 실제로 본들 또 ㉤ <span class="underline-phrase">무엇하랴</span>? 도회지나 들판에서 본 <b>사람과 사물</b>이라도 <b>풍경이 변화</b>하므로 <b>결코 일정</b>하지 않다. 따라서 화가가 풍경을 그림으로 옮겨 놓으면 실제로 본 사람은 늘 눈으로 보듯이 여기고, 실제로 보지 못한 사람도 그림을 통해 직접 그곳을 구경한 셈이 된다. 이것이 그림의 공능(功能)이다.<span class="para-note">← 소철 비판 → ㉤ 보지 못한 것·본 것 모두 쉽지 않음 → 그림의 공능(본 이·못 본 이 모두 구경한 셈)</span></p>
+<p>원백 정선은 특히 진경(眞景)을 잘 그린다. 명승지의 빼어난 경치를 만날 때마다 곧잘 돌아갈 것도 잊고 두루 구경하면서 붓 가는 대로 묘사했다. 활기차고 민첩하며, 기이하고 굳세어 군색하게 얽매이거나 구도를 짜 맞추느라 고심한 흔적이 전혀 없으므로 옛사람들이 따라잡을 수준이 아니다.<span class="para-note">← 정선: 진경, 붓 가는 대로, 구도에 얽매인 흔적 없음</span></p>
+<p><b>이 화첩</b>은 모두 경구(京口)의 위아래에 있는 여러 강과 한양 부근의 산수와 교외의 여러 명승을 그렸다. 돛단배와 갈매기, 해오라기, 안개 낀 파도의 아득한 풍경과 산림과 천석(泉石)에 구름과 노을이 출몰하는 형상이 완연히 눈앞에 있는 듯하다. 그 속에 누정과 정원을 배치하고 광채를 더했다. 그리하여 원백은 일반 화가들이 어렵게 여기는 솜씨를 모두 겸비했다. 이곳에 노닐었던 이가 본다면 낯익은 손님을 만난 듯 기뻐서 푹 빠질 테고, 노닌 적 없는 이가 본다면 자기도 모르게 마음이 들뜨고 내달려서 황급히 식량을 챙기고 말을 채찍질해 놀러 가려 하리라. 만약 소철이 이 그림을 보았다면, 반드시 ‘모두 내 그림 상자 안에 있는 것’이라고 하여 소홀히 여기지도 않을 것이며, 또한 실제 모습과 닮았다는 이유만으로 귀하게 여기지 않을 수도 없을 것이다.<span class="para-note">← 화첩 예찬: 노닐었던 이·못 노닌 이의 반응 예상, 소철도 귀히 여길 것</span></p>
+<p style="text-align:right;font-size:13.5px">- 정지순, 「겸재 정선 산수화론」 -</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 고인 일사 : 세속적 가치를 추구하지 않고 고결하게 사는 사람.</p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 갈래 복합 · <strong>난도</strong> 중 · <strong>목표 시간</strong> 10분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> (가) 달밤에 우는 여섯 필 은빛 말(전쟁의 수난·이산의 슬픔) → 절정으로 오르며 솟는 해를 예감 / (나) 멀리 있는 것은 아름답다 → 늙음의 이별 = 멀어지는 일 → 멀리서 바라볼 줄 앎 / (다) 정해진 형상이 없는 산수가 더 어렵다 → 소철 비판, 그림의 공능 → 정선의 진경과 화첩 예찬</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>(가)는 밤 → 해</b>: 달·별·달빛 밤 = 부정적 현실(전쟁의 고통), 솟는 해 = 희망. ‘달’이 긍정적 미래가 아님에 주의.</li><li><b>(나)의 역설</b>: 멀어지는 것(이별·노안)을 아름다움으로 수용 — 단정 ‘뿐이다’, 호명 ‘사랑하는 사람아’.</li><li><b>(다)의 비판 대상 둘</b>: 요새 사람들의 통념 + 소철의 닮음론 → 글쓴이의 기준은 ‘그림의 공능’.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>(가) 1연: 달·강·산·들·저자를 보고 우는 말 — 애상</li><li>2연: 의성어 울음 → 산골짝이 울고 달·강이 흔들림(깊은 절망)</li><li>3연: ㉠ 볼을 비비댐(동질감·위로), 쫓겨 온 말들, 서로 그리움(이산) → 눈에 어리는 이슬·달·별</li><li>4연: 기우는 달빛 밤에 절정으로 → ㉡ 해가 솟는가(새 상황 예감)</li><li>(나) 멀리 있는 것 = 아름다움 → 이별은 멀어지는 일일 뿐(㉢ 서러워 마라) → 돋보기 나이, 늙음 = 멀리서 바라볼 줄 앎</li><li>(다) 통념 비판: 산수는 정해진 형상이 없어 이치를 잃기 쉬움 → 오히려 더 어렵다(㉣)</li><li>화원의 화가(정교한 솜씨) vs 고인 일사(산수의 운치) — 운치는 속인이 못 함</li><li>소철: 그림은 실물과 닮은 것이 소중</li><li>소철 비판 → ㉤ 보지 못한 것·본 것 모두 쉽지 않음 → 그림의 공능(본 이·못 본 이 모두 구경한 셈)</li><li>정선: 진경, 붓 가는 대로, 구도에 얽매인 흔적 없음</li><li>화첩 예찬: 노닐었던 이·못 노닌 이의 반응 예상, 소철도 귀히 여길 것</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>9번 ⑤</b>: ‘수풀마다 달’은 여전히 밤의 이미지 — 긍정적 미래(해)가 아님.</li><li><b>12번 ③</b>: 변화하는 대상을 그린 고인 일사·정선을 예찬 — ‘경계’는 정반대.</li><li><b>13번 ⑤</b>: ㉤은 본 것·못 본 것 모두 쉽지 않다는 반문 — ‘현격한 차이’가 아님.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 10분 · 난도 중 · 시간이 새는 자리: (다)가 길어 25·26·27번에서 같은 부분을 세 번 다시 읽게 된다. 처음 읽을 때 ‘통념 비판 / 소철 비판 / 공능 / 정선 예찬’ 네 덩어리로 끊어 표시한다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : (가) 달밤에 우는 여섯 필 은빛 말(전쟁의 수난·이산의 슬픔) → 절정으로 오르며 솟는 해를 예감 / (나) 멀리 있는 것은 아름답다 → 늙음의 이별 = 멀어지는 일 → 멀리서 바라볼 줄 앎 / (다) 정해진 형상이 없는 산수가 더 어렵다 → 소철 비판, 그림의 공능 → 정선의 진경과 화첩 예찬</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [8~13]</h2>
+<div class="question-full"><div class="q-num">8</div><span class="q-type">[유형] 표현상 특징 · (가)~(다) · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">(가)～(다)에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item correct"><div class="choice-text">① (가)는 대상의 행위를 묘사하여 고조된 정서를 드러내고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 절정으로 오르고 등이 젖고 솟구치며 우는 말 — 고조된 정서.</div></div>
+<div class="choice-item"><div class="choice-text">② (나)는 명령형 표현을 통해 삶에 대한 후회를 드러내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – ‘서러워하지 마라’는 이별 수용 — 삶에 대한 후회 없음.</div></div>
+<div class="choice-item"><div class="choice-text">③ (다)는 옛사람의 말을 인용하여 사람들의 통념을 비판하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 소철의 말을 인용해 그 말 자체를 비판 — 인용으로 통념을 비판한 것 아님.</div></div>
+<div class="choice-item"><div class="choice-text">④ (가)는 인격화한 대상을 통해, (나)는 수미상관의 방식을 통해 주제 의식을 부각하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – (나)는 첫 문장 구조가 끝에서 반복되는 수미상관이 아님.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (가)는 현재형 시제를 통해 대상의 고뇌가 해소된 상태를, (다)는 가정의 진술을 통해 대상에 대한 평가를 드러내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 현재형은 애상감, ‘해가 솟는가’는 전망일 뿐 고뇌가 해소된 상태 아님.</div></div>
+<div class="correct-badge">📍 ①번이 정답. [유형] 표현상 특징</div></div>
+<div class="question-full"><div class="q-num">9</div><span class="q-type">[유형] &lt;보기&gt; 외적 준거 감상 · (가) 「달과 말」과 전쟁의 수난 · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">&lt;보기&gt;를 바탕으로 (가)를 감상한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>박두진의 「달과 말」은 1953년 출판된 『오도』에 실린 작품이다. 한국 전쟁의 상흔이나 고통을 상징하는 자연물과 이를 향해 우는 중심 대상을 제시하여 우리 민족이 겪은 수난을 우회적으로 드러낸다. 한편 어둠과 밝음, 하강과 상승 이미지를 대비하여 절망적 상황이 끝나고 희망찬 미래가 도래할 것임을 암시한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① ‘말이 서로 크게 울면, 열두 겹 산골짝’을 울리고 ‘푸른 달’이나 ‘강’까지 흔든다는 것은, 민족적 수난에서 비롯된 깊은 절망을 보여 준다고 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 울음이 산골짝을 울리고 달·강을 흔듦 — 수난에 대한 깊은 절망.</div></div>
+<div class="choice-item"><div class="choice-text">② ‘수말은 어미 말’이, ‘어미 말’은 ‘보릿골을 따라오던 망아지가 그립다’는 것은, 가족 간의 이산으로 인해 슬픔을 겪은 사람들을 환기한다고 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 서로 그리워하는 말들 — 이산의 슬픔.</div></div>
+<div class="choice-item"><div class="choice-text">③ ‘이슬들’, ‘푸른 달’, ‘푸른 별’이 ‘열두 알 푸른 눈’에 ‘어린다’는 것은, 전쟁으로 인해 사람들이 겪어야 했던 슬픔이나 고통을 나타낸다고 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 눈에 어리는 이슬·달·별 — 전쟁의 고통.</div></div>
+<div class="choice-item"><div class="choice-text">④ ‘기우는 달빛 밤을 절정으로 오른다.’는 것은, 어두운 현실을 벗어나 밝음을 향해 나아가는 우리 민족의 모습을 보여 준다고 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 달빛 밤(어둠) → 절정으로 오름(상승).</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ ‘수풀 하나밖에마다 하나씩의 달이 있다.’는 것은, 전쟁이라는 민족적 수난을 이겨 낸 후 도래할 긍정적 미래의 모습을 나타낸다고 볼 수 있겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 달은 밤을 이루는 부정적 현실 — 긍정적 미래가 아님.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] &lt;보기&gt; 외적 준거 감상</div></div>
+<div class="question-full"><div class="q-num">10</div><span class="q-type">[유형] 시어·표현 이해 · (가)·(나) · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">(가)와 (나)에 대한 설명으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① (가)에서는 ‘보고 운다’의 반복을 활용하여 애상적 분위기를 조성하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘보고 운다’ 반복 → 계속 우는 말, 애상적 분위기.</div></div>
+<div class="choice-item correct"><div class="choice-text">② (가)에서는 ‘쫓겼는가’와 같은 의문의 표현을 사용하여 대상이 떠도는 삶을 그만두게 된 계기를 암시하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – ‘쫓겼는가’는 우는 이유(현재 처지)를 암시 — 떠도는 삶을 그만둔 계기가 아님.</div></div>
+<div class="choice-item"><div class="choice-text">③ (가)에서는 ‘우, 우～호, 호!’나 ‘후룩, 투～루 루’와 같은 의성어를 사용하여 대상의 상태를 생동감 있게 표현하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 말 울음 의성어 — 생동감.</div></div>
+<div class="choice-item"><div class="choice-text">④ (나)에서는 ‘뿐이다’라는 단정적 표현을 활용하여 특정 상황에 대한 인식을 드러내고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘뿐이다’ 단정 — 이별을 멀어지는 일로 인식.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (나)에서는 ‘사랑하는 사람아’와 같이 청자를 호명하여 화자의 당부를 전하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 청자 호명 → 서러워하지 말라는 당부.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 시어·표현 이해</div></div>
+<div class="question-full"><div class="q-num">11</div><span class="q-type">[유형] 글쓴이의 관점 · (다) 정지순 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">(다)의 글쓴이에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 대상과 닮게 그리기보다 대상에 담긴 원리를 표현하는 것을 중시한 소철의 견해에 동의한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 소철은 닮음을 중시, 글쓴이는 소철에 동의하지 않음.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 경구의 여러 강과 한양 부근을 그린 정선의 솜씨는 그림의 공능을 충족하는 경지에 이르렀다고 본다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 본 이·못 본 이 모두 구경한 듯 — 그림의 공능을 충족.</div></div>
+<div class="choice-item"><div class="choice-text">③ 정선은 자연물을 배치하는 데에 신중을 기함으로써 옛사람들보다 뛰어난 그림을 그릴 수 있었다고 여긴다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 정선은 붓 가는 대로, 구도를 짜 맞춘 흔적 없음 — 배치에 신중을 기한 것 아님.</div></div>
+<div class="choice-item"><div class="choice-text">④ 정교한 솜씨를 가진 화가라면 누구나 빠르고 간략한 필치로 자연 풍광에 담긴 이치를 표현할 수 있다고 여긴다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 정교한 솜씨가 곧 운치의 경지는 아님 — 속인이 할 수 있는 영역 아님.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 산수와 달리 형상이 정해져 있는 일상용품을 그릴 때에는 아주 미세한 차이도 용납되어서는 안 된다고 생각한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 일상용품은 조금 잘못 그려도 닮음을 훼손하지 않음.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 글쓴이의 관점</div></div>
+<div class="question-full"><div class="q-num">12</div><span class="q-type">[유형] &lt;보기&gt; 비교 감상 · (나) 늙음과 이별 / (다) 회화론 · 예상 오답률(분석 추정) 50%</span>
+<div class="question-stem">&lt;보기&gt;를 바탕으로 (나)와 (다)를 감상한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>(나)는 늙어가는 신체에, (다)는 회화 작품에 주목하고 있다. (나)에서는 아름다움에 대한 주관적 인식을 바탕으로 나이 듦과 이로부터 기인하는 이별을 긍정적으로 수용하고자 한다. (다)에서는 형상이 일정한 대상과 일정한 형상이 없는 대상을 그리는 것에 대한 글쓴이의 견해를 피력하며 겸재 정선의 그림을 예찬한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① (나)의 ‘이별’을 ‘멀어지는 일’로 표현하는 데에서, 이별이 나이 듦과 관련이 있다고 여기며 이별을 긍정적으로 수용하고자 하는 화자의 태도를 드러내는군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘내 나이의 이별’을 멀어지는 일로 — 나이 듦과 관련, 긍정적 수용.</div></div>
+<div class="choice-item"><div class="choice-text">② (다)의 ‘화원에 모’인 ‘화가들’과 ‘고인 일사’를 비교하는 데에서, 형상이 일정한 대상보다 일정한 형상이 없는 대상을 그리는 것이 더 어렵다는 글쓴이의 생각을 나타내는군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 화원의 화가와 고인 일사 비교 — 형상 없는 대상이 더 어려움.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ (다)의 ‘풍경이 변화’하므로 ‘사람과 사물’도 ‘결코 일정’치 않다고 하는 데에서, 변화하는 대상의 외양을 그림에 담으려는 행위를 경계해야 한다는 인식을 드러내는군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 변화하는 대상을 그린 고인 일사·정선을 예찬 — 그 행위를 경계하지 않음.</div></div>
+<div class="choice-item"><div class="choice-text">④ (나)의 ‘무지개’와 같이 ‘손에 닿을 수 없’는 대상에 대해 진술하는 데에서 아름다움에 대한 화자의, (다)의 ‘무형의 것으로 유형의 것을 만들어도 이치에 어긋나지 않는 것’ 중 으뜸으로 ‘그림’을 드는 데에서 회화에 대한 글쓴이의 인식을 엿볼 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 손에 닿을 수 없는 것의 아름다움 / 그림을 으뜸 예술로.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (나)의 ‘돋보기가 필요한 나이’라고 하는 데에서 화자가 늙어 가고 있음을, (다)의 ‘이 화첩’을 보게 될 사람들의 반응을 예상하는 데에서 글쓴이가 겸재 정선의 그림을 뛰어나다고 여기고 있음을 알 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 돋보기 나이 = 늙어 감 / 화첩을 볼 사람의 반응 예상 = 정선 예찬.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] &lt;보기&gt; 비교 감상</div></div>
+<div class="question-full"><div class="q-num">13</div><span class="q-type">[유형] 구절의 의미 · ㉠~㉤ · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">㉠～㉤에 대해 이해한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 ‘여섯 필 은빛 말’이 자신들이 처한 상황에서 동질감을 느끼고 있음을 보여 주는군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 쫓겨 온 처지의 말들이 볼을 비빔 — 동질감·위로.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 ‘달빛 밤’과는 다른 새로운 상황의 도래를 암시하는군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 달빛 밤과 다른, 해가 뜨는 새 상황.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉢은 화자와 ‘이별’하게 될 것을 염려하는 ‘사람’을 위로하고자 하는 마음을 담고 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 이별을 염려하는 사람을 위로.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉣은 ‘요새 사람들’이 ‘그리기 어’려운 것과 쉬운 것을 혼동하는 이유를 담고 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 요새 사람들이 어려운 것(산수)과 쉬운 것(인물·일상용품)을 혼동하는 이유.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ ㉤은 눈으로 ‘보지 못한 사물’을 그리는 것과 눈으로 본 사물을 그리는 것에는 현격한 차이가 있다는 인식을 드러내는군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 못 본 것(귀신)도 본 것(변하는 풍경)도 쉽지 않다는 반문 — 현격한 차이가 아님.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 구절의 의미</div></div>
+</div></div></body></html>
