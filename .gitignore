@@ -1,0 +1,10 @@
+# macOS / Windows 시스템 파일
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+# Office 임시 파일
+~$*
+# OneDrive 동기화 충돌 사본
+*-kims-mac-mini*
+*-DESKTOP-*
