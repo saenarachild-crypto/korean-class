@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 5회 문학1 9~11 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📜 마침내 미니모의고사 수업용 5회 · 문학1 9~11 (희곡)</h1><p>차범석, 「불모지」 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">차범석, 「불모지」</p>
+<p><b>어머니</b> : 아침에 그렇게 뛰쳐나갔으니 또 어디서 술만 마시고 며칠이고 뒹굴 테지…… 어유…… 하느님도 너무하셔…… 우리 경수에게 복을 안 내리시면 누가 복을 받는다고…… 어유……. (하며 운다.)<span class="para-note">← 어머니: 실직한 경수 걱정 — 경운·경재는 위로(경재는 여전히 밥을 먹으며 ㉠)</span></p>
+<p><b>경운</b> : 어제오늘 시작한 일이에요? 게다가 기다려 보라는 직장도 몇 군데 있다니까 그러는 동안에 무슨 통지가 오겠죠.</p>
+<p><b>경재</b> : ㉠ <span class="underline-phrase">(여전히 밥을 먹으며)</span> 지성이면 감천이라는 말도 있잖아요?</p>
+<p><b>어머니</b> : 지성도 한도가 있지……. 벌써 몇 해 몇 달이냐? 이러다간 아주 폐인이 되든지 불한당이 될 거야…….</p>
+<p><b>경운</b> : 어머닌 왜 그렇게 불행해지는 경우만 생각하세요?</p>
+<p><b>경재</b> : 쥐구멍에도 햇볕 드는 날이 있다잖아요?</p>
+<p><b>어머니</b> : 그렇지만 아무래도 마음이 안 놓인다……. 요즈막에 와서는 <b>꿈자리가 사나운 데다가…… 아침에 네 오빠가 나가던 때 눈을 봤지?</b> 게다가 방에서 가지고 나간 건 또 뭐였는지…….<span class="para-note">← 꿈자리·눈빛·하얀 붕대 → 불길한 사건 암시</span></p>
+<p><b>경재</b> : 방에서 뭘 가지고 나갔어요?</p>
+<p><b>어머니</b> : 뭣인지 하얗게 붕대로 감은 것을 가지고 쏜살같이 나가잖겠니?</p>
+<p><b>경재</b> : ㉡ <span class="underline-phrase">(젓갈을 떨구며)</span> 하얀 붕대로?</p>
+<p><b>경운</b> : 경재야, 넌 아니?</p>
+<p><b>경재</b> : (혼잣소리로) 그거야! 틀림없어…….</p>
+<p><b>어머니</b> : 그거라니?</p>
+<p><b>경재</b> : 어머니! 누가! 왜 말리지 않았어요? 네?</p>
+<p><b>경운</b> : 아니 그게 뭔데?</p>
+<p><b>경재</b> : 권총일 거예요!<span class="para-note">← 경재: “권총일 거예요!” — 가족의 충격</span></p>
+<p><b>어머니</b> : 뭣이?</p>
+<p><b>최 노인</b> : (안색이 굳어지며) 권총?</p>
+<p><b>경재</b> : 형이 가지고 있는 걸 봤어요…….</p>
+<p><b>경운</b> : <b>그럼 왜 너는 여태 알리지 않았었니?</b></p>
+<p><b>경재</b> : 형이…… 불쌍했어요! 아니 형이 권총을 가지고 싶은 심정엔 저도 공감이 갔으니까요!<span class="para-note">← 경재가 알리지 않은 이유: 형에 대한 연민·공감</span></p>
+<p><b>최 노인</b> : 경재야! 자세히 얘기 좀 해라!</p>
+<p>(경재는 안절부절못하며 좀체 말을 하려고 하지 않는다.)</p>
+<p><b>경운</b> : 경재야! 언제 봤지? 그 권총…….</p>
+<p><b>경재</b> : 두 달 전인가 봐요……. 잠결에 바스락거리는 소리가 나기에 눈을 떠 보니까 형이 일어나 앉아서 무얼 만지고 있지 않겠어요? 그래 뭘 하고 있느냐고 물으니까 형은 몹시 당황하면서 무엇을 트렁크 속에 감추는 것 같았어요.</p>
+<p><b>최 노인</b> : 그래 네가 봤었니?</p>
+<p><b>경재</b> : 그날은 그대로 잠을 잤어요. 며칠 후 공부를 하다가 문득 그 트렁크가 눈에 띄더군요. 저는 남의 물건을 뒤지는 건 나쁜 일인 줄은 알면서도 열어 봤어요……. 그랬더니 트렁크 맨 밑바닥에 권총이 붕대에 감긴 채로 숨겨 있었어요.</p>
+<p><b>최 노인</b> : 뭣이?</p>
+<p><b>어머니</b> : (와들와들 떨며) 뭣 때문에 그런 걸 감추었을까?</p>
+<p><b>경운</b> : 탄환도?</p>
+<p><b>경재</b> : 그건 못 봤어. 다만 손에 쥐어 보니까 묵직한 게 진짜 권총인 것만은 사실이야!</p>
+<p><b>어머니</b> : 어유 저걸 어쩌나?</p>
+<p><b>경재</b> : 그날 밤 형은 술에 취해 들어왔었어요. 저는 형에게 그런 걸 왜 가지고 있느냐고 캐물었죠. 형은 처음에 화를 벌컥 내면서 저를 때리려고까지 하더니 나중엔 깔깔대고 웃지 않겠어요?</p>
+<p><b>최 노인</b> : 웃어!</p>
+<p><b>경재</b> : 예……. 형 얘기로는 그 권총을 볼 때마다 살아 나갈 힘이 생긴다는 거예요. 전쟁터에서 총을 겨눌 때는 적을 쏘아 죽이지 않으면 내가 죽고 만다는 그런 절박한 상태에서 불평도 불만도 없는 심경으로 돌아간다는 거예요.<span class="para-note">← 경수: 권총을 보면 전쟁터의 절박한 심경으로 돌아가 살아갈 힘이 생긴다</span></p>
+<p style="text-align:center">(중략)</p>
+<p><b>최 노인</b> : (경수 곁으로 다가서며) 누구하고 싸웠니? 응? 이게 무슨 창피냐?<span class="para-note">← (중략 후) 수갑 찬 경수 — 최 노인의 추궁</span></p>
+<p><b>어머니</b> : (경수에게로 바싹 붙으며) 속 시원히 말 좀 해라. 그렇지 않아도 경재와 경운이가 너를 찾아다녔는데……. <b>어디서 무엇을 했기에 이런…….</b> (하며 수갑을 내려다본다. 그러나 경수는 여전히 말이 없다.)</p>
+<p><b>경재</b> : 형님, 권총은 뭣 하러 가지고 나갔어요?</p>
+<p>(권총 말이 나오자 경수의 ㉢ <span class="underline-phrase">얼굴에 한 줄기 긴장이 스쳐 간다</span>.)</p>
+<p><b>경재</b> : 죽는다고 만사가 해결되나요? 바보같이 죽기는 왜 죽어요? 자살 미수라고 신문에 나면 무슨 창피예요?<span class="para-note">← 경재는 여전히 자살 시도로 오해</span></p>
+<p><b>최 노인</b> : (그 이상 참을 수 없다는 듯이 노기를 폭발시키며) 왜 말 못해? 아가리는 언제 쓰라는 아가리야! 이 천하에 못 돼먹은 자식! (하며 경수의 뺨을 친다. 그래도 경수는 ㉣ <span class="underline-phrase">입술을 깨물 뿐 반응이 없다</span>.)<span class="para-note">← 최 노인이 뺨을 쳐도 ㉣ 입술을 깨물 뿐 — 부끄러움·후회</span></p>
+<p><b>어머니</b> : <b>여보! 때리기는 왜 때려요!</b> (애걸하듯) 경수야! 제발 말 좀 해라. 이 에미 가슴이 터지고 말겠다! 응? 무슨 잘못을 저질렀기에 이 꼴로 끌려다니냐? 응? 경수야?</p>
+<p>(이때 형사가 방에서 나온다.)</p>
+<p><b>최 노인</b> : (형사에게 다가서며) 저…… 선생님, 저 녀석이 무슨 죄를 지었나요?</p>
+<p><b>형사</b> : 아직 모르시는군요? 글쎄 <b>어쩌자고 아들을 그런 못된 짓을 하게 내버려둔단 말이오?</b></p>
+<p><b>최 노인</b> : 무슨 짓을…….<span class="para-note">← 최 노인 “전혀 모, 모르는 일” ㉤ — 당황한 거짓말</span></p>
+<p><b>형사</b> : 그보다 아들이 권총을 숨겨 두었다는 것을 몰랐던가요?</p>
+<p><b>최 노인</b> : (경재를 바라보더니) 권총이라니? ㉤ <span class="underline-phrase">전혀 모, 모르는 일입니다…….</span></p>
+<p><b>형사</b> : 몰랐어? 집안에서 그렇게 감독이 불충분하니까 밖에서 무슨 짓을 하는지도 모르지……. 영감님 아들은 (잠시 사이를 두고 식구들을 훑어보더니) 백주에 강도질을 했어요!<span class="para-note">← 형사: 백주에 강도질 — 전후 가족의 몰락</span></p>
+<p style="text-align:right;font-size:13.5px">- 차범석, 「불모지」 -</p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 희곡 · <strong>난도</strong> 중 · <strong>목표 시간</strong> 6분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 경수가 집을 뛰쳐나감 → 어머니의 불길한 예감 → 경재의 폭로: 붕대에 감은 권총 → 권총을 보면 살아갈 힘이 생긴다던 경수 → (중략) 수갑을 차고 형사와 돌아온 경수의 침묵 → 형사: 백주에 강도질</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>정보의 순서</b>: 어머니(붕대) → 경재(권총) → 형사(강도질). 등장인물마다 아는 정보의 양이 다르다는 점이 1번의 핵심.</li><li><b>지시문 읽기</b>: ㉠~㉤은 모두 행동·표정·말투 — 대사 밖의 심리를 <보기>(비언어적·준언어적 표현)로 읽는다.</li><li><b>시간 전환의 기준</b>: 과거를 묻거나 말하는 것만으로는 작중 시간이 과거로 전환되지 않는다.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>어머니: 실직한 경수 걱정 — 경운·경재는 위로(경재는 여전히 밥을 먹으며 ㉠)</li><li>꿈자리·눈빛·하얀 붕대 → 불길한 사건 암시</li><li>경재: “권총일 거예요!” — 가족의 충격</li><li>경재가 알리지 않은 이유: 형에 대한 연민·공감</li><li>경수: 권총을 보면 전쟁터의 절박한 심경으로 돌아가 살아갈 힘이 생긴다</li><li>(중략 후) 수갑 찬 경수 — 최 노인의 추궁</li><li>경재는 여전히 자살 시도로 오해</li><li>최 노인이 뺨을 쳐도 ㉣ 입술을 깨물 뿐 — 부끄러움·후회</li><li>최 노인 “전혀 모, 모르는 일” ㉤ — 당황한 거짓말</li><li>형사: 백주에 강도질 — 전후 가족의 몰락</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>9번 ④</b>: 경운이 어머니에게 반감을 드러낼 뿐, 경수에 대한 반감은 찾을 수 없다.</li><li><b>10번 ③</b>: 어머니가 과거의 일을 묻는 것은 작중 시간의 전환이 아니다.</li><li><b>11번 ④</b>: ㉣은 분노를 삭이는 것이 아니라 부끄러움·미안함·후회.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 6분 · 난도 중 · 시간이 새는 자리: 중략 앞뒤로 경재가 형의 행동을 ‘자살’로 오해하고 있다는 점을 놓치면 1번 ③을 확신하지 못한다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 경수가 집을 뛰쳐나감 → 어머니의 불길한 예감 → 경재의 폭로: 붕대에 감은 권총 → 권총을 보면 살아갈 힘이 생긴다던 경수 → (중략) 수갑을 차고 형사와 돌아온 경수의 침묵 → 형사: 백주에 강도질</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [9~11]</h2>
+<div class="question-full"><div class="q-num">9</div><span class="q-type">[유형] 세부 내용 파악 · 인물의 인식 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">윗글에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ‘최 노인’은 ‘경재’의 예전 진술을 근거로 ‘형사’가 하려는 말을 이미 예측하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ① 위치 왜곡</span> – 최 노인은 형사에게 “무슨 죄를 지었나요?”라고 묻는다 — 경수의 죄목을 예상하지 못하고 있다.</div></div>
+<div class="choice-item"><div class="choice-text">② ‘어머니’는 ‘경수’가 집 밖으로 미심쩍은 물건을 들고 나갔다는 사실을 가족들에게 감추려 하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 어머니는 경수가 붕대로 감은 것을 가지고 나간 사실을 가족에게 말한다 — 감추려는 의도 없음.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ ‘경재’는 ‘경수’가 ‘형사’와 동행한 상황에서도 형이 저지른 행위의 진상을 제대로 파악하지 못하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – “바보같이 죽기는 왜 죽어요?” — 경재는 여전히 경수가 죽으려고 권총을 들고 나간 것으로 생각한다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ‘경운’은 근심 많은 ‘어머니’를 위로하는 ‘경재’와 달리 ‘경수’에 대한 반감을 드러내어 ‘어머니’와 갈등을 빚고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 경운은 어머니의 의견에 반감을 드러낼 수 있어도 경수에 대한 반감은 드러나지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ‘경재’는 ‘경수’가 권총을 보며 전쟁 중에 저지른 잘못을 반성하고 새로운 결의를 다지곤 했다는 사실을 알고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 경수는 권총을 보면 전쟁터의 절박한 심경으로 돌아간다고 했을 뿐 잘못을 반성한다는 말은 없다.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 세부 내용 파악</div></div>
+<div class="question-full"><div class="q-num">10</div><span class="q-type">[유형] 대사의 의미와 기능 · 대사 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">윗글에 나타난 대사의 기능에 대한 설명으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ‘꿈자리가 사나운 데다가…… 아침에 네 오빠가 나가던 때 눈을 봤지?’라는 대사는 앞으로 전개될 사건의 양상을 암시한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 꿈자리와 경수의 눈에 대한 대사는 경수와 관련한 좋지 않은 일을 암시한다.</div></div>
+<div class="choice-item"><div class="choice-text">② ‘그럼 왜 너는 여태 알리지 않았었니?’라는 대사는 대화의 상대방이 다른 인물에 대하여 품고 있던 감정을 표출하게 한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 경운의 물음이 경재로 하여금 과거 사건과 형에 대한 감정(불쌍함·공감)을 말하게 한다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ ‘어디서 무엇을 했기에 이런…….’이라는 대사는 작중 사건의 시간을 현재에서 과거로 전환시킨다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 과거의 일을 묻는다고 작중 시간이 과거로 전환되지는 않는다 — 과거 사건을 그대로 재현해야 전환.</div></div>
+<div class="choice-item"><div class="choice-text">④ ‘여보! 때리기는 왜 때려요!’라는 대사는 상대방의 행동을 부정적으로 평가하여 그 행동을 제지한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 경수의 뺨을 때린 최 노인의 행동을 부정적으로 평가하며 제지한다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ‘어쩌자고 아들을 그런 못된 짓을 하게 내버려둔단 말이오?’라는 대사는 가족의 역할에 대한 사회적 통념을 드러낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 자식이 못된 짓을 못 하게 하는 것이 부모의 역할이라는 사회적 통념.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 대사의 의미와 기능</div></div>
+<div class="question-full"><div class="q-num">11</div><span class="q-type">[유형] &lt;보기&gt; 정보에 따른 작품 감상 · ㉠~㉤ · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">〈보기〉를 바탕으로 ㉠~㉤을 감상한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>희곡에서 인물의 행동, 표정, 말투 등 비언어적(非言語的)·준언어적(準言語的) 표현은 장면이 지닌 다양한 느낌을 감각적으로 전달할 수 있게 해 주는 요소이다. 배우는 이러한 요소를 활용하여 대사로 표현하기 어려운 작중 인물의 의도를 명료하게 전달하는가 하면, 반대로 작중 인물이 감추고자 하는 억제된 심리 상태마저 드러낼 수 있도록 연기하게 된다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① ㉠은 상대방에 대해 진지하게 응대하고 있지 않다는 느낌을 나타낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 어머니가 울며 걱정하는데도 계속 밥을 먹는 경재 — 진지하게 응대하지 않는 느낌.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 상대방이 하는 예상외의 말에 심리적 충격을 받았음을 나타낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘하얀 붕대’라는 말에 충격을 받아 젓갈을 떨군다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉢은 상대방의 말에 자극을 받아 인물이 마음을 졸이고 있음을 나타낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 권총 이야기에 긴장이 스치는 경수의 표정 — 마음을 졸이는 심리.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ㉣은 상대방에 대한 분노를 속으로 삭이려 노력하고 있음을 나타낸다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 강도질을 털어놓지 못하는 경수의 침묵 — 분노가 아니라 부끄러움·미안함·후회.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉤은 상대방의 질문에 당황하여 더듬으며 거짓말을 하고 있음을 나타낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 권총을 숨겨 둔 것을 몰랐느냐는 형사의 말에 당황해 더듬으며 거짓말을 한다.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] &lt;보기&gt; 정보에 따른 작품 감상</div></div>
+</div></div></body></html>

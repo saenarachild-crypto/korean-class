@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 6회 독서2 6~11 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 6회 · 독서2 6~11 (인문)</h1><p>주제 통합 — (가) 계몽의 변증법 / (나) 타자성과 근대의 지배 원리 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">주제 통합 — (가) 계몽의 변증법 / (나) 타자성과 근대의 지배 원리</p>
+<span class="sub-label">(가)</span>
+<p>서양의 근대 사상은 이성을 통해 인간이 진보한다는 계몽적 믿음을 바탕으로 발전해 왔다. <span class="boxed">계몽</span>이란, 신화에서 과학으로라는 인식적인 차원에서의 진보와 야만에서 문명으로라는 실천적 차원에서의 진보를 ⓐ <span class="underline-phrase">아우르는</span> 개념이었다. 근대 철학과 과학의 개척자인 베이컨은 인간이 이성에 바탕을 둔 지식을 통해 중세적 질곡에서 해방될 수 있다는 낙관적인 계몽의 전망 위에서 근대 과학의 기초를 닦았다. 그러나 20세기 초반 세계 대전의 발발 이후로 세계사적으로 유래가 없는 비극이 계속되자 서구 지식인들은 계몽에 대한 근대적 믿음에 내포된 문제점을 근본적으로 다시 사유할 필요를 느끼게 되었다. 나치의 위협을 피해 망명해 있던 아도르노와 호르크하이머는 『계몽의 변증법』을 공동 집필하는데, 이들의 핵심적인 문제의식은 이미 계몽의 세례를 받은 인류가 왜 새로운 야만에 빠지게 되었는가를 ⓑ <span class="underline-phrase">밝히는</span> 데 있었다.<span class="para-note">← (가) 계몽 = 인식적 진보 + 실천적 진보 → 베이컨의 낙관 → 세계 대전 후 재사유, 아도르노·호르크하이머: 왜 새로운 야만인가</span></p>
+<p>아도르노와 호르크하이머에 의하면, 계몽의 관점은 인간의 자유를 제한하는 자연의 위력을 제압하고 인간 자신을 세계의 주인으로 세우는 것이다. 그리고 계몽을 수행하는 이성의 힘이야말로 인간을 자연의 횡포로부터 해방시킬 최고의 무기로 여기는 것이었다. 하지만 이러한 인간과 자연에 대한 이분법적 사고를 바탕으로 한 계몽의 이념이야말로 그 자체에 원천적으로 야만성이 내재되어 있다는 것이 아도르노와 호르크하이머의 주장이었다. 자연을 이성에 의해 지배해야 할 대상으로 보는 관점은 종국에 가서는 주체의 자리에 있던 인간마저 지배의 대상으로 전락시키고 만다는 것이다. 이성을 바탕으로 쌓아 올린 과학과 기술의 힘을 이용하여 인간은 대자연의 지배로부터 벗어나는 데 성공했지만, 그 성공은 인간에 의한 인간의 지배와 억압이라는 또 다른 야만의 시작에 불과했다는 것이다.<span class="para-note">← 계몽: 자연을 제압하고 인간을 주인으로 → 이분법적 사고의 계몽 이념 자체에 야만성 → 인간마저 지배 대상으로</span></p>
+<p>이러한 주장을 정당화하기 위해 아도르노와 호르크하이머는 인간의 자아에 대한 고고학적 탐구를 수행한다. 그들은 호메로스의 서사시 「오디세이아」와 같은 서양의 대표적 고전 영웅담을 분석하여 이성을 통해 주체적 자아가 구성되는 과정을 검토했다. 이들이 연구한 영웅담의 주인공들은 신화적 괴물과 같이 자연을 표상하는 존재들을 정복해 가며 영웅으로서의 정체성을 형성해 나간다. 여기서 아도르노와 호르크하이머가 분석해 낸 것은, 자연은 인간에 대해 타자이며 인간은 타자에 대해 근원적으로 두려움을 갖고 있는 바, 그 두려움을 극복하기 위해 타자를 지배해 나가는 것이 문명화의 과정이라는 것이다.<span class="para-note">← 고고학적 탐구: 「오디세이아」 — 자연(타자)에 대한 근원적 두려움을 극복하려 지배하는 것이 문명화</span></p>
+<p>이와 비슷한 문제의식에서 하이데거는 근대의 기술적 사고가 자연을 그 자체로 존재하는 대상으로 바라보기보다 인간이 이용하고 확보해야 할 자원으로 여긴다는 점에 주목하였다. 그에 따르면 자연을 도구로 사용하는 기술은 세계에 존재하는 것들을 인간의 목적에 따라 이용 가능한 것으로 파악하는 태도가 반영된 결과물이다.<span class="para-note">← 하이데거: 기술적 사고는 자연을 이용·확보할 자원으로 봄</span></p>
+<span class="sub-label">(나)</span>
+<p>근대 문명에 대해 아도르노와 호르크하이머가 주목한 문제는, 인간은 자아의 내부에 이성으로 통제할 수 없는 자연적 욕구, 즉 인간 자신을 보존하는 데 위협이 되는 ㉠ <span class="underline-phrase">타자성</span>을 가지고 있다는 사실이었다. 그들에 따르면, 고전 영웅담의 주인공들은 자신의 자연적 욕구를 억압하는 이성적 행위를 통해서 자연에 대해 자율성을 ⓒ <span class="underline-phrase">얻게</span> 된다. 결국 인간의 이성은 자연의 위협으로부터 스스로를 보존하기 위해 자신을 억압하게 된다. 이처럼 자연에 대한 인간의 지배는 반드시 자기 자신에 대한 지배를 동반한다. 그것이 자연이든 자아이든, 인간은 자신의 보존을 위협하는 타자성을 무력하게 만들어 그것을 지배하기에 적합하도록 만드는 데 이성을 사용한다. 그리고 이것의 연장선상에서, 인간은 자신의 목적을 ⓓ <span class="underline-phrase">이루기</span> 위해 자신의 이성을 타인과 사회를 지배하는 도구로 사용하게 된다. 그리고 이런 원리야말로 20세기의 세계사를 얼룩지게 한 제국주의와 독재의 원인이라는 것이 아도르노와 호르크하이머의 생각이었다.<span class="para-note">← (나) ㉠ 타자성(이성으로 통제 못 하는 자연적 욕구) → 자기 억압으로 자율성 → 자연 지배는 자기 지배를 동반 → 타인·사회 지배(제국주의·독재)</span></p>
+<p>아도르노와 호르크하이머는 애초에 베이컨이 ⓔ <span class="underline-phrase">내놓았던</span> 계몽의 표어, 즉 ‘아는 것이 힘이다’라는 명제 속에 이미 계몽적 이성이 자연 지배를 목표로 하고 있음이 드러나 있다고 지적하였다. 따라서 계몽적 관점에서는 자연을 지배하는 데 가장 효율적인 방법들이 진리에 이르는 길로 인정받게 되었으며, 그러한 방법들은 인간에 대한 전면적인 관리와 통제의 방법들로 연결되었다고 진단하였다. 그들에 따르면, 인간이 자연에 맞서 싸우는 과정에서 타자성을 지닌 자연을 지배하기 위해 확립한 방법들이 인간 사회를 관리하고 통제하는 방법이 되었다. 그리고 자연을 통제하는 데 유용하고 효율적인 기준들이 계몽주의 이후의 현대 산업 사회에서는 인간 조직의 기본 원리로 자리 잡게 되었다.<span class="para-note">← ‘아는 것이 힘이다’ → 자연 지배의 효율적 방법이 진리 → 인간 관리·통제 방법으로, 현대 산업 사회 조직 원리</span></p>
+<p>이처럼 인간의 행동을 일정한 목적에 맞게 조직하고 통제하는 원리는 규율 권력에 관한 푸코의 논의를 통해서도 설명할 수 있다. 푸코에 따르면, 자연에 대한 지배로부터 인간에 대한 지배로 이어진 근대의 권력은 조직 구성원의 신체와 행동을 세밀하게 규제하고 감시함으로써 사람들이 정해진 방식으로 행동하도록 만드는 방식으로 작동한다.<span class="para-note">← 푸코: 근대 권력은 신체와 행동을 세밀하게 규제·감시해 정해진 방식으로 행동하게 함</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 인문 · <strong>난도</strong> 상 · <strong>목표 시간</strong> 10분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> (가) 계몽(인식적·실천적 진보) → 베이컨의 낙관 → 세계 대전 후 재사유, 『계몽의 변증법』 → 계몽의 이념 자체에 야만성 내재 → 고고학적 탐구(영웅담) → 하이데거: 자연을 자원으로 보는 기술적 사고 / (나) 자아 내부의 타자성 → 자연 지배 = 자기 지배 → 타인·사회 지배(제국주의·독재) → 자연 지배 방법이 인간 관리·통제 원리로 → 푸코의 규율 권력</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>지배의 확장 순서</b>: 자연 지배 → 자기(자아의 타자성) 지배 → 타인·사회 지배. (가)와 (나)가 같은 흐름을 다른 각도로 설명한다.</li><li><b>비판은 했지만 대안은 없다</b>: 아도르노·호르크하이머는 계몽에 야만성이 내재한다고 비판할 뿐, 신화로의 회귀나 극복 방안을 제시하지 않는다.</li><li><b>7번 제시된 관점</b>: 추상화는 질적 차이를 지워 동질적으로 인식 → 인간에게도 동일하게 → 인간 내면의 타자성도 자연처럼 억압·통제 대상.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>(가) 계몽 = 인식적 진보 + 실천적 진보 → 베이컨의 낙관 → 세계 대전 후 재사유, 아도르노·호르크하이머: 왜 새로운 야만인가</li><li>계몽: 자연을 제압하고 인간을 주인으로 → 이분법적 사고의 계몽 이념 자체에 야만성 → 인간마저 지배 대상으로</li><li>고고학적 탐구: 「오디세이아」 — 자연(타자)에 대한 근원적 두려움을 극복하려 지배하는 것이 문명화</li><li>하이데거: 기술적 사고는 자연을 이용·확보할 자원으로 봄</li><li>(나) ㉠ 타자성(이성으로 통제 못 하는 자연적 욕구) → 자기 억압으로 자율성 → 자연 지배는 자기 지배를 동반 → 타인·사회 지배(제국주의·독재)</li><li>‘아는 것이 힘이다’ → 자연 지배의 효율적 방법이 진리 → 인간 관리·통제 방법으로, 현대 산업 사회 조직 원리</li><li>푸코: 근대 권력은 신체와 행동을 세밀하게 규제·감시해 정해진 방식으로 행동하게 함</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>6번 ⑤</b>: (나)는 부정적 현실의 원인을 설명할 뿐, 극복할 대안적 관점을 모색하지 않는다.</li><li><b>7번 ④</b>: ‘고고학적 탐구’는 영웅담 분석 — 역사에 대한 실증적 검토가 아니다.</li><li><b>10번 ④</b>: 욕구 억제는 자기 억압 → 제국주의·독재로 이어지는 지배의 원리. 야만의 극복이 아니다.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 10분 · 난도 상 · 시간이 새는 자리: (나) 1문단의 ‘자연 지배 → 자기 지배 → 타인 지배’를 정리하지 않으면 6번 ①과 8번 ④·⑤에서 오래 머문다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : (가) 계몽(인식적·실천적 진보) → 베이컨의 낙관 → 세계 대전 후 재사유, 『계몽의 변증법』 → 계몽의 이념 자체에 야만성 내재 → 고고학적 탐구(영웅담) → 하이데거: 자연을 자원으로 보는 기술적 사고 / (나) 자아 내부의 타자성 → 자연 지배 = 자기 지배 → 타인·사회 지배(제국주의·독재) → 자연 지배 방법이 인간 관리·통제 원리로 → 푸코의 규율 권력</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [6~11]</h2>
+<div class="question-full"><div class="q-num">6</div><span class="q-type">[유형] 내용 전개 방식 파악 · (가)·(나) · 예상 오답률(분석 추정) 25%</span>
+<div class="question-stem">(가), (나)에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① (가)는 특정 철학자의 주장이 불러온 사상적 논쟁의 과정을 살피고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – (가)는 반론·재반론 같은 사상적 논쟁의 과정을 살피지 않는다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② (가)는 특정 개념을 기초로 전개된 사상적 흐름에 대한 비판적 관점을 제시하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – (가)는 계몽 개념을 바탕으로 발전한 근대 사상에 대한 아도르노·호르크하이머의 비판적 관점을 제시한다.</div></div>
+<div class="choice-item"><div class="choice-text">③ (가)는 특정 문학 작품에 담긴 이야기의 배경이 되는 실제 역사적 사건을 소개하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 「오디세이아」는 문학 작품일 뿐, 그 이야기의 배경이 되는 실제 역사적 사건을 소개하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">④ (나)는 과거에 활동한 특정 철학자의 사상을 재해석하는 데 필요한 철학계의 태도를 제안하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 베이컨 사상의 재해석을 소개할 뿐 철학계가 취해야 할 태도를 제안하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (나)는 부정적 현실 상황을 유발한 특정 이념적 원리를 극복할 수 있는 대안적 관점을 모색하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 부정적 현실의 원인을 설명할 뿐, 극복할 대안적 관점을 제시하지 않는다.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 내용 전개 방식 파악</div></div>
+<div class="question-full"><div class="q-num">7</div><span class="q-type">[유형] 세부 내용 확인 · (가) · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">(가)를 통해 알 수 있는 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 베이컨은 이성에 근거한 지식에 대한 신뢰를 바탕으로 계몽에 대한 낙관적 입장을 가졌다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 베이컨은 이성에 바탕을 둔 지식으로 중세적 질곡에서 해방될 수 있다고 믿었다.</div></div>
+<div class="choice-item"><div class="choice-text">② 세계 대전은 근대 사상이 신봉해 온 계몽에 대한 믿음을 의심하게 하는 요소로 작용하기도 했다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 세계 대전 이후 비극이 계속되자 계몽에 대한 믿음의 문제점을 다시 사유하게 되었다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 계몽적 사고방식은 자연과 인간에 대한 이분법적 사고를 바탕으로 하고 있다고 평가되기도 한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 계몽의 이념이 인간과 자연에 대한 이분법적 사고를 바탕으로 한다고 보았다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 아도르노와 호르크하이머는 역사에 대한 실증적 검토를 통해 계몽에 대한 자신들의 주장을 뒷받침했다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 고고학적 탐구는 고전 영웅담을 분석한 것 — 역사에 대한 실증적 검토로 볼 근거 없음.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 근대 사상에는 인류가 이성을 통해 인식적 차원과 실천적 차원에서의 진보를 함께 이룰 수 있다는 믿음이 존재한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 계몽은 인식적·실천적 차원의 진보를 모두 아우르는 개념.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 세부 내용 확인</div></div>
+<div class="question-full"><div class="q-num">8</div><span class="q-type">[유형] 핵심 개념의 이해 · 계몽에 대한 견해 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem"><span class="boxed">계몽</span>에 대한 아도르노와 호르크하이머의 견해로 가장 적절한 것은?</div>
+
+<div class="choice-item correct"><div class="choice-text">① 계몽을 통해 자연을 지배하려는 인간의 의도는 결국 인간 자신을 억압하게 된다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 자연 지배의 관점은 인간마저 지배 대상으로 전락시킨다 — 결국 인간 자신을 억압.</div></div>
+<div class="choice-item"><div class="choice-text">② 계몽이 가져올 위험성을 방지하기 위해 인류는 신화의 세계로 회귀해야 할 필요가 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 계몽 이념에 야만성이 내재한다고 비판했을 뿐, 신화로 회귀해야 한다고 주장하지 않았다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 계몽을 통해 인간은 자연을 지배하게 되었지만 사회를 통제할 수 있는 기준을 상실하게 되었다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 기준을 상실한 것이 아니라 자연을 통제하는 기준이 인간 사회에 적용되었다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 계몽은 인간으로 하여금 자연을 두려운 타자로 인식하게 하여 자연적 욕구의 통제를 따르도록 했다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 자연에 대한 두려움은 계몽 이전부터 근원적 — 계몽이 두려움을 갖게 한 것이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 계몽은 인간이 중세적 질곡에서 벗어나 근대적 문명을 이루기 위해 비판의 대상으로 삼은 이념이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 계몽을 비판한 이들은 아도르노·호르크하이머이며, 근대 문명을 이루기 위해서가 아니었다.</div></div>
+<div class="correct-badge">📍 ①번이 정답. [유형] 핵심 개념의 이해</div></div>
+<div class="question-full"><div class="q-num">9</div><span class="q-type">[유형] 핵심 개념의 이해 · ㉠ 타자성 · 예상 오답률(분석 추정) 50%</span>
+<div class="question-stem">(나)에 제시된 학자들의 견해와 다음의 관점을 바탕으로 ㉠에 대해 추론한 내용으로 가장 적절한 것은?</div>
+<div class="view-box">
+<p>인간의 이성은 낱낱의 대상에 내재된 동질성을 인식하는 추상화의 과정을 통해 그 대상들에 대한 추상적 개념을 도출한다. 이런 추상화 과정에서 대상의 서로 다른 질적 요소들은 제거되고, 개념이 곧 실체로 간주된다. 계몽을 수행하는 이성은 이런 추상화의 과정을 통해 자연 세계의 대상들을 동질적 대상으로 인식하는데, 이러한 과정은 인간에게도 동일하게 적용된다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 계몽주의는 자연과 인간의 차별성을 근거로 자연과 인간 내면이 모두 타자성을 지닌다는 점을 부인하고자 한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 자연과 자아 모두에 타자성이 있다 — 계몽주의가 이를 부인하려 한다는 근거 없음.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 산업 사회는 인간의 내면에 존재하는 타자성을 자연에 내재된 타자성과 마찬가지로 억압해야 할 대상으로 인식한다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 산업 사회는 자연 통제 기준을 인간 조직에 적용 → 인간 내면의 타자성도 자연처럼 억압 대상.</div></div>
+<div class="choice-item"><div class="choice-text">③ 이성은 자연을 동질적 대상으로 인식하는 반면 인간을 개별적 대상으로 인식함으로써 자연과 인간의 타자성을 구별한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 추상화는 인간에게도 동일하게 적용 — 인간을 개별적으로 인식하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 근대 사상은 인간과 자연을 동일시함으로써 인간과 자연에 내재된 타자성이 동등하게 세계를 지배하는 주체라고 인식한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 양자 모두 동질적으로 파악되는 대상 — 타자성이 세계를 지배하는 주체로 인정되지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 현대 사회는 근대 사회가 문명화를 위해 자연의 타자성을 억압한 것과 달리 효율적인 인간 조직 관리를 위해 인간의 타자성을 존중한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 현대 사회는 인간도 일정 기준으로 조직·통제 — 인간의 타자성을 존중한다고 볼 근거 없음.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 핵심 개념의 이해</div></div>
+<div class="question-full"><div class="q-num">10</div><span class="q-type">[유형] 내용의 이해와 사례 적용 · &lt;보기&gt; 「오디세이아」 · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">(가)와 (나)를 바탕으로 &lt;보기&gt;를 이해한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>「오디세이아」의 주인공 오디세우스는 키클롭스나 세이렌과 같은 신화적 괴물들을 정복해 간다. 키클롭스에게 붙잡힌 오디세우스는 올리브나무 줄기를 잘라 불에 달군 뒤 키클롭스의 눈을 찔러 키클롭스의 동굴에서 탈출한다. 한편 자신의 일행에게 닥칠 위험을 미리 알았던 오디세우스는 바다의 요정 세이렌의 노래에 도취되어 물속으로 뛰어드는 것을 막기 위해 부하들에게는 밀랍으로 귀를 막으라고 명령하고 자신의 몸은 기둥에 묶은 채 세이렌이 노래하고 있는 바다를 통과한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① (가)의 아도르노와 호르크하이머에 따르면, 오디세우스가 신화적 괴물들을 정복해 가는 것은 인간이 근원적으로 두려움을 갖고 있는 자연을 지배해 나가는 것으로 이해할 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 신화적 괴물 = 자연을 표상, 정복 = 근원적 두려움의 극복을 위한 자연 지배.</div></div>
+<div class="choice-item"><div class="choice-text">② (가)의 하이데거에 따르면, 오디세우스가 올리브나무 줄기를 이용해 동굴에서 탈출하는 것은 세계에 존재하는 것들을 자신의 목적에 따라 이용 가능한 대상으로 파악하는 인간의 기술적 사고가 반영된 것으로 이해할 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 올리브나무 줄기를 탈출 목적에 맞게 이용 = 기술적 사고.</div></div>
+<div class="choice-item"><div class="choice-text">③ (나)의 푸코에 따르면, 오디세우스가 부하들에게 밀랍으로 귀를 막으라고 명령하는 것은 자연에서부터 인간에 대한 지배로 이어진 근대의 권력이 구성원의 신체와 행동을 규제하는 것으로 이해할 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 부하들의 귀를 막게 함 = 구성원의 신체와 행동을 규제하는 권력의 작동 방식.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ (나)의 아도르노와 호르크하이머에 따르면, 오디세우스가 바다에 뛰어들려는 내면의 욕구를 억제하는 데 성공하는 것은 인간이 현대 제국주의와 독재의 야만을 극복할 수 있음을 드러내는 것으로 이해할 수 있겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 욕구 억제는 자기 억압 → 제국주의·독재로 이어지는 원리를 보여 줄 뿐, 야만의 극복이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (나)의 아도르노와 호르크하이머에 따르면, 오디세우스가 자신의 생각에 따라 자신의 몸을 기둥에 묶는 것은 인간의 이성이 목적 달성을 위해 자기 자신을 억압하는 도구가 될 수 있음을 드러내는 것으로 이해할 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 스스로 몸을 기둥에 묶음 = 이성이 목적 달성을 위해 자신을 억압하는 도구가 됨.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 내용의 이해와 사례 적용</div></div>
+<div class="question-full"><div class="q-num">11</div><span class="q-type">[유형] 어휘의 문맥적 의미 파악 · ⓐ~ⓔ · 예상 오답률(분석 추정) 15%</span>
+<div class="question-stem">문맥상 ⓐ~ⓔ와 바꿔 쓰기에 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ⓐ : 포괄(包括)하는</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 아우르다 ≒ 포괄하다(일정한 범위 안에 모두 끌어 넣다).</div></div>
+<div class="choice-item"><div class="choice-text">② ⓑ : 규명(糾明)하는</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 밝히다 ≒ 규명하다(자세히 따져서 바로 밝히다).</div></div>
+<div class="choice-item correct"><div class="choice-text">③ ⓒ : 납득(納得)하게</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 얻게(자율성을 가지게) ≠ 납득하게(남의 말·행동을 이해하다) — ‘획득하게’가 적절.</div></div>
+<div class="choice-item"><div class="choice-text">④ ⓓ : 성취(成就)하기</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 이루다 ≒ 성취하다(목적한 바를 이루다).</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓔ : 제시(提示)했던</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 내놓다 ≒ 제시하다(의사를 말이나 글로 나타내어 보이다).</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 어휘의 문맥적 의미 파악</div></div>
+</div></div></body></html>

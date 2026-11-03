@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 5회 독서1 1~3 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 5회 · 독서1 1~3 (독서론)</h1><p>심적 표상과 활성화·통합 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">심적 표상과 활성화·통합</p>
+<p>인지 심리학에서는 독자가 텍스트를 읽고 그 내용을 머릿속에 재구성하는 심리적 실체를 심적 표상이라고 한다. 심적 표상은 문자적 표상, 의미적 표상, 상황적 표상의 세 층위로 구분된다.<span class="para-note">← 심적 표상 = 텍스트 내용을 머릿속에 재구성한 실체 → 문자적·의미적·상황적 세 층위</span></p>
+<p>문자적 표상은 텍스트의 어휘나 문장 구조 등 언어적 형태 자체를 인식하는 기초적 단계이다. 이를 바탕으로 독자는 핵심 정보를 추출하고 논리적으로 연결해 의미적 표상을 형성한다. 예를 들어 ‘영수가 빵을 샀다. 그는 그것을 먹었다.’에서 ‘그’와 ‘그것’이 각각 영수와 빵임을 파악해 두 문장을 연결하는 과정이 이에 해당한다. 의미적 표상은 텍스트가 전달하는 핵심 명제의 집합으로, 표현 형식이 바뀌어도 그 의미는 보존된다. 가령 ‘그가 밥을 먹었다.’와 ‘밥이 그에게 먹혔다.’는 문장 구조가 상이하지만, 독자가 두 문장을 통해 동일한 의미 관계를 떠올리는 것은 이 때문이다. 의미적 표상은 문자적 표상보다 심화된 이해를 가능하게 하나, 아직 독자의 배경지식과는 긴밀히 통합되지 않은 상태이다. 상황적 표상은 의미적 표상이 안정적으로 형성된 뒤 구축될 수 있는 것으로, 텍스트 정보에 독자의 배경지식을 통합하여 텍스트 너머의 상황까지 정교하게 구축한 상태이다. 예컨대 ‘못을 박기 위해 망치를 들었다.’에서 텍스트에 명시되지 않은 못의 위치나 망치의 무게 등을 자신의 경험적 지식을 동원해 구체적 상황으로 표상하는 것이 이에 해당한다.<span class="para-note">← 문자적(언어 형태 인식) → 의미적(핵심 명제의 집합, 형식이 바뀌어도 의미 보존) → 상황적(배경지식 통합, 텍스트 너머의 상황)</span></p>
+<p>이러한 표상은 ‘활성화’와 ‘통합’이라는 두 기제의 상호 작용으로 형성된다. 활성화는 글을 읽는 즉시 텍스트 정보와 관련된 개념들이 문맥적 적절성과 무관하게 일시적으로 떠오르는 현상이다. 가령 텍스트에서 다의어를 접할 때 문맥에 부합하지 않는 의미까지 순간적으로 떠오르는 식이다.<span class="para-note">← 두 기제: 활성화 — 문맥과 무관하게 관련 개념이 일시적으로 떠오름(다의어의 여러 의미)</span></p>
+<div class="bracket-span"><span class="bracket-badge">[A]</span>
+<p>독해 과정이 진행되면서 독자는 인지적 자원의 한계로 인해 문맥에 부합하는 정보만을 선별하고 상충하거나 부적합한 정보는 억제하는 통합 과정을 거친다. 이 과정이 원활해야만 일관성 있는 의미 구조가 확립된다. 인지 심리학에서는 독해 부진의 원인을 어휘력이나 배경지식의 결핍에만 국한하지 않는다. 배경지식이 충분하더라도 활성화된 정보들 사이에서 적합한 것을 선택해 통합하는 인지적 제어 능력이 부족하면, 글의 내용을 상황적 표상으로 발전시키지 못한 채 얕은 수준의 이해에 머물게 되기 때문이다.<span class="para-note">← [A] 통합 — 문맥에 맞는 정보만 선별, 부적합한 정보는 억제 → 원활해야 일관된 의미 구조 / 통합 능력 부족 → 얕은 이해</span></p>
+</div>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 독서론 · <strong>난도</strong> 중 · <strong>목표 시간</strong> 5분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 심적 표상의 세 층위(문자적 → 의미적 → 상황적) → 표상을 형성하는 두 기제: 활성화(문맥과 무관하게 떠오름) · 통합(문맥에 맞는 정보 선별, 부적합한 정보 억제) → 독해 부진의 원인: 배경지식이 아니라 통합(인지적 제어) 능력의 부족</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>층위의 순서</b>: 문자적 표상이 의미적 표상의 바탕, 의미적 표상이 안정된 뒤 상황적 표상 — 앞 단계가 필수 선행 단계.</li><li><b>활성화 vs 통합</b>: 활성화 = 떠오름(문맥 무관), 통합 = 고름(문맥에 맞는 것 선택 + 나머지 억제).</li><li><b><보기> 대응</b>: 학생 A = 문자적 ○, 의미적·상황적 ✕ / 학생 B = 활성화는 지나치게 일어나고 통합이 부족.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>심적 표상 = 텍스트 내용을 머릿속에 재구성한 실체 → 문자적·의미적·상황적 세 층위</li><li>문자적(언어 형태 인식) → 의미적(핵심 명제의 집합, 형식이 바뀌어도 의미 보존) → 상황적(배경지식 통합, 텍스트 너머의 상황)</li><li>두 기제: 활성화 — 문맥과 무관하게 관련 개념이 일시적으로 떠오름(다의어의 여러 의미)</li><li>[A] 통합 — 문맥에 맞는 정보만 선별, 부적합한 정보는 억제 → 원활해야 일관된 의미 구조 / 통합 능력 부족 → 얕은 이해</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>1번 ③</b>: 의미적 표상은 문자적 표상을 바탕으로 형성 — 문자적 표상 없이 형성될 수 없다.</li><li><b>2번 ①</b>: 지문은 독해 부진의 원인을 어휘력·배경지식에만 국한하지 않는다고 했을 뿐, 영향이 없다고 하지 않았다.</li><li><b>3번 ③</b>: 문맥과 무관한 상상은 활성화가 일어난 결과 — 문제는 억제하는 통합의 실패.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 5분 · 난도 중 · 시간이 새는 자리: 3번 &lt;보기&gt;의 학생 B를 ‘활성화 실패’로 읽으면 ③을 정답으로 고르지 못하고 ④와 비교하느라 시간이 샌다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 심적 표상의 세 층위(문자적 → 의미적 → 상황적) → 표상을 형성하는 두 기제: 활성화(문맥과 무관하게 떠오름) · 통합(문맥에 맞는 정보 선별, 부적합한 정보 억제) → 독해 부진의 원인: 배경지식이 아니라 통합(인지적 제어) 능력의 부족</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [1~3]</h2>
+<div class="question-full"><div class="q-num">1</div><span class="q-type">[유형] 세부 내용 파악 · 심적 표상 · 예상 오답률(분석 추정) 20%</span>
+<div class="question-stem">윗글을 통해 알 수 있는 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 의미적 표상은 표현 형식이 바뀌어도 그 의미가 보존된다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 의미적 표상은 핵심 명제의 집합으로 표현 형식이 바뀌어도 의미가 보존된다.</div></div>
+<div class="choice-item"><div class="choice-text">② 심적 표상은 활성화 기제와 통합 기제의 상호 작용으로 형성된다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 표상은 활성화와 통합의 상호 작용으로 형성된다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 의미적 표상은 문자적 표상이 구축되지 않은 상태에서도 형성될 수 있다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 의미적 표상은 문자적 표상을 바탕으로 형성 — 문자적 표상은 필수적인 선행 단계.</div></div>
+<div class="choice-item"><div class="choice-text">④ 문자적 표상은 텍스트에 쓰인 단어나 문장 구조 등의 언어적 형태에 대한 인식이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 문자적 표상은 어휘·문장 구조 등 언어적 형태 자체를 인식하는 단계.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 활성화 단계에서 떠오른 정보가 모두 상황적 표상을 형성하는 데 기여하는 것은 아니다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 통합 과정에서 부적합한 정보는 억제되므로 활성화된 정보가 모두 기여하지는 않는다.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 세부 내용 파악</div></div>
+<div class="question-full"><div class="q-num">2</div><span class="q-type">[유형] 인지 기제 이해 · [A] 활성화와 통합 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">[A]를 바탕으로 추론한 내용으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 독자의 어휘력이나 배경지식은 글의 내용을 적절하게 이해하는 과정에 영향을 미치지 못한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 원인을 어휘력·배경지식에만 국한하지 않는다고 했을 뿐 — 영향을 미치지 못한다는 내용은 없다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 독자가 글을 읽으며 다의어의 여러 의미 중 문맥에 맞는 뜻을 결정하는 것은 통합 과정의 일환이다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 다의어의 여러 의미가 떠오르는 것은 활성화, 그중 문맥에 맞는 뜻을 결정하는 것은 통합.</div></div>
+<div class="choice-item"><div class="choice-text">③ 활성화 단계에서 떠오르는 정보의 양이 적을수록 통합 과정에서 처리해야 할 인지적 부담이 증가한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 떠오르는 정보의 양과 인지적 부담의 관계는 지문에서 확인할 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 통합이라는 기제는 텍스트와 관련된 정보를 억제하지 않고 모든 정보를 활성화 상태로 유지하는 것을 목표로 한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 통합은 부적합한 정보를 억제한다 — 모든 정보를 활성화 상태로 유지하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 독자가 텍스트의 정보를 배경지식과 통합하지 못하고 문자적 의미의 이해에 머무는 것은 통합 과정이 고도화된 결과이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 얕은 이해에 머무는 것은 통합 능력이 부족한 결과 — 고도화의 결과가 아니다.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 인지 기제 이해</div></div>
+<div class="question-full"><div class="q-num">3</div><span class="q-type">[유형] &lt;보기&gt; 적용 · 학생 A·B의 독해 특성 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">윗글을 바탕으로 &lt;보기&gt;의 학생의 독해 특성을 분석한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>학생 A는 과학 지문을 읽을 때 전문 용어의 사전적 정의는 정확히 기억하지만, 문장들 사이의 인과 관계를 파악하거나 글의 내용을 이미 알고 있는 과학적 지식과 연결하여 파악하는 데는 어려움을 느낀다.</p>
+<p>한편, 학생 B는 소설을 읽을 때 특정 단어를 보면 단어와는 연관되지만 문맥과는 무관한 상상을 하면서 글의 줄거리를 놓치는 경우가 많다. 또한 문맥상 중요하지 않은 세부 정보에 주의를 빼앗겨 중요한 사건의 흐름을 파악하지 못한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 학생 A가 문장들 간의 관계를 파악하지 못하는 것은 의미적 표상이 적절히 형성되지 못했기 때문이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 문장 간 인과 관계 파악 = 논리적 연결 → 의미적 표상의 영역.</div></div>
+<div class="choice-item"><div class="choice-text">② 학생 A는 문자적 표상을 형성하는 능력에 비해 상황적 표상을 구축하는 능력이 부족한 것으로 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 사전적 정의(문자적)는 기억하지만 기존 지식과 연결(상황적)하지 못한다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 학생 B가 문맥과 무관한 상상을 하는 것은 텍스트 정보로부터 연상되는 개념들이 활성화되지 않았기 때문이겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 문맥과 무관한 상상은 관련 개념이 활성화되었기 때문 — 활성화가 일어나지 않은 것이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 학생 B는 텍스트와 관련된 정보들 속에서 문맥에 맞는 정보를 선별하는 통합 능력이 부족한 것으로 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 문맥에 맞는 정보를 선별하는 통합(인지적 제어) 능력이 부족하다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 인지 심리학적 관점에 따르면 학생 A와 학생 B는 모두 상황적 표상을 적절히 구성하지 못하고 있다고 볼 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – A는 배경지식과의 통합 실패, B는 의미 구조 형성 실패 — 둘 다 상황적 표상 구축에 어려움.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] &lt;보기&gt; 적용</div></div>
+</div></div></body></html>

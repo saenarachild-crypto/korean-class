@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 6회 문학1 12~17 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📜 마침내 미니모의고사 수업용 6회 · 문학1 12~17 (갈래 복합)</h1><p>이별, 「장육당육가」 / 홍계영, 「희설」 / 윤동주, 「별똥 떨어진 데」 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">이별, 「장육당육가」 / 홍계영, 「희설」 / 윤동주, 「별똥 떨어진 데」</p>
+<span class="sub-label">(가)</span>
+<p>내 이미 백구 잊고 백구도 나를 잊네<br>둘이 서로 잊었으니 누군지 모르리라<br>언제나 해옹을 만나 이 둘을 가려낼꼬　<span style="float:right">〈제1수〉</span><span class="para-note">← 〈제1수〉 백구와 서로 잊음(물아일체) → 해옹이 와도 가려내지 못하리라</span></p>
+<div class="bracket-span"><span class="bracket-badge">[A]</span>
+<p>붉은 잎 산에 가득 빈 강에 쓸쓸할 때<br>㉠ <span class="underline-phrase">가랑비</span> 낚시터에 낚싯대 제 맛이라<br>세상에 득 찾는 무리 어찌 알기 바라리　<span style="float:right">〈제2수〉</span><span class="para-note">← [A] 〈제2수〉 붉은 잎·빈 강 → ㉠ 가랑비 낚시터의 흥취, 득 찾는 무리는 모름</span></p>
+</div>
+<p>내 귀가 시끄러우면 네 바가지 버리려믄<br>네 귀를 씻은 샘에 내 소는 못 먹이리<br>공명(功名)은 해진 신이니 벗어나서 즐겨 보세　<span style="float:right">〈제3수〉</span><span class="para-note">← 〈제3수〉 허유의 바가지·소부의 소 → 공명은 해진 신, 벗어나 즐김</span></p>
+<p>옥계산 흐르는 물 못 이뤄 달 가두고<br>맑으면 갓을 씻고 흐리면 발을 씻네<br>어떠한 세상 사람도 청탁(淸濁)을 모르래라　<span style="float:right">〈제4수〉</span><span class="para-note">← 〈제4수〉 맑으면 갓, 흐리면 발 → 세상 사람은 청탁을 모름(자부심)</span></p>
+<p style="text-align:right;font-size:13.5px">- 이별, 「장육당육가」 -</p>
+<span class="sub-label">(나)</span>
+<p>빽빽하게 엉킨 구름 사면으로 피어나니<br>표풍(飄風)이 일어나며 천지(天地)가 어둑하다<span class="para-note">← (나) 구름·표풍·어둑한 천지 — 눈 내리기 직전</span></p>
+<div class="bracket-span"><span class="bracket-badge">[B]</span>
+<p>분분한 어떤 것이 볼수록 드문드문 나리니<br>주렴에 흩어 들어 비단 장막에 침노터니<br>순식간에 돗자리를 펼친 듯 온 세상에 가득하네<span class="para-note">← [B] 드문드문 → 주렴·장막 → 순식간에 온 세상(생활 소재, 시간 경과)</span></p>
+</div>
+<div class="bracket-span"><span class="bracket-badge">[C]</span>
+<p>곤륜산의 옥(玉)을 부어 옥가루가 가늘게 날리는 듯<br>광한전* 용(龍)이 싸워 비늘이 밝게 빛나는 듯<br>부용성 넘은 편에 백옥수(白玉樹)*가 몇 그루던고<br>천년에 화개(花開)하여 만고(萬古)에 흰빛인데<br>선동(仙童)이 다사(多事)하여 가지를 흔드는구나<span class="para-note">← [C] 옥가루·용 비늘·백옥수 꽃잎 — 상상과 결부된 비유</span></p>
+</div>
+<p>점점이 바람을 따라 표표(飄飄)히 떨어지니<br>인간(人間)의 이화(梨花)와 같다고도 하련마는<br>육출(六出)*은 무슨 일인가 꽃조차 다르단 말인가<span class="para-note">← 이화와 같으나 육출(육각형)이라 다름 — 세밀한 관찰</span></p>
+<p style="text-align:center">(중략)</p>
+<p>㉡ <span class="underline-phrase">세찬 바람</span>이 칼 같아서 흑운(黑雲)을 베혀 내니<br>은하수 일대(一帶)가 비길 데 없이 찰랑거려<br>뉘라셔 받치길래 떨어질 줄 모르나니<br>중천에 밤이 들어 백옥 쟁반이 솟아 뜨니<br>천지는 개벽하되 섬광(蟾光)은 변함없다<br>상하가 빛나고 맑아 천지가 한 빛인데<br>설색(雪色) 월광(月光) 어느 것이 낫단 말인가<span class="para-note">← (중략 후) ㉡ 세찬 바람이 흑운을 걷음 → 은하수·달 → 설색과 월광이 한 빛</span></p>
+<div class="bracket-span"><span class="bracket-badge">[D]</span>
+<p>장안의 팔만가(八萬家)를 낮같이 밝혔으니<br>옥(玉)을 묶었는 듯 은(銀)을 부었는 듯<br>푸른 바다의 신기루던가 동국(東國)의 설궁인가<br>상서로운 빛이 밝게 빛나고 ㉢ <span class="underline-phrase">계영(桂影)</span>*이 뚜렷하니<br>어와 이런 세계 또 언제 보았던가<br>상계 신선의 거처가 이에서 더할쏘냐<span class="para-note">← [D] 장안 팔만가 → 신기루·설궁, ㉢ 계영 → 상계 신선의 거처보다 낫다(감탄)</span></p>
+</div>
+<p style="text-align:right;font-size:13.5px">- 홍계영, 「희설(喜雪)」 -</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 광한전 : 달 속에 있다는 가상의 궁전.</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 백옥수 : 하얀 옥으로 된 나무.</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 육출 : ‘눈’을 이르는 말. 눈의 결정이 육각형인 데서 유래함.</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 계영 : 달 속에 있다는 계수나무의 그림자.</p>
+<span class="sub-label">(다)</span>
+<p>밤이다.</p>
+<p>하늘은 푸르다 못해 농회색으로 캄캄하나 별들만은 또렷또렷 빛난다. 침침한 어둠뿐만 아니라 오삭오삭 춥다. 이 육중한 기류 가운데 자조하는 한 젊은이가 있다. 그를 나라고 불러 두자.<span class="para-note">← (다) 밤 — 캄캄하고 추운 기류 속 자조하는 젊은이</span></p>
+<p>나는 이 <b>어둠에서 배태(胚胎)되고</b> 이 어둠에서 <b>생장하</b>여서 아직도 이 어둠 속에 <b>그대로 생존</b>하나 보다. 이제 내가 갈 곳이 어딘지 몰라 허우적거리는 것이다. 하기는 나는 세기(世紀)의 초점인 듯 초췌하다. 얼핏 생각하기에는 내 바닥을 반듯이 받들어 주는 것도 없고 그렇다고 <b>내 머리를 갑박이 내려 누르는 아무것도 없는 듯하다</b>마는 내막은 그렇지도 않다. 나는 도무지 자유스럽지 못하다. 다만 나는 없는 듯 있는 ㉣ <span class="underline-phrase">하루살이</span>처럼 허공에 부유하는 한 점에 지나지 않는다. 이것이 하루살이처럼 경쾌하다면 마침 다행할 것인데 그렇지를 못하구나!<span class="para-note">← 어둠에서 배태·생장·생존, 자유롭지 못한 ㉣ 하루살이 같은 존재</span></p>
+<p>이 <b>점의 대칭 위치</b>에 <b>또 하나 다른 밝음의 초점</b>이 도사리고 있는 듯 생각된다. 덥석 움키었으면 잡힐 듯도 하다.<span class="para-note">← 점의 대칭 위치의 또 하나 다른 밝음의 초점(해방된 세계)</span></p>
+<p>만은 그것을 휘잡기에는 나 자신이 둔질(鈍質)*이라는 것보다 오히려 내 마음에 아무런 준비도 배포치 못한 것이 아니냐. 그리고 보니 행복이란 별스러운 손님을 불러들이기에도 또 다른 한 가닥 구실을 치르지 않으면 안 될까 보다.<span class="para-note">← 그것을 잡기엔 마음의 준비가 부족 — 행복에도 구실이 필요</span></p>
+<p>이 밤이 나에게 있어 어릴 적처럼 한낱 공포의 장막인 것은 벌써 흘러간 전설이요, 따라서 이 밤이 향락의 도가니라는 이야기도 나의 염두에선 아직 소화시키지 못할 돌덩이다. 오로지 밤은 나의 도전의 호적(好敵)이면 그만이다.<span class="para-note">← 밤은 공포도 향락도 아닌 도전의 호적</span></p>
+<p>이것이 생생한 관념 세계에만 머무른다면 애석한 일이다. <b>어둠 속</b>에 깜박깜박 졸며 다닥다닥 나란히 한 <b>초가들이 아름다운 시(詩)의 화사가 될 수 있다는 것</b>은 벌써 <b>지나간 제너레이션*의 이야기</b>요, 오늘에 있어서는 다만 말 못 하는 비극의 배경이다.<span class="para-note">← 초가가 시의 화사가 되는 것은 지나간 세대 이야기 — 오늘은 비극의 배경</span></p>
+<p>이제 닭이 홰를 치면서 맵짠 울음을 뽑아 밤을 쫓고 어둠을 짓내몰아 동켠으로 훤히 새벽이란 새로운 손님을 불러온다 하자. 하나 경망스럽게 그리 반가워할 것은 없다. 보아라, 가령 <b>새벽이 왔다 하더라도</b> 이 <b>마을</b>은 그대로 암담하고 <b>나</b>도 <b>그대로 암담하</b>고 하여서 너나 나나 이 ㉤ <span class="underline-phrase">가랑지길</span>*에서 주저주저 아니치 못할 존재들이 아니냐.<span class="para-note">← 새벽이 와도 마을도 나도 그대로 암담 — ㉤ 가랑지길에서 주저</span></p>
+<p style="text-align:right;font-size:13.5px">- 윤동주, 「별똥 떨어진 데」 -</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 둔질 : 둔한 성질이나 기질.</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 제너레이션 : 세대.</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 가랑지길 : 갈림길.</p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 갈래 복합 · <strong>난도</strong> 중상 · <strong>목표 시간</strong> 10분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> (가) 백구와 서로 잊은 물아일체 → 가랑비 낚시터의 흥취 → 허유·소부처럼 세속과 공명을 벗어남 → 청탁을 아는 자부심 / (나) 눈 내리기 직전 → 눈이 내려 세상을 덮음 → 옥가루·용 비늘·백옥수 꽃잎의 비유 → (중략) 구름 걷힌 달밤, 설색과 월광 → 신선 세계 같은 장안 / (다) 어둠 속 허공에 부유하는 나 → 또 하나 다른 밝음의 초점 → 밤은 도전의 호적 → 새벽이 와도 그대로 암담한 갈림길</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>세 작품의 공통 분모</b>: (나)·(다)는 모두 ‘밤’이라는 시간적 배경 — (나)는 달밤의 밝은 풍경, (다)는 어둡고 무거운 분위기.</li><li><b>(가)의 고사 읽기</b>: 해옹(욕심 → 갈매기가 안 내려옴), 허유(바가지), 소부(소), 굴원(청탁) — 모두 세속과 거리를 두는 삶의 근거.</li><li><b>(다)의 ‘밤’과 ‘새벽’</b>: 식민지 현실의 어둠, 새벽(정치적 해방)이 와도 내적 각성 없이는 암담하다.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>〈제1수〉 백구와 서로 잊음(물아일체) → 해옹이 와도 가려내지 못하리라</li><li>[A] 〈제2수〉 붉은 잎·빈 강 → ㉠ 가랑비 낚시터의 흥취, 득 찾는 무리는 모름</li><li>〈제3수〉 허유의 바가지·소부의 소 → 공명은 해진 신, 벗어나 즐김</li><li>〈제4수〉 맑으면 갓, 흐리면 발 → 세상 사람은 청탁을 모름(자부심)</li><li>(나) 구름·표풍·어둑한 천지 — 눈 내리기 직전</li><li>[B] 드문드문 → 주렴·장막 → 순식간에 온 세상(생활 소재, 시간 경과)</li><li>[C] 옥가루·용 비늘·백옥수 꽃잎 — 상상과 결부된 비유</li><li>이화와 같으나 육출(육각형)이라 다름 — 세밀한 관찰</li><li>(중략 후) ㉡ 세찬 바람이 흑운을 걷음 → 은하수·달 → 설색과 월광이 한 빛</li><li>[D] 장안 팔만가 → 신기루·설궁, ㉢ 계영 → 상계 신선의 거처보다 낫다(감탄)</li><li>(다) 밤 — 캄캄하고 추운 기류 속 자조하는 젊은이</li><li>어둠에서 배태·생장·생존, 자유롭지 못한 ㉣ 하루살이 같은 존재</li><li>점의 대칭 위치의 또 하나 다른 밝음의 초점(해방된 세계)</li><li>그것을 잡기엔 마음의 준비가 부족 — 행복에도 구실이 필요</li><li>밤은 공포도 향락도 아닌 도전의 호적</li><li>초가가 시의 화사가 되는 것은 지나간 세대 이야기 — 오늘은 비극의 배경</li><li>새벽이 와도 마을도 나도 그대로 암담 — ㉤ 가랑지길에서 주저</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>13번 ③</b>: 계영이 뚜렷하다 = 달이 밝다 — 지상과 상반되는 존재도, 안타까움도 아니다.</li><li><b>14번 ①</b>: 〈제1수〉 종장은 욕심 없는 물아일체가 그대로일 것이라는 뜻 — 성찰이 아니다.</li><li><b>17번 ②</b>: ‘아무것도 없는 듯하다마는 내막은 그렇지도 않다’ — 자유롭지 못함을 드러낸다.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 10분 · 난도 중상 · 시간이 새는 자리: (나)에서 ‘은하수’가 다시 내리는 눈인지 밤하늘인지 판단하는 데 시간이 샌다 — ‘흑운을 베혀 내니’ 뒤의 맑은 하늘이다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : (가) 백구와 서로 잊은 물아일체 → 가랑비 낚시터의 흥취 → 허유·소부처럼 세속과 공명을 벗어남 → 청탁을 아는 자부심 / (나) 눈 내리기 직전 → 눈이 내려 세상을 덮음 → 옥가루·용 비늘·백옥수 꽃잎의 비유 → (중략) 구름 걷힌 달밤, 설색과 월광 → 신선 세계 같은 장안 / (다) 어둠 속 허공에 부유하는 나 → 또 하나 다른 밝음의 초점 → 밤은 도전의 호적 → 새벽이 와도 그대로 암담한 갈림길</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [12~17]</h2>
+<div class="question-full"><div class="q-num">12</div><span class="q-type">[유형] 작품 간의 비교 감상 · (가)~(다) · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">(가)~(다)에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① (가)~(다)는 모두 인간의 삶과 공간의 의미를 연결 지어 주제 의식을 구체화하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – (나)에서 인간의 삶과 공간의 의미를 연결 지은 부분은 찾을 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">② (가)~(다)는 모두 대상에 주목하여 대상과 관련된 가치를 추구하는 자세를 나타내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – (다)는 밤(어둠)을 부정적인 것으로 볼 뿐, 그와 관련된 가치를 추구하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">③ (가)와 (나)는 사물의 속성에 주목하여 교훈적 의미를 이끌어 내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – (가)·(나) 모두 사물의 속성에서 교훈적 의미를 이끌어 내지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">④ (가)와 (다)는 특정한 행위를 중심으로 행위 주체와 대상의 관계를 드러내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – (가) 〈제2수〉의 낚시하는 행위는 있으나 대상과의 관계를 드러내지 않고, (다)는 구체적 행위가 없다.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ (나)와 (다)는 특정한 시간적 배경을 제시하여 작중 분위기를 조성하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – (나)는 중략 이후 ‘밤’의 밝은 달밤 풍경, (다)도 ‘밤’으로 암울하고 무거운 분위기를 조성한다.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 작품 간의 비교 감상</div></div>
+<div class="question-full"><div class="q-num">13</div><span class="q-type">[유형] 소재의 의미와 기능 · ㉠~㉤ · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">㉠~㉤에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 화자의 한가로운 정취를 방해하는 소재이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 가랑비는 한가로운 정취를 방해하지 않는다 — 오히려 낚시의 고즈넉한 분위기를 조성.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 시련을 감내하는 화자의 모습을 부각하기 위한 소재이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 세찬 바람은 먹구름을 걷어 내 밝은 달을 볼 수 있게 한다 — 시련이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉢은 지상의 사물과는 상반되는 특성을 지닌 존재에 대한 화자의 안타까움이 반영된 대상이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 계영이 뚜렷하다 = 달이 밝다 — 지상과 상반되는 존재가 아니며 안타까움도 없다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ㉣은 자신을 미미한 존재로 여기는 글쓴이의 내면을 암시하는 대상이다.</div><div class="choice-analysis">✅ <strong>정답</strong> – ‘없는 듯 있는’ ‘허공에 부유하는’ 하루살이 — 자신을 미미한 존재로 여기는 내면.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉤은 선택을 강요받는 상황에 대한 글쓴이의 반감을 나타내는 대상이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 가랑지길은 새벽이 와도 선택을 망설이는 태도를 드러낼 뿐, 선택 강요에 대한 반감이 아니다.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 소재의 의미와 기능</div></div>
+<div class="question-full"><div class="q-num">14</div><span class="q-type">[유형] 외적 준거에 따른 작품 감상 · 고사와 (가) · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">다음의 자료를 바탕으로 (가)를 감상한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box">
+<p>ⓐ : ‘해옹’은 갈매기와 친하게 지냈는데, 무심했던 ‘해옹’의 마음에 욕심이 생기자 더 이상 갈매기가 내려오지 않았다고 한다.</p>
+<p>ⓑ : 허유는 물을 떠 마실 그릇도 소유하지 않은 채 살았는데, 이를 본 어떤 사람이 준 바가지를 나무에 걸어 두고 쓰다가 바람에 바가지가 딸그락거리자 이마저도 버렸다고 한다.</p>
+<p>ⓒ : 요임금으로부터 왕위를 물려주겠다는 말을 들은 허유가 더러운 말을 들었다며 강물에 귀를 씻자, 소부는 그 더러워진 물을 자신의 소에게 먹일 수 없다며 소를 끌고 상류로 올라갔다고 한다.</p>
+<p>ⓓ : 굴원의 「어부사」에는 ‘창랑의 물이 맑으면 갓끈을 씻고, 흐리면 발을 씻는다.’라는 시구가 나오는데, 이는 세상의 청탁에 따라 처신을 달리하라는 것이다.</p>
+</div>
+<div class="choice-item correct"><div class="choice-text">① ⓐ와 결부해 이해할 때, 〈제1수〉 종장은 자신과 타자를 구분하려는 욕망을 버리지 못한 스스로에 대한 화자의 성찰을 담은 것이겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 〈제1수〉 종장은 욕심 없이 물아일체가 그대로일 것이라는 뜻 — 구분하려는 욕망에 대한 성찰이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">② ⓑ와 결부해 이해할 때, 〈제3수〉 초장은 소유와는 무관한 삶을 살고자 하는 화자의 의지를 담은 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 바가지마저 버린 허유 — 세속적인 그 어떤 것도 소유하지 않겠다는 의지.</div></div>
+<div class="choice-item"><div class="choice-text">③ ⓒ와 결부해 이해할 때, 〈제3수〉 중장은 세상을 등지고 고결한 삶을 살고자 하는 화자의 지향을 드러낸 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 귀 씻은 물을 소에게 먹이지 않는 소부 — 어떤 혼탁함도 허용하지 않는 고결한 삶.</div></div>
+<div class="choice-item"><div class="choice-text">④ ⓑ, ⓒ와 결부해 이해할 때, 〈제3수〉 종장은 세속적 욕망으로부터 자유로워지고자 하는 화자의 태도를 드러낸 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 공명은 해진 신 — 세속적인 것에서 벗어나 자유로워지려는 태도.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓓ와 결부해 이해할 때, 〈제4수〉는 세상에 있는 사람들과 달리 세상의 청탁을 구분할 줄 아는 자신에 대한 화자의 자부심을 드러낸 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 청탁을 모르는 세상 사람과 달리 자신은 청탁을 안다는 자부심.</div></div>
+<div class="correct-badge">📍 ①번이 정답. [유형] 외적 준거에 따른 작품 감상</div></div>
+<div class="question-full"><div class="q-num">15</div><span class="q-type">[유형] 내재적 감상 · (나) 「희설」 · 예상 오답률(분석 추정) 50%</span>
+<div class="question-stem">(나)에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ‘구름’이 생겨나고 ‘표풍’이 불며 ‘천지가 어둑’해지는 정경의 묘사를 통해, 눈 내리기 직전의 상황을 표현하고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 구름·표풍·어둑한 천지 → 뒤의 ‘분분한 어떤 것’으로 보아 눈 내리기 직전의 정경.</div></div>
+<div class="choice-item"><div class="choice-text">② 눈을 ‘선동’이 ‘백옥수’ 가지를 흔들어 떨어지는 꽃잎으로 표현한 데서, 눈 오는 풍경을 신비롭게 여기는 내면을 엿볼 수 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 선동이 백옥수 가지를 흔들어 떨어지는 꽃잎 — 눈 오는 풍경을 신비롭게 여김.</div></div>
+<div class="choice-item"><div class="choice-text">③ 눈과 ‘이화’가 떨어지는 모습은 유사하지만 그 생긴 모양은 다르다고 한 데서, 대상에 대한 세밀한 관찰력을 엿볼 수 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 떨어지는 모습은 이화와 같지만 육각형 결정은 꽃잎과 다르다 — 세밀한 관찰력.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 밤이 되어 다시 내리기 시작하는 눈을 ‘찰랑거’리는 ‘은하수’로 표현하여, 눈 내리는 밤하늘의 아름다움을 부각하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ① 위치 왜곡</span> – 은하수는 다시 내리는 눈이 아니라 먹구름이 걷혀 맑게 갠 밤하늘의 모습(떨어질 줄 모름).</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ‘설색’과 ‘월광’으로 ‘천지가 한 빛’이라는 표현을 통해, 눈 쌓인 달밤의 풍경을 그려 내고 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 설색(눈)과 월광(보름달)으로 천지가 한 빛 — 눈 쌓인 달밤의 풍경.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 내재적 감상</div></div>
+<div class="question-full"><div class="q-num">16</div><span class="q-type">[유형] 특정 부분의 표현상 특징 · [A]~[D] · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">[A]~[D]에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① [A]와 [B]에서는 화자의 이동에 따른 공간의 변화를 드러내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – [A]는 공간 변화를 함축한다 볼 여지가 있으나 [B]에서는 화자의 이동을 확인할 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">② [B]와 [C]에서는 생활과 밀접한 소재를 활용하여 시간의 경과를 드러내고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – [B]는 생활 소재로 시간 경과를 드러내지만 [C]에는 생활과 밀접한 소재가 없다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ [C]와 [D]에서는 화자의 상상과 결부된 비유적 표현을 사용하여 풍경에 대한 인상을 드러내고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – [C] 옥가루·용 비늘, [D] 옥·은·신기루·설궁 — 상상과 결부된 비유로 풍경의 인상을 드러냄.</div></div>
+<div class="choice-item"><div class="choice-text">④ [A]~[D]에서는 모두 설의적 표현을 활용하여 화자의 인식을 강조하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – [B]·[C]에는 설의적 표현이 없다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ [A]~[D]에서는 모두 대구적 표현을 사용하여 대상에 대한 감흥을 부각하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – [A]·[B]에는 대구적 표현이 없다.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 특정 부분의 표현상 특징</div></div>
+<div class="question-full"><div class="q-num">17</div><span class="q-type">[유형] &lt;보기&gt; 관점에 따른 작품 감상 · (다) 「별똥 떨어진 데」 · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">〈보기〉를 바탕으로 (다)를 감상한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>(다)의 글쓴이는 일제 강점기 식민지인으로서의 자기 정체성을, 제국과 식민지라는 당대의 세계적 질서 속에서 사유하고 있다. 이를 통해 글쓴이는 지배와 피지배라는 단순한 도식 위에서의 해방이 아니라, 현실을 직시한 상황에서 자신에 대한 철저한 반성과 성찰이 수행된 끝에야 얻을 수 있을 해방에 대한 인식을 드러내고 있다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 자신이 ‘어둠에서’ ‘배태되고’ ‘생장하’고 ‘그대로 생존’한다는 진술은, 식민지인으로 살아가는 자신의 삶에 대한 글쓴이의 암울한 감회를 드러내는 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 어둠에서 배태·생장·생존 — 식민지인으로 살아가는 삶에 대한 암울한 감회.</div></div>
+<div class="choice-item correct"><div class="choice-text">② ‘내 머리를 갑박이 내려 누르는 아무것도 없는 듯하다’는, 글쓴이가 식민 치하임에도 불구하고 당대의 상황과 무관하게 자유로운 사유를 이어 나가고 있음을 드러내는 것이겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – ‘~없는 듯하다마는 내막은 그렇지도 않다’ → 자유스럽지 못하다 — 식민지인으로서의 압박, 자유로운 사유가 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 자신이 놓인 ‘점의 대칭 위치’에 있는 ‘또 하나 다른 밝음의 초점’은, 제국주의 지배 질서에서 해방된 세계를 암시하는 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘또 하나 다른 밝음의 초점’ — 어둠과 대칭되는 해방된 세계의 암시.</div></div>
+<div class="choice-item"><div class="choice-text">④ ‘어둠 속’ ‘초가들이 아름다운 시의 화사가 될 수 있다는 것’이 ‘지나간 제너레이션의 이야기’라고 하는 것은, 과거로 회귀하려는 태도에서 벗어나 피식민적 현실 상황을 직시해야 한다는 글쓴이의 의식을 보여 주는 것이군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 초가가 시의 화사가 되는 것은 지나간 세대 이야기 — 과거 회귀에서 벗어나 현실을 직시.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ‘새벽이 왔다 하더라도’ ‘마을’도 ‘나’도 ‘그대로 암담하’다는 것은, 글쓴이가 바라는 세계가 도래하기 위해서는 정치적 독립과 내적 각성이 함께 이루어져야 함을 의미하는 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 새벽이 와도 마을도 나도 암담 — 정치적 독립과 내적 각성이 함께 필요.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] &lt;보기&gt; 관점에 따른 작품 감상</div></div>
+</div></div></body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 4회 독서2 5~10 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 4회 · 독서2 5~10 (예술(음악))</h1><p>주제 통합 — (가) 음렬음악과 총렬주의 / (나) 라이히의 미니멀리즘 음악 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">주제 통합 — (가) 음렬음악과 총렬주의 / (나) 라이히의 미니멀리즘 음악</p>
+<span class="sub-label">(가)</span>
+<p>듣는 것만으로 곡의 진행 원리를 쉽게 파악할 수 없는 음악이 본격적으로 등장한 것은 20세기에 이르러서다. 그전까지 서양 고전 음악의 주류였던 조성음악은 으뜸음을 중심으로 음의 위계를 형성하고 이를 통해 곡의 긴장과 해소라는 방향성을 만들었다. 청자는 대개 이러한 흐름을 친숙하게 받아들였으며 곡의 진행을 어느 정도 예상할 수 있었다.<span class="para-note">← (가) 조성음악: 으뜸음 중심 위계 → 긴장·해소의 방향성, 청자는 진행을 예상</span></p>
+<p>그러나 작곡가들은 점차 조성을 ⓐ <span class="underline-phrase">벗어난</span> 무조음악을 실험하기 시작했고, 1920년대에는 쇤베르크의 12음 기법이 등장하며 무조음악의 체계적인 작곡법이 ⓑ <span class="underline-phrase">마련되었다</span>. 이때 12음은 한 옥타브에 해당하는 12개의 음이며, 작곡가는 이 음들에 임의로 순서를 부여한다. 이렇게 만들어진 음렬은 한 곡에서 여러 번 등장할 수 있지만, 한 음렬이 제시되는 동안 한 번 쓰인 음은 모든 음이 제시되기 전까지 다시 쓰일 수 없었다. 쇤베르크는 어떤 음에도 중심이 ⓒ <span class="underline-phrase">쏠리지</span> 않도록 하는 이 기법으로 음의 위계를 해체했다. 이렇게 작곡된 음악을 음렬음악이라 한다.<span class="para-note">← 무조음악 → 쇤베르크 12음 기법: 음렬 안에서 한 번 쓴 음은 모든 음이 나오기 전 재사용 ✕ → 위계 해체(음렬음악)</span></p>
+<p>음렬음악은 많은 아방가르드 작곡가에게 수용되었는데, 그중 한 명인 ㉠ <span class="underline-phrase">불레즈</span>는 쇤베르크가 음렬을 도입하고도 여전히 고전적 음악 형식을 벗어나지 못했다고 비판하며, 음의 높낮이에 더해 다른 음악적 요소에도 열을 부여하는 총렬주의 음악을 전개했다. 가령, 두 대의 피아노를 위한 곡인 「구조 Ia」에서 그는 32분음표(<span style="display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:0.7em;line-height:1.05;margin:0 1px;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">1</span><span>8</span></span>박자)에서 점4분음표(<span style="display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:0.7em;line-height:1.05;margin:0 1px;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">12</span><span>8</span></span>박자)에 이르기까지 12개의 서로 다른 음 길이를 배열한 리듬열을 만들어 쇤베르크의 음렬처럼 활용했고, 소리의 크기, 연주법 등에도 열을 부여했다. 나아가 그는 각 열로부터 수학적 방법을 통해 여러 파생 열을 도출하여 조합하였는데, 그 조합의 수는 매우 많았으므로 고전적 음악 형식에 의존하지 않는 다양한 곡을 체계적으로 작곡할 수 있었다.<span class="para-note">← 불레즈(㉠): 쇤베르크는 고전 형식을 못 벗어났다 비판 → 총렬주의(음 길이·크기·연주법에도 열), 파생 열 조합</span></p>
+<p>그러나 총렬주의를 포함한 음렬음악은 엄밀한 조직 원리가 그 핵심이었음에도, 청자가 실제 소리에서 그 원리를 파악하는 것은 쉽지 않았다. 조성음악에서 느껴지는 조화는 인간의 청각적 선호 경향은 물론, 그 경향과 공명하며 오랜 시간 발전해 온 음악 양식에서 ⓓ <span class="underline-phrase">비롯된다</span>. 가령 딸림화음은 으뜸화음으로 진행하는 경향을 띠는데, 청자는 앞선 화음을 들을 때 친숙함을 느끼며 뒤이은 화음을 자연스럽게 기대함으로써 진행 원리를 어느 정도 파악할 수 있다. 반면 음렬음악은 이러한 진행을 체계적으로 억제했기에 청자는 이후의 진행을 예상하거나 친숙함을 느끼기 어렵다는 한계가 있었다.<span class="para-note">← 한계: 조화는 청각 선호 + 오랜 음악 양식에서 비롯 → 음렬음악은 진행을 억제해 예상·친숙함 ✕</span></p>
+<span class="sub-label">(나)</span>
+<p>미니멀리즘 음악은 전후 아방가르드 음악이 유행하던 1960년대에 등장했다. 전후 아방가르드 음악에는 음렬음악뿐만 아니라 작곡이나 연주 과정에 우연의 요소를 끌어들인 우연성 음악도 포함되어 있었는데, ㉡ <span class="underline-phrase">라이히</span>는 이러한 전후 아방가르드 음악을 비판하며 미니멀리즘 음악을 전개했다.<span class="para-note">← (나) 라이히(㉡): 음렬음악·우연성 음악 등 전후 아방가르드 비판</span></p>
+<p>라이히가 비판한 것은 작곡의 조직 원리나 작곡 과정이 소리에 드러나지 않는다는 점이다. 가령 불레즈의 음악은 여러 가지 음악적 요소에 열을 부여하여 엄격한 원리로 조직한 것이었지만, 청자는 실제 연주에서 그러한 조직 원리를 파악하기 어렵다. 한편 케이지는 음악에서 작곡가의 주관성을 배제하려는 자신의 음악관을 투영한 「변화의 음악」에서 동전을 세 개씩 던지고 그 결과에 따라 소리의 크기와 길이, 빠르기 같은 요소를 결정해 작곡함으로써 작곡 과정을 우연에 맡겼는데, 이 경우에도 완성된 소리에서 작곡의 조직 원리나 작곡 과정은 들리지 않았다.<span class="para-note">← 비판의 핵심: 조직 원리·작곡 과정이 소리에 드러나지 않음(불레즈, 케이지 「변화의 음악」)</span></p>
+<p>반면 라이히의 음악은 재료의 절제된 사용과 반복되는 소리의 배치를 특징으로 한다는 점에서 미니멀리즘 음악으로 불리는데, 이 특징은 작곡의 조직 원리와 작곡 과정을 실제 소리로 드러내려는 과정에서 형성된 것이다. 그는 이러한 음악을 ㉮ <span class="underline-phrase">점진적 과정으로서의 음악</span>으로 명명하며 ‘위상이동’이라는 독특한 기법을 창안했다. 그는 초기작 「비가 올 것이다」에서 “비가 올 것이다.”라고 외치는 거리 설교자의 외침을 녹음해 두 개의 테이프에서 반복 재생한다. 두 테이프에서 나오는 음성은 처음에는 완전히 일치하지만, 미묘한 속도 차이로 인해 점차 어긋나기 시작한다. 처음의 일치된 소리의 국면을 ‘유니슨’이라고 하며, 유니슨으로부터 소리가 점진적으로 어긋나는 과정을 ‘위상이동’이라고 한다. 위상이동 과정에서 앞선 선율을 뒤의 선율이 모방하여 따라가는 서양 다성(多聲) 음악의 ‘카논’ 형식이 내는 것과 비슷한 효과가 나타난다. 이후 라이히는 이러한 조직 원리를 「피아노 페이즈」에서 연주곡으로 구현하는데, 여기서 두 피아노 연주자는 반복되는 선율을 유니슨으로 연주하기 시작한다. 그러다 한쪽이 조금 더 빠르게 연주하는데, 가령 <span style="display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:0.7em;line-height:1.05;margin:0 1px;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">1</span><span>8</span></span>박자만큼의 시차를 갖는 새로운 위상에 도달하면, 두 연주자는 다시 동일한 빠르기의 연주로 ⓔ <span class="underline-phrase">되돌아가</span> 그 위상을 유지한다. 이러한 위상의 이동과 유지는 다시 유니슨에 이를 때까지 반복된다.<span class="para-note">← ㉮ 점진적 과정으로서의 음악: 위상이동(유니슨 → 어긋남, 카논과 비슷) — 「비가 올 것이다」(테이프), 「피아노 페이즈」(연주)</span></p>
+<p>라이히는 작곡 과정에서 조성을 띤 선율을 활용했으나, 이는 조성음악에서처럼 화음의 진행을 위해서가 아니라 선율의 반복을 부각하여 그 위상이동을 청자가 들을 수 있도록 하기 위해서였다. 이를 위해 그는 선율 간의 미묘한 시차까지 엄밀하게 설계하고 정확한 연주를 추구했다. 그리하여 단순한 음악적 재료가 반복되는 가운데서도 소리는 만화경처럼 미묘하게 변화하고, 청자는 그 변화를 지속적으로 감지하면서 새로운 소리의 패턴을 발견할 수 있게 된다.<span class="para-note">← 조성을 띤 선율은 화음 진행이 아니라 반복을 부각해 위상이동을 들리게 하려고 → 엄밀한 설계·정확한 연주 → 새로운 소리의 패턴 발견</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 예술(음악) · <strong>난도</strong> 상 · <strong>목표 시간</strong> 10분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> (가) 조성음악(으뜸음 중심 위계, 긴장·해소) → 쇤베르크 12음 기법(음렬, 위계 해체) → 불레즈 총렬주의(다른 요소에도 열, 파생 열) → 한계: 청자가 원리를 파악하기 어렵다 / (나) 라이히의 비판(조직 원리·작곡 과정이 들리지 않음) → 점진적 과정으로서의 음악, 위상이동 → 선율의 반복을 부각해 청자가 변화를 감지</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>두 축의 비교</b>: 조직 원리의 엄밀함(불레즈·라이히 모두 ○) / 원리가 소리로 들리는가(불레즈 ✕, 라이히 ○) — 라이히는 ‘즉흥’이 아니다.</li><li><b>12음 기법의 범위</b>: 재사용 금지는 ‘한 음렬이 제시되는 동안’만 — 음렬은 한 곡에 여러 번 나온다.</li><li><b>위상이동의 순서</b>: 유니슨 → 한쪽이 빨라짐(위상이동) → 새 위상에서 같은 빠르기로 유지 → 반복해 다시 유니슨.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>(가) 조성음악: 으뜸음 중심 위계 → 긴장·해소의 방향성, 청자는 진행을 예상</li><li>무조음악 → 쇤베르크 12음 기법: 음렬 안에서 한 번 쓴 음은 모든 음이 나오기 전 재사용 ✕ → 위계 해체(음렬음악)</li><li>불레즈(㉠): 쇤베르크는 고전 형식을 못 벗어났다 비판 → 총렬주의(음 길이·크기·연주법에도 열), 파생 열 조합</li><li>한계: 조화는 청각 선호 + 오랜 음악 양식에서 비롯 → 음렬음악은 진행을 억제해 예상·친숙함 ✕</li><li>(나) 라이히(㉡): 음렬음악·우연성 음악 등 전후 아방가르드 비판</li><li>비판의 핵심: 조직 원리·작곡 과정이 소리에 드러나지 않음(불레즈, 케이지 「변화의 음악」)</li><li>㉮ 점진적 과정으로서의 음악: 위상이동(유니슨 → 어긋남, 카논과 비슷) — 「비가 올 것이다」(테이프), 「피아노 페이즈」(연주)</li><li>조성을 띤 선율은 화음 진행이 아니라 반복을 부각해 위상이동을 들리게 하려고 → 엄밀한 설계·정확한 연주 → 새로운 소리의 패턴 발견</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>6번 ③</b>: ‘한 음렬이 제시되는 동안’을 ‘곡이 끝날 때까지’로 바꾼 범위 왜곡.</li><li><b>8번 ⑤</b>: 같은 빠르기로 유지하면 시차가 그대로 남는다 — 유니슨에 이르지 못한다.</li><li><b>9번 ⑤</b>: 위상이동도 라이히가 의식적으로 창안한 기법 → 인공적 문법에 해당한다.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 10분 · 난도 상 · 시간이 새는 자리: (나) 3문단의 위상이동 과정을 순서대로 정리하지 않으면 7번 ⑤에서 시간이 샌다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : (가) 조성음악(으뜸음 중심 위계, 긴장·해소) → 쇤베르크 12음 기법(음렬, 위계 해체) → 불레즈 총렬주의(다른 요소에도 열, 파생 열) → 한계: 청자가 원리를 파악하기 어렵다 / (나) 라이히의 비판(조직 원리·작곡 과정이 들리지 않음) → 점진적 과정으로서의 음악, 위상이동 → 선율의 반복을 부각해 청자가 변화를 감지</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [5~10]</h2>
+<div class="question-full"><div class="q-num">5</div><span class="q-type">[유형] 서술 방식 · (가)·(나) · 예상 오답률(분석 추정) 20%</span>
+<div class="question-stem">(가)와 (나)에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① (가)는 음렬음악의 작곡 원리를 설명하고, 그에 대한 청자의 이해가 시대에 따라 달라진 원인을 분석하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – (가)는 음렬음악의 작곡 원리를 설명하지만, 청자 이해가 시대에 따라 달라진 원인은 분석하지 않는다.</div></div>
+<div class="choice-item"><div class="choice-text">② (가)는 조성음악과 음렬음악의 구성 원리를 비교하고, 두 음악의 장점을 결합한 새로운 작곡법을 제시하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – (가)는 두 음악의 구성 원리를 설명·대조할 뿐 장점을 결합한 새 작곡법은 없다.</div></div>
+<div class="choice-item"><div class="choice-text">③ (나)는 특정 작곡가의 음악관을 소개하고, 그의 관점에 따라 미니멀리즘 음악의 한계를 비판하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – (나)는 라이히의 음악관을 소개하지만 미니멀리즘 음악의 한계는 언급하지 않는다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ (나)는 특정 작곡 기법의 적용 사례들을 제시하고, 그 기법이 적용된 음악의 청취 효과에 관해 설명하고 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – (나)는 위상이동 기법의 적용 사례(「비가 올 것이다」, 「피아노 페이즈」)와 청취 효과를 설명한다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ (가)와 (나)는 모두 음악적 요소의 조직 원리를 설명하고, 작곡가와 연주자의 견해차가 해소되는 과정을 서술하고 있다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 작곡가와 연주자의 견해차가 해소되는 과정은 다루지 않는다.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 서술 방식</div></div>
+<div class="question-full"><div class="q-num">6</div><span class="q-type">[유형] 세부 정보 파악 · (가) 조성음악·12음 기법·총렬주의 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem">(가)에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 불레즈는 음 길이에도 열을 부여하여 12음 기법의 적용 범위를 확대했다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 불레즈는 12개의 서로 다른 음 길이로 리듬열을 만들어 음렬처럼 활용 — 적용 범위 확대.</div></div>
+<div class="choice-item"><div class="choice-text">② 딸림화음에서 으뜸화음으로 이어지는 흐름은 음렬음악에서는 이루어지기 어렵다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 음렬음악은 딸림화음 → 으뜸화음 같은 진행을 체계적으로 억제한다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 12음 기법으로 만들어진 곡에서 한 번 쓰인 음은 곡이 끝날 때까지 재사용할 수 없다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ① 위치 왜곡</span> – 재사용 금지는 한 음렬이 제시되는 동안만 — 음렬은 한 곡에 여러 번 등장할 수 있다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 조성음악은 으뜸음을 중심으로 형성된 음의 위계를 통해 곡의 진행에 방향성을 부여한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 조성음악은 으뜸음 중심의 위계로 긴장·해소의 방향성을 만든다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 음렬음악은 음들을 평등하게 다루어 으뜸음을 중심으로 형성되는 위계가 존재하지 않는다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 12음 기법은 어떤 음에도 중심이 쏠리지 않게 해 위계를 해체한다.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 세부 정보 파악</div></div>
+<div class="question-full"><div class="q-num">7</div><span class="q-type">[유형] 핵심 정보 비교 · ㉠ 불레즈 · ㉡ 라이히 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">㉠과 ㉡에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 작곡 과정에서 작곡가의 선택을 배제하고, ㉡은 새로운 감상 경험을 위해 소리의 반복을 배제한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 파생 열 조합에도 작곡가의 선택은 배제되지 않는다. 라이히는 반복을 배제하지 않고 부각한다.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉠은 고전적 형식의 제약에서 벗어난 작곡법을 추구하고, ㉡은 고전적인 화음의 진행을 중심으로 음악을 구성한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 라이히는 조성을 띤 선율을 쓰지만 화음 진행이 아니라 반복을 부각하기 위해서다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉠은 청자의 기대에 부응하는 작곡법을 추구하고, ㉡은 반복되는 소리의 변화에서 새로운 감상 경험을 이끌어낸다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ② 단정적 부정</span> – 총렬주의는 친숙한 진행을 억제 — 청자의 기대에 부응하는 작곡법이 아니다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ㉠은 혁신적 작곡법을 계승하면서 그 범위를 확장하고, ㉡은 자신이 지적했던 문제를 해소한 새로운 음악을 전개한다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 불레즈는 12음 기법을 계승해 다른 요소로 확장, 라이히는 자신이 비판한 문제(원리가 들리지 않음)를 해소한 음악을 전개.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉠은 엄밀한 규칙을 통해 다양한 작곡 가능성을 추구하고, ㉡은 연주의 즉흥성을 통해 새로운 감상 경험을 유도한다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 라이히는 즉흥성이 아니라 미묘한 시차까지 엄밀하게 설계하고 정확한 연주를 추구했다.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 핵심 정보 비교</div></div>
+<div class="question-full"><div class="q-num">8</div><span class="q-type">[유형] 핵심 정보 이해 · ㉮ 점진적 과정으로서의 음악 · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">㉮에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 연주곡뿐만 아니라 음성을 녹음한 테이프를 재생하는 방식으로도 시도되었다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 「비가 올 것이다」는 녹음한 음성을 두 테이프로 재생하는 방식.</div></div>
+<div class="choice-item"><div class="choice-text">② 작곡의 조직 원리와 작곡 과정을 실제 소리로 드러내기 위해 위상이동을 활용한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 위상이동은 작곡의 조직 원리·작곡 과정을 실제 소리로 드러내려는 핵심 기법.</div></div>
+<div class="choice-item"><div class="choice-text">③ 유니슨에서 위상이동이 이루어지면 ‘카논’ 형식이 내는 것과 비슷한 효과가 발휘된다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 유니슨에서 시차가 생기면 카논 형식과 비슷한 효과가 나타난다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 엄밀한 설계와 정확한 연주를 통해 청자로 하여금 새로운 소리의 패턴을 발견할 수 있게 한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 엄밀한 설계와 정확한 연주로 청자가 새로운 소리의 패턴을 발견하게 한다.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 위상의 어긋남이 발생한 뒤에 두 연주자가 동일한 빠르기를 유지하여 연주하면 유니슨에 이를 수 있다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 같은 빠르기로 연주하면 1/8박자 시차가 그대로 유지된다 — 유니슨에 이를 수 없다.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 핵심 정보 이해</div></div>
+<div class="question-full"><div class="q-num">9</div><span class="q-type">[유형] &lt;보기&gt; 적용 · 자연적 문법 · 인공적 문법 · 예상 오답률(분석 추정) 55%</span>
+<div class="question-stem">&lt;보기&gt;를 참고하여 (가), (나)를 이해한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>작곡 방식은 자연적 문법에 기초한 것과 인공적 문법에 기초한 것으로 구분될 수 있다. 자연적 문법은 음악 전통에서 오랜 시간에 걸쳐 인위적 설계 없이 형성된 것으로, 음악을 감상하며 그 구조를 파악하는 청자의 이해를 원천으로 삼는다. 반면 인공적 문법은 작곡가가 자신의 음악관을 구현하기 위해 의식적으로 창안한 것으로, 청자의 이해보다는 작곡의 조직 원리나 작곡 과정에 대한 작곡가 나름의 이론적 규칙을 원천으로 삼는다. 자연적 문법과 인공적 문법은 한 작품 안에서 결합되어 활용될 수 있는데, 인공적 문법이 우세하면 인지적으로 불투명할 가능성이 크다. 인지적 불투명성이란 작곡 문법이 청자의 이해를 얻지 못해, 숙련된 청자조차 듣는 것만으로는 작곡의 조직 원리나 작곡 과정을 파악하기 어려운 경우를 뜻한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 조성음악의 진행이 친숙하게 느껴지는 것은 조성음악의 작곡 문법이 청자의 이해를 원천으로 하기 때문일 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 조성음악은 청자의 선호 경향과 공명한 양식 → 청자의 이해를 원천으로 하는 자연적 문법.</div></div>
+<div class="choice-item"><div class="choice-text">② 불레즈의 「구조 Ia」는 쇤베르크의 12음 기법으로 작곡된 음악보다 자연적 문법이 개입할 여지가 더 적겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 불레즈는 고전 형식에서 더 벗어난 총렬주의 → 「구조 Ia」는 12음 기법 음악보다 자연적 문법이 개입할 여지가 적다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 케이지가 「변화의 음악」에서 우연에 따라 음악적 요소가 결정되도록 한 것은 인공적 문법을 적용한 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 케이지는 작곡가의 주관성 배제라는 음악관을 구현하려 의식적으로 작곡 방식을 창안 → 인공적 문법.</div></div>
+<div class="choice-item"><div class="choice-text">④ 라이히가 음렬음악과 우연성 음악을 비판한 것은 그런 음악의 인지적 불투명성을 지적한 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 라이히가 비판한 ‘조직 원리가 소리에 드러나지 않음’ = 인지적 불투명성.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ 라이히의 위상이동 기법은 청자가 선율의 위상이동을 들을 수 있게 한다는 점에서 인공적 문법에 해당하지 않겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 위상이동은 라이히가 자신의 음악관을 구현하려 의식적으로 창안한 기법 → 인공적 문법에 해당한다.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] &lt;보기&gt; 적용</div></div>
+<div class="question-full"><div class="q-num">10</div><span class="q-type">[유형] 어휘(문맥적 의미) · ⓐ~ⓔ · 예상 오답률(분석 추정) 15%</span>
+<div class="question-stem">문맥상 ⓐ~ⓔ와 바꿔 쓰기에 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ⓐ: 탈피(脫皮)한</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 벗어나다(규범 등에 어긋나다) ≒ 탈피하다(일정한 상태에서 완전히 벗어나다).</div></div>
+<div class="choice-item correct"><div class="choice-text">② ⓑ: 축적(蓄積)되었다</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 마련되다(헤아려져 갖추어지다) ≠ 축적되다(지식·경험·자금 따위가 모여서 쌓이다).</div></div>
+<div class="choice-item"><div class="choice-text">③ ⓒ: 편중(偏重)되지</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 쏠리다(마음·눈길이 한쪽으로 기울어지다) ≒ 편중되다(한쪽으로 치우치게 되다).</div></div>
+<div class="choice-item"><div class="choice-text">④ ⓓ: 유래(由來)한다</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 비롯되다(처음으로 시작되다) ≒ 유래하다(사물이나 일이 생겨나다).</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓔ: 복귀(復歸)하여</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 되돌아가다(다시 본래의 상태로 되다) ≒ 복귀하다(본디의 자리나 상태로 되돌아가다).</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 어휘(문맥적 의미)</div></div>
+</div></div></body></html>

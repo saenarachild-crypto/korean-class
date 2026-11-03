@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 4회 독서1 1~4 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 4회 · 독서1 1~4 (사회(법))</h1><p>처분의 취소와 무효 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">처분의 취소와 무효</p>
+<p>행정청이 상대방에게 법을 집행하는 일을 처분이라 한다. 처분이 적법한 요건을 갖추지 못하여 하자가 있는 경우는 대개 처분의 취소 사유에 해당한다. 보통 취소 사유로 인해 처분의 상대방이 피해를 입더라도 행정 쟁송 등에 의해 그 처분이 실제로 취소될 때까지는 처분의 효력이 유지된다. 이는 ㉠ <span class="underline-phrase">법적 안정성을 확보</span>하고 처분의 영향을 받는 제삼자의 신뢰를 보호하기 위함이다. 그런데 처분의 하자가 중대하고 명백하여 무효 사유에 해당할 경우가 있다. 그럴 때에는 법률적 절차 없이도 무효가 성립하는 당연 무효로 처리되거나 행정 쟁송을 통해 무효 판결이 내려진다. 무효인 처분은 취소와 달리 애초부터 그 효력이 발생하지 않은 것으로 간주된다.<span class="para-note">← 처분의 하자: 대개 취소 사유 → 취소 전까지 효력 유지(㉠ 법적 안정성·제삼자 신뢰) / 중대·명백 → 무효(당연 무효·무효 판결), 애초부터 효력 없음</span></p>
+<p>행정청이 처분의 근거가 되는 법률을 잘못 해석하거나 법률이 적용되는 사실 관계를 잘못 파악한 경우, 또는 법률에서 정한 절차를 ⓐ <span class="underline-phrase">지키지</span> 않았을 경우의 처분에는 하자가 있다고 본다. 그것이 중대한 하자일지라도 그 하자가 명백해야만 무효 사유에 해당한다. ㉡ <span class="underline-phrase">하자의 명백성</span>이란 전문가의 엄밀한 판단이 아니라 통상적인 주의력을 갖춘 일반인의 판단에 의할 때 외견상 하자가 분명한 것을 말한다. 예컨대 과세 대상이 되는 사실 관계가 전혀 없는 이에게 과세 처분을 내렸다면, 그 처분의 하자는 명백하다. 이와 달리 과세 대상으로 오인할 만한 객관적 사정이 있어서 그 사실 관계를 정확히 조사해야 하자가 밝혀질 수 있는 상황이라면 명백한 하자로 볼 수 없다. 이렇듯 무효 사유에 명백성의 요건을 둔 것은 개인의 권익 구제를 명목으로 처분의 영향을 받는 이들의 신뢰 보호 등 공공성이 함부로 훼손되는 것을 막기 위함이다.<span class="para-note">← 하자의 예(법률 해석·사실 관계·절차) → 중대해도 명백해야 무효, ㉡ 명백성 = 일반인 기준의 외견상 분명함 → 공공성 훼손 방지</span></p>
+<p>한편, 헌법 재판소에 의해 특정 법률이 헌법에 위배된 것으로 드러나 위헌 결정이 난 경우에 해당 법률에 근거하여 내려지는 처분은 그 하자가 중대하고 명백하므로 당연 무효가 된다. 다만 처분이 먼저 내려지고 그 후에 근거 법률에 대한 위헌 결정이 났다면, 처분을 내릴 당시에 그 하자가 명백했다고 볼 수 없으므로 원칙적으로는 취소 사유에 그친다. 예외적으로 법적 안정성에 대한 침해가 거의 없는 등 특수한 사정이 있는 경우에 한해서만 무효 사유가 인정될 뿐이다. 무효 확인을 위한 행정 쟁송과 달리 취소를 위한 행정 쟁송은 그 쟁송 기간이 정해져 있다. 그래서 쟁송 기간의 경과 후에는 위헌 결정으로 취소 사유가 발생하더라도 쟁송에 의한 취소가 불가능하다.<span class="para-note">← 위헌 결정 후의 처분 = 당연 무효 / 처분 후 위헌 결정 = 원칙적 취소 사유(예외적 무효) → 취소 쟁송은 쟁송 기간 있음</span></p>
+<p>과세 처분 이후에 납세가 이루어지지 않아서 납세자의 재산을 압류하는 등 체납 처분이 이어질 수 있는데, 이와 같이 선행 처분과 후속 처분이 연달아 행해지는 중간에 선행 처분의 근거 법률에 위헌 결정이 나는 상황이 벌어질 수 있다. 그럴 때 취소 사유가 있는 선행 처분이 실제로 취소되면 후속 처분의 집행도 중단되지만, 쟁송 기간이 경과하여 선행 처분의 취소가 어렵다면 후속 처분이 집행되어 버리는 문제가 발생할 수 있다. 후속 처분은 선행 처분과는 별도의 근거 법률에 따라 내려지는 것이기 때문이다. 하자의 승계에 관한 원칙을 따르더라도, 선행 처분과 후속 처분 간에 무효 사유는 승계되지만 취소 사유는 승계되지 않는다. 이러한 연유로 인해 ㉢ <span class="underline-phrase">권익 침해가 반복해서 발생</span>한 바 있다. 이에 대법원 판례를 통해 권익 구제를 위한 조치가 이루어지고 있다. 과세 처분 이후에 그 근거 법률에 위헌 결정이 난 경우, 그 후속 처분 역시 중대하고 명백한 하자가 있는 것으로 보아 당연 무효로 판단하는 것이다.<span class="para-note">← 선행(과세)·후속(체납) 처분: 무효 사유만 승계, 취소 사유는 승계 ✕ → ㉢ 권익 침해 반복 → 판례: 후속 처분도 당연 무효</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 사회(법) · <strong>난도</strong> 중상 · <strong>목표 시간</strong> 8분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 처분의 하자 → 취소 사유(취소 전까지 효력 유지, 법적 안정성) vs 무효 사유(중대·명백, 애초부터 효력 없음) → 명백성의 기준(일반인의 판단) → 위헌 결정과 처분(처분 후 위헌 결정 = 원칙적 취소 사유, 쟁송 기간) → 선행·후속 처분과 하자의 승계 → 대법원 판례의 권익 구제</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>취소 vs 무효 표</b>: 취소 사유 = 취소될 때까지 효력 유지 · 쟁송 기간 있음 / 무효 사유 = 중대 + 명백 · 애초부터 효력 없음 · 쟁송 기간 없음.</li><li><b>시점이 판정을 바꾼다</b>: 위헌 결정 → 처분이면 당연 무효, 처분 → 위헌 결정이면 원칙적으로 취소 사유.</li><li><b>하자의 승계</b>: 무효 사유는 승계, 취소 사유는 승계 ✕ — 이 비대칭이 ㉢(권익 침해 반복)의 원인.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>처분의 하자: 대개 취소 사유 → 취소 전까지 효력 유지(㉠ 법적 안정성·제삼자 신뢰) / 중대·명백 → 무효(당연 무효·무효 판결), 애초부터 효력 없음</li><li>하자의 예(법률 해석·사실 관계·절차) → 중대해도 명백해야 무효, ㉡ 명백성 = 일반인 기준의 외견상 분명함 → 공공성 훼손 방지</li><li>위헌 결정 후의 처분 = 당연 무효 / 처분 후 위헌 결정 = 원칙적 취소 사유(예외적 무효) → 취소 쟁송은 쟁송 기간 있음</li><li>선행(과세)·후속(체납) 처분: 무효 사유만 승계, 취소 사유는 승계 ✕ → ㉢ 권익 침해 반복 → 판례: 후속 처분도 당연 무효</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>1번 ④</b>: 무효 판결이든 당연 무효든 효력은 똑같이 애초부터 없음 — ‘달리’가 함정.</li><li><b>2번 ⑤</b>: ㉢은 위헌 법률에 근거한 처분이 계속 내려지는 상황이 아니라, 선행 처분이 취소되지 못해 후속 처분이 집행되는 상황.</li><li><b>3번 ②</b>: A의 하자는 취소 사유 → 승계되지 않으므로 A의 취소 없이는 B의 집행이 중단되지 않는다.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 8분 · 난도 중상 · 시간이 새는 자리: 3문단의 시점(처분 전 위헌 결정 / 처분 후 위헌 결정)을 표시하지 않으면 8번 &lt;보기&gt;에서 A의 하자를 무효로 착각한다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 처분의 하자 → 취소 사유(취소 전까지 효력 유지, 법적 안정성) vs 무효 사유(중대·명백, 애초부터 효력 없음) → 명백성의 기준(일반인의 판단) → 위헌 결정과 처분(처분 후 위헌 결정 = 원칙적 취소 사유, 쟁송 기간) → 선행·후속 처분과 하자의 승계 → 대법원 판례의 권익 구제</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [1~4]</h2>
+<div class="question-full"><div class="q-num">1</div><span class="q-type">[유형] 세부 정보 파악 · 처분의 하자와 효력 · 예상 오답률(분석 추정) 25%</span>
+<div class="question-stem">윗글에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 법률이 적용되는 사실 관계를 잘못 파악하고 내린 처분은 적법한 요건을 갖추지 못한 것이므로 하자가 있는 처분이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 적법한 요건을 갖추지 못한 처분은 하자 있는 처분 — 사실 관계를 잘못 파악하고 내린 처분도 이에 해당.</div></div>
+<div class="choice-item"><div class="choice-text">② 무효 확인을 위한 행정 쟁송은 그 쟁송 기간이 정해져 있지 않으므로 처분이 이루어진 이후에 언제든 제기하는 것이 가능하다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 취소 쟁송은 쟁송 기간이 정해져 있지만, 무효 확인 쟁송은 기간이 정해져 있지 않다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 행정청이 상대방에게 법을 집행하는 일을 했을 때에 적법한 요건을 갖추지 못했더라도 보통은 그 효력이 곧바로 상실되지 않는다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 하자는 대개 취소 사유 → 쟁송 등으로 실제 취소될 때까지 효력 유지.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 행정 쟁송을 통해 무효 판결이 난 경우와 달리 당연 무효로 처리된 경우에는 처분의 효력이 애초부터 발생하지 않은 것으로 간주된다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 무효인 처분은 당연 무효든 무효 판결이든 모두 애초부터 효력이 발생하지 않은 것으로 간주된다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 행정청이 법률을 잘못 해석하여 내린 처분에 중대한 하자가 있더라도 그 하자가 명백하지 않으면 처분의 취소 사유에 해당할 가능성이 높다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 중대한 하자라도 명백해야 무효 사유 — 명백하지 않으면 취소 사유에 해당할 가능성이 높다.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 세부 정보 파악</div></div>
+<div class="question-full"><div class="q-num">2</div><span class="q-type">[유형] 개념 비교 · ㉠ 법적 안정성 · ㉡ 명백성 · ㉢ 권익 침해 · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem">㉠~㉢에 대한 설명으로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 무효인 처분의 경우에 애초부터 효력이 없었던 것처럼 간주하여 얻을 수 있는 효과이고, ㉡은 정확한 조사를 통해 하자가 밝혀질 수 있는 경우에 충족되는 요건이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – ㉠은 효력이 유지될 때 얻는 효과 — 무효 처분이 아님. 정확한 조사가 필요한 하자는 명백하지 않으므로 ㉡ 충족 ✕.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉠은 처분의 상대방에게 피해를 입히더라도 처분의 효력을 유지하고자 하는 이유이고, ㉡은 법률적 절차 없이 무효가 성립하는 경우가 발생하지 않도록 하기 위한 요건이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – ㉠은 효력 유지의 이유가 맞지만, ㉡은 당연 무효를 막기 위한 요건이 아니라 당연 무효가 성립하기 위한 요건.</div></div>
+<div class="choice-item"><div class="choice-text">③ ㉠은 법률에서 정한 절차를 지키지 않은 처분을 취소함으로써 얻을 수 있는 효과이고, ㉢은 선행 처분과 후속 처분 간에 무효 사유가 승계될 때 일어날 수 있는 상황이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – ㉠은 취소의 효과가 아님. ㉢은 무효 사유가 아니라 취소 사유가 승계되지 않아서 일어나는 상황.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ ㉡은 처분의 영향을 받는 제삼자의 신뢰를 보호하는 데에 기여할 수 있는 요건이고, ㉢은 개인의 권익보다 처분의 공공성이 중시될 경우에 일어날 수 있는 상황이다.</div><div class="choice-analysis">✅ <strong>정답</strong> – ㉡은 무효 사유를 엄격히 해 제삼자 신뢰 보호에 기여 / ㉢은 개인의 권익보다 처분의 공공성이 중시되어 생기는 상황.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉡은 통상적인 주의력을 갖춘 일반인의 판단을 기준으로 충족 여부가 가려지는 요건이고, ㉢은 위헌 결정이 내려진 법률에 근거하여 처분이 계속 내려지는 상황이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ① 위치 왜곡</span> – ㉡ 설명은 맞지만 ㉢은 위헌 법률에 근거한 처분이 계속되는 상황이 아니라 선행 처분이 취소되지 못해 후속 처분이 집행되는 상황.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 개념 비교</div></div>
+<div class="question-full"><div class="q-num">3</div><span class="q-type">[유형] &lt;보기&gt; 적용 · 과세 처분 A와 체납 처분 B · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">윗글을 바탕으로 〈보기〉에 대해 이해한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>어떤 행정청이 과세에 관한 법률에 근거하여 갑에게 과세 처분 A를 내렸다. 그 후에 A의 근거가 되는 법률에 대해 위헌 결정이 나자, 갑은 A의 무효 확인을 위한 행정 쟁송을 법원에 제기했다. 위헌 결정이 난 시점 등을 고려한 법원은 A에 무효 사유가 아니라 취소 사유가 있다는 판결을 내렸다. 이후에 갑이 납세를 하지 않는 상황이 지속되자 해당 행정청은 갑의 재산을 압류하는 등의 체납 처분 B를 내렸다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① A에 대한 쟁송 기간이 경과한 후의 상황이라면, A에 취소 사유가 발생하더라도 갑이 쟁송으로 취소하기는 어렵겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 취소 사유가 있어도 쟁송 기간이 지나면 쟁송으로 취소하기 어렵다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② A에 대한 쟁송 기간이 경과하기 전의 상황이라면, A의 하자는 B에 승계되므로 A에 대한 취소 없이도 B의 집행이 중단될 수 있겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – A의 하자는 취소 사유 → B에 승계되지 않음. A를 취소하지 않으면 B의 집행이 중단될 수 없다.</div></div>
+<div class="choice-item"><div class="choice-text">③ A의 취소로 B의 집행이 중단되거나 A의 근거 법률에 대한 위헌 결정으로 B가 무효가 되면, 갑이 권익 침해 상황에서 벗어날 수 있겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – A가 취소되면 B 집행 중단, 판례에 따라 B가 당연 무효가 되면 권익 침해에서 벗어남.</div></div>
+<div class="choice-item"><div class="choice-text">④ A가 행정청에 의해 내려질 당시에 A의 하자가 명백했다고 볼 수 없다는 점을 근거로, 법원은 A에 취소 사유가 있다는 판결을 내렸겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 처분 후 위헌 결정이 났으므로 처분 당시 하자가 명백했다고 볼 수 없음 → 취소 사유 판결.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ A의 근거가 되는 법률에 위헌 결정이 난 시점이 A가 내려진 이후이므로, 법원은 법적 안정성에 대한 침해가 일어나는 등의 문제가 발생할 것임을 고려하여 판결을 했겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 무효로 인정하면 법적 안정성 침해 등의 문제가 생길 것을 고려한 판결.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] &lt;보기&gt; 적용</div></div>
+<div class="question-full"><div class="q-num">4</div><span class="q-type">[유형] 어휘(문맥적 의미) · ⓐ 지키지 · 예상 오답률(분석 추정) 8%</span>
+<div class="question-stem">문맥상 ⓐ와 바꿔 쓰기에 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 확인(確認)하지</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 확인하다: 틀림없이 그러한가를 알아보거나 인정하다.</div></div>
+<div class="choice-item correct"><div class="choice-text">② 준수(遵守)하지</div><div class="choice-analysis">✅ <strong>정답</strong> – 준수하다: 전례나 규칙, 명령 따위를 그대로 좇아서 지키다 — ⓐ와 바꿔 쓸 수 있다.</div></div>
+<div class="choice-item"><div class="choice-text">③ 숙지(熟知)하지</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 숙지하다: 익숙하게 또는 충분히 알다.</div></div>
+<div class="choice-item"><div class="choice-text">④ 보존(保存)하지</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 보존하다: 잘 보호하고 간수하여 남기다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 인지(認知)하지</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 인지하다: 어떤 사실을 인정하여 알다.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 어휘(문맥적 의미)</div></div>
+</div></div></body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 6회 독서1 1~5 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📖 마침내 미니모의고사 수업용 6회 · 독서1 1~5 (사회(법))</h1><p>원천 징수와 부과권·징수권 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">원천 징수와 부과권·징수권</p>
+<p>납세 의무의 확정은 납부해야 할 세액이 구체적으로 정해지는 것을 말한다. 이는 납세 의무자가 스스로 세액을 신고했을 때에 확정되는 ‘신고에 의한 확정’과 과세 관청이 세액을 결정하여 납세 의무자에게 부과했을 때에 확정되는 ‘부과에 의한 확정’으로 나뉜다. 예외적으로 납세 의무자나 과세 관청의 ⓐ <span class="underline-phrase">아무런 관여 없이</span> 납세 의무가 ‘자동 확정’되는 경우도 있는데, 근로 소득세 등의 국세에 대한 <span class="boxed">원천 징수 제도</span>가 대표적이다.<span class="para-note">← 납세 의무 확정: 신고에 의한 확정 / 부과에 의한 확정 / 예외 ⓐ 자동 확정(원천 징수 제도)</span></p>
+<p>근로 소득세의 원천 징수 제도는 회사가 근로자에게 소득 금액을 지급할 때에 근로자가 납부해야 할 근로 소득세를 미리 징수해 놓았다가 국가에 대신 납부하는 제도를 말한다. 근로자는 납세 의무자이고 회사는 원천 징수 의무자로, 세액은 소득 금액이 지급될 때에 자동 확정되며 그 법정 납부 기한은 다음 달 10일까지이다. 그런데 원천 징수 의무자가 원천 징수하지 않거나 원천 징수한 세액을 납부하지 않을 수 있다. 그럴 때 과세 관청은 회사에 납세의 이행을 촉구하는 ‘납세 고지’를 할 수 있다. 국세 기본법에 따를 때 납세 고지는 기본적으로, 결정된 세액을 징수할 수 있는 권리인 ㉠ <span class="underline-phrase">징수권</span>의 행사에 해당한다. 원천 징수 의무자에 대한 납세 고지 역시 자동으로 세액이 결정된 상황에서 그 징수를 위해 취하는 징수 처분으로 간주된다. 그러나 세액을 고지한다는 점에서 세액을 결정하여 고지할 수 있는 권리인 ㉡ <span class="underline-phrase">부과권</span>의 행사로 볼 여지도 있다.<span class="para-note">← 원천 징수: 근로자 = 납세 의무자, 회사 = 원천 징수 의무자, 지급 시 자동 확정·다음 달 10일 납부 → 미납 시 납세 고지 = ㉠ 징수권 행사(㉡ 부과권 행사로 볼 여지)</span></p>
+<p>현행 국세 기본법 시행령은 원천 징수를 통한 납부가 이루어지지 않았을 때 법정 납부 기한의 다음 날부터 국세를 부과할 수 있다고 규정하고 있는데, 이는 납세 고지를 부과 처분으로도 보고 있음을 의미한다. 또한 동 시행령은 법정 납부 기한의 다음 날을 부과권의 제척 기간이 시작되는 날인 기산일로 규정하고 있다. 제척 기간이란 일정한 권리를 행사할 수 있는 시간적 한계로서, 권리자의 일방적 의사 표시만으로 법률관계의 발생이나 변경, 소멸 등을 일으킬 수 있는 권리인 형성권에 주로 적용된다. 부과권도 형성권이므로 원천 징수를 하지 않은 경우에는 7년, 그 외에 ‘사기 그 밖의 부정행위’가 개입된 경우에는 10년의 제척 기간이 적용된다. 그런데 ⓑ <span class="underline-phrase">이미 세액이 자동 확정된</span> 사안에 대해 세액을 결정하는 권능인 부과권을 적용하는 것이어서 이들 규정은 입법상의 오류라는 지적도 있다.<span class="para-note">← 시행령: 납세 고지를 부과 처분으로도 봄 → 부과권(형성권)에 제척 기간(기산일 = 법정 납부 기한 다음 날, 7년·부정행위 10년) → ⓑ 이미 자동 확정된 사안이라 입법 오류 지적</span></p>
+<p>한편 징수권은 납세 의무가 확정된 후 ⓒ <span class="underline-phrase">납부를 청구할 수 있는</span> 권능으로서, 원천 징수되어야 할 국세의 경우에 원천 징수 의무자들을 대상으로 행사된다. 국세 기본법에 따르면 징수권은 제척 기간이 아닌 소멸 시효의 적용을 받는다. 소멸 시효 역시 권리 행사의 시간적 한계로서, 그 기산일 역시 법정 납부 기한의 다음 날이다. 다만 소멸 시효는 권리자가 상대방에 대하여 일정한 행위를 요구할 수 있는 권리인 청구권에 주로 적용된다는 점에서 제척 기간과 다르다. 또한 중단 없이 해당 기간 동안 유지되는 제척 기간과 달리, 소멸 시효는 과세 관청이 납세 고지, 독촉, 압류 등의 징수권 행사를 했을 때 진행이 중단된다. 예를 들어 과세 관청이 납세 고지를 하면 소멸 시효는 중단되고 해당 고지의 납부 기한 다음 날부터 ⓓ <span class="underline-phrase">다시 시효 기간을 처음부터 계산하게</span> 된다. 국세 징수권의 소멸 시효 기간은 5년이고, 5억 이상의 국세의 경우에는 10년이다.<span class="para-note">← 징수권(청구권) = 소멸 시효: 기산일 같음, 납세 고지·독촉·압류로 중단 → 고지 납부 기한 다음 날부터 ⓓ 처음부터 다시 계산, 5년·5억 이상 10년</span></p>
+<p>제척 기간과 소멸 시효의 기간에 차이가 있기 때문에 제척 기간이 만료되기 전에 과세 당국이 징수 처분에 착수하지 않는다면, 국세 징수권 ⓔ <span class="underline-phrase">소멸 시효가 먼저 완성되어</span> 해당 국세에 대한 권리가 상실될 수 있다. 또한 과세 현장에서는 부과권의 제척 기간과 징수권의 소멸 시효를 혼동하는 잘못된 판단이 이루어질 수 있으므로 과세 당국의 각별한 주의가 필요하다.<span class="para-note">← 기간 차이 → 제척 기간 만료 전에도 ⓔ 소멸 시효가 먼저 완성될 수 있음, 혼동 주의</span></p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 사회(법) · <strong>난도</strong> 상 · <strong>목표 시간</strong> 9분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> 납세 의무의 확정(신고·부과·자동 확정) → 원천 징수 제도(회사가 원천 징수 의무자, 납세 고지 = 징수권 행사 / 부과권 행사로 볼 여지) → 시행령: 부과권의 제척 기간(7년·부정행위 10년, 입법 오류 지적) → 징수권의 소멸 시효(중단·재기산, 5년·5억 이상 10년) → 둘의 차이와 혼동 위험</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>두 권리 표</b>: 부과권 = 세액 결정·형성권·제척 기간(중단 ✕, 7/10년) / 징수권 = 납부 청구·청구권·소멸 시효(중단 ○, 5/10년).</li><li><b>기간이 갈리는 기준</b>: 제척 기간은 ‘부정행위’ 여부, 소멸 시효는 ‘5억 이상’ 액수 — 4번 <보기> 계산의 열쇠.</li><li><b>날짜 계산 순서</b>: 지급일 → 다음 달 10일(법정 납부 기한) → 다음 날 기산 → 납세 고지 시 고지 납부 기한 다음 날부터 재기산.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>납세 의무 확정: 신고에 의한 확정 / 부과에 의한 확정 / 예외 ⓐ 자동 확정(원천 징수 제도)</li><li>원천 징수: 근로자 = 납세 의무자, 회사 = 원천 징수 의무자, 지급 시 자동 확정·다음 달 10일 납부 → 미납 시 납세 고지 = ㉠ 징수권 행사(㉡ 부과권 행사로 볼 여지)</li><li>시행령: 납세 고지를 부과 처분으로도 봄 → 부과권(형성권)에 제척 기간(기산일 = 법정 납부 기한 다음 날, 7년·부정행위 10년) → ⓑ 이미 자동 확정된 사안이라 입법 오류 지적</li><li>징수권(청구권) = 소멸 시효: 기산일 같음, 납세 고지·독촉·압류로 중단 → 고지 납부 기한 다음 날부터 ⓓ 처음부터 다시 계산, 5년·5억 이상 10년</li><li>기간 차이 → 제척 기간 만료 전에도 ⓔ 소멸 시효가 먼저 완성될 수 있음, 혼동 주의</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>1번 ③</b>: 국세 기본법은 납세 고지를 징수권 행사로 본다 — 부과 처분으로 보는 것은 시행령.</li><li><b>3번 ⑤</b>: 부과권·징수권 모두 법정 납부 기한 다음 날부터 행사 가능 — ‘달리’가 틀렸다.</li><li><b>4번 ③</b>: 소멸 시효는 고지한 날(3월 1일)이 아니라 고지의 납부 기한 다음 날(4월 11일)부터 다시 기산.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 9분 · 난도 상 · 시간이 새는 자리: 4번 &lt;보기&gt;의 날짜를 하나씩 기산일로 바꾸지 않고 감으로 판단하면 ③·⑤에서 시간이 크게 샌다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : 납세 의무의 확정(신고·부과·자동 확정) → 원천 징수 제도(회사가 원천 징수 의무자, 납세 고지 = 징수권 행사 / 부과권 행사로 볼 여지) → 시행령: 부과권의 제척 기간(7년·부정행위 10년, 입법 오류 지적) → 징수권의 소멸 시효(중단·재기산, 5년·5억 이상 10년) → 둘의 차이와 혼동 위험</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [1~5]</h2>
+<div class="question-full"><div class="q-num">1</div><span class="q-type">[유형] 세부 정보 파악 · 납세 의무와 권리 · 예상 오답률(분석 추정) 40%</span>
+<div class="question-stem">윗글에 대한 이해로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 납세 의무가 납세 의무자에 의해 확정되는 경우도 있다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 신고에 의한 확정은 납세 의무자에 의해 확정된다.</div></div>
+<div class="choice-item"><div class="choice-text">② 과세 관청이 세액을 결정하는 권능은 형성권에 해당한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 세액을 결정하는 권능은 부과권 — 형성권에 해당.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 현행 국세 기본법은 납세 고지를 징수권의 행사가 아니라 부과권의 행사로 간주한다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 국세 기본법은 납세 고지를 징수권 행사로 간주 — 부과 처분으로도 보는 것은 시행령의 제척 기간 규정.</div></div>
+<div class="choice-item"><div class="choice-text">④ 국세의 경우 제척 기간은 행위의 성격에 따라 기간이 달라지고 소멸 시효는 액수의 크기에 따라 기간이 달라진다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 제척 기간은 부정행위 여부, 소멸 시효는 5억 원 이상 여부로 기간이 달라진다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 근로 소득세의 제척 기간 적용에 입법상의 오류가 있음을 지적하는 사람들은 세액이 자동 확정된다는 점에 주목한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 자동 확정된 사안에 세액을 결정하는 부과권을 적용하는 것을 문제 삼는다.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 세부 정보 파악</div></div>
+<div class="question-full"><div class="q-num">2</div><span class="q-type">[유형] 특정 개념 이해 · 원천 징수 제도 · 예상 오답률(분석 추정) 30%</span>
+<div class="question-stem"><span class="boxed">원천 징수 제도</span>에 대한 설명으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① 납세 의무자가 세액을 신고할 필요가 없는 제도이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 지급 때 세액이 자동 확정 → 근로자가 신고할 필요 없음.</div></div>
+<div class="choice-item"><div class="choice-text">② 과세 관청이 납세 의무자에게 세액을 통보할 필요가 없는 제도이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 자동 확정되므로 과세 관청이 세액을 통보할 필요 없음.</div></div>
+<div class="choice-item"><div class="choice-text">③ 납세 의무자에게 소득이 지급될 때 세액과 납부 기한이 자동으로 확정되는 제도이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 세액이 자동 확정되고 납부 기한도 다음 달 10일로 정해진다.</div></div>
+<div class="choice-item correct"><div class="choice-text">④ 납세 의무가 확정되면 납세 의무자가 납부 기한 내에 세액을 과세 관청에 납부해야 하는 제도이다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 납부 기한 내에 세액을 납부하는 주체는 근로자(납세 의무자)가 아니라 회사(원천 징수 의무자).</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 세금이 납부되지 않았을 때 과세 관청이 납세 고지나 독촉 등을 통한 징수 처분을 할 수 있는 제도이다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 원천 징수 의무자가 납부하지 않으면 납세 고지·독촉 등 징수 처분 가능.</div></div>
+<div class="correct-badge">📍 ④번이 정답. [유형] 특정 개념 이해</div></div>
+<div class="question-full"><div class="q-num">3</div><span class="q-type">[유형] 개념 비교 · ㉠ 징수권 · ㉡ 부과권 · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">㉠, ㉡에 대한 이해로 가장 적절한 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 권리자가 납세 의무자의 납세 의무를 확정할 수 있는 권리이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 징수권은 납세 의무를 확정하는 권리가 아니라 확정 후 납부를 청구하는 권리.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 권리자가 상대방의 동의를 거쳐 법률관계를 변동시키는 권리이다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑥ 논리성 결함</span> – 형성권은 일방적 의사 표시로 법률관계를 변동 — 상대방의 동의가 필요 없다.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ ㉠은 ㉡과 달리 권리 행사의 시효가 특정한 이유에서 중단될 수 있다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 제척 기간은 중단 없이 진행, 소멸 시효는 징수권 행사로 중단될 수 있다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉡은 ㉠과 달리 제척 기간이 아니라 소멸 시효의 적용을 받는다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 부과권은 제척 기간, 징수권은 소멸 시효 — 서로 바뀌었다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉡은 ㉠과 달리 법정 납부 기한의 다음 날부터 권리의 행사가 가능하다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 둘 다 법정 납부 기한의 다음 날부터 행사 가능.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 개념 비교</div></div>
+<div class="question-full"><div class="q-num">4</div><span class="q-type">[유형] &lt;보기&gt; 적용 · 갑·을의 근로 소득세 · 예상 오답률(분석 추정) 60%</span>
+<div class="question-stem">윗글을 바탕으로 할 때, 〈보기〉를 이해한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>2010년 1월 1일 회사 갑은 소속 직원인 을에게 근로 소득 금액 1천만 원을 지급하였으나 매출 금액 일부를 누락한 사실을 은폐하기 위해 을의 근로 소득세 100만 원을 고의로 징수하지 않았다. 2012년 3월 1일 이를 발견한 과세 관청은 을의 근로 소득세 100만 원을 2012년 4월 10일까지 납부하라는 내용의 납세 고지서를 갑에 발부하였다. 2019년 5월 1일에 갑이 을의 근로 소득세를 납부하지 않은 것을 발견한 과세 관청은 아직 부과권의 제척 기간이 만료되지 않았다고 보고, 이에 근거한 징수권의 소멸 시효도 완성되지 않았다고 판단하여 갑에 독촉 고지서를 발부하였다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① 갑이 을의 근로 소득세를 징수하지 않았지만 을의 납세 의무는 2010년 1월 1일에 확정되었겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 근로 소득세 납세 의무는 소득을 지급할 때(2010년 1월 1일) 확정.</div></div>
+<div class="choice-item"><div class="choice-text">② 근로 소득세의 법정 납부 기한에 따라 갑은 을의 근로 소득세를 2010년 2월 10일까지 납부했어야 했겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 지급 다음 달 10일인 2010년 2월 10일이 법정 납부 기한.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ 과세 관청이 2012년 3월 1일에 갑에 납세 고지를 하였으므로 그 시점부터 소멸 시효가 다시 기산되었겠군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ① 위치 왜곡</span> – 소멸 시효는 고지한 날이 아니라 고지의 납부 기한(4월 10일) 다음 날인 2012년 4월 11일부터 다시 기산.</div></div>
+<div class="choice-item"><div class="choice-text">④ 과세 관청이 2019년 5월 1일에 아직 부과권의 제척 기간이 만료되지 않았다고 판단한 것은 갑의 행위가 ‘사기 그 밖의 부정행위’에 해당한다고 보았기 때문이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 2010년 2월 11일부터 7년은 지났지만 10년은 지나지 않음 → 부정행위로 보아 10년 제척 기간 적용.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ 과세 관청이 2019년 5월 1일에 갑에 독촉 고지서를 발부한 것으로 보아, 과세 관청이 을의 근로 소득세에 대한 징수권의 소멸 시효가 이미 완성되었다는 점을 파악하지 못한 것이겠군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 2012년 4월 11일부터 5년이 지나 소멸 시효가 이미 완성 — 과세 관청이 이를 파악하지 못했다.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] &lt;보기&gt; 적용</div></div>
+<div class="question-full"><div class="q-num">5</div><span class="q-type">[유형] 문맥 읽기 · ⓐ~ⓔ 바꿔 쓰기 · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">문맥상 ⓐ~ⓔ와 바꿔 쓰기에 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ⓐ : 세액 결정 과정 없이</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 납세 의무자도 과세 관청도 세액을 결정하지 않음 → ‘세액 결정 과정 없이’.</div></div>
+<div class="choice-item correct"><div class="choice-text">② ⓑ : 이미 부과권이 행사된</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ④ 인과 조작</span> – 자동 확정 = 과세 관청의 관여 없이 확정 → 부과권이 개입될 여지가 없다. ‘이미 부과권이 행사된’은 부적절.</div></div>
+<div class="choice-item"><div class="choice-text">③ ⓒ : 징수 처분을 행사할 수 있는</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 납부 청구는 세액 확정 이후 취하는 것 → 징수 처분을 행사하는 것.</div></div>
+<div class="choice-item"><div class="choice-text">④ ⓓ : 다시 소멸 시효가 시작되게</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 중단된 후 다시 기산 → ‘다시 소멸 시효가 시작되게’.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ⓔ : 행사의 시간적 한계가 이미 경과하여</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 소멸 시효 = 징수권 행사의 시간적 한계 → ‘행사의 시간적 한계가 이미 경과하여’.</div></div>
+<div class="correct-badge">📍 ②번이 정답. [유형] 문맥 읽기</div></div>
+</div></div></body></html>

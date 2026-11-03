@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>마침내 미니모의고사 수업용 4회 문학2 15~17 (상세)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #eef2f5; color: #1e293b; line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: #1e466e; color: white; padding: 20px 40px; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.85; }
+        .two-columns { display: flex; flex-wrap: wrap; }
+        .col-left { flex: 1.2; min-width: 48%; background: #fefaf0; border-right: 1px solid #e2e8f0; padding: 30px 28px; }
+        .col-right { flex: 0.9; min-width: 32%; background: #f9fbfd; padding: 30px 28px; }
+        .original-text p { margin-bottom: 1.2em; font-size: 15px; line-height: 1.85; font-family: 'Times New Roman', 'Noto Serif', serif; }
+        .original-text .underline-phrase { background-color: #ede7f6; border-bottom: 2px solid #6a4c93; font-weight: 600; padding: 0 2px; }
+        .original-text .phrase-label { display: block; text-align: center; color: #2563eb; font-size: 12.5px; font-weight: 700; margin: 2px 0 8px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .para-note { display: block; text-align: right; color: #16a34a; font-size: 13px; font-weight: 700; margin: -2px 0 14px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; }
+        .original-text .vocab-mark { color: #dc2626; font-weight: 800; font-size: 11px; vertical-align: super; }
+        .sub-label { display: inline-block; background: #1e466e; color: white; font-weight: 700; padding: 0 14px; border-radius: 16px; margin: 6px 0; font-family: 'Segoe UI', 'Noto Sans', 'Malgun Gothic', sans-serif; font-size: 14px; }
+        .bracket-span { border-left: 4px solid #475569; background: #f8fafc; padding: 8px 14px; margin: 0 0 1.2em 0; border-radius: 0 14px 14px 0; }
+        .bracket-span p { margin-bottom: 0.6em; }
+        .bracket-badge { display: inline-block; background: #475569; color: #fff; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 10px; margin-bottom: 6px; font-family: 'Segoe UI', sans-serif; }
+        .analysis-box { margin-bottom: 24px; border-left: 4px solid #3b82f6; background: #f0f7ff; padding: 12px 16px; border-radius: 16px; }
+        .analysis-box .title { font-weight: 700; color: #1e466e; margin-bottom: 6px; font-size: 14px; }
+        .analysis-box .content { font-size: 13.5px; color: #1e293b; }
+        .vocab-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 10px 14px; border-radius: 14px; margin-top: 12px; margin-bottom: 20px; font-size: 13px; }
+        .info-box { background: #eef2ff; border-radius: 20px; padding: 18px 24px; margin: 20px 0; border-left: 5px solid #e67e22; }
+        .info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #b45309; }
+        .qa-box { background: #f5f3ff; border: 1px solid #8b5cf6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; font-size: 13.5px; }
+        .qa-box h3 { color: #6d28d9; font-size: 16px; margin-bottom: 10px; }
+        .highlight-table { background: #fef9e6; border-radius: 20px; padding: 16px 20px; margin: 20px 0; border: 1px solid #f1c40f; }
+        .blank-fill { color: #dc2626; font-weight: 700; border-bottom: 2px solid #dc2626; padding: 0 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
+        th { background: #e2e8f0; font-weight: 600; }
+        .structure-wrapper { background: linear-gradient(145deg, #f8fafc 0%, #eff3f8 100%); border-top: 3px solid #cbd5e1; border-bottom: 1px solid #e2e8f0; padding: 36px 32px 44px 32px; }
+        .structure-title { font-size: 22px; font-weight: 800; color: #0c4a6e; display: flex; align-items: center; gap: 12px; margin-bottom: 28px; border-left: 6px solid #e67e22; padding-left: 20px; }
+        .structure-title span { background: #1e466e; color: white; font-size: 16px; padding: 4px 16px; border-radius: 40px; }
+        .structure-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; position: relative; }
+        .struct-card { flex: 1; min-width: 200px; background: white; border-radius: 32px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2edf7; }
+        .card-head { background: #1e466e; color: white; padding: 14px 18px; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px 20px; font-size: 14px; background: #ffffff; }
+        .card-body p { margin-bottom: 14px; line-height: 1.5; }
+        .card-body .sub-point { background: #f1f5f9; padding: 8px 12px; border-radius: 20px; margin-top: 10px; font-size: 12.5px; color: #334155; border-left: 3px solid #e67e22; }
+        .arrow-symbol { text-align: center; font-size: 28px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 40px; }
+        .flow-badge { display: inline-block; background: #eef2ff; border-radius: 24px; padding: 2px 12px; font-size: 12px; font-weight: 600; color: #1e466e; margin-right: 8px; }
+        .flow-summary { margin-top: 26px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 14px 22px; font-size: 14px; color: #2c3e66; }
+        .questions-section { padding: 30px 40px; background: #f8fafc; border-top: 2px solid #cfdfed; }
+        .question-full { background: #ffffff; border-radius: 26px; padding: 20px 28px; margin: 32px 0; border: 1px solid #cfdfed; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .q-num { font-weight: 800; font-size: 22px; background: #1e466e; display: inline-block; padding: 4px 22px; border-radius: 60px; color: white; margin-bottom: 18px; }
+        .q-type { display: inline-block; margin-left: 10px; background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 3px 14px; border-radius: 30px; }
+        .question-stem { font-weight: 600; font-size: 17px; margin-bottom: 20px; background: #f1f5f9; padding: 12px 20px; border-radius: 28px; border: 1px solid #bdd4e7; }
+        .view-box { border: 2px solid #64748b; border-radius: 18px; padding: 16px 22px; margin: 16px 0 22px 0; background: #fcfcfd; font-size: 14.5px; font-family: 'Times New Roman', 'Noto Serif', serif; line-height: 1.8; }
+        .view-box .view-title { display: block; text-align: center; font-weight: 700; letter-spacing: 8px; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; }
+        .choice-item { margin: 12px 0; padding: 12px 16px; background: white; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .choice-item.correct { border: 2px solid #10b981; background: #f0fdf9; }
+        .choice-text { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .choice-analysis { font-size: 13px; color: #4b5563; padding-left: 12px; border-left: 3px solid #94a3b8; margin-top: 6px; }
+        .correct-badge { background: #d1fae5; border-left: 6px solid #10b981; padding: 12px 20px; border-radius: 24px; margin: 12px 0; font-weight: 600; }
+        .missing-note { background: #fff0f0; border: 2px dashed #e74c3c; border-radius: 16px; padding: 10px 16px; margin: 12px 0; font-size: 13.5px; color: #b91c1c; }
+        .passage-study { padding: 30px 40px; background: #fffbeb; border-top: 2px solid #f1c40f; }
+        .passage-study h2 { font-size: 22px; color: #92400e; margin-bottom: 16px; }
+        .passage-study h3 { font-size: 17px; color: #1e466e; margin: 18px 0 8px 0; }
+        .passage-study ul { margin-left: 22px; font-size: 14px; }
+        .passage-study li { margin-bottom: 6px; }
+        @media (max-width: 950px) {
+            .structure-grid { flex-direction: column; }
+            .arrow-symbol { transform: rotate(90deg); margin: -8px 0; }
+        }
+        @media (max-width: 900px) {
+            .two-columns { flex-direction: column; }
+            .col-left, .col-right { border-right: none; width: 100%; }
+            .questions-section { padding: 20px; }
+            .structure-wrapper { padding: 28px 20px; }
+        }
+    .original-text .stanza-gap { margin-top: 1.6em; }
+</style><style>
+.questions-section{padding:30px 28px;background:#fff}
+.question-full{border:1px solid #e2e8f0;border-radius:18px;padding:18px 20px;margin-bottom:22px;background:#fcfdff}
+.question-full .q-num{display:inline-block;background:#1e466e;color:#fff;font-weight:800;border-radius:10px;padding:2px 12px;margin-right:8px}
+.question-full .q-type{font-size:13px;color:#b45309;font-weight:700}
+.question-stem{font-size:15.5px;font-weight:700;margin:10px 0 12px}
+.view-box{border:1.5px solid #64748b;border-radius:10px;padding:12px 14px;margin:0 0 12px;font-size:14px;background:#fff}
+.view-title{text-align:center;font-weight:800;color:#475569;margin-bottom:6px}
+.choice-item{border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border:1px solid #e2e8f0}
+.choice-item.correct{background:#f0fdf4;border-color:#86efac}
+.choice-text{font-size:14.5px;font-weight:600}
+.choice-analysis{font-size:13.5px;color:#334155;margin-top:4px}
+.correct-badge{margin-top:8px;font-weight:800;color:#15803d}
+.trk{display:inline-block;font-size:11.5px;font-weight:700;border-radius:8px;padding:0 8px;margin-left:6px;background:#fef3c7;color:#92400e}
+.boxed{border:1.5px solid #1e293b;padding:0 3px}
+.fig{display:block;max-width:100%;margin:8px auto;border:1px solid #e2e8f0;border-radius:8px}
+.flow-note{margin:14px 28px 0;padding:12px 16px;background:#eef6ff;border-radius:14px;font-size:14px}
+.para-list li{margin-bottom:6px;font-size:13.5px}
+.summary-bar{padding:14px 28px;background:#f1f5f9;font-size:14px}
+</style></head>
+<body><div class="container">
+<div class="header"><h1>📜 마침내 미니모의고사 수업용 4회 · 문학2 15~17 (고전 시가 복합)</h1><p>안도환, 「만언사」 / 작자 미상, 사설시조 | 원문 + 인라인 분석 + 문제 + 정답/오답 해설</p></div>
+<div class="two-columns"><div class="col-left"><div class="original-text">
+<p style="font-weight:700; font-size:16px;">안도환, 「만언사」 / 작자 미상, 사설시조</p>
+<span class="sub-label">(가)</span>
+<div class="bracket-span"><span class="bracket-badge">[A]</span>
+<p>사면을 돌아보니 날 알 이 뉘 있으리<br>보이나니 바다요 들리나니 물소리라<br>㉠ <span class="underline-phrase">바닷물이 다 흐른 뒤 모래 모여 섬이 되어</span><br>추자도 생겼으니 하늘이 만든 지옥 여기로다<br><b>바닷물로 성을 싸고 운산(雲山)으로 문을 지어</b><br>세상을 끊었으니 인간 세상 아니로다<br>풍도성(酆都城)이 어디메요 지옥이 여기로다<br>어디로 가잔 말고 뉘 집으로 가잔 말고<br>이 집에 가 주인 하자 가난하다 핑계하고<br>저 집에 가 의지하자 연고(緣故) 있다 핑계 대니<br>이 집 저 집 아무덴들 <span class="boxed">귀양객</span> 주인 뉘 되잘고<br>관가에서 핍박하니 할 수 없이 맡았으나<br>관인 저어하여 못 한 말을 만만하니 내 다 듣네<br>세간 그릇 내던지며 역정 내어 하는 말이<br>저 나그네 헤아려 보소 주인 아니 불쌍한가<span class="para-note">← [A] 바다와 물소리뿐인 추자도 = 하늘이 만든 지옥(㉠) → 집집마다 핑계, 관가의 핍박으로 귀양객을 맡은 주인의 푸념</span></p>
+</div>
+<p>이 집 저 집 잘사는 집 한두 집이 아니어든<br>㉡ <span class="underline-phrase">관인들은 뇌물 받고 손님들은 부추김 들어</span><br>구태여 내 집으로 <b>연분 있어 와 계신가</b><br>내 살림 담백한 줄 보시니 아니 알가<span class="para-note">← 잘사는 집 두고 ㉡ 뇌물·부추김 → ‘연분 있어 와 계신가’(괄시당하는 처지)</span></p>
+<p style="text-align:center">(중략)</p>
+<p>㉢ <span class="underline-phrase">상전(桑田)이 벽해(碧海)되고 벽해가 상전 되어도</span>*<br>임 그리는 마음이야 가실 줄이 없건마는<br>내 이리 그리는 줄 아시나 모르시나<br>모르시고 잊으셨나 <b>아시고 속이시나</b><br>내 아니 잊었거니 임이 설마 잊었으랴<br>풍운(風雲)이 흩어져도 모일 때 있으니<br>눈서리 친다 한들 우로(雨露) 아니 오랴<br>㉣ <span class="underline-phrase">울음 울어 떠난 임을 웃음 웃어 만나고져</span><br>이리저리 생각하니 가슴속에 불이 난다<br>간장(肝腸)이 다 타오니 무엇으로 끄자 하리<br>끄기도 어려운 불 <b>오장(五臟)의 불</b>이로다<br>천상수(天上水)를 얻으면은 끌 법도 있건마는<br>알고도 못 얻으니 <b>혀가 말라 말이 없다</b><span class="para-note">← (중략 후) ㉢ 상전벽해에도 변치 않는 그리움 → 아시고 속이시나(초조) → ㉣ 울음 울어 떠난 임을 웃음 웃어 만나고져 → 오장의 불, 천상수(임금의 은혜)를 못 얻어 혀가 말라</span></p>
+<p style="text-align:right;font-size:13.5px">- 안도환, 「만언사」 -</p>
+<p style="font-size:12.5px;color:#475569;margin-bottom:.3em">* 상전이 ~ 되어도 : 뽕나무밭이 변해 바다가 된다는 ‘상전벽해’를 변용함.</p>
+<span class="sub-label">(나)</span>
+<p>개야미 불개야미 잔등 부러진 불개야미<br>㉤ <span class="underline-phrase">앞발에 부스럼 나고 뒷발에 종기 난 불개야미</span> 광릉 샘재 넘어 들어 칡범의 <b>허리를 가로물어 추켜들고 북해를 건넜단 말</b>이 있습니다<br>임아 임아 <b>온 놈이 온 말을 하여도 임이 짐작하소서</b><span class="para-note">← (나) 잔등 부러지고 부스럼·종기 난 개미(㉤)가 칡범을 물고 북해를 건넜다는 풍문 → 온 놈이 온 말을 해도 임이 짐작하소서</span></p>
+<p style="text-align:right;font-size:13.5px">- 작자 미상 -</p>
+</div></div>
+<div class="col-right"><div class="info-box"><h3>🎯 핵심 정리</h3>
+<p style="font-size:13.5px;"><strong>영역</strong> 고전 시가 복합 · <strong>난도</strong> 중상 · <strong>목표 시간</strong> 7분</p>
+<p style="font-size:13.5px;margin-top:8px;"><strong>흐름</strong> (가) 「만언사」: 지옥 같은 추자도 유배지 → 귀양객을 떠맡은 백성의 푸념 → (중략) 변치 않는 임 그리움, 재회의 기대 → 오장의 불, 혀가 말라 말이 없다 / (나) 사설시조: 불가능한 개미 이야기(터무니없는 풍문) → 임이 짐작하소서(결백 호소)</p></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ① 독해 설계</h3><ul class="para-list"><li><b>[A]의 목소리 둘</b>: 화자(귀양객)의 탄식 + ‘세간 그릇 내던지며’ 하는 주인의 푸념 — ‘불쌍한가’는 주인이 자기 처지를 한탄하는 말.</li><li><b>불과 물</b>: 오장의 불(애타는 마음) ↔ 천상수·우로(임금의 은혜) — 방도는 알지만 얻지 못해 애탄다.</li><li><b>(나)의 구조</b>: 개미의 상태(거동 불가) ≠ 개미의 행동(불가능한 일) → 모함의 터무니없음 → 임에게 판단을 당부.</li></ul></div>
+<div class="highlight-table"><h3 style="font-size:17px;">💯 이것만은 꼭 익히자! ② 문단·장면별 요지</h3><ol class="para-list"><li>[A] 바다와 물소리뿐인 추자도 = 하늘이 만든 지옥(㉠) → 집집마다 핑계, 관가의 핍박으로 귀양객을 맡은 주인의 푸념</li><li>잘사는 집 두고 ㉡ 뇌물·부추김 → ‘연분 있어 와 계신가’(괄시당하는 처지)</li><li>(중략 후) ㉢ 상전벽해에도 변치 않는 그리움 → 아시고 속이시나(초조) → ㉣ 울음 울어 떠난 임을 웃음 웃어 만나고져 → 오장의 불, 천상수(임금의 은혜)를 못 얻어 혀가 말라</li><li>(나) 잔등 부러지고 부스럼·종기 난 개미(㉤)가 칡범을 물고 북해를 건넜다는 풍문 → 온 놈이 온 말을 해도 임이 짐작하소서</li></ol></div>
+<div class="highlight-table"><h3 style="font-size:17px;">⏱️ 실전 체크포인트</h3><ul class="para-list"><li><b>15번 ③</b>: ㉢은 상전벽해를 변용한 대구지만 덕성 예찬이 아니라 변치 않는 마음의 강조.</li><li><b>16번 ⑤</b>: ‘주인 아니 불쌍한가’는 백성이 자기 처지를 한탄하는 말 — 귀양객에 대한 연민이 아니다.</li><li><b>17번 ⑤</b>: ‘오장의 불’을 끌 방도(천상수)는 안다 — ‘방도를 몰라’가 틀렸다.</li></ul><p style="font-size:12.5px;color:#475569;">목표 시간 7분 · 난도 중상 · 시간이 새는 자리: [A] 후반의 말하는 이(주인)를 화자로 착각하면 16번에서 ③·⑤를 오래 붙잡는다.</p></div></div></div>
+<div class="flow-note">📍 전체 흐름 : (가) 「만언사」: 지옥 같은 추자도 유배지 → 귀양객을 떠맡은 백성의 푸념 → (중략) 변치 않는 임 그리움, 재회의 기대 → 오장의 불, 혀가 말라 말이 없다 / (나) 사설시조: 불가능한 개미 이야기(터무니없는 풍문) → 임이 짐작하소서(결백 호소)</div>
+<div class="questions-section"><h2 style="font-size:24px;color:#1e466e;margin-bottom:10px;">🧪 문제 + 해설 [15~17]</h2>
+<div class="question-full"><div class="q-num">15</div><span class="q-type">[유형] 시구의 의미와 기능 · ㉠~㉤ · 예상 오답률(분석 추정) 35%</span>
+<div class="question-stem">㉠~㉤을 설명한 내용으로 적절하지 <strong>않은</strong> 것은?</div>
+
+<div class="choice-item"><div class="choice-text">① ㉠은 대상이 생긴 연원을 추측하며 화자의 절망감을 드러낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ㉠은 추자도가 생긴 연원을 추측 — 세상과 끊어진 곳으로 여기는 절망감.</div></div>
+<div class="choice-item"><div class="choice-text">② ㉡은 인물들의 행위를 제시하여 인물의 억울함을 부각한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ㉡은 뇌물·부추김의 결과로 귀양객이 배정됐다고 여기는 발화자의 억울함.</div></div>
+<div class="choice-item correct"><div class="choice-text">③ ㉢은 대구의 방식을 통해 자연물에서 발견한 덕성을 예찬한다.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – ㉢은 대구로 상황이 매우 달라짐을 나타내 변치 않는 마음을 강조 — 자연물에서 발견한 덕성 예찬이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ㉣은 상반된 어휘를 활용하여 앞날에 대한 기대를 나타낸다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ㉣은 ‘울음 울어’와 ‘웃음 웃어’의 상반된 어휘로 재회의 날에 대한 기대.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ㉤은 대상의 상태를 구체적으로 진술하여 이어지는 말의 실현 가능성을 부정한다.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ㉤은 거동이 불편한 개미의 상태를 구체적으로 진술해 이어지는 말이 실현되기 어려움을 부각.</div></div>
+<div class="correct-badge">📍 ③번이 정답. [유형] 시구의 의미와 기능</div></div>
+<div class="question-full"><div class="q-num">16</div><span class="q-type">[유형] 문맥 속 내용 이해 · 귀양객 중심 [A] · 예상 오답률(분석 추정) 45%</span>
+<div class="question-stem"><span class="boxed">귀양객</span>을 중심으로 [A]를 이해한 내용으로 가장 적절한 것은?</div>
+
+<div class="choice-item correct"><div class="choice-text">① ‘보이나니 바다요 들리나니 물소리라’에는 낯선 환경에서 기인한 귀양객의 단절감이 드러난다.</div><div class="choice-analysis">✅ <strong>정답</strong> – 자신을 아는 사람 없이 세상과 끊긴 섬에 떨어진 화자(귀양객)의 단절감.</div></div>
+<div class="choice-item"><div class="choice-text">② ‘인간 세상 아니로다’에는 추자도의 청아한 풍광에 대한 귀양객의 감탄이 드러난다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – ‘인간 세상 아니로다’는 바다와 산에 둘러싸인 험준한 추자도에 대한 탄식 — 감탄이 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">③ ‘가난하다 핑계하고’에는 신분을 내세워 위세 부리는 귀양객을 꺼리는 백성의 심정이 드러난다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ⑤ 확인 불가</span> – 귀양객을 꺼리는 심정은 맞지만 화자는 ‘만만’하게 여겨질 뿐 신분을 내세워 위세 부리지 않았다.</div></div>
+<div class="choice-item"><div class="choice-text">④ ‘관가에서 핍박하니’에는 귀양객을 과도하게 억압하는 관리의 부당한 행태가 드러난다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ④ 인과 조작</span> – 관청의 권력을 내세워 귀양객을 맡게 한 상황 — 귀양객을 억압하는 관리의 행태가 아니다.</div></div>
+<div class="choice-item"><div class="choice-text">⑤ ‘주인 아니 불쌍한가’에는 정처 없이 끌려다니는 귀양객을 안타깝게 여기는 백성의 시선이 드러난다.</div><div class="choice-analysis">❌ <strong>오답</strong><span class="trk">트릭 ③ 귀속식 대립 왜곡</span> – 가난한 살림에 귀양객을 맡게 된 백성이 자기 처지를 한탄하는 말 — 귀양객에 대한 연민 아님.</div></div>
+<div class="correct-badge">📍 ①번이 정답. [유형] 문맥 속 내용 이해</div></div>
+<div class="question-full"><div class="q-num">17</div><span class="q-type">[유형] 외적 준거 감상 · &lt;보기&gt; (가)·(나) · 예상 오답률(분석 추정) 50%</span>
+<div class="question-stem">&lt;보기&gt;를 참고하여 (가)와 (나)를 감상한 내용으로 적절하지 <strong>않은</strong> 것은? [3점]</div>
+<div class="view-box"><div class="view-title">&lt;보 기&gt;</div>
+<p>(가)와 (나)는 부정적인 현실에 대응하는 화자의 태도를 보여 준다. (가)는 유배지에서의 생활상과 그에 따른 화자의 내면을 비유적 표현을 활용하여 드러낸다. 이를 통해 화자는 임에게 관용을 베풀어 줄 것을 우회적으로 호소한다. (나)는 세간의 풍문을 인용하여 타인을 모함하는 세태에 대한 냉소를 드러낸다. 진술되는 풍문의 내용은 모함의 터무니없음을 부각하며, 이를 통해 화자는 다수의 말에 휩쓸리지 않는 냉철한 시선의 필요성을 강조한다.</p>
+</div>
+<div class="choice-item"><div class="choice-text">① (가)의 ‘바닷물로 성을 싸고 운산으로 문을 지어’를 통해 유배지의 험난한 형세에 압도당한 화자의 막막함을 엿볼 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 험준한 지형에 세상과 단절된 ‘지옥’ 같다고 함 — 추자도에 갇힌 화자의 막막함.</div></div>
+<div class="choice-item"><div class="choice-text">② (가)의 ‘연분 있어 와 계신가’를 통해 유배지에서 괄시당하는 화자의 처지를 짐작할 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 인연도 없는데 왜 굳이 자기 집에 머무느냐는 타박 — 유배지에서 괄시당하는 처지.</div></div>
+<div class="choice-item"><div class="choice-text">③ (나)의 ‘허리를 가로물어 추켜들고 북해를 건넜단 말’을 통해 세간에 떠도는 말의 허구성과 허황됨을 짐작할 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – 등이 부러지고 발을 쓰기 어려운 개미가 할 수 없는 행동 — 풍문의 허구성·허황됨.</div></div>
+<div class="choice-item"><div class="choice-text">④ (가)의 ‘아시고 속이시나’를 통해 임의 무심함에 따른 초조함을, (나)의 ‘온 놈이 온 말을 하여도’를 통해 참소를 일삼는 세태에 대한 비판을 엿볼 수 있군.</div><div class="choice-analysis">⭕ <strong>적절함</strong> – ‘아시고 속이시나’는 임의 무심함에 대한 서운함·초조함, ‘온 놈이 온 말을 하여도’는 뭇사람이 임에게 화자를 모함하는 상황.</div></div>
+<div class="choice-item correct"><div class="choice-text">⑤ (가)의 ‘혀가 말라 말이 없다’를 통해 ‘오장의 불’을 끌 방도를 몰라 애타는 화자의 심정을, (나)의 ‘임이 짐작하소서’를 통해 자신의 무고함을 호소하는 화자의 태도를 엿볼 수 있군.</div><div class="choice-analysis">✅ <strong>정답</strong><span class="trk">트릭 ② 단정적 부정</span> – 천상수를 얻으면 끌 수 있음을 알면서도 얻지 못해 애타는 심정 — ‘방도를 몰라’가 틀렸다. (나)의 결백 호소는 적절.</div></div>
+<div class="correct-badge">📍 ⑤번이 정답. [유형] 외적 준거 감상</div></div>
+</div></div></body></html>
