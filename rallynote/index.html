@@ -740,13 +740,22 @@ details.panel[open]>summary::after{content:"－"}
   $('#btnRecord').onclick = () => $('#fileRecord').click();
   for (const id of ['#fileOpen', '#fileRecord']) $(id).addEventListener('change', (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) startNew(f); });
 
+  const NODECODE = '이 브라우저가 영상 화면을 읽지 못합니다. 아이폰으로 찍은 영상(HEVC)이면 사파리에서 열거나, 아이폰 설정 > 카메라 > 포맷에서 \'높은 호환성\'으로 찍어 주세요.';
   function readMeta(url) {
     return new Promise((res, rej) => {
       const v = document.createElement('video'); v.muted = true; v.playsInline = true; v.preload = 'auto';
-      v.onloadedmetadata = () => res(v); v.onerror = () => rej(new Error('이 브라우저에서 열 수 없는 영상 형식입니다'));
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      // some phones only decode and play a video that is in the page
+      v.style.cssText = 'position:fixed;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none';
+      document.body.appendChild(v);
+      const fail = (m) => { v.remove(); rej(new Error(m)); };
+      const timer = setTimeout(() => fail('영상을 여는 데 시간이 너무 걸립니다. 다시 시도해 주세요.'), 20000);
+      v.onloadedmetadata = () => { clearTimeout(timer); v.videoWidth ? res(v) : fail(NODECODE); };
+      v.onerror = () => { clearTimeout(timer); fail(NODECODE); };
       v.src = url;
     });
   }
+  const dropVideo = (v) => { try { v.pause(); v.removeAttribute('src'); v.load(); v.remove(); } catch (e) { /* ignore */ } };
   async function startNew(file, name) {
     const url = URL.createObjectURL(file);
     let v;
@@ -754,7 +763,7 @@ details.panel[open]>summary::after{content:"－"}
     const d = new Date();
     const s = { id: sid(), name: name || `${d.getMonth() + 1}월 ${d.getDate()}일 경기`, created: Date.now(), duration: v.duration, vw: v.videoWidth, vh: v.videoHeight, fps: 30,
       file: { name: file.name, size: file.size }, flights: [], opts: Object.assign({}, DEF), rallies: [], removed: [], partial: true, upTo: 0 };
-    v.removeAttribute('src'); v.load();
+    dropVideo(v);
     urls[s.id] = url;
     try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch (e) { /* ignore */ }
     store.putVideo(s.id, file).then(ok => { s.stored = ok; if (ok) store.put(s); });
@@ -770,8 +779,9 @@ details.panel[open]>summary::after{content:"－"}
     show('vWork');
     $('#workTitle').textContent = fromT > 0 ? '이어서 랠리를 찾는 중' : '랠리를 찾는 중';
     $('#workPeek').disabled = true;
-    const v = await readMeta(url).catch(() => null);
-    if (!v) { toast('영상을 열지 못했습니다', 4000); show('vHome'); return; }
+    let v;
+    try { v = await readMeta(url); }
+    catch (e) { toast(e.message, 8000); if (first) { await store.del(s.id); delete urls[s.id]; await refreshHome(); show('vHome'); } else openSession(s); return; }
     const vw = v.videoWidth, vh = v.videoHeight;
     const W = vw >= vh ? PROC : Math.round(PROC * vw / vh / 2) * 2, H = vw >= vh ? Math.round(PROC * vh / vw / 2) * 2 : PROC;
     const cv = $('#workCanvas'); cv.width = W; cv.height = H;
@@ -795,9 +805,13 @@ details.panel[open]>summary::after{content:"－"}
     let lastUi = 0, lastCalc = 0, found = { n: 0, play: 0 };
     let wake = null; try { wake = await navigator.wakeLock?.request('screen'); } catch (e) { wake = null; }
     const sampleDt = 1 / 30 - 0.004;
+    let blank = 0;
     const process = (t) => {
       g.drawImage(v, 0, 0, W, H);
-      const r = det(g.getImageData(0, 0, W, H).data);
+      const img = g.getImageData(0, 0, W, H).data;
+      if (frames.length < 40) { let sum = 0; for (let i = 0; i < img.length; i += 400) sum += img[i] + img[i + 1] + img[i + 2]; if (sum === 0) blank++; }
+      if (frames.length === 39 && blank >= 38) throw new Error(NODECODE);
+      const r = det(img);
       const c = r.m > 0.25 ? [] : r.c; // the whole picture moved: camera bumped or panned
       frames.push({ t, c });
       g.strokeStyle = '#d6f04a'; g.lineWidth = 2;
@@ -820,7 +834,7 @@ details.panel[open]>summary::after{content:"－"}
         $('#workRallies').textContent = found.n; $('#workPlay').textContent = fmtT(found.play);
       }
     };
-    const stop = () => st.cancel || st.peek;
+    const stop = () => st.cancel || st.peek || !!st.err;
     const playPass = () => new Promise((resolve) => {
       if (!('requestVideoFrameCallback' in HTMLVideoElement.prototype)) return resolve('noRvfc');
       let lastCb = performance.now(), done = false, prevMT = null;
@@ -832,7 +846,7 @@ details.panel[open]>summary::after{content:"－"}
         const t = meta.mediaTime;
         if (prevMT != null && t > prevMT && st.dts.length < 400) st.dts.push(t - prevMT);
         prevMT = t;
-        if (t - st.last >= sampleDt) { st.last = t; process(t); }
+        if (t - st.last >= sampleDt) { st.last = t; try { process(t); } catch (e) { st.err = e; return finish('error'); } }
         if (!v.ended) v.requestVideoFrameCallback(cb);
       };
       const dog = setInterval(() => { if (stop()) finish('stop'); else if (performance.now() - lastCb > 3000) finish('stalled'); }, 400);
@@ -841,22 +855,23 @@ details.panel[open]>summary::after{content:"－"}
       v.requestVideoFrameCallback(cb);
       v.play().catch(() => finish('noplay'));
     });
-    let complete = false;
+    let complete = false, err = null;
     try {
       v.pause(); await seekTo(fromT);
       const how = await playPass();
+      if (st.err) throw st.err;
       if (!stop() && (how !== 'ended' || st.last < dur - 1)) {
         $('#workText').textContent = '이 브라우저에서는 한 장씩 넘기며 분석합니다…';
         for (let t = Math.max(fromT, st.last + 1 / 15); t < dur && !stop(); t += 1 / 15) { await seekTo(t); process(t); st.last = t; }
       }
       complete = !stop() && st.last >= dur - 1.5;
-    } catch (e) { st.cancel = true; toast('영상을 재생하지 못했습니다: ' + e.message, 5000); }
+    } catch (e) { err = e; }
     try { wake && wake.release(); } catch (e) { /* ignore */ }
-    v.removeAttribute('src'); v.load(); job = null;
-    if (st.cancel) {
+    dropVideo(v); job = null;
+    if (st.cancel || err) {
       if (first) { await store.del(s.id); URL.revokeObjectURL(url); delete urls[s.id]; await refreshHome(); show('vHome'); }
       else openSession(s);
-      toast('분석을 멈췄습니다'); return;
+      toast(err ? (err.message === NODECODE ? NODECODE : '분석 중 문제가 생겼습니다: ' + (err.message || err)) : '분석을 멈췄습니다', err ? 9000 : 2600); return;
     }
     $('#workText').textContent = '랠리를 정리하는 중…';
     await new Promise(r => setTimeout(r, 20));
