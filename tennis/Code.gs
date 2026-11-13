@@ -117,7 +117,7 @@ function core_inUse(s) {
   return u;
 }
 function core_checkEmojis(s, emojis) {
-  emojis = (emojis || []).slice(0, 4);
+  emojis = (emojis || []).slice(0, 1);   // 본인 1명만
   if (!emojis.length) throw new Error('아이콘을 골라 주세요.');
   const used = core_inUse(s);
   emojis.forEach(e => {
@@ -138,12 +138,18 @@ function core_needRoom(s, ctx, court, n, isArrival) {
   if (free < n) throw new Error(free <= 0 ? '대기가 가득 찼어요 (최대 ' + MAX_TEAMS + '팀). 다음 팀이 입장하면 자리가 생겨요.'
     : '남은 대기 자리가 ' + free + '명뿐이에요.');
 }
+/** 한 휴대폰에 하나만 (본인 것만 기록) */
+function core_oneDev(s, dev) {
+  if (!dev) return;
+  if (s.queue.some(q => q.dev === dev) || s.plans.some(p => p.dev === dev)) throw new Error('이미 등록돼 있어요. 한 사람당 하나만 등록할 수 있어요.');
+}
 function core_view(s, ctx, extra) {
   const v = {
     now: ctx.now, gameMin: GAME_MIN, maxTeams: MAX_TEAMS,
     free: core_isWeekend(s, ctx) ? { 1: core_free(s, ctx, 1), 2: core_free(s, ctx, 2) } : { 0: core_free(s, ctx, 0) }, bonusMin: BONUS_MIN, earlyMin: EARLY_MIN, lateMin: LATE_MIN, expireMin: EXPIRE_MIN, openHour: OPEN_HOUR, closeHour: CLOSE_HOUR,
     open: core_isOpen(ctx), emojis: EMOJIS, weekend: core_isWeekend(s, ctx), mode: s.mode,
-    courts: s.courts, queue: s.queue, plans: s.plans.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', eta: p.eta, t: p.t, nobonus: p.nobonus })), log: s.log.slice(-15).reverse()
+    courts: s.courts.map(c => ({ id: c.id, start: c.start, players: c.players.map(p => ({ id: p.id, e: p.e, nm: p.nm || '' })) })),
+    queue: s.queue.map(q => ({ id: q.id, e: q.e, nm: q.nm || '', court: q.court, t: q.t, bonus: q.bonus })), plans: s.plans.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', eta: p.eta, t: p.t, nobonus: p.nobonus })), log: s.log.slice(-15).reverse()
   };
   if (ctx.dev) v.banned = s.banned.indexOf(ctx.dev) >= 0;
   if (extra) Object.keys(extra).forEach(k => v[k] = extra[k]);
@@ -155,11 +161,12 @@ function core_name(n) { return String(n || '').replace(/[<>&"'`]/g, '').replace(
 
 const CoreOps = {
   /** 지금 코트에 와서 대기 등록 (아이콘 1~4개 = 인원) */
-  join(s, ctx, emojis, court, names) {
+  join(s, ctx, emojis, court, names, dev) {
     emojis = core_checkEmojis(s, emojis); names = names || [];
+    dev = String(dev || '').slice(0, 20); core_oneDev(s, dev);
     const c = core_isWeekend(s, ctx) ? (Number(court) === 2 ? 2 : 1) : 0;
     core_needRoom(s, ctx, c || 1, emojis.length, false);
-    const created = emojis.map((e, i) => { const q = { id: ctx.uuid(), e: e, nm: core_name(names[i]), court: c, t: ctx.now, vt: ctx.now }; s.queue.push(q); return q.id; });
+    const created = emojis.map((e, i) => { const q = { id: ctx.uuid(), e: e, nm: core_name(names[i]), court: c, t: ctx.now, vt: ctx.now, dev: dev }; s.queue.push(q); return q.id; });
     core_log(s, ctx, emojis.join(' ') + ' 대기 등록' + (c ? ' (' + c + '코트)' : ''));
     return { created: created };
   },
@@ -205,7 +212,7 @@ const CoreOps = {
     if (m < ctx.mod - 5 || m >= CLOSE_HOUR * 60) throw new Error('도착 시간은 지금부터 ' + CLOSE_HOUR + ':00 전까지 고를 수 있어요.');
     if (core_isWeekend(s, ctx)) { if (MAX_TEAMS * 8 - s.queue.length - s.plans.length < emojis.length) throw new Error('대기가 가득 찼어요.'); }
     else core_needRoom(s, ctx, 0, emojis.length, false);
-    dev = String(dev || '').slice(0, 20);
+    dev = String(dev || '').slice(0, 20); core_oneDev(s, dev);
     const nobonus = !!dev && s.banned.indexOf(dev) >= 0;
     const created = emojis.map((e, i) => { const p = { id: ctx.uuid(), e: e, nm: core_name(names[i]), eta: eta, t: ctx.now, dev: dev, nobonus: nobonus }; s.plans.push(p); return p.id; });
     s.plans.sort((a, b) => a.eta < b.eta ? -1 : a.eta > b.eta ? 1 : a.t - b.t);
@@ -235,7 +242,7 @@ const CoreOps = {
     const line = c ? s.queue.filter(q => (q.court || 1) === c) : s.queue;
     let anchor = null;
     if (onTime) for (let i = 4; i < line.length; i++) { if ((line[i].vt || line[i].t) > vt) { anchor = line[i]; break; } }
-    const items = ps.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', court: c, t: ctx.now, vt: vt, bonus: onTime }));
+    const items = ps.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', dev: p.dev, court: c, t: ctx.now, vt: vt, bonus: onTime }));
     if (anchor) s.queue.splice(s.queue.indexOf(anchor), 0, ...items);
     else items.forEach(q => s.queue.push(q));
     core_log(s, ctx, es_(ps) + (onTime ? ' 정시 도착 ⏰ (' + BONUS_MIN + '분 우선)' : late ? ' 지각 도착 — 일반 대기, 오늘 혜택 제외' : ' 도착 · 대기 등록'));
