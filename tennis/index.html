@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>테니스장 대기</title>
+<style>
+  :root{
+    --bg:#f2f4f6; --card:#fff; --ink:#191f28; --sub:#8b95a1; --line:#e5e8eb;
+    --pri:#1f7a52; --pri-d:#17603f; --pri-soft:#e8f5ee;
+    --busy:#f59f00; --busy-soft:#fff6e0; --over:#e03131; --over-soft:#ffeceb;
+    --me:#fff3bf; --me-line:#fcc419;
+    --tab-h:64px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;font-size:15px;line-height:1.45}
+  button{font:inherit;border:0;cursor:pointer;color:inherit;background:none}
+  .app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:calc(var(--tab-h) + 84px + env(safe-area-inset-bottom))}
+
+  /* 상단 */
+  .top{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 18px 8px;display:flex;justify-content:space-between;align-items:center}
+  .top .ttl{font-size:20px;font-weight:800;letter-spacing:-.4px}
+  .top .ttl small{display:block;font-size:12px;font-weight:500;color:var(--sub);letter-spacing:0}
+  .top .clk{text-align:right}
+  .top .clk div{font-size:12px;color:var(--sub)}
+  .top .clk b{font-size:22px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .sec{padding:0 16px}
+  .label{font-size:13px;color:var(--sub);font-weight:600;margin:18px 4px 8px}
+
+  /* 예상 대기 */
+  .hero{background:var(--pri);color:#fff;border-radius:20px;padding:20px;display:flex;justify-content:space-between;align-items:center}
+  .hero .k{font-size:13px;opacity:.85}
+  .hero .v{font-size:40px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:2px 0}
+  .hero .v span{font-size:20px;font-weight:700;margin-left:2px}
+  .hero .s{font-size:13px;opacity:.9}
+  .hero .cnt{text-align:center;background:rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;min-width:84px}
+  .hero .cnt b{display:block;font-size:26px;line-height:1.1}
+  .hero .cnt small{font-size:12px;opacity:.85}
+
+  /* 코트 타일 */
+  .courts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .tile{background:var(--card);border-radius:20px;padding:14px;display:flex;flex-direction:column;align-items:center;text-align:center;border:2px solid transparent}
+  .tile.free{border-color:var(--pri)}
+  .tile .hd{width:100%;display:flex;justify-content:space-between;align-items:center}
+  .tile .no{font-size:15px;font-weight:800}
+  .chip{font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px}
+  .chip.free{background:var(--pri-soft);color:var(--pri)}
+  .chip.busy{background:var(--busy-soft);color:#b07000}
+  .chip.over{background:var(--over-soft);color:var(--over)}
+  .ring{position:relative;width:108px;height:108px;margin:10px 0 6px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .c b{font-size:26px;letter-spacing:-.5px;line-height:1}
+  .ring .c small{font-size:11px;color:var(--sub);margin-top:3px}
+  .tile .ppl{font-size:20px;letter-spacing:1px;min-height:28px}
+  .tile .meta{font-size:11px;color:var(--sub);min-height:16px}
+  .tile .act{margin-top:10px;width:100%;padding:11px 0;border-radius:12px;font-weight:700;font-size:14px}
+  .act.go{background:var(--pri);color:#fff}
+  .act.end{background:#f2f4f6;color:#4e5968}
+
+  /* 내 티켓 */
+  .ticket{background:var(--card);border-radius:20px;overflow:hidden;border:2px solid var(--me-line)}
+  .ticket .tp{background:var(--me);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+  .ticket .tp .em{font-size:34px;letter-spacing:2px}
+  .ticket .tp .st{font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;background:#fff;color:#946c00}
+  .ticket .cut{height:0;border-top:2px dashed #f0d77a;margin:0 14px;position:relative}
+  .ticket .bt{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center}
+  .ticket .bt div small{display:block;font-size:11px;color:var(--sub)}
+  .ticket .bt div b{font-size:18px}
+  .ticket .msg{padding:0 18px 12px;font-size:13px;color:#946c00;text-align:center;font-weight:600}
+  .ticket .cx{display:block;width:100%;padding:12px;border-top:1px solid var(--line);color:var(--sub);font-size:13px}
+
+  /* 대기 명단 */
+  .team{background:var(--card);border-radius:16px;padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+  .team .idx{width:42px;height:42px;border-radius:12px;background:#f2f4f6;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
+  .team .idx small{font-size:9px;color:var(--sub);font-weight:600}
+  .team.next .idx{background:var(--pri);color:#fff}
+  .team.next .idx small{color:#d3eadd}
+  .team .body{flex:1;min-width:0}
+  .team .row1{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+  .team .row1 b{font-size:14px}
+  .team .row1 span{color:var(--sub)}
+  .slots{display:flex;gap:6px}
+  .slot{flex:1;height:40px;border-radius:10px;background:#f7f8f9;display:flex;align-items:center;justify-content:center;font-size:22px;position:relative}
+  .slot.empty{background:transparent;border:1.5px dashed #d1d6db;font-size:13px;color:#b0b8c1}
+  .slot.me{background:var(--me);box-shadow:inset 0 0 0 1.5px var(--me-line)}
+  .slot .x{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--over);color:#fff;font-size:12px;line-height:20px}
+  .court-h{font-size:14px;font-weight:800;margin:14px 4px 8px}
+  .empty{background:var(--card);border-radius:16px;padding:30px 16px;text-align:center;color:var(--sub)}
+  .empty b{display:block;font-size:30px;margin-bottom:6px}
+
+  /* 더보기 */
+  .list{background:var(--card);border-radius:16px;overflow:hidden}
+  .list button,.list .it{display:flex;justify-content:space-between;align-items:center;width:100%;padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+  .list > :last-child{border-bottom:0}
+  .list .it span,.list button span{color:var(--sub);font-size:13px}
+  .list .danger{color:var(--over);font-weight:700}
+  .rules{background:var(--card);border-radius:16px;padding:6px 16px}
+  .rules p{margin:0;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;display:flex;gap:10px}
+  .rules p:last-child{border-bottom:0}
+  .rules p i{font-style:normal;color:var(--pri);font-weight:800;width:18px;flex:none}
+  .log{background:var(--card);border-radius:16px;padding:6px 16px;font-size:13px}
+  .log div{padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:10px}
+  .log div:last-child{border-bottom:0}
+  .log time{color:var(--sub);flex:none;font-variant-numeric:tabular-nums}
+
+  /* 하단 등록 버튼 + 탭바 */
+  .cta{position:fixed;left:0;right:0;bottom:calc(var(--tab-h) + env(safe-area-inset-bottom));z-index:6;padding:10px 16px;background:linear-gradient(transparent,var(--bg) 30%)}
+  .cta button{display:block;width:100%;max-width:448px;margin:0 auto;background:var(--pri);color:#fff;font-size:17px;font-weight:800;padding:17px;border-radius:16px;box-shadow:0 6px 16px rgba(31,122,82,.28)}
+  .cta button:active{background:var(--pri-d)}
+  .tabs{position:fixed;left:0;right:0;bottom:0;z-index:7;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+  .tabs .in{max-width:480px;margin:0 auto;display:flex;height:var(--tab-h)}
+  .tabs button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:#b0b8c1;font-weight:600}
+  .tabs button .ic{font-size:21px;filter:grayscale(1);opacity:.55}
+  .tabs button.on{color:var(--ink)}
+  .tabs button.on .ic{filter:none;opacity:1}
+  .tabs .badge{position:absolute;margin:-6px 0 0 18px;background:var(--over);color:#fff;font-size:10px;border-radius:99px;padding:0 5px;line-height:16px}
+  .page{display:none}
+  .page.on{display:block}
+
+  /* 바텀시트 & 다이얼로그 */
+  .dim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
+  .dim.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+  .sheet.on{transform:none}
+  .sheet .in{max-width:480px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:10px 20px calc(20px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+  .grab{width:40px;height:5px;border-radius:5px;background:#d1d6db;margin:0 auto 14px}
+  .steps{display:flex;gap:4px;margin-bottom:16px}
+  .steps i{flex:1;height:4px;border-radius:4px;background:#e5e8eb}
+  .steps i.on{background:var(--pri)}
+  .sheet h3{font-size:22px;margin:0 0 4px;letter-spacing:-.4px}
+  .sheet .d{color:var(--sub);font-size:14px;margin:0 0 18px}
+  .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .nums button{background:#f2f4f6;border-radius:16px;padding:18px 0;font-size:24px;font-weight:800}
+  .nums button small{display:block;font-size:12px;font-weight:600;color:var(--sub)}
+  .nums button.on{background:var(--pri);color:#fff}
+  .nums button.on small{color:#d3eadd}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+  .seg button{background:#f2f4f6;border-radius:14px;padding:14px 0;font-weight:700}
+  .seg button.on{background:var(--pri);color:#fff}
+  .seg button small{display:block;font-size:12px;font-weight:500;opacity:.8}
+  .picked{display:flex;gap:8px;margin-bottom:14px}
+  .picked div{flex:1;height:54px;border-radius:14px;background:#f2f4f6;display:flex;align-items:center;justify-content:center;font-size:28px}
+  .picked div.cur{box-shadow:inset 0 0 0 2px var(--pri);background:#fff}
+  .grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+  .grid button{aspect-ratio:1;border-radius:12px;background:#f7f8f9;font-size:22px}
+  .grid button.on{background:var(--me);box-shadow:inset 0 0 0 2px var(--me-line)}
+  .grid button:disabled{opacity:.15}
+  .sbtn{display:flex;gap:8px;margin-top:20px}
+  .sbtn button{flex:1;padding:16px;border-radius:14px;font-size:16px;font-weight:800}
+  .sbtn .p{background:var(--pri);color:#fff}
+  .sbtn .p:disabled{background:#c8d3cd}
+  .sbtn .g{background:#f2f4f6;color:#4e5968;flex:0 0 32%}
+  .sum{background:#f7f8f9;border-radius:16px;padding:4px 16px;margin-top:4px}
+  .sum div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .sum div:last-child{border-bottom:0}
+  .sum div span{color:var(--sub)}
+  .done{text-align:center;padding:10px 0 4px}
+  .done .ok{width:64px;height:64px;border-radius:50%;background:var(--pri);color:#fff;font-size:34px;line-height:64px;margin:0 auto 12px}
+  .done .em{font-size:40px;letter-spacing:4px;margin:6px 0}
+
+  .dlg{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:24px;pointer-events:none;opacity:0;transition:opacity .15s}
+  .dlg.on{opacity:1;pointer-events:auto}
+  .dlg .box{background:#fff;border-radius:20px;padding:22px 20px 16px;width:100%;max-width:340px}
+  .dlg h4{margin:0 0 6px;font-size:18px}
+  .dlg p{margin:0 0 14px;color:#4e5968;font-size:14px;white-space:pre-line}
+  .dlg input{width:100%;font:inherit;font-size:20px;letter-spacing:6px;text-align:center;padding:12px;border:1.5px solid var(--line);border-radius:12px;margin-bottom:14px}
+  .dlg .bb{display:flex;gap:8px}
+  .dlg .bb button{flex:1;padding:14px;border-radius:12px;font-weight:800}
+  .dlg .bb .p{background:var(--pri);color:#fff}
+  .dlg .bb .p.red{background:var(--over)}
+  .dlg .bb .g{background:#f2f4f6;color:#4e5968}
+
+  .toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-20px);background:#191f28;color:#fff;padding:12px 18px;border-radius:14px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:40;max-width:90%;text-align:center;font-weight:600}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  .demo{margin:0 16px 4px;background:var(--me);color:#7a5d00;font-size:12px;border-radius:12px;padding:8px 12px;display:none}
+  .adm{margin:10px 16px 0;background:var(--over-soft);color:var(--over);font-size:13px;font-weight:700;border-radius:12px;padding:10px 12px;display:none;justify-content:space-between;align-items:center}
+  .adm button{color:var(--over);text-decoration:underline;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="ttl">🎾 테니스장 대기<small id="modeLbl">불러오는 중</small></div>
+    <div class="clk"><div id="clkDate"></div><b id="clkTime"></b></div>
+  </div>
+  <div class="demo" id="demo">미리보기 화면이에요. 실제로 배포하면 모든 회원이 같은 현황을 보게 돼요.</div>
+  <div class="adm" id="admBar">🔧 관리자 모드 — 대기 명단에서 × 로 삭제 <button onclick="adminOff()">끄기</button></div>
+
+  <!-- 홈 -->
+  <section class="page on" id="p-home">
+    <div class="sec">
+      <div class="label" id="myLabel" style="display:none">내 대기</div>
+      <div id="ticket"></div>
+
+      <div class="label">지금 등록하면</div>
+      <div class="hero">
+        <div>
+          <div class="k" id="heroK">예상 대기</div>
+          <div class="v" id="heroV">-</div>
+          <div class="s" id="heroS"></div>
+        </div>
+        <div class="cnt"><b id="heroCnt">-</b><small>명 대기</small></div>
+      </div>
+
+      <div class="label">코트 현황</div>
+      <div class="courts" id="courts"></div>
+    </div>
+  </section>
+
+  <!-- 대기 명단 -->
+  <section class="page" id="p-queue">
+    <div class="sec">
+      <div class="label" id="qLabel">대기 명단</div>
+      <div id="queue"></div>
+    </div>
+  </section>
+
+  <!-- 더보기 -->
+  <section class="page" id="p-more">
+    <div class="sec">
+      <div class="label">이용 규칙</div>
+      <div class="rules">
+        <p><i>1</i>순서에 따라 본인이 직접 등록</p>
+        <p><i>2</i>빈칸 없이 순서대로, 취소되면 자동으로 당겨짐</p>
+        <p><i>3</i>다른 사람 순서 변경은 본인에게 문의 후</p>
+        <p><i>4</i>선택한 코트는 경기 마칠 때까지 유지</p>
+        <p><i>5</i>4명 복식이 원칙, 1~2명 연습·단식은 대기 없을 때만</p>
+        <p><i>6</i>시작 5분 전 코트 안에서 대기, 이유 없이 5분 지나면 교체</p>
+        <p><i>7</i>1경기(약 30분) 후 교대</p>
+      </div>
+      <div class="label">최근 기록</div>
+      <div class="log" id="log"></div>
+      <div class="label">관리자</div>
+      <div class="list">
+        <button onclick="adminOn()">노쇼·대기 삭제 <span>PIN 필요 ›</span></button>
+        <button onclick="adminMode()">평일/주말 운영 방식 <span id="modeNow">›</span></button>
+        <button class="danger" onclick="adminReset()">↺ 전체 리셋 <span>코트·대기 모두 비우기</span></button>
+      </div>
+      <p style="font-size:12px;color:var(--sub);text-align:center;margin:16px 0">예상 시간은 1경기 30분 기준 추정치예요 · 20초마다 자동 새로고침</p>
+    </div>
+  </section>
+</div>
+
+<div class="cta"><button id="ctaBtn" onclick="openReg()">＋ 대기 등록하기</button></div>
+<nav class="tabs"><div class="in">
+  <button class="on" data-p="home" onclick="tab('home')"><span class="ic">🏠</span>현황</button>
+  <button data-p="queue" onclick="tab('queue')"><span class="ic">📋</span>대기 명단<span class="badge" id="qBadge" style="display:none"></span></button>
+  <button data-p="more" onclick="tab('more')"><span class="ic">⚙️</span>더보기</button>
+</div></nav>
+
+<div class="dim" id="dim" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet"><div class="in" id="sheetIn"></div></div>
+<div class="dlg" id="dlg"><div class="box" id="dlgBox"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= 서버 호출 / 미리보기용 가짜 서버 ================= */
+// ★ Apps Script 웹 앱 배포 주소(…/exec)를 여기에 붙여넣으세요. 비어 있으면 미리보기(가짜 데이터)로 동작합니다.
+const API_URL = '';
+const HAS_GAS = typeof google !== 'undefined' && google.script && google.script.run;
+function call(fn, ...args){
+  if (HAS_GAS) return new Promise((res, rej) => {
+    google.script.run.withSuccessHandler(res).withFailureHandler(e => rej(e))[fn](...args);
+  });
+  if (API_URL) return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({fn, args})})
+    .then(r => r.json())
+    .then(j => { if(!j.ok) throw new Error(j.error); return j.data; });
+  try { return Promise.resolve(Mock[fn](...args)); } catch(e){ return Promise.reject(e); }
+}
+const Mock = (() => {
+  const M = 60000, now = Date.now(); let uid = 100;
+  const EM = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🐔','🐧','🐤','🦆','🦉','🐴','🦄','🐝','🐢','🐙','🦀','🐬','🐳','🦖','🍎','🍊','🍋','🍉','🍇','🍓','🍍','🥝','🌽','🌻','🌵','⚽','🏀','🚗','🚀','⭐','🌈','🔥','🍀'];
+  const tk = (e, ago) => ({id:'m'+(uid++), e, court:0, t:now-ago*M});
+  const s = { mode:'auto',
+    courts:[{id:1,players:['🐶','🦊','🍎','🚀'].map((e,i)=>({id:'p'+i,e})),start:now-12*M},
+            {id:2,players:['🐼','🍋','⭐','🦄'].map((e,i)=>({id:'q'+i,e})),start:now-24*M}],
+    queue:[tk('🐯',40),tk('🌻',38),tk('🐢',35),tk('🍇',30),tk('🐳',20),tk('🔥',8)], log:[] };
+  const wk = () => s.mode==='weekend' ? true : s.mode==='weekday' ? false : [0,6].includes(new Date().getDay());
+  const v = x => Object.assign(JSON.parse(JSON.stringify({now:Date.now(),gameMin:30,emojis:EM,weekend:wk(),mode:s.mode,courts:s.courts,queue:s.queue,log:s.log.slice(-12).reverse()})), x||{});
+  const L = m => s.log.push({t:Date.now(),msg:m});
+  const es = a => a.map(p=>p.e).join(' ');
+  return {
+    getState: () => v(),
+    join(list,c){ list=(list||[]).slice(0,4); if(!list.length) throw new Error('아이콘을 골라 주세요.');
+      const used=new Set([...s.queue.map(q=>q.e),...s.courts.flatMap(x=>x.players.map(p=>p.e))]);
+      list.forEach(e=>{ if(used.has(e)) throw new Error(e+' 는 이미 다른 분이 쓰고 있어요.'); });
+      c=wk()?(+c===2?2:1):0; const created=list.map(e=>{ const q={id:'m'+(uid++),e,court:c,t:Date.now()}; s.queue.push(q); return q.id; });
+      L(list.join(' ')+' 대기 등록'); return v({created}); },
+    leave(id){ const q=s.queue.find(x=>x.id===id); s.queue=s.queue.filter(x=>x.id!==id); if(q) L(q.e+' 대기 취소'); return v(); },
+    startNext(cid,force){ const ct=s.courts[cid-1]; const list=wk()?s.queue.filter(q=>(q.court||1)===cid):s.queue; const t=list.slice(0,4);
+      if(!t.length) throw new Error('대기자가 없습니다.'); if(t.length<4&&!force) throw new Error('NEED_FORCE');
+      const ids=t.map(q=>q.id); s.queue=s.queue.filter(q=>!ids.includes(q.id)); ct.players=t.map(q=>({id:q.id,e:q.e})); ct.start=Date.now(); L(cid+'코트 입장: '+es(ct.players)); return v(); },
+    endGame(cid){ const ct=s.courts[cid-1]; if(ct.players.length) L(cid+'코트 경기 종료'); ct.players=[]; ct.start=null; return v(); },
+    checkAdmin(){ return true; },
+    removeById(pin,id){ const q=s.queue.find(x=>x.id===id); s.queue=s.queue.filter(x=>x.id!==id); if(q) L(q.e+' 관리자 삭제'); return v(); },
+    setMode(pin,m){ s.mode=m; L('운영 방식 변경'); return v(); },
+    resetAll(){ s.courts.forEach(c=>{c.players=[];c.start=null}); s.queue=[]; s.log=[]; L('전체 리셋'); return v(); }
+  };
+})();
+
+/* ================= 공통 ================= */
+let S = null, clientOffset = 0, adminPin = null;
+const MIN = 60000, DAYS = ['일','월','화','수','목','금','토'];
+const $ = id => document.getElementById(id);
+let myIds = (() => { try { return JSON.parse(localStorage.getItem('tq_ids')||'[]'); } catch(e){ return []; } })();
+const saveMine = () => { try { localStorage.setItem('tq_ids', JSON.stringify(myIds)); } catch(e){} };
+const nowMs = () => Date.now() + clientOffset;
+const hhmm = ms => { const d=new Date(ms); return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); };
+const mins = ms => Math.max(0, Math.round((ms - nowMs())/MIN));
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600); }
+function fail(e){ toast((e && e.message) || String(e)); }
+
+/* 다이얼로그 (alert/confirm/prompt 대체) */
+function dialog({title, msg='', ok='확인', cancel='취소', input=false, red=false}){
+  return new Promise(res=>{
+    $('dlgBox').innerHTML = `<h4>${title}</h4>${msg?`<p>${msg}</p>`:''}${input?`<input id="dlgIn" type="password" inputmode="numeric" maxlength="8" placeholder="PIN">`:''}
+      <div class="bb">${cancel?`<button class="g" id="dlgC">${cancel}</button>`:''}<button class="p ${red?'red':''}" id="dlgO">${ok}</button></div>`;
+    $('dlg').classList.add('on'); $('dim').classList.add('on'); $('dim').dataset.dlg='1';
+    const close = v => { $('dlg').classList.remove('on'); delete $('dim').dataset.dlg; if(!$('sheet').classList.contains('on')) $('dim').classList.remove('on'); res(v); };
+    $('dlgO').onclick = () => close(input ? $('dlgIn').value : true);
+    if(cancel) $('dlgC').onclick = () => close(input ? null : false);
+    if(input) setTimeout(()=>$('dlgIn').focus(), 50);
+  });
+}
+
+/* ================= 예상 시간 ================= */
+function courtFree(c){
+  if(!c.players.length || !c.start) return nowMs();
+  const end = c.start + S.gameMin*MIN;
+  return end < nowMs() ? nowMs() + 3*MIN : end;
+}
+function plan(){
+  const G = S.gameMin*MIN;
+  if(!S.weekend){
+    const free = S.courts.map(courtFree), groups = [];
+    for(let i=0;i<S.queue.length;i+=4){
+      const members = S.queue.slice(i,i+4), k = free[0] <= free[1] ? 0 : 1;
+      groups.push({members, at:free[k], court:k+1, full:members.length===4, team:groups.length+1});
+      free[k] += G;
+    }
+    const nextFor = () => {
+      if(groups.length && !groups[groups.length-1].full) return groups[groups.length-1];
+      const k = free[0] <= free[1] ? 0 : 1; return {at:free[k], court:k+1};
+    };
+    return {groups, next: nextFor(), nextBy:{1:nextFor(),2:nextFor()}};
+  }
+  const groups = [], nextBy = {};
+  [1,2].forEach(cid=>{
+    let f = courtFree(S.courts[cid-1]), last = null, team = 0;
+    const list = S.queue.filter(q=>(q.court||1)===cid);
+    for(let i=0;i<list.length;i+=4){
+      const members = list.slice(i,i+4);
+      last = {members, at:f, court:cid, full:members.length===4, team:++team};
+      groups.push(last); f += G;
+    }
+    nextBy[cid] = (last && !last.full) ? last : {at:f, court:cid};
+  });
+  return {groups, nextBy, next: nextBy[1].at <= nextBy[2].at ? nextBy[1] : nextBy[2]};
+}
+
+/* ================= 화면 ================= */
+function tab(p){
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('on', el.id==='p-'+p));
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on', b.dataset.p===p));
+  window.scrollTo(0,0);
+}
+function tick(){
+  const d = new Date(nowMs());
+  $('clkDate').textContent = `${d.getMonth()+1}월 ${d.getDate()}일 (${DAYS[d.getDay()]})`;
+  $('clkTime').textContent = hhmm(d);
+}
+function ring(pct, color){
+  const r=46, c=2*Math.PI*r;
+  return `<svg width="108" height="108"><circle cx="54" cy="54" r="${r}" fill="none" stroke="#f2f4f6" stroke-width="9"/>
+    <circle cx="54" cy="54" r="${r}" fill="none" stroke="${color}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-pct)}"/></svg>`;
+}
+
+function render(){
+  if(!S) return;
+  const p = plan(), n = nowMs();
+  const alive = new Set([...S.queue.map(q=>q.id), ...S.courts.flatMap(c=>c.players.map(x=>x.id))]);
+  const b4 = myIds.length; myIds = myIds.filter(id=>alive.has(id)); if(myIds.length!==b4) saveMine();
+  const isMine = id => myIds.includes(id);
+
+  $('modeLbl').textContent = S.weekend ? '주말 · 코트별 대기' : '평일 · 1·2코트 통합 대기';
+  $('modeNow').textContent = (S.mode==='auto' ? '요일 자동' : S.mode==='weekend' ? '주말식 고정' : '평일식 고정') + ' ›';
+
+  // 예상 대기
+  const w = mins(p.next.at);
+  if(w <= 1){ $('heroK').textContent='예상 대기'; $('heroV').innerHTML='바로 입장'; $('heroS').textContent = p.next.court+'코트로 들어가세요'; }
+  else { $('heroK').textContent='예상 대기'; $('heroV').innerHTML = w+'<span>분</span>'; $('heroS').textContent = hhmm(p.next.at)+' 입장 예상 · '+p.next.court+'코트'; }
+  $('heroCnt').textContent = S.queue.length;
+  $('qBadge').style.display = S.queue.length ? '' : 'none'; $('qBadge').textContent = S.queue.length;
+
+  // 내 티켓
+  const myQ = S.queue.filter(q=>isMine(q.id));
+  const myC = S.courts.find(c=>c.players.some(x=>isMine(x.id)));
+  let tk = '';
+  if(myC){
+    const left = mins(myC.start + S.gameMin*MIN);
+    tk = `<div class="ticket"><div class="tp"><div class="em">${myC.players.filter(x=>isMine(x.id)).map(x=>x.e).join('')}</div><div class="st">경기 중</div></div>
+      <div class="cut"></div><div class="bt"><div><small>코트</small><b>${myC.id}코트</b></div><div><small>시작</small><b>${hhmm(myC.start)}</b></div><div><small>남은 시간</small><b>${left}분</b></div></div></div>`;
+  } else if(myQ.length){
+    const g = p.groups.find(g=>g.members.some(m=>isMine(m.id)));
+    const line = S.weekend ? S.queue.filter(q=>(q.court||1)===g.court) : S.queue;
+    const ahead = line.findIndex(q=>q.id===myQ[0].id);
+    const gw = mins(g.at), soon = g.full && gw <= 8;
+    const st = !g.full ? '모집 중' : soon ? '곧 입장' : '대기 중';
+    const msg = !g.full ? `우리 팀 ${g.members.length}/4명 — 4명이 모이면 입장해요` : soon ? '코트 안에서 대기해 주세요 (5분 지나면 교체)' : '';
+    tk = `<div class="ticket"><div class="tp"><div class="em">${myQ.map(q=>q.e).join('')}</div><div class="st">${st}</div></div>
+      <div class="cut"></div><div class="bt"><div><small>앞 대기</small><b>${ahead}명</b></div><div><small>예상 입장</small><b>${hhmm(g.at)}</b></div><div><small>코트</small><b>${g.court}코트</b></div></div>
+      ${msg?`<div class="msg">${msg}</div>`:''}<button class="cx" onclick="cancelMine()">대기 취소</button></div>`;
+  }
+  $('ticket').innerHTML = tk; $('myLabel').style.display = tk ? '' : 'none';
+  $('ctaBtn').textContent = (myQ.length || myC) ? '＋ 일행 추가 등록' : '＋ 대기 등록하기';
+
+  // 코트 타일
+  $('courts').innerHTML = S.courts.map(c=>{
+    const playing = c.players.length>0;
+    if(!playing){
+      const waiting = S.weekend ? S.queue.some(q=>(q.court||1)===c.id) : S.queue.length>0;
+      return `<div class="tile free"><div class="hd"><span class="no">${c.id}코트</span><span class="chip free">비어 있음</span></div>
+        <div class="ring">${ring(0,'var(--pri)')}<div class="c"><b style="color:var(--pri)">OPEN</b><small>바로 입장</small></div></div>
+        <div class="ppl"></div><div class="meta">${waiting?'다음 팀 입장 대기':'대기자 없음'}</div>
+        <button class="act go" onclick="startNext(${c.id})">다음 팀 입장</button></div>`;
+    }
+    const el = (n - c.start)/MIN, left = Math.ceil(S.gameMin - el), over = el > S.gameMin;
+    const pct = Math.min(1, el/S.gameMin);
+    return `<div class="tile"><div class="hd"><span class="no">${c.id}코트</span><span class="chip ${over?'over':'busy'}">${over?'교대 시간':'사용 중'}</span></div>
+      <div class="ring">${ring(pct, over?'var(--over)':'var(--busy)')}<div class="c"><b>${over?'+'+Math.floor(el-S.gameMin):left}<span style="font-size:14px">분</span></b><small>${over?'초과':'남음'}</small></div></div>
+      <div class="ppl">${c.players.map(x=>x.e).join('')}</div><div class="meta">${hhmm(c.start)} 시작</div>
+      <button class="act ${over?'go':'end'}" onclick="${over?`startNext(${c.id})`:`endGame(${c.id})`}">${over?'다음 팀 입장':'경기 종료'}</button></div>`;
+  }).join('');
+
+  // 대기 명단
+  $('qLabel').textContent = `대기 명단 · ${S.queue.length}명 (${Math.ceil(S.queue.length/4)}팀)`;
+  if(!p.groups.length){
+    $('queue').innerHTML = `<div class="empty"><b>🎾</b>대기자가 없어요<br>비어 있는 코트로 바로 입장하세요</div>`;
+  } else {
+    let last = null;
+    $('queue').innerHTML = p.groups.map(g=>{
+      const head = S.weekend && g.court!==last ? `<div class="court-h">${g.court}코트 대기</div>` : '';
+      last = g.court;
+      const gw = mins(g.at);
+      const when = g.full ? (gw<=1 ? '지금 입장' : `${hhmm(g.at)} · ${gw}분 후`) : `${g.members.length}/4 모집 중`;
+      const slots = [0,1,2,3].map(i=>{
+        const m = g.members[i];
+        if(!m) return `<div class="slot empty">빈자리</div>`;
+        const mine = isMine(m.id);
+        const x = mine ? `<button class="x" onclick="cancelOne('${m.id}','${m.e}')">×</button>`
+              : adminPin ? `<button class="x" onclick="adminRemove('${m.id}','${m.e}')">×</button>` : '';
+        return `<div class="slot ${mine?'me':''}">${m.e}${x}</div>`;
+      }).join('');
+      return `${head}<div class="team ${g.team===1?'next':''}"><div class="idx">${g.team}<small>${g.team===1?'다음':'팀'}</small></div>
+        <div class="body"><div class="row1"><b>${S.weekend?'':g.court+'코트 '}${g.full?'':'· 인원 모집'}</b><span>${when}</span></div><div class="slots">${slots}</div></div></div>`;
+    }).join('');
+  }
+
+  $('log').innerHTML = (S.log||[]).map(l=>`<div><time>${hhmm(l.t)}</time><span>${l.msg}</span></div>`).join('') || '<div><span style="color:var(--sub)">기록 없음</span></div>';
+  $('admBar').style.display = adminPin ? 'flex' : 'none';
+}
+
+/* ================= 등록 (바텀시트 3단계) ================= */
+let R = null;
+function openReg(){
+  if(!S) return;
+  R = {step:1, cnt:0, court: S.weekend ? (plan().nextBy[1].at <= plan().nextBy[2].at ? 1 : 2) : 0, emojis:[]};
+  drawSheet(); $('dim').classList.add('on'); $('sheet').classList.add('on');
+}
+function closeSheet(){
+  if($('dim').dataset.dlg) return;
+  $('sheet').classList.remove('on'); $('dim').classList.remove('on'); R = null;
+}
+function usedSet(){ return new Set([...S.queue.map(q=>q.e), ...S.courts.flatMap(c=>c.players.map(p=>p.e))]); }
+function drawSheet(){
+  const steps = `<div class="grab"></div><div class="steps">${[1,2,3].map(i=>`<i class="${R.step>=i?'on':''}"></i>`).join('')}</div>`;
+  let h = '';
+  if(R.step===1){
+    const p = plan();
+    h = `<h3>몇 명이 치실 건가요?</h3><p class="d">함께 온 일행까지 모두 선택하세요</p>
+      <div class="nums">${[1,2,3,4].map(i=>`<button class="${R.cnt===i?'on':''}" onclick="R.cnt=${i};drawSheet()">${i}<small>${i===4?'한 팀':'명'}</small></button>`).join('')}</div>
+      ${S.weekend ? `<div class="seg">${[1,2].map(c=>`<button class="${R.court===c?'on':''}" onclick="R.court=${c};drawSheet()">${c}코트<small>약 ${mins(p.nextBy[c].at)}분 대기</small></button>`).join('')}</div>` : ''}
+      <div class="sbtn"><button class="g" onclick="closeSheet()">닫기</button><button class="p" ${R.cnt?'':'disabled'} onclick="toStep2()">다음</button></div>`;
+  } else if(R.step===2){
+    const used = usedSet();
+    R.emojis = R.emojis.filter(e=>!used.has(e));
+    h = `<h3>내 아이콘을 골라 주세요</h3><p class="d">이름 대신 이 아이콘으로 순서가 표시돼요 (${R.cnt}개)</p>
+      <div class="picked">${Array.from({length:R.cnt},(_,i)=>`<div class="${i===R.emojis.length?'cur':''}">${R.emojis[i]||''}</div>`).join('')}</div>
+      <div class="grid">${S.emojis.map(e=>`<button class="${R.emojis.includes(e)?'on':''}" ${used.has(e)?'disabled':''} onclick="pickE('${e}')">${e}</button>`).join('')}</div>
+      <div class="sbtn"><button class="g" onclick="R.step=1;drawSheet()">이전</button><button class="p" ${R.emojis.length===R.cnt?'':'disabled'} onclick="R.step=3;drawSheet()">다음</button></div>`;
+  } else if(R.step===3){
+    const p = plan();
+    const nx = S.weekend ? p.nextBy[R.court] : p.next;
+    const w = mins(nx.at);
+    h = `<h3>이대로 등록할까요?</h3><p class="d">입장 5분 전에는 코트 안에서 기다려 주세요</p>
+      <div class="sum"><div><span>아이콘</span><b style="font-size:22px">${R.emojis.join(' ')}</b></div>
+      <div><span>인원</span><b>${R.cnt}명</b></div>
+      <div><span>예상 입장</span><b>${w<=1?'바로 입장':hhmm(nx.at)+' ('+w+'분 후)'}</b></div>
+      <div><span>코트</span><b>${nx.court}코트${S.weekend?'':' 예상'}</b></div></div>
+      <div class="sbtn"><button class="g" onclick="R.step=2;drawSheet()">이전</button><button class="p" id="regGo" onclick="submitReg()">등록하기</button></div>`;
+  } else if(R.step===4){
+    h = `<div class="done"><div class="ok">✓</div><h3>등록 완료!</h3><div class="em">${R.emojis.join('')}</div>
+      <p class="d">홈 화면의 내 대기 카드에서 순서를 확인하세요</p></div>
+      <div class="sbtn"><button class="p" onclick="closeSheet();tab('home')">확인</button></div>`;
+  }
+  $('sheetIn').innerHTML = (R.step<4?steps:'<div class="grab"></div>') + h;
+}
+function toStep2(){
+  // 처음엔 안 쓰는 아이콘을 자동으로 추천
+  const used = usedSet(); const free = S.emojis.filter(e=>!used.has(e));
+  if(R.emojis.length !== R.cnt){
+    const pool = free.slice().sort(()=>Math.random()-.5);
+    R.emojis = pool.slice(0, R.cnt);
+  }
+  R.step = 2; drawSheet();
+}
+function pickE(e){
+  if(R.emojis.includes(e)) R.emojis = R.emojis.filter(x=>x!==e);
+  else if(R.emojis.length < R.cnt) R.emojis.push(e);
+  else { R.emojis[R.emojis.length-1] = e; }
+  drawSheet();
+}
+function submitReg(){
+  if($('regGo')) $('regGo').disabled = true;
+  call('join', R.emojis, R.court).then(v=>{
+    myIds = myIds.concat(v.created||[]); saveMine(); apply(v); R.step = 4; drawSheet();
+  }).catch(e=>{ fail(e); refresh(); R.step = 2; drawSheet(); });
+}
+
+/* ================= 동작 ================= */
+function apply(v){ S = v; clientOffset = v.now - Date.now(); render(); }
+function refresh(){ return call('getState').then(apply).catch(fail); }
+
+async function cancelMine(){
+  const mine = S.queue.filter(q=>myIds.includes(q.id));
+  if(!await dialog({title:'대기를 취소할까요?', msg: mine.map(q=>q.e).join(' ')+' 모두 취소돼요', ok:'대기 취소', cancel:'아니요', red:true})) return;
+  let v; for(const q of mine){ v = await call('leave', q.id).catch(fail); }
+  myIds = myIds.filter(id=>!mine.some(q=>q.id===id)); saveMine(); if(v) apply(v); toast('대기가 취소되었어요');
+}
+async function cancelOne(id, e){
+  if(!await dialog({title:`${e} 대기를 취소할까요?`, ok:'취소하기', cancel:'아니요', red:true})) return;
+  call('leave', id).then(v=>{ myIds = myIds.filter(x=>x!==id); saveMine(); apply(v); toast('취소되었어요'); }).catch(fail);
+}
+async function startNext(cid){
+  const c = S.courts[cid-1];
+  const list = S.weekend ? S.queue.filter(q=>(q.court||1)===cid) : S.queue;
+  if(!list.length) return toast('대기자가 없어요');
+  const team = list.slice(0,4).map(q=>q.e).join(' ');
+  const prevMine = c.players.filter(x=>myIds.includes(x.id)).map(x=>x.e);
+  if(!await dialog({title:`${cid}코트 다음 팀 입장`, msg: team + (c.players.length ? '\n\n지금 경기는 종료 처리돼요' : ''), ok:'입장'})) return;
+  let force = false;
+  if(list.length < 4){
+    if(!await dialog({title:`대기자가 ${list.length}명뿐이에요`, msg:'4명이 안 돼도 입장할까요?', ok:'입장'})) return;
+    force = true;
+  }
+  call('startNext', cid, force).then(v=>{ apply(v); toast(`${cid}코트 입장 ${team}`); offerRejoin(prevMine, cid); }).catch(fail);
+}
+async function endGame(cid){
+  const prevMine = S.courts[cid-1].players.filter(x=>myIds.includes(x.id)).map(x=>x.e);
+  if(!await dialog({title:`${cid}코트 경기를 끝낼까요?`, msg:'코트가 비어 있음으로 바뀌어요', ok:'경기 종료'})) return;
+  call('endGame', cid).then(v=>{ apply(v); offerRejoin(prevMine, cid); }).catch(fail);
+}
+async function offerRejoin(es, cid){
+  if(!es.length) return;
+  if(!await dialog({title:'수고하셨어요! 🎾', msg:`${es.join(' ')} 다시 대기 맨 뒤에 등록할까요?`, ok:'다시 등록', cancel:'괜찮아요'})) return;
+  call('join', es, cid).then(v=>{ myIds = myIds.concat(v.created||[]); saveMine(); apply(v); toast('다시 대기 등록 완료'); }).catch(fail);
+}
+
+/* ================= 관리자 ================= */
+async function askPin(title){ const pin = await dialog({title, msg:'관리자 PIN을 입력하세요', input:true, ok:'확인'}); return pin || null; }
+async function adminOn(){
+  if(adminPin){ tab('queue'); return; }
+  const pin = await askPin('관리자 모드'); if(!pin) return;
+  call('checkAdmin', pin).then(()=>{ adminPin = pin; render(); tab('queue'); toast('빨간 × 로 대기를 삭제할 수 있어요'); }).catch(fail);
+}
+function adminOff(){ adminPin = null; render(); }
+async function adminRemove(id, e){
+  if(!await dialog({title:`${e} 삭제`, msg:'미입장(5분 경과) 등으로 대기에서 삭제할까요?', ok:'삭제', red:true})) return;
+  call('removeById', adminPin, id).then(v=>{ apply(v); toast(e+' 삭제됨'); }).catch(fail);
+}
+async function adminMode(){
+  const pin = await askPin('운영 방식 변경'); if(!pin) return;
+  $('dlgBox').innerHTML = `<h4>운영 방식</h4><p>공휴일에는 '주말식'으로 바꿔 주세요</p>
+    <div class="list" style="background:#f7f8f9;margin-bottom:12px">
+      <button data-m="auto">요일 자동 <span>평일/주말 자동</span></button>
+      <button data-m="weekday">평일식 <span>1·2코트 통합 대기</span></button>
+      <button data-m="weekend">주말식 <span>코트별 대기</span></button></div>
+    <div class="bb"><button class="g" id="mC">닫기</button></div>`;
+  $('dlg').classList.add('on'); $('dim').classList.add('on'); $('dim').dataset.dlg='1';
+  const close = () => { $('dlg').classList.remove('on'); $('dim').classList.remove('on'); delete $('dim').dataset.dlg; };
+  $('mC').onclick = close;
+  $('dlgBox').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{ close(); call('setMode', pin, b.dataset.m).then(v=>{ apply(v); toast('운영 방식이 바뀌었어요'); }).catch(fail); });
+}
+async function adminReset(){
+  if(!await dialog({title:'전체 리셋', msg:'경기 중인 코트와 대기 명단을 모두 비워요.\n되돌릴 수 없어요.', ok:'다음', red:true})) return;
+  const pin = await askPin('전체 리셋'); if(!pin) return;
+  call('resetAll', pin).then(v=>{ myIds=[]; saveMine(); apply(v); toast('리셋 완료'); tab('home'); }).catch(fail);
+}
+
+/* ================= 시작 ================= */
+if(!HAS_GAS && !API_URL) $('demo').style.display='block';
+tick(); setInterval(tick, 1000);
+refresh();
+setInterval(()=>{ if(!document.hidden && !R) refresh(); }, 20000);
+setInterval(render, 30000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refresh(); });
+</script>
+</body>
+</html>
