@@ -253,7 +253,7 @@
     </div>
     <div class="clk"><div id="clkDate"></div><b id="clkTime"></b></div>
   </div>
-  <div class="demo" id="demo"><span id="demoTxt">미리보기 — 가짜 데이터, 아침 7시로 가정</span><button onclick="demoToggle()" id="demoBtn">운영시간 외 보기</button></div>
+  <div class="demo" id="demo"><span id="demoTxt">⚠️ 서버 연결 전 — 입력해도 이 휴대폰에만 보여요</span><button onclick="demoToggle()" id="demoBtn">아침 7시로 테스트</button></div>
 
   <!-- 현황 -->
   <section class="page on" id="p-home">
@@ -593,8 +593,8 @@ function call(op, args, pin){
 }
 
 /* 미리보기: 오늘 아침 7:10부터 시계가 흐르는 것으로 가정 */
-let demoOpen = true, MS = null, demoStart = Date.now(), demoUid = 500;
-function demoBase(){ const d = new Date(); d.setHours(demoOpen ? 7 : 22, 10, 0, 0); return d.getTime(); }
+let demoTest = false, MS = null, demoStart = Date.now(), demoUid = 500;
+function demoBase(){ if(!demoTest) return demoStart; const d = new Date(); d.setHours(7, 10, 0, 0); return d.getTime(); }
 function demoCtx(){
   const now = demoBase() + (Date.now() - demoStart), d = new Date(now);
   const day = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
@@ -608,7 +608,13 @@ function demoSeed(){
   const hm = m => { const t = new Date(c.now + m*M); return String(t.getHours()).padStart(2,'0')+':'+String(Math.floor(t.getMinutes()/10)*10).padStart(2,'0'); };
   MS.plans.push({id:'p1',e:'🐨',eta:hm(20),t:c.now-30*M,dev:'z'},{id:'p2',e:'🦁',eta:hm(40),t:c.now-20*M,dev:'z'});
 }
-function demoToggle(){ demoOpen = !demoOpen; demoStart = Date.now(); const keep = MS; MS = keep; MS.day = demoCtx().day; $('demoBtn').textContent = demoOpen ? '운영시간 외 보기' : '운영시간으로 보기'; $('demoTxt').textContent = demoOpen ? '미리보기 — 가짜 데이터, 아침 7시로 가정' : '미리보기 — 밤 10시로 가정 (입력 불가)'; refresh(); }
+function demoToggle(){
+  demoTest = !demoTest; demoStart = Date.now();
+  if(demoTest) demoSeed(); else { MS = core_blank(); MS.day = demoCtx().day; }
+  $('demoBtn').textContent = demoTest ? '실제 시간으로' : '아침 7시로 테스트';
+  $('demoTxt').textContent = demoTest ? '🧪 테스트 — 예시 데이터, 아침 7시로 가정' : '⚠️ 서버 연결 전 — 입력해도 이 휴대폰에만 보여요';
+  refresh();
+}
 
 /* ================= 공통 ================= */
 let S = null, clientOffset = 0;
@@ -1012,7 +1018,7 @@ async function adminReset(){
 }
 
 /* ================= 시작 ================= */
-if(DEMO){ demoSeed(); $('demo').style.display='flex'; }
+if(DEMO){ MS = core_blank(); MS.day = demoCtx().day; $('demo').style.display='flex'; }
 tick(); setInterval(tick, 1000);
 refresh();
 setInterval(()=>{ if(!document.hidden && !(R && $('sheet').classList.contains('on'))) refresh(); }, 20000);
