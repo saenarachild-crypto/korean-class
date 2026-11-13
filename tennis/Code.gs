@@ -78,7 +78,7 @@ const EARLY_MIN = 15, LATE_MIN = 10;  // 정시 도착 인정 범위: 예정 시
 const MAX_TEAMS = 5;      // 대기 가능 최대 5팀(20명) — 경기에 들어가면 그만큼 자리가 다시 생김
 const EXPIRE_MIN = 30;    // 예정 시각 30분이 지나도 안 오면 예정 자동 삭제
 const EMOJIS = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🐔','🐧','🐤','🦆','🦉','🐴','🦄','🐝','🐢','🐙','🦀','🐬','🐳','🦖','🍎','🍊','🍋','🍉','🍇','🍓','🍍','🥝','🌽','🌻','🌵','⚽','🏀','🚗','🚀','⭐','🌈','🔥','🍀'];
-const USER_OPS = ['join', 'leave', 'move', 'setName', 'addPlan', 'cancelPlan', 'arrive', 'startNext', 'endGame'];
+const USER_OPS = ['join', 'leave', 'move', 'switchCourt', 'setName', 'addPlan', 'cancelPlan', 'arrive', 'startNext', 'endGame'];
 const ADMIN_OPS = ['checkAdmin', 'setMode', 'resetAll'];
 
 function core_blank(mode) {
@@ -126,17 +126,19 @@ function core_checkEmojis(s, emojis) {
   });
   return emojis;
 }
-/** 남은 대기 자리 (평일: 대기+도착예정 합계 20명 / 주말: 코트별 20명, 도착예정은 전체에서 차감) */
-function core_free(s, ctx, court) {
-  const cap = MAX_TEAMS * 4;
-  if (!core_isWeekend(s, ctx)) return cap - s.queue.length - s.plans.length;
-  const inLine = s.queue.filter(q => (q.court || 1) === court).length;
-  return Math.min(cap - inLine, cap * 2 - s.queue.length - s.plans.length);
+/** 남은 대기 자리: 두 코트 대기 + 도착 예정 합쳐 최대 5팀(20명) */
+function core_free(s) { return MAX_TEAMS * 4 - s.queue.length - s.plans.length; }
+function core_needRoom(s, n, isArrival) {
+  const free = core_free(s) + (isArrival ? n : 0);
+  if (free < n) throw new Error('대기가 가득 찼어요 (최대 ' + MAX_TEAMS + '팀). 다음 팀이 입장하면 자리가 생겨요.');
 }
-function core_needRoom(s, ctx, court, n, isArrival) {
-  const free = core_free(s, ctx, court) + (isArrival && !core_isWeekend(s, ctx) ? n : 0);
-  if (free < n) throw new Error(free <= 0 ? '대기가 가득 찼어요 (최대 ' + MAX_TEAMS + '팀). 다음 팀이 입장하면 자리가 생겨요.'
-    : '남은 대기 자리가 ' + free + '명뿐이에요.');
+/** 코트 선택: 1·2, 0이면 더 빨리 들어갈 수 있는 코트 */
+function core_line(s, c) { return s.queue.filter(q => q.court === c); }
+function core_pick(s, ctx, court) {
+  court = Number(court);
+  if (court === 1 || court === 2) return court;
+  const score = c => { const k = s.courts[c - 1]; const left = k.players.length && k.start ? Math.max(0, k.start + GAME_MIN * 60000 - ctx.now) : 0; return core_line(s, c).length / 4 * GAME_MIN * 60000 + left; };
+  return score(1) <= score(2) ? 1 : 2;
 }
 /** 한 휴대폰에 하나만 (본인 것만 기록) */
 function core_oneDev(s, dev) {
@@ -146,10 +148,10 @@ function core_oneDev(s, dev) {
 function core_view(s, ctx, extra) {
   const v = {
     now: ctx.now, gameMin: GAME_MIN, maxTeams: MAX_TEAMS,
-    free: core_isWeekend(s, ctx) ? { 1: core_free(s, ctx, 1), 2: core_free(s, ctx, 2) } : { 0: core_free(s, ctx, 0) }, bonusMin: BONUS_MIN, earlyMin: EARLY_MIN, lateMin: LATE_MIN, expireMin: EXPIRE_MIN, openHour: OPEN_HOUR, closeHour: CLOSE_HOUR,
+    free: core_free(s), bonusMin: BONUS_MIN, earlyMin: EARLY_MIN, lateMin: LATE_MIN, expireMin: EXPIRE_MIN, openHour: OPEN_HOUR, closeHour: CLOSE_HOUR,
     open: core_isOpen(ctx), emojis: EMOJIS, weekend: core_isWeekend(s, ctx), mode: s.mode,
     courts: s.courts.map(c => ({ id: c.id, start: c.start, players: c.players.map(p => ({ id: p.id, e: p.e, nm: p.nm || '' })) })),
-    queue: s.queue.map(q => ({ id: q.id, e: q.e, nm: q.nm || '', court: q.court, t: q.t, bonus: q.bonus })), plans: s.plans.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', eta: p.eta, t: p.t, nobonus: p.nobonus })), log: s.log.slice(-15).reverse()
+    queue: s.queue.map(q => ({ id: q.id, e: q.e, nm: q.nm || '', court: q.court, t: q.t, bonus: q.bonus })), plans: s.plans.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', eta: p.eta, court: p.court || 0, t: p.t, nobonus: p.nobonus })), log: s.log.slice(-15).reverse()
   };
   if (ctx.dev) v.banned = s.banned.indexOf(ctx.dev) >= 0;
   if (extra) Object.keys(extra).forEach(k => v[k] = extra[k]);
@@ -164,10 +166,10 @@ const CoreOps = {
   join(s, ctx, emojis, court, names, dev) {
     emojis = core_checkEmojis(s, emojis); names = names || [];
     dev = String(dev || '').slice(0, 20); core_oneDev(s, dev);
-    const c = core_isWeekend(s, ctx) ? (Number(court) === 2 ? 2 : 1) : 0;
-    core_needRoom(s, ctx, c || 1, emojis.length, false);
+    const c = core_pick(s, ctx, court);
+    core_needRoom(s, emojis.length, false);
     const created = emojis.map((e, i) => { const q = { id: ctx.uuid(), e: e, nm: core_name(names[i]), court: c, t: ctx.now, vt: ctx.now, dev: dev }; s.queue.push(q); return q.id; });
-    core_log(s, ctx, emojis.join(' ') + ' 대기 등록' + (c ? ' (' + c + '코트)' : ''));
+    core_log(s, ctx, emojis.join(' ') + ' 대기 등록 (' + c + '코트)');
     return { created: created };
   },
   /** 대기에서 빠짐 (누구나 — 중간에 빠지는 사람 정리) */
@@ -181,8 +183,7 @@ const CoreOps = {
   move(s, ctx, id, how) {
     const q = s.queue.find(x => x.id === id);
     if (!q) throw new Error('이미 대기 명단에 없어요.');
-    const weekend = core_isWeekend(s, ctx);
-    const line = weekend ? s.queue.filter(x => (x.court || 1) === (q.court || 1)) : s.queue.slice();
+    const line = core_line(s, q.court);
     const idx = line.indexOf(q);
     const others = line.filter(x => x !== q);
     let to = how === 'up' ? Math.max(0, Math.floor(idx / 4) * 4 - 4 + 3) : how === 'down' ? (Math.floor(idx / 4) + 1) * 4 : others.length;
@@ -198,6 +199,14 @@ const CoreOps = {
     }
     core_log(s, ctx, q.e + (how === 'up' ? ' 앞 게임으로 이동' : how === 'down' ? ' 다음 게임으로 미룸' : ' 맨 뒤로 이동'));
   },
+  /** 다른 코트 대기 맨 뒤로 옮기기 */
+  switchCourt(s, ctx, id) {
+    const q = s.queue.find(x => x.id === id);
+    if (!q) throw new Error('이미 대기 명단에 없어요.');
+    q.court = q.court === 1 ? 2 : 1;
+    s.queue = s.queue.filter(x => x !== q); s.queue.push(q);
+    core_log(s, ctx, q.e + ' ' + q.court + '코트로 이동');
+  },
   /** 이름 표시 바꾸기 (빈칸이면 아이콘만) */
   setName(s, ctx, id, name) {
     const q = s.queue.find(x => x.id === id) || s.plans.find(x => x.id === id);
@@ -205,16 +214,16 @@ const CoreOps = {
     q.nm = core_name(name);
   },
   /** 도착 예정 등록 */
-  addPlan(s, ctx, emojis, eta, dev, names) {
+  addPlan(s, ctx, emojis, eta, dev, names, court) {
     emojis = core_checkEmojis(s, emojis); names = names || [];
     if (!/^\d{2}:\d{2}$/.test(String(eta))) throw new Error('도착 시간을 골라 주세요.');
     const m = core_hm(eta);
     if (m < ctx.mod - 5 || m >= CLOSE_HOUR * 60) throw new Error('도착 시간은 지금부터 ' + CLOSE_HOUR + ':00 전까지 고를 수 있어요.');
-    if (core_isWeekend(s, ctx)) { if (MAX_TEAMS * 8 - s.queue.length - s.plans.length < emojis.length) throw new Error('대기가 가득 찼어요.'); }
-    else core_needRoom(s, ctx, 0, emojis.length, false);
+    core_needRoom(s, emojis.length, false);
+    const pc = Number(court) === 1 || Number(court) === 2 ? Number(court) : 0;
     dev = String(dev || '').slice(0, 20); core_oneDev(s, dev);
     const nobonus = !!dev && s.banned.indexOf(dev) >= 0;
-    const created = emojis.map((e, i) => { const p = { id: ctx.uuid(), e: e, nm: core_name(names[i]), eta: eta, t: ctx.now, dev: dev, nobonus: nobonus }; s.plans.push(p); return p.id; });
+    const created = emojis.map((e, i) => { const p = { id: ctx.uuid(), e: e, nm: core_name(names[i]), eta: eta, court: pc, t: ctx.now, dev: dev, nobonus: nobonus }; s.plans.push(p); return p.id; });
     s.plans.sort((a, b) => a.eta < b.eta ? -1 : a.eta > b.eta ? 1 : a.t - b.t);
     core_log(s, ctx, emojis.join(' ') + ' ' + eta + ' 도착 예정' + (nobonus ? ' (오늘 혜택 제외)' : ''));
     return { created: created, nobonus: nobonus };
@@ -230,28 +239,27 @@ const CoreOps = {
   /** 도착 → 대기 등록. 예정 시간에 맞춰 오면 15분 먼저 온 것으로 쳐서 앞쪽에 넣어 줌
    *  (단, 바로 다음 게임 4명은 건드리지 않음) */
   arrive(s, ctx, ids, court) {
-    const c = core_isWeekend(s, ctx) ? (Number(court) === 2 ? 2 : 1) : 0;
     const ps = s.plans.filter(x => ids.indexOf(x.id) >= 0);
     if (!ps.length) throw new Error('도착 예정 명단에 없어요.');
-    if (c) { const inLine = s.queue.filter(q => (q.court || 1) === c).length; if (MAX_TEAMS * 4 - inLine < ps.length) throw new Error(c + '코트 대기가 가득 찼어요. 다른 코트를 골라 주세요.'); }
+    const c = core_pick(s, ctx, court || ps[0].court);
     s.plans = s.plans.filter(x => ids.indexOf(x.id) < 0);
     const onTime = ps.every(p => core_onTime(p, ctx));
     const late = ps.some(p => ctx.mod - core_hm(p.eta) > LATE_MIN);
     if (late) ps.forEach(p => core_ban(s, p));
     const vt = onTime ? ctx.now - BONUS_MIN * 60000 : ctx.now;
-    const line = c ? s.queue.filter(q => (q.court || 1) === c) : s.queue;
+    const line = core_line(s, c);
     let anchor = null;
     if (onTime) for (let i = 4; i < line.length; i++) { if ((line[i].vt || line[i].t) > vt) { anchor = line[i]; break; } }
     const items = ps.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', dev: p.dev, court: c, t: ctx.now, vt: vt, bonus: onTime }));
     if (anchor) s.queue.splice(s.queue.indexOf(anchor), 0, ...items);
     else items.forEach(q => s.queue.push(q));
-    core_log(s, ctx, es_(ps) + (onTime ? ' 정시 도착 ⏰ (' + BONUS_MIN + '분 우선)' : late ? ' 지각 도착 — 일반 대기, 오늘 혜택 제외' : ' 도착 · 대기 등록'));
+    core_log(s, ctx, es_(ps) + ' ' + c + '코트' + (onTime ? ' 정시 도착 ⏰ (' + BONUS_MIN + '분 우선)' : late ? ' 지각 도착 — 일반 대기, 오늘 혜택 제외' : ' 도착 · 대기 등록'));
     return { onTime: onTime, jumped: !!anchor, late: late };
   },
   /** 다음 4명 입장 (진행 중 경기는 종료 처리) */
   startNext(s, ctx, courtId, force) {
     const court = s.courts[courtId - 1];
-    const line = core_isWeekend(s, ctx) ? s.queue.filter(q => (q.court || 1) === courtId) : s.queue;
+    const line = core_line(s, courtId);
     const take = line.slice(0, 4);
     if (!take.length) throw new Error('대기자가 없어요.');
     if (take.length < 4 && !force) throw new Error('NEED_FORCE');
