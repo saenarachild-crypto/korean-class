@@ -3,51 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>테니스장 대기</title>
+<title>치동천테니스클럽 게임 대기판</title>
+<meta name="description" content="지금 가면 몇 분 기다릴까? 실시간 코트 현황과 예상 대기 시간 · 매일 06:00~10:00">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="치동천테니스클럽">
+<meta property="og:title" content="치동천테니스클럽 게임 대기판">
+<meta property="og:description" content="지금 가면 몇 분 기다릴까? 실시간 코트 현황 · 예상 대기 시간 · 도착 예정 등록">
+<meta property="og:image" content="https://saenarachild-crypto.github.io/korean-class/tennis/card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://saenarachild-crypto.github.io/korean-class/tennis/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://saenarachild-crypto.github.io/korean-class/tennis/logo.png">
+<link rel="apple-touch-icon" href="https://saenarachild-crypto.github.io/korean-class/tennis/apple-touch-icon.png">
+<meta name="theme-color" content="#1f7a52">
 <style>
   :root{
     --bg:#f2f4f6; --card:#fff; --ink:#191f28; --sub:#8b95a1; --line:#e5e8eb;
     --pri:#1f7a52; --pri-d:#17603f; --pri-soft:#e8f5ee;
     --busy:#f59f00; --busy-soft:#fff6e0; --over:#e03131; --over-soft:#ffeceb;
-    --me:#fff3bf; --me-line:#fcc419;
+    --me:#fff3bf; --me-line:#fcc419; --blue:#1c64f2; --blue-soft:#e8f0fe;
     --tab-h:64px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;font-size:15px;line-height:1.45}
   button{font:inherit;border:0;cursor:pointer;color:inherit;background:none}
-  .app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:calc(var(--tab-h) + 84px + env(safe-area-inset-bottom))}
+  button:disabled{cursor:default}
+  .app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:calc(var(--tab-h) + 90px + env(safe-area-inset-bottom))}
 
-  /* 상단 */
-  .top{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 18px 8px;display:flex;justify-content:space-between;align-items:center}
-  .top .ttl{font-size:20px;font-weight:800;letter-spacing:-.4px}
-  .top .ttl small{display:block;font-size:12px;font-weight:500;color:var(--sub);letter-spacing:0}
-  .top .clk{text-align:right}
-  .top .clk div{font-size:12px;color:var(--sub)}
-  .top .clk b{font-size:22px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .top{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 16px 8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand img{width:44px;height:44px;border-radius:12px;background:#fff;object-fit:contain;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .brand .ttl{font-size:18px;font-weight:800;letter-spacing:-.4px;line-height:1.2}
+  .brand .ttl small{display:block;font-size:12px;font-weight:500;color:var(--sub);letter-spacing:0}
+  .clk{text-align:right;flex:none}
+  .clk div{font-size:12px;color:var(--sub)}
+  .clk b{font-size:22px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
   .sec{padding:0 16px}
-  .label{font-size:13px;color:var(--sub);font-weight:600;margin:18px 4px 8px}
+  .label{font-size:13px;color:var(--sub);font-weight:600;margin:18px 4px 8px;display:flex;justify-content:space-between}
+  .label span{font-weight:500}
 
-  /* 예상 대기 */
+  .closed{background:#343a40;color:#fff;border-radius:20px;padding:18px 20px;margin-top:6px}
+  .closed b{font-size:20px;display:block;margin-bottom:2px}
+  .closed small{opacity:.8;font-size:13px}
+
   .hero{background:var(--pri);color:#fff;border-radius:20px;padding:20px;display:flex;justify-content:space-between;align-items:center}
+  .hero.off{background:#868e96}
   .hero .k{font-size:13px;opacity:.85}
   .hero .v{font-size:40px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:2px 0}
   .hero .v span{font-size:20px;font-weight:700;margin-left:2px}
   .hero .s{font-size:13px;opacity:.9}
-  .hero .cnt{text-align:center;background:rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;min-width:84px}
-  .hero .cnt b{display:block;font-size:26px;line-height:1.1}
-  .hero .cnt small{font-size:12px;opacity:.85}
+  .hero .cnt{text-align:center;background:rgba(255,255,255,.14);border-radius:16px;padding:10px 12px;min-width:92px}
+  .hero .cnt b{display:block;font-size:24px;line-height:1.1}
+  .hero .cnt small{font-size:11px;opacity:.85;display:block}
+  .hero .cnt .room{margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:700}
 
-  /* 코트 타일 */
   .courts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .tile{background:var(--card);border-radius:20px;padding:14px;display:flex;flex-direction:column;align-items:center;text-align:center;border:2px solid transparent}
   .tile.free{border-color:var(--pri)}
   .tile .hd{width:100%;display:flex;justify-content:space-between;align-items:center}
   .tile .no{font-size:15px;font-weight:800}
-  .chip{font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px}
+  .chip{font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;white-space:nowrap}
   .chip.free{background:var(--pri-soft);color:var(--pri)}
   .chip.busy{background:var(--busy-soft);color:#b07000}
   .chip.over{background:var(--over-soft);color:var(--over)}
-  .ring{position:relative;width:108px;height:108px;margin:10px 0 6px}
+  .chip.blue{background:var(--blue-soft);color:var(--blue)}
+  .chip.gray{background:#f2f4f6;color:var(--sub)}
+  .ring{position:relative;width:104px;height:104px;margin:10px 0 6px}
   .ring svg{transform:rotate(-90deg)}
   .ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .ring .c b{font-size:26px;letter-spacing:-.5px;line-height:1}
@@ -57,20 +79,28 @@
   .tile .act{margin-top:10px;width:100%;padding:11px 0;border-radius:12px;font-weight:700;font-size:14px}
   .act.go{background:var(--pri);color:#fff}
   .act.end{background:#f2f4f6;color:#4e5968}
+  .act:disabled{opacity:.35}
 
-  /* 내 티켓 */
-  .ticket{background:var(--card);border-radius:20px;overflow:hidden;border:2px solid var(--me-line)}
+  .ticket{background:var(--card);border-radius:20px;overflow:hidden;border:2px solid var(--me-line);margin-bottom:10px}
+  .ticket.plan{border-color:#a5c4fb}
   .ticket .tp{background:var(--me);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
-  .ticket .tp .em{font-size:34px;letter-spacing:2px}
+  .ticket.plan .tp{background:var(--blue-soft)}
+  .ticket .tp .em{font-size:32px;letter-spacing:2px}
   .ticket .tp .st{font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;background:#fff;color:#946c00}
-  .ticket .cut{height:0;border-top:2px dashed #f0d77a;margin:0 14px;position:relative}
+  .ticket.plan .tp .st{color:var(--blue)}
+  .ticket .cut{height:0;border-top:2px dashed #f0d77a;margin:0 14px}
+  .ticket.plan .cut{border-color:#bcd3fb}
   .ticket .bt{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center}
   .ticket .bt div small{display:block;font-size:11px;color:var(--sub)}
   .ticket .bt div b{font-size:18px}
-  .ticket .msg{padding:0 18px 12px;font-size:13px;color:#946c00;text-align:center;font-weight:600}
-  .ticket .cx{display:block;width:100%;padding:12px;border-top:1px solid var(--line);color:var(--sub);font-size:13px}
+  .ticket .msg{margin:0 14px 12px;font-size:13px;text-align:center;font-weight:600;border-radius:12px;padding:10px;background:#fff8e1;color:#946c00}
+  .ticket.plan .msg{background:var(--blue-soft);color:#1a4fb8}
+  .ticket .msg.bad{background:var(--over-soft);color:var(--over)}
+  .ticket .btns{display:flex;border-top:1px solid var(--line)}
+  .ticket .btns button{flex:1;padding:13px;font-size:14px;color:var(--sub)}
+  .ticket .btns button.p{color:#fff;background:var(--blue);font-weight:800}
+  .ticket .btns button.p:disabled{background:#c5d6f7}
 
-  /* 대기 명단 */
   .team{background:var(--card);border-radius:16px;padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
   .team .idx{width:42px;height:42px;border-radius:12px;background:#f2f4f6;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:none}
   .team .idx small{font-size:9px;color:var(--sub);font-weight:600}
@@ -81,61 +111,84 @@
   .team .row1 b{font-size:14px}
   .team .row1 span{color:var(--sub)}
   .slots{display:flex;gap:6px}
-  .slot{flex:1;height:40px;border-radius:10px;background:#f7f8f9;display:flex;align-items:center;justify-content:center;font-size:22px;position:relative}
-  .slot.empty{background:transparent;border:1.5px dashed #d1d6db;font-size:13px;color:#b0b8c1}
+  .slot{flex:1;height:44px;border-radius:10px;background:#f7f8f9;display:flex;align-items:center;justify-content:center;font-size:22px;position:relative}
+  .slot.empty{background:transparent;border:1.5px dashed #d1d6db;font-size:12px;color:#b0b8c1}
   .slot.me{background:var(--me);box-shadow:inset 0 0 0 1.5px var(--me-line)}
-  .slot .x{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--over);color:#fff;font-size:12px;line-height:20px}
+  .slot .bn{position:absolute;bottom:-5px;right:-4px;font-size:12px}
   .court-h{font-size:14px;font-weight:800;margin:14px 4px 8px}
-  .empty{background:var(--card);border-radius:16px;padding:30px 16px;text-align:center;color:var(--sub)}
-  .empty b{display:block;font-size:30px;margin-bottom:6px}
+  .empty{background:var(--card);border-radius:16px;padding:26px 16px;text-align:center;color:var(--sub)}
+  .empty b{display:block;font-size:28px;margin-bottom:6px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:6px 0 0}
 
-  /* 더보기 */
+  .plans{background:var(--card);border-radius:16px;overflow:hidden}
+  .plans .pr{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-bottom:1px solid var(--line);text-align:left}
+  .plans .pr:last-child{border-bottom:0}
+  .plans .pr .e{font-size:26px;width:36px;text-align:center}
+  .plans .pr .tm{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;flex:1}
+  .plans .pr .tm small{display:block;font-size:12px;font-weight:500;color:var(--sub)}
+  .plans .pr.me{background:#f5f9ff}
+
   .list{background:var(--card);border-radius:16px;overflow:hidden}
   .list button,.list .it{display:flex;justify-content:space-between;align-items:center;width:100%;padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
   .list > :last-child{border-bottom:0}
-  .list .it span,.list button span{color:var(--sub);font-size:13px}
+  .list button span,.list .it span{color:var(--sub);font-size:13px}
   .list .danger{color:var(--over);font-weight:700}
   .rules{background:var(--card);border-radius:16px;padding:6px 16px}
   .rules p{margin:0;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;display:flex;gap:10px}
   .rules p:last-child{border-bottom:0}
   .rules p i{font-style:normal;color:var(--pri);font-weight:800;width:18px;flex:none}
+  .bonus-box{background:var(--blue-soft);border-radius:16px;padding:14px 16px;font-size:14px;color:#1a3f8f}
+  .bonus-box b{display:block;font-size:15px;margin-bottom:6px}
+  .bonus-box div{padding:3px 0}
   .log{background:var(--card);border-radius:16px;padding:6px 16px;font-size:13px}
   .log div{padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:10px}
   .log div:last-child{border-bottom:0}
   .log time{color:var(--sub);flex:none;font-variant-numeric:tabular-nums}
 
-  /* 하단 등록 버튼 + 탭바 */
   .cta{position:fixed;left:0;right:0;bottom:calc(var(--tab-h) + env(safe-area-inset-bottom));z-index:6;padding:10px 16px;background:linear-gradient(transparent,var(--bg) 30%)}
   .cta button{display:block;width:100%;max-width:448px;margin:0 auto;background:var(--pri);color:#fff;font-size:17px;font-weight:800;padding:17px;border-radius:16px;box-shadow:0 6px 16px rgba(31,122,82,.28)}
   .cta button:active{background:var(--pri-d)}
+  .cta button:disabled{background:#adb5bd;box-shadow:none;font-size:15px}
   .tabs{position:fixed;left:0;right:0;bottom:0;z-index:7;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
   .tabs .in{max-width:480px;margin:0 auto;display:flex;height:var(--tab-h)}
-  .tabs button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:#b0b8c1;font-weight:600}
+  .tabs button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:#b0b8c1;font-weight:600;position:relative}
   .tabs button .ic{font-size:21px;filter:grayscale(1);opacity:.55}
   .tabs button.on{color:var(--ink)}
   .tabs button.on .ic{filter:none;opacity:1}
-  .tabs .badge{position:absolute;margin:-6px 0 0 18px;background:var(--over);color:#fff;font-size:10px;border-radius:99px;padding:0 5px;line-height:16px}
+  .tabs .badge{position:absolute;top:8px;left:calc(50% + 6px);background:var(--over);color:#fff;font-size:10px;border-radius:99px;padding:0 5px;line-height:16px}
   .page{display:none}
   .page.on{display:block}
 
-  /* 바텀시트 & 다이얼로그 */
   .dim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
   .dim.on{opacity:1;pointer-events:auto}
   .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
   .sheet.on{transform:none}
-  .sheet .in{max-width:480px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:10px 20px calc(20px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+  .sheet .in{max-width:480px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:10px 20px calc(20px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}
   .grab{width:40px;height:5px;border-radius:5px;background:#d1d6db;margin:0 auto 14px}
   .steps{display:flex;gap:4px;margin-bottom:16px}
   .steps i{flex:1;height:4px;border-radius:4px;background:#e5e8eb}
   .steps i.on{background:var(--pri)}
   .sheet h3{font-size:22px;margin:0 0 4px;letter-spacing:-.4px}
-  .sheet .d{color:var(--sub);font-size:14px;margin:0 0 18px}
+  .sheet .d{color:var(--sub);font-size:14px;margin:0 0 16px}
+  .choice{display:grid;gap:10px}
+  .choice button{display:flex;align-items:center;gap:14px;text-align:left;background:#f7f8f9;border-radius:18px;padding:18px;border:2px solid transparent}
+  .choice button .ic{font-size:34px}
+  .choice button b{display:block;font-size:17px}
+  .choice button small{color:var(--sub);font-size:13px}
+  .choice button.on{border-color:var(--pri);background:var(--pri-soft)}
+  .choice button:disabled{opacity:.4}
   .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .nums button{background:#f2f4f6;border-radius:16px;padding:18px 0;font-size:24px;font-weight:800}
+  .nums button{background:#f2f4f6;border-radius:16px;padding:16px 0;font-size:24px;font-weight:800}
   .nums button small{display:block;font-size:12px;font-weight:600;color:var(--sub)}
   .nums button.on{background:var(--pri);color:#fff}
   .nums button.on small{color:#d3eadd}
-  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+  .nums button:disabled{opacity:.3}
+  .times{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:212px;overflow:auto;padding:2px}
+  .times button{background:#f2f4f6;border-radius:12px;padding:11px 0;font-weight:700;font-variant-numeric:tabular-nums}
+  .times button.on{background:var(--blue);color:#fff}
+  .est{margin-top:10px;background:var(--blue-soft);color:#1a4fb8;border-radius:12px;padding:10px 12px;font-size:13px;font-weight:600;text-align:center}
+  .sub-l{font-size:13px;font-weight:700;color:#4e5968;margin:16px 0 8px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .seg button{background:#f2f4f6;border-radius:14px;padding:14px 0;font-weight:700}
   .seg button.on{background:var(--pri);color:#fff}
   .seg button small{display:block;font-size:12px;font-weight:500;opacity:.8}
@@ -149,15 +202,29 @@
   .sbtn{display:flex;gap:8px;margin-top:20px}
   .sbtn button{flex:1;padding:16px;border-radius:14px;font-size:16px;font-weight:800}
   .sbtn .p{background:var(--pri);color:#fff}
+  .sbtn .p.blue{background:var(--blue)}
   .sbtn .p:disabled{background:#c8d3cd}
   .sbtn .g{background:#f2f4f6;color:#4e5968;flex:0 0 32%}
-  .sum{background:#f7f8f9;border-radius:16px;padding:4px 16px;margin-top:4px}
+  .sum{background:#f7f8f9;border-radius:16px;padding:4px 16px}
   .sum div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
   .sum div:last-child{border-bottom:0}
   .sum div span{color:var(--sub)}
   .done{text-align:center;padding:10px 0 4px}
   .done .ok{width:64px;height:64px;border-radius:50%;background:var(--pri);color:#fff;font-size:34px;line-height:64px;margin:0 auto 12px}
+  .done .ok.blue{background:var(--blue)}
   .done .em{font-size:40px;letter-spacing:4px;margin:6px 0}
+  .acts{display:grid;gap:8px}
+  .acts button{display:flex;align-items:center;gap:12px;background:#f7f8f9;border-radius:14px;padding:15px 16px;font-size:16px;font-weight:700;text-align:left}
+  .acts button i{font-style:normal;font-size:20px;width:26px;text-align:center}
+  .acts button small{margin-left:auto;font-size:12px;color:var(--sub);font-weight:500}
+  .acts button.red{color:var(--over);background:var(--over-soft)}
+  .acts button:disabled{opacity:.35}
+  .names{display:grid;gap:8px;margin-top:12px}
+  .names label{display:flex;align-items:center;gap:10px;background:#f7f8f9;border-radius:12px;padding:6px 12px}
+  .names label span{font-size:24px}
+  .names input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;padding:8px 0;outline:none}
+  .tile .ppl button{font-size:20px;padding:0 1px}
+  .warn{background:#fff8e1;color:#946c00;border-radius:12px;padding:10px 12px;font-size:13px;margin-bottom:12px}
 
   .dlg{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:24px;pointer-events:none;opacity:0;transition:opacity .15s}
   .dlg.on{opacity:1;pointer-events:auto}
@@ -173,71 +240,78 @@
 
   .toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-20px);background:#191f28;color:#fff;padding:12px 18px;border-radius:14px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:40;max-width:90%;text-align:center;font-weight:600}
   .toast.on{opacity:1;transform:translate(-50%,0)}
-  .demo{margin:0 16px 4px;background:var(--me);color:#7a5d00;font-size:12px;border-radius:12px;padding:8px 12px;display:none}
-  .adm{margin:10px 16px 0;background:var(--over-soft);color:var(--over);font-size:13px;font-weight:700;border-radius:12px;padding:10px 12px;display:none;justify-content:space-between;align-items:center}
-  .adm button{color:var(--over);text-decoration:underline;font-size:13px}
+  .demo{margin:0 16px 4px;background:var(--me);color:#7a5d00;font-size:12px;border-radius:12px;padding:8px 12px;display:none;justify-content:space-between;align-items:center;gap:8px}
+  .demo button{font-size:12px;font-weight:700;text-decoration:underline;color:#7a5d00;flex:none}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="top">
-    <div class="ttl">🎾 테니스장 대기<small id="modeLbl">불러오는 중</small></div>
+    <div class="brand">
+      <img src="logo.png" alt="" onerror="this.onerror=null;this.src='https://saenarachild-crypto.github.io/korean-class/tennis/logo.png'">
+      <div class="ttl">게임 대기판<small id="modeLbl">치동천테니스클럽</small></div>
+    </div>
     <div class="clk"><div id="clkDate"></div><b id="clkTime"></b></div>
   </div>
-  <div class="demo" id="demo">미리보기 화면이에요. 실제로 배포하면 모든 회원이 같은 현황을 보게 돼요.</div>
-  <div class="adm" id="admBar">🔧 관리자 모드 — 대기 명단에서 × 로 삭제 <button onclick="adminOff()">끄기</button></div>
+  <div class="demo" id="demo"><span id="demoTxt">미리보기 — 가짜 데이터, 아침 7시로 가정</span><button onclick="demoToggle()" id="demoBtn">운영시간 외 보기</button></div>
 
-  <!-- 홈 -->
+  <!-- 현황 -->
   <section class="page on" id="p-home">
     <div class="sec">
+      <div id="closedBox"></div>
       <div class="label" id="myLabel" style="display:none">내 대기</div>
-      <div id="ticket"></div>
+      <div id="tickets"></div>
 
       <div class="label">지금 등록하면</div>
-      <div class="hero">
+      <div class="hero" id="hero">
         <div>
-          <div class="k" id="heroK">예상 대기</div>
+          <div class="k">예상 대기</div>
           <div class="v" id="heroV">-</div>
           <div class="s" id="heroS"></div>
         </div>
-        <div class="cnt"><b id="heroCnt">-</b><small>명 대기</small></div>
+        <div class="cnt"><b id="heroCnt">-</b><small>명 대기</small><div class="room" id="heroRoom"></div></div>
       </div>
 
       <div class="label">코트 현황</div>
       <div class="courts" id="courts"></div>
+
+      <div class="label">오늘 올 예정 <span id="planCnt"></span></div>
+      <div id="plans"></div>
     </div>
   </section>
 
   <!-- 대기 명단 -->
   <section class="page" id="p-queue">
     <div class="sec">
-      <div class="label" id="qLabel">대기 명단</div>
+      <div class="label"><b id="qLabel">대기 명단</b><span id="qRoom"></span></div>
       <div id="queue"></div>
+      <p class="hint">아이콘을 누르면 이름(공개한 분만)을 보고, 순서를 바꾸거나 빠질 수 있어요</p>
     </div>
   </section>
 
   <!-- 더보기 -->
   <section class="page" id="p-more">
     <div class="sec">
+      <div class="label">⏰ 정시 도착 혜택</div>
+      <div class="bonus-box" id="bonusBox"></div>
       <div class="label">이용 규칙</div>
       <div class="rules">
-        <p><i>1</i>순서에 따라 본인이 직접 등록</p>
-        <p><i>2</i>빈칸 없이 순서대로, 취소되면 자동으로 당겨짐</p>
-        <p><i>3</i>다른 사람 순서 변경은 본인에게 문의 후</p>
+        <p><i>1</i>순서에 따라 본인이 직접 등록 (입력은 매일 06:00~10:00)</p>
+        <p><i>2</i>빈칸 없이 순서대로, 빠진 자리는 자동으로 당겨짐</p>
+        <p><i>3</i>다른 사람 순서 변경은 본인에게 물어본 뒤</p>
         <p><i>4</i>선택한 코트는 경기 마칠 때까지 유지</p>
         <p><i>5</i>4명 복식이 원칙, 1~2명 연습·단식은 대기 없을 때만</p>
         <p><i>6</i>시작 5분 전 코트 안에서 대기, 이유 없이 5분 지나면 교체</p>
-        <p><i>7</i>1경기(약 30분) 후 교대</p>
+        <p><i>7</i>1경기(약 30분) 후 교대 · 대기는 최대 5팀까지</p>
       </div>
-      <div class="label">최근 기록</div>
+      <div class="label">오늘 기록</div>
       <div class="log" id="log"></div>
       <div class="label">관리자</div>
       <div class="list">
-        <button onclick="adminOn()">노쇼·대기 삭제 <span>PIN 필요 ›</span></button>
         <button onclick="adminMode()">평일/주말 운영 방식 <span id="modeNow">›</span></button>
-        <button class="danger" onclick="adminReset()">↺ 전체 리셋 <span>코트·대기 모두 비우기</span></button>
+        <button class="danger" onclick="adminReset()">↺ 전체 리셋 <span>코트·대기·예정 모두 비우기</span></button>
       </div>
-      <p style="font-size:12px;color:var(--sub);text-align:center;margin:16px 0">예상 시간은 1경기 30분 기준 추정치예요 · 20초마다 자동 새로고침</p>
+      <p style="font-size:12px;color:var(--sub);text-align:center;margin:16px 0">매일 자정이 지나면 자동으로 새 하루가 시작돼요 · 예상 시간은 1경기 30분 기준</p>
     </div>
   </section>
 </div>
@@ -255,66 +329,295 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================= 서버 호출 / 미리보기용 가짜 서버 ================= */
-// ★ Apps Script 웹 앱 배포 주소(…/exec)를 여기에 붙여넣으세요. 비어 있으면 미리보기(가짜 데이터)로 동작합니다.
+/* ===== 공통 로직 (서버 Code.gs와 미리보기가 같은 코드를 씀) ===== */
+const GAME_MIN = 30;      // 1경기 예상 시간(분)
+const OPEN_HOUR = 6;      // 입력 가능 시작 (06:00)
+const CLOSE_HOUR = 10;    // 입력 가능 종료 (10:00)
+const BONUS_MIN = 15;     // 정시 도착 혜택: 15분 먼저 온 것으로 인정
+const EARLY_MIN = 15, LATE_MIN = 10;  // 정시 도착 인정 범위: 예정 시각 15분 전 ~ 10분 후
+const MAX_TEAMS = 5;      // 대기 가능 최대 5팀(20명) — 경기에 들어가면 그만큼 자리가 다시 생김
+const EXPIRE_MIN = 30;    // 예정 시각 30분이 지나도 안 오면 예정 자동 삭제
+const EMOJIS = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🐔','🐧','🐤','🦆','🦉','🐴','🦄','🐝','🐢','🐙','🦀','🐬','🐳','🦖','🍎','🍊','🍋','🍉','🍇','🍓','🍍','🥝','🌽','🌻','🌵','⚽','🏀','🚗','🚀','⭐','🌈','🔥','🍀'];
+const USER_OPS = ['join', 'leave', 'move', 'setName', 'addPlan', 'cancelPlan', 'arrive', 'startNext', 'endGame'];
+const ADMIN_OPS = ['checkAdmin', 'setMode', 'resetAll'];
+
+function core_blank(mode) {
+  return {
+    mode: mode || 'auto', // auto | weekday | weekend
+    day: '',
+    courts: [{ id: 1, players: [], start: null }, { id: 2, players: [], start: null }],
+    queue: [],   // 코트에 와서 대기 중 {id, e, court(0=통합,1,2), t}
+    plans: [],   // 도착 예정 {id, e, eta:'HH:mm', t, dev, nobonus}
+    banned: [],  // 오늘 지각·노쇼한 기기 → 오늘은 정시 도착 혜택 없음
+    log: []
+  };
+}
+/** 날짜가 바뀌면 자동으로 새 하루 시작 */
+function core_rollDay(s, ctx) {
+  if (!s.plans) s.plans = [];
+  if (!s.banned) s.banned = [];
+  if (s.day !== ctx.day) {
+    const mode = s.mode;
+    Object.assign(s, core_blank(mode));
+    s.day = ctx.day;
+  }
+}
+function core_isWeekend(s, ctx) {
+  if (s.mode === 'weekday') return false;
+  if (s.mode === 'weekend') return true;
+  return ctx.dow >= 6; // 1=월 … 7=일
+}
+function core_isOpen(ctx) { return ctx.hour >= OPEN_HOUR && ctx.hour < CLOSE_HOUR; }
+function core_log(s, ctx, msg) { s.log.push({ t: ctx.now, msg: msg }); s.log = s.log.slice(-40); }
+function core_inUse(s) {
+  const u = {};
+  s.queue.forEach(q => u[q.e] = true);
+  s.plans.forEach(q => u[q.e] = true);
+  s.courts.forEach(c => c.players.forEach(p => u[p.e] = true));
+  return u;
+}
+function core_checkEmojis(s, emojis) {
+  emojis = (emojis || []).slice(0, 4);
+  if (!emojis.length) throw new Error('아이콘을 골라 주세요.');
+  const used = core_inUse(s);
+  emojis.forEach(e => {
+    if (EMOJIS.indexOf(e) < 0) throw new Error('사용할 수 없는 아이콘이에요.');
+    if (used[e]) throw new Error(e + ' 는 이미 다른 분이 쓰고 있어요. 다른 아이콘을 골라 주세요.');
+  });
+  return emojis;
+}
+/** 남은 대기 자리 (평일: 대기+도착예정 합계 20명 / 주말: 코트별 20명, 도착예정은 전체에서 차감) */
+function core_free(s, ctx, court) {
+  const cap = MAX_TEAMS * 4;
+  if (!core_isWeekend(s, ctx)) return cap - s.queue.length - s.plans.length;
+  const inLine = s.queue.filter(q => (q.court || 1) === court).length;
+  return Math.min(cap - inLine, cap * 2 - s.queue.length - s.plans.length);
+}
+function core_needRoom(s, ctx, court, n, isArrival) {
+  const free = core_free(s, ctx, court) + (isArrival && !core_isWeekend(s, ctx) ? n : 0);
+  if (free < n) throw new Error(free <= 0 ? '대기가 가득 찼어요 (최대 ' + MAX_TEAMS + '팀). 다음 팀이 입장하면 자리가 생겨요.'
+    : '남은 대기 자리가 ' + free + '명뿐이에요.');
+}
+function core_view(s, ctx, extra) {
+  const v = {
+    now: ctx.now, gameMin: GAME_MIN, maxTeams: MAX_TEAMS,
+    free: core_isWeekend(s, ctx) ? { 1: core_free(s, ctx, 1), 2: core_free(s, ctx, 2) } : { 0: core_free(s, ctx, 0) }, bonusMin: BONUS_MIN, earlyMin: EARLY_MIN, lateMin: LATE_MIN, expireMin: EXPIRE_MIN, openHour: OPEN_HOUR, closeHour: CLOSE_HOUR,
+    open: core_isOpen(ctx), emojis: EMOJIS, weekend: core_isWeekend(s, ctx), mode: s.mode,
+    courts: s.courts, queue: s.queue, plans: s.plans.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', eta: p.eta, t: p.t, nobonus: p.nobonus })), log: s.log.slice(-15).reverse()
+  };
+  if (ctx.dev) v.banned = s.banned.indexOf(ctx.dev) >= 0;
+  if (extra) Object.keys(extra).forEach(k => v[k] = extra[k]);
+  return v;
+}
+const es_ = arr => arr.map(p => p.e).join(' ');
+/** 선택 이름: 공백 정리, 8자 제한, 꺾쇠 제거 (안 쓰면 아이콘만) */
+function core_name(n) { return String(n || '').replace(/[<>&"'`]/g, '').replace(/\s+/g, ' ').trim().slice(0, 8); }
+
+const CoreOps = {
+  /** 지금 코트에 와서 대기 등록 (아이콘 1~4개 = 인원) */
+  join(s, ctx, emojis, court, names) {
+    emojis = core_checkEmojis(s, emojis); names = names || [];
+    const c = core_isWeekend(s, ctx) ? (Number(court) === 2 ? 2 : 1) : 0;
+    core_needRoom(s, ctx, c || 1, emojis.length, false);
+    const created = emojis.map((e, i) => { const q = { id: ctx.uuid(), e: e, nm: core_name(names[i]), court: c, t: ctx.now, vt: ctx.now }; s.queue.push(q); return q.id; });
+    core_log(s, ctx, emojis.join(' ') + ' 대기 등록' + (c ? ' (' + c + '코트)' : ''));
+    return { created: created };
+  },
+  /** 대기에서 빠짐 (누구나 — 중간에 빠지는 사람 정리) */
+  leave(s, ctx, id) {
+    const q = s.queue.find(x => x.id === id);
+    if (!q) return;
+    s.queue = s.queue.filter(x => x.id !== id);
+    core_log(s, ctx, q.e + ' 대기에서 빠짐');
+  },
+  /** 순서 수정: up = 앞 게임으로, down = 다음 게임으로, end = 맨 뒤로 */
+  move(s, ctx, id, how) {
+    const q = s.queue.find(x => x.id === id);
+    if (!q) throw new Error('이미 대기 명단에 없어요.');
+    const weekend = core_isWeekend(s, ctx);
+    const line = weekend ? s.queue.filter(x => (x.court || 1) === (q.court || 1)) : s.queue.slice();
+    const idx = line.indexOf(q);
+    const others = line.filter(x => x !== q);
+    let to = how === 'up' ? Math.max(0, Math.floor(idx / 4) * 4 - 4 + 3) : how === 'down' ? (Math.floor(idx / 4) + 1) * 4 : others.length;
+    if (how === 'up' && idx < 4) throw new Error('이미 다음 게임이에요.');
+    to = Math.min(to, others.length);
+    s.queue = s.queue.filter(x => x !== q);
+    if (to >= others.length) {
+      const last = others[others.length - 1];
+      const at = last ? s.queue.indexOf(last) + 1 : s.queue.length;
+      s.queue.splice(at, 0, q);
+    } else {
+      s.queue.splice(s.queue.indexOf(others[to]), 0, q);
+    }
+    core_log(s, ctx, q.e + (how === 'up' ? ' 앞 게임으로 이동' : how === 'down' ? ' 다음 게임으로 미룸' : ' 맨 뒤로 이동'));
+  },
+  /** 이름 표시 바꾸기 (빈칸이면 아이콘만) */
+  setName(s, ctx, id, name) {
+    const q = s.queue.find(x => x.id === id) || s.plans.find(x => x.id === id);
+    if (!q) throw new Error('명단에 없어요.');
+    q.nm = core_name(name);
+  },
+  /** 도착 예정 등록 */
+  addPlan(s, ctx, emojis, eta, dev, names) {
+    emojis = core_checkEmojis(s, emojis); names = names || [];
+    if (!/^\d{2}:\d{2}$/.test(String(eta))) throw new Error('도착 시간을 골라 주세요.');
+    const m = core_hm(eta);
+    if (m < ctx.mod - 5 || m >= CLOSE_HOUR * 60) throw new Error('도착 시간은 지금부터 ' + CLOSE_HOUR + ':00 전까지 고를 수 있어요.');
+    if (core_isWeekend(s, ctx)) { if (MAX_TEAMS * 8 - s.queue.length - s.plans.length < emojis.length) throw new Error('대기가 가득 찼어요.'); }
+    else core_needRoom(s, ctx, 0, emojis.length, false);
+    dev = String(dev || '').slice(0, 20);
+    const nobonus = !!dev && s.banned.indexOf(dev) >= 0;
+    const created = emojis.map((e, i) => { const p = { id: ctx.uuid(), e: e, nm: core_name(names[i]), eta: eta, t: ctx.now, dev: dev, nobonus: nobonus }; s.plans.push(p); return p.id; });
+    s.plans.sort((a, b) => a.eta < b.eta ? -1 : a.eta > b.eta ? 1 : a.t - b.t);
+    core_log(s, ctx, emojis.join(' ') + ' ' + eta + ' 도착 예정' + (nobonus ? ' (오늘 혜택 제외)' : ''));
+    return { created: created, nobonus: nobonus };
+  },
+  cancelPlan(s, ctx, id) {
+    const p = s.plans.find(x => x.id === id);
+    if (!p) return;
+    s.plans = s.plans.filter(x => x.id !== id);
+    const late = ctx.mod - core_hm(p.eta) > LATE_MIN;
+    if (late) core_ban(s, p);
+    core_log(s, ctx, p.e + ' 도착 예정 취소' + (late ? ' (시간 지남 — 오늘 혜택 제외)' : ''));
+  },
+  /** 도착 → 대기 등록. 예정 시간에 맞춰 오면 15분 먼저 온 것으로 쳐서 앞쪽에 넣어 줌
+   *  (단, 바로 다음 게임 4명은 건드리지 않음) */
+  arrive(s, ctx, ids, court) {
+    const c = core_isWeekend(s, ctx) ? (Number(court) === 2 ? 2 : 1) : 0;
+    const ps = s.plans.filter(x => ids.indexOf(x.id) >= 0);
+    if (!ps.length) throw new Error('도착 예정 명단에 없어요.');
+    if (c) { const inLine = s.queue.filter(q => (q.court || 1) === c).length; if (MAX_TEAMS * 4 - inLine < ps.length) throw new Error(c + '코트 대기가 가득 찼어요. 다른 코트를 골라 주세요.'); }
+    s.plans = s.plans.filter(x => ids.indexOf(x.id) < 0);
+    const onTime = ps.every(p => core_onTime(p, ctx));
+    const late = ps.some(p => ctx.mod - core_hm(p.eta) > LATE_MIN);
+    if (late) ps.forEach(p => core_ban(s, p));
+    const vt = onTime ? ctx.now - BONUS_MIN * 60000 : ctx.now;
+    const line = c ? s.queue.filter(q => (q.court || 1) === c) : s.queue;
+    let anchor = null;
+    if (onTime) for (let i = 4; i < line.length; i++) { if ((line[i].vt || line[i].t) > vt) { anchor = line[i]; break; } }
+    const items = ps.map(p => ({ id: p.id, e: p.e, nm: p.nm || '', court: c, t: ctx.now, vt: vt, bonus: onTime }));
+    if (anchor) s.queue.splice(s.queue.indexOf(anchor), 0, ...items);
+    else items.forEach(q => s.queue.push(q));
+    core_log(s, ctx, es_(ps) + (onTime ? ' 정시 도착 ⏰ (' + BONUS_MIN + '분 우선)' : late ? ' 지각 도착 — 일반 대기, 오늘 혜택 제외' : ' 도착 · 대기 등록'));
+    return { onTime: onTime, jumped: !!anchor, late: late };
+  },
+  /** 다음 4명 입장 (진행 중 경기는 종료 처리) */
+  startNext(s, ctx, courtId, force) {
+    const court = s.courts[courtId - 1];
+    const line = core_isWeekend(s, ctx) ? s.queue.filter(q => (q.court || 1) === courtId) : s.queue;
+    const take = line.slice(0, 4);
+    if (!take.length) throw new Error('대기자가 없어요.');
+    if (take.length < 4 && !force) throw new Error('NEED_FORCE');
+    const ids = take.map(q => q.id);
+    if (court.players.length) core_log(s, ctx, courtId + '코트 경기 종료');
+    s.queue = s.queue.filter(q => ids.indexOf(q.id) < 0);
+    court.players = take.map(q => ({ id: q.id, e: q.e, nm: q.nm || '' }));
+    court.start = ctx.now;
+    core_log(s, ctx, courtId + '코트 입장: ' + es_(court.players));
+  },
+  endGame(s, ctx, courtId) {
+    const court = s.courts[courtId - 1];
+    if (!court.players.length) return;
+    core_log(s, ctx, courtId + '코트 경기 종료 (' + es_(court.players) + ')');
+    court.players = []; court.start = null;
+  },
+  /* 관리자 */
+  checkAdmin() { return {}; },
+  setMode(s, ctx, mode) {
+    s.mode = ['auto', 'weekday', 'weekend'].indexOf(mode) >= 0 ? mode : 'auto';
+    core_log(s, ctx, '운영 방식 변경');
+  },
+  resetAll(s, ctx) {
+    const mode = s.mode, day = s.day;
+    Object.assign(s, core_blank(mode)); s.day = day;
+    core_log(s, ctx, '전체 리셋');
+  }
+};
+
+/** 모든 요청의 공통 처리 */
+function core_hm(t) { const a = String(t).split(':'); return (+a[0]) * 60 + (+a[1]); }
+function core_onTime(p, ctx) { const d = ctx.mod - core_hm(p.eta); return !p.nobonus && d >= -EARLY_MIN && d <= LATE_MIN; }
+function core_ban(s, p) { if (p.dev && s.banned.indexOf(p.dev) < 0) s.banned.push(p.dev); }
+function core_expire(s, ctx) {
+  const gone = s.plans.filter(p => ctx.mod - core_hm(p.eta) > EXPIRE_MIN);
+  if (gone.length) {
+    s.plans = s.plans.filter(p => gone.indexOf(p) < 0);
+    gone.forEach(p => core_ban(s, p));
+    core_log(s, ctx, es_(gone) + ' 노쇼 — 예정 자동 삭제, 오늘 혜택 제외');
+  }
+  return gone.length > 0;
+}
+function core_run(s, ctx, op, args, pinOk) {
+  core_rollDay(s, ctx);
+  core_expire(s, ctx);
+  if (ADMIN_OPS.indexOf(op) >= 0) {
+    if (!pinOk) throw new Error('관리자 PIN이 틀렸어요.');
+  } else if (USER_OPS.indexOf(op) >= 0) {
+    if (!core_isOpen(ctx)) throw new Error('입력은 매일 0' + OPEN_HOUR + ':00 ~ ' + CLOSE_HOUR + ':00에만 할 수 있어요.');
+  } else if (op !== 'getState') {
+    throw new Error('지원하지 않는 요청이에요.');
+  }
+  const extra = op === 'getState' ? null : CoreOps[op].apply(null, [s, ctx].concat(args || []));
+  return core_view(s, ctx, extra);
+}
+
+
+/* ================= 서버 연결 ================= */
+// ★ Apps Script 웹 앱 주소(…/exec)를 넣으면 실제 대기판으로 동작. 비어 있으면 미리보기.
 const API_URL = '';
 const HAS_GAS = typeof google !== 'undefined' && google.script && google.script.run;
-function call(fn, ...args){
-  if (HAS_GAS) return new Promise((res, rej) => {
-    google.script.run.withSuccessHandler(res).withFailureHandler(e => rej(e))[fn](...args);
-  });
-  if (API_URL) return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({fn, args})})
-    .then(r => r.json())
-    .then(j => { if(!j.ok) throw new Error(j.error); return j.data; });
-  try { return Promise.resolve(Mock[fn](...args)); } catch(e){ return Promise.reject(e); }
+const DEMO = !HAS_GAS && !API_URL;
+const DEV = (() => { try { let d = localStorage.getItem('tq_dev'); if(!d){ d = Math.random().toString(36).slice(2,12); localStorage.setItem('tq_dev', d); } return d; } catch(e){ return 'x'+Math.random().toString(36).slice(2,10); } })();
+
+function call(op, args, pin){
+  args = args || [];
+  if (HAS_GAS) return new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej).api(op, args, pin || '', DEV));
+  if (API_URL) return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({op, args, pin: pin || '', dev: DEV})})
+    .then(r => r.json()).then(j => { if(!j.ok) throw new Error(j.error); return j.data; });
+  try { return Promise.resolve(JSON.parse(JSON.stringify(core_run(MS, demoCtx(), op, args, true)))); }
+  catch(e){ return Promise.reject(e); }
 }
-const Mock = (() => {
-  const M = 60000, now = Date.now(); let uid = 100;
-  const EM = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🐔','🐧','🐤','🦆','🦉','🐴','🦄','🐝','🐢','🐙','🦀','🐬','🐳','🦖','🍎','🍊','🍋','🍉','🍇','🍓','🍍','🥝','🌽','🌻','🌵','⚽','🏀','🚗','🚀','⭐','🌈','🔥','🍀'];
-  const tk = (e, ago) => ({id:'m'+(uid++), e, court:0, t:now-ago*M});
-  const s = { mode:'auto',
-    courts:[{id:1,players:['🐶','🦊','🍎','🚀'].map((e,i)=>({id:'p'+i,e})),start:now-12*M},
-            {id:2,players:['🐼','🍋','⭐','🦄'].map((e,i)=>({id:'q'+i,e})),start:now-24*M}],
-    queue:[tk('🐯',40),tk('🌻',38),tk('🐢',35),tk('🍇',30),tk('🐳',20),tk('🔥',8)], log:[] };
-  const wk = () => s.mode==='weekend' ? true : s.mode==='weekday' ? false : [0,6].includes(new Date().getDay());
-  const v = x => Object.assign(JSON.parse(JSON.stringify({now:Date.now(),gameMin:30,emojis:EM,weekend:wk(),mode:s.mode,courts:s.courts,queue:s.queue,log:s.log.slice(-12).reverse()})), x||{});
-  const L = m => s.log.push({t:Date.now(),msg:m});
-  const es = a => a.map(p=>p.e).join(' ');
-  return {
-    getState: () => v(),
-    join(list,c){ list=(list||[]).slice(0,4); if(!list.length) throw new Error('아이콘을 골라 주세요.');
-      const used=new Set([...s.queue.map(q=>q.e),...s.courts.flatMap(x=>x.players.map(p=>p.e))]);
-      list.forEach(e=>{ if(used.has(e)) throw new Error(e+' 는 이미 다른 분이 쓰고 있어요.'); });
-      c=wk()?(+c===2?2:1):0; const created=list.map(e=>{ const q={id:'m'+(uid++),e,court:c,t:Date.now()}; s.queue.push(q); return q.id; });
-      L(list.join(' ')+' 대기 등록'); return v({created}); },
-    leave(id){ const q=s.queue.find(x=>x.id===id); s.queue=s.queue.filter(x=>x.id!==id); if(q) L(q.e+' 대기 취소'); return v(); },
-    startNext(cid,force){ const ct=s.courts[cid-1]; const list=wk()?s.queue.filter(q=>(q.court||1)===cid):s.queue; const t=list.slice(0,4);
-      if(!t.length) throw new Error('대기자가 없습니다.'); if(t.length<4&&!force) throw new Error('NEED_FORCE');
-      const ids=t.map(q=>q.id); s.queue=s.queue.filter(q=>!ids.includes(q.id)); ct.players=t.map(q=>({id:q.id,e:q.e})); ct.start=Date.now(); L(cid+'코트 입장: '+es(ct.players)); return v(); },
-    endGame(cid){ const ct=s.courts[cid-1]; if(ct.players.length) L(cid+'코트 경기 종료'); ct.players=[]; ct.start=null; return v(); },
-    checkAdmin(){ return true; },
-    removeById(pin,id){ const q=s.queue.find(x=>x.id===id); s.queue=s.queue.filter(x=>x.id!==id); if(q) L(q.e+' 관리자 삭제'); return v(); },
-    setMode(pin,m){ s.mode=m; L('운영 방식 변경'); return v(); },
-    resetAll(){ s.courts.forEach(c=>{c.players=[];c.start=null}); s.queue=[]; s.log=[]; L('전체 리셋'); return v(); }
-  };
-})();
+
+/* 미리보기: 오늘 아침 7:10부터 시계가 흐르는 것으로 가정 */
+let demoOpen = true, MS = null, demoStart = Date.now(), demoUid = 500;
+function demoBase(){ const d = new Date(); d.setHours(demoOpen ? 7 : 22, 10, 0, 0); return d.getTime(); }
+function demoCtx(){
+  const now = demoBase() + (Date.now() - demoStart), d = new Date(now);
+  const day = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  return {now, day, hour:d.getHours(), mod:d.getHours()*60+d.getMinutes(), dow:d.getDay()||7, uuid:()=>'d'+(demoUid++), dev:DEV};
+}
+function demoSeed(){
+  const c = demoCtx(), M = 60000; MS = core_blank(); MS.day = c.day;
+  MS.courts[0].players = ['🐶','🦊','🍎','🚀'].map((e,i)=>({id:'a'+i,e,nm:i===1?'영호':''})); MS.courts[0].start = c.now - 12*M;
+  MS.courts[1].players = ['🐼','🍋','⭐','🦄'].map((e,i)=>({id:'b'+i,e})); MS.courts[1].start = c.now - 24*M;
+  ['🐯','🌻','🐢','🍇','🐳','🔥'].forEach((e,i)=>MS.queue.push({id:'q'+i,e,nm:['','민수','','지훈','',''][i],court:0,t:c.now-(40-i*6)*M,vt:c.now-(40-i*6)*M}));
+  const hm = m => { const t = new Date(c.now + m*M); return String(t.getHours()).padStart(2,'0')+':'+String(Math.floor(t.getMinutes()/10)*10).padStart(2,'0'); };
+  MS.plans.push({id:'p1',e:'🐨',eta:hm(20),t:c.now-30*M,dev:'z'},{id:'p2',e:'🦁',eta:hm(40),t:c.now-20*M,dev:'z'});
+}
+function demoToggle(){ demoOpen = !demoOpen; demoStart = Date.now(); const keep = MS; MS = keep; MS.day = demoCtx().day; $('demoBtn').textContent = demoOpen ? '운영시간 외 보기' : '운영시간으로 보기'; $('demoTxt').textContent = demoOpen ? '미리보기 — 가짜 데이터, 아침 7시로 가정' : '미리보기 — 밤 10시로 가정 (입력 불가)'; refresh(); }
 
 /* ================= 공통 ================= */
-let S = null, clientOffset = 0, adminPin = null;
+let S = null, clientOffset = 0;
 const MIN = 60000, DAYS = ['일','월','화','수','목','금','토'];
 const $ = id => document.getElementById(id);
 let myIds = (() => { try { return JSON.parse(localStorage.getItem('tq_ids')||'[]'); } catch(e){ return []; } })();
 const saveMine = () => { try { localStorage.setItem('tq_ids', JSON.stringify(myIds)); } catch(e){} };
+const isMine = id => myIds.includes(id);
 const nowMs = () => Date.now() + clientOffset;
-const hhmm = ms => { const d=new Date(ms); return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); };
+const pad = n => String(n).padStart(2,'0');
+const hhmm = ms => { const d=new Date(ms); return pad(d.getHours())+':'+pad(d.getMinutes()); };
+const nowMod = () => { const d = new Date(nowMs()); return d.getHours()*60 + d.getMinutes(); };
+const hm2mod = t => { const a = t.split(':'); return (+a[0])*60 + (+a[1]); };
+const mod2ms = m => { const d = new Date(nowMs()); d.setHours(Math.floor(m/60), m%60, 0, 0); return d.getTime(); };
 const mins = ms => Math.max(0, Math.round((ms - nowMs())/MIN));
-function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600); }
+const esc = t => String(t||'').replace(/[&<>"'`]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
+const who = x => x.nm ? `<b>${esc(x.nm)}</b>` : '<span style="color:var(--sub)">이름 비공개</span>';
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2800); }
 function fail(e){ toast((e && e.message) || String(e)); }
 
-/* 다이얼로그 (alert/confirm/prompt 대체) */
-function dialog({title, msg='', ok='확인', cancel='취소', input=false, red=false}){
+function dialog({title, msg='', ok='확인', cancel='취소', input=false, red=false, value=''}){
   return new Promise(res=>{
-    $('dlgBox').innerHTML = `<h4>${title}</h4>${msg?`<p>${msg}</p>`:''}${input?`<input id="dlgIn" type="password" inputmode="numeric" maxlength="8" placeholder="PIN">`:''}
+    $('dlgBox').innerHTML = `<h4>${title}</h4>${msg?`<p>${msg}</p>`:''}${input==='text'?`<input id="dlgIn" type="text" maxlength="8" placeholder="비워두면 아이콘만" value="${esc(value)}" style="letter-spacing:0;font-size:17px">`:input?`<input id="dlgIn" type="password" inputmode="numeric" maxlength="8" placeholder="PIN">`:''}
       <div class="bb">${cancel?`<button class="g" id="dlgC">${cancel}</button>`:''}<button class="p ${red?'red':''}" id="dlgO">${ok}</button></div>`;
     $('dlg').classList.add('on'); $('dim').classList.add('on'); $('dim').dataset.dlg='1';
     const close = v => { $('dlg').classList.remove('on'); delete $('dim').dataset.dlg; if(!$('sheet').classList.contains('on')) $('dim').classList.remove('on'); res(v); };
@@ -339,25 +642,29 @@ function plan(){
       groups.push({members, at:free[k], court:k+1, full:members.length===4, team:groups.length+1});
       free[k] += G;
     }
-    const nextFor = () => {
-      if(groups.length && !groups[groups.length-1].full) return groups[groups.length-1];
-      const k = free[0] <= free[1] ? 0 : 1; return {at:free[k], court:k+1};
-    };
-    return {groups, next: nextFor(), nextBy:{1:nextFor(),2:nextFor()}};
+    const nx = () => (groups.length && !groups[groups.length-1].full) ? groups[groups.length-1] : (k => ({at:free[k], court:k+1}))(free[0] <= free[1] ? 0 : 1);
+    return {groups, next:nx(), nextBy:{1:nx(),2:nx()}, freeAfter:free.slice()};
   }
-  const groups = [], nextBy = {};
+  const groups = [], nextBy = {}, freeAfter = [];
   [1,2].forEach(cid=>{
     let f = courtFree(S.courts[cid-1]), last = null, team = 0;
-    const list = S.queue.filter(q=>(q.court||1)===cid);
-    for(let i=0;i<list.length;i+=4){
-      const members = list.slice(i,i+4);
-      last = {members, at:f, court:cid, full:members.length===4, team:++team};
-      groups.push(last); f += G;
-    }
-    nextBy[cid] = (last && !last.full) ? last : {at:f, court:cid};
+    const line = S.queue.filter(q=>(q.court||1)===cid);
+    for(let i=0;i<line.length;i+=4){ const members=line.slice(i,i+4); last={members,at:f,court:cid,full:members.length===4,team:++team}; groups.push(last); f+=G; }
+    nextBy[cid] = (last && !last.full) ? last : {at:f, court:cid}; freeAfter[cid-1] = f;
   });
-  return {groups, nextBy, next: nextBy[1].at <= nextBy[2].at ? nextBy[1] : nextBy[2]};
+  return {groups, nextBy, freeAfter, next: nextBy[1].at <= nextBy[2].at ? nextBy[1] : nextBy[2]};
 }
+/** 특정 시각(mod)에 도착하면 언제 입장? — 현재 대기 + 그보다 먼저 올 예정자까지 앞에 있다고 가정 */
+function estimateAt(mod, excludeIds){
+  const G = S.gameMin*MIN, arrive = mod2ms(mod);
+  const free = S.courts.map(courtFree);
+  const ahead = S.queue.length + S.plans.filter(p => hm2mod(p.eta) <= mod && !(excludeIds||[]).includes(p.id)).length;
+  const teams = Math.floor(ahead/4);
+  let at = 0;
+  for(let i=0;i<=teams;i++){ const k = free[0] <= free[1] ? 0 : 1; at = free[k]; free[k] += G; }
+  return Math.max(at, arrive);
+}
+function roomOf(court){ const f = S.free || {}; return S.weekend ? (court ? f[court] : Math.max(f[1]||0, f[2]||0)) : f[0]; }
 
 /* ================= 화면 ================= */
 function tab(p){
@@ -371,70 +678,107 @@ function tick(){
   $('clkTime').textContent = hhmm(d);
 }
 function ring(pct, color){
-  const r=46, c=2*Math.PI*r;
-  return `<svg width="108" height="108"><circle cx="54" cy="54" r="${r}" fill="none" stroke="#f2f4f6" stroke-width="9"/>
-    <circle cx="54" cy="54" r="${r}" fill="none" stroke="${color}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-pct)}"/></svg>`;
+  const r=44, c=2*Math.PI*r;
+  return `<svg width="104" height="104"><circle cx="52" cy="52" r="${r}" fill="none" stroke="#f2f4f6" stroke-width="9"/>
+    <circle cx="52" cy="52" r="${r}" fill="none" stroke="${color}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-pct)}"/></svg>`;
+}
+/** 도착 예정 상태 */
+function planStatus(p){
+  const d = nowMod() - hm2mod(p.eta);
+  if(p.nobonus) return {k:'gray', t:'혜택 제외', msg:'오늘 지각·노쇼 기록이 있어 혜택 없이 일반 대기로 등록돼요', bad:true};
+  if(d < -S.earlyMin) return {k:'blue', t:'예정', msg:`${hhmm(mod2ms(hm2mod(p.eta)-S.earlyMin))}~${hhmm(mod2ms(hm2mod(p.eta)+S.lateMin))} 사이에 '도착했어요'를 누르면 ⏰ ${S.bonusMin}분 우선 혜택`};
+  if(d <= S.lateMin) return {k:'blue', t:'⏰ 혜택 시간', msg:`지금 '도착했어요'를 누르면 ${S.bonusMin}분 먼저 온 것으로 쳐 드려요`, now:true};
+  return {k:'over', t:'지각', msg:`혜택 시간이 지났어요. 도착하면 일반 대기로 등록되고 오늘은 혜택에서 제외돼요 (${S.expireMin}분 지나면 자동 삭제)`, bad:true};
 }
 
 function render(){
   if(!S) return;
   const p = plan(), n = nowMs();
-  const alive = new Set([...S.queue.map(q=>q.id), ...S.courts.flatMap(c=>c.players.map(x=>x.id))]);
+  const alive = new Set([...S.queue.map(q=>q.id), ...S.plans.map(q=>q.id), ...S.courts.flatMap(c=>c.players.map(x=>x.id))]);
   const b4 = myIds.length; myIds = myIds.filter(id=>alive.has(id)); if(myIds.length!==b4) saveMine();
-  const isMine = id => myIds.includes(id);
 
-  $('modeLbl').textContent = S.weekend ? '주말 · 코트별 대기' : '평일 · 1·2코트 통합 대기';
+  $('modeLbl').textContent = '치동천테니스클럽 · ' + (S.weekend ? '주말 코트별 대기' : '평일 통합 대기');
   $('modeNow').textContent = (S.mode==='auto' ? '요일 자동' : S.mode==='weekend' ? '주말식 고정' : '평일식 고정') + ' ›';
 
+  // 운영 시간 외
+  $('closedBox').innerHTML = S.open ? '' : `<div class="closed"><b>🌙 지금은 입력 시간이 아니에요</b><small>대기·도착 예정 등록은 매일 0${S.openHour}:00 ~ ${S.closeHour}:00에만 할 수 있어요</small></div>`;
+
   // 예상 대기
-  const w = mins(p.next.at);
-  if(w <= 1){ $('heroK').textContent='예상 대기'; $('heroV').innerHTML='바로 입장'; $('heroS').textContent = p.next.court+'코트로 들어가세요'; }
-  else { $('heroK').textContent='예상 대기'; $('heroV').innerHTML = w+'<span>분</span>'; $('heroS').textContent = hhmm(p.next.at)+' 입장 예상 · '+p.next.court+'코트'; }
+  const room = roomOf(0);
+  $('hero').classList.toggle('off', !S.open || room<=0);
+  if(!S.open){ $('heroV').innerHTML='—'; $('heroS').textContent='0'+S.openHour+':00에 다시 열려요'; }
+  else if(room<=0){ $('heroV').innerHTML='대기 마감'; $('heroS').textContent=`최대 ${S.maxTeams}팀 · 다음 팀이 입장하면 자리가 생겨요`; }
+  else { const w = mins(p.next.at); if(w<=1){ $('heroV').innerHTML='바로 입장'; $('heroS').textContent=p.next.court+'코트로 들어가세요'; } else { $('heroV').innerHTML=w+'<span>분</span>'; $('heroS').textContent=hhmm(p.next.at)+' 입장 예상 · '+p.next.court+'코트'; } }
   $('heroCnt').textContent = S.queue.length;
+  $('heroRoom').textContent = S.weekend ? `남은 자리 ${S.free[1]} · ${S.free[2]}` : `남은 자리 ${Math.max(0,room)}명`;
   $('qBadge').style.display = S.queue.length ? '' : 'none'; $('qBadge').textContent = S.queue.length;
 
   // 내 티켓
-  const myQ = S.queue.filter(q=>isMine(q.id));
-  const myC = S.courts.find(c=>c.players.some(x=>isMine(x.id)));
   let tk = '';
+  const myC = S.courts.find(c=>c.players.some(x=>isMine(x.id)));
+  const myQ = S.queue.filter(q=>isMine(q.id));
+  const myP = S.plans.filter(q=>isMine(q.id));
   if(myC){
-    const left = mins(myC.start + S.gameMin*MIN);
-    tk = `<div class="ticket"><div class="tp"><div class="em">${myC.players.filter(x=>isMine(x.id)).map(x=>x.e).join('')}</div><div class="st">경기 중</div></div>
-      <div class="cut"></div><div class="bt"><div><small>코트</small><b>${myC.id}코트</b></div><div><small>시작</small><b>${hhmm(myC.start)}</b></div><div><small>남은 시간</small><b>${left}분</b></div></div></div>`;
-  } else if(myQ.length){
+    tk += `<div class="ticket"><div class="tp"><div class="em">${myC.players.filter(x=>isMine(x.id)).map(x=>x.e).join('')}</div><div class="st">경기 중</div></div>
+      <div class="cut"></div><div class="bt"><div><small>코트</small><b>${myC.id}코트</b></div><div><small>시작</small><b>${hhmm(myC.start)}</b></div><div><small>남은 시간</small><b>${mins(myC.start+S.gameMin*MIN)}분</b></div></div></div>`;
+  }
+  if(myQ.length){
     const g = p.groups.find(g=>g.members.some(m=>isMine(m.id)));
     const line = S.weekend ? S.queue.filter(q=>(q.court||1)===g.court) : S.queue;
     const ahead = line.findIndex(q=>q.id===myQ[0].id);
     const gw = mins(g.at), soon = g.full && gw <= 8;
     const st = !g.full ? '모집 중' : soon ? '곧 입장' : '대기 중';
     const msg = !g.full ? `우리 팀 ${g.members.length}/4명 — 4명이 모이면 입장해요` : soon ? '코트 안에서 대기해 주세요 (5분 지나면 교체)' : '';
-    tk = `<div class="ticket"><div class="tp"><div class="em">${myQ.map(q=>q.e).join('')}</div><div class="st">${st}</div></div>
+    tk += `<div class="ticket"><div class="tp"><div class="em">${myQ.map(q=>q.e+(q.bonus?'<span style="font-size:14px">⏰</span>':'')).join('')}</div><div class="st">${st}</div></div>
       <div class="cut"></div><div class="bt"><div><small>앞 대기</small><b>${ahead}명</b></div><div><small>예상 입장</small><b>${hhmm(g.at)}</b></div><div><small>코트</small><b>${g.court}코트</b></div></div>
-      ${msg?`<div class="msg">${msg}</div>`:''}<button class="cx" onclick="cancelMine()">대기 취소</button></div>`;
+      ${msg?`<div class="msg">${msg}</div>`:''}<div class="btns"><button onclick="openEdit('${myQ[0].id}')">순서 바꾸기</button><button onclick="cancelMine()">대기 취소</button></div></div>`;
   }
-  $('ticket').innerHTML = tk; $('myLabel').style.display = tk ? '' : 'none';
-  $('ctaBtn').textContent = (myQ.length || myC) ? '＋ 일행 추가 등록' : '＋ 대기 등록하기';
+  if(myP.length){
+    const p0 = myP[0], ps = planStatus(p0), est = estimateAt(hm2mod(p0.eta), myP.map(x=>x.id));
+    const ew = Math.max(0, Math.round((est - mod2ms(hm2mod(p0.eta)))/MIN));
+    tk += `<div class="ticket plan"><div class="tp"><div class="em">${myP.map(q=>q.e).join('')}</div><div class="st">${ps.t}</div></div>
+      <div class="cut"></div><div class="bt"><div><small>도착 예정</small><b>${p0.eta}</b></div><div><small>그때 대기</small><b>약 ${ew}분</b></div><div><small>인원</small><b>${myP.length}명</b></div></div>
+      <div class="msg ${ps.bad?'bad':''}">${ps.msg}</div>
+      <div class="btns"><button onclick="cancelPlans()">예정 취소</button><button class="p" ${S.open?'':'disabled'} onclick="arriveMine()">📍 도착했어요</button></div></div>`;
+  }
+  $('tickets').innerHTML = tk; $('myLabel').style.display = tk ? '' : 'none';
 
-  // 코트 타일
+  // 등록 버튼
+  const cta = $('ctaBtn');
+  if(!S.open){ cta.disabled = true; cta.textContent = `입력 가능 시간 0${S.openHour}:00 ~ ${S.closeHour}:00`; }
+  else if(S.weekend ? (S.free[1]<=0 && S.free[2]<=0) : room<=0){ cta.disabled = true; cta.textContent = `대기 마감 (최대 ${S.maxTeams}팀) · 입장하면 다시 열려요`; }
+  else { cta.disabled = false; cta.textContent = (myQ.length||myP.length||myC) ? '＋ 일행 추가 등록' : '＋ 대기 등록하기'; }
+
+  // 코트
   $('courts').innerHTML = S.courts.map(c=>{
-    const playing = c.players.length>0;
+    const playing = c.players.length>0, dis = S.open ? '' : 'disabled';
+    if(!S.open) return `<div class="tile"><div class="hd"><span class="no">${c.id}코트</span><span class="chip gray">운영 시간 외</span></div>
+        <div class="ring">${ring(0,'#dee2e6')}<div class="c"><b style="font-size:30px">🌙</b><small>0${S.openHour}:00 시작</small></div></div>
+        <div class="meta">매일 0${S.openHour}:00 ~ ${S.closeHour}:00</div></div>`;
     if(!playing){
       const waiting = S.weekend ? S.queue.some(q=>(q.court||1)===c.id) : S.queue.length>0;
       return `<div class="tile free"><div class="hd"><span class="no">${c.id}코트</span><span class="chip free">비어 있음</span></div>
-        <div class="ring">${ring(0,'var(--pri)')}<div class="c"><b style="color:var(--pri)">OPEN</b><small>바로 입장</small></div></div>
+        <div class="ring">${ring(0,'var(--pri)')}<div class="c"><b style="color:var(--pri);font-size:22px">OPEN</b><small>바로 입장</small></div></div>
         <div class="ppl"></div><div class="meta">${waiting?'다음 팀 입장 대기':'대기자 없음'}</div>
-        <button class="act go" onclick="startNext(${c.id})">다음 팀 입장</button></div>`;
+        <button class="act go" ${dis} onclick="startNext(${c.id})">다음 팀 입장</button></div>`;
     }
     const el = (n - c.start)/MIN, left = Math.ceil(S.gameMin - el), over = el > S.gameMin;
-    const pct = Math.min(1, el/S.gameMin);
     return `<div class="tile"><div class="hd"><span class="no">${c.id}코트</span><span class="chip ${over?'over':'busy'}">${over?'교대 시간':'사용 중'}</span></div>
-      <div class="ring">${ring(pct, over?'var(--over)':'var(--busy)')}<div class="c"><b>${over?'+'+Math.floor(el-S.gameMin):left}<span style="font-size:14px">분</span></b><small>${over?'초과':'남음'}</small></div></div>
-      <div class="ppl">${c.players.map(x=>x.e).join('')}</div><div class="meta">${hhmm(c.start)} 시작</div>
-      <button class="act ${over?'go':'end'}" onclick="${over?`startNext(${c.id})`:`endGame(${c.id})`}">${over?'다음 팀 입장':'경기 종료'}</button></div>`;
+      <div class="ring">${ring(Math.min(1, el/S.gameMin), over?'var(--over)':'var(--busy)')}<div class="c">${over && el-S.gameMin>60 ? '<b style="font-size:18px">확인 필요</b><small>종료 버튼을 눌러 주세요</small>' : `<b>${over?'+'+Math.floor(el-S.gameMin):left}<span style="font-size:14px">분</span></b><small>${over?'초과':'남음'}</small>`}</div></div>
+      <div class="ppl">${c.players.map(x=>`<button onclick="showWho('${x.e}', ${c.id})">${x.e}</button>`).join('')}</div><div class="meta">${hhmm(c.start)} 시작</div>
+      <button class="act ${over?'go':'end'}" ${dis} onclick="${over?`startNext(${c.id})`:`endGame(${c.id})`}">${over?'다음 팀 입장':'경기 종료'}</button></div>`;
   }).join('');
 
+  // 오늘 올 예정
+  $('planCnt').textContent = S.plans.length ? S.plans.length+'명' : '';
+  $('plans').innerHTML = S.plans.length ? `<div class="plans">${S.plans.map(pl=>{
+    const ps = planStatus(pl), mine = isMine(pl.id);
+    return `<button class="pr ${mine?'me':''}" onclick="openPlan('${pl.id}')"><span class="e">${pl.e}</span><span class="tm">${pl.eta} 도착 예정<small>${mine?'내 예정':'등록 '+hhmm(pl.t)}</small></span><span class="chip ${ps.k}">${ps.t}</span></button>`;
+  }).join('')}</div>` : `<div class="empty" style="padding:18px"><span style="font-size:14px">아직 도착 예정 등록이 없어요<br>집에서 미리 "몇 시에 갈게요"를 올려 보세요</span></div>`;
+
   // 대기 명단
-  $('qLabel').textContent = `대기 명단 · ${S.queue.length}명 (${Math.ceil(S.queue.length/4)}팀)`;
+  $('qLabel').textContent = `대기 ${S.queue.length}명 · ${Math.ceil(S.queue.length/4)}팀`;
+  $('qRoom').textContent = `최대 ${S.maxTeams}팀 · ` + (S.weekend ? `남은 자리 ${S.free[1]}·${S.free[2]}` : `남은 자리 ${Math.max(0,room)}명`);
   if(!p.groups.length){
     $('queue').innerHTML = `<div class="empty"><b>🎾</b>대기자가 없어요<br>비어 있는 코트로 바로 입장하세요</div>`;
   } else {
@@ -447,140 +791,243 @@ function render(){
       const slots = [0,1,2,3].map(i=>{
         const m = g.members[i];
         if(!m) return `<div class="slot empty">빈자리</div>`;
-        const mine = isMine(m.id);
-        const x = mine ? `<button class="x" onclick="cancelOne('${m.id}','${m.e}')">×</button>`
-              : adminPin ? `<button class="x" onclick="adminRemove('${m.id}','${m.e}')">×</button>` : '';
-        return `<div class="slot ${mine?'me':''}">${m.e}${x}</div>`;
+        return `<button class="slot ${isMine(m.id)?'me':''}" onclick="openEdit('${m.id}')">${m.e}${m.bonus?'<span class="bn">⏰</span>':''}</button>`;
       }).join('');
       return `${head}<div class="team ${g.team===1?'next':''}"><div class="idx">${g.team}<small>${g.team===1?'다음':'팀'}</small></div>
-        <div class="body"><div class="row1"><b>${S.weekend?'':g.court+'코트 '}${g.full?'':'· 인원 모집'}</b><span>${when}</span></div><div class="slots">${slots}</div></div></div>`;
+        <div class="body"><div class="row1"><b>${S.weekend?'':g.court+'코트'}${g.full?'':' 인원 모집'}</b><span>${when}</span></div><div class="slots">${slots}</div></div></div>`;
     }).join('');
   }
 
+  $('bonusBox').innerHTML = `<b>미리 "몇 시에 갈게요" 올리고 그 시간에 오면</b>
+    <div>✅ 예정 시각 ${S.earlyMin}분 전 ~ ${S.lateMin}분 후 사이에 '도착했어요'를 누르면 <b style="display:inline">${S.bonusMin}분 먼저 온 것</b>으로 쳐서 앞쪽에 넣어 드려요 (바로 다음 게임 팀은 그대로)</div>
+    <div>❌ ${S.lateMin}분 넘게 늦거나, 시간이 지난 뒤 취소하면 일반 대기 + 오늘 하루 혜택 제외</div>
+    <div>❌ ${S.expireMin}분이 지나도 안 오면 예정이 자동 삭제되고 오늘 하루 혜택 제외</div>
+    ${S.banned ? '<div style="color:var(--over);font-weight:700;margin-top:6px">이 휴대폰은 오늘 혜택 제외 상태예요</div>' : ''}`;
+
   $('log').innerHTML = (S.log||[]).map(l=>`<div><time>${hhmm(l.t)}</time><span>${l.msg}</span></div>`).join('') || '<div><span style="color:var(--sub)">기록 없음</span></div>';
-  $('admBar').style.display = adminPin ? 'flex' : 'none';
 }
 
-/* ================= 등록 (바텀시트 3단계) ================= */
+/* ================= 등록 바텀시트 ================= */
 let R = null;
 function openReg(){
-  if(!S) return;
-  R = {step:1, cnt:0, court: S.weekend ? (plan().nextBy[1].at <= plan().nextBy[2].at ? 1 : 2) : 0, emojis:[]};
-  drawSheet(); $('dim').classList.add('on'); $('sheet').classList.add('on');
+  if(!S || !S.open) return;
+  R = {step:0, kind:null, cnt:0, court:0, eta:null, emojis:[], names:[]};
+  if(S.weekend){ const p = plan(); R.court = (S.free[1]>0 && (S.free[2]<=0 || p.nextBy[1].at <= p.nextBy[2].at)) ? 1 : 2; }
+  drawSheet(); openSheetUI();
 }
-function closeSheet(){
-  if($('dim').dataset.dlg) return;
-  $('sheet').classList.remove('on'); $('dim').classList.remove('on'); R = null;
+function openSheetUI(){ $('dim').classList.add('on'); $('sheet').classList.add('on'); }
+function closeSheet(){ if($('dim').dataset.dlg) return; $('sheet').classList.remove('on'); $('dim').classList.remove('on'); R = null; }
+function usedSet(){ return new Set([...S.queue.map(q=>q.e), ...S.plans.map(q=>q.e), ...S.courts.flatMap(c=>c.players.map(p=>p.e))]); }
+function timeSlots(){
+  const out = [], start = Math.ceil((nowMod()+1)/10)*10;
+  for(let m = start; m < S.closeHour*60; m += 10) out.push(pad(Math.floor(m/60))+':'+pad(m%60));
+  return out;
 }
-function usedSet(){ return new Set([...S.queue.map(q=>q.e), ...S.courts.flatMap(c=>c.players.map(p=>p.e))]); }
 function drawSheet(){
-  const steps = `<div class="grab"></div><div class="steps">${[1,2,3].map(i=>`<i class="${R.step>=i?'on':''}"></i>`).join('')}</div>`;
+  const total = 4, bar = `<div class="grab"></div><div class="steps">${[0,1,2,3].map(i=>`<i class="${R.step>=i?'on':''}"></i>`).join('')}</div>`;
+  const maxCnt = Math.min(4, Math.max(0, R.kind==='plan' ? roomOf(0) : roomOf(R.court)));
   let h = '';
-  if(R.step===1){
-    const p = plan();
-    h = `<h3>몇 명이 치실 건가요?</h3><p class="d">함께 온 일행까지 모두 선택하세요</p>
-      <div class="nums">${[1,2,3,4].map(i=>`<button class="${R.cnt===i?'on':''}" onclick="R.cnt=${i};drawSheet()">${i}<small>${i===4?'한 팀':'명'}</small></button>`).join('')}</div>
-      ${S.weekend ? `<div class="seg">${[1,2].map(c=>`<button class="${R.court===c?'on':''}" onclick="R.court=${c};drawSheet()">${c}코트<small>약 ${mins(p.nextBy[c].at)}분 대기</small></button>`).join('')}</div>` : ''}
-      <div class="sbtn"><button class="g" onclick="closeSheet()">닫기</button><button class="p" ${R.cnt?'':'disabled'} onclick="toStep2()">다음</button></div>`;
+  if(R.step===0){
+    h = `<h3>지금 어디세요?</h3><p class="d">코트에 와 있으면 바로 대기, 아직이면 도착 예정을 올려 두세요</p>
+      <div class="choice">
+        <button onclick="R.kind='now';R.step=1;drawSheet()"><span class="ic">🎾</span><span><b>코트에 와 있어요</b><small>지금 바로 대기 등록</small></span></button>
+        <button onclick="R.kind='plan';R.step=1;drawSheet()" ${timeSlots().length?'':'disabled'}><span class="ic">🕖</span><span><b>나중에 갈게요</b><small>도착 예정 시간 등록 · 제시간에 오면 ⏰ ${S.bonusMin}분 우선</small></span></button>
+      </div>
+      <div class="sbtn"><button class="g" style="flex:1" onclick="closeSheet()">닫기</button></div>`;
+  } else if(R.step===1){
+    if(R.cnt > maxCnt) R.cnt = 0;
+    const nums = `<div class="nums">${[1,2,3,4].map(i=>`<button class="${R.cnt===i?'on':''}" ${i>maxCnt?'disabled':''} onclick="R.cnt=${i};drawSheet()">${i}<small>${i===4?'한 팀':'명'}</small></button>`).join('')}</div>`;
+    if(R.kind==='now'){
+      const p = plan();
+      h = `<h3>몇 명이 치실 건가요?</h3><p class="d">함께 온 일행까지 모두 선택하세요 · 남은 자리 ${Math.max(0,roomOf(R.court))}명</p>${nums}
+        ${S.weekend ? `<div class="sub-l">코트 선택</div><div class="seg">${[1,2].map(c=>`<button class="${R.court===c?'on':''}" ${S.free[c]<=0?'disabled':''} onclick="R.court=${c};drawSheet()">${c}코트<small>${S.free[c]<=0?'마감':'약 '+mins(p.nextBy[c].at)+'분 대기'}</small></button>`).join('')}</div>` : ''}`;
+    } else {
+      const slots = timeSlots();
+      if(!R.eta || !slots.includes(R.eta)) R.eta = slots[Math.min(2, slots.length-1)];
+      const est = estimateAt(hm2mod(R.eta)), ew = Math.max(0, Math.round((est - mod2ms(hm2mod(R.eta)))/MIN));
+      h = `<h3>몇 시에 도착하세요?</h3><p class="d">그 시간 ±에 '도착했어요'를 누르면 ⏰ 혜택을 받아요</p>
+        ${S.banned ? '<div class="warn">이 휴대폰은 오늘 지각·노쇼 기록이 있어 혜택 없이 일반 대기로 등록돼요</div>' : ''}
+        <div class="times">${slots.map(t=>`<button class="${R.eta===t?'on':''}" onclick="R.eta='${t}';drawSheet()">${t}</button>`).join('')}</div>
+        <div class="est">${R.eta}에 도착하면 예상 대기 약 ${ew}분 (${hhmm(est)} 입장 예상)</div>
+        <div class="sub-l">인원 · 남은 자리 ${Math.max(0,roomOf(0))}명</div>${nums}`;
+    }
+    h += `<div class="sbtn"><button class="g" onclick="R.step=0;drawSheet()">이전</button><button class="p" ${R.cnt?'':'disabled'} onclick="toEmoji()">다음</button></div>`;
   } else if(R.step===2){
     const used = usedSet();
     R.emojis = R.emojis.filter(e=>!used.has(e));
-    h = `<h3>내 아이콘을 골라 주세요</h3><p class="d">이름 대신 이 아이콘으로 순서가 표시돼요 (${R.cnt}개)</p>
+    h = `<h3>내 아이콘을 골라 주세요</h3><p class="d">이름 대신 이 아이콘으로 표시돼요 (${R.cnt}개)</p>
       <div class="picked">${Array.from({length:R.cnt},(_,i)=>`<div class="${i===R.emojis.length?'cur':''}">${R.emojis[i]||''}</div>`).join('')}</div>
       <div class="grid">${S.emojis.map(e=>`<button class="${R.emojis.includes(e)?'on':''}" ${used.has(e)?'disabled':''} onclick="pickE('${e}')">${e}</button>`).join('')}</div>
       <div class="sbtn"><button class="g" onclick="R.step=1;drawSheet()">이전</button><button class="p" ${R.emojis.length===R.cnt?'':'disabled'} onclick="R.step=3;drawSheet()">다음</button></div>`;
   } else if(R.step===3){
-    const p = plan();
-    const nx = S.weekend ? p.nextBy[R.court] : p.next;
-    const w = mins(nx.at);
-    h = `<h3>이대로 등록할까요?</h3><p class="d">입장 5분 전에는 코트 안에서 기다려 주세요</p>
-      <div class="sum"><div><span>아이콘</span><b style="font-size:22px">${R.emojis.join(' ')}</b></div>
-      <div><span>인원</span><b>${R.cnt}명</b></div>
-      <div><span>예상 입장</span><b>${w<=1?'바로 입장':hhmm(nx.at)+' ('+w+'분 후)'}</b></div>
-      <div><span>코트</span><b>${nx.court}코트${S.weekend?'':' 예상'}</b></div></div>
-      <div class="sbtn"><button class="g" onclick="R.step=2;drawSheet()">이전</button><button class="p" id="regGo" onclick="submitReg()">등록하기</button></div>`;
+    if(R.kind==='now'){
+      const p = plan(), nx = S.weekend ? p.nextBy[R.court] : p.next, w = mins(nx.at);
+      h = `<h3>이대로 대기 등록할까요?</h3><p class="d">입장 5분 전에는 코트 안에서 기다려 주세요</p>
+        <div class="sum"><div><span>아이콘</span><b style="font-size:22px">${R.emojis.join(' ')}</b></div><div><span>인원</span><b>${R.cnt}명</b></div>
+        <div><span>예상 입장</span><b>${w<=1?'바로 입장':hhmm(nx.at)+' ('+w+'분 후)'}</b></div><div><span>코트</span><b>${nx.court}코트${S.weekend?'':' 예상'}</b></div></div>
+        ${namesBox()}
+        <div class="sbtn"><button class="g" onclick="R.step=2;drawSheet()">이전</button><button class="p" id="regGo" onclick="submitReg()">대기 등록</button></div>`;
+    } else {
+      const m = hm2mod(R.eta);
+      h = `<h3>도착 예정을 올릴까요?</h3><p class="d">코트에 도착하면 꼭 '📍 도착했어요'를 눌러 주세요</p>
+        <div class="sum"><div><span>아이콘</span><b style="font-size:22px">${R.emojis.join(' ')}</b></div><div><span>인원</span><b>${R.cnt}명</b></div>
+        <div><span>도착 예정</span><b>${R.eta}</b></div><div><span>⏰ 혜택 시간</span><b>${S.banned?'오늘 제외':hhmm(mod2ms(m-S.earlyMin))+' ~ '+hhmm(mod2ms(m+S.lateMin))}</b></div></div>
+        ${namesBox()}
+        <div class="warn" style="margin:12px 0 0">늦거나 안 오면 오늘 하루 혜택에서 제외돼요</div>
+        <div class="sbtn"><button class="g" onclick="R.step=2;drawSheet()">이전</button><button class="p blue" id="regGo" onclick="submitReg()">예정 등록</button></div>`;
+    }
   } else if(R.step===4){
-    h = `<div class="done"><div class="ok">✓</div><h3>등록 완료!</h3><div class="em">${R.emojis.join('')}</div>
-      <p class="d">홈 화면의 내 대기 카드에서 순서를 확인하세요</p></div>
-      <div class="sbtn"><button class="p" onclick="closeSheet();tab('home')">확인</button></div>`;
+    h = R.kind==='now'
+      ? `<div class="done"><div class="ok">✓</div><h3>대기 등록 완료!</h3><div class="em">${R.emojis.join('')}</div><p class="d">홈 화면의 내 대기 카드에서 순서를 확인하세요</p></div>`
+      : `<div class="done"><div class="ok blue">🕖</div><h3>${R.eta} 도착 예정 등록!</h3><div class="em">${R.emojis.join('')}</div><p class="d">코트에 오면 홈 화면에서 '📍 도착했어요'를 눌러 주세요</p></div>`;
+    h += `<div class="sbtn"><button class="p" onclick="closeSheet();tab('home')">확인</button></div>`;
   }
-  $('sheetIn').innerHTML = (R.step<4?steps:'<div class="grab"></div>') + h;
+  $('sheetIn').innerHTML = (R.step<4 ? bar : '<div class="grab"></div>') + h;
 }
-function toStep2(){
-  // 처음엔 안 쓰는 아이콘을 자동으로 추천
-  const used = usedSet(); const free = S.emojis.filter(e=>!used.has(e));
-  if(R.emojis.length !== R.cnt){
-    const pool = free.slice().sort(()=>Math.random()-.5);
-    R.emojis = pool.slice(0, R.cnt);
-  }
+function namesBox(){
+  return `<div class="sub-l">이름 표시 <span style="font-weight:500;color:var(--sub)">(선택 · 아이콘을 누르면 보여요)</span></div>
+    <div class="names" style="margin-top:0">${R.emojis.map((e,i)=>`<label><span>${e}</span><input maxlength="8" placeholder="비워두면 아이콘만 보여요" value="${esc(R.names[i]||'')}" oninput="R.names[${i}]=this.value"></label>`).join('')}</div>`;
+}
+function toEmoji(){
+  const used = usedSet(), free = S.emojis.filter(e=>!used.has(e));
+  if(R.emojis.length !== R.cnt) R.emojis = free.slice().sort(()=>Math.random()-.5).slice(0, R.cnt);
   R.step = 2; drawSheet();
 }
 function pickE(e){
   if(R.emojis.includes(e)) R.emojis = R.emojis.filter(x=>x!==e);
   else if(R.emojis.length < R.cnt) R.emojis.push(e);
-  else { R.emojis[R.emojis.length-1] = e; }
+  else R.emojis[R.emojis.length-1] = e;
   drawSheet();
 }
 function submitReg(){
   if($('regGo')) $('regGo').disabled = true;
-  call('join', R.emojis, R.court).then(v=>{
-    myIds = myIds.concat(v.created||[]); saveMine(); apply(v); R.step = 4; drawSheet();
-  }).catch(e=>{ fail(e); refresh(); R.step = 2; drawSheet(); });
+  const nms = R.emojis.map((_,i)=>(R.names[i]||'').trim());
+  const req = R.kind==='now' ? call('join', [R.emojis, R.court, nms]) : call('addPlan', [R.emojis, R.eta, DEV, nms]);
+  req.then(v=>{ myIds = myIds.concat(v.created||[]); saveMine(); apply(v); R.step = 4; drawSheet(); })
+     .catch(e=>{ fail(e); refresh(); if(R){ R.step = 1; drawSheet(); } });
+}
+
+/* ================= 수정 시트 (대기 아이콘을 눌렀을 때) ================= */
+function openEdit(id){
+  const q = S.queue.find(x=>x.id===id); if(!q) return;
+  const line = S.weekend ? S.queue.filter(x=>(x.court||1)===(q.court||1)) : S.queue;
+  const idx = line.indexOf(q), team = Math.floor(idx/4)+1, lastTeam = Math.ceil(line.length/4), mine = isMine(id);
+  const dis = S.open ? '' : 'disabled';
+  R = {step:9};
+  $('sheetIn').innerHTML = `<div class="grab"></div>
+    <h3><span style="font-size:30px">${q.e}</span> ${q.nm?esc(q.nm):''} <span style="font-size:15px;color:var(--sub);font-weight:600">${team}팀 ${idx%4+1}번째</span></h3>
+    <p class="d">${mine ? '내 대기예요' : (q.nm?'':'이름 비공개 · ')+'다른 분의 대기예요 — 꼭 본인에게 물어본 뒤 바꿔 주세요'}</p>
+    ${S.open ? '' : '<div class="warn">입력 시간(06:00~10:00)에만 바꿀 수 있어요</div>'}
+    <div class="acts">
+      <button ${dis} ${team===1?'disabled':''} onclick="doMove('${id}','up')"><i>⬆️</i>앞 게임으로 당기기<small>${team===1?'이미 다음 게임':(team-1)+'팀으로'}</small></button>
+      <button ${dis} ${team>=lastTeam?'disabled':''} onclick="doMove('${id}','down')"><i>⬇️</i>다음 게임으로 미루기<small>${team>=lastTeam?'마지막 팀':(team+1)+'팀으로'}</small></button>
+      <button ${dis} ${idx===line.length-1?'disabled':''} onclick="doMove('${id}','end')"><i>↩️</i>맨 뒤로 보내기</button>
+      ${mine?`<button ${dis} onclick="doRename('${id}')"><i>🏷️</i>이름 표시<small>${q.nm?esc(q.nm):'아이콘만'} ›</small></button>`:''}
+      <button class="red" ${dis} onclick="doLeave('${id}','${q.e}',${mine})"><i>🚪</i>${mine?'대기 취소':'빠짐 (대기에서 지우기)'}</button>
+    </div>
+    <div class="sbtn"><button class="g" style="flex:1" onclick="closeSheet()">닫기</button></div>`;
+  openSheetUI();
+}
+function showWho(e, cid){
+  const x = S.courts[cid-1].players.find(p=>p.e===e); if(!x) return;
+  toast(x.nm ? `${e} ${x.nm}` : `${e} 이름 비공개`);
+}
+function doMove(id, how){
+  call('move', [id, how]).then(v=>{ apply(v); closeSheet(); toast(how==='up'?'앞 게임으로 당겼어요':how==='down'?'다음 게임으로 미뤘어요':'맨 뒤로 보냈어요'); }).catch(fail);
+}
+async function doRename(id){
+  const q = S.queue.find(x=>x.id===id) || S.plans.find(x=>x.id===id); if(!q) return;
+  const v = await dialog({title:`${q.e} 이름 표시`, msg:'아이콘을 누른 사람에게 보여요. 비워두면 아이콘만 보여요.', input:'text', value:q.nm||'', ok:'저장'});
+  if(v===null) return;
+  call('setName', [id, v]).then(r=>{ apply(r); closeSheet(); toast(v.trim()?'이름이 표시돼요':'아이콘만 보여요'); }).catch(fail);
+}
+async function doLeave(id, e, mine){
+  if(!await dialog({title: mine?`${e} 대기를 취소할까요?`:`${e} 를 대기에서 지울까요?`, msg: mine?'':'중간에 빠진 분만 지워 주세요.\n기록에 남아요.', ok: mine?'취소하기':'지우기', cancel:'아니요', red:true})) return;
+  call('leave', [id]).then(v=>{ myIds = myIds.filter(x=>x!==id); saveMine(); apply(v); closeSheet(); toast('대기에서 빠졌어요'); }).catch(fail);
+}
+
+/* 도착 예정 행을 눌렀을 때 */
+function openPlan(id){
+  const pl = S.plans.find(x=>x.id===id); if(!pl) return;
+  const mine = isMine(id), ps = planStatus(pl), dis = S.open ? '' : 'disabled';
+  R = {step:9};
+  $('sheetIn').innerHTML = `<div class="grab"></div>
+    <h3><span style="font-size:30px">${pl.e}</span> ${pl.nm?esc(pl.nm):''} <span style="font-size:15px;color:var(--sub);font-weight:600">${pl.eta} 도착 예정</span></h3>
+    <p class="d">${ps.msg}</p>
+    <div class="acts">
+      <button ${dis} onclick="closeSheet();arriveIds(['${id}'])" style="color:var(--blue)"><i>📍</i>도착했어요 · 대기 등록<small>${mine?'':'본인이 도착했을 때만'}</small></button>
+      ${mine?`<button ${dis} onclick="doRename('${id}')"><i>🏷️</i>이름 표시<small>${pl.nm?esc(pl.nm):'아이콘만'} ›</small></button>`:''}
+      <button class="red" ${dis} onclick="doCancelPlan('${id}','${pl.e}',${mine})"><i>🚪</i>${mine?'예정 취소':'못 온대요 (예정 지우기)'}</button>
+    </div>
+    <div class="sbtn"><button class="g" style="flex:1" onclick="closeSheet()">닫기</button></div>`;
+  openSheetUI();
+}
+async function doCancelPlan(id, e, mine){
+  if(!await dialog({title:`${e} 도착 예정을 지울까요?`, msg: mine ? '혜택 시간이 지난 뒤 취소하면 오늘 혜택에서 제외돼요' : '못 온다고 연락받은 경우에만 지워 주세요', ok:'지우기', cancel:'아니요', red:true})) return;
+  call('cancelPlan', [id]).then(v=>{ myIds = myIds.filter(x=>x!==id); saveMine(); apply(v); closeSheet(); toast('도착 예정을 지웠어요'); }).catch(fail);
 }
 
 /* ================= 동작 ================= */
-function apply(v){ S = v; clientOffset = v.now - Date.now(); render(); }
+function apply(v){ S = v; clientOffset = v.now - Date.now(); render(); tick(); }
 function refresh(){ return call('getState').then(apply).catch(fail); }
 
 async function cancelMine(){
-  const mine = S.queue.filter(q=>myIds.includes(q.id));
+  const mine = S.queue.filter(q=>isMine(q.id));
   if(!await dialog({title:'대기를 취소할까요?', msg: mine.map(q=>q.e).join(' ')+' 모두 취소돼요', ok:'대기 취소', cancel:'아니요', red:true})) return;
-  let v; for(const q of mine){ v = await call('leave', q.id).catch(fail); }
+  let v; for(const q of mine){ v = await call('leave', [q.id]).catch(fail); }
   myIds = myIds.filter(id=>!mine.some(q=>q.id===id)); saveMine(); if(v) apply(v); toast('대기가 취소되었어요');
 }
-async function cancelOne(id, e){
-  if(!await dialog({title:`${e} 대기를 취소할까요?`, ok:'취소하기', cancel:'아니요', red:true})) return;
-  call('leave', id).then(v=>{ myIds = myIds.filter(x=>x!==id); saveMine(); apply(v); toast('취소되었어요'); }).catch(fail);
+async function cancelPlans(){
+  const mine = S.plans.filter(q=>isMine(q.id));
+  if(!await dialog({title:'도착 예정을 취소할까요?', msg: planStatus(mine[0]).bad ? '혜택 시간이 지나서 오늘 혜택에서 제외돼요' : '', ok:'예정 취소', cancel:'아니요', red:true})) return;
+  let v; for(const q of mine){ v = await call('cancelPlan', [q.id]).catch(fail); }
+  myIds = myIds.filter(id=>!mine.some(q=>q.id===id)); saveMine(); if(v) apply(v); toast('도착 예정을 취소했어요');
+}
+function arriveMine(){ arriveIds(S.plans.filter(q=>isMine(q.id)).map(q=>q.id)); }
+async function arriveIds(ids){
+  if(!ids.length) return;
+  const ps = S.plans.filter(p=>ids.includes(p.id)), st = planStatus(ps[0]);
+  let court = 0;
+  if(S.weekend){ court = (S.free[1] >= ps.length) ? 1 : 2; }
+  if(st.k==='blue' && !st.now){
+    if(!await dialog({title:'아직 혜택 시간 전이에요', msg:`지금 등록하면 ⏰ 혜택 없이 일반 대기로 들어가요.\n그래도 등록할까요?`, ok:'일반 대기로 등록', cancel:'기다릴게요'})) return;
+  }
+  call('arrive', [ids, court]).then(v=>{
+    apply(v);
+    toast(v.onTime ? `⏰ 정시 도착! ${S.bonusMin}분 우선으로 등록됐어요` : v.late ? '늦어서 일반 대기로 등록됐어요 (오늘 혜택 제외)' : '대기 등록 완료');
+    tab('home');
+  }).catch(fail);
 }
 async function startNext(cid){
   const c = S.courts[cid-1];
-  const list = S.weekend ? S.queue.filter(q=>(q.court||1)===cid) : S.queue;
-  if(!list.length) return toast('대기자가 없어요');
-  const team = list.slice(0,4).map(q=>q.e).join(' ');
-  const prevMine = c.players.filter(x=>myIds.includes(x.id)).map(x=>x.e);
-  if(!await dialog({title:`${cid}코트 다음 팀 입장`, msg: team + (c.players.length ? '\n\n지금 경기는 종료 처리돼요' : ''), ok:'입장'})) return;
+  const line = S.weekend ? S.queue.filter(q=>(q.court||1)===cid) : S.queue;
+  if(!line.length) return toast('대기자가 없어요');
+  const team = line.slice(0,4).map(q=>q.e).join(' ');
+  const prevMine = c.players.filter(x=>isMine(x.id));
+  if(!await dialog({title:`${cid}코트 다음 팀 입장`, msg: team + (c.players.length ? '\n\n지금 경기는 종료 처리돼요' : '') + '\n입장하면 대기 자리 4개가 다시 열려요', ok:'입장'})) return;
   let force = false;
-  if(list.length < 4){
-    if(!await dialog({title:`대기자가 ${list.length}명뿐이에요`, msg:'4명이 안 돼도 입장할까요?', ok:'입장'})) return;
+  if(line.length < 4){
+    if(!await dialog({title:`대기자가 ${line.length}명뿐이에요`, msg:'4명이 안 돼도 입장할까요?', ok:'입장'})) return;
     force = true;
   }
-  call('startNext', cid, force).then(v=>{ apply(v); toast(`${cid}코트 입장 ${team}`); offerRejoin(prevMine, cid); }).catch(fail);
+  call('startNext', [cid, force]).then(v=>{ apply(v); toast(`${cid}코트 입장 ${team}`); offerRejoin(prevMine, cid); }).catch(fail);
 }
 async function endGame(cid){
-  const prevMine = S.courts[cid-1].players.filter(x=>myIds.includes(x.id)).map(x=>x.e);
+  const prevMine = S.courts[cid-1].players.filter(x=>isMine(x.id));
   if(!await dialog({title:`${cid}코트 경기를 끝낼까요?`, msg:'코트가 비어 있음으로 바뀌어요', ok:'경기 종료'})) return;
-  call('endGame', cid).then(v=>{ apply(v); offerRejoin(prevMine, cid); }).catch(fail);
+  call('endGame', [cid]).then(v=>{ apply(v); offerRejoin(prevMine, cid); }).catch(fail);
 }
-async function offerRejoin(es, cid){
-  if(!es.length) return;
-  if(!await dialog({title:'수고하셨어요! 🎾', msg:`${es.join(' ')} 다시 대기 맨 뒤에 등록할까요?`, ok:'다시 등록', cancel:'괜찮아요'})) return;
-  call('join', es, cid).then(v=>{ myIds = myIds.concat(v.created||[]); saveMine(); apply(v); toast('다시 대기 등록 완료'); }).catch(fail);
+async function offerRejoin(ps, cid){
+  if(!ps.length || !S.open) return;
+  if(!await dialog({title:'수고하셨어요! 🎾', msg:`${ps.map(x=>x.e).join(' ')} 다시 대기 맨 뒤에 등록할까요?`, ok:'다시 등록', cancel:'괜찮아요'})) return;
+  call('join', [ps.map(x=>x.e), cid, ps.map(x=>x.nm||'')]).then(v=>{ myIds = myIds.concat(v.created||[]); saveMine(); apply(v); toast('다시 대기 등록 완료'); }).catch(fail);
 }
 
 /* ================= 관리자 ================= */
 async function askPin(title){ const pin = await dialog({title, msg:'관리자 PIN을 입력하세요', input:true, ok:'확인'}); return pin || null; }
-async function adminOn(){
-  if(adminPin){ tab('queue'); return; }
-  const pin = await askPin('관리자 모드'); if(!pin) return;
-  call('checkAdmin', pin).then(()=>{ adminPin = pin; render(); tab('queue'); toast('빨간 × 로 대기를 삭제할 수 있어요'); }).catch(fail);
-}
-function adminOff(){ adminPin = null; render(); }
-async function adminRemove(id, e){
-  if(!await dialog({title:`${e} 삭제`, msg:'미입장(5분 경과) 등으로 대기에서 삭제할까요?', ok:'삭제', red:true})) return;
-  call('removeById', adminPin, id).then(v=>{ apply(v); toast(e+' 삭제됨'); }).catch(fail);
-}
 async function adminMode(){
   const pin = await askPin('운영 방식 변경'); if(!pin) return;
+  try { await call('checkAdmin', [], pin); } catch(e){ return fail(e); }
   $('dlgBox').innerHTML = `<h4>운영 방식</h4><p>공휴일에는 '주말식'으로 바꿔 주세요</p>
     <div class="list" style="background:#f7f8f9;margin-bottom:12px">
       <button data-m="auto">요일 자동 <span>평일/주말 자동</span></button>
@@ -590,19 +1037,19 @@ async function adminMode(){
   $('dlg').classList.add('on'); $('dim').classList.add('on'); $('dim').dataset.dlg='1';
   const close = () => { $('dlg').classList.remove('on'); $('dim').classList.remove('on'); delete $('dim').dataset.dlg; };
   $('mC').onclick = close;
-  $('dlgBox').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{ close(); call('setMode', pin, b.dataset.m).then(v=>{ apply(v); toast('운영 방식이 바뀌었어요'); }).catch(fail); });
+  $('dlgBox').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{ close(); call('setMode', [b.dataset.m], pin).then(v=>{ apply(v); toast('운영 방식이 바뀌었어요'); }).catch(fail); });
 }
 async function adminReset(){
-  if(!await dialog({title:'전체 리셋', msg:'경기 중인 코트와 대기 명단을 모두 비워요.\n되돌릴 수 없어요.', ok:'다음', red:true})) return;
+  if(!await dialog({title:'전체 리셋', msg:'코트·대기·도착 예정을 모두 비워요.\n되돌릴 수 없어요.', ok:'다음', red:true})) return;
   const pin = await askPin('전체 리셋'); if(!pin) return;
-  call('resetAll', pin).then(v=>{ myIds=[]; saveMine(); apply(v); toast('리셋 완료'); tab('home'); }).catch(fail);
+  call('resetAll', [], pin).then(v=>{ myIds=[]; saveMine(); apply(v); toast('리셋 완료'); tab('home'); }).catch(fail);
 }
 
 /* ================= 시작 ================= */
-if(!HAS_GAS && !API_URL) $('demo').style.display='block';
+if(DEMO){ demoSeed(); $('demo').style.display='flex'; }
 tick(); setInterval(tick, 1000);
 refresh();
-setInterval(()=>{ if(!document.hidden && !R) refresh(); }, 20000);
+setInterval(()=>{ if(!document.hidden && !(R && $('sheet').classList.contains('on'))) refresh(); }, 20000);
 setInterval(render, 30000);
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refresh(); });
 </script>
