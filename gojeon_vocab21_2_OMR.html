@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>고전문학 어휘 암기 테스트 2차</title>
+<meta property="og:title" content="고전문학 어휘 암기 테스트 2차 (1~21쪽)">
+<meta property="og:description" content="수특·수완 고전문학 어휘집 1~21쪽 · 객관식 25 + 주관식 15 · 자동 채점">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap">
+<style>
+/* VOICE: 차분한 시험지, 학생이 바로 쓰는 도구
+   IDEA: 한지 위에 먹으로 쓴 답안지
+   PICTURE: 문항 카드 자체가 화면의 중심
+   COLOUR and TYPE: 한지색 바탕, 먹색 글씨, 인주 빨강 강조 / Noto Sans KR
+   LAYOUT: 한 줄 기둥, 위에 이름, 아래 채점 버튼 고정 */
+:root{color-scheme:light;--bg:#f6f1e7;--card:#fffdf8;--ink:#1d1a15;--mute:#76695a;--line:#ddd2bf;--red:#c0272d;--ok:#1f6f43}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Noto Sans KR',sans-serif;overflow-x:clip}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 120px}
+h1{font-size:30px;line-height:1.1;margin:6px 0 4px;font-weight:900}
+.sub{color:var(--mute);font-size:14px;margin:0 0 16px}
+.name{display:flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:18px}
+.name label{font-weight:700;white-space:nowrap}
+input[type=text]{-webkit-appearance:none;appearance:none;width:100%;min-height:44px;font:16px 'Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+input[type=text]:focus{outline:2px solid var(--red);outline-offset:1px}
+h2{font-size:17px;margin:24px 0 10px;padding-left:10px;border-left:4px solid var(--red)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.top{display:flex;gap:10px;align-items:baseline}
+.no{font-weight:900;color:var(--red);font-size:18px;width:26px;flex:none}
+.w{font-weight:700;font-size:18px}
+.w small{font-weight:400;color:var(--mute);font-size:13px;margin-left:4px}
+.ex{font-size:14px;color:var(--mute);margin:4px 0 8px 36px}
+.ex u{color:var(--ink);text-decoration-color:var(--red)}
+.mean{font-size:15px;margin:2px 0 4px 36px}
+.q input{margin-left:36px;width:calc(100% - 36px)}
+.res{margin:6px 0 0 36px;font-size:14px;display:none}
+.q.o{border-color:var(--ok)}.q.x{border-color:var(--red)}
+.q.o .res{color:var(--ok);display:block}.q.x .res{color:var(--red);display:block}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.bar .in{max-width:720px;margin:0 auto;display:flex;gap:8px;align-items:center}
+button{-webkit-appearance:none;min-height:46px;border:0;border-radius:10px;font:700 16px 'Noto Sans KR',sans-serif;padding:0 18px;cursor:pointer}
+#go{background:var(--red);color:#fff;flex:1}
+#copy{background:var(--ink);color:var(--bg);display:none}
+#score{font-weight:900;font-size:20px;white-space:nowrap;display:none}
+#msg{font-size:13px;color:var(--mute);margin-top:6px;text-align:center;max-width:720px;margin-left:auto;margin-right:auto}
+textarea{width:100%;height:120px;font:13px monospace;display:none;margin-top:8px}
+.note{font-size:13px;color:var(--mute);margin-top:18px}
+.opt{display:flex;gap:8px;align-items:flex-start;margin:6px 0 0 36px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer;font-size:15px;line-height:1.45}
+.opt input{margin:3px 0 0;width:auto;flex:none;accent-color:var(--red)}
+.opt.sel{border-color:var(--ink)}
+.q.o .opt.right,.q.x .opt.right{border-color:var(--ok);background:#eef6f0}
+.hint{font-size:13px;color:var(--mute);margin:2px 0 6px 36px}</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>고전문학 어휘 암기 테스트 2차</h1>
+  <p class="sub">수특·수완 고전문학 어휘집 1~21쪽 · 40문항(각 1점)</p>
+  <div class="name"><label for="nm">이름</label><input type="text" id="nm" autocomplete="off" placeholder="이름을 쓰세요"></div>
+  <h2>Ⅰ. 밑줄 친 어휘의 뜻으로 옳은 것을 고르시오. (1~25)</h2>
+  <div id="pa"></div>
+  <h2>Ⅱ. 뜻을 보고 (　) 안에 들어갈 어휘를 쓰시오. (26~40)</h2>
+  <div id="pb"></div>
+  <p class="note">Ⅱ는 어휘집 표기 그대로 써야 정답입니다(띄어쓰기는 보지 않음).</p>
+  <textarea id="ta" readonly></textarea>
+</div>
+<div class="bar"><div class="in"><span id="score"></span><button id="go" type="button">채점하기</button><button id="copy" type="button">카톡 보고 복사</button></div><div id="msg"></div></div>
+<script>
+(function(){
+var A=[["영전", "靈前", "하며 가기를 간청하니, 응서 할 수 없이 <u>영전</u>(靈前)에 통곡하고 평복을 갈아입고 원익을 좇아 진에 이르니,…", ["서산으로 해가 넘어감을 쓸쓸히 여기니.", "저울질. 사물의 경중을 헤아림.", "죽은 사람의 영혼을 모셔 놓은 곳의 앞.", "신분이 낮은 사람. 자신을 낮추어 이르는 말.", "음란한 짓을 잘한다고 이르는구나."], 2], ["불우지변", "不虞之變", "이로써 <u>불우지변</u>을 방비하며, 삼경 전에는 귀로 자며 눈으로 보고 삼경…", ["배가 감. 배를 타고 감.", "남북의 이웃집들.", "미처 생각하지 못한 변고.", "고기를 넣지 않고 끓인 국.", "중국 당나라의 명신."], 2], ["도화", "桃花", "서창(西窓)을 열어하니 <u>도화</u>(桃花)가 발(發)하도다", ["복숭아꽃.", "나서 자람.", "바람이 부는 형세.", "거의 비슷하다.", "한 번 지나간 곳."], 0], ["양단수", "兩端水", "두류산 <u>양단수</u>를 예 듣고 이제 보니", ["지위가 높거나 존경하는 사람을 찾아가 뵘.", "마음이 상쾌하지 못하고 매우 답답하다.", "봄바람을 희롱함.", "나서 자람.", "두 갈래로 흐르는 물."], 4], ["절대가인", "絶代佳人", "…마 솔질하여 보라매 길들여 두고 노복 시켜 밭 갈리고 <u>절대가인</u> 옆에 두고 금준의 술을 부어 벽오동 거문고 새 줄 …", ["수많은 봉우리와 골짜기.", "밤에 도둑이나 화재를 막기 위해 돌아다니던 군졸.", "죽은 사람의 영혼을 높여 이르는 말.", "당대에 비할 데 없을 만큼 아름다운 여인.", "고대 중국 요임금 때 기산 영수에서 은거하던 이들의 이름."], 3], ["뉘라셔", "", "눈 맞아 휘어진 대를 <u>뉘라셔</u> 굽다던고", ["바다를 맡아 다스린다는 신.", "하늘이 정하여 준 배필.", "인품이 조용하고 그윽함.", "(옛말) 누가.", "맑고 시원한 모양."], 3], ["천추절", "", "<u>천추절</u>이 적막하다 개자추의 넋이로다", ["자유자재로 행동하여 거침이 없음.", "임금의 탄신일을 경축하던 국경일.", "철 지난 부채. 버림받은 신세를 비유.", "제사 등을 앞두고 몸을 깨끗이 하고 부정을 피함.", "바람이 부는 형세."], 1], ["무서산지 퇴일하니", "", "<u>무서산지 퇴일하니</u> 이영백의 사정(私情)이오", ["서진(西晉)의 문학가.", "서산으로 해가 넘어감을 쓸쓸히 여기니.", "임금의 은혜에 공손히 사례함.", "뒷부분의 구절이 전하지 않음.", "나라를 다스림. 또는 그런 포부."], 1], ["경성가", "", "만백성 화합하는 <u>경성가</u>를 오늘날에 보리로다", ["분한 마음을 풂.", "경사(慶事)의 노래.", "하늘이 정한 운수.", "하늘을 우러러 탄식함.", "누렇게 익은 곡식이 넓게 펼쳐진 모양."], 1], ["녹의홍상", "綠衣紅裳", "<u>녹의홍상</u> 미인들은 오락가락하는구나", ["결초보은. 죽어서도 잊지 않고 은혜를 갚음.", "하늘을 우러러 탄식함.", "지위가 높거나 존경하는 사람을 찾아가 뵘.", "연두저고리에 다홍치마.", "나서 자람."], 3], ["해도", "海島", "삼 년을 임을 떠나 <u>해도</u>(海島)에 유배되니", ["향기로운 풀이 피어 있는 맑은 연못.", "우기시던 이가. 또는 어기신 이가.", "바다 가운데 있는 섬.", "마음 놓고 믿을 수 있는 부하.", "당대에 비할 데 없을 만큼 아름다운 여인."], 2], ["가을 부채", "秋扇", "광주리의 <u>가을 부채</u> 어느 날 다시 날꼬", ["철 지난 부채. 버림받은 신세를 비유.", "중국의 한 무제가 이슬을 받기 위해 만든 쟁반.", "(옛말) 그르다. 잘못되다.", "가죽옷과 베옷. 겨울옷과 여름옷.", "은빛 비늘의 크고 좋은 물고기."], 0], ["물외", "物外", "<u>물외</u>의 풍월강산이 내 분인가 하노라", ["세상 물정의 바깥. 속세를 벗어난 곳.", "군중(軍中)에서 호령할 때 쓰던 북과 나팔.", "수놓은 비단. 아름다운 단풍을 비유.", "그리 높지 않은 공중.", "오전 11시부터 오후 1시까지."], 0], ["기화요초", "琪花瑤草", "창송취죽(蒼松翠竹)은 창창울울(蒼蒼鬱鬱)한데 <u>기화요초</u>(琪花瑤草) 난만(爛漫) 중에", ["옥같이 고운 꽃과 풀.", "이 또한 임금의 은혜임.", "활과 쇠뇌를 쏘는 군사.", "몹시 분하여 이를 갈며 속을 썩임.", "신분이 낮은 사람. 자신을 낮추어 이르는 말."], 0], ["천기", "天機", "말함도 침묵함도 각기 <u>천기</u> 로세", ["상산으로 지초를 뜯으러.", "근심으로 잠을 이루지 못하고 마음에 걸림.", "하늘의 이치, 하늘이 내려 준 성질.", "누렇게 익은 곡식이 넓게 펼쳐진 모양.", "노래를 부르게 하며, 악기를 타고 또 켜게 하며, 악기를 흔들며."], 2], ["찬탈", "簒奪", "불행히도 오랑캐 청나라가 대업을 <u>찬탈</u>하고 중국에서 황제를 일컫고 있으니, 지금 우리 조정 …", ["고기를 가득 잡아 만선이 된 것을 황해도에서는 ‘봉죽을 받았다’라고 표현함.", "물 위에 세운 군대의 진영.", "바다를 맡아 다스린다는 신.", "왕위, 국가 주권 따위를 억지로 빼앗음.", "마음이 상쾌하지 못하고 매우 답답하다."], 3], ["화의", "和議", "“참으로 말씀하신 그대롭니다. <u>화의</u>(和議)를 고수해야 하겠습니다.”", ["화해하는 일로 의논함. 강화를 위한 논의.", "장대에 매달아 전승(戰勝)을 보도하는 표시.", "서산으로 해가 넘어감을 쓸쓸히 여기니.", "임금이 산과 같이 장수하기를 바라며 부르는 만세.", "‘내 인생이 가련함을 슬퍼하고, 세월이 흐르는 물과 같음을 탄식한다."], 0], ["상고묵묵", "", "제신이 다 채영의 권세를 두려워하여 <u>상고묵묵</u>이라.", ["버드나무 가는 가지가 실처럼 늘어져 푸른데 황산곡 속에 봄철을 만남.", "텅 비고 매우 넓다.", "서로 돌아보며 아무 말 없이 잠잠함.", "신선이 산다는 삼신산.", "누렇게 익은 곡식이 넓게 펼쳐진 모양."], 2], ["앙천 탄", "仰天歎", "상서가 <u>앙천 탄</u> 왈,", ["하늘을 우러러 탄식함.", "싸움터에 나가는 지아비와의 이별을 원망함.", "추운 계절에도 혼자 지키는 절개.", "이 또한 임금의 은혜임.", "매우 풍채가 좋고 의기가 당당한 듯한."], 0], ["정혼", "定婚", "…들은 조 공은 아들 용홍을 금가락지의 인연인 정채임과 <u>정혼</u> 시킨다.", ["분한 마음을 풂.", "흉년과 풍년.", "복숭아꽃.", "임금의 음성.", "혼인을 정함."], 4], ["첨두노", "", "바로 그날 단기(單騎)로 길을 떠났는데, 다만 <u>첨두노</u>(尖頭奴) 몇 명만 데리고 밤낮을 가리지 않고 갔다.", ["야단스럽다. 수다스럽다.", "(옛말) 그것이. 그가.", "임금을 속임.", "붓의 별칭.", "바탕. 본바탕."], 3], ["궁달", "", "아! 사람이 세상에 나서 <u>궁달</u>은 팔자소관이니 어찌 꿈을 깨는 자가 있을 것인가! …", ["번거롭고 속된 세상.", "아닌 게 아니라 과연.", "한가로운 한 사람.", "고기를 넣지 않고 끓인 국.", "가난과 부귀."], 4], ["만사무석", "", "…, 정성이 부족하여 이제야 부모를 만나 뵈오니 그 죄 <u>만사무석</u>(萬死無惜)이오나, 또한 하늘이 우리를 보살피시어 금…", ["'오줌'을 점잖게 이르는 말.", "만 번 죽어도 아깝지 아니함.", "지위가 높거나 존경하는 사람을 찾아가 뵘.", "마음 놓고 믿을 수 있는 부하.", "이것이 눈앞에 닥친 재앙이구나."], 1], ["의율정배", "", "…을 두고 남의 세간 탈취하려 하니, 네 죄상은 마땅히 <u>의율정배</u> 할 것이로되, 고의 안세하니 바삐 어서 물리치라.”", ["법에 따라 귀양을 보냄.", "하늘의 이치, 하늘이 내려 준 성질.", "서로 돌아보며 아무 말 없이 잠잠함.", "다섯 수레에 실을 만한 많은 장서.", "근심으로 잠을 이루지 못하고 마음에 걸림."], 0], ["진양성중가가조", "", "…매 실옹가 아내 몸이 곤하여 침석에 누워 해태하는데, <u>진양성중가가조</u>(晉陽城中家家稠) 에 개구리 해산하듯, 도야지 새끼 낳…", ["밤에 도둑이나 화재를 막기 위해 돌아다니던 군졸.", "먼 포구로 돌아오는 돛단배.", "진양성 안에 집이 빽빽하게 들어서 있음을 뜻함.", "화해하는 일로 의논함. 강화를 위한 논의.", "먼 곳으로 귀양 보내다."], 2]];
+var B=[["선봉", "하고, 이일을 (　　　　)으로 삼아 고각을 울리며 나아가니, 왜장 평행장이 부장…", "부대의 맨 앞에 서서 나아가는 군대나 사람.", ["선봉"]], ["삼경", "이로써 불우지변을 방비하며, (　　　　) 전에는 귀로 자며 눈으로 보고 ○○ 후는 눈으로 자며…", "하룻밤을 다섯으로 나눈 셋째 부분. 밤 11시~새벽 1시.", ["삼경"]], ["아련", "오리야 오리야 (　　　　) 비오리야", "(옛말) 아련한. 어린. 연약한.", ["아련"]], ["강구연월", "…오동 거문고 새 줄 얹어 무릎에 얹고 남풍시 화답하여 (　　　　)에 누웠으니", "번화한 거리에 달빛이 연기에 은은하게 비치는 모습. 또는 태평한 세상의 평화로운 풍경. 또는 태평한 세월.", ["강구연월"]], ["세한고절", "아마도 (　　　　)은 너뿐인가 하노라", "추운 계절에도 혼자 지키는 절개.", ["세한고절"]], ["승경", "천지가 풍성하여 간 데마다 (　　　　)이로다", "뛰어나게 좋은 경치.", ["승경"]], ["남린 북사", "(　　　　) 보리타작 방방곡곡 농부가로다", "남북의 이웃집들.", ["남린북사"]], ["공산낙목", "(　　　　) 한 줌 흙 되어 영원한 이별 되겠구나", "사람 없는 빈 산과 잎 진 나무.", ["공산낙목"]], ["행선", "갈 길은 멀고요 (　　　　)은 더디니", "배가 감. 배를 타고 감.", ["행선"]], ["만화방창", "화란 춘성(花爛春城)하고 (　　　　)이라", "따뜻한 봄날에 온갖 생물이 나서 자라 흐드러짐.", ["만화방창"]], ["만학", "석양이 고개에 걸려 (　　　　)이 한 빛일 때", "첩첩이 겹쳐진 많은 골짜기.", ["만학"]], ["사행", "제가 이번 (　　　　)에 따라오기를 자청했던 건 중국 수도의 장려한 모습을 보고 대장부의 울울한 심사를 풀고 싶어서였습니다.", "사신의 행차.", ["사행"]], ["변백", "상이 위·반 이 인을 아끼시나 조신 중 일인도 (　　　　) 치 못하는지라, 할 수 없어 위윤은 장사에 원찬하고…", "옳고 그름을 가려 사리를 밝힘.", ["변백"]], ["천정배필", "“이제 공주의 꿈 이야기를 의논할진대, 경과 공주는 (　　　　)이라.", "하늘이 정하여 준 배필.", ["천정배필"]], ["종횡무진", "이렇게 천하를 (　　　　)으로 뛰어다닌 까닭은 세상을 편안하게 만들겠다는 대장부의 큰 뜻을 저버리지 아니함이라.", "자유자재로 행동하여 거침이 없음.", ["종횡무진"]]];
+var NA=A.length,N=A.length+B.length,NUM='①②③④⑤';
+var h=[],i,k;
+for(i=0;i<NA;i++){var o='';for(k=0;k<5;k++){o+='<label class="opt" id="o'+(i+1)+'_'+k+'"><input type="radio" name="r'+(i+1)+'" value="'+k+'">'+NUM.charAt(k)+' '+A[i][3][k]+'</label>';}
+h.push('<div class="q" id="q'+(i+1)+'"><div class="top"><span class="no">'+(i+1)+'</span><span class="w">'+A[i][0]+(A[i][1]?'<small>'+A[i][1]+'</small>':'')+'</span></div><div class="ex">'+A[i][2]+'</div>'+o+'<div class="res"></div></div>');}
+document.getElementById('pa').innerHTML=h.join('');
+h=[];
+for(i=0;i<B.length;i++){var n=i+NA+1;h.push('<div class="q" id="q'+n+'"><div class="top"><span class="no">'+n+'</span><span class="mean" style="margin:0">'+B[i][2]+'</span></div><div class="ex">'+B[i][1]+'</div><input type="text" id="a'+n+'" autocomplete="off" placeholder="어휘"><div class="res"></div></div>');}
+document.getElementById('pb').innerHTML=h.join('');
+document.getElementById('pa').onclick=function(e){var t=e.target||e.srcElement;if(!t||t.tagName!=='INPUT')return;var q=t.name.substr(1),k2;for(k2=0;k2<5;k2++){document.getElementById('o'+q+'_'+k2).className='opt'+(String(k2)===t.value?' sel':'');}};
+function norm(s){return String(s||'').replace(/[\s.,·'"‘’“”()（）~\-]/g,'');}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function pick(j){var r=document.getElementsByName('r'+j),m;for(m=0;m<r.length;m++){if(r[m].checked)return parseInt(r[m].value,10);}return -1;}
+var report='';
+function grade(){
+  var nm=document.getElementById('nm').value.replace(/^\s+|\s+$/g,'');
+  if(!nm){document.getElementById('msg').innerHTML='이름을 먼저 쓰세요.';document.getElementById('nm').focus();return;}
+  var sc=0,wrong=[],j,v,ok,q,r,ans,m;
+  for(j=1;j<=N;j++){
+    q=document.getElementById('q'+j);r=q.getElementsByTagName('div');r=r[r.length-1];
+    if(j<=NA){v=pick(j);ok=(v===A[j-1][4]);ans=NUM.charAt(A[j-1][4])+' '+A[j-1][3][A[j-1][4]];
+      for(m=0;m<5;m++){document.getElementById('o'+j+'_'+m).className='opt'+(m===v?' sel':'')+(m===A[j-1][4]?' right':'');}}
+    else{v=norm(document.getElementById('a'+j).value);ok=false;for(m=0;m<B[j-NA-1][3].length;m++){if(v&&v===norm(B[j-NA-1][3][m]))ok=true;}ans=B[j-NA-1][0];}
+    q.className='q '+(ok?'o':'x');
+    r.innerHTML=(ok?'○ 정답 · ':'✕ 정답: ')+(j<=NA?ans:esc(ans));
+    if(ok)sc++;else wrong.push(j);
+  }
+  var s=document.getElementById('score');s.style.display='inline';s.innerHTML=sc+' / '+N;
+  document.getElementById('go').innerHTML='다시 채점';
+  document.getElementById('copy').style.display='inline-block';
+  report='[고전문학 어휘 암기 테스트 2차 · 1~21쪽]\n이름: '+nm+'\n점수: '+sc+' / '+N+'\n틀린 문항: '+(wrong.length?wrong.join(', '):'없음');
+  document.getElementById('msg').innerHTML='틀린 문항: '+(wrong.length?wrong.join(', '):'없음')+' · ‘카톡 보고 복사’를 눌러 선생님께 보내세요.';
+}
+function copy(){
+  var ta=document.getElementById('ta'),m=document.getElementById('msg');
+  function fallback(){ta.style.display='block';ta.value=report;ta.focus();ta.select();try{ta.setSelectionRange(0,9999);}catch(e){}var d=false;try{d=document.execCommand('copy');}catch(e){}m.innerHTML=d?'복사했어요. 카톡에 붙여 넣으세요.':'아래 글을 길게 눌러 복사하세요.';}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(report).then(function(){m.innerHTML='복사했어요. 카톡에 붙여 넣으세요.';},fallback);}else{fallback();}}catch(e){fallback();}
+}
+document.getElementById('go').onclick=grade;
+document.getElementById('copy').onclick=copy;
+})();
+</script>
+</body>
+</html>
